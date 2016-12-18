@@ -1,3 +1,11 @@
+Google Style Guides 日本語
+=======================
+[C++ Style Guide][cpp] を日本語に翻訳して[C++ Style Guide ja][cppja] に置いてみる試みです。
+
+今はまだ Headers の章しかやっていませんが、ヒマを見つけては更新したい。
+
+[cppja]: https://ttsuki.github.io/styleguide/cppguide.ja.html
+
 Google Style Guides
 ===================
 
