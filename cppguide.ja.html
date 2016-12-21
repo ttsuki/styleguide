@@ -3314,82 +3314,173 @@ MyClass&amp; operator=(const MyClass&amp;) = delete;
 
             </div>
 
-            <h2 id="Functions">Functions</h2>
+            <h2 id="Functions"><span title="Functions">関数</span></h2>
 
-            <h3 id="Function_Parameter_Ordering">Parameter Ordering</h3>
+            <h3 id="Function_Parameter_Ordering"><span title="Parameter Ordering">引数の順序</span></h3>
 
             <div class="summary">
                 <p>
-                    When defining a function, parameter order is: inputs, then
-                    outputs.
+                    <span>
+                        <span class="src">
+                            When defining a function, parameter order is: inputs, then
+                            outputs.
+                        </span>
+                        関数を定義するときの引数の順序は入力が先、出力が後とします。
+                    </span>
                 </p>
             </div>
 
             <div class="stylebody">
                 <p>
-                    Parameters to C/C++ functions are either input to the
-                    function, output from the function, or both. Input
-                    parameters are usually values or <code>const</code>
-                    references, while output and input/output parameters will
-                    be pointers to non-<code>const</code>. When ordering
-                    function parameters, put all input-only parameters before
-                    any output parameters. In particular, do not add new
-                    parameters to the end of the function just because they
-                    are new; place new input-only parameters before the
-                    output parameters.
+                    <span>
+                        <span class="src">
+                            Parameters to C/C++ functions are either input to the
+                            function, output from the function, or both.
+                        </span>
+                        C/C++の関数に渡される引数は、関数への入力であるか、関数への出力であるか、あるいはその両方です。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Input
+                            parameters are usually values or <code>const</code>
+                            references, while output and input/output parameters will
+                            be pointers to non-<code>const</code>.
+                        </span>
+                        入力となる引数は、通常は、値渡しか、<code>const</code>参照渡しです。一方で出力となる引数、あるいは入力と出力の両方となる引数は、非<code>const</code>なポインタとなります。
+                    </span>
+                    <span>
+                        <span class="src">
+                            When ordering
+                            function parameters, put all input-only parameters before
+                            any output parameters.
+                        </span>
+                        引数の順番を決めるときは、入力のみに使われる引数を、いかなる出力の引数よりも前に配置します。
+                    </span>
+                    <span>
+                        <span class="src">
+                            In particular, do not add new
+                            parameters to the end of the function just because they
+                            are new; place new input-only parameters before the
+                            output parameters.
+                        </span>
+                        特に、新しい引数を追加するときは、新しいからという理由だけで関数の最後に追加してはいけません。新しく追加する引数が入力のための引数であるのならば、それは出力引数の前に配置します。
+                    </span>
                 </p>
 
                 <p>
-                    This is not a hard-and-fast rule. Parameters that are
-                    both input and output (often classes/structs) muddy the
-                    waters, and, as always, consistency with related
-                    functions may require you to bend the rule.
+                    <span>
+                        <span class="src">
+                            This is not a hard-and-fast rule.
+                        </span>
+                        これは絶対のルールではありません。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Parameters that are
+                            both input and output (often classes/structs) muddy the
+                            waters, and, as always, consistency with related
+                            functions may require you to bend the rule.
+                        </span>
+                        入力と出力の両方の役割を持つ引数(大抵はクラスや構造体)が存在する場合は、明確な線引きはできません。また、関連する関数との一貫性を保つためにはこのルールを曲げなくてはならないかもしれません。
+                    </span>
                 </p>
 
             </div>
 
-            <h3 id="Write_Short_Functions">Write Short Functions</h3>
+            <h3 id="Write_Short_Functions"><span title="Write Short Functions">関数は短く</span></h3>
 
             <div class="summary">
-                <p>Prefer small and focused functions.</p>
+                <p>
+                    <span>
+                        <span class="src">
+                            Prefer small and focused functions.
+                        </span>
+                        関数は、短く、焦点を絞ったものにしましょう。
+                    </span>
+                </p>
             </div>
 
             <div class="stylebody">
                 <p>
-                    We recognize that long functions are sometimes
-                    appropriate, so no hard limit is placed on functions
-                    length. If a function exceeds about 40 lines, think about
-                    whether it can be broken up without harming the structure
-                    of the program.
+                    <span>
+                        <span class="src">
+                            We recognize that long functions are sometimes
+                            appropriate, so no hard limit is placed on functions
+                            length.
+                        </span>
+                        時には長い関数の方が適切なこともあるため、関数の長さに関する固定の限界値は定めません。
+                    </span>
+                    <span>
+                        <span class="src">
+                            If a function exceeds about 40 lines, think about
+                            whether it can be broken up without harming the structure
+                            of the program.
+                        </span>
+                        だいたい40行程度を超えるようであれば、プログラムの構造を破壊することなく関数を分割できないか考えてみてください。
+                    </span>
                 </p>
 
                 <p>
-                    Even if your long function works perfectly now,
-                    someone modifying it in a few months may add new
-                    behavior. This could result in bugs that are hard to
-                    find. Keeping your functions short and simple makes it
-                    easier for other people to read and modify your code.
+                    <span>
+                        <span class="src">
+                            Even if your long function works perfectly now,
+                            someone modifying it in a few months may add new
+                            behavior.
+                        </span>
+                        長い関数が、現時点では完璧に動いていたとしても、1～2ヶ月後に誰かがそれを変更し、新しい動作を足すかもしれません。
+                    </span>
+                    <span>
+                        <span class="src">
+                            This could result in bugs that are hard to
+                            find.
+                        </span>
+                        その結果として見つけるのが困難なバグを引き起こすかもしれません。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Keeping your functions short and simple makes it
+                            easier for other people to read and modify your code.
+                        </span>
+                        関数を短くシンプルであるように保つことで、コードをより読みやすく、より変更しやすくできるのです。
+                    </span>
                 </p>
 
                 <p>
-                    You could find long and complicated functions when
-                    working with
-                    some code. Do not be
-                    intimidated by modifying existing code: if working with
-                    such a function proves to be difficult, you find that
-                    errors are hard to debug, or you want to use a piece of
-                    it in several different contexts, consider breaking up
-                    the function into smaller and more manageable pieces.
+                    <span>
+                        <span class="src">
+                            You could find long and complicated functions when
+                            working with
+                            some code.
+                        </span>
+                        作業をしていると、長い複雑なコードに出くわすこともあるでしょう。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Do not be
+                            intimidated by modifying existing code: if working with
+                            such a function proves to be difficult, you find that
+                            errors are hard to debug, or you want to use a piece of
+                            it in several different contexts, consider breaking up
+                            the function into smaller and more manageable pieces.
+                        </span>
+                        既存のコードを変更することにおびえてはいけません。
+                        そのコードを使って仕事を進めることが困難であることがわかった場合、エラーのデバッグが難しいことがわかった場合、あるいは別の文脈においてその関数の一部分だけを切り出して使いたくなった場合、関数をより小さく扱いやすい複数の断片に分割することを検討してください。
+                    </span>
                 </p>
 
             </div>
 
-            <h3 id="Reference_Arguments">Reference Arguments</h3>
+            <h3 id="Reference_Arguments"><span title="Reference Arguments">参照渡し</span></h3>
 
             <div class="summary">
                 <p>
-                    All parameters passed by reference must be labeled
-                    <code>const</code>.
+                    <span>
+                        <span class="src">
+                            All parameters passed by reference must be labeled
+                            <code>const</code>.
+                            参照渡しされる引数は必ず<code>const</code>でなくてはなりません。
+                        </span>
+                    </span>
                 </p>
             </div>
 
@@ -3397,94 +3488,188 @@ MyClass&amp; operator=(const MyClass&amp;) = delete;
 
                 <div class="definition">
                     <p>
-                        In C, if a
-                        function needs to modify a variable, the parameter must
-                        use a pointer, eg <code>int foo(int *pval)</code>. In
-                        C++, the function can alternatively declare a reference
-                        parameter: <code>int foo(int &amp;val)</code>.
+                        <span>
+                            <span class="src">
+                                In C, if a
+                                function needs to modify a variable, the parameter must
+                                use a pointer, eg <code>int foo(int *pval)</code>.
+                            </span>
+                            C言語において、関数が変数を変更する必要があるときは、引数にポインタを使わなくてはなりません(例: <code>int foo(int *pval)</code>)。
+                        </span>
+                        <span>
+                            <span class="src">
+                                In
+                                C++, the function can alternatively declare a reference
+                                parameter: <code>int foo(int &amp;val)</code>.
+                            </span>
+                            C++においては、他の方法として、参照渡しを使って関数を宣言することもできます(例:<code>int foo(int &amp;val)</code>)。
+                        </span>
                     </p>
                 </div>
 
                 <div class="pros">
                     <p>
-                        Defining a parameter as reference avoids ugly code like
-                        <code>(*pval)++</code>. Necessary for some applications
-                        like copy constructors. Makes it clear, unlike with
-                        pointers, that a null pointer is not a possible
-                        value.
+                        <span>
+                            <span class="src">
+                                Defining a parameter as reference avoids ugly code like
+                                <code>(*pval)++</code>.
+                            </span>
+                            引数を参照にすることで、<code>(*pval)++</code>のような醜いコードを避けられます。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Necessary for some applications
+                                like copy constructors.
+                            </span>
+                            参照渡しは、コピーコンストラクタなど、それを必要する場面があります。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Makes it clear, unlike with
+                                pointers, that a null pointer is not a possible
+                                value.
+                            </span>
+                            参照渡しは、ポインタと違って、ヌルポインタが渡せないことが明確になります。
+                        </span>
                     </p>
                 </div>
 
                 <div class="cons">
                     <p>
-                        References can be confusing, as they have value syntax
-                        but pointer semantics.
+                        <span>
+                            <span class="src">
+                                References can be confusing, as they have value syntax
+                                but pointer semantics.
+                            </span>
+                            参照は、値型と同じ文法のまま、ポインタと同じような意味を持つため、混乱しやすいです。
+                        </span>
                     </p>
                 </div>
 
                 <div class="decision">
                     <p>
-                        Within function parameter lists all references must be
-                        <code>const</code>:
+                        <span>
+                            <span class="src">
+                                Within function parameter lists all references must be
+                                <code>const</code>:
+                            </span>
+                            関数の引数リストにおいては、以下の例のように、すべての参照は<code>const</code>でなくてはなりません。
+                        </span>
                     </p>
 
 <pre>void Foo(const string &amp;in, string *out);
 </pre>
 
                     <p>
-                        In fact it is a very strong convention in Google code
-                        that input arguments are values or <code>const</code>
-                        references while output arguments are pointers. Input
-                        parameters may be <code>const</code> pointers, but we
-                        never allow non-<code>const</code> reference parameters
-                        except when required by convention, e.g.,
-                        <code>swap()</code>.
+                        <span>
+                            <span class="src">
+                                In fact it is a very strong convention in Google code
+                                that input arguments are values or <code>const</code>
+                                references while output arguments are pointers.
+                            </span>
+                            実際、入力引数が値渡しか<code>const</code>参照であり、出力引数がポインタであるということは、Googleのコードにおいて非常に強いしきたりになっています。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Input
+                                parameters may be <code>const</code> pointers, but we
+                                never allow non-<code>const</code> reference parameters
+                                except when required by convention, e.g.,
+                                <code>swap()</code>.
+                            </span>
+                            入力引数に<code>const</code>ポインタが使われることはありますが、非<code>const</code>な参照は、<code>swap()</code>のような習慣的な要求がある場合を除いて、認められることはありません。
+                        </span>
                     </p>
 
                     <p>
-                        However, there are some instances where using
-                        <code>const T*</code> is preferable to <code>
-                            const
-                            T&amp;
-                        </code> for input parameters. For example:
+                        <span>
+                            <span class="src">
+                                However, there are some instances where using
+                                <code>const T*</code> is preferable to <code>
+                                    const
+                                    T&amp;
+                                </code> for input parameters.
+                            </span>
+                            入力引数に<code>const T&amp;</code>より<code>const T*</code> を使う方がよい場面もあります。
+                        </span>
+                        <span>
+                            <span class="src">
+                                For example:
+                            </span>
+                            たとえば、
+                        </span>
                     </p>
 
                     <ul>
-                        <li>You want to pass in a null pointer.</li>
+                        <li>
+                            <span>
+                                <span class="src">
+                                    You want to pass in a null pointer.
+                                </span>
+                                ヌルポインタを渡したいとき や
+                            </span>
+                        </li>
 
                         <li>
-                            The function saves a pointer or reference to the
-                            input.
+                            <span>
+                                <span class="src">
+                                    The function saves a pointer or reference to the
+                                    input.
+                                </span>
+                                関数が入力にポインタか参照を保存したいとき です。
+                            </span>
                         </li>
                     </ul>
 
                     <p>
-                        Remember that most of the time input
-                        parameters are going to be specified as <code>
-                            const
-                            T&amp;
-                        </code>. Using <code>const T*</code> instead
-                        communicates to the reader that the input is somehow
-                        treated differently. So if you choose <code>
-                            const
-                            T*
-                        </code> rather than <code>const T&amp;</code>, do so
-                        for a concrete reason; otherwise it will likely confuse
-                        readers by making them look for an explanation that
-                        doesn't exist.
+                        <span>
+                            <span class="src">
+                                Remember that most of the time input
+                                parameters are going to be specified as <code>
+                                    const
+                                    T&amp;
+                                </code>.
+                                ほとんどの場合、入力引数は<code>const T&amp;</code>のように特殊化されます。
+                            </span>
+                        </span>
+                        <span>
+                            <span class="src">
+                                Using <code>const T*</code> instead
+                                communicates to the reader that the input is somehow
+                                treated differently.
+                            </span>
+                            <code>const T*</code>という表現を使うことは、コードの読者に、ここでは入力に対して何かしら普段と違う扱い方をしますよと伝えていることになります。
+                        </span>
+                        <span>
+                            <span class="src">
+                                So if you choose <code>
+                                    const
+                                    T*
+                                </code> rather than <code>const T&amp;</code>, do so
+                                for a concrete reason; otherwise it will likely confuse
+                                readers by making them look for an explanation that
+                                doesn't exist.
+                            </span>
+                            あなたが、<code>const T&amp;</code>ではなく、<code>const T*</code>を選ぶときは具体的な理由が必要です。さもなくば、コードの読者が、(ポインタを使っている)ありもしない理由を探そうとしてしまうかもしれず、混乱を招くかもしれません。
+                        </span>
                     </p>
                 </div>
 
             </div>
 
-            <h3 id="Function_Overloading">Function Overloading</h3>
+            <h3 id="Function_Overloading"><span title="Function Overloading">関数のオーバーロード</span></h3>
 
             <div class="summary">
                 <p>
-                    Use overloaded functions (including constructors) only if a
-                    reader looking at a call site can get a good idea of what
-                    is happening without having to first figure out exactly
-                    which overload is being called.
+                    <span>
+                        <span class="src">
+                            Use overloaded functions (including constructors) only if a
+                            reader looking at a call site can get a good idea of what
+                            is happening without having to first figure out exactly
+                            which overload is being called.
+                        </span>
+                        コンストラクタを含む関数のオーバーロードは、コードの読者が、その呼び出し元を読んだときに、具体的にどのオーバーロードが呼び出されるか正確に把握していなくとも、何が起こるか理解できるであろう場合にのみ使用できます。
+                    </span>
                 </p>
             </div>
 
@@ -3492,11 +3677,16 @@ MyClass&amp; operator=(const MyClass&amp;) = delete;
 
                 <div class="definition">
                     <p>
-                        You may write a function that takes a <code>
-                            const
-                            string&amp;
-                        </code> and overload it with another that
-                        takes <code>const char*</code>.
+                        <span>
+                            <span class="src">
+                                You may write a function that takes a <code>
+                                    const
+                                    string&amp;
+                                </code> and overload it with another that
+                                takes <code>const char*</code>.
+                            </span>
+                            <code>const string&amp;</code>を引数にとる関数と、<code>const char*</code>を引数にとるオーバーロードとを書くことができます。
+                        </span>
                     </p>
 
 <pre>class MyClass {
@@ -3509,50 +3699,93 @@ MyClass&amp; operator=(const MyClass&amp;) = delete;
 
                 <div class="pros">
                     <p>
-                        Overloading can make code more intuitive by allowing an
-                        identically-named function to take different arguments.
-                        It may be necessary for templatized code, and it can be
-                        convenient for Visitors.
+                        <span>
+                            <span class="src">
+                                Overloading can make code more intuitive by allowing an
+                                identically-named function to take different arguments.
+                            </span>
+                            オーバーロードによって、同一名の関数に異なる引数をとらせることができるため、コードがより直感的になります。
+                        </span>
+                        <span>
+                            <span class="src">
+                                It may be necessary for templatized code, and it can be
+                                convenient for Visitors.
+                            </span>
+                            この機能は、テンプレート化されたコードにおいて必要とされ、また、ビジターパターンにおいても有用となるでしょう。
+                        </span>
                     </p>
                 </div>
 
                 <div class="cons">
                     <p>
-                        If a function is overloaded by the argument types alone,
-                        a reader may have to understand C++'s complex matching
-                        rules in order to tell what's going on. Also many people
-                        are confused by the semantics of inheritance if a derived
-                        class overrides only some of the variants of a
-                        function.
+                        <span>
+                            <span class="src">
+                                If a function is overloaded by the argument types alone,
+                                a reader may have to understand C++'s complex matching
+                                rules in order to tell what's going on.
+                            </span>
+                            ある関数が引数の型だけでオーバーロードされている場合、コードの読者がそこで実際に起きることを知るためには、C++の複雑なマッチングルールについて理解していなくてはなりません。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Also many people
+                                are confused by the semantics of inheritance if a derived
+                                class overrides only some of the variants of a
+                                function.
+                            </span>
+                            また、複数のオーバーロードを持つ仮想関数を、派生先で部分的にオーバーライドした場合の挙動は、多くの人を困惑させています。
+                        </span>
                     </p>
                 </div>
 
                 <div class="decision">
                     <p>
-                        If you want to overload a function, consider qualifying
-                        the name with some information about the arguments, e.g.,
-                        <code>AppendString()</code>, <code>AppendInt()</code>
-                        rather than just <code>Append()</code>. If you are
-                        overloading a function to support variable number of
-                        arguments of the same type, consider making it take a
-                        <code>std::vector</code> so that the user can use an
-                        <a href="#Braced_Initializer_List">
-                            initializer list
-                        </a> to specify the arguments.
+                        <span>
+                            <span class="src">
+                                If you want to overload a function, consider qualifying
+                                the name with some information about the arguments, e.g.,
+                                <code>AppendString()</code>, <code>AppendInt()</code>
+                                rather than just <code>Append()</code>.
+                            </span>
+                            関数をオーバーロードしたくなったら、まずは名前に引数の情報をつける(たとえば、<code>Append()</code>の代わりに、<code>AppendString()</code>や<code>AppendInt()</code>とする)やり方を検討してください。
+                        </span>
+                        <span>
+                            <span class="src">
+                                If you are
+                                overloading a function to support variable number of
+                                arguments of the same type, consider making it take a
+                                <code>std::vector</code> so that the user can use an
+                                <a href="#Braced_Initializer_List">
+                                    initializer list
+                                </a> to specify the arguments.
+                            </span>
+                            また、型は同一でも、その型の引数をいくつとるかによってオーバーロードを定義したいときは、<code>std::vector</code>を引数にとるようにするやり方を検討してください。その方法ならば、ユーザは<a href="#Braced_Initializer_List">初期化子リスト</a>の形で引数を渡せます。
+                        </span>
                     </p>
                 </div>
 
             </div>
 
-            <h3 id="Default_Arguments">Default Arguments</h3>
+            <h3 id="Default_Arguments"><span title="Default Arguments">引数のデフォルト値</span></h3>
 
             <div class="summary">
                 <p>
-                    Default arguments are allowed on non-virtual functions
-                    when the default is guaranteed to always have the same
-                    value. Follow the same restrictions as for <a href="#Function_Overloading">function overloading</a>, and
-                    prefer overloaded functions if the readability gained with
-                    default arguments doesn't outweigh the downsides below.
+                    <span>
+                        <span class="src">
+                            Default arguments are allowed on non-virtual functions
+                            when the default is guaranteed to always have the same
+                            value.
+                        </span>
+                        引数にデフォルトの値を与えられるのは、その関数が仮想関数ではなく、かつ、値が常に同じ値になることを保証できる場合に限ります。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Follow the same restrictions as for <a href="#Function_Overloading">function overloading</a>, and
+                            prefer overloaded functions if the readability gained with
+                            default arguments doesn't outweigh the downsides below.
+                        </span>
+                        <a href="#Function_Overloading">関数のオーバーロード</a>と同様の制限に従ってください。また、引数にデフォルト値を与えることによって得られる可読性よりも、以下に述べるマイナス面の方が勝る場合、代わりに関数のオーバーロードを使いましょう。
+                    </span>
                 </p>
             </div>
 
@@ -3560,146 +3793,324 @@ MyClass&amp; operator=(const MyClass&amp;) = delete;
 
                 <div class="pros">
                     <p>
-                        Often you have a function that uses default values, but
-                        occasionally you want to override the defaults. Default
-                        parameters allow an easy way to do this without having to
-                        define many functions for the rare exceptions. Compared
-                        to overloading the function, default arguments have a
-                        cleaner syntax, with less boilerplate and a clearer
-                        distinction between 'required' and 'optional'
-                        arguments.
+                        <span>
+                            <span class="src">
+                                Often you have a function that uses default values, but
+                                occasionally you want to override the defaults.
+                            </span>
+                            普段はデフォルトの値で使っている関数でも、時々別の値に変えて呼び出したくなることがあります。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Default
+                                parameters allow an easy way to do this without having to
+                                define many functions for the rare exceptions.
+                            </span>
+                            引数にデフォルト値を与えることは、このような"時々"のための関数をたくさん定義することなく、簡単にやりたいことを実現するための手段の一つです。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Compared
+                                to overloading the function, default arguments have a
+                                cleaner syntax, with less boilerplate and a clearer
+                                distinction between 'required' and 'optional'
+                                arguments.
+                            </span>
+                            関数のオーバーロードと比較して、このやり方は、文法的にきれいで、より少ない例で済み、さらに、引数が必須か任意かをより明確に区別できるようにもなります。
+                        </span>
                     </p>
                 </div>
 
                 <div class="cons">
                     <p>
-                        Defaulted arguments are another way to achieve the
-                        semantics of overloaded functions, so all the <a href="#Function_Overloading">
-                            reasons not to overload
-                            functions
-                        </a> apply.
+                        <span>
+                            <span class="src">
+                                Defaulted arguments are another way to achieve the
+                                semantics of overloaded functions, so all the <a href="#Function_Overloading">
+                                    reasons not to overload
+                                    functions
+                                </a> apply.
+                            </span>
+                            引数にデフォルト値を与える方法は、関数のオーバーロードでできることを実現する別の方法でもあるため、すべての<a href="#Function_Overloading">関数をオーバーロードしない理由</a>を適用します。
+                        </span>
                     </p>
 
                     <p>
-                        The defaults for arguments in a virtual function call are
-                        determined by the static type of the target object, and
-                        there's no guarantee that all overrides of a given function
-                        declare the same defaults.
+                        <span>
+                            <span class="src">
+                                The defaults for arguments in a virtual function call are
+                                determined by the static type of the target object, and
+                                there's no guarantee that all overrides of a given function
+                                declare the same defaults.
+                            </span>
+                            仮想関数呼び出しにおける引数のデフォルト値は、オブジェクトの静的な型に基づいて決定されますが、その関数のすべてのオーバーライドが、同じデフォルト値とともに宣言されている保証はどこにもありません。
+                        </span>
                     </p>
 
                     <p>
-                        Default parameters are re-evaluated at each call site,
-                        which can bloat the generated code. Readers may also expect
-                        the default's value to be fixed at the declaration instead
-                        of varying at each call.
+                        <span>
+                            <span class="src">
+                                Default parameters are re-evaluated at each call site,
+                                which can bloat the generated code.
+                            </span>
+                            引数のデフォルト値は、呼び出されるごとに評価されるため、生成されるコードの量がふくれます。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Readers may also expect
+                                the default's value to be fixed at the declaration instead
+                                of varying at each call.
+                            </span>
+                            また、コードの読者は、関数が呼び出されるたびにデフォルト値が変わるのではなく、宣言時点で決まった値に固定されていることを期待するかもしれません。
+                        </span>
                     </p>
 
                     <p>
-                        Function pointers are confusing in the presence of
-                        default arguments, since the function signature often
-                        doesn't match the call signature. Adding
-                        function overloads avoids these problems.
+                        <span>
+                            <span class="src">
+                                Function pointers are confusing in the presence of
+                                default arguments, since the function signature often
+                                doesn't match the call signature.
+                            </span>
+                            関数ポインタを引数のデフォルト値として与えると混乱の元になります。関数のシグネチャはしばしば、呼び出す際のシグネチャと一致しないことがあるからです。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Adding
+                                function overloads avoids these problems.
+                            </span>
+                            関数のオーバーロードであれば、これらの問題は回避することができます。
+                        </span>
                     </p>
                 </div>
 
                 <div class="decision">
                     <p>
-                        Default arguments are banned on virtual functions, where
-                        they don't work properly, and in cases where the specified
-                        default might not evaluate to the same value depending on
-                        when it was evaluated. (For example, don't write <code>
-                            void
-                            f(int n = counter++);
-                        </code>.)
+                        <span>
+                            <span class="src">
+                                Default arguments are banned on virtual functions, where
+                                they don't work properly, and in cases where the specified
+                                default might not evaluate to the same value depending on
+                                when it was evaluated.
+                            </span>
+                            仮想関数における引数にデフォルト値を与えても、それらは意図した通りに動作しないため禁止とします。また、デフォルト値が評価のタイミングによって必ず同じ値にならない場合についても禁止とします。
+                        </span>
+                        <span>
+                            <span class="src">
+                                (For example, don't write <code>
+                                    void
+                                    f(int n = counter++);
+                                </code>.)
+                            </span>
+                            (たとえば、次のように書いてはいけません: <code>void f(int n = counter++);</code>)
+                        </span>
                     </p>
 
                     <p>
-                        In some other cases, default arguments can improve the
-                        readability of their function declarations enough to
-                        overcome the downsides above, so they are allowed. When in
-                        doubt, use overloads.
+                        <span>
+                            <span class="src">
+                                In some other cases, default arguments can improve the
+                                readability of their function declarations enough to
+                                overcome the downsides above, so they are allowed.
+                            </span>
+                            その他のいくつかの場合において、引数にデフォルト値を与えることで、ここまで述べた悪い点を差し引いても十分に関数宣言の可読性を高めることができる場合があります。このとき、それらの使用が認められます。
+                        </span>
+                        <span>
+                            <span class="src">
+                                When in
+                                doubt, use overloads.
+                            </span>
+                            迷ったときは関数のオーバーロードを選択します。
+                        </span>
                     </p>
                 </div>
 
             </div>
 
-            <h3 id="trailing_return">Trailing Return Type Syntax</h3>
+            <h3 id="trailing_return"><span title="Trailing Return Type Syntax">戻り値の型を後置する関数宣言構文</span></h3>
             <div class="summary">
                 <p>
-                    Use trailing return types only where using the ordinary syntax (leading
-                    return types) is impractical or much less readable.
+                    <span>
+                        <span class="src">
+                            Use trailing return types only where using the ordinary syntax (leading
+                            return types) is impractical or much less readable.
+                        </span>
+                        戻り値の型を後置する関数宣言構文は、普通の構文(戻り値の型から始まる構文)を使うことができない場合か、普通の構文では可読性に劣ってしまう場合にのみ使用します。
+                    </span>
                 </p>
             </div>
 
             <div class="definition">
                 <p>
-                    C++ allows two different forms of function declarations. In the older
-                    form, the return type appears before the function name. For example:
+                    <span>
+                        <span class="src">
+                            C++ allows two different forms of function declarations.
+                        </span>
+                        C++では、2種類の異なる関数宣言の構文が認められています。
+                    </span>
+                    <span>
+                        <span class="src">
+                            In the older
+                            form, the return type appears before the function name. For example:
+                        </span>
+                        古い形では、次の例のように、戻り値の型が関数名より先にきます。
+                    </span>
                 </p>
 <pre>int foo(int x);
 </pre>
                 <p>
-                    The new form, introduced in C++11, uses the <code>auto</code>
-                    keyword before the function name and a trailing return type after
-                    the argument list. For example, the declaration above could
-                    equivalently be written:
+                    <span>
+                        <span class="src">
+                            The new form, introduced in C++11, uses the <code>auto</code>
+                            keyword before the function name and a trailing return type after
+                            the argument list.
+                        </span>
+                        C++で導入された新しい形は、<code>auto</code>キーワードを関数名の前に置き、戻り値の型を引数リストの後に置きます。
+                    </span>
+                    <span>
+                        <span class="src">
+                            For example, the declaration above could
+                            equivalently be written:
+                        </span>
+                        例として、先ほどの宣言と等価な宣言は次のようになります。
+                    </span>
                 </p>
 <pre>auto foo(int x) -&gt; int;
 </pre>
                 <p>
-                    The trailing return type is in the function's scope. This doesn't
-                    make a difference for a simple case like <code>int</code> but it matters
-                    for more complicated cases, like types declared in class scope or
-                    types written in terms of the function parameters.
+                    <span>
+                        <span class="src">
+                            The trailing return type is in the function's scope.
+                        </span>
+                        この戻り値の型は関数内スコープとなります。
+                    </span>
+                    <span>
+                        <span class="src">
+                            This doesn't
+                            make a difference for a simple case like <code>int</code> but it matters
+                            for more complicated cases, like types declared in class scope or
+                            types written in terms of the function parameters.
+                        </span>
+                        <code>int</code>のように単純な場合はこれらに違いはありませんが、型がより複雑な場合にはこれは重要となってきます。
+                        たとえば、型がクラススコープで宣言されている場合や、型が関数の引数によって決まったりする場合です。
+                    </span>
                 </p>
             </div>
 
             <div class="stylebody">
                 <div class="pros">
                     <p>
-                        Trailing return types are the only way to explicitly specify the
-                        return type of a <a href="#Lambda_expressions">lambda expression</a>.
-                        In some cases the compiler is able to deduce a lambda's return type,
-                        but not in all cases. Even when the compiler can deduce it automatically,
-                        sometimes specifying it explicitly would be clearer for readers.
+                        <span>
+                            <span class="src">
+                                Trailing return types are the only way to explicitly specify the
+                                return type of a <a href="#Lambda_expressions">lambda expression</a>.
+                            </span>
+                            戻り値の型を後置する構文は、<a href="#Lambda_expressions">ラムダ式</a>の戻り値の型を明示できる唯一の方法です。
+                        </span>
+                        <span>
+                            <span class="src">
+                                In some cases the compiler is able to deduce a lambda's return type,
+                                but not in all cases.
+                            </span>
+                            コンパイラはラムダ式の戻り値の型を推論できる場合がありますが、常にそれができるわけではありません。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Even when the compiler can deduce it automatically,
+                                sometimes specifying it explicitly would be clearer for readers.
+                            </span>
+                            コンパイラが自動的に型を推論できる場合であっても、型を明示することでコードの可読性を向上させる場合もあります。
+                        </span>
                     </p>
                     <p>
-                        Sometimes it's easier and more readable to specify a return type
-                        after the function's parameter list has already appeared. This is
-                        particularly true when the return type depends on template parameters.
-                        For example:
+                        <span>
+                            <span class="src">
+                                Sometimes it's easier and more readable to specify a return type
+                                after the function's parameter list has already appeared.
+                            </span>
+                            時に、戻り値の型を関数の引数の後ろに明示することで、より簡単で可読性が高くなることがあります。
+                        </span>
+                        <span>
+                            <span class="src">
+                                This is
+                                particularly true when the return type depends on template parameters.
+                            </span>
+                            特に、戻り値の型がテンプレートパラメータによって決まる場合にはこのことが言えます。
+                        </span>
+                        <span>
+                            <span class="src">
+                                For example:
+                            </span>
+                            次の例を見てください。
+                        </span>
                     </p>
                     <pre>template &lt;class T, class U&gt; auto add(T t, U u) -&gt; decltype(t + u);</pre>
-                    versus
+                    <span>
+                        <span class="src">
+                            versus
+                        </span>
+                        対
+                    </span>
                     <pre>template &lt;class T, class U&gt; decltype(declval&lt;T&amp;&gt;() + declval&lt;U&amp;&gt;()) add(T t, U u);</pre>
                 </div>
 
                 <div class="cons">
                     <p>
-                        Trailing return type syntax is relatively new and it has no
-                        analogue in C++-like languages like C and Java, so some readers may
-                        find it unfamiliar.
+                        <span>
+                            <span class="src">
+                                Trailing return type syntax is relatively new and it has no
+                                analogue in C++-like languages like C and Java, so some readers may
+                                find it unfamiliar.
+                            </span>
+                            戻り値の型を後置する構文は、比較的新しく、C++系言語(C言語やJavaなど)には類似の構文がありません。このため、コードの読者にとってなじみが薄いかもしれません。
+                        </span>
                     </p>
                     <p>
-                        Existing code bases have an enormous number of function
-                        declarations that aren't going to get changed to use the new syntax,
-                        so the realistic choices are using the old syntax only or using a mixture
-                        of the two. Using a single version is better for uniformity of style.
+                        <span>
+                            <span class="src">
+                                Existing code bases have an enormous number of function
+                                declarations that aren't going to get changed to use the new syntax,
+                                so the realistic choices are using the old syntax only or using a mixture
+                                of the two.
+                            </span>
+                            既存のコードベースには既に膨大な数の関数宣言があり、それらが新しい構文に替わることはないでしょう。このため、現実的には、古い構文と新しい構文との両方を混合させて使っていくという道を選択することになります。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Using a single version is better for uniformity of style.
+                            </span>
+                            スタイルの一様性のためには、1種類だけを使うことが好ましいです。
+                        </span>
                     </p>
                 </div>
 
                 <div class="decision">
                     <p>
-                        In most cases, continue to use the older style of function
-                        declaration where the return type goes before the function name.
-                        Use the new trailing-return-type form only in cases where it's
-                        required (such as lambdas) or where, by putting the type after the
-                        function's parameter list, it allows you to write the type in a much
-                        more readable way. The latter case should be rare; it's mostly an
-                        issue in fairly complicated template code, which is
-                        <a href="#Template_metaprogramming">discouraged in most cases</a>.
+                        <span>
+                            <span class="src">
+                                In most cases, continue to use the older style of function
+                                declaration where the return type goes before the function name.
+                            </span>
+                            ほとんどの場合において、旧来からある、戻り値の型が関数名より先に来る関数宣言の構文を使い続けてください。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Use the new trailing-return-type form only in cases where it's
+                                required (such as lambdas) or where, by putting the type after the
+                                function's parameter list, it allows you to write the type in a much
+                                more readable way.
+                            </span>
+                            新しい構文を使用してよいのは、それがどうしても必要な場合(ラムダ式のような)と、引数のリストの後ろに戻り値の型を置くことで可読性を大きく向上させられる場合に限定します。
+                        </span>
+                        <span>
+                            <span class="src">
+                                The latter case should be rare; it's mostly an
+                                issue in fairly complicated template code, which is
+                                <a href="#Template_metaprogramming">discouraged in most cases</a>.
+                            </span>
+                            後者の状況はまれです。というのも、大抵、複雑すぎるテンプレートのコードが問題なのであって、<a href="#Template_metaprogramming">それらのほとんどは解消できる</a>からです。
+                        </span>
                     </p>
-
                 </div>
             </div>
 
