@@ -1361,20 +1361,41 @@ for (int i = 0; i &lt; 1000000; ++i) {
 
             </div>
 
-            <h2 id="Classes">Classes</h2>
+            <h2 id="Classes"><span title="Classes">クラス</span></h2>
 
             <p>
-                Classes are the fundamental unit of code in C++. Naturally,
-                we use them extensively. This section lists the main dos and
-                don'ts you should follow when writing a class.
+                <span>
+                    <span class="src">
+                        Classes are the fundamental unit of code in C++.
+                    </span>
+                    クラスはC++におけるコードの基本単位です。
+                </span>
+                <span>
+                    <span class="src">
+                        Naturally, we use them extensively.
+                    </span>
+                    もちろん、我々は、それらを広く使っています。
+                </span>
+                <span>
+                    <span class="src">
+                        This section lists the main dos and
+                        don'ts you should follow when writing a class.
+                    </span>
+                    このセクションでは、クラスを書くときに、すべきこと、すべきでないことについて述べます。
+                </span>
             </p>
 
-            <h3 id="Doing_Work_in_Constructors">Doing Work in Constructors</h3>
+            <h3 id="Doing_Work_in_Constructors"><span title="Doing Work in Constructors">コンストラクタで行うこと</span></h3>
 
             <div class="summary">
                 <p>
-                    Avoid virtual method calls in constructors, and avoid
-                    initialization that can fail if you can't signal an error.
+                    <span>
+                        <span class="src">
+                            Avoid virtual method calls in constructors, and avoid
+                            initialization that can fail if you can't signal an error.
+                        </span>
+                        コンストラクタで仮想メンバ関数を呼ぶのはやめましょう。エラーを伝える手段がない場合、失敗するかもしれない初期化処理を行うのはやめましょう。
+                    </span>
                 </p>
             </div>
 
@@ -1382,22 +1403,37 @@ for (int i = 0; i &lt; 1000000; ++i) {
 
                 <div class="definition">
                     <p>
-                        It is possible to perform arbitrary initialization in the body
-                        of the constructor.
+                        <span>
+                            <span class="src">
+                                It is possible to perform arbitrary initialization in the body
+                                of the constructor.
+                            </span>
+                            コンストラクタでは任意の初期化処理を行うことができます。
+                        </span>
                     </p>
                 </div>
 
                 <div class="pros">
                     <ul>
                         <li>
-                            No need to worry about whether the class has been initialized or
-                            not.
+                            <span>
+                                <span class="src">
+                                    No need to worry about whether the class has been initialized or
+                                    not.
+                                </span>
+                                クラスが初期化済みであるかどうか、気にかけなくてよくなります。
+                            </span>
                         </li>
 
                         <li>
-                            Objects that are fully initialized by constructor call can
-                            be <code>const</code> and may also be easier to use with standard containers
-                            or algorithms.
+                            <span>
+                                <span class="src">
+                                    Objects that are fully initialized by constructor call can
+                                    be <code>const</code> and may also be easier to use with standard containers
+                                    or algorithms.
+                                </span>
+                                コンストラクタで完全に初期化されるオブジェクトは、<code>const</code>にしやすく、標準コンテナや標準アルゴリズムで扱いやすくなります。
+                            </span>
                         </li>
                     </ul>
 
@@ -1406,32 +1442,58 @@ for (int i = 0; i &lt; 1000000; ++i) {
                 <div class="cons">
                     <ul>
                         <li>
-                            If the work calls virtual functions, these calls
-                            will not get dispatched to the subclass
-                            implementations. Future modification to your class can
-                            quietly introduce this problem even if your class is
-                            not currently subclassed, causing much confusion.
+                            <span>
+                                <span class="src">
+                                    If the work calls virtual functions, these calls
+                                    will not get dispatched to the subclass
+                                    implementations.
+                                </span>
+                                コンストラクタで仮想関数が呼び出されたとしても、それらは派生クラスの実装を呼び出しません。
+                            </span>
+                            <span>
+                                <span class="src">
+                                    Future modification to your class can
+                                    quietly introduce this problem even if your class is
+                                    not currently subclassed, causing much confusion.
+                                </span>
+                                現時点で派生クラスがなくとも、将来的にクラスが変更された場合に、地味にこの問題を引き起こし、混乱を招くかもしれません。
+                            </span>
                         </li>
 
                         <li>
-                            There is no easy way for constructors to signal errors, short of
-                            crashing the program (not always appropriate) or using exceptions
-                            (which are <a href="#Exceptions">forbidden</a>).
+                            <span>
+                                <span class="src">
+                                    There is no easy way for constructors to signal errors, short of
+                                    crashing the program (not always appropriate) or using exceptions
+                                    (which are <a href="#Exceptions">forbidden</a>).
+                                </span>
+                                コンストラクタには、簡単にエラーを伝える方法がありません。せいぜい、プログラムをクラッシュさせる(常にそれが適切とは限らない)方法や、例外を使う(ルール上<a href="#Exceptions">禁止</a>)方法くらいです。
+                            </span>
                         </li>
 
                         <li>
-                            If the work fails, we now have an object whose initialization
-                            code failed, so it may be an unusual state requiring a <code>
-                                bool
-                                IsValid()
-                            </code> state checking mechanism (or similar) which is easy
-                            to forget to call.
+                            <span>
+                                <span class="src">
+                                    If the work fails, we now have an object whose initialization
+                                    code failed, so it may be an unusual state requiring a <code>
+                                        bool
+                                        IsValid()
+                                    </code> state checking mechanism (or similar) which is easy
+                                    to forget to call.
+                                </span>
+                                コンストラクタの処理が失敗した場合、初期化に失敗したオブジェクトができてしまいます。<code>bool IsValid()</code>のような状態をチェックする仕組みを用意しても、その呼び出しは簡単に忘れられてしまいます。
+                            </span>
                         </li>
 
                         <li>
-                            You cannot take the address of a constructor, so whatever work
-                            is done in the constructor cannot easily be handed off to, for
-                            example, another thread.
+                            <span>
+                                <span class="src">
+                                    You cannot take the address of a constructor, so whatever work
+                                    is done in the constructor cannot easily be handed off to, for
+                                    example, another thread.
+                                </span>
+                                コンストラクタのアドレスを得ることはできません。このため、コンストラクタで行われる処理の内容を他のスレッドに渡したりするようなことは、簡単にはできません。
+                            </span>
                         </li>
                     </ul>
                 </div>
@@ -1439,28 +1501,62 @@ for (int i = 0; i &lt; 1000000; ++i) {
 
                 <div class="decision">
                     <p>
-                        Constructors should never call virtual functions. If appropriate
-                        for your code
-                        ,
-                        terminating the program may be an appropriate error handling
-                        response. Otherwise, consider a factory function
-                        or <code>Init()</code> method. Avoid <code>Init()</code> methods on objects with
-                        no other states that affect which public methods may be called
-                        (semi-constructed objects of this form are particularly hard to work
-                        with correctly).
+                        <span>
+                            <span class="src">
+                                Constructors should never call virtual functions.
+                            </span>
+                            コンストラクタでは仮想関数を呼び出してはいけません。
+                        </span>
+                        <span>
+                            <span class="src">
+                                If appropriate
+                                for your code
+                                ,
+                                terminating the program may be an appropriate error handling
+                                response.
+                            </span>
+                            それが適切と考えるのであれば、プログラムを強制終了するのもエラー処理の1つのやり方です。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Otherwise, consider a factory function
+                                or <code>Init()</code> method.
+                            </span>
+                            さもなくば、ファクトリ関数や<code>Init()</code>メソッドの導入を検討しましょう。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Avoid <code>Init()</code> methods on objects with
+                                no other states that affect which public methods may be called
+                                (semi-constructed objects of this form are particularly hard to work
+                                with correctly).
+                            </span>
+                            どのpublicメソッドが呼びだされてもよいかという他の状態を持たないオブジェクトの<code>Init()</code>メソッドは避けてください(特に、中途半端に生成されたオブジェクトを正しく動作させるのは困難です)。
+                        </span>
                     </p>
                 </div>
 
             </div>
 
             <a id="Explicit_Constructors"></a>
-            <h3 id="Implicit_Conversions">Implicit Conversions</h3>
+            <h3 id="Implicit_Conversions"><span title="Implicit Conversions">暗黙的型変換</span></h3>
 
             <div class="summary">
                 <p>
-                    Do not define implicit conversions. Use the <code>explicit</code>
-                    keyword for conversion operators and single-argument
-                    constructors.
+                    <span>
+                        <span class="src">
+                            Do not define implicit conversions.
+                        </span>
+                        暗黙的型変換を新たに定義してはいけません。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Use the <code>explicit</code>
+                            keyword for conversion operators and single-argument
+                            constructors.
+                        </span>
+                        型変換演算子や、1つの引数をとるコンストラクタにおいては<code>explicit</code>キーワードを使用してください。
+                    </span>
                 </p>
             </div>
 
@@ -1468,35 +1564,68 @@ for (int i = 0; i &lt; 1000000; ++i) {
 
                 <div class="definition">
                     <p>
-                        Implicit conversions allow an
-                        object of one type (called the <dfn>source type</dfn>) to
-                        be used where a different type (called the <dfn>
-                            destination
-                            type
-                        </dfn>) is expected, such as when passing an
-                        <code>int</code> argument to a function that takes a
-                        <code>double</code> parameter.
+                        <span>
+                            <span class="src">
+                                Implicit conversions allow an
+                                object of one type (called the <dfn>source type</dfn>) to
+                                be used where a different type (called the <dfn>
+                                    destination
+                                    type
+                                </dfn>) is expected, such as when passing an
+                                <code>int</code> argument to a function that takes a
+                                <code>double</code> parameter.
+                            </span>
+                            暗黙的型変換によって、ある型のオブジェクトを異なる型のオブジェクトとして扱えるようになります。たとえば、<code>double</code>型の仮引数をとる関数に<code>int</code>型の値を渡せます。
+                        </span>
                     </p>
 
                     <p>
-                        In addition to the implicit conversions defined by the language,
-                        users can define their own, by adding appropriate members to the
-                        class definition of the source or destination type. An implicit
-                        conversion in the source type is defined by a type conversion operator
-                        named after the destination type (e.g. <code>
-                            operator
-                            bool()
-                        </code>). An implicit conversion in the destination
-                        type is defined by a constructor that can take the source type as
-                        its only argument (or only argument with no default value).
+                        <span>
+                            <span class="src">
+                                In addition to the implicit conversions defined by the language,
+                                users can define their own, by adding appropriate members to the
+                                class definition of the source or destination type.
+                            </span>
+                            言語で元々定義されている暗黙的型変換に加えて、変換元の型か変換先の型のクラス定義に適切なメンバを加えることで、新たに暗黙的型変換を定義することができます。
+                        </span>
+                        <span>
+                            <span class="src">
+                                An implicit
+                                conversion in the source type is defined by a type conversion operator
+                                named after the destination type (e.g. <code>
+                                    operator
+                                    bool()
+                                </code>).
+                            </span>
+                            変換元の型における暗黙的型変換は、変換先型の名前をつけた型変換演算子によって定義されます(例:<code>operator bool()</code>)。
+                        </span>
+                        <span>
+                            <span class="src">
+                                An implicit conversion in the destination
+                                type is defined by a constructor that can take the source type as
+                                its only argument (or only argument with no default value).
+                            </span>
+                            変換先の型における暗黙的型変換は、変換元の型の引数を1つだけとる(またはデフォルト値のない引数を1つだけとる)コンストラクタによって定義されます。
+                        </span>
                     </p>
 
                     <p>
-                        The <code>explicit</code> keyword can be applied to a constructor
-                        or (since C++11) a conversion operator, to ensure that it can only be
-                        used when the destination type is explicit at the point of use,
-                        e.g. with a cast. This applies not only to implicit conversions, but to
-                        C++11's list initialization syntax:
+                        <span>
+                            <span class="src">
+                                The <code>explicit</code> keyword can be applied to a constructor
+                                or (since C++11) a conversion operator, to ensure that it can only be
+                                used when the destination type is explicit at the point of use,
+                                e.g. with a cast.
+                            </span>
+                            <code>explicit</code>キーワードは、コンストラクタや(C++11では)型変換演算子につけることができます。これによって、型変換を、変換先の型が明示された場合にのみ行うよう限定することができます。
+                        </span>
+                        <span>
+                            <span class="src">
+                                This applies not only to implicit conversions, but to
+                                C++11's list initialization syntax:
+                            </span>
+                            これは、暗黙的型変換だけではなく、以下に示すようなC++11のリスト初期化構文にも適用されます。
+                        </span>
                     </p>
 <pre>class Foo {
   explicit Foo(int x, double y);
@@ -1507,24 +1636,44 @@ void Func(Foo f);
 </pre>
 <pre class="badcode">Func({42, 3.14});  // Error
 </pre>
-                    This kind of code isn't technically an implicit conversion, but the
-                    language treats it as one as far as <code>explicit</code> is concerned.
+                    <span>
+                        <span class="src">
+                            This kind of code isn't technically an implicit conversion, but the
+                            language treats it as one as far as <code>explicit</code> is concerned.
+                        </span>
+                        このようなコードは何らテクニカルな暗黙的型変換はしていませんが、言語上<code>explicit</code>に関連していると見なして扱われます。
+                    </span>
                 </div>
 
                 <div class="pros">
                     <ul>
                         <li>
-                            Implicit conversions can make a type more usable and
-                            expressive by eliminating the need to explicitly name a type
-                            when it's obvious.
+                            <span>
+                                <span class="src">
+                                    Implicit conversions can make a type more usable and
+                                    expressive by eliminating the need to explicitly name a type
+                                    when it's obvious.
+                                </span>
+                                暗黙的型変換は、型の利便性を高め、型が明確であるときには型の名前を省略可能であるため表現上も優れています。
+                            </span>
                         </li>
                         <li>
-                            Implicit conversions can be a simpler alternative to
-                            overloading.
+                            <span>
+                                <span class="src">
+                                    Implicit conversions can be a simpler alternative to
+                                    overloading.
+                                </span>
+                                暗黙的型変換は単にオーバーロードの代替手段としても利用可能です。
+                            </span>
                         </li>
                         <li>
-                            List initialization syntax is a concise and expressive
-                            way of initializing objects.
+                            <span>
+                                <span class="src">
+                                    List initialization syntax is a concise and expressive
+                                    way of initializing objects.
+                                </span>
+                                リスト初期化子による構文は、簡潔で表現的に優れたオブジェクトの初期化方法です。
+                            </span>
                         </li>
                     </ul>
                 </div>
@@ -1532,75 +1681,150 @@ void Func(Foo f);
                 <div class="cons">
                     <ul>
                         <li>
-                            Implicit conversions can hide type-mismatch bugs, where the
-                            destination type does not match the user's expectation, or
-                            the user is unaware that any conversion will take place.
+                            <span>
+                                <span class="src">
+                                    Implicit conversions can hide type-mismatch bugs, where the
+                                    destination type does not match the user's expectation, or
+                                    the user is unaware that any conversion will take place.
+                                </span>
+                                暗黙的型変換は、型の不一致によるバグを隠してしまうことがあります。たとえば、変換先の型がユーザの期待どおりにならなかったり、そもそもその場で型変換が行わることに気づかなかったりします。
+                            </span>
                         </li>
 
                         <li>
-                            Implicit conversions can make code harder to read, particularly
-                            in the presence of overloading, by making it less obvious what
-                            code is actually getting called.
+                            <span>
+                                <span class="src">
+                                    Implicit conversions can make code harder to read, particularly
+                                    in the presence of overloading, by making it less obvious what
+                                    code is actually getting called.
+                                </span>
+                                暗黙的型変換は、コードの可読性を下げる場合があります。特に、関数にオーバーロードが存在する場合、どれが実際に呼び出されるのかをわかりにくくしてしまうことがあります。
+                            </span>
                         </li>
 
                         <li>
-                            Constructors that take a single argument may accidentally
-                            be usable as implicit type conversions, even if they are not
-                            intended to do so.
+                            <span>
+                                <span class="src">
+                                    Constructors that take a single argument may accidentally
+                                    be usable as implicit type conversions, even if they are not
+                                    intended to do so.
+                                </span>
+                                1つの引数をとるコンストラクタが、意図せず型変換のために呼び出されてしまうことがあります。
+                            </span>
                         </li>
 
                         <li>
-                            When a single-argument constructor is not marked
-                            <code>explicit</code>, there's no reliable way to tell whether
-                            it's intended to define an implicit conversion, or the author
-                            simply forgot to mark it.
+                            <span>
+                                <span class="src">
+                                    When a single-argument constructor is not marked
+                                    <code>explicit</code>, there's no reliable way to tell whether
+                                    it's intended to define an implicit conversion, or the author
+                                    simply forgot to mark it.
+                                </span>
+                                1つの引数をとるコンストラクタが<code>explicit</code>でマークされていなかったとき、それが意図した暗黙的型変換のために書かれているのか、単にコードの著者が<code>explicit</code>をつけるのを忘れてしまっただけなのか、信頼できる判断方法がありません。
+                            </span>
                         </li>
 
                         <li>
-                            It's not always clear which type should provide the conversion,
-                            and if they both do, the code becomes ambiguous.
+                            <span>
+                                <span class="src">
+                                    It's not always clear which type should provide the conversion,
+                                    and if they both do, the code becomes ambiguous.
+                                </span>
+                                変換元の型と変換先の型との、どちらの型が型変換を提供すべきかが常に明確であるとは限りません。もし両方がも型変換機能を持っていた場合、コードが曖昧になってしまいます。
+                            </span>
                         </li>
 
                         <li>
-                            List initialization can suffer from the same problems if
-                            the destination type is implicit, particularly if the
-                            list has only a single element.
+                            <span>
+                                <span class="src">
+                                    List initialization can suffer from the same problems if
+                                    the destination type is implicit, particularly if the
+                                    list has only a single element.
+                                </span>
+                                リスト初期化子は、変換先の型が暗黙的型変換を持つとき同じ問題にぶつかります(特にリストに1要素しか持っていなかった場合)。
+                            </span>
                         </li>
                     </ul>
                 </div>
 
                 <div class="decision">
                     <p>
-                        Type conversion operators, and constructors that are
-                        callable with a single argument, must be marked
-                        <code>explicit</code> in the class definition. As an
-                        exception, copy and move constructors should not be
-                        <code>explicit</code>, since they do not perform type
-                        conversion. Implicit conversions can sometimes be necessary and
-                        appropriate for types that are designed to transparently wrap other
-                        types. In that case, contact
-                        your project leads to request
-                        a waiver of this rule.
+                        <span>
+                            <span class="src">
+                                Type conversion operators, and constructors that are
+                                callable with a single argument, must be marked
+                                <code>explicit</code> in the class definition.
+                            </span>
+                            型変換演算子と1つの引数で呼び出せるコンストラクタは<code>explicit</code>でマークされていなくてはなりません。
+                        </span>
+                        <span>
+                            <span class="src">
+                                As an
+                                exception, copy and move constructors should not be
+                                <code>explicit</code>, since they do not perform type
+                                conversion.
+                            </span>
+                            例外として、コピーコンストラクタとムーブコンストラクタは<code>explicit</code>でマークされているべきではありません。これらは型変換を行うものではないからです。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Implicit conversions can sometimes be necessary and
+                                appropriate for types that are designed to transparently wrap other
+                                types.
+                            </span>
+                            また、ある型が他の型を透過的にラップするようデザインされている場合など、暗黙的型変換が必要かつ適切な時もあります。
+                        </span>
+                        <span>
+                            <span class="src">
+                                In that case, contact
+                                your project leads to request
+                                a waiver of this rule.
+                            </span>
+                            そのような場合においては、プロジェクトリーダーと相談し、このルールの適用から外してください。
+                        </span>
                     </p>
 
                     <p>
-                        Constructors that cannot be called with a single argument
-                        should usually omit <code>explicit</code>. Constructors that
-                        take a single <code>std::initializer_list</code> parameter should
-                        also omit <code>explicit</code>, in order to support copy-initialization
-                        (e.g. <code>MyType m = {1, 2};</code>).
+                        <span>
+                            <span class="src">
+                                Constructors that cannot be called with a single argument
+                                should usually omit <code>explicit</code>.
+                            </span>
+                            通常、1つの引数では呼び出せないコンストラクタについては<code>explicit</code>を省略します。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Constructors that
+                                take a single <code>std::initializer_list</code> parameter should
+                                also omit <code>explicit</code>, in order to support copy-initialization
+                                (e.g. <code>MyType m = {1, 2};</code>).
+                            </span>
+                            また、1つの<code>std::initializer_list</code>型の引数をとるコンストラクタについも、コピーによる初期化(例: <code>MyType m = {1, 2};</code>)をサポートするために<code>explicit</code>を省略してください。
+                        </span>
                     </p>
                 </div>
 
             </div>
 
-            <h3 id="Copyable_Movable_Types">Copyable and Movable Types</h3>
+            <h3 id="Copyable_Movable_Types"><span title="Copyable and Movable Types">コピー可能な型・ムーブ可能な型</span></h3>
             <a id="Copy_Constructors"></a>
             <div class="summary">
                 <p>
-                    Support copying and/or moving if these operations are clear and meaningful
-                    for your type. Otherwise, disable the implicitly generated special functions
-                    that perform copies and moves.
+                    <span>
+                        <span class="src">
+                            Support copying and/or moving if these operations are clear and meaningful
+                            for your type.
+                        </span>
+                        コピーやムーブは、それの実装が明確でかつ意味のある場合に限って実装してください。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Otherwise, disable the implicitly generated special functions
+                            that perform copies and moves.
+                        </span>
+                        それ以外の場合には、暗黙的に自動生成されるコピー・ムーブ関数は無効にしてください。
+                    </span>
                 </p>
             </div>
 
@@ -1608,105 +1832,266 @@ void Func(Foo f);
 
                 <div class="definition">
                     <p>
-                        A copyable type allows its objects to be initialized or assigned
-                        from any other object of the same type, without changing the value of the source.
-                        For user-defined types, the copy behavior is defined by the copy
-                        constructor and the copy-assignment operator.
-                        <code>string</code> is an example of a copyable type.
+                        <span>
+                            <span class="src">
+                                A copyable type allows its objects to be initialized or assigned
+                                from any other object of the same type, without changing the value of the source.
+                            </span>
+                            型をコピー可能にすることによって、他の同じ型のオブジェクトから、元となるオブジェクトを変更することなく、自分自身の初期化や自分自身への代入ができるようになります。
+                        </span>
+                        <span>
+                            <span class="src">
+                                For user-defined types, the copy behavior is defined by the copy
+                                constructor and the copy-assignment operator.
+                            </span>
+                            ユーザ定義の型においては、コピーの挙動は、コピーコンストラクタやコピー代入演算子によって定義されます。
+                        </span>
+                        <span>
+                            <span class="src">
+                                <code>string</code> is an example of a copyable type.
+                            </span>
+                            コピー可能な型の一例として<code>string</code>があります。
+                        </span>
                     </p>
 
                     <p>
-                        A movable type is one that can be initialized and assigned
-                        from temporaries (all copyable types are therefore movable).
-                        <code>std::unique_ptr&lt;int&gt;</code> is an example of a movable but not
-                        copyable type. For user-defined types, the move behavior is defined by the move
-                        constructor and the move-assignment operator.
+                        <span>
+                            <span class="src">
+                                A movable type is one that can be initialized and assigned
+                                from temporaries (all copyable types are therefore movable).
+                            </span>
+                            ムーブ可能な型は、一時オブジェクトからの初期化または代入が可能な型です(ゆえに、コピー可能な型は常にムーブ可能な型です)。
+                        </span>
+                        <span>
+                            <span class="src">
+                                <code>std::unique_ptr&lt;int&gt;</code> is an example of a movable but not
+                                copyable type.
+                            </span>
+                            ムーブは可能ですがコピーは不可能な型の一例として<code>std::unique_ptr&lt;int&gt;</code>があります。
+                        </span>
+                        <span>
+                            <span class="src">
+                                For user-defined types, the move behavior is defined by the move
+                                constructor and the move-assignment operator.
+                            </span>
+                            ユーザ定義の型においては、ムーブの挙動は、ムーブコンストラクタやムーブ代入演算子によって定義されます。
+                        </span>
                     </p>
 
                     <p>
-                        The copy/move constructors can be implicitly invoked by the compiler
-                        in some situations, e.g. when passing objects by value.
+                        <span>
+                            <span class="src">
+                                The copy/move constructors can be implicitly invoked by the compiler
+                                in some situations, e.g. when passing objects by value.
+                            </span>
+                            コピーコンストラクタやムーブコンストラクタは、オブジェクトの値渡しなどの際、コンパイラによって暗黙的に呼び出されます。
+                        </span>
                     </p>
                 </div>
 
                 <div class="pros">
                     <p>
-                        Objects of copyable and movable types can be passed and returned by value,
-                        which makes APIs simpler, safer, and more general. Unlike when passing objects
-                        by pointer or reference, there's no risk of confusion over ownership,
-                        lifetime, mutability, and similar issues, and no need to specify them in the
-                        contract. It also prevents non-local interactions between the client and the
-                        implementation, which makes them easier to understand, maintain, and optimize by
-                        the compiler. Further, such objects can be used with generic APIs that
-                        require pass-by-value, such as most containers, and they allow for additional
-                        flexibility in e.g., type composition.
+                        <span>
+                            <span class="src">
+                                Objects of copyable and movable types can be passed and returned by value,
+                                which makes APIs simpler, safer, and more general.
+                            </span>
+                            コピー可能・ムーブ可能なオブジェクトは、値渡し・値戻しができるため、APIがシンプルかつ安全で、より一般的な形になります。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Unlike when passing objects
+                                by pointer or reference, there's no risk of confusion over ownership,
+                                lifetime, mutability, and similar issues, and no need to specify them in the
+                                contract.
+                            </span>
+                            この場合は、オブジェクトのポインタ渡し・参照渡しと違って、オブジェクトの所有権や生存時間、ミュータビリティなどに関する危険がなく、それらに関する前提条件も必要なくなります。
+                        </span>
+                        <span>
+                            <span class="src">
+                                It also prevents non-local interactions between the client and the
+                                implementation, which makes them easier to understand, maintain, and optimize by
+                                the compiler.
+                            </span>
+                            また、呼び出し元と実装をつないでしまうような局所的でない相互作用も自動的に防がれます。これによって、理解しやすく、メンテナンスしやすく、コンパイラによって最適化が掛かりやすくなります。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Further, such objects can be used with generic APIs that
+                                require pass-by-value, such as most containers, and they allow for additional
+                                flexibility in e.g., type composition.
+                            </span>
+                            さらに、このようなオブジェクトは、多くのコンテナ型のような値渡しを要求するAPIに利用することができる他、型の合成などにおいて柔軟な扱い方ができるようにもなります。
+                        </span>
+                    </p>
+                    <p>
+                        <span>
+                            <span class="src">
+                                Copy/move constructors and assignment operators are usually
+                                easier to define correctly than alternatives
+                                like <code>Clone()</code>, <code>CopyFrom()</code> or <code>Swap()</code>,
+                                because they can be generated by the compiler, either implicitly or
+                                with <code>= default</code>.
+                            </span>
+                            コピー・ムーブを行うコンストラクタや代入演算子は、一般に、<code>Clone()</code>, <code>CopyFrom()</code>あるいは<code>Swap()</code>といった代替的な方法に比べて、正しく定義することが容易です。なぜならば、これらのコンストラクタや代入演算子は暗黙的に、または明示的に<code>= default</code>と記載することで、コンパイラに生成させることができるためです。
+                        </span>
+                        <span>
+                            <span class="src">
+                                They are concise, and ensure
+                                that all data members are copied.
+                            </span>
+                            自動的に生成されるコンストラクタや代入演算子は、明瞭で、かつすべてのメンバーがコピーされることが保証されます。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Copy and move
+                                constructors are also generally more efficient, because they don't
+                                require heap allocation or separate initialization and assignment
+                                steps, and they're eligible for optimizations such as
+
+                                <a href="http://en.cppreference.com/w/cpp/language/copy_elision">
+                                    copy elision
+                                </a>.
+                            </span>
+                            また、コピーコンストラクタやムーブコンストラクタは一般的に、より効率的に動作します。なぜならば、これらはヒープメモリは確保せず、初期化と割り当てをまとめて行い、<a href="http://en.cppreference.com/w/cpp/language/copy_elision">copy elision</a>のような適切な最適化が行われるためです。
+                        </span>
                     </p>
 
                     <p>
-                        Copy/move constructors and assignment operators are usually
-                        easier to define correctly than alternatives
-                        like <code>Clone()</code>, <code>CopyFrom()</code> or <code>Swap()</code>,
-                        because they can be generated by the compiler, either implicitly or
-                        with <code>= default</code>.  They are concise, and ensure
-                        that all data members are copied. Copy and move
-                        constructors are also generally more efficient, because they don't
-                        require heap allocation or separate initialization and assignment
-                        steps, and they're eligible for optimizations such as
-
-                        <a href="http://en.cppreference.com/w/cpp/language/copy_elision">
-                            copy elision
-                        </a>.
-                    </p>
-
-                    <p>
-                        Move operations allow the implicit and efficient transfer of
-                        resources out of rvalue objects. This allows a plainer coding style
-                        in some cases.
+                        <span>
+                            <span class="src">
+                                Move operations allow the implicit and efficient transfer of
+                                resources out of rvalue objects.
+                            </span>
+                            ムーブ操作によって、右辺値オブジェクトから暗黙的かつ効率的にリソースを取り出すことが可能になります。
+                        </span>
+                        <span>
+                            <span class="src">
+                                This allows a plainer coding style
+                                in some cases.
+                            </span>
+                            これによって、よりわかりやすいコーディングスタイルを採用できる場合があります。
+                        </span>
                     </p>
                 </div>
 
                 <div class="cons">
                     <p>
-                        Some types do not need to be copyable, and providing copy
-                        operations for such types can be confusing, nonsensical, or outright
-                        incorrect. Types representing singleton objects (<code>Registerer</code>),
-                        objects tied to a specific scope (<code>Cleanup</code>), or closely coupled to
-                        object identity (<code>Mutex</code>) cannot be copied meaningfully.
-                        Copy operations for base class types that are to be used
-                        polymorphically are hazardous, because use of them can lead to
-                        <a href="https://en.wikipedia.org/wiki/Object_slicing">object slicing</a>.
-                        Defaulted or carelessly-implemented copy operations can be incorrect, and the
-                        resulting bugs can be confusing and difficult to diagnose.
+                        <span>
+                            <span class="src">
+                                Some types do not need to be copyable, and providing copy
+                                operations for such types can be confusing, nonsensical, or outright
+                                incorrect.
+                            </span>
+                            型によってはコピーができることを必要としない場合や、コピー操作を提供しようとすること自体が理屈的におかしい場合もあります。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Types representing singleton objects (<code>Registerer</code>),
+                                objects tied to a specific scope (<code>Cleanup</code>), or closely coupled to
+                                object identity (<code>Mutex</code>) cannot be copied meaningfully.
+                            </span>
+                            たとえば、(<code>Registerer</code>のような)シングルトンのオブジェクトや、(<code>Cleanup</code>のような)そのスコープに紐付くオブジェクト、あるいは(<code>Mutex</code>のような)個別のオブジェクトと密接に繋がっているようなオブジェクトは、意味のあるコピーはできません。
+                        </span>
+                    </p>
+                    <p>
+                        <span>
+                            <span class="src">
+                                Copy operations for base class types that are to be used
+                                polymorphically are hazardous, because use of them can lead to
+                                <a href="https://en.wikipedia.org/wiki/Object_slicing">object slicing</a>.
+                            </span>
+                            ポリモーフィズムを使用しているような型の基底クラスに対するコピー操作は、<a href="https://en.wikipedia.org/wiki/Object_slicing">オブジェクトのスライシング</a>を引き起こす可能性があり危険です。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Defaulted or carelessly-implemented copy operations can be incorrect, and the
+                                resulting bugs can be confusing and difficult to diagnose.
+                            </span>
+                            デフォルト実装や雑に実装されたコピー操作は誤ったものとなり、結果的に困惑的な診断の難しいバグを招くことがあります。
+                        </span>
                     </p>
 
                     <p>
-                        Copy constructors are invoked implicitly, which makes the
-                        invocation easy to miss. This may cause confusion for programmers used to
-                        languages where pass-by-reference is conventional or mandatory. It may also
-                        encourage excessive copying, which can cause performance problems.
+                        <span>
+                            <span class="src">
+                                Copy constructors are invoked implicitly, which makes the
+                                invocation easy to miss.
+                            </span>
+                            コピーコンストラクタは暗黙的に呼び出されるため、呼び出しを見落としやすいです。
+                        </span>
+                        <span>
+                            <span class="src">
+                                This may cause confusion for programmers used to
+                                languages where pass-by-reference is conventional or mandatory.
+                            </span>
+                            これは、参照渡しが慣習的なプログラミング言語に馴染んだプログラマにとっての混乱ポイントになるでしょう。
+                        </span>
+                        <span>
+                            <span class="src">
+                                It may also
+                                encourage excessive copying, which can cause performance problems.
+                            </span>
+                            また、余計なコピーを助長し、パフォーマンス上の問題になることもあります。
+                        </span>
                     </p>
                 </div>
 
                 <div class="decision">
 
                     <p>
-                        Provide the copy and move operations if their meaning is clear to a casual
-                        user and the copying/moving does not incur unexpected costs. If you define a
-                        copy or move constructor, define the corresponding assignment operator, and
-                        vice-versa. If your type is copyable, do not define move operations unless they
-                        are significantly more efficient than the corresponding copy operations. If your
-                        type is not copyable, but the correctness of a move is obvious to users of the
-                        type, you may make the type move-only by defining both of the move operations.
+                        <span>
+                            <span class="src">
+                                Provide the copy and move operations if their meaning is clear to a casual
+                                user and the copying/moving does not incur unexpected costs.
+                            </span>
+                            カジュアルなユーザから見て、操作の意味が明確で、かつコストも十分想定できる場合、コピー操作やムーブ操作が可能なようにしてください。
+                        </span>
+                        <span>
+                            <span class="src">
+                                If you define a
+                                copy or move constructor, define the corresponding assignment operator, and
+                                vice-versa.
+                            </span>
+                            コピーコンストラクタやムーブコンストラクタを独自に定義する場合は、それに紐付く代入演算子も併せて実装してください(逆の場合も同様です)。
+                        </span>
+                        <span>
+                            <span class="src">
+                                If your type is copyable, do not define move operations unless they
+                                are significantly more efficient than the corresponding copy operations.
+                            </span>
+                            型がコピー可能な場合は、コピーに比べて非常に効率的にムーブできる場合を除いて、ムーブ操作を定義しないでください。
+                        </span>
+                        <span>
+                            <span class="src">
+                                If your
+                                type is not copyable, but the correctness of a move is obvious to users of the
+                                type, you may make the type move-only by defining both of the move operations.
+                            </span>
+                            また、コピー可能ではないが、ムーブ操作の正当性が明らかなときは、それぞれのムーブ操作を定義することで、ムーブのみ可能な型とすることもできます。
+                        </span>
                     </p>
 
                     <p>
-                        If your type provides copy operations, it is recommended that you design
-                        your class so that the default implementation of those operations is correct.
-                        Remember to review the correctness of any defaulted operations as you would any
-                        other code, and to document that your class is copyable and/or cheaply movable
-                        if that's an API guarantee.
+                        <span>
+                            <span class="src">
+                                If your type provides copy operations, it is recommended that you design
+                                your class so that the default implementation of those operations is correct.
+                            </span>
+                            型がコピー操作をサポートする場合、できるだけコンパイラによるデフォルト実装が正しい操作となるようにクラスをデザインしてください。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Remember to review the correctness of any defaulted operations as you would any
+                                other code, and to document that your class is copyable and/or cheaply movable
+                                if that's an API guarantee.
+                            </span>
+                            また、他のコードと同様に、デフォルトで生成されるコピー操作の正当性についても、忘れずにレビューを行ってください。
+                            また、クラスがコピー可能である、もしくは、ムーブのみ可能であることを忘れずにドキュメント化してください。
+                        </span>
                     </p>
-
+                    <span>
+                        <span class="src">
 <pre class="badcode">class Foo {
  public:
   Foo(Foo&amp;&amp; other) : field_(other.field) {}
@@ -1716,201 +2101,189 @@ void Func(Foo f);
   Field field_;
 };
 </pre>
+                        </span>
+                        <pre class="badcode">class Foo {
+ public:
+  Foo(Foo&amp;&amp; other) : field_(other.field) {}
+  // ダメ。ムーブコンストラクタだけが実装されていて、operator= がない。.
+
+ private:
+  Field field_;
+};
+</pre>
+                    </span>
 
                     <p>
-                        Due to the risk of slicing, avoid providing an assignment
-                        operator or public copy/move constructor for a class that's
-                        intended to be derived from (and avoid deriving from a class
-                        with such members). If your base class needs to be
-                        copyable, provide a public virtual <code>Clone()</code>
-                        method, and a protected copy constructor that derived classes
-                        can use to implement it.
+                        <span>
+                            <span class="src">
+                                Due to the risk of slicing, avoid providing an assignment
+                                operator or public copy/move constructor for a class that's
+                                intended to be derived from (and avoid deriving from a class
+                                with such members).
+                            </span>
+                            スライシングのリスクがあるため、継承されることを目的としているクラスは、publicなコピー・ムーブコンストラクタ、コピー・ムーブ代入演算子を提供しないでください。また、それらの操作を提供しているクラスから派生することは避けてください。
+                        </span>
+                        <span>
+                            <span class="src">
+                                If your base class needs to be
+                                copyable, provide a public virtual <code>Clone()</code>
+                                method, and a protected copy constructor that derived classes
+                                can use to implement it.
+                            </span>
+                            基底クラスをコピー可能としたい場合、public virtualな<code>Clone()</code>メソッドを提供するようにしてください。
+                            また、protectedなコピーコンストラクタを提供し、派生クラスのコピーの実装がそれを利用できるようにしておいてください。
+                        </span>
                     </p>
 
                     <p>
-                        If you do not want to support copy/move operations on your type,
-                        explicitly disable them using <code>= delete</code> in
-                        the <code>public:</code> section:
+                        <span>
+                            <span class="src">
+                                If you do not want to support copy/move operations on your type,
+                                explicitly disable them using <code>= delete</code> in
+                                the <code>public:</code> section:
+                            </span>
+                            型にコピー操作・ムーブ操作をサポートさせたくないときは、以下の例のように、<code>public:</code>セクション内において<code>= delete</code>を使って、明示的にそれらを無効にしてください。
+                        </span>
                     </p>
-
+                    <span>
+                        <span class="src">
 <pre class="code">// MyClass is neither copyable nor movable.
 MyClass(const MyClass&amp;) = delete;
 MyClass&amp; operator=(const MyClass&amp;) = delete;
 </pre>
+                        </span><pre class="code">// MyClassは、コピーもムーブも不可
+MyClass(const MyClass&amp;) = delete;
+MyClass&amp; operator=(const MyClass&amp;) = delete;
+</pre>
+                    </span>
 
                     <p></p>
 
                 </div>
             </div>
 
-            <h3 id="Structs_vs._Classes">Structs vs. Classes</h3>
+            <h3 id="Structs_vs._Classes"><span title="Structs vs. Classes">構造体かクラスか</span></h3>
 
             <div class="summary">
                 <p>
-                    Use a <code>struct</code> only for passive objects that
-                    carry data; everything else is a <code>class</code>.
+                    <span>
+                        <span class="src">
+                            Use a <code>struct</code> only for passive objects that
+                            carry data; everything else is a <code>class</code>.
+                        </span>
+                        <code>struct</code>はデータを運ぶための受け身的なオブジェクトにのみ使用し、それ以外は<code>class</code>を使用してください。
+                    </span>
                 </p>
             </div>
 
             <div class="stylebody">
 
                 <p>
-                    The <code>struct</code> and <code>class</code>
-                    keywords behave almost identically in C++. We add our own
-                    semantic meanings to each keyword, so you should use the
-                    appropriate keyword for the data-type you're
-                    defining.
+                    <span>
+                        <span class="src">
+                            The <code>struct</code> and <code>class</code>
+                            keywords behave almost identically in C++.
+                        </span>
+                        <code>struct</code>と<code>class</code>は、C++においてほとんど同じです。
+                    </span>
+                    <span>
+                        <span class="src">
+                            We add our own
+                            semantic meanings to each keyword, so you should use the
+                            appropriate keyword for the data-type you're
+                            defining.
+                        </span>
+                        我々は、それぞれのキーワードに独自の意味づけをしています。そのため、定義されるデータの種類に応じて適切なキーワードを用いなくてはなりません。
+                    </span>
                 </p>
 
                 <p>
-                    <code>structs</code> should be used for passive
-                    objects that carry data, and may have associated
-                    constants, but lack any functionality other than
-                    access/setting the data members. The accessing/setting of
-                    fields is done by directly accessing the fields rather
-                    than through method invocations. Methods should not
-                    provide behavior but should only be used to set up the
-                    data members, e.g., constructor, destructor,
-                    <code>Initialize()</code>, <code>Reset()</code>,
-                    <code>Validate()</code>.
+                    <span>
+                        <span class="src">
+                            <code>structs</code> should be used for passive
+                            objects that carry data, and may have associated
+                            constants, but lack any functionality other than
+                            access/setting the data members.
+                        </span>
+                        <code>struct</code>は、データを運ぶためだけの受け身的なオブジェクトに使います。<code>struct</code>は、関連する定数を持つことはできますが、それ以外はデータのGetterやSetterを除いて、何ら機能的なものを持ちません。
+                    </span>
+                    <span>
+                        <span class="src">
+                            The accessing/setting of
+                            fields is done by directly accessing the fields rather
+                            than through method invocations.
+                        </span>
+                        データの取得・設定は、メソッド呼び出しではなく、フィールドに直接アクセスして行います。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Methods should not
+                            provide behavior but should only be used to set up the
+                            data members, e.g., constructor, destructor,
+                            <code>Initialize()</code>, <code>Reset()</code>,
+                            <code>Validate()</code>.
+                        </span>
+                        データメンバーを設定する以外のメソッドは持たせてはなりません。
+                        たとえば、コンストラクタ、デストラクタ、<code>Initialize()</code>、<code>Reset()</code>、<code>Validate()</code>などです。
+                    </span>
                 </p>
 
                 <p>
-                    If more functionality is required, a
-                    <code>class</code> is more appropriate. If in doubt, make
-                    it a <code>class</code>.
+                    <span>
+                        <span class="src">
+                            If more functionality is required, a
+                            <code>class</code> is more appropriate.
+                        </span>
+                        より機能的なものが要求される場合は、<code>class</code>の方が適切です。
+                    </span>
+                    <span>
+                        <span class="src">
+                            If in doubt, make
+                            it a <code>class</code>.
+                        </span>
+                        迷ったら<code>class</code>にしましょう。
+                    </span>
                 </p>
 
                 <p>
-                    For consistency with STL, you can use
-                    <code>struct</code> instead of <code>class</code> for
-                    functors and traits.
+                    <span>
+                        <span class="src">
+                            For consistency with STL, you can use
+                            <code>struct</code> instead of <code>class</code> for
+                            functors and traits.
+                        </span>
+                        STLとの一貫性を持たせるため、ファンクタやtraitsについては、<code>struct</code>を使ってもかまいません。
+                    </span>
                 </p>
 
                 <p>
-                    Note that member variables in structs and classes have
-                    <a href="#Variable_Names">different naming rules</a>.
+                    <span>
+                        <span class="src">
+                            Note that member variables in structs and classes have
+                            <a href="#Variable_Names">different naming rules</a>.
+                        </span>
+                        構造体とクラスでは、<a href="#Variable_Names">命名規則が異なる</a>ことに注意してください。
+                    </span>
                 </p>
 
             </div>
 
-            <h3 id="Inheritance">Inheritance</h3>
+            <h3 id="Inheritance"><span title="Inheritance">継承</span></h3>
 
             <div class="summary">
                 <p>
-                    Composition is often more appropriate than inheritance.
-                    When using inheritance, make it <code>public</code>.
-                </p>
-            </div>
-
-            <div class="stylebody">
-
-                <div class="definition">
-                    <p>
-                        When a sub-class
-                        inherits from a base class, it includes the definitions
-                        of all the data and operations that the parent base class
-                        defines. In practice, inheritance is used in two major
-                        ways in C++: implementation inheritance, in which actual
-                        code is inherited by the child, and
-                        <a href="#Interfaces">interface inheritance</a>, in which
-                        only method names are inherited.
-                    </p>
-                </div>
-
-                <div class="pros">
-                    <p>
-                        Implementation inheritance reduces code size by re-using
-                        the base class code as it specializes an existing type.
-                        Because inheritance is a compile-time declaration, you
-                        and the compiler can understand the operation and detect
-                        errors. Interface inheritance can be used to
-                        programmatically enforce that a class expose a particular
-                        API. Again, the compiler can detect errors, in this case,
-                        when a class does not define a necessary method of the
-                        API.
-                    </p>
-                </div>
-
-                <div class="cons">
-                    <p>
-                        For implementation inheritance, because the code
-                        implementing a sub-class is spread between the base and
-                        the sub-class, it can be more difficult to understand an
-                        implementation. The sub-class cannot override functions
-                        that are not virtual, so the sub-class cannot change
-                        implementation. The base class may also define some data
-                        members, so that specifies physical layout of the base
-                        class.
-                    </p>
-                </div>
-
-                <div class="decision">
-
-                    <p>
-                        All inheritance should be <code>public</code>. If you
-                        want to do private inheritance, you should be including
-                        an instance of the base class as a member instead.
-                    </p>
-
-                    <p>
-                        Do not overuse implementation inheritance. Composition
-                        is often more appropriate. Try to restrict use of
-                        inheritance to the "is-a" case: <code>Bar</code>
-                        subclasses <code>Foo</code> if it can reasonably be said
-                        that <code>Bar</code> "is a kind of"
-                        <code>Foo</code>.
-                    </p>
-
-                    <p>
-                        Make your destructor <code>virtual</code> if
-                        necessary. If your class has virtual methods, its
-                        destructor  should be virtual.
-                    </p>
-
-                    <p>
-                        Limit the use of <code>protected</code> to those
-                        member functions that might need to be accessed from
-                        subclasses. Note that <a href="#Access_Control">
-                            data
-                            members should be private
-                        </a>.
-                    </p>
-
-                    <p>
-                        Explicitly annotate overrides of virtual functions
-                        or virtual destructors with an <code>override</code>
-                        or (less frequently) <code>final</code> specifier.
-                        Older (pre-C++11) code will use the
-                        <code>virtual</code> keyword as an inferior
-                        alternative annotation. For clarity, use exactly one of
-                        <code>override</code>, <code>final</code>, or
-                        <code>virtual</code> when declaring an override.
-                        Rationale: A function or destructor marked
-                        <code>override</code> or <code>final</code> that is
-                        not an override of a base class virtual function will
-                        not compile, and this helps catch common errors. The
-                        specifiers serve as documentation; if no specifier is
-                        present, the reader has to check all ancestors of the
-                        class in question to determine if the function or
-                        destructor is virtual or not.
-                    </p>
-                </div>
-
-            </div>
-
-            <h3 id="Multiple_Inheritance">Multiple Inheritance</h3>
-
-            <div class="summary">
-                <p>
-                    Only very rarely is multiple implementation inheritance
-                    actually useful. We allow multiple inheritance only when at
-                    most one of the base classes has an implementation; all
-                    other base classes must be <a href="#Interfaces">
-                        pure
-                        interface
-                    </a> classes tagged with the
-                    <code>Interface</code> suffix.
+                    <span>
+                        <span class="src">
+                            Composition is often more appropriate than inheritance.
+                        </span>
+                        しばしば、継承より抱合(コンポジション)の方が適切な場合もあります。
+                    </span>
+                    <span>
+                        <span class="src">
+                            When using inheritance, make it <code>public</code>.
+                        </span>
+                        継承を使うのであれば、必ず<code>public</code>にします。
+                    </span>
                 </p>
             </div>
 
@@ -1918,54 +2291,354 @@ MyClass&amp; operator=(const MyClass&amp;) = delete;
 
                 <div class="definition">
                     <p>
-                        Multiple inheritance allows a sub-class to have more than
-                        one base class. We distinguish between base classes that are
-                        <em>pure interfaces</em> and those that have an
-                        <em>implementation</em>.
+                        <span>
+                            <span class="src">
+                                When a sub-class
+                                inherits from a base class, it includes the definitions
+                                of all the data and operations that the parent base class
+                                defines.
+                            </span>
+                            派生クラスが基底クラスから継承するとき、派生クラスは親となる基底クラスで定義されているすべてのデータと操作の定義を含むようになります。
+                        </span>
+                        <span>
+                            <span class="src">
+                                In practice, inheritance is used in two major
+                                ways in C++: implementation inheritance, in which actual
+                                code is inherited by the child, and
+                                <a href="#Interfaces">interface inheritance</a>, in which
+                                only method names are inherited.
+                            </span>
+                            実際には、C++の継承は2種類の方法があります。実際のコードが継承される「実装の継承」と、メソッド名だけが継承される「<a href="#Interfaces">インターフェースの継承</a>」です。
+                        </span>
                     </p>
                 </div>
 
                 <div class="pros">
                     <p>
-                        Multiple implementation inheritance may let you re-use
-                        even more code than single inheritance (see <a href="#Inheritance">Inheritance</a>).
+                        <span>
+                            <span class="src">
+                                Implementation inheritance reduces code size by re-using
+                                the base class code as it specializes an existing type.
+                            </span>
+                            実装の継承は、基底クラスのコードを再利用するため、コードのサイズが小さくなります。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Because inheritance is a compile-time declaration, you
+                                and the compiler can understand the operation and detect
+                                errors.
+                            </span>
+                            継承はコンパイル時の宣言であるため、コンパイラは操作を理解し、エラーを検出します。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Interface inheritance can be used to
+                                programmatically enforce that a class expose a particular
+                                API.
+                            </span>
+                            インターフェースの継承は、プログラム的に、クラスが特定のAPIを公開することを強制するために使用します。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Again, the compiler can detect errors, in this case,
+                                when a class does not define a necessary method of the
+                                API.
+                            </span>
+                            同様に、コンパイラは、クラスが必要なメソッドを定義していない場合に、それをエラーとして検出します。
+                        </span>
                     </p>
                 </div>
 
                 <div class="cons">
                     <p>
-                        Only very rarely is multiple <em>implementation</em>
-                        inheritance actually useful. When multiple implementation
-                        inheritance seems like the solution, you can usually find
-                        a different, more explicit, and cleaner solution.
+                        <span>
+                            <span class="src">
+                                For implementation inheritance, because the code
+                                implementing a sub-class is spread between the base and
+                                the sub-class, it can be more difficult to understand an
+                                implementation.
+                            </span>
+                            実装の継承においては、派生クラスの実装が基底クラスと派生クラスとの間に分離するため、実装を理解するのをより難しくするかもしれません。
+                        </span>
+                        <span>
+                            <span class="src">
+                                The sub-class cannot override functions
+                                that are not virtual, so the sub-class cannot change
+                                implementation.
+                            </span>
+                            派生クラスは、基底クラスでvirtualとして宣言されていないものをオーバーライドすることはできず、実装を変えることはできません。
+                        </span>
+                        <span>
+                            <span class="src">
+                                The base class may also define some data
+                                members, so that specifies physical layout of the base
+                                class.
+                            </span>
+                            また、基底クラスはデータメンバを定義しているかもしれず、それによって基底クラスの物理的なレイアウトも決まってしまいます。
+                        </span>
+                    </p>
+                </div>
+
+                <div class="decision">
+
+                    <p>
+                        <span>
+                            <span class="src">
+                                All inheritance should be <code>public</code>.
+                            </span>
+                            すべての継承は<code>public</code>で行います。
+                        </span>
+                        <span>
+                            <span class="src">
+                                If you
+                                want to do private inheritance, you should be including
+                                an instance of the base class as a member instead.
+                            </span>
+                            privateな継承を行いたい場合は、継承の代わりに基底クラスのインスタンスをメンバーとして持つようにしてください。
+                        </span>
+                    </p>
+
+                    <p>
+                        <span>
+                            <span class="src">
+                                Do not overuse implementation inheritance.
+                            </span>
+                            実装の継承を使いすぎないでください。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Composition
+                                is often more appropriate.
+                            </span>
+                            抱合(コンポジション)の方が適切な場合もしばしばあります。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Try to restrict use of
+                                inheritance to the "is-a" case: <code>Bar</code>
+                                subclasses <code>Foo</code> if it can reasonably be said
+                                that <code>Bar</code> "is a kind of"
+                                <code>Foo</code>.
+                            </span>
+                            継承は is-a 関係が成立する場合のみ使うようにしてください。
+                            たとえば<code>Foo</code>を継承して<code>Bar</code>を作ってよいのは、理屈の上で「<code>Bar</code>は<code>Foo</code>の一種」といえる時だけです。
+                        </span>
+                    </p>
+
+                    <p>
+                        <span>
+                            <span class="src">
+                                Make your destructor <code>virtual</code> if
+                                necessary.
+                            </span>
+                            必要に応じてデストラクタは<code>virtual</code>にしてください。
+                        </span>
+                        <span>
+                            <span class="src">
+                                If your class has virtual methods, its
+                                destructor should be virtual.
+                            </span>
+                            もし、クラスが仮想関数を持っているのであれば、デストラクタも仮想でなくてはなりません。
+                        </span>
+                    </p>
+
+                    <p>
+                        <span>
+                            <span class="src">
+                                Limit the use of <code>protected</code> to those
+                                member functions that might need to be accessed from
+                                subclasses.
+                            </span>
+                            <code>protected</code>は、派生クラスからアクセスされるメンバ関数だけにとどめてください。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Note that <a href="#Access_Control">
+                                    data
+                                    members should be private
+                                </a>.
+                            </span>
+                            <a href="#Access_Control">データメンバはprivateとする</a>ようにしてください.
+                        </span>
+                    </p>
+
+                    <p>
+                        <span>
+                            <span class="src">
+                                Explicitly annotate overrides of virtual functions
+                                or virtual destructors with an <code>override</code>
+                                or (less frequently) <code>final</code> specifier.
+                            </span>
+                            オーバーライドする仮想関数や仮想デストラクタには、明示的に<code>override</code>あるいは<code>final</code>指定子をつけてください。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Older (pre-C++11) code will use the
+                                <code>virtual</code> keyword as an inferior
+                                alternative annotation.
+                            </span>
+                            古い(C++11より前の)コードでは、劣っていますが代替として<code>virtual</code>キーワードをつけてください。
+                        </span>
+                        <span>
+                            <span class="src">
+                                For clarity, use exactly one of
+                                <code>override</code>, <code>final</code>, or
+                                <code>virtual</code> when declaring an override.
+                            </span>
+                            明快さのため、オーバーライドするときには、必ず<code>override</code>か<code>final</code>か
+                            <code>virtual</code>のいずれかのキーワードを使用してください。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Rationale: A function or destructor marked
+                                <code>override</code> or <code>final</code> that is
+                                not an override of a base class virtual function will
+                                not compile, and this helps catch common errors.
+                            </span>
+                            <code>override</code>か<code>final</code>でマークされた関数やデスクトラクタは、基底クラスの仮想関数をオーバーライドしていないときにコンパイルできなくなるため、問題に気づきやすくなります。
+                        </span>
+                        <span>
+                            <span class="src">
+                                The
+                                specifiers serve as documentation; if no specifier is
+                                present, the reader has to check all ancestors of the
+                                class in question to determine if the function or
+                                destructor is virtual or not.
+                            </span>
+                            これらの指定子はドキュメントの役割も果たします。もし、指定子がない場合、コードの読者は関数やデストラクタが仮想なのかそうでないのかを解決するためには、すべての継承元をたどって調べなくてはならなくなります。
+                        </span>
+                    </p>
+                </div>
+
+            </div>
+
+            <h3 id="Multiple_Inheritance"><span title="Multiple Inheritance">多重継承</span></h3>
+
+            <div class="summary">
+                <p>
+                    <span>
+                        <span class="src">
+                            Only very rarely is multiple implementation inheritance
+                            actually useful.
+                        </span>
+                        実装の継承において、多重継承が有用なことはほとんどありません。
+                    </span>
+                    <span>
+                        <span class="src">
+                            We allow multiple inheritance only when at
+                            most one of the base classes has an implementation; all
+                            other base classes must be <a href="#Interfaces">
+                                pure
+                                interface
+                            </a> classes tagged with the
+                            <code>Interface</code> suffix.
+                        </span>
+                        多重継承の使用が認められるのは、基底クラスのうち実装を持つものが多くとも1つまでで、他の基底クラスはすべて
+                        <code>Interface</code>接尾辞でタグ付けされた<a href="#Interfaces">純粋なインターフェース</a>クラスであるときにのみに限定されます。
+                    </span>
+                </p>
+            </div>
+
+            <div class="stylebody">
+
+                <div class="definition">
+                    <p>
+                        <span>
+                            <span class="src">
+                                Multiple inheritance allows a sub-class to have more than
+                                one base class.
+                            </span>
+                            多重継承により、複数の基底クラスを持った派生クラスを作ることができます。
+                        </span>
+                        <span>
+                            <span class="src">
+                                We distinguish between base classes that are
+                                <em>pure interfaces</em> and those that have an
+                                <em>implementation</em>.
+                            </span>
+                            ここでは、基底クラスを<em>純粋インターフェース</em>と<em>実装</em>を持ったものに分類して考えます。
+                        </span>
+                    </p>
+                </div>
+
+                <div class="pros">
+                    <p>
+                        <span>
+                            <span class="src">
+                                Multiple implementation inheritance may let you re-use
+                                even more code than single inheritance (see <a href="#Inheritance">Inheritance</a>).
+                            </span>
+                            実装の多重継承は、単一の継承よりもたくさんのコードを再利用できるかもしれません(参考:<a href="#Inheritance">継承</a>)。
+                        </span>
+                    </p>
+                </div>
+
+                <div class="cons">
+                    <p>
+                        <span>
+                            <span class="src">
+                                Only very rarely is multiple <em>implementation</em>
+                                inheritance actually useful.
+                            </span>
+                            実際のところ、実装の多重継承が役に立つことはほとんどありません。
+                        </span>
+                        <span>
+                            <span class="src">
+                                When multiple implementation
+                                inheritance seems like the solution, you can usually find
+                                a different, more explicit, and cleaner solution.
+                            </span>
+                            多重継承が問題の答えに見えたとしても、たいていは、もっと明示的できれいな別の方法がきっとあるはずです。
+                        </span>
                     </p>
                 </div>
 
                 <div class="decision">
                     <p>
-                        Multiple inheritance is allowed only when all
-                        superclasses, with the possible exception of the first one,
-                        are <a href="#Interfaces">pure interfaces</a>. In order to
-                        ensure that they remain pure interfaces, they must end with
-                        the <code>Interface</code> suffix.
+                        <span>
+                            <span class="src">
+                                Multiple inheritance is allowed only when all
+                                superclasses, with the possible exception of the first one,
+                                are <a href="#Interfaces">pure interfaces</a>.
+                            </span>
+                            多重継承が認められるのは、1つめの基底クラスを除いて、他のすべての基底クラスが<a href="#Interfaces">純粋なインターフェース</a>であるときのみです。
+                        </span>
+                        <span>
+                            <span class="src">
+                                In order to
+                                ensure that they remain pure interfaces, they must end with
+                                the <code>Interface</code> suffix.
+                            </span>
+                            クラスが純粋インターフェースであることを保証するために、それらのクラスは<code>Interface</code>接尾辞を持っていなくてはなりません。
+                        </span>
                     </p>
                 </div>
 
                 <div class="note">
                     <p>
-                        There is an <a href="#Windows_Code">exception</a> to
-                        this rule on Windows.
+                        <span>
+                            <span class="src">
+                                There is an <a href="#Windows_Code">exception</a> to
+                                this rule on Windows.
+                            </span>
+                            このルールには<a href="#Windows_Code">Windowsに関する例外</a>があります。
+                        </span>
                     </p>
                 </div>
 
             </div>
 
-            <h3 id="Interfaces">Interfaces</h3>
+            <h3 id="Interfaces"><span title="Interfaces">インターフェース</span></h3>
 
             <div class="summary">
                 <p>
-                    Classes that satisfy certain conditions are allowed, but
-                    not required, to end with an <code>Interface</code> suffix.
+                    <span>
+                        <span class="src">
+                            Classes that satisfy certain conditions are allowed, but
+                            not required, to end with an <code>Interface</code> suffix.
+                        </span>
+                        いくつかの特定の条件を満たすクラスは、クラス名を<code>Interface</code>接尾辞で終わることができます(が、必須ではありません)。
+                    </span>
                 </p>
             </div>
 
@@ -1973,308 +2646,670 @@ MyClass&amp; operator=(const MyClass&amp;) = delete;
 
                 <div class="definition">
                     <p>
-                        A class is a pure interface if it meets the following
-                        requirements:
+                        <span>
+                            <span class="src">
+                                A class is a pure interface if it meets the following
+                                requirements:
+                            </span>
+                            クラスが次の要件を満たすとき、クラスは純粋なインターフェースであると言います。
+                        </span>
                     </p>
 
                     <ul>
                         <li>
-                            It has only public pure virtual ("<code>
-                                =
-                                0
-                            </code>") methods and static methods (but see below
-                            for destructor).
-                        </li>
-
-                        <li>It may not have non-static data members.</li>
-
-                        <li>
-                            It need not have any constructors defined. If a
-                            constructor is provided, it must take no arguments and
-                            it must be protected.
+                            <span>
+                                <span class="src">
+                                    It has only public pure virtual ("<code>
+                                        =
+                                        0
+                                    </code>") methods and static methods (but see below
+                                    for destructor).
+                                </span>
+                                public な純粋仮想関数(<code> = 0</code>で宣言された関数)と、静的なメンバ関数(と次で説明するデストラクタ)しかもたない。
+                            </span>
                         </li>
 
                         <li>
-                            If it is a subclass, it may only be derived from
-                            classes that satisfy these conditions and are tagged
-                            with the <code>Interface</code> suffix.
+                            <span>
+                                <span class="src">
+                                    It may not have non-static data members.
+                                </span>
+                                静的でないデータメンバを持たない。
+                            </span>
+                        </li>
+
+                        <li>
+                            <span>
+                                <span class="src">
+                                    It need not have any constructors defined.
+                                </span>
+                                いかなるコンストラクタも定義されていない。
+                            </span>
+                            <span>
+                                <span class="src">
+                                    If a
+                                    constructor is provided, it must take no arguments and
+                                    it must be protected.
+                                </span>
+                                コンストラクタが定義されている場合は、引数をとらず、protectedでなくてはならない。
+                            </span>
+                        </li>
+
+                        <li>
+                            <span>
+                                <span class="src">
+                                    If it is a subclass, it may only be derived from
+                                    classes that satisfy these conditions and are tagged
+                                    with the <code>Interface</code> suffix.
+                                </span>
+                                クラスが派生クラスである場合には、基底とするクラスが、これら同じ条件を満たしていて、かつ、<code>Interface</code>接尾辞でタグ付けされていなくてはならない。
+                            </span>
                         </li>
                     </ul>
 
                     <p>
-                        An interface class can never be directly instantiated
-                        because of the pure virtual method(s) it declares. To
-                        make sure all implementations of the interface can be
-                        destroyed correctly, the interface must also declare a
-                        virtual destructor (in an exception to the first rule,
-                        this should not be pure). See Stroustrup, <cite>
-                            The C++
-                            Programming Language
-                        </cite>, 3rd edition, section 12.4
-                        for details.
+                        <span>
+                            <span class="src">
+                                An interface class can never be directly instantiated
+                                because of the pure virtual method(s) it declares.
+                            </span>
+                            インターフェースクラスは、それ自身が純粋仮想関数を宣言しているため、直接インスタンス化されることはありません。
+                        </span>
+                        <span>
+                            <span class="src">
+                                To
+                                make sure all implementations of the interface can be
+                                destroyed correctly, the interface must also declare a
+                                virtual destructor (in an exception to the first rule,
+                                this should not be pure).
+                            </span>
+                            インターフェースの持つすべての実装が正しく破壊されることを保証するために、インターフェースは仮想デストラクタを宣言しなくてはなりません(これは、最初のルールに対する唯一の例外として、定義を持たなくてはなりません)。
+                        </span>
+                        <span>
+                            <span class="src">
+                                See Stroustrup, <cite>
+                                    The C++
+                                    Programming Language
+                                </cite>, 3rd edition, section 12.4
+                                for details.
+                            </span>
+                            詳細はStroustrup著 <cite>The C++ Programming Language</cite>, 3rd edition セクション 12.4 を参照してください。
+                        </span>
                     </p>
                 </div>
 
                 <div class="pros">
                     <p>
-                        Tagging a class with the <code>Interface</code> suffix
-                        lets others know that they must not add implemented
-                        methods or non static data members. This is particularly
-                        important in the case of <a href="#Multiple_Inheritance">multiple inheritance</a>.
-                        Additionally, the interface concept is already
-                        well-understood by Java programmers.
+                        <span>
+                            <span class="src">
+                                Tagging a class with the <code>Interface</code> suffix
+                                lets others know that they must not add implemented
+                                methods or non static data members.
+                            </span>
+                            クラスを<code>Interface</code>でタグ付けすることで、他のプログラマに対して、このクラスに実装や静的でないメンバ変数を追加してはならないということを伝えられます。
+                        </span>
+                        <span>
+                            <span class="src">
+                                This is particularly
+                                important in the case of <a href="#Multiple_Inheritance">multiple inheritance</a>.
+                            </span>
+                            これは特に、<a href="#Multiple_Inheritance">多重継承</a>される場合において重要なことです。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Additionally, the interface concept is already
+                                well-understood by Java programmers.
+                            </span>
+                            加えて、インターフェースはJavaプログラマの間ではよく知られているコンセプトです。
+                        </span>
                     </p>
                 </div>
 
                 <div class="cons">
                     <p>
-                        The <code>Interface</code> suffix lengthens the class
-                        name, which can make it harder to read and understand.
-                        Also, the interface property may be considered an
-                        implementation detail that shouldn't be exposed to
-                        clients.
+                        <span>
+                            <span class="src">
+                                The <code>Interface</code> suffix lengthens the class
+                                name, which can make it harder to read and understand.
+                            </span>
+                            <code>Interface</code>という接尾辞をつけると、クラス名が長くなり、読みにくく、理解にしくくなるかもしれません。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Also, the interface property may be considered an
+                                implementation detail that shouldn't be exposed to
+                                clients.
+                            </span>
+                            また、インターフェースの性質は、クライアントに対して公開すべきでない実装の詳細であると考えることもできます。
+                        </span>
                     </p>
                 </div>
 
                 <div class="decision">
                     <p>
-                        A class may end
-                        with <code>Interface</code> only if it meets the above
-                        requirements. We do not require the converse, however:
-                        classes that meet the above requirements are not required
-                        to end with <code>Interface</code>.
+                        <span>
+                            <span class="src">
+                                A class may end
+                                with <code>Interface</code> only if it meets the above
+                                requirements.
+                            </span>
+                            クラスが上記の要件を満たす場合は<code>Interface</code>接尾辞をつけることができます。
+                        </span>
+                        <span>
+                            <span class="src">
+                                We do not require the converse, however:
+                                classes that meet the above requirements are not required
+                                to end with <code>Interface</code>.
+                            </span>
+                            逆の要件はありません。つまり、上記の要件を満たすクラスが<code>Interface</code>接尾辞を持たなくてはならないということはありません。
+                        </span>
                     </p>
                 </div>
 
             </div>
 
-            <h3 id="Operator_Overloading">Operator Overloading</h3>
+            <h3 id="Operator_Overloading"><span title="Operator Overloading">演算子のオーバーロード</span></h3>
 
             <div class="summary">
-                <p>Overload operators judiciously. Do not create user-defined literals.</p>
+                <p>
+                    <span>
+                        <span class="src">
+                            Overload operators judiciously.
+                        </span>
+                        演算子のオーバーロードは慎重に行わなくてはなりません。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Do not create user-defined literals.
+                        </span>
+                        ユーザ定義のリテラルは作ってはいけません。
+                    </span>
+                </p>
             </div>
 
             <div class="stylebody">
 
                 <div class="definition">
                     <p>
-                        C++ permits user code to
-                        <a href="http://en.cppreference.com/w/cpp/language/operators">
-                            declare
-                            overloaded versions of the built-in operators
-                        </a> using the
-                        <code>operator</code> keyword, so long as one of the parameters
-                        is a user-defined type. The <code>operator</code> keyword also
-                        permits user code to define new kinds of literals using
-                        <code>operator""</code>, and to define type-conversion functions
-                        such as <code>operator bool()</code>.
+                        <span>
+                            <span class="src">
+                                C++ permits user code to
+                                <a href="http://en.cppreference.com/w/cpp/language/operators">
+                                    declare
+                                    overloaded versions of the built-in operators
+                                </a> using the
+                                <code>operator</code> keyword, so long as one of the parameters
+                                is a user-defined type.
+                            </span>
+                            C++では、<code>operator</code>キーワードを使うことで、ユーザ定義の型を引数とした<a href="http://en.cppreference.com/w/cpp/language/operators">組み込み演算子のオーバーロードを宣言</a>することができます。
+                        </span>
+                        <span>
+                            <span class="src">
+                                The <code>operator</code> keyword also
+                                permits user code to define new kinds of literals using
+                                <code>operator""</code>, and to define type-conversion functions
+                                such as <code>operator bool()</code>.
+                            </span>
+                            また、<code>operator</code>キーワードは、<code>operator""</code>を用いることで新しいリテラルを定義することもできます。<code>operator bool()</code>など、型変換を定義することもできます。
+                        </span>
                     </p>
                 </div>
 
                 <div class="pros">
                     <p>
-                        Operator overloading can make code more concise and
-                        intuitive by enabling user-defined types to behave the same
-                        as built-in types. Overloaded operators are the idiomatic names
-                        for certain operations (e.g. <code>==</code>, <code>&lt;</code>,
-                        <code>=</code>, and <code>&lt;&lt;</code>), and adhering to
-                        those conventions can make user-defined types more readable
-                        and enable them to interoperate with libraries that expect
-                        those names.
+                        <span>
+                            <span class="src">
+                                Operator overloading can make code more concise and
+                                intuitive by enabling user-defined types to behave the same
+                                as built-in types.
+                            </span>
+                            演算子のオーバーロードは、ユーザ定義の型に組み込み型と同様の振る舞いをさせることができるようになるため、コードを簡潔で直感的にすることができます。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Overloaded operators are the idiomatic names
+                                for certain operations (e.g. <code>==</code>, <code>&lt;</code>,
+                                <code>=</code>, and <code>&lt;&lt;</code>), and adhering to
+                                those conventions can make user-defined types more readable
+                                and enable them to interoperate with libraries that expect
+                                those names.
+                            </span>
+                            オーバーロードされた演算子は、決まった操作に対して慣例に沿った名前を与えます(<code>==</code>や<code>&lt;</code>、<code>=</code>、<code>&lt;&lt;</code>など)。これらの慣例に従うことは、ユーザ定義の型に対する可読性を向上させ、それらの名前を期待しているライブラリとの相互運用性を高めることができます。
+                        </span>
                     </p>
 
                     <p>
-                        User-defined literals are a very concise notation for
-                        creating objects of user-defined types.
+                        <span>
+                            <span class="src">
+                                User-defined literals are a very concise notation for
+                                creating objects of user-defined types.
+                            </span>
+                            ユーザ定義のリテラルは、ユーザ定義のオブジェクトを生成する非常に賢明な記載方法です。
+                        </span>
                     </p>
                 </div>
 
                 <div class="cons">
                     <ul>
                         <li>
-                            Providing a correct, consistent, and unsurprising
-                            set of operator overloads requires some care, and failure
-                            to do so can lead to confusion and bugs.
+                            <span>
+                                <span class="src">
+                                    Providing a correct, consistent, and unsurprising
+                                    set of operator overloads requires some care, and failure
+                                    to do so can lead to confusion and bugs.
+                                </span>
+                                正しい、一貫性を持った、よくある形の演算子のセットを提供するためには、細かな注意が必要となり、失敗すると、混乱やバグを引き起こしかねません。
+                            </span>
                         </li>
 
                         <li>
-                            Overuse of operators can lead to obfuscated code,
-                            particularly if the overloaded operator's semantics
-                            don't follow convention.
+                            <span>
+                                <span class="src">
+                                    Overuse of operators can lead to obfuscated code,
+                                    particularly if the overloaded operator's semantics
+                                    don't follow convention.
+                                </span>
+                                演算子の過剰な使用、特に、慣例に従わないような意味を演算子に持たせた場合、コードがわかりにくくなります。
+                            </span>
                         </li>
 
                         <li>
-                            The hazards of function overloading apply just as
-                            much to operator overloading, if not more so.
+                            <span>
+                                <span class="src">
+                                    The hazards of function overloading apply just as
+                                    much to operator overloading, if not more so.
+                                </span>
+                                関数のオーバーロードを行う場合と同様の危険性が、演算子のオーバーロードを行う場合にも当てはまります。
+                            </span>
                         </li>
 
                         <li>
-                            Operator overloads can fool our intuition into
-                            thinking that expensive operations are cheap, built-in
-                            operations.
+                            <span>
+                                <span class="src">
+                                    Operator overloads can fool our intuition into
+                                    thinking that expensive operations are cheap, built-in
+                                    operations.
+                                </span>
+                                演算子のオーバーロードは、本来高コストな処理を組み込み演算子のように低コストに見せかけてしまうことができます。このことは私たちの直感に反します。
+                            </span>
                         </li>
 
                         <li>
-                            Finding the call sites for overloaded operators may
-                            requre a search tool that's aware of C++ syntax, rather
-                            than e.g. grep.
+                            <span>
+                                <span class="src">
+                                    Finding the call sites for overloaded operators may
+                                    requre a search tool that's aware of C++ syntax, rather
+                                    than e.g. grep.
+                                </span>
+                                オーバーロードされた演算子の呼び出し元を検索しようとする場合、grepでは要をなさず、C++の文法を理解するツールを使用する必要があります。
+                            </span>
                         </li>
 
                         <li>
-                            If you get the argument type of an overloaded operator
-                            wrong, you may get a different overload rather than a
-                            compiler error. For example, <code>foo &lt; bar</code>
-                            may do one thing, while <code>&amp;foo &lt; &amp;bar</code>
-                            does something totally different.
+                            <span>
+                                <span class="src">
+                                    If you get the argument type of an overloaded operator
+                                    wrong, you may get a different overload rather than a
+                                    compiler error.
+                                </span>
+                                オーバーロードされた演算子の引数の型を間違えたとき、単にコンパイルエラーになるのであればまだよいのですが、エラーにならず別の演算子の呼び出しに解決されてしまうかもしれません。
+                            </span>
+                            <span>
+                                <span class="src">
+                                    For example, <code>foo &lt; bar</code>
+                                    may do one thing, while <code>&amp;foo &lt; &amp;bar</code>
+                                    does something totally different.
+                                </span>
+                                たとえば、<code>foo &lt; bar</code>と<code>&amp;foo &lt; &amp;bar</code>はまったく意味の異なる演算です。
+                            </span>
                         </li>
 
                         <li>
-                            Certain operator overloads are inherently hazardous.
-                            Overloading unary <code>&amp;</code> can cause the same
-                            code to have different meanings depending on whether
-                            the overload declaration is visible. Overloads of
-                            <code>&amp;&amp;</code>, <code>||</code>, and <code>,</code>
-                            (comma) cannot match the evaluation-order semantics of the
-                            built-in operators.
+                            <span>
+                                <span class="src">
+                                    Certain operator overloads are inherently hazardous.
+                                </span>
+                                演算子の中には、オーバーロードすること自体に潜在的な危険性をはらんでいるものがあります。
+                            </span>
+                            <span>
+                                <span class="src">
+                                    Overloading unary <code>&amp;</code> can cause the same
+                                    code to have different meanings depending on whether
+                                    the overload declaration is visible.
+                                </span>
+                                単項演算子<code>&amp;</code>のオーバーロードは、その宣言が見えているかどうかで、意味が変わってしまうことになります。
+                            </span>
+                            <span>
+                                <span class="src">
+                                    Overloads of
+                                    <code>&amp;&amp;</code>, <code>||</code>, and <code>,</code>
+                                    (comma) cannot match the evaluation-order semantics of the
+                                    built-in operators.
+                                </span>
+                                また、<code>&amp;&amp;</code>, <code>||</code>, and <code>,</code>(カンマ演算子)をオーバーロードした場合、組み込み演算子で定められている式の評価順序と一致させることはできません。
+                            </span>
                         </li>
 
                         <li>
-                            Operators are often defined outside the class,
-                            so there's a risk of different files introducing
-                            different definitions of the same operator. If both
-                            definitions are linked into the same binary, this results
-                            in undefined behavior, which can manifest as subtle
-                            run-time bugs.
+                            <span>
+                                <span class="src">
+                                    Operators are often defined outside the class,
+                                    so there's a risk of different files introducing
+                                    different definitions of the same operator.
+                                </span>
+                                オペレータはしばしばクラスの外で定義されますが、その場合、異なるファイルにある異なる定義を引き込んでしまう危険性があります。
+                            </span>
+                            <span>
+                                <span class="src">
+                                    If both
+                                    definitions are linked into the same binary, this results
+                                    in undefined behavior, which can manifest as subtle
+                                    run-time bugs.
+                                </span>
+                                同じバイナリ内でそれらの実装の異なるオペレーターの両方がリンクされてしまった場合、未定義の動作を引き起こし、細かいバグを引き起こすことになるでしょう。
+                            </span>
                         </li>
 
                         <li>
-                            User-defined literals allow the creation of new
-                            syntactic forms that are unfamiliar even to experienced C++
-                            programmers.
+                            <span>
+                                <span class="src">
+                                    User-defined literals allow the creation of new
+                                    syntactic forms that are unfamiliar even to experienced C++
+                                    programmers.
+                                </span>
+                                ユーザ定義のリテラルは、文法的に新しい形式を生み出しますが、それらは十分経験を積んだC++プログラマにとってさえ親しみの薄いものです。
+                            </span>
                         </li>
                     </ul>
                 </div>
 
                 <div class="decision">
                     <p>
-                        Define overloaded operators only if their meaning is
-                        obvious, unsurprising, and consistent with the corresponding
-                        built-in operators. For example, use <code>|</code> as a
-                        bitwise- or logical-or, not as a shell-style pipe.
+                        <span>
+                            <span class="src">
+                                Define overloaded operators only if their meaning is
+                                obvious, unsurprising, and consistent with the corresponding
+                                built-in operators.
+                            </span>
+                            演算子のオーバーロードを定義できるのは、意味が明らかであり、動作を予測可能であり、かつ、組み込み演算子との一貫性が保てる場合のみに限定します。
+                        </span>
+                        <span>
+                            <span class="src">
+                                For example, use <code>|</code> as a
+                                bitwise- or logical-or, not as a shell-style pipe.
+                            </span>
+                            たとえば、<code>|</code>は、ビット和か論理和の意味でのみ使い、シェルでいうパイプのような意味では使いません。
+                        </span>
                     </p>
 
                     <p>
-                        Define operators only on your own types. More precisely,
-                        define them in the same headers, .cc files, and namespaces
-                        as the types they operate on. That way, the operators are available
-                        wherever the type is, minimizing the risk of multiple
-                        definitions. If possible, avoid defining operators as templates,
-                        because they must satisfy this rule for any possible template
-                        arguments. If you define an operator, also define
-                        any related operators that make sense, and make sure they
-                        are defined consistently. For example, if you overload
-                        <code>&lt;</code>, overload all the comparison operators,
-                        and make sure <code>&lt;</code> and <code>&gt;</code> never
-                        return true for the same arguments.
+                        <span>
+                            <span class="src">
+                                Define operators only on your own types.
+                            </span>
+                            演算子は自分の型に対するもののみ定義してください。
+                        </span>
+                        <span>
+                            <span class="src">
+                                More precisely,
+                                define them in the same headers, .cc files, and namespaces
+                                as the types they operate on.
+                            </span>
+                            より厳密には、それらは型と同じヘッダか.ccファイル、そして型と同じ名前空間の中で定義してください。
+                        </span>
+                        <span>
+                            <span class="src">
+                                That way, the operators are available
+                                wherever the type is, minimizing the risk of multiple
+                                definitions.
+                            </span>
+                            そうすることで、型が利用可能なところでは演算子も利用できるようになり、演算子の多重定義に関するリスクを最小限にとどめることができます。
+                        </span>
+                        <span>
+                            <span class="src">
+                                If possible, avoid defining operators as templates,
+                                because they must satisfy this rule for any possible template
+                                arguments.
+                            </span>
+                            可能であれば、演算子をテンプレートとして定義するのは避けてください。テンプレートとして宣言された演算子は、取り得る限りすべてのテンプレート引数において、ここで述べているルールを満たさなくてはなりません。
+                        </span>
+                        <span>
+                            <span class="src">
+                                If you define an operator, also define
+                                any related operators that make sense, and make sure they
+                                are defined consistently.
+                            </span>
+                            ある演算子を定義する場合、関連するオペレータも定義し、必ず一貫性を持たせるようにしてください。
+                        </span>
+                        <span>
+                            <span class="src">
+                                For example, if you overload
+                                <code>&lt;</code>, overload all the comparison operators,
+                                and make sure <code>&lt;</code> and <code>&gt;</code> never
+                                return true for the same arguments.
+                            </span>
+                            たとえば、<code>&lt;</code>をオーバーロードしたのであれば、すべての比較演算子をオーバーロードし、ある引数の組に対する比較演算<code>&lt;</code>と<code>&gt;</code>の結果が両方ともtrueになるようなことがないようにしてください。
+                        </span>
                     </p>
 
                     <p>
-                        Prefer to define non-modifying binary operators as
-                        non-member functions. If a binary operator is defined as a
-                        class member, implicit conversions will apply to the
-                        right-hand argument, but not the left-hand one. It will
-                        confuse your users if <code>a &lt; b</code> compiles but
-                        <code>b &lt; a</code> doesn't.
+                        <span>
+                            <span class="src">
+                                Prefer to define non-modifying binary operators as
+                                non-member functions.
+                            </span>
+                            引数に対して変更を伴わない二項演算子は、非メンバ関数として定義されることが好ましいです。
+                        </span>
+                        <span>
+                            <span class="src">
+                                If a binary operator is defined as a
+                                class member, implicit conversions will apply to the
+                                right-hand argument, but not the left-hand one.
+                            </span>
+                            仮に二項演算子がクラスのメンバとして定義された場合、演算子の右辺については暗黙的型変換を適用できますが、左辺には適用できなくなってしまいます。
+                        </span>
+                        <span>
+                            <span class="src">
+                                It will
+                                confuse your users if <code>a &lt; b</code> compiles but
+                                <code>b &lt; a</code> doesn't.
+                            </span>
+                            <code>a &lt; b</code>はコンパイルできるけど<code>b &lt; a</code>はコンパイルできないのような状況は、ユーザを混乱させることになります。
+                        </span>
                     </p>
 
                     <p>
-                        Don't go out of your way to avoid defining operator
-                        overloads. For example, prefer to define <code>==</code>,
-                        <code>=</code>, and <code>&lt;&lt;</code>, rather than
-                        <code>Equals()</code>, <code>CopyFrom()</code>, and
-                        <code>PrintTo()</code>. Conversely, don't define
-                        operator overloads just because other libraries expect
-                        them. For example, if your type doesn't have a natural
-                        ordering, but you want to store it in a <code>std::set</code>,
-                        use a custom comparator rather than overloading
-                        <code>&lt;</code>.
+                        <span>
+                            <span class="src">
+                                Don't go out of your way to avoid defining operator
+                                overloads.
+                            </span>
+                            演算子のオーバーロードをわざわざ避けるようなことはしないでください。
+                        </span>
+                        <span>
+                            <span class="src">
+                                For example, prefer to define <code>==</code>,
+                                <code>=</code>, and <code>&lt;&lt;</code>, rather than
+                                <code>Equals()</code>, <code>CopyFrom()</code>, and
+                                <code>PrintTo()</code>.
+                            </span>
+                            <code>Equals()</code>や<code>CopyFrom()</code>、<code>PrintTo()</code>などを実装するよりも、<code>==</code>、<code>=</code>、<code>&lt;&lt;</code>を定義するようにしましょう。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Conversely, don't define
+                                operator overloads just because other libraries expect
+                                them.
+                            </span>
+                            逆に、他のライブラリを使いたいがためだけに演算子をオーバーロードすることは避けてください。
+                        </span>
+                        <span>
+                            <span class="src">
+                                For example, if your type doesn't have a natural
+                                ordering, but you want to store it in a <code>std::set</code>,
+                                use a custom comparator rather than overloading
+                                <code>&lt;</code>.
+                            </span>
+                            たとえば、値同士の順序をつけられないのに、<code>std::set</code>に入れたいがためだけに<code>&lt;</code>をオーバーロードしてはいけません。このような型を<code>std::set</code>に入れたい場合は、カスタムの比較子(comparator)を使うようにします。
+                        </span>
                     </p>
 
                     <p>
-                        Do not overload <code>&amp;&amp;</code>, <code>||</code>,
-                        <code>,</code> (comma), or unary <code>&amp;</code>. Do not overload
-                        <code>operator""</code>, i.e. do not introduce user-defined
-                        literals.
+                        <span>
+                            <span class="src">
+                                Do not overload <code>&amp;&amp;</code>, <code>||</code>,
+                                <code>,</code> (comma), or unary <code>&amp;</code>.
+                            </span>
+                            演算子<code>&amp;&amp;</code>と<code>||</code>と<code>,</code> (カンマ演算子)、単項演算子<code>&amp;</code>はオーバーロードをしてはいけません。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Do not overload
+                                <code>operator""</code>, i.e. do not introduce user-defined
+                                literals.
+                            </span>
+                            また、<code>operator""</code>のオーバーロードもしてはいけません。つまり、ユーザ定義リテラルを導入してはいけません。
+                        </span>
                     </p>
 
                     <p>
-                        Type conversion operators are covered in the section on
-                        <a href="#Implicit_Conversions">implicit conversions</a>.
-                        The <code>=</code> operator is covered in the section on
-                        <a href="#Copy_Constructors">copy constructors</a>. Overloading
-                        <code>&lt;&lt;</code> for use with streams is covered in the
-                        section on <a href="#Streams">streams</a>. See also the rules on
-                        <a href="#Function_Overloading">function overloading</a>, which
-                        apply to operator overloading as well.
+                        <span>
+                            <span class="src">
+                                Type conversion operators are covered in the section on
+                                <a href="#Implicit_Conversions">implicit conversions</a>.
+                            </span>
+                            型変換演算子については<a href="#Implicit_Conversions">暗黙的型変換</a>のセクションでカバーします。
+                        </span>
+                        <span>
+                            <span class="src">
+                                The <code>=</code> operator is covered in the section on
+                                <a href="#Copy_Constructors">copy constructors</a>.
+                            </span>
+                            <code>=</code>演算子は<a href="#Copy_Constructors">コピーコンストラクタ</a>のセクションでカバーします。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Overloading
+                                <code>&lt;&lt;</code> for use with streams is covered in the
+                                section on <a href="#Streams">streams</a>.
+                            </span>
+                            <code>&lt;&lt;</code>をストリーム用途で使うオーバーロードについては、<a href="#Streams">ストリーム</a>でカバーします。
+                        </span>
+                        <span>
+                            <span class="src">
+                                See also the rules on
+                                <a href="#Function_Overloading">function overloading</a>, which
+                                apply to operator overloading as well.
+                            </span>
+                            そのほか、演算子のオーバーロードは<a href="#Function_Overloading">関数のオーバーロード</a>にあるルールも同様に適用されますので、あわせてそちらも参照してください。
+                        </span>
                     </p>
                 </div>
 
             </div>
 
-            <h3 id="Access_Control">Access Control</h3>
+            <h3 id="Access_Control"><span title="Access Control">アクセス制限</span></h3>
 
             <div class="summary">
                 <p>
-                    Make data members <code>private</code>, unless they are
-                    <code>static const</code> (and follow the <a href="#Constant_Names">
-                        naming convention for constants
-                    </a>). For technical
-                    reasons, we allow data members of a test fixture class to
-                    be <code>protected</code> when using
-
-
-                    <a href="https://github.com/google/googletest">
-                        Google
-                        Test
-                    </a>).
+                    <span>
+                        <span class="src">
+                            Make data members <code>private</code>, unless they are
+                            <code>static const</code> (and follow the <a href="#Constant_Names">
+                                naming convention for constants
+                            </a>).
+                        </span>
+                        データメンバーは<code>private</code>としてください。
+                        ただし、<code>static const</code>であるもの(<a href="#Constant_Names">定数に関する命名規則</a>も参照)を除きます。
+                    </span>
+                    <span>
+                        <span class="src">
+                            For technical
+                            reasons, we allow data members of a test fixture class to
+                            be <code>protected</code> when using
+                            <a href="https://github.com/google/googletest">
+                                Google
+                                Test
+                            </a>).
+                        </span>
+                        技術的な理由により、<a href="https://github.com/google/googletest">Google Test</a>を使う場合のテスト用のクラスのデータメンバは<code>protected</code>であってもよいとします。
+                    </span>
                 </p>
             </div>
 
-            <h3 id="Declaration_Order">Declaration Order</h3>
+            <h3 id="Declaration_Order"><span title="Declaration Order">宣言の順序</span></h3>
 
             <div class="summary">
                 <p>
-                    Group similar declarations together, placing public parts
-                    earlier.
+                    <span>
+                        <span class="src">
+                            Group similar declarations together, placing public parts
+                            earlier.
+                        </span>
+                        似ている宣言は1つにまとめ、public部分の先の方に置きます。
+                    </span>
                 </p>
             </div>
 
             <div class="stylebody">
 
                 <p>
-                    A class definition should usually start with a
-                    <code>public:</code> section, followed by
-                    <code>protected:</code>, then <code>private:</code>.  Omit
-                    sections that would be empty.
+                    <span>
+                        <span class="src">
+                            A class definition should usually start with a
+                            <code>public:</code> section, followed by
+                            <code>protected:</code>, then <code>private:</code>.
+                        </span>
+                        クラスの定義は、通常は<code>public:</code>セクションから始め、<code>protected:</code>、<code>private:</code>と続けます。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Omit
+                            sections that would be empty.
+                        </span>
+                        空になるセクションは省略してください。
+                    </span>
                 </p>
 
                 <p>
-                    Within each section, generally prefer grouping similar
-                    kinds of declarations together, and generally prefer the
-                    following order: types (including <code>typedef</code>,
-                    <code>using</code>, and nested structs and classes),
-                    constants, factory functions, constructors, assignment
-                    operators, destructor, all other methods, data members.
+                    <span>
+                        <span class="src">
+                            Within each section, generally prefer grouping similar
+                            kinds of declarations together, and generally prefer the
+                            following order: types (including <code>typedef</code>,
+                            <code>using</code>, and nested structs and classes),
+                            constants, factory functions, constructors, assignment
+                            operators, destructor, all other methods, data members.
+                        </span>
+                        各セクションにおいて、似た宣言は1カ所にまとるようにしましょう。また、順序は、型(<code>typedef</code>、<code>using</code>、内部構造体・クラスを含む)、定数、ファクトリ関数、コンストラクタ、代入演算子、デストラクタ、それ以外のすべてのメソッド、データメンバ の順となるようにしましょう。
+                    </span>
                 </p>
 
                 <p>
-                    Do not put large method definitions inline in the
-                    class definition. Usually, only trivial or
-                    performance-critical, and very short, methods may be
-                    defined inline. See <a href="#Inline_Functions">
-                        Inline
-                        Functions
-                    </a> for more details.
+                    <span>
+                        <span class="src">
+                            Do not put large method definitions inline in the
+                            class definition.
+                        </span>
+                        クラス定義の中では、大きなメソッドの定義をインラインで行わないでください。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Usually, only trivial or
+                            performance-critical, and very short, methods may be
+                            defined inline.
+                        </span>
+                        通常は、ささいな関数、パフォーマンス的に重要な関数、非常に短い関数のみがインラインで定義されます。
+                    </span>
+                    <span>
+                        <span class="src">
+                            See <a href="#Inline_Functions">
+                                Inline
+                                Functions
+                            </a> for more details.
+                        </span>
+                        詳細は<a href="#Inline_Functions">インライン関数</a>で述べます。
+                    </span>
                 </p>
 
             </div>
