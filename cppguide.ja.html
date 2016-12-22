@@ -4114,25 +4114,42 @@ MyClass&amp; operator=(const MyClass&amp;) = delete;
                 </div>
             </div>
 
-            <h2 id="Google-Specific_Magic">Google-Specific Magic</h2>
+            <h2 id="Google-Specific_Magic"><span title="Google-Specific Magic">Google特有のマジック</span></h2>
 
 
 
             <p>
-                There are various tricks and utilities that
-                we use to make C++ code more robust, and various ways we use
-                C++ that may differ from what you see elsewhere.
+                <span>
+                    <span class="src">
+                        There are various tricks and utilities that
+                        we use to make C++ code more robust, and various ways we use
+                        C++ that may differ from what you see elsewhere.
+                    </span>
+                    我々はC++のコードをより堅牢にするためのトリックやユーティリティを使用しています。
+                    我々が使用する様々な手法は、一般的に見られるC++の使い方とは異なっているかもしれません。
+                </span>
             </p>
 
 
 
-            <h3 id="Ownership_and_Smart_Pointers">Ownership and Smart Pointers</h3>
+            <h3 id="Ownership_and_Smart_Pointers"><span title="Ownership and Smart Pointers">スマートポインタの所有権</span></h3>
 
             <div class="summary">
                 <p>
-                    Prefer to have single, fixed owners for dynamically
-                    allocated objects. Prefer to transfer ownership with smart
-                    pointers.
+                    <span>
+                        <span class="src">
+                            Prefer to have single, fixed owners for dynamically
+                            allocated objects.
+                        </span>
+                        動的に確保されるオブジェクトの所有者は、単一かつ固定されるようにしましょう。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Prefer to transfer ownership with smart
+                            pointers.
+                        </span>
+                        オブジェクトの所有権を移すときは、スマートポインタを使用しましょう。
+                    </span>
                 </p>
             </div>
 
@@ -4140,77 +4157,163 @@ MyClass&amp; operator=(const MyClass&amp;) = delete;
 
                 <div class="definition">
                     <p>
-                        "Ownership" is a bookkeeping technique for managing
-                        dynamically allocated memory (and other resources). The
-                        owner of a dynamically allocated object is an object or
-                        function that is responsible for ensuring that it is
-                        deleted when no longer needed. Ownership can sometimes be
-                        shared, in which case the last owner is typically
-                        responsible for deleting it. Even when ownership is not
-                        shared, it can be transferred from one piece of code to
-                        another.
+                        <span>
+                            <span class="src">
+                                "Ownership" is a bookkeeping technique for managing
+                                dynamically allocated memory (and other resources).
+                            </span>
+                            "所有権"は、動的に確保されるメモリ(や他のリソース)を管理するための帳簿的なテクニックの一つです。
+                        </span>
+                        <span>
+                            <span class="src">
+                                The
+                                owner of a dynamically allocated object is an object or
+                                function that is responsible for ensuring that it is
+                                deleted when no longer needed.
+                            </span>
+                            動的に確保されるオブジェクトの所有者は、1つのオブジェクトか関数であり、オブジェクトが不要になったときにそれを解放する責任を負います。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Ownership can sometimes be
+                                shared, in which case the last owner is typically
+                                responsible for deleting it.
+                            </span>
+                            所有権は時には共有されることもあります。その場合、一般的に最後の所有者が解放の責任を負います。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Even when ownership is not
+                                shared, it can be transferred from one piece of code to
+                                another.
+                            </span>
+                            所有権は、共有まではされない場合でも、あるコードから他のコードへと移されることがあります。
+                        </span>
                     </p>
 
                     <p>
-                        "Smart" pointers are classes that act like pointers,
-                        e.g. by overloading the <code>*</code> and
-                        <code>-&gt;</code> operators. Some smart pointer types
-                        can be used to automate ownership bookkeeping, to ensure
-                        these responsibilities are met.
-                        <a href="http://en.cppreference.com/w/cpp/memory/unique_ptr">
-                            <code>std::unique_ptr</code>
-                        </a> is a smart pointer type
-                        introduced in C++11, which expresses exclusive ownership
-                        of a dynamically allocated object; the object is deleted
-                        when the <code>std::unique_ptr</code> goes out of scope.
-                        It cannot be copied, but can be <em>moved</em> to
-                        represent ownership transfer.
-                        <a href="http://en.cppreference.com/w/cpp/memory/shared_ptr">
-                            <code>std::shared_ptr</code>
-                        </a> is a smart pointer type
-                        that expresses shared ownership of
-                        a dynamically allocated object. <code>std::shared_ptr</code>s
-                        can be copied; ownership of the object is shared among
-                        all copies, and the object is deleted when the last
-                        <code>std::shared_ptr</code> is destroyed.
+                        <span>
+                            <span class="src">
+                                "Smart" pointers are classes that act like pointers,
+                                e.g. by overloading the <code>*</code> and
+                                <code>-&gt;</code> operators.
+                            </span>
+                            "スマート"ポインタとは、ポインタのように振る舞うクラスです(たとえば演算子<code>*</code>と<code>-&gt;</code>をオーバーロードしています)。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Some smart pointer types
+                                can be used to automate ownership bookkeeping, to ensure
+                                these responsibilities are met.
+                            </span>
+                            いくつかのスマートポインタは、このような解放の責任を確実にするための所有権管理を自動的に行うために使われるものがあります。
+                        </span>
+                        <span>
+                            <span class="src">
+                                <a href="http://en.cppreference.com/w/cpp/memory/unique_ptr">
+                                    <code>std::unique_ptr</code>
+                                </a> is a smart pointer type
+                                introduced in C++11, which expresses exclusive ownership
+                                of a dynamically allocated object; the object is deleted
+                                when the <code>std::unique_ptr</code> goes out of scope.
+                            </span>
+                            <a href="http://en.cppreference.com/w/cpp/memory/unique_ptr"><code>std::unique_ptr</code></a>は、スマートポインタの一種で、C++11で導入されました。このスマートポインタは、動的に確保されたオブジェクトに対する排他的な所有権を表します。<code>std::unique_ptr</code>によって所有されるオブジェクトは、<code>std::unique_ptr</code>がスコープの外に出たときにdeleteされます。
+                        </span>
+                        <span>
+                            <span class="src">
+                                It cannot be copied, but can be <em>moved</em> to
+                                represent ownership transfer.
+                            </span>
+                            <code>std::unique_ptr</code>をコピーすることはできませんが、担当する所有権を<em>移動</em>させることはできます。
+                        </span>
+                        <span>
+                            <span class="src">
+                                <a href="http://en.cppreference.com/w/cpp/memory/shared_ptr">
+                                    <code>std::shared_ptr</code>
+                                </a> is a smart pointer type
+                                that expresses shared ownership of
+                                a dynamically allocated object.
+                            </span>
+                            <a href="http://en.cppreference.com/w/cpp/memory/shared_ptr"><code>std::shared_ptr</code></a>は、動的に確保されたオブジェクトの所有権を他者と共有することを表すために使われるスマートポインタです。
+                        </span>
+
+                        <span>
+                            <span class="src">
+                                <code>std::shared_ptr</code>s
+                                can be copied; ownership of the object is shared among
+                                all copies, and the object is deleted when the last
+                                <code>std::shared_ptr</code> is destroyed.
+                            </span>
+                            <code>std::shared_ptr</code>はコピーすることができます。オブジェクトの所有権はすべてのコピーの間で共有され、オブジェクトは最後の<code>std::shared_ptr</code>が破壊されるときにdeleteされます。
+                        </span>
                     </p>
                 </div>
 
                 <div class="pros">
                     <ul>
                         <li>
-                            It's virtually impossible to manage dynamically
-                            allocated memory without some sort of ownership
-                            logic.
+                            <span>
+                                <span class="src">
+                                    It's virtually impossible to manage dynamically
+                                    allocated memory without some sort of ownership
+                                    logic.
+                                </span>
+                                所有権の概念がなければ、動的に確保されるメモリを管理するのは実質的に不可能です。
+                            </span>
                         </li>
 
                         <li>
-                            Transferring ownership of an object can be cheaper
-                            than copying it (if copying it is even possible).
+                            <span>
+                                <span class="src">
+                                    Transferring ownership of an object can be cheaper
+                                    than copying it (if copying it is even possible).
+                                </span>
+                                所有権を移すだけであれば、オブジェクトをコピーするよりも低コストとなるでしょう。
+                            </span>
                         </li>
 
                         <li>
-                            Transferring ownership can be simpler than
-                            'borrowing' a pointer or reference, because it reduces
-                            the need to coordinate the lifetime of the object
-                            between the two users.
+                            <span>
+                                <span class="src">
+                                    Transferring ownership can be simpler than
+                                    'borrowing' a pointer or reference, because it reduces
+                                    the need to coordinate the lifetime of the object
+                                    between the two users.
+                                </span>
+                                オブジェクトの所有権を移すことは、参照やポインタを「借りてくる」よりも単純です。なぜならば、そのオブジェクトを扱う二者間での、オブジェクトの生存期間に関する認識合わせの必要性を減らすからです。
+                            </span>
                         </li>
 
                         <li>
-                            Smart pointers can improve readability by making
-                            ownership logic explicit, self-documenting, and
-                            unambiguous.
+                            <span>
+                                <span class="src">
+                                    Smart pointers can improve readability by making
+                                    ownership logic explicit, self-documenting, and
+                                    unambiguous.
+                                </span>
+                                スマートポインタは、所有権を明示化し、それ自体にドキュメントの意味合いを持たせられるため、可読性が向上します。
+                            </span>
                         </li>
 
                         <li>
-                            Smart pointers can eliminate manual ownership
-                            bookkeeping, simplifying the code and ruling out large
-                            classes of errors.
+                            <span>
+                                <span class="src">
+                                    Smart pointers can eliminate manual ownership
+                                    bookkeeping, simplifying the code and ruling out large
+                                    classes of errors.
+                                </span>
+                                スマートポインタは手作業による所有権管理をなくし、コードを単純化し、エラーのうち大きな分類を除外することができます。
+                            </span>
                         </li>
 
                         <li>
-                            For const objects, shared ownership can be a simple
-                            and efficient alternative to deep copying.
+                            <span>
+                                <span class="src">
+                                    For const objects, shared ownership can be a simple
+                                    and efficient alternative to deep copying.
+                                </span>
+                                constなオブジェクトについていえば、所有権を共有することは、単純かつ効率的なディープコピーの代替手段となります。
+                            </span>
                         </li>
                     </ul>
                 </div>
@@ -4218,128 +4321,261 @@ MyClass&amp; operator=(const MyClass&amp;) = delete;
                 <div class="cons">
                     <ul>
                         <li>
-                            Ownership must be represented and transferred via
-                            pointers (whether smart or plain). Pointer semantics
-                            are more complicated than value semantics, especially
-                            in APIs: you have to worry not just about ownership,
-                            but also aliasing, lifetime, and mutability, among
-                            other issues.
+                            <span>
+                                <span class="src">
+                                    Ownership must be represented and transferred via
+                                    pointers (whether smart or plain).
+                                </span>
+                                所有権は、スマートポインタであろうと生のポインタであろうと、何らかのポインタによって扱われ、ポインタ間で受け渡しが行われます。
+                            </span>
+                            <span>
+                                <span class="src">
+                                    Pointer semantics
+                                    are more complicated than value semantics, especially
+                                    in APIs: you have to worry not just about ownership,
+                                    but also aliasing, lifetime, and mutability, among
+                                    other issues.
+                                </span>
+                                ポインタの概念は値を直接扱うよりも複雑で、特にAPIの層では、所有権だけではなく、エイリアシング、ライフタイム、ミュータビリティ、などについても気にしなくてはなりません。
+                            </span>
                         </li>
 
                         <li>
-                            The performance costs of value semantics are often
-                            overestimated, so the performance benefits of ownership
-                            transfer might not justify the readability and
-                            complexity costs.
+                            <span>
+                                <span class="src">
+                                    The performance costs of value semantics are often
+                                    overestimated, so the performance benefits of ownership
+                                    transfer might not justify the readability and
+                                    complexity costs.
+                                </span>
+                                値を直接扱うときのパフォーマンスコストはしばしば想定よりも高く見積もられがちです。所有権を移す方法を選択することで得られるパフォーマンス上のメリットは、それによる可読性の低下や複雑化のコストに見合わないかもしれません。
+                            </span>
                         </li>
 
                         <li>
-                            APIs that transfer ownership force their clients
-                            into a single memory management model.
+                            <span>
+                                <span class="src">
+                                    APIs that transfer ownership force their clients
+                                    into a single memory management model.
+                                </span>
+                                所有権を移すAPIは、その使用者にシングルメモリマネジメントモデルを強制します。
+                            </span>
                         </li>
 
                         <li>
-                            Code using smart pointers is less explicit about
-                            where the resource releases take place.
+                            <span>
+                                <span class="src">
+                                    Code using smart pointers is less explicit about
+                                    where the resource releases take place.
+                                </span>
+                                スマートポインタ使っているコードは、リソースがいつどこで解放されるかの明示性が低下します。
+                            </span>
                         </li>
 
                         <li>
-                            <code>std::unique_ptr</code> expresses ownership
-                            transfer using C++11's move semantics, which are
-                            relatively new and may confuse some programmers.
+                            <span>
+                                <span class="src">
+                                    <code>std::unique_ptr</code> expresses ownership
+                                    transfer using C++11's move semantics, which are
+                                    relatively new and may confuse some programmers.
+                                </span>
+                                <code>std::unique_ptr</code> は、C+11のムーブのセマンティクスを使って所有権を移します。ムーブの概念は比較的新しいため、プログラマを混乱させるかもしれません。
+                            </span>
                         </li>
 
                         <li>
-                            Shared ownership can be a tempting alternative to
-                            careful ownership design, obfuscating the design of a
-                            system.
+                            <span>
+                                <span class="src">
+                                    Shared ownership can be a tempting alternative to
+                                    careful ownership design, obfuscating the design of a
+                                    system.
+                                </span>
+                                所有権に関するデザインを注意深く行うのに比べて、単純に所有権を共有させて済ませてしまうことは、魅惑的な代替手段に見える場合があります。そして、それはシステムのデザインを曖昧にしてしまうことに繋がります。
+                            </span>
                         </li>
 
                         <li>
-                            Shared ownership requires explicit bookkeeping at
-                            run-time, which can be costly.
+                            <span>
+                                <span class="src">
+                                    Shared ownership requires explicit bookkeeping at
+                                    run-time, which can be costly.
+                                </span>
+                                所有権を共有させると、実行時に明示的な所有権を管理を行うことになり、このためのコストが高くつく場合があります。
+                            </span>
                         </li>
 
                         <li>
-                            In some cases (e.g. cyclic references), objects
-                            with shared ownership may never be deleted.
+                            <span>
+                                <span class="src">
+                                    In some cases (e.g. cyclic references), objects
+                                    with shared ownership may never be deleted.
+                                </span>
+                                たとえば循環参照のように、所有権を共有されたオブジェクトが決してdeleteされない状態に陥ることがあります。
+                            </span>
                         </li>
 
                         <li>
-                            Smart pointers are not perfect substitutes for
-                            plain pointers.
+                            <span>
+                                <span class="src">
+                                    Smart pointers are not perfect substitutes for
+                                    plain pointers.
+                                </span>
+                                スマートポインタは生のポインタに対する完璧な代替手段ではありません。
+                            </span>
                         </li>
                     </ul>
                 </div>
 
                 <div class="decision">
                     <p>
-                        If dynamic allocation is necessary, prefer to keep
-                        ownership with the code that allocated it. If other code
-                        needs access to the object, consider passing it a copy,
-                        or passing a pointer or reference without transferring
-                        ownership. Prefer to use <code>std::unique_ptr</code> to
-                        make ownership transfer explicit. For example:
+                        <span>
+                            <span class="src">
+                                If dynamic allocation is necessary, prefer to keep
+                                ownership with the code that allocated it.
+                            </span>
+                            動的なオブジェクトの確保が必要な場合、その所有権はそれを確保したコードが持つようにしましょう。
+                        </span>
+                        <span>
+                            <span class="src">
+                                If other code
+                                needs access to the object, consider passing it a copy,
+                                or passing a pointer or reference without transferring
+                                ownership.
+                            </span>
+                            他のコードがそのオブジェクトにアクセスする必要がある場合は、単にオブジェクトのコピーを渡すか、所有権の移動なしにポインタや参照を渡す方法を検討してください。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Prefer to use <code>std::unique_ptr</code> to
+                                make ownership transfer explicit.
+                            </span>
+                            所有権の移動を明示的に行うためには、<code>std::unique_ptr</code>を使うようにしましょう。
+                        </span>
+                        <span>
+                            <span class="src">
+                                For example:
+                            </span>
+                            以下に例を示します。
+                        </span>
                     </p>
 
 <pre>std::unique_ptr&lt;Foo&gt; FooFactory();
 void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
 </pre>
 
-
-
                     <p>
-                        Do not design your code to use shared ownership
-                        without a very good reason. One such reason is to avoid
-                        expensive copy operations, but you should only do this if
-                        the performance benefits are significant, and the
-                        underlying object is immutable (i.e.
-                        <code>std::shared_ptr&lt;const Foo&gt;</code>).  If you
-                        do use shared ownership, prefer to use
-                        <code>std::shared_ptr</code>.
+                        <span>
+                            <span class="src">
+                                Do not design your code to use shared ownership
+                                without a very good reason.
+                            </span>
+                           非常に良い理由がない限り、オブジェクトの所有権を共有させるデザインにしてはいけません。
+                        </span>
+                        <span>
+                            <span class="src">
+                                One such reason is to avoid
+                                expensive copy operations, but you should only do this if
+                                the performance benefits are significant, and the
+                                underlying object is immutable (i.e.
+                                <code>std::shared_ptr&lt;const Foo&gt;</code>).
+                            </span>
+                            そのような理由としては、高価なコピーを避けるためといったものがあげられますが、所有権の共有は、パフォーマンス上の利益が大きく、かつ対象のオブジェクトが不変である場合にのみ行ってください(言い換えると、<code>std::shared_ptr&lt;const Foo&gt;</code>)。
+                        </span>
+                        <span>
+                            <span class="src">
+                                If you
+                                do use shared ownership, prefer to use
+                                <code>std::shared_ptr</code>.
+                            </span>
+                            所有権を共有したい場合、<code>std::shared_ptr</code>を使いましょう。
+                        </span>
                     </p>
 
                     <p>
-                        Never use <code>std::auto_ptr</code>. Instead, use
-                        <code>std::unique_ptr</code>.
+                        <span>
+                            <span class="src">
+                                Never use <code>std::auto_ptr</code>.
+                            </span>
+                            <code>std::auto_ptr</code>を使ってはなりません。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Instead, use
+                                <code>std::unique_ptr</code>.
+                            </span>
+                            代わりに、<code>std::unique_ptr</code>を使いましょう。
+                        </span>
                     </p>
                 </div>
 
             </div>
 
-            <h3 id="cpplint">cpplint</h3>
+            <h3 id="cpplint"><span title="cpplint">cpplint</span></h3>
 
             <div class="summary">
                 <p>
-                    Use <code>cpplint.py</code>
-                    to detect style errors.
+                    <span>
+                        <span class="src">
+                            Use <code>cpplint.py</code>
+                            to detect style errors.
+                        </span>
+                        スタイルに関する問題を検出するため、<code>cpplint.py</code>を使ってください。
+                    </span>
                 </p>
             </div>
 
             <div class="stylebody">
 
                 <p>
-                    <code>cpplint.py</code>
-                    is a tool that reads a source file and identifies many
-                    style errors. It is not perfect, and has both false
-                    positives and false negatives, but it is still a valuable
-                    tool. False positives can be ignored by putting <code>
-                        //
-                        NOLINT
-                    </code> at the end of the line or
-                    <code>// NOLINTNEXTLINE</code> in the previous line.
+                    <span>
+                        <span class="src">
+                            <code>cpplint.py</code>
+                            is a tool that reads a source file and identifies many
+                            style errors.
+                        </span>
+                        <code>cpplint.py</code>は、ソースファイルを読み、スタイルに関するたくさんのエラーを識別してくれるツールです。
+                    </span>
+                    <span>
+                        <span class="src">
+                            It is not perfect, and has both false
+                            positives and false negatives, but it is still a valuable
+                            tool.
+                        </span>
+                        このツールは完璧ではなく、誤診もありますが、それでも価値があります。
+                    </span>
+                    <span>
+                        <span class="src">
+                            False positives can be ignored by putting <code>
+                                //
+                                NOLINT
+                            </code> at the end of the line or
+                            <code>// NOLINTNEXTLINE</code> in the previous line.
+                        </span>
+                        偽陽性の診断される場合は、行末に<code>// NOLINT</code>を書くか、前の行に<code>// NOLINTNEXTLINE</code>を記載すれば、無視されます。
+                    </span>
                 </p>
 
 
 
                 <p>
-                    Some projects have instructions on
-                    how to run <code>cpplint.py</code> from their project
-                    tools. If the project you are contributing to does not,
-                    you can download
-                    <a href="https://raw.githubusercontent.com/google/styleguide/gh-pages/cpplint/cpplint.py">
-                        <code>cpplint.py</code>
-                    </a> separately.
+                    <span>
+                        <span class="src">
+                            Some projects have instructions on
+                            how to run <code>cpplint.py</code> from their project
+                            tools.
+                        </span>
+                        いくつかのプロジェクトにおいては、プロジェクトのツールから<code>cpplint.py</code>を起動するやり方が用意されています。
+                    </span>
+                    <span>
+                        <span class="src">
+                            If the project you are contributing to does not,
+                            you can download
+                            <a href="https://raw.githubusercontent.com/google/styleguide/gh-pages/cpplint/cpplint.py">
+                                <code>cpplint.py</code>
+                            </a> separately.
+                        </span>
+                        あなたのプロジェクトでそのような環境が用意されていない場合は<a href="https://raw.githubusercontent.com/google/styleguide/gh-pages/cpplint/cpplint.py"><code>cpplint.py</code></a>から個別にダウンロードすることができます。
+                    </span>
                 </p>
 
             </div>
