@@ -7957,7 +7957,7 @@ auto i = y.Find(key);
 
             </div>
 
-            <h3 id="Braced_Initializer_List">Braced Initializer List</h3>
+            <h3 id="Braced_Initializer_List"><span title="Braced Initializer List">波括弧による初期化子リスト</span></h3>
 
             <div class="summary">
                 <p>
@@ -7965,6 +7965,7 @@ auto i = y.Find(key);
                         <span class="src">
                             You may use braced initializer lists.
                         </span>
+                        波括弧による初期化リストを使ってもよいです。
                     </span>
                 </p>
             </div>
@@ -7977,6 +7978,7 @@ auto i = y.Find(key);
                             In C++03, aggregate types (arrays and structs with no
                             constructor) could be initialized with braced initializer lists.
                         </span>
+                        C++03では、aggregateな型(配列や、コンストラクタを持たない構造体)が、波括弧による初期化子リストで初期化できました。
                     </span>
                 </p>
 
@@ -7991,12 +7993,14 @@ Point p = {1, 2};
                             be created with a braced initializer list, known as a
                             <i>braced-init-list</i> in the C++ grammar.
                         </span>
+                        C++11では、この文法はより一般化され、C++の文法における<i>初期化子リスト</i>として知られているように、どのようなオブジェクトもこの波括弧で囲まれた初期化子のリストで初期化できるようになりました。
                     </span>
                     <span>
                         <span class="src">
                             Here are a few examples
                             of its use.
                         </span>
+                        それらの使用例を以下に示します。
                     </span>
                 </p>
                 <span>
@@ -8025,6 +8029,29 @@ void TestFunction2(std::vector&lt;int&gt; v) {}
 TestFunction2({1, 2, 3});
 </pre>
                     </span>
+                    <pre>// vector はその要素となる初期化子リストをとります。.
+std::vector&lt;string&gt; v{"foo", "bar"};
+
+// 細則を無視すれば、上記と基本的には同じです。
+// どちらの形を使用してもかまいません。
+std::vector&lt;string&gt; v = {"foo", "bar"};
+
+// newとともに使うこともできます。
+auto p = new vector&lt;string&gt;{"foo", "bar"};
+
+// mapは、ペアのリストをとります。初期化子リストはネストすることができます。
+std::map&lt;int, string&gt; m = {{1, "one"}, {2, "2"}};
+
+// 初期化子リストは戻り値の型に暗黙的に変換されます。
+std::vector&lt;int&gt; test_function() { return {1, 2, 3}; }
+
+// 初期化子リストをイテレートすることもできます。
+for (int i : {-1, -2, -3}) {}
+
+// 初期化子リストを用いて関数を呼ぶこともできます。
+void TestFunction2(std::vector&lt;int&gt; v) {}
+TestFunction2({1, 2, 3});
+</pre>
                 </span>
                 <p>
                     <span>
@@ -8033,7 +8060,8 @@ TestFunction2({1, 2, 3});
                             that take <code>std::initializer_list&lt;T&gt;</code>, which is automatically
                             created from <i>braced-init-list</i>:
                         </span>
-                    </span>
+                        ユーザ定義の型は、<code>std::initializer_list&lt;T&gt;</code>を引数にとるコンストラクタや代入演算子を定義することで、<i>初期化子リスト</i>からオブジェクトを生成することができます。以下に例を示します。
+</span>
                 </p>
                 <span>
                     <span class="src">
@@ -8052,6 +8080,20 @@ TestFunction2({1, 2, 3});
 MyType m{2, 3, 5, 7};
 </pre>
                     </span>
+                    <pre>class MyType {
+ public:
+  // std::initializer_list は、渡された初期化子リストを参照します。
+  // これは値渡しになります。
+  MyType(std::initializer_list&lt;int&gt; init_list) {
+    for (int i : init_list) append(i);
+  }
+  MyType&amp; operator=(std::initializer_list&lt;int&gt; init_list) {
+    clear();
+    for (int i : init_list) append(i);
+  }
+};
+MyType m{2, 3, 5, 7};
+</pre>
                 </span>
                 <p>
                     <span>
@@ -8060,6 +8102,7 @@ MyType m{2, 3, 5, 7};
                             constructors of data types, even if they do not have
                             <code>std::initializer_list&lt;T&gt;</code> constructors.
                         </span>
+                        最後になりますが、初期化子リストは、<code>std::initializer_list&lt;T&gt;</code>のコンストラクタを持たないふつうのデータ型のコンストラクタを呼ぶこともできます。
                     </span>
                 </p>
                 <span>
@@ -8077,6 +8120,19 @@ MyOtherType m = {1, "b"};
 MyOtherType m{"b"};
 </pre>
                     </span>
+                    <pre>double d{1.23};
+// MyOtherTypeはstd::initializer_listのコンストラクタを持っていないため、
+// 通常のコンストラクタが呼び出されます。
+class MyOtherType {
+ public:
+  explicit MyOtherType(string);
+  MyOtherType(int, string);
+};
+MyOtherType m = {1, "b"};
+// もし、コンストラクタがexplicitでマークされていた場合、
+// 「= {}」の形を使用することはできません。
+MyOtherType m{"b"};
+</pre>
                 </span>
                 <p>
                     <span>
@@ -8084,12 +8140,14 @@ MyOtherType m{"b"};
                             Never assign a <i>braced-init-list</i> to an auto
                             local variable.
                         </span>
+                        初期化子リストでautoなローカル変数を割り当ててはいけません。
                     </span>
                     <span>
                         <span class="src">
                             In the single element case, what this
                             means can be confusing.
                         </span>
+                        要素が1つの場合、その意味がわかりません。
                     </span>
                 </p>
                 <span>
@@ -8097,24 +8155,29 @@ MyOtherType m{"b"};
 <pre class="badcode">auto d = {1.23};        // d is a std::initializer_list&lt;double&gt;
 </pre>
                     </span>
+                    <pre class="badcode">auto d = {1.23};        // d は std::initializer_list&lt;double&gt;
+</pre>
                 </span>
                 <span>
                     <span class="src">
 <pre>auto d = double{1.23};  // Good -- d is a double, not a std::initializer_list.
 </pre>
                     </span>
+                    <pre>auto d = double{1.23};  // これはOK。dはdouble。std::initializer_listにはなりません。
+</pre>
                 </span>
                 <p>
                     <span>
                         <span class="src">
                             See <a href="#Braced_Initializer_List_Format">Braced_Initializer_List_Format</a> for formatting.
                         </span>
+                        フォーマットについては<a href="#Braced_Initializer_List_Format">波括弧による初期化子リスト</a>も参照してください。
                     </span>
                 </p>
 
             </div>
 
-            <h3 id="Lambda_expressions">Lambda expressions</h3>
+            <h3 id="Lambda_expressions"><span title="Lambda expressions">ラムダ式</span></h3>
 
             <div class="summary">
                 <p>
@@ -8122,12 +8185,14 @@ MyOtherType m{"b"};
                         <span class="src">
                             Use lambda expressions where appropriate.
                         </span>
+                        ラムダ式は、それが適切な場合に、使用してください。
                     </span>
                     <span>
                         <span class="src">
                             Prefer explicit captures
                             when the lambda will escape the current scope.
                         </span>
+                        ラムダ式が現在のスコープの外に出て行くときは、明示的に変数をキャプチャしましょう。
                     </span>
                 </p>
             </div>
@@ -8142,12 +8207,14 @@ MyOtherType m{"b"};
                                 Lambda expressions are a concise way of creating anonymous
                                 function objects.
                             </span>
+                            ラムダ式は、匿名関数オブジェクトを作るための簡潔な方法です。
                         </span>
                         <span>
                             <span class="src">
                                 They're often useful when passing
                                 functions as arguments. For example:
                             </span>
+                            ラムダ式は、関数の引数として渡す場合にも便利です。例を見てみましょう。
                         </span>
                     </p>
 
@@ -8162,6 +8229,7 @@ MyOtherType m{"b"};
                                 They further allow capturing variables from the enclosing scope either
                                 explicitly by name, or implicitly using a default capture.
                             </span>
+                            ラムダ式は、自身を囲むスコープから変数をキャプチャすることができます。変数をキャプチャは、明示的に名前を指定するか、暗黙的なデフォルトのキャプチャを使うかのどちらかによって行われます。
                         </span>
                         <span>
                             <span class="src">
@@ -8169,6 +8237,7 @@ MyOtherType m{"b"};
                                 require each variable to be listed, as
                                 either a value or reference capture:
                             </span>
+                            明示的なキャプチャのためには、次のように、各変数を、値とするか参照とするかを指定しつつリストに並べます。
                         </span>
                     </p>
                     <span>
@@ -8181,12 +8250,20 @@ std::for_each(v.begin(), v.end(), [weight, &amp;sum](int x) {
 });
 </pre>
                         </span>
+                        <pre>int weight = 3;
+int sum = 0;
+// weigthは値として、sumは参照としてキャプチャしています。
+std::for_each(v.begin(), v.end(), [weight, &amp;sum](int x) {
+  sum += weight * x;
+});
+</pre>
                     </span>
                     <span>
                         <span class="src">
                             Default captures implicitly capture any variable referenced in the
                             lambda body, including <code>this</code> if any members are used:
                         </span>
+                        デフォルトのキャプチャは暗黙的にラムダ式の本体で参照されたすべての変数をキャプチャします。何らかのメンバが使われている場合は<code>this</code>もキャプチャされます。
                     </span>
                        <span>
                         <span class="src">
@@ -8199,6 +8276,15 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
 });
 </pre>
                         </span>
+                           <pre>const std::vector&lt;int&gt; lookup_table = ...;
+std::vector&lt;int&gt; indices = ...;
+// lookup_tableを参照としてキャプチャし、
+// lookup_tableの要素に関連づけられたindicesの値をソートしています。
+std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
+  return lookup_table[a] &lt; lookup_table[b];
+});
+</pre>
+
                     </span>
                     <p>
                         <span>
@@ -8207,6 +8293,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 for working with function objects, such as the polymorphic
                                 wrapper <code>std::function</code>.
                             </span>
+                            ラムダ式は、関数オブジェクトとともに動作するユーティリティ一式(たとえば、<code>std::function</code>など)とともにC++11で導入されました。
                         </span>
                     </p>
                 </div>
@@ -8221,6 +8308,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                     algorithms, which can be a readability
                                     improvement.
                                 </span>
+                                ラムダ式は、STLのアルゴリズムに渡すためには、関数オブジェクトを作るよりも遙かに簡潔な方法であり、可読性も向上させます。
                             </span>
                         </li>
 
@@ -8231,6 +8319,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                     redundancy and highlight important exceptions from
                                     the default.
                                 </span>
+                                デフォルトキャプチャを適切に用いることで、余分な記述を減らせます。また、デフォルトとは異なる重要な例外を目立たせることもできます。
                             </span>
                         </li>
 
@@ -8243,6 +8332,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                     to write functions that take bound functions as
                                     arguments.
                                 </span>
+                                ラムダ式や<code>std::function</code>、<code>std::bind</code>は、一般的なコールバックのメカニズムにとして組み合わせて使用することができます。これらを使うことで、引数に動作を示す関数をとるような関数が書きやすくなります。
                             </span>
                         </li>
                     </ul>
@@ -8256,6 +8346,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                     Variable capture in lambdas can be a source of dangling-pointer
                                     bugs, particularly if a lambda escapes the current scope.
                                 </span>
+                                ラムダ式の変数のキャプチャは、ダングリングポインタバグの元になる危険があり、特にラムダ式がそのスコープの外に出ていくときは注意が必要です。
                             </span>
                         </li>
 
@@ -8265,18 +8356,21 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                     Default captures by value can be misleading because they do not prevent
                                     dangling-pointer bugs.
                                 </span>
+                                デフォルトでは値によるキャプチャが行われますが、これらがダングリングポインタのバグを防ぐことはないため、ミスリードも起こしやすいです。
                             </span>
                             <span>
                                 <span class="src">
                                     Capturing a pointer by value doesn't cause a deep
                                     copy, so it often has the same lifetime issues as capture by reference.
                                 </span>
+                                ポインタを値でキャプチャしてもそれが自動的にディープコピーされることはありません。このため、参照でキャプチャした場合と同様に、オブジェクトの生存期間に関する問題をはらみます。
                             </span>
                             <span>
                                 <span class="src">
                                     This is especially confusing when capturing 'this' by value, since the use
                                     of 'this' is often implicit.
                                 </span>
+                                特に、thisポインタを値でキャプチャした場合には混乱の元になりやすいです。thisは暗黙的に使用されることが多いからです。
                             </span>
                         </li>
 
@@ -8287,6 +8381,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                     hand; very long nested anonymous functions can make
                                     code harder to understand.
                                 </span>
+                                ラムダ式は、手に余るような扱い方もできてしまいます。たとえば、非常に長い匿名の関数がネストされているような状況では、そのコードを理解するのは難しいでしょう。
                             </span>
                         </li>
 
@@ -8301,14 +8396,21 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                     Use lambda expressions where appropriate, with formatting as
                                     described <a href="#Formatting_Lambda_Expressions">below</a>.
                                 </span>
+                                ラムダ式は、適切な場合に限り、使用してください。その際の書式は<a href="#Formatting_Lambda_Expressions">ラムダ式の書式</a>に従ってください。
                             </span>
                         </li>
                         <li>
                             <span>
                                 <span class="src">
                                     Prefer explicit captures if the lambda may escape the current scope.
+                                </span>
+                                ラムダ式が現在のスコープの外に出て行く場合は、明示的なキャプチャを使いましょう。
+                            </span>
+                            <span>
+                                <span class="src">
                                     For example, instead of:
                                 </span>
+                                以下に例を示します。悪い例から。
                             </span>
                             <span>
                                 <span class="src">
@@ -8325,12 +8427,28 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
 // and the enclosing object could have been destroyed.
 </pre>
                                 </span>
+                                <pre class="badcode">{
+  Foo foo;
+  ...
+  executor-&gt;Schedule([&amp;] { Frobnicate(foo); })
+  ...
+}
+// これはダメ！
+// ラムダ式において、fooとthis(Frobnicateがメンバ関数である場合)が
+// 使用されていますが、それは大まかにみても明らかとは言えません。
+// もし、Schedule関数から処理が戻った後に、ラムダ式が呼ばれることがあると、
+// よくないことが起こるかもしれません。ラムダ式が呼び出されたとき、
+// fooも、このラムダを取り囲んでいたオブジェクトも
+// すでに存在していないかもしれないからです。
+</pre>
                             </span>
                             <span>
                                 <span class="src">
                                     prefer to write:
                                 </span>
-                            </span> <span>
+                                以下のように書きましょう。
+                            </span>
+                            <span>
                                 <span class="src">
 <pre>{
   Foo foo;
@@ -8343,6 +8461,16 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
 // reference.
 </pre>
                                 </span>
+                                        <pre>{
+  Foo foo;
+  ...
+  executor-&gt;Schedule([&amp;foo] { Frobnicate(foo); })
+  ...
+}
+// この方がマシ。
+// Frobnicateがメンバ関数である場合、コンパイルに失敗します。
+// また、fooが危険なキャプチャをされていることがより明確になります。
+</pre>
                             </span>
                         </li>
                         <li>
@@ -8352,6 +8480,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                     lifetime of the lambda is obviously shorter than any potential
                                     captures.
                                 </span>
+                                参照のデフォルトキャプチャ(<code>[&amp;]</code>)は、ラムダ式の寿命が、その潜在的なキャプチャのすべてよりも明らかに短いときにのみ使用してください。
                             </span>
                         </li>
                         <li>
@@ -8361,12 +8490,14 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                     few variables for a short lambda, where the set of captured
                                     variables is obvious at a glance.
                                 </span>
+                                値のデフォルトキャプチャは、短いラムダ式において1～2個の変数がキャプチャされる場合で、かつ、一目見ただけでどの変数がキャプチャされているかがわかるような場合にのみ使用してください。
                             </span>
                             <span>
                                 <span class="src">
                                     Prefer not to write long or
                                     complex lambdas with default capture by value.
                                 </span>
+                                長いラムダ式や複雑なラムダ式には、値のデフォルトキャプチャは使わないようにしましょう。
                             </span>
                         </li>
                         <li>
@@ -8374,6 +8505,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 <span class="src">
                                     Keep unnamed lambdas short.
                                 </span>
+                                無名のラムダ式は短く保ってください。
                             </span>
                             <span>
                                 <span class="src">
@@ -8381,6 +8513,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                     maybe five lines long, prefer to give the lambda a name, or to
                                     use a named function instead of a lambda.
                                 </span>
+                                ラムダ式がおおむね5行を超えるような場合には、ラムダ式に名前をつけるか、ラムダ式ではなく名前のついたふつうの関数を使ってください。
                             </span>
                         </li>
                         <li>
@@ -8390,6 +8523,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                     make it more obvious to readers, as with
                                     <a href="#auto"><code>auto</code></a>.
                                 </span>
+                                ラムダ式の戻り値の型を明示的に記述した方が可読性が上がるという場合には、そうしてください。これは<a href="#auto"><code>auto</code></a>を使うときと同様です。
                             </span>
                         </li>
 
