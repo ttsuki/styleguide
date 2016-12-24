@@ -8532,13 +8532,14 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
 
             </div>
 
-            <h3 id="Template_metaprogramming">Template metaprogramming</h3>
+            <h3 id="Template_metaprogramming"><span title="Template metaprogramming">テンプレートメタプログラミング</span></h3>
             <div class="summary">
                 <p>
                     <span>
                         <span class="src">
                             Avoid complicated template programming.
                         </span>
+                        複雑なテンプレートプログラミングは避けてください。
                     </span>
                 </p>
             </div>
@@ -8554,6 +8555,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 Turing complete and can be used to perform arbitrary compile-time
                                 computation in the type domain.
                             </span>
+                            テンプレートメタプログラミングとは、C++のテンプレート実体化の仕組みがチューリング完全であり、コンパイル時に型の世界で任意の計算を行うために使用できるという事実を利用した一連のテクニックを指します。
                         </span>
                     </p>
                 </div>
@@ -8565,6 +8567,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 Template metaprogramming allows extremely flexible interfaces that
                                 are type safe and high performance.
                             </span>
+                            テンプレートメタプログラミングによって、型安全かつ高性能で、非常に柔軟なインターフェースを提供することが可能になります。
                         </span>
                         <span>
                             <span class="src">
@@ -8574,6 +8577,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 <code>std::tuple</code>, <code>std::function</code>, and
                                 Boost.Spirit would be impossible without it.
                             </span>
+                            <a href="https://code.google.com/p/googletest/">Google Test</a>や<code>std::tuple</code>、<code>std::function</code>、Boost.Spiritのような仕組みは、テンプレートメタプログラミングがなければ実現できません。
                         </span>
                     </p>
                 </div>
@@ -8585,6 +8589,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 The techniques used in template metaprogramming are often obscure
                                 to anyone but language experts.
                             </span>
+                            テンプレートメタプログラミングにおいて使われるテクニックは、言語に精通していない人には、わかりにくいものです。
                         </span>
                         <span>
                             <span class="src">
@@ -8592,6 +8597,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 complicated ways is often unreadable, and is hard to debug or
                                 maintain.
                             </span>
+                            複雑な方法でテンプレートを使っているコードは、可読性が低く、デバッグやメンテナンスが難しいものばかりです。
                         </span>
                     </p>
 
@@ -8603,6 +8609,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 implementation details become visible when the user does something
                                 wrong.
                             </span>
+                            また、テンプレートメタプログラミングを使っていると、コンパイル時のエラーメッセージが非常に貧弱なものになることがあります。たとえ、インターフェースが単純なものであっても、ユーザが何かを間違えたときに、その複雑な実装の詳細が見えるようになってしまうことがあります。
                         </span>
                     </p>
 
@@ -8612,6 +8619,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 Template metaprogramming interferes with large scale refactoring by
                                 making the job of refactoring tools harder.
                             </span>
+                            テンプレートメタプログラミングは、リファクタリングツールの仕事を困難にし、大規模なリファクタリングを阻害します。
                         </span>
                         <span>
                             <span class="src">
@@ -8619,6 +8627,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 is expanded in multiple contexts, and it's hard to verify that the
                                 transformation makes sense in all of them.
                             </span>
+                            第一に、テンプレートコードは様々な文脈で展開されますが、展開されたそれらのすべてが正しく変換されているかどうかを確かめるのが困難です。
                         </span>
                         <span>
                             <span class="src">
@@ -8626,6 +8635,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 tools work with an AST that only represents the structure of the code
                                 after template expansion.
                             </span>
+                            第二に、リファクタリングツールの中には、テンプレートを展開した後のコードの構造のみを含むASTを用いて動作するものが存在します。
                         </span>
                         <span>
                             <span class="src">
@@ -8633,6 +8643,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 back to the original source construct that needs to be
                                 rewritten.
                             </span>
+                            それらのツールが、書き換えの対象となる元のソースコードの構造を自動的に復元することは困難でしょう。
                         </span>
                     </p>
                 </div>
@@ -8645,6 +8656,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 interfaces than would be possible without it, but it's also often a
                                 temptation to be overly clever.
                             </span>
+                            ときに、テンプレートメタプログラミングによって、きれいで、使いやすいインターフェースを提供することができます。しかし、同時に、必要以上にうまい実装をしようと感じさせられてしまう魅力も持ち合わせています。
                         </span>
                         <span>
                             <span class="src">
@@ -8652,6 +8664,8 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 low level components where the extra maintenance burden is spread out
                                 over a large number of uses.
                             </span>
+                            テンプレートは低レベルで少数のコンポーネントに使われることがベストであり、さもなくば、多くのコードに過剰なメンテナンスのための負荷が広がってしまうことになるかもしれません。
+
                         </span>
                     </p>
 
@@ -8666,6 +8680,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 able to understand the error messages or trace the flow of a function
                                 they want to call.
                             </span>
+                            テンプレートメタプログラミングやその他の複雑なテンプレートのテクニックを使おうとする前に、もう一度よく考えてください。あなたのプロジェクトチームの平均的なメンバーは、あなたがチームを抜けた後でも、そのコードを十分に理解してメンテナンスすることができるでしょうか。あるいは、C++プログラマでない人や他の誰かがカジュアルにコードベースを見たときに、エラーメッセージを理解したり、呼ぼうとする関数のフローを追いかけることができるでしょうか。
                         </span>
                         <span>
                             <span class="src">
@@ -8675,6 +8690,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 overload resolution, then there's a good chance you've gone too
                                 far.
                             </span>
+                            もし、あなたがテンプレートのインスタンス化や型リストやメタ関数や式テンプレートを再帰的に使おうとしていたり、あるいは、SFINAEや<code>sizeof</code>トリックに基づいて関数のオーバーロードを解決しようとしているとしたら、それらは、大抵、あなたがあまりにも遠くに来てしまったことを意味しています。
                         </span>
                     </p>
 
@@ -8684,6 +8700,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 If you use template metaprogramming, you should expect to put
                                 considerable effort into minimizing and isolating the complexity.
                             </span>
+                            テンプレートメタプログラミングを使うのであれば、その複雑さを最小化、分離することに対する相応の努力を払わなくてはなりません。
                         </span>
                         <span>
                             <span class="src">
@@ -8692,6 +8709,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 possible, so that user-facing headers are readable, and you should
                                 make sure that tricky code is especially well commented.
                             </span>
+                            可能であれば、メタプログラミングは実装の詳細として隠されるべきでしょう。そうすることで、あなたのユーザが目にするヘッダは可読性が高くなります。また、トリッキーなコードには特にしっかり確実にコメントを残すようにしてください。
                         </span>
                         <span>
                             <span class="src">
@@ -8699,12 +8717,14 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 carefully document how the code is used, and you should say something
                                 about what the "generated" code looks like.
                             </span>
+                            コードを使い方については、注意してドキュメント化してください。その際、"生成されるコード"の外観についても何かしら言及しておいてください。
                         </span>
                         <span>
                             <span class="src">
                                 Pay extra attention to the
                                 error messages that the compiler emits when users make mistakes.
                             </span>
+                            ユーザがミスを犯した場合にコンパイラが生成するであろうエラーメッセージにも特別の注意を払ってください。
                         </span>
                         <span>
                             <span class="src">
@@ -8713,6 +8733,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 be tweaked as necessary so that the error messages are understandable
                                 and actionable from a user point of view.
                             </span>
+                            このエラーメッセージはあなたが提供するユーザインターフェースの一部なのです。ユーザが何かを間違えたときに、ユーザにとって理解可能であり、どうすればよいかわかるようなエラーメッセージが生成されるよう、コードは調整されていなければなりません。
                         </span>
                     </p>
 
@@ -8720,7 +8741,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
             </div>
 
 
-            <h3 id="Boost">Boost</h3>
+            <h3 id="Boost"><span title="Boost">boost</span></h3>
 
             <div class="summary">
                 <p>
@@ -8729,6 +8750,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                             Use only approved libraries from the Boost library
                             collection.
                         </span>
+                        boostのうち、あらかじめ認められたライブラリのみを使用することができます。
                     </span>
                 </p>
             </div>
@@ -8745,6 +8767,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 </a> is a popular collection of
                                 peer-reviewed, free, open-source C++ libraries.
                             </span>
+                            <a href="https://www.boost.org/">boostライブラリコレクション</a>は、ピアレビュー済み、フリー、オープンソースのC++ライブラリの有名なコレクションです。
                         </span>
                     </p>
                 </div>
@@ -8757,6 +8780,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 portable, and fills many important gaps in the C++
                                 standard library, such as type traits and better binders.
                             </span>
+                            一般に、boostのコードはとても品質が良く、広い移植性を持ち、型traitsやよりよいバインダなどを持つように、C++の標準ライブラリの隙間を埋めてくれます。
                         </span>
                     </p>
                 </div>
@@ -8770,6 +8794,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 advanced template techniques, and an excessively
                                 "functional" style of programming.
                             </span>
+                            boostライブラリの中には、メタプログラミングやその他の先進的なテンプレートテクニックを取り入れたり、過度に「機能本意(functional)」なプログラミングスタイルを採用したりと、コードの可読性を妨げるコーディング手法を推奨しているものもあります。
                         </span>
                     </p>
                 </div>
@@ -8786,11 +8811,14 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                     all contributors who might read and maintain code, we
                                     only allow an approved subset of Boost features.
                                 </span>
+                                コードを読みメンテナンスを行うすべてのコントリビュータのために、コードは高い可読性が保たれていなければなりません。
+                                可読性を維持するため、あらかじめ許可されたboostのサブセットのみが使用を認められています。
                             </span>
                             <span>
                                 <span class="src">
                                     Currently, the following libraries are permitted:
                                 </span>
+                                現在のところ使用が認められてるライブラリは下記のとおりです。
                             </span>
                         </p>
 
@@ -8802,6 +8830,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                             Call Traits
                                         </a> from <code>boost/call_traits.hpp</code>
                                     </span>
+                                    <a href="https://www.boost.org/libs/utility/call_traits.htm">Call Traits</a> (<code>boost/call_traits.hpp</code>)
                                 </span>
                             </li>
 
@@ -8812,6 +8841,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                             Compressed Pair
                                         </a> from  <code>boost/compressed_pair.hpp</code>
                                     </span>
+                                    <a href="https://www.boost.org/libs/utility/compressed_pair.htm">Compressed Pair</a> (<code>boost/compressed_pair.hpp</code>)
                                 </span>
                             </li>
 
@@ -8826,6 +8856,9 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                         (<code>boost/graph/parallel/*</code> and
                                         <code>boost/graph/distributed/*</code>).
                                     </span>
+                                    <a href="https://www.boost.org/libs/graph/">The Boost Graph Library (BGL)</a> (<code>boost/graph</code>) ただし、serialization (<code>adj_list_serialize.hpp</code>)と、
+                                        parallel/distributed algorithms and data structures
+                                        (<code>boost/graph/parallel/*</code>, <code>boost/graph/distributed/*</code>)を除く
                                 </span>
                             </li>
 
@@ -8837,6 +8870,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                         </a> from <code>boost/property_map</code>, except
                                         parallel/distributed property maps (<code>boost/property_map/parallel/*</code>).
                                     </span>
+                                    <a href="https://www.boost.org/libs/property_map/">Property Map</a>(<code>boost/property_map</code>) ただし、parallel/distributed property maps (<code>boost/property_map/parallel/*</code>) を除く
                                 </span>
                             </li>
 
@@ -8847,6 +8881,9 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                             Iterator
                                         </a> from <code>boost/iterator</code>
                                     </span>
+                                    <a href="https://www.boost.org/libs/iterator/">
+                                        Iterator
+                                    </a> (<code>boost/iterator</code>)
                                 </span>
                             </li>
 
@@ -8862,6 +8899,10 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                         <code>boost/polygon/voronoi_diagram.hpp</code>, and
                                         <code>boost/polygon/voronoi_geometry_type.hpp</code>
                                     </span>
+                                    <a href="https://www.boost.org/libs/polygon/">Polygon</a>のうち、Voronoi diagram constructionを扱い、かつ残りのPolygonに依存していない部分
+                                    (<code>boost/polygon/voronoi_builder.hpp</code>,
+                                    <code>boost/polygon/voronoi_diagram.hpp</code>,
+                                    <code>boost/polygon/voronoi_geometry_type.hpp</code>)
                                 </span>
                             </li>
 
@@ -8872,6 +8913,9 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                             Bimap
                                         </a> from <code>boost/bimap</code>
                                     </span>
+                                    <a href="https://www.boost.org/libs/bimap/">
+                                        Bimap
+                                    </a> (<code>boost/bimap</code>)
                                 </span>
                             </li>
 
@@ -8883,6 +8927,9 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                         </a> from
                                         <code>boost/math/distributions</code>
                                     </span>
+                                    <a href="https://www.boost.org/libs/math/doc/html/dist.html">
+                                        Statistical Distributions and Functions
+                                    </a> (<code>boost/math/distributions</code>)
                                 </span>
                             </li>
 
@@ -8893,6 +8940,9 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                             Special Functions
                                         </a> from <code>boost/math/special_functions</code>
                                     </span>
+                                    <a href="https://www.boost.org/libs/math/doc/html/special.html">
+                                        Special Functions
+                                    </a> (<code>boost/math/special_functions</code>)
                                 </span>
                             </li>
 
@@ -8903,6 +8953,9 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                             Multi-index
                                         </a> from <code>boost/multi_index</code>
                                     </span>
+                                    <a href="https://www.boost.org/libs/multi_index/">
+                                        Multi-index
+                                    </a> (<code>boost/multi_index</code>)
                                 </span>
                             </li>
 
@@ -8913,6 +8966,9 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                             Heap
                                         </a> from <code>boost/heap</code>
                                     </span>
+                                    <a href="https://www.boost.org/libs/heap/">
+                                            Heap
+                                        </a> (<code>boost/heap</code>)
                                 </span>
                             </li>
 
@@ -8924,6 +8980,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                         <code>boost/container/flat_map</code>, and
                                         <code>boost/container/flat_set</code>
                                     </span>
+                                    <a href="https://www.boost.org/libs/container/">Container</a>のThe flat containers (<code>boost/container/flat_map</code>, <code>boost/container/flat_set</code>)
                                 </span>
                             </li>
 
@@ -8933,6 +8990,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                         <a href="https://www.boost.org/libs/intrusive/">Intrusive</a>
                                         from <code>boost/intrusive</code>.
                                     </span>
+                                    <a href="https://www.boost.org/libs/intrusive/">Intrusive</a> (<code>boost/intrusive</code>)
                                 </span>
                             </li>
 
@@ -8944,6 +9002,10 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                             <code>boost/sort</code> library
                                         </a>.
                                     </span>
+                                    <a href="https://www.boost.org/libs/sort/">
+                                        The
+                                        <code>boost/sort</code> library
+                                    </a>
                                 </span>
                             </li>
 
@@ -8953,6 +9015,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                         <a href="https://www.boost.org/libs/preprocessor/">Preprocessor</a>
                                         from <code>boost/preprocessor</code>.
                                     </span>
+                                    <a href="https://www.boost.org/libs/preprocessor/">Preprocessor</a> (<code>boost/preprocessor</code>)
                                 </span>
                             </li>
                         </ul>
@@ -8964,6 +9027,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                     features to the list, so this list may be expanded in
                                     the future.
                                 </span>
+                                boostの他の機能については、随時リストへの追加が検討されています。今後、このリストは拡張されることがあります。
                             </span>
                         </p>
                     </div>
@@ -8975,6 +9039,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 is discouraged because they've been superseded by
                                 standard libraries in C++11:
                             </span>
+                            以下に記載するライブラリも使用を認められていますが、既にC++11に標準ライブラリとして取り入れられているため、非推奨です。
                         </span>
                     </p>
 
@@ -8989,6 +9054,10 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                         <code>std::array</code>
                                     </a> instead.
                                 </span>
+
+                                <a href="https://www.boost.org/libs/array/">
+                                    Array
+                                </a> (<code>boost/array.hpp</code>): C++11では、<a href="http://en.cppreference.com/w/cpp/container/array"><code>std::array</code></a>を使用してください。
                             </span>
                         </li>
 
@@ -9002,6 +9071,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                         <code>std::unique_ptr</code>
                                     </a> instead.
                                 </span>
+                                <a href="https://www.boost.org/libs/ptr_container/">Pointer Container</a> (<code>boost/ptr_container</code>): C++11では、<a href="http://en.cppreference.com/w/cpp/memory/unique_ptr"><code>std::unique_ptr</code></a>を使用してください。
                             </span>
                         </li>
                     </ul>
@@ -9011,7 +9081,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
 
 
 
-            <h3 id="std_hash">std::hash</h3>
+            <h3 id="std_hash"><span title="std::hash">std::hash</span></h3>
 
             <div class="summary">
                 <p>
@@ -9019,6 +9089,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                         <span class="src">
                             Do not define specializations of <code>std::hash</code>.
                         </span>
+                        <code>std::hash</code>の特殊化を定義してはいけません。
                     </span>
                 </p>
             </div>
@@ -9033,6 +9104,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 C++11 hash containers use to hash keys of type <code>T</code>,
                                 unless the user explicitly specifies a different hash function.
                             </span>
+                            <code>std::hash&lt;T&gt;</code>は、C++11のハッシュコンテナにおいて、ユーザが明示的にハッシュ関数を指定しない場合に使われる、型<code>T</code>のキーのハッシュ値を生成する関数オブジェクトです。
                         </span>
                         <span>
                             <span class="src">
@@ -9042,6 +9114,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 whereas <code>std::unordered_map&lt;int, string, MyIntHash&gt;</code>
                                 uses <code>MyIntHash</code>.
                             </span>
+                            たとえば、<code>std::unordered_map&lt;int, string&gt;</code>は、そのキーのハッシュ値のために<code>std::hash&lt;int&gt;</code>を使うハッシュマップです。その一方で、<code>std::unordered_map&lt;int, string, MyIntHash&gt;</code>は、キーのハッシュ値のために<code>MyIntHash</code>を使うハッシュマップです。
                         </span>
                     </p>
 
@@ -9052,6 +9125,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 pointer, and <code>enum</code> types, as well as some standard library
                                 types such as <code>string</code> and <code>unique_ptr</code>.
                             </span>
+                            <code>std::hash</code>は、すべての整数型、浮動小数点型、ポインタ、列挙型、<code>string</code>や<code>unique_ptr</code>などのいくつかの標準ライブラリの型に対して定義されています。
                         </span>
                         <span>
                             <span class="src">
@@ -9059,6 +9133,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 can enable it to work for their own types by defining specializations
                                 of it for those types.
                             </span>
+                            ユーザが用意した独自の型についても、その型に対する特殊化を定義すれば、動作させることが可能です。
                         </span>
                     </p>
                 </div>
@@ -9070,6 +9145,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 <code>std::hash</code> is easy to use, and simplifies the code
                                 since you don't have to name it explicitly.
                             </span>
+                            <code>std::hash</code>は、扱いやすく、独自に名前を明示する必要もないので、コードが単純になります。
                         </span>
                         <span>
                             <span class="src">
@@ -9078,6 +9154,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 hash a type, so it's what outside resources will teach, and what
                                 new engineers will expect.
                             </span>
+                            <code>std::hash</code> を特殊化するやり方は、型のハッシュ値を得る方法を定義する標準的なものです。つまり、これは、外部の教材が教えている手法であり、新しいエンジニアが期待している手法であると言えます。
                         </span>
                     </p>
                 </div>
@@ -9088,6 +9165,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                             <span class="src">
                                 <code>std::hash</code> is hard to specialize.
                             </span>
+                            <code>std::hash</code>の特殊化は難しいです。
                         </span>
                         <span>
                             <span class="src">
@@ -9096,6 +9174,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 for identifying the hash inputs with responsibility for executing the
                                 hashing algorithm itself.
                             </span>
+                            <code>std::hash</code>の特殊化のためには、定型コードをたくさん書かねばならず、さらに、入力されたハッシュを識別することと、ハッシュアルゴリズムを実行することとの両方の責任を負わなくてはなりません。
                         </span>
                         <span>
                             <span class="src">
@@ -9103,6 +9182,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 the former, but the latter requires expertise that a type author
                                 usually doesn't have, and shouldn't need.
                             </span>
+                            型の作者は前者の責任は負わなくてはなりませんが、後者の責任を負うためには、型の作者が通常持たないような専門的な知識を必要としますし、本来そのような知識が必要とされるべきでもありません。
                         </span>
                         <span>
                             <span class="src">
@@ -9113,6 +9193,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                     hash flooding attacks
                                 </a>.
                             </span>
+                            ここは大事なところです。<a href="https://emboss.github.io/blog/2012/12/14/breaking-murmur-hash-flooding-dos-reloaded/">hash flooding attack</a>のような攻撃手段が存在しているため、品質の低いハッシュ関数はそれだけでセキュリティ上の脆弱性となることがあります。
                         </span>
                     </p>
 
@@ -9124,6 +9205,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 because the implementation cannot recursively call <code>std::hash</code>
                                 on data members.
                             </span>
+                            専門的化にとってさえも、合成型に対する<code>std::hash</code>の特殊化を正しく実装するのは非常に困難です。なぜならば、その実装は、データメンバに対する<code>std::hash</code>を再帰的に呼び出すことができないからです。
                         </span>
                         <span>
                             <span class="src">
@@ -9133,6 +9215,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 returns is usually the slowest part of the computation, so it
                                 should not be done more than once.
                             </span>
+                            品質の高いハッシュアルゴリズムは、大量の内部状態を管理し、それらの内部状態を<code>std::hash</code>が返す<code>size_t</code>に落とし込みますが、この部分が計算処理におけるもっとも遅い部分となるのが通常であり、一度ハッシュ値を求めたのであれば、それ以上改めて計算しなおすべきではありません。
                         </span>
                     </p>
 
@@ -9143,6 +9226,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 with <code>std::pair</code> or <code>std::tuple</code>, and the
                                 language does not allow us to extend it to support them.
                             </span>
+                            これらの問題が原因で、<code>std::hash</code>は<code>std::pair</code>や<code>std::tuple</code>には対応できず、言語は我々にこれらをサポートするための拡張を行うことも許していません。
                         </span>
                     </p>
                 </div>
@@ -9154,6 +9238,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 You can use <code>std::hash</code> with the types that it supports
                                 "out of the box", but do not specialize it to support additional types.
                             </span>
+                            すでに使えるようになっている型に対して<code>std::hash</code>を使うのはかまいません。しかし、新しい型をサポートするために<code>std::hash</code>の特殊化を定義してはいけません。
                         </span>
                         <span>
                             <span class="src">
@@ -9162,6 +9247,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 <code>hash_map</code>) for now; they use a different default hasher,
                                 which is unaffected by this prohibition.
                             </span>
+                            <code>std::hash</code>が使えない型をキーとしたハッシュテーブルを使いたい場合は、現状はレガシーなハッシュコンテナ(<code>hash_map</code>)などを使用することを検討してください。これらは、デフォルトで別のハッシュ関数を使っており、それらがこの禁止ルールには抵触することはありません。
                         </span>
                     </p>
 
@@ -9171,14 +9257,11 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 If you want to use the standard hash containers anyway, you will
                                 need to specify a custom hasher for the key type, e.g.
                             </span>
+                            どうしても標準のハッシュコンテナを使いたい場合は、次のような、キーの型に対するカスタムのハッシュ化オブジェクトを定義してください。
                         </span>
                     </p>
-                    <span>
-                        <span class="src">
 <pre>std::unordered_map&lt;MyKeyType, Value, MyKeyTypeHasher&gt; my_map;
 </pre>
-                        </span>
-                    </span>
                     <p>
                         <span>
                             <span class="src">
@@ -9186,6 +9269,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 that you can use; otherwise work with them to provide one,
                                 or roll your own.
                             </span>
+                            その型の作者に、利用可能な既存のハッシュ関数等がないか確認してください。ハッシュ関数が存在しない場合は、型の作者と連携してそれを作るか、あるいは、自ら作るかです。
                         </span>
                     </p>
 
@@ -9196,13 +9280,14 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 using a new customization mechanism that doesn't have the drawbacks of
                                 <code>std::hash</code>.
                             </span>
+                            我々は、いかなる型に対しても動作するハッシュ関数を提供することを計画しています。このハッシュ関数は、新しいカスタム化のための仕組みを採用し、<code>std::hash</code>のような欠点は持ちません。
                         </span>
                     </p>
                 </div>
 
             </div>
 
-            <h3 id="C++11">C++11</h3>
+            <h3 id="C++11"><span title="C++11">C++11</span></h3>
 
             <div class="summary">
                 <p>
@@ -9210,6 +9295,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                         <span class="src">
                             Use libraries and language extensions from C++11 when appropriate.
                         </span>
+                        C++11のライブラリや言語拡張は、それが適切な時に、使用してください。
                     </span>
                     <span>
                         <span class="src">
@@ -9217,6 +9303,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                             before using C++11 features in your
                             project.
                         </span>
+                        プロジェクトでC++11の機能を使う前に、他の環境に対する移植性について検討してください。
                     </span>
                 </p>
 
@@ -9233,6 +9320,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 </a> both to the language and
                                 libraries.
                             </span>
+                            C++11は、言語とライブラリの両方において<a href="https://en.wikipedia.org/wiki/C%2B%2B11">大きな変更</a>が加えられています。
                         </span>
                     </p>
                 </div>
@@ -9244,6 +9332,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 C++11 was the official standard until august 2014, and
                                 is supported by most C++ compilers.
                             </span>
+                            C++11は2014年の8月から標準化され、多くのC++コンパイラによってサポートされています。
                         </span>
                         <span>
                             <span class="src">
@@ -9252,6 +9341,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 shorthands for some operations, and has some performance
                                 and safety improvements.
                             </span>
+                            C++11によって、我々がすでに使っているような、いくつかのC++の拡張が標準化され、操作を簡潔に記述できるようになったり、パフォーマンスや安全性が向上したりしています。
                         </span>
                     </p>
                 </div>
@@ -9264,6 +9354,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 its predecessor (1,300 pages versus 800 pages), and is
                                 unfamiliar to many developers.
                             </span>
+                            標準C++11は、以前のC++よりもさらに複雑となりました(旧仕様が800ページであるのに対して、新仕様は1,300ページもあります)。そして、多くの開発者にとっては馴染みの薄いものです。
                         </span>
                         <span>
                             <span class="src">
@@ -9271,6 +9362,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 some features on code readability and maintenance are
                                 unknown.
                             </span>
+                            コードの可読性やメンテナンス性の面から見て、いくつかの機能における長期的な影響はまだ不明です。
                         </span>
                         <span>
                             <span class="src">
@@ -9279,6 +9371,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 interest, particularly in the case of projects that are
                                 forced to use older versions of tools.
                             </span>
+                            特に、古いバージョンのツールを使わなくてはならないようなプロジェクトに当てはまることですが、我々は、いつまで待てば、我々が関心を払うツール群において、これらの様々な機能が一様に実装されるのか、予測することができません。
                         </span>
                     </p>
 
@@ -9292,6 +9385,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 helpful to readers, or by encouraging template
                                 metaprogramming.
                             </span>
+                            <a href="#Boost">boost</a>を使う場合のように、いくつかのC++11拡張は、可読性を低下させるようなコーディングプラクティスを奨励します。たとえば、型名などの読者の助けになるはずの冗長性を省いてしまったり、テンプレートメタプログラミングを奨励したりします。
                         </span>
                         <span>
                             <span class="src">
@@ -9299,6 +9393,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 available through existing mechanisms, which may lead to confusion
                                 and conversion costs.
                             </span>
+                            他の拡張は、既存のメカニズムを通してすでに機能的に実現可能であったことを再発明しており、それらは混乱や対話のためのコストを招き入れるかもしれません。
                         </span>
                     </p>
 
@@ -9312,12 +9407,14 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                             <span class="src">
                                 C++11 features may be used unless specified otherwise.
                             </span>
+                            使用してはならないとあらかじめ決められている場合を除いて、C++11の機能を使用してかまいません。
                         </span>
                         <span>
                             <span class="src">
                                 In addition to what's described in the rest of the style
                                 guide, the following C++11 features may not be used:
                             </span>
+                            本ガイドの他の部分で説明している事柄に加えて、以下に示すC++11の機能は使ってはいけません。
                         </span>
                     </p>
 
@@ -9338,6 +9435,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                     it's tied to a more template-heavy interface
                                     style.
                                 </span>
+                                コンパイル時有理数(<code>&lt;ratio&gt;</code>)。より重いテンプレートを使ったインターフェースのスタイルと紐付いているため。
                             </span>
                         </li>
 
@@ -9348,6 +9446,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                     <code>&lt;fenv.h&gt;</code> headers, because many
                                     compilers do not support those features reliably.
                                 </span>
+                                <code>&lt;cfenv&gt;</code>と<code>&lt;fenv.h&gt;</code>ヘッダ。多くのコンパイラにおいて、これらの機能に対する信頼性がないため。
                             </span>
                         </li>
 
@@ -9360,6 +9459,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                     </code> or <code>void X::Foo() &amp;&amp;</code>, because of concerns
                                     that they're an overly obscure feature.
                                 </span>
+                                <code>void X::Foo() &amp;</code>、<code>void X::Foo() &amp;&amp;</code>のような、メンバ関数に対する参照修飾子。あまりにもこの機能の知名度が低いため。
                             </span>
                         </li>
 
@@ -9371,7 +9471,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
 
             </div>
 
-            <h3 id="Nonstandard_Extensions">Nonstandard Extensions</h3>
+            <h3 id="Nonstandard_Extensions"><span title="Nonstandard Extensions">非標準の拡張</span></h3>
 
             <div class="summary">
                 <p>
@@ -9379,6 +9479,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                         <span class="src">
                             Nonstandard extensions to C++ may not be used unless otherwise specified.
                         </span>
+                        C++に対する非標準の拡張は、あらかじめ決められているものを除いて使用してはいけません。
                     </span>
                 </p>
             </div>
@@ -9389,6 +9490,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                             <span class="src">
                                 Compilers support various extensions that are not part of standard C++.
                             </span>
+                            コンパイラは、C++の標準にはない、様々な拡張を提供しています。
                         </span>
                         <span>
                             <span class="src">
@@ -9400,6 +9502,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 <code>foo = ({ int x; Bar(&amp;x); x })</code>, variable-length arrays and
                                 <code>alloca()</code>, and the <code>a?:b</code> syntax.
                             </span>
+                            たとえば、GCCの<code>__attribute__</code>や、<code>__builtin_prefetch</code>のようなintrinsic関数、<code>Foo f = {.field = 3}</code>のようなdesignated initializer、インラインアセンブリ、<code>__COUNTER__</code>、<code>__PRETTY_FUNCTION__</code>、<code>foo = ({ int x; Bar(&amp;x); x })</code>のようなcompound statement expression、可変長配列と<code>alloca()</code>、<code>a?:b</code>といった文法などです。
                         </span>
                     </p>
                 </div>
@@ -9412,6 +9515,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                     Nonstandard extensions may provide useful features that do not exist
                                     in standard C++.
                                 </span>
+                                非標準の拡張は、標準C++にない便利な機能を提供します。
                             </span>
                             <span>
                                 <span class="src">
@@ -9419,6 +9523,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                     initializers are more readable than standard C++ features like
                                     constructors.
                                 </span>
+                                たとえば、designated initializerは、標準C++のコンストラクタよりも可読性があると考える人もいます。
                             </span>
                         </li>
                         <li>
@@ -9427,6 +9532,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                     Important performance guidance to the compiler can only be specified
                                     using extensions.
                                 </span>
+                                パフォーマンスに関する重要なガイドをコンパイラに伝えるためには、このような拡張機能を使用してのみ指定できます。
                             </span>
                         </li>
                     </ul>
@@ -9439,12 +9545,14 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 <span class="src">
                                     Nonstandard extensions do not work in all compilers.
                                 </span>
+                                非標準の機能はすべてのコンパイラでは動きません。
                             </span>
                             <span>
                                 <span class="src">
                                     Use of nonstandard
                                     extensions reduces portability of code.
                                 </span>
+                                非標準の機能を使用するとコードの移植性が低下します。
                             </span>
                         </li>
                         <li>
@@ -9454,6 +9562,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                     are often not well-specified, and there may be subtle behavior differences
                                     between compilers.
                                 </span>
+                                ターゲットとするコンパイラのすべてでサポートされている機能であっても、このような拡張は十分に仕様が決められていない場合があり、異なるコンパイラ間で微妙に異なる動作をすることもあります。
                             </span>
                         </li>
                         <li>
@@ -9462,6 +9571,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                     Nonstandard extensions add to the language features that a reader must
                                     know to understand the code.
                                 </span>
+                                非標準の拡張によって、コードの読者がコードを理解するために必要とする知識の量が増えます。
                             </span>
                         </li>
                     </ul>
@@ -9473,6 +9583,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                             <span class="src">
                                 Do not use nonstandard extensions.
                             </span>
+                            非標準の機能は使ってはいけません。
                         </span>
                         <span>
                             <span class="src">
@@ -9482,12 +9593,13 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 are provided by a designated project-wide
                                 portability header.
                             </span>
+                            プロジェクトにおいて、そのプロジェクト内で使用するヘッダとして、非標準の拡張機能に関する移植性を保つためのラッパーが提供されている場合は、それらを通してのみ非標準の機能を使用してもかまいません。
                         </span>
                     </p>
                 </div>
             </div>
 
-            <h3 id="Aliases">Aliases</h3>
+            <h3 id="Aliases"><span title="Aliases">エイリアス</span></h3>
 
             <div class="summary">
                 <p>
@@ -9495,6 +9607,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                         <span class="src">
                             Public aliases are for the benefit of an API's user, and should be clearly documented.
                         </span>
+                        publicなエイリアスはAPIのユーザにとって有用なものです。それらは、明確にドキュメント化されていなければなりません。
                     </span>
                 </p>
             </div>
@@ -9505,6 +9618,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                             <span class="src">
                                 There are several ways to create names that are aliases of other entities:
                             </span>
+                            他のエンティティのエイリアスとして名前をつけるためには、以下に例を示すとおり、いくつかの方法があります。
                         </span>
                     </p>
 <pre>typedef Foo Bar;
@@ -9519,6 +9633,8 @@ using other_namespace::Foo;
                                 header's public API unless they're in a function definition, in the private portion of a class,
                                 or in an explicitly-marked internal namespace.
                             </span>
+                            エイリアスは、関数の定義内や、クラスのprivateな部分、あるいは内部用と明示された名前空間の中で宣言されている場合を除いて、他の宣言と同様に、ヘッダファイルにおいて、そのヘッダの持つpublicなAPIの一部として宣言されます。
+                            
                         </span>
                         <span>
                             <span class="src">
@@ -9526,6 +9642,7 @@ using other_namespace::Foo;
                                 implementation details (because client code can't refer to them), and are not restricted by this
                                 rule.
                             </span>
+                            先に述べたような場所や、.ccファイルにあるエイリアスは、クライアントのコードが参照できない実装の詳細の一部であるため、このルールによる制限は受けません。
                         </span>
                     </p>
                 </div>
@@ -9537,6 +9654,7 @@ using other_namespace::Foo;
                                 <span class="src">
                                     Aliases can improve readability by simplifying a long or complicated name.
                                 </span>
+                                エイリアスは、長い複雑な名前を単純化するため、可読性を高めます。
                             </span>
                         </li>
                         <li>
@@ -9545,6 +9663,7 @@ using other_namespace::Foo;
                                     Aliases can reduce duplication by naming in one place a type used repeatedly in an API,
                                     which <em>might</em> make it easier to change the type later.
                                 </span>
+                                エイリアスは、APIにおいて型名が繰り返し使われる場合に、型に名前をつけることで、その重複を減らします。こうすることで、後で型を変更するのが容易になる<em>かも</em>しれません。
                             </span>
                         </li>
                     </ul>
@@ -9558,6 +9677,7 @@ using other_namespace::Foo;
                                     When placed in a header where client code can refer to them, aliases increase the
                                     number of entities in that header's API, increasing its complexity.
                                 </span>
+                                クライアントコードが参照できるヘッダでエイリアスが宣言されるとき、それらはそのヘッダのAPIが提供するエンティティの数を増やすため、複雑性が増します。
                             </span>
                         </li>
                         <li>
@@ -9566,6 +9686,7 @@ using other_namespace::Foo;
                                     Clients can easily rely on unintended details of public aliases, making
                                     changes difficult.
                                 </span>
+                                意図しないpublicエイリアスがあると、クライアントは簡単にそれに依存してしまうことができ、それによって後の変更が難しくなります。
                             </span>
                         </li>
                         <li>
@@ -9574,6 +9695,7 @@ using other_namespace::Foo;
                                     It can be tempting to create a public alias that is only intended for use
                                     in the implementation, without considering its impact on the API, or on maintainability.
                                 </span>
+                                エイリアスを認めることは、APIやそのメンテナンス性に対する影響をよく考えず、実装で使用するだけの目的でpublicなエイリアスを作ってしまうことへの誘惑となりえます。
                             </span>
                         </li>
                         <li>
@@ -9581,6 +9703,7 @@ using other_namespace::Foo;
                                 <span class="src">
                                     Aliases can create risk of name collisions
                                 </span>
+                                エイリアスは名前が衝突するリスクを生み出します。
                             </span>
                         </li>
                         <li>
@@ -9588,6 +9711,7 @@ using other_namespace::Foo;
                                 <span class="src">
                                     Aliases can reduce readability by giving a familiar construct an unfamiliar name
                                 </span>
+                                馴染みのある構造に馴染みのない名前のエイリアスをつけてしまうと可読性が低下します。
                             </span>
                         </li>
                         <li>
@@ -9597,6 +9721,7 @@ using other_namespace::Foo;
                                     it is unclear whether the alias is guaranteed to be identical to the type it aliases,
                                     to have the same API, or only to be usable in specified narrow ways
                                 </span>
+                                型のエイリアスは、APIの規約を不明瞭にする場合があります。それは、エイリアスが常に同一の型へのエイリアスであり同じAPIを持っていることが保証されているのか、はたまた、指定されている狭い方法でしか使用できないのかがわからない場合などです。
                             </span>
                         </li>
                     </ul>
@@ -9609,6 +9734,7 @@ using other_namespace::Foo;
                                 Don't put an alias in your public API just to save typing in the implementation;
                                 do so only if you intend it to be used by your clients.
                             </span>
+                            実装においてタイピングする文字の数を減らすためにpublicなAPIとしてエイリアスを配置してはいけません。クライアントに使ってもらうことを目的としている場合に限り、エイリアスをpublicに配置してください。
                         </span>
                     </p>
                     <p>
@@ -9619,6 +9745,7 @@ using other_namespace::Foo;
                                 it's currently aliased to, or whether a more limited compatibility is
                                 intended.
                             </span>
+                            publicなエイリアスを定義するとき、その新しい名前の意図をドキュメント化してください。また、ドキュメントには、その名前がその時点で指していた型と常に同一の型を指し続けることが保証されているか、あるいはより限られた互換性が目的とされているのかということも含めてください。
                         </span>
                         <span>
                             <span class="src">
@@ -9626,6 +9753,7 @@ using other_namespace::Foo;
                                 substitutable or whether more specific rules must be followed, and can help the
                                 implementation retain some degree of freedom to change the alias.
                             </span>
+                            これによって、ユーザはその型を単に置き換えていいのか、もっと細かいルールに従う必要があるのかを判断できます。また、これによって、エイリアスの変更に対するある程度の自由度を確保することができるため、実装もしやすくなるでしょう。
                         </span>
                     </p>
                     <p>
@@ -9633,6 +9761,7 @@ using other_namespace::Foo;
                             <span class="src">
                                 Don't put namespace aliases in your public API. (See also <a href="#Namespaces">Namespaces</a>).
                             </span>
+                            namespaceのエイリアスをpublicなAPIの中においてはいけません(<a href="#Namespaces">名前空間</a>を参照)。
                         </span>
                     </p>
 
@@ -9641,6 +9770,7 @@ using other_namespace::Foo;
                             <span class="src">
                                 For example, these aliases document how they are intended to be used in client code:
                             </span>
+                            たとえば、以下の例を見てください。これらのエイリアスは、クライアントコードにおいてそれらがどう扱われることを意図しているかドキュメント化しています。
                         </span>
                     </p>
                     <span>
@@ -9655,12 +9785,23 @@ using TimeSeries = std::unordered_set&lt;DataPoint, std::hash&lt;DataPoint&gt;, 
 }  // namespace a
 </pre>
                         </span>
-                    </span>
+                        <pre>namespace a {
+// フィールドの測定値を保存するために使用されます。
+// DataPoint は Bar* から他の内部型に変更されるかもしれません。
+// クライアントコードにおいては、これを透過的なポインタとして扱ってください。
+using DataPoint = foo::bar::Bar*;
+
+// 測定のセットです。
+// これはユーザの利便性のために定義されています。
+using TimeSeries = std::unordered_set&lt;DataPoint, std::hash&lt;DataPoint&gt;, DataPointComparator&gt;;
+}  // namespace a
+</pre>                   </span>
                     <p>
                         <span>
                             <span class="src">
                                 These aliases don't document intended use, and half of them aren't meant for client use:
                             </span>
+                            一方、次の例のエイリアスは、意図に関するドキュメントがなく、さらにその半分はクライアントで使用する目的ですらありません。
                         </span>
                     </p>
                     <span>
@@ -9674,6 +9815,14 @@ typedef unordered_set&lt;DataPoint, hash&lt;DataPoint&gt;, DataPointComparator&g
 }  // namespace a
 </pre>
                         </span>
+                        <pre class="badcode">namespace a {
+// ダメ: どのように扱われるべきかが書かれていない。
+using DataPoint = foo::bar::Bar*;
+using std::unordered_set;  // ダメ: 自分の利便性のため
+using std::hash;           // ダメ: 自分の利便性のため
+typedef unordered_set&lt;DataPoint, hash&lt;DataPoint&gt;, DataPointComparator&gt; TimeSeries;
+}  // namespace a
+</pre>
                     </span>
                     <p>
                         <span>
@@ -9681,6 +9830,7 @@ typedef unordered_set&lt;DataPoint, hash&lt;DataPoint&gt;, DataPointComparator&g
                                 However, local convenience aliases are fine in function definitions, private sections of
                                 classes, explicitly marked internal namespaces, and in .cc files:
                             </span>
+                            しかし、自分の利便性のためのエイリアスは、関数定義の中で定義する分には問題ありません。クラスのprivateセクションや、明示的に内部使用するとマークされているnamespaceの中や、.ccファイル内での定義も同様に問題ありません。
                         </span>
                     </p>
 
@@ -9690,6 +9840,9 @@ typedef unordered_set&lt;DataPoint, hash&lt;DataPoint&gt;, DataPointComparator&g
 using std::unordered_set;
 </pre>
                         </span>
+                        <pre>// .ccファイルの中
+using std::unordered_set;
+</pre>
                     </span>
 
                 </div>
