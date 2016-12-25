@@ -10035,13 +10035,13 @@ int cstmr_id;              // 文字を削っているのでダメ
 
                 <ul>
                     <li>
-                                <code>my_useful_class.cc</code>
+                        <code>my_useful_class.cc</code>
                     </li>
                     <li>
-                                <code>my-useful-class.cc</code>
+                        <code>my-useful-class.cc</code>
                     </li>
                     <li>
-                                <code>myusefulclass.cc</code>
+                        <code>myusefulclass.cc</code>
                     </li>
                     <li>
                         <span>
@@ -10846,117 +10846,240 @@ enum AlternateUrlTableErrors {
 
             </div>
 
-            <h2 id="Comments">Comments</h2>
+            <h2 id="Comments"><span title="Comments">コメント</span></h2>
 
             <p>
-                Though a pain to write, comments are absolutely vital to
-                keeping our code readable. The following rules describe what
-                you should comment and where. But remember: while comments are
-                very important, the best code is self-documenting. Giving
-                sensible names to types and variables is much better than using
-                obscure names that you must then explain through comments.
+                <span>
+                    <span class="src">
+                        Though a pain to write, comments are absolutely vital to
+                        keeping our code readable.
+                    </span>
+                    コメントを書くのはしんどいですが、コードの可読性を保つために、コメントはなくてはならないものです。
+                </span>
+                <span>
+                    <span class="src">
+                        The following rules describe what
+                        you should comment and where.
+                    </span>
+                    このルールでは、どこにどのようなコメントを残すべきかを説明します。
+                </span>
+                <span>
+                    <span class="src">
+                        But remember: while comments are
+                        very important, the best code is self-documenting.
+                    </span>
+                    ひとつ忘れないでほしいことは、確かにコメントは非常に重要なものですが、それよりもコード自身がドキュメントの役割をしている状態がベストだということです。
+                </span>
+                <span>
+                    <span class="src">
+                        Giving
+                        sensible names to types and variables is much better than using
+                        obscure names that you must then explain through comments.
+                    </span>
+                    型や変数に、曖昧な名前をつけてコメントするよりも、コメント不要の適切な名前をつけるほうが、はるかに優れています。
+                </span>
             </p>
 
             <p>
-                When writing your comments, write for your audience: the
-                next
-                contributor who will need to
-                understand your code. Be generous &#8212; the next
-                one may be you!
+                <span>
+                    <span class="src">
+                        When writing your comments, write for your audience: the
+                        next
+                        contributor who will need to
+                        understand your code.
+                    </span>
+                    コメントを書くときは、読者を意識してください。
+                    あなたが書いたコードを次に担当する人が理解できるようにコメントを記述してください。
+                </span>
+                <span>
+                    <span class="src">
+                        Be generous &#8212; the next
+                        one may be you!
+                    </span>
+                    あるいは、次の担当者は自分かもしれません。惜しみなくコメントを書きましょう。
+                </span>
             </p>
 
-            <h3 id="Comment_Style">Comment Style</h3>
+            <p>訳者注: 本日本語版ガイドではコード例中のコメントも日本語に訳していますが、本来コメントは英語で行われなくてはならないでしょう。</p>
+
+            <h3 id="Comment_Style"><span title="Comment Style">コメントのスタイル</span></h3>
 
             <div class="summary">
                 <p>
-                    Use either the
-                    <code>//</code> or
-                    <code>/* */</code>
-                    syntax, as long as you are consistent.
+                    <span>
+                        <span class="src">
+                            Use either the
+                            <code>//</code> or
+                            <code>/* */</code>
+                            syntax, as long as you are consistent.
+                        </span>
+                        コメントには、一貫性が保たれている限り、<code>//</code>か<code>/* */</code>のどちらを使ってもかまいません。
+                    </span>
                 </p>
             </div>
 
             <div class="stylebody">
 
                 <p>
-                    You can use either the
-                    <code>//</code> or the
-                    <code>
-                        /*
-                        */
-                    </code> syntax; however,
-                    <code>//</code> is
-                    <em>much</em> more common. Be consistent with how you
-                    comment and what style you use where.
+                    <span>
+                        <span class="src">
+                            You can use either the
+                            <code>//</code> or the
+                            <code>
+                                /*
+                                */
+                            </code> syntax; however,
+                            <code>//</code> is
+                            <em>much</em> more common.
+                        </span>
+                        コメントには、<code>//</code>と<code>/* */</code>のどちらの文法を使ってもかまいません。しかし、<code>//</code>の方がはるかに一般的です。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Be consistent with how you
+                            comment and what style you use where.
+                        </span>
+                        どのスタイルでどこにどのようにコメントをつけるかは、一貫性を保ってください。
+                    </span>
                 </p>
 
             </div>
 
-            <h3 id="File_Comments">File Comments</h3>
+            <h3 id="File_Comments"><span title="File Comments">ファイルに対するコメント</span></h3>
 
             <div class="summary">
-                <p>Start each file with license boilerplate.</p>
+                <p>
+                    <span>
+                        <span class="src">
+                            Start each file with license boilerplate.
+                        </span>
+                        各ファイルは、ライセンスに関する定型文で始めてください。
+                    </span>
+                </p>
 
                 <p>
-                    File comments describe the contents of a file. If a file declares,
-                    implements, or tests exactly one abstraction that is documented by a comment
-                    at the point of declaration, file comments are not required. All other files
-                    must have file comments.
+                    <span>
+                        <span class="src">
+                            File comments describe the contents of a file.
+                        </span>
+                        ファイル全体に掛かるコメントでは、そのファイルに含まれる内容を説明します。
+                    </span>
+                    <span>
+                        <span class="src">
+                            If a file declares,
+                            implements, or tests exactly one abstraction that is documented by a comment
+                            at the point of declaration, file comments are not required.
+                        </span>
+                        そのファイルにおいてただ1つの概念だけを宣言または実装、テストしていて、かつ、それに関するコメントが宣言のすぐ近くにある場合は、ファイルを説明するコメントは必須というわけではありません。
+                    </span>
+                    <span>
+                        <span class="src">
+                            All other files
+                            must have file comments.
+                        </span>
+                        しかし、それ以外の場合は、各ファイルにはファイルを説明するコメントを書かなくてはなりません。
+                    </span>
                 </p>
 
             </div>
 
             <div class="stylebody">
 
-                <h4 class="stylepoint_subsection">
-                    Legal Notice and Author
-                    Line
-                </h4>
-
+                <h4 class="stylepoint_subsection"><span title="Legal Notice and Author Line">法的な注意事項と著者に関する行</span></h4>
 
 
                 <p>
-                    Every file should contain license
-                    boilerplate. Choose the appropriate boilerplate for the
-                    license used by the project (for example, Apache 2.0,
-                    BSD, LGPL, GPL).
+                    <span>
+                        <span class="src">
+                            Every file should contain license
+                            boilerplate.
+                        </span>
+                        すべてのファイルに、ライセンスに関する定型文を含めてください。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Choose the appropriate boilerplate for the
+                            license used by the project (for example, Apache 2.0,
+                            BSD, LGPL, GPL).
+                        </span>
+                        定型文は、そのプロジェクトが採用しているライセンスに沿った適切なものを選択してください(たとえば、Apache 2.0, BSD, LGPL, GPL)。
+                    </span>
                 </p>
 
                 <p>
-                    If you make significant changes to a file with an
-                    author line, consider deleting the author line.
+                    <span>
+                        <span class="src">
+                            If you make significant changes to a file with an
+                            author line, consider deleting the author line.
+                        </span>
+                        著者に関するの行を含め、ファイルに対して大きな変更を加えた場合は、著者に関する行を削除することを検討してください。
+                    </span>
                 </p>
 
-                <h4 class="stylepoint_subsection">File Contents</h4>
+                <h4 class="stylepoint_subsection"><span title="File Contents">ファイルの内容に関するコメント</span></h4>
 
                 <p>
-                    If a
-                    <code>.h</code> declares multiple abstractions, the file-level comment
-                    should broadly describe the contents of the file, and how the abstractions are
-                    related. A 1 or 2 sentence file-level comment may be sufficient. The detailed
-                    documentation about individual abstractions belongs with those abstractions,
-                    not at the file level.
+                    <span>
+                        <span class="src">
+                            If a
+                            <code>.h</code> declares multiple abstractions, the file-level comment
+                            should broadly describe the contents of the file, and how the abstractions are
+                            related..
+                        </span>
+                        <code>.h</code>ファイルが複数の概念を宣言している場合、ファイルレベルのコメントは、広くファイルの内容を説明するものにします。そして、それらの概念がどのように関係しているかを説明します。
+                    </span>
+                    <span>
+                        <span class="src">
+                            A 1 or 2 sentence file-level comment may be sufficient.
+                        </span>
+                        ファイルコメントは、1つか2つの文で十分でしょう。
+                    </span>
+                    <span>
+                        <span class="src">
+                            The detailed
+                            documentation about individual abstractions belongs with those abstractions,
+                            not at the file level.
+                        </span>
+                        個々の概念に関するより詳細なドキュメントは、ファイル全体に向けたコメントではなく、それぞれの概念に属すべきです。
+                    </span>
                 </p>
 
                 <p>
-                    Do not duplicate comments in both the
-                    <code>.h</code> and the
-                    <code>.cc</code>. Duplicated comments diverge.
+                    <span>
+                        <span class="src">
+                            Do not duplicate comments in both the
+                            <code>.h</code> and the
+                            <code>.cc</code>.
+                        </span>
+                        <code>.h</code>と<code>.cc</code>の両方にコメントを重複させてはいけません。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Duplicated comments diverge.
+                        </span>
+                        重複するコメントは、いずれ分岐してしまいます。
+                    </span>
                 </p>
 
             </div>
 
-            <h3 id="Class_Comments">Class Comments</h3>
+            <h3 id="Class_Comments"><span title="Class Comments">クラスに対するコメント</span></h3>
 
             <div class="summary">
                 <p>
-                    Every non-obvious class declaration should have an accompanying
-                    comment that describes what it is for and how it should be used.
+                    <span>
+                        <span class="src">
+                            Every non-obvious class declaration should have an accompanying
+                            comment that describes what it is for and how it should be used.
+                        </span>
+                        各クラスの宣言には、一目見ただけでわかる場合を除いて、そのクラスの目的と使用方法についてのコメントが必要です。
+                    </span>
                 </p>
             </div>
 
             <div class="stylebody">
-
+                <span>
+                    <span class="src">
 <pre>// Iterates over the contents of a GargantuanTable.
 // Example:
 //    GargantuanTableIterator* iter = table-&gt;NewIterator();
@@ -10968,96 +11091,216 @@ class GargantuanTableIterator {
   ...
 };
 </pre>
+                    </span>
+                    <pre>// GargantuanTable全体をイテレートします
+// 使用例:
+//    GargantuanTableIterator* iter = table-&gt;NewIterator();
+//    for (iter-&gt;Seek("foo"); !iter-&gt;done(); iter-&gt;Next()) {
+//      process(iter-&gt;key(), iter-&gt;value());
+//    }
+//    delete iter;
+class GargantuanTableIterator {
+  ...
+};
+</pre>
+                </span>
 
                 <p>
-                    The class comment should provide the reader with enough information to know
-                    how and when to use the class, as well as any additional considerations
-                    necessary to correctly use the class. Document the synchronization assumptions
-                    the class makes, if any. If an instance of the class can be accessed by
-                    multiple threads, take extra care to document the rules and invariants
-                    surrounding multithreaded use.
+                    <span>
+                        <span class="src">
+                            The class comment should provide the reader with enough information to know
+                            how and when to use the class, as well as any additional considerations
+                            necessary to correctly use the class.
+                        </span>
+                        クラスのコメントは、コードの読者がそのクラスをいつどのように使えばよいのかわかるように記述します。また、クラスを正しく扱うために必要な付加情報があればそれらも記述します。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Document the synchronization assumptions
+                            the class makes, if any.
+                        </span>
+                        また、クラスに同期に関する前提条件が存在する場合は、それらも記述します。
+                    </span>
+                    <span>
+                        <span class="src">
+                            If an instance of the class can be accessed by
+                            multiple threads, take extra care to document the rules and invariants
+                            surrounding multithreaded use.
+                        </span>
+                        クラスのインスタンスが複数のスレッドからアクセスされる場合は、そのクラスをマルチスレッド下で扱う場合のルールや不定性に関しても、細心の注意を払って記述します。
+                    </span>
                 </p>
 
                 <p>
-                    The class comment is often a good place for a small example code snippet
-                    demonstrating a simple and focused usage of the class.
+                    <span>
+                        <span class="src">
+                            The class comment is often a good place for a small example code snippet
+                            demonstrating a simple and focused usage of the class.
+                        </span>
+                        クラスコメントは、そのクラスの使用例などの小さなコードスニペットを記載するためにも都合の良い場所です。
+                    </span>
                 </p>
 
                 <p>
-                    When sufficiently separated (e.g.
-                    <code>.h</code> and
-                    <code>.cc</code>
-                    files), comments describing the use of the class should go together with its
-                    interface definition; comments about the class operation and implementation
-                    should accompany the implementation of the class's methods.
+                    <span>
+                        <span class="src">
+                            When sufficiently separated (e.g.
+                            <code>.h</code> and
+                            <code>.cc</code>
+                            files), comments describing the use of the class should go together with its
+                            interface definition; comments about the class operation and implementation
+                            should accompany the implementation of the class's methods.
+                        </span>
+                        コードが<code>.h</code>と<code>.cc</code>ファイルとに十分に分離されているとき、そのクラスの扱い方に関するコメントはインターフェースの定義のそばにおきます。その一方で、クラスの操作や実装に関するコメントは、クラスメソッドの実装のそばに置きます。
+                    </span>
                 </p>
 
             </div>
 
-            <h3 id="Function_Comments">Function Comments</h3>
+            <h3 id="Function_Comments"><span title="Function Comments">関数に対するコメント</span></h3>
 
             <div class="summary">
                 <p>
-                    Declaration comments describe use of the function (when it is
-                    non-obvious); comments at the definition of a function describe
-                    operation.
+                    <span>
+                        <span class="src">
+                            Declaration comments describe use of the function (when it is
+                            non-obvious); comments at the definition of a function describe
+                            operation.
+                        </span>
+                        関数を宣言するときのコメントは、その関数の使い方(が明らかでない場合)について説明したものにします。一方で、関数を定義するときのコメントは、その関数が行う操作について説明したものにします。
+                    </span>
                 </p>
             </div>
 
             <div class="stylebody">
 
-                <h4 class="stylepoint_subsection">Function Declarations</h4>
+                <h4 class="stylepoint_subsection"><span title="Function Declarations">関数宣言時のコメント</span></h4>
 
                 <p>
-                    Almost every function declaration should have comments immediately
-                    preceding it that describe what the function does and how to use
-                    it. These comments may be omitted only if the function is simple and
-                    obvious (e.g. simple accessors for obvious properties of the
-                    class).  These comments should be descriptive ("Opens the file")
-                    rather than imperative ("Open the file"); the comment describes the
-                    function, it does not tell the function what to do. In general, these
-                    comments do not describe how the function performs its task. Instead,
-                    that should be left to comments in the function definition.
+                    <span>
+                        <span class="src">
+                            Almost every function declaration should have comments immediately
+                            preceding it that describe what the function does and how to use
+                            it.
+                        </span>
+                        ほぼすべての関数宣言において、その宣言の直前に、関数の目的と使用方法に関するコメントをつけます。
+                    </span>
+                    <span>
+                        <span class="src">
+                            These comments may be omitted only if the function is simple and
+                            obvious (e.g. simple accessors for obvious properties of the
+                            class).
+                        </span>
+                        関数が非常に単純で一目で何をするのかがわかる場合は、コメントを省略してもかまいません(たとえば、クラスプロパティへのアクセッサである場合など)。
+                    </span>
+                    <span>
+                        <span class="src">
+                            These comments should be descriptive ("Opens the file")
+                            rather than imperative ("Open the file"); the comment describes the
+                            function, it does not tell the function what to do.
+                        </span>
+                        これらのコメントには、命令形("Open the file")ではなく、平叙形("Opens the file")を使用します。
+                        コメントは、関数が何をするかを表すものであり、関数に何かをさせるためのものではないからです。
+                    </span>
+                    <span>
+                        <span class="src">
+                            In general, these
+                            comments do not describe how the function performs its task.
+                        </span>
+                        一般的に、これらのコメントでは、その関数がどのように処理をするかについては触れません。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Instead,
+                            that should be left to comments in the function definition.
+                        </span>
+                        そのような内容は、ここではなく、関数を定義するときのコメントに譲るようにしてください。
+                    </span>
                 </p>
 
                 <p>
-                    Types of things to mention in comments at the function
-                    declaration:
+                    <span>
+                        <span class="src">
+                            Types of things to mention in comments at the function
+                            declaration:
+                        </span>
+                        関数の宣言のコメントで言及すべきことは以下のような内容です。
+                    </span>
                 </p>
 
                 <ul>
-                    <li>What the inputs and outputs are.</li>
-
                     <li>
-                        For class member functions: whether the object
-                        remembers reference arguments beyond the duration of
-                        the method call, and whether it will free them or
-                        not.
+                        <span>
+                            <span class="src">
+                                What the inputs and outputs are.
+                            </span>
+                            関数の入力と出力は何か。
+                        </span>
                     </li>
 
                     <li>
-                        If the function allocates memory that the caller
-                        must free.
+                        <span>
+                            <span class="src">
+                                For class member functions: whether the object
+                                remembers reference arguments beyond the duration of
+                                the method call, and whether it will free them or
+                                not.
+                            </span>
+                            関数がクラスメンバ関数の場合) 関数に渡した参照引数について、関数から処理が戻った後もオブジェクトが記憶し続けるか否か。また、それをオブジェクト自身が解放するか否か。
+                        </span>
                     </li>
 
                     <li>
-                        Whether any of the arguments can be a null
-                        pointer.
+                        <span>
+                            <span class="src">
+                                If the function allocates memory that the caller
+                                must free.
+                            </span>
+                            その関数が、関数の呼び出し元が解放責任を負うようなメモリを確保するか否か。
+                        </span>
                     </li>
 
                     <li>
-                        If there are any performance implications of how a
-                        function is used.
+                        <span>
+                            <span class="src">
+                                Whether any of the arguments can be a null
+                                pointer.
+                            </span>
+                            引数にNULLを渡してもよいのか否か。
+                        </span>
                     </li>
 
                     <li>
-                        If the function is re-entrant. What are its
-                        synchronization assumptions?
+                        <span>
+                            <span class="src">
+                                If there are any performance implications of how a
+                                function is used.
+                            </span>
+                            関数の使い方に関するパフォーマンス上の注意事項がある場合はその情報。
+                        </span>
+                    </li>
+
+                    <li>
+                        <span>
+                            <span class="src">
+                                If the function is re-entrant. What are its
+                                synchronization assumptions?
+                            </span>
+                            関数は再入可能であるか否か。同期に関する前提条件はどのようなものか。
+                        </span>
                     </li>
                 </ul>
 
-                <p>Here is an example:</p>
-
+                <p>
+                    <span>
+                        <span class="src">
+                            Here is an example:
+                        </span>
+                        以下に例を示します。
+                    </span>
+                </p>
+                <span>
+                    <span class="src">
 <pre>// Returns an iterator for this table.  It is the client's
 // responsibility to delete the iterator when it is done with it,
 // and it must not use the iterator once the GargantuanTable object
@@ -11074,134 +11317,315 @@ class GargantuanTableIterator {
 // and avoid the extra seek.
 Iterator* GetIterator() const;
 </pre>
+                    </span>
+                    <pre>// この表に対するイテレータを返します。
+// このイテレータは不要となった際に関数の呼び出し元でdeleteする必要があります。
+// また、イテレータの元となるGargantuanTableオブジェクトをdeleteした場合、
+// それ以降、そのイテレータを使用してはなりません。
+//
+// イテレータは、初期状態で、表の先頭を指します。
+//
+// この関数は次と等価です。
+//    Iterator* iter = table-&gt;NewIterator();
+//    iter-&gt;Seek("");
+//    return iter;
+// もし、この関数によって返されるイテレータをすぐに別の場所にシークする場合は、
+// NewIterator()関数を使用するほうが、余分なシークを避けられるため、高速です。
+Iterator* GetIterator() const;
+</pre>
+                </span>
+
 
                 <p>
-                    However, do not be unnecessarily verbose or state the
-                    completely obvious. Notice below that it is not necessary
-                    to say "returns false otherwise" because this is
-                    implied.
+                    <span>
+                        <span class="src">
+                            However, do not be unnecessarily verbose or state the
+                            completely obvious.
+                        </span>
+                        コメントを不必要に冗長にしたり、完全に明らかなことをわざわざコメントしたりしてはいけません。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Notice below that it is not necessary
+                            to say "returns false otherwise" because this is
+                            implied.
+                        </span>
+                        以下の例において、「それ以外の場合はfalseを返します」は不要です。それは暗黙的なことだからです。
+                    </span>
                 </p>
-
+                <span>
+                    <span class="src">
 <pre>// Returns true if the table cannot hold any more entries.
 bool IsTableFull();
 </pre>
+                    </span>
+                    <pre>// 表がこれ以上の要素を持てない場合、trueを返します。
+bool IsTableFull();
+</pre>
+                </span>
+
 
                 <p>
-                    When documenting function overrides, focus on the
-                    specifics of the override itself, rather than repeating
-                    the comment from the overridden function.  In many of these
-                    cases, the override needs no additional documentation and
-                    thus no comment is required.
+                    <span>
+                        <span class="src">
+                            When documenting function overrides, focus on the
+                            specifics of the override itself, rather than repeating
+                            the comment from the overridden function.
+                        </span>
+                        オーバーライドした関数にドキュメントを書くときは、オーバーライドする前の関数に関するコメントを繰り返すよりも、オーバーライドを行う内容自体にフォーカスしてください。
+                    </span>
+                    <span>
+                        <span class="src">
+                            In many of these
+                            cases, the override needs no additional documentation and
+                            thus no comment is required.
+                        </span>
+                        ただし、これらの多くの場合において、オーバーライドされた関数は追加の情報を必要としないため、その場合はコメントは不要です。
+                    </span>
                 </p>
 
                 <p>
-                    When commenting constructors and destructors, remember
-                    that the person reading your code knows what constructors
-                    and destructors are for, so comments that just say
-                    something like "destroys this object" are not useful.
-                    Document what constructors do with their arguments (for
-                    example, if they take ownership of pointers), and what
-                    cleanup the destructor does. If this is trivial, just
-                    skip the comment. It is quite common for destructors not
-                    to have a header comment.
+                    <span>
+                        <span class="src">
+                            When commenting constructors and destructors, remember
+                            that the person reading your code knows what constructors
+                            and destructors are for, so comments that just say
+                            something like "destroys this object" are not useful.
+                        </span>
+                        コンストラクタやデストラクタにコメントを書くときの注意点は、コードの読者は、コンストラクタとは何か、デストラクタとは何か既に知っているということです。単に「オブジェクトを破壊します」のようなコメントは役に立ちません。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Document what constructors do with their arguments (for
+                            example, if they take ownership of pointers), and what
+                            cleanup the destructor does.
+                        </span>
+                        コンストラクタのコメントには、コンストラクタがその引数で何をするか(たとえば、ポインタの所有権を引き取るか否か)を記述し、デストラクタのコメントには、デストラクタが何をクリーンアップするかを記述してください。
+                    </span>
+                    <span>
+                        <span class="src">
+                            If this is trivial, just
+                            skip the comment.
+                        </span>
+                        記述するまでもない場合には、コメントは省略できます。
+                    </span>
+                    <span>
+                        <span class="src">
+                            It is quite common for destructors not
+                            to have a header comment.
+                        </span>
+                        実際、大多数のデストラクタにおいて、ヘッダでのコメントはありません。
+                    </span>
                 </p>
 
-                <h4 class="stylepoint_subsection">Function Definitions</h4>
+                <h4 class="stylepoint_subsection"><span title="Function Definitions">関数定義時のコメント</span></h4>
 
                 <p>
-                    If there is anything tricky about how a function does
-                    its job, the function definition should have an
-                    explanatory comment. For example, in the definition
-                    comment you might describe any coding tricks you use,
-                    give an overview of the steps you go through, or explain
-                    why you chose to implement the function in the way you
-                    did rather than using a viable alternative. For instance,
-                    you might mention why it must acquire a lock for the
-                    first half of the function but why it is not needed for
-                    the second half.
+                    <span>
+                        <span class="src">
+                            If there is anything tricky about how a function does
+                            its job, the function definition should have an
+                            explanatory comment.
+                        </span>
+                        関数がその処理において何かしらトリッキーなことをしている場合、関数を定義するときにそれを説明するコメントが必要です。
+                    </span>
+                    <span>
+                        <span class="src">
+                            For example, in the definition
+                            comment you might describe any coding tricks you use,
+                            give an overview of the steps you go through, or explain
+                            why you chose to implement the function in the way you
+                            did rather than using a viable alternative.
+                        </span>
+                        このコメントでは、たとえば、使用されているコーディングトリックを説明したり、その関数の処理手順の概要を示したり、あるいは、様々な実現方法の中からなぜこの実装方法を選んだのかという理由を説明したりすることができます。
+                    </span>
+                    <span>
+                        <span class="src">
+                            For instance,
+                            you might mention why it must acquire a lock for the
+                            first half of the function but why it is not needed for
+                            the second half.
+                        </span>
+                        あるいは、「関数の前半ではロックの取得を必要とするが、後半では必要としない理由」について言及することもできます。
+                    </span>
                 </p>
 
                 <p>
-                    Note you should
-                    <em>not</em> just repeat the comments
-                    given with the function declaration, in the
-                    <code>.h</code> file or wherever. It's okay to
-                    recapitulate briefly what the function does, but the
-                    focus of the comments should be on how it does it.
+                    <span>
+                        <span class="src">
+                            Note you should
+                            <em>not</em> just repeat the comments
+                            given with the function declaration, in the
+                            <code>.h</code> file or wherever.
+                        </span>
+                        <code>.h</code>等で行った関数宣言のコメントの内容を繰り返すだけのコメントは避けてください。
+                    </span>
+                    <span>
+                        <span class="src">
+                            It's okay to
+                            recapitulate briefly what the function does, but the
+                            focus of the comments should be on how it does it.
+                        </span>
+                        関数の概要が軽く繰り返される分にはかまいませんが、どちらかというと、どのようにそれを実現しているかにフォーカスしたコメントとするようにしてください。
+                    </span>
                 </p>
 
             </div>
 
-            <h3 id="Variable_Comments">Variable Comments</h3>
+            <h3 id="Variable_Comments"><span title="Variable Comments">変数に対するコメント</span></h3>
 
             <div class="summary">
                 <p>
-                    In general the actual name of the variable should be
-                    descriptive enough to give a good idea of what the variable
-                    is used for. In certain cases, more comments are required.
+                    <span>
+                        <span class="src">
+                            In general the actual name of the variable should be
+                            descriptive enough to give a good idea of what the variable
+                            is used for.
+                        </span>
+                        通常、変数名には、その変数の目的がわかるような、十分記述的な名前をつけるようにします。
+                    </span>
+                    <span>
+                        <span class="src">
+                            In certain cases, more comments are required.
+                        </span>
+                        それでも、さらにコメントが必要とされる場合があります。
+                    </span>
                 </p>
             </div>
 
             <div class="stylebody">
 
-                <h4 class="stylepoint_subsection">Class Data Members</h4>
+                <h4 class="stylepoint_subsection"><span title="Class Data Members">クラスデータメンバに対するコメント</span></h4>
 
                 <p>
-                    The purpose of each class data member (also called an instance
-                    variable or member variable) must be clear. If there are any
-                    invariants (special values, relationships between members, lifetime
-                    requirements) not clearly expressed by the type and name, they must be
-                    commented. However, if the type and name suffice (
-                    <code>
-                        int
-                        num_events_;
-                    </code>), no comment is needed.
+                    <span>
+                        <span class="src">
+                            The purpose of each class data member (also called an instance
+                            variable or member variable) must be clear.
+                        </span>
+                        各クラスのデータメンバ(インスタンス変数、メンバ変数とも呼ばれる)の目的は明確になっていなければなりません。
+                    </span>
+                    <span>
+                        <span class="src">
+                            If there are any
+                            invariants (special values, relationships between members, lifetime
+                            requirements) not clearly expressed by the type and name, they must be
+                            commented.
+                        </span>
+                        変数の型や変数名だけでは明確に説明できない不変の事柄がある場合(たとえば、特殊な意味を持つ値、メンバ間の関連性、寿命に関する要件など)、それらはコメントとして書かれていなければなりません。
+                    </span>
+                    <span>
+                        <span class="src">
+                            However, if the type and name suffice (
+                            <code>
+                                int
+                                num_events_;
+                            </code>), no comment is needed.
+                        </span>
+                        一方で、型と名前だけで十分ならば(<code>int num_events_;</code>)は、コメントは不要でしょう。
+                    </span>
                 </p>
 
                 <p>
-                    In particular, add comments to describe the existence and meaning
-                    of sentinel values, such as nullptr or -1, when they are not
-                    obvious. For example:
+                    <span>
+                        <span class="src">
+                            In particular, add comments to describe the existence and meaning
+                            of sentinel values, such as nullptr or -1, when they are not
+                            obvious.
+                        </span>
+                        特に、<code>nullptr</code>や<code>-1</code>のような、特殊な意味を持つ値を使うときは、そのような値が存在することや、その意味(明らかでない場合)について、説明のためのコメントを付け足してください。
+                    </span>
+                    <span>
+                        <span class="src">
+                            For example:
+                        </span>
+                        以下に例を示します。
+                    </span>
                 </p>
 
+                <span>
+                    <span class="src">
 <pre>private:
  // Used to bounds-check table accesses. -1 means
  // that we don't yet know how many entries the table has.
  int num_total_entries_;
 </pre>
+                    </span>
+                    <pre>private:
+ // テーブルアクセスの境界値チェックに使います。
+ // -1 は、まだテーブルにいくつの要素があるかわからないことを意味します。
+ int num_total_entries_;
+</pre>
+                </span>
 
-                <h4 class="stylepoint_subsection">Global Variables</h4>
+
+                <h4 class="stylepoint_subsection"><span title="Global Variables">グローバル変数に対するコメント</span></h4>
 
                 <p>
-                    All global variables should have a comment describing what they
-                    are, what they are used for, and (if unclear) why it needs to be
-                    global. For example:
+                    <span>
+                        <span class="src">
+                            All global variables should have a comment describing what they
+                            are, what they are used for, and (if unclear) why it needs to be
+                            global.
+                        </span>
+                        すべてのグローバル変数は、その変数が何を表していて、何のために使われ、そしてなぜグローバルである必要があるのか(明確でない場合)を説明するコメントが必要です。
+                    </span>
+                    <span>
+                        <span class="src">
+                            For example:
+                        </span>
+                        以下に例を示します。
+                    </span>
                 </p>
+                <span>
+                    <span class="src">
 
 <pre>// The total number of tests cases that we run through in this regression test.
 const int kNumTestCases = 6;
 </pre>
+                    </span>
+                    <pre>// この回帰テストにおけるテストケースの総数
+const int kNumTestCases = 6;
+</pre>                </span>
+
 
             </div>
 
-            <h3 id="Implementation_Comments">Implementation Comments</h3>
+            <h3 id="Implementation_Comments"><span title="Implementation Comments">実装に対するコメント</span></h3>
 
             <div class="summary">
                 <p>
-                    In your implementation you should have comments in tricky,
-                    non-obvious, interesting, or important parts of your code.
+                    <span>
+                        <span class="src">
+                            In your implementation you should have comments in tricky,
+                            non-obvious, interesting, or important parts of your code.
+                        </span>
+                        実装コードにおけるトリッキーな部分や、明らかでない部分、興味深い部分、重要な部分について、コメントを記述してください。
+                    </span>
                 </p>
             </div>
 
             <div class="stylebody">
 
-                <h4 class="stylepoint_subsection">Explanatory Comments</h4>
+                <h4 class="stylepoint_subsection"><span title="Explanatory Comments">解説のコメント</span></h4>
 
                 <p>
-                    Tricky or complicated code blocks should have comments
-                    before them. Example:
+                    <span>
+                        <span class="src">
+                            Tricky or complicated code blocks should have comments
+                            before them.
+                        </span>
+                        トリッキーあるいは複雑なコードブロックの前には、コメントを記述してください。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Example:
+                            以下に例を示します。
+                        </span>
+                    </span>
                 </p>
-
+                <span>
+                    <span class="src">
 <pre>// Divide result by two, taking into account that x
 // contains the carry from the add.
 for (int i = 0; i &lt; result-&gt;size(); i++) {
@@ -11210,33 +11634,80 @@ for (int i = 0; i &lt; result-&gt;size(); i++) {
   x &amp;= 1;
 }
 </pre>
+                    </span>
+                    <pre>// resultを2で割る。
+// xには加算からのキャリーが含まれることを考慮する。
+for (int i = 0; i &lt; result-&gt;size(); i++) {
+  x = (x &lt;&lt; 8) + (*result)[i];
+  (*result)[i] = x &gt;&gt; 1;
+  x &amp;= 1;
+}
+</pre>
+                </span>
 
-                <h4 class="stylepoint_subsection">Line Comments</h4>
+
+                <h4 class="stylepoint_subsection"><span title="Line Comments">行末コメント</span></h4>
 
                 <p>
-                    Also, lines that are non-obvious should get a comment
-                    at the end of the line. These end-of-line comments should
-                    be separated from the code by 2 spaces. Example:
+                    <span>
+                        <span class="src">
+                            Also, lines that are non-obvious should get a comment
+                            at the end of the line.
+                        </span>
+                        明らかでない内容が含まれる行についても、行末にコメントをつけておくようにします。
+                    </span>
+                    <span>
+                        <span class="src">
+                            These end-of-line comments should
+                            be separated from the code by 2 spaces.
+                        </span>
+                        行末コメントを入れる場合、コードとの間に2つのスペースを入れます。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Example:
+                            以下に例を示します。
+                        </span>
+                    </span>
                 </p>
-
+                <span>
+                    <span class="src">
 <pre>// If we have enough memory, mmap the data portion too.
 mmap_budget = max&lt;int64&gt;(0, mmap_budget - index_-&gt;length());
 if (mmap_budget &gt;= data_size_ &amp;&amp; !MmapData(mmap_chunk_bytes, mlock))
   return;  // Error already logged.
 </pre>
+                    </span>
+                    <pre>// メモリが十分あれば、mmap the data portion too.
+mmap_budget = max&lt;int64&gt;(0, mmap_budget - index_-&gt;length());
+if (mmap_budget &gt;= data_size_ &amp;&amp; !MmapData(mmap_chunk_bytes, mlock))
+  return;  // エラーは記録済み
+</pre>
+                </span>
 
                 <p>
-                    Note that there are both comments that describe what
-                    the code is doing, and comments that mention that an
-                    error has already been logged when the function
-                    returns.
+                    <span>
+                        <span class="src">
+                            Note that there are both comments that describe what
+                            the code is doing, and comments that mention that an
+                            error has already been logged when the function
+                            returns.
+                        </span>
+                        ここでは、コードが何をしているのかに関するコメントと、関数から抜けるときにエラーが記録済みであることに言及するコメントとの、2種類のコメントが書かれていることに注意してください。
+                    </span>
                 </p>
 
                 <p>
-                    If you have several comments on subsequent lines, it
-                    can often be more readable to line them up:
+                    <span>
+                        <span class="src">
+                            If you have several comments on subsequent lines, it
+                            can often be more readable to line them up:
+                        </span>
+                        後続の行にも続けてコメントを書くときは、それらを揃えたほうが読みやすいです。
+                    </span>
                 </p>
-
+                <span>
+                    <span class="src">
 <pre>DoSomething();                  // Comment here so the comments line up.
 DoSomethingElseThatIsLonger();  // Two spaces between the code and the comment.
 { // One space before comment when opening a new scope is allowed,
@@ -11250,96 +11721,262 @@ std::vector&lt;string&gt; list{
                     "Second item"};
 DoSomething(); /* For trailing block comments, one space is fine. */
 </pre>
+                    </span>
 
-                <h4 class="stylepoint_subsection">Function Argument Comments</h4>
+                    <pre>DoSomething();                  // 行頭を調整したコメント
+DoSomethingElseThatIsLonger();  // コードとコメントの間には、スペース2つ。
+
+{ // 開き波カッコの後の、新しいスコープに対するコメントは、スペース1つでOKです。
+  // 続くコメントやコードは、このように行頭をそろえます。
+  DoSomethingElse();  // 通常の、スペース2つの行コメント。
+}
+
+std::vector&lt;string&gt; list{
+                    // 波カッコのリスト内で、次の要素を説明するためのコメント。
+                    "First item",
+                    // これらは適切な形で整列してください。
+                    "Second item"};
+
+DoSomething(); /* 行末のブロックコメントはスペース1つでOKです。 */
+</pre>
+                </span>
+
+
+                <h4 class="stylepoint_subsection"><span title="Function Argument Comments">関数の引数に対するコメント</span></h4>
 
                 <p>
-                    When the meaning of a function argument is nonobvious, consider
-                    one of the following remedies:
+                    <span>
+                        <span class="src">
+                            When the meaning of a function argument is nonobvious, consider
+                            one of the following remedies:
+                        </span>
+                        関数の引数の意味が明らかでない場合、次に述べる対策のいずれかを検討してください。
+                    </span>
                 </p>
 
                 <ul>
                     <li>
-                        If the argument is a literal constant, and the same constant is
-                        used in multiple function calls in a way that tacitly assumes they're
-                        the same, you should use a named constant to make that constraint
-                        explicit, and to guarantee that it holds.
+                        <span>
+                            <span class="src">
+                                If the argument is a literal constant, and the same constant is
+                                used in multiple function calls in a way that tacitly assumes they're
+                                the same, you should use a named constant to make that constraint
+                                explicit, and to guarantee that it holds.
+                            </span>
+                            引数が定数リテラルであり、かつ、同じ値を複数の関数で使用していて、しかも、それが暗黙的に同じであると仮定されているような場合は、その制限を明示し、かつ、同じ値となることを保証するため、名前つきの定数を使ってください。
+                        </span>
                     </li>
 
                     <li>
-                        Consider changing the function signature to replace a
-                        <code>bool</code>
-                        argument with an
-                        <code>enum</code> argument. This will make the argument
-                        values self-describing.
+                        <span>
+                            <span class="src">
+                                Consider changing the function signature to replace a
+                                <code>bool</code>
+                                argument with an
+                                <code>enum</code> argument.
+                            </span>
+                            <code>bool</code>の代わりに<code>enum</code>を使ってください。
+                        </span>
+                        <span>
+                            <span class="src">
+                                This will make the argument
+                                values self-describing.
+                            </span>
+                            これによって、引数の値が自分自身を説明するようにできます。
+                        </span>
                     </li>
 
                     <li>
-                        For functions that have several configuration options, consider
-                        defining a single class or struct to hold all the options
-                        ,
-                        and pass an instance of that.
-                        This approach has several advantages. Options are referenced by name
-                        at the call site, which clarifies their meaning. It also reduces
-                        function argument count, which makes function calls easier to read and
-                        write. As an added benefit, you don't have to change call sites when
-                        you add another option.
+                        <span>
+                            <span class="src">
+                                For functions that have several configuration options, consider
+                                defining a single class or struct to hold all the options
+                                ,
+                                and pass an instance of that.
+                            </span>
+                            関数がいくつかの設定オプションを持つような場合、すべてのオプションを保持するような1つのクラスか構造体を定義し、そのインスタンスを関数に渡すようにしてください。
+                        </span>
+                        <span>
+                            <span class="src">
+
+                                This approach has several advantages.
+                            </span>
+                            この方法はいくつか利点があります。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Options are referenced by name
+                                at the call site, which clarifies their meaning.
+                            </span>
+                            まず、呼び出し元において、オプションが名前によって参照されるため、意味が明確になります。
+                        </span>
+                        <span>
+                            <span class="src">
+                                It also reduces
+                                function argument count, which makes function calls easier to read and
+                                write.
+                            </span>
+                            また、関数の引数の数が減るため、関数呼び出し自体を読みやすく書きやすくなります。
+                        </span>
+                        <span>
+                            <span class="src">
+                                As an added benefit, you don't have to change call sites when
+                                you add another option.
+                            </span>
+                            さらに、将来オプションを追加するときに、呼び出し元のコードを書き換える必要がなくなります。
+                        </span>
                     </li>
 
-                    <li>Replace large or complex nested expressions with named variables.</li>
+                    <li>
+                        <span>
+                            <span class="src">
+                                Replace large or complex nested expressions with named variables.
+                            </span>
+                            長くて複雑なネストを含む式は、名前付きの変数によって分割してください。
+                        </span>
+                    </li>
 
                     <li>
-                        As a last resort, use comments to clarify argument meanings at the
-                        call site.
+                        <span>
+                            <span class="src">
+                                As a last resort, use comments to clarify argument meanings at the
+                                call site.
+                            </span>
+                            最後の手段として、引数の意味を明確にするためのコメントを使用してください。
+                        </span>
                     </li>
                 </ul>
-
-                Consider the following example:
-
+                <span>
+                    <span class="src">
+                        Consider the following example:
+                    </span>
+                    次の例を考えてみましょう。
+                </span>
+                <span>
+                    <span class="src">
 <pre class="badcode">// What are these arguments?
 const DecimalNumber product = CalculateProduct(values, 7, false, nullptr);
 </pre>
+                    </span>
+                    <pre class="badcode">// これらの引数の意味は？
+const DecimalNumber product = CalculateProduct(values, 7, false, nullptr);
+</pre>
+                </span>
 
-                <p>versus:</p>
 
+                <p>
+                    <span>
+                        <span class="src">
+                            versus:
+                        </span>
+                        これに対して……
+                    </span>
+                </p>
+                <span>
+                    <span class="src">
 <pre>ProductOptions options;
 options.set_precision_decimals(7);
 options.set_use_cache(ProductOptions::kDontUseCache);
 const DecimalNumber product =
     CalculateProduct(values, options, /*completion_callback=*/nullptr);
 </pre>
+                    </span>
+                    <pre>ProductOptions options;
+options.set_precision_decimals(7);
+options.set_use_cache(ProductOptions::kDontUseCache);
+const DecimalNumber product =
+    CalculateProduct(values, options, /*completion_callback=*/nullptr);
+</pre>
+                </span>
 
-                <h4 class="stylepoint_subsection">Don'ts</h4>
+
+                <h4 class="stylepoint_subsection"><span title="Don'ts">してはならないこと</span></h4>
 
                 <p>
-                    Do not state the obvious. In particular, don't literally describe what
-                    code does, unless the behavior is nonobvious to a reader who understands
-                    C++ well. Instead, provide higher level comments that describe
-                    <i>why</i>
-                    the code does what it does, or make the code self describing.
+                    <span>
+                        <span class="src">
+                            Do not state the obvious.
+                        </span>
+                        明らかなことをわざわざコメントしてはなりません。
+                    </span>
+                    <span>
+                        <span class="src">
+                            In particular, don't literally describe what
+                            code does, unless the behavior is nonobvious to a reader who understands
+                            C++ well.
+                        </span>
+                        C++を十分理解している読者が見て明らかでない場合は除きますが、通常は、コードがしていることをただ説明してはいけません。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Instead, provide higher level comments that describe
+                            <i>why</i>
+                            the code does what it does, or make the code self describing.
+                        </span>
+                        そのようなコメントをつける代わりに、それよりも高い次元の、たとえばそのコードが<em>なぜ</em>それをしているのかをコメントとして記述するか、あるいはコード自身でそれを説明するようにしてください。
+                    </span>
                 </p>
 
-                Compare this:
-
+                <span>
+                    <span class="src">
+                        Compare this:
+                    </span>
+                    以下のコードを比べてみましょう。
+                </span>
+                <span>
+                    <span class="src">
 <pre class="badcode">// Find the element in the vector.  &lt;-- Bad: obvious!
 auto iter = std::find(v.begin(), v.end(), element);
 if (iter != v.end()) {
   Process(element);
 }
 </pre>
+                    </span>
+                    <pre class="badcode">// vectorの中から要素を検索する。  &lt;-- ダメ。そんなことはコードを見れば明らか。
+auto iter = std::find(v.begin(), v.end(), element);
+if (iter != v.end()) {
+  Process(element);
+}
+</pre>
+                </span>
 
-                To this:
 
+                <span>
+                    <span class="src">
+                        To this:
+                    </span>
+                    と、
+                </span>
+                <span>
+                    <span class="src">
 <pre>// Process "element" unless it was already processed.
 auto iter = std::find(v.begin(), v.end(), element);
 if (iter != v.end()) {
   Process(element);
 }
 </pre>
+                    </span>
+                    <pre>// まだ処理していない要素があれば処理する。
+auto iter = std::find(v.begin(), v.end(), element);
+if (iter != v.end()) {
+  Process(element);
+}
+</pre>
+                </span>
 
-                Self-describing code doesn't need a comment. The comment from
-                the example above would be obvious:
-
+                <span>
+                    <span class="src">
+                        Self-describing code doesn't need a comment.
+                    </span>
+                    さらに、コードが説明的になっていると、コメントを必要とすらしません。
+                </span>
+                <span>
+                    <span class="src">
+                        The comment from
+                        the example above would be obvious:
+                    </span>
+                    上の例におけるコメントは、以下のようにすると、より明確です。
+                </span>
 <pre>if (!IsAlreadyProcessed(element)) {
   Process(element);
 }
@@ -11347,141 +11984,276 @@ if (iter != v.end()) {
 
             </div>
 
-            <h3 id="Punctuation,_Spelling_and_Grammar">Punctuation, Spelling and Grammar</h3>
+            <h3 id="Punctuation,_Spelling_and_Grammar"><span title="Punctuation, Spelling and Grammar">句読点と綴りと文法</span></h3>
 
             <div class="summary">
                 <p>
-                    Pay attention to punctuation, spelling, and grammar; it is
-                    easier to read well-written comments than badly written
-                    ones.
+                    <span>
+                        <span class="src">
+                            Pay attention to punctuation, spelling, and grammar; it is
+                            easier to read well-written comments than badly written
+                            ones.
+                        </span>
+                        句読点や綴りや文法に注意してください。きちんとしたコメントは、それだけで読みやすいものです。
+                    </span>
                 </p>
             </div>
 
             <div class="stylebody">
 
                 <p>
-                    Comments should be as readable as narrative text, with
-                    proper capitalization and punctuation. In many cases,
-                    complete sentences are more readable than sentence
-                    fragments. Shorter comments, such as comments at the end
-                    of a line of code, can sometimes be less formal, but you
-                    should be consistent with your style.
+                    <span>
+                        <span class="src">
+                            Comments should be as readable as narrative text, with
+                            proper capitalization and punctuation.
+                        </span>
+                        コメントは、大文字や句読点を適切に用いたふつうの文章として読めるように記述します。
+                    </span>
+                    <span>
+                        <span class="src">
+                            In many cases,
+                            complete sentences are more readable than sentence
+                            fragments.
+                        </span>
+                        多くの場合、文の断片だけの場合よりも、完全な文にするほうが読みやすいです。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Shorter comments, such as comments at the end
+                            of a line of code, can sometimes be less formal, but you
+                            should be consistent with your style.
+                        </span>
+                        行末のコメントなど、短いコメントは形式を崩しがちですが、スタイルには一貫性を持たせるべきです。
+                    </span>
                 </p>
 
                 <p>
-                    Although it can be frustrating to have a code reviewer
-                    point out that you are using a comma when you should be
-                    using a semicolon, it is very important that source code
-                    maintain a high level of clarity and readability. Proper
-                    punctuation, spelling, and grammar help with that
-                    goal.
+                    <span>
+                        <span class="src">
+                            Although it can be frustrating to have a code reviewer
+                            point out that you are using a comma when you should be
+                            using a semicolon, it is very important that source code
+                            maintain a high level of clarity and readability.
+                        </span>
+                        コードレビュアーからの「セミコロンを使うべきところでカンマを使っている」といった指摘にはうんざりするかもしれませんが、ソースコードの明瞭性や可読性を高く保つことは、本当に重要なことなのです。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Proper
+                            punctuation, spelling, and grammar help with that
+                            goal.
+                        </span>
+                        適切な句読点、正しい綴り、正しい文法は、このゴールに向かうための手助けをしてくれるでしょう。
+                    </span>
                 </p>
 
             </div>
 
-            <h3 id="TODO_Comments">TODO Comments</h3>
+            <h3 id="TODO_Comments"><span title="TODO Comments">TODOコメント</span></h3>
 
             <div class="summary">
                 <p>
-                    Use
-                    <code>TODO</code> comments for code that is temporary,
-                    a short-term solution, or good-enough but not perfect.
+                    <span>
+                        <span class="src">
+                            Use
+                            <code>TODO</code> comments for code that is temporary,
+                            a short-term solution, or good-enough but not perfect.
+                        </span>
+                        <code>TODO</code>コメントは、一時的なもの、暫定対応、あるいは完璧ではないがその場しのぎにはなるようなコードに対して使用してください。
+                    </span>
                 </p>
             </div>
 
             <div class="stylebody">
 
                 <p>
-                    <code>TODO</code>s should include the string
-                    <code>TODO</code> in all caps, followed by the
+                    <span>
+                        <span class="src">
+                            <code>TODO</code>s should include the string
+                            <code>TODO</code> in all caps, followed by the
 
-                    name, e-mail address, bug ID, or other
-                    identifier
-                    of the person or issue with the best context
-                    about the problem referenced by the
-                    <code>TODO</code>. The
-                    main purpose is to have a consistent
-                    <code>TODO</code> that
-                    can be searched to find out how to get more details upon
-                    request. A
-                    <code>TODO</code> is not a commitment that the
-                    person referenced will fix the problem. Thus when you create
-                    a
-                    <code>TODO</code> with a name, it is almost always your
-                    name that is given.
+                            name, e-mail address, bug ID, or other
+                            identifier
+                            of the person or issue with the best context
+                            about the problem referenced by the
+                            <code>TODO</code>.
+                        </span>
+                        <code>TODO</code>は、すべて大文字で<code>TODO</code>と書き、続けて、その<code>TODO</code>に関する問題についてもっともよく知る人やissueに関連付く、名前やメールアドレス、バグ管理番号、その他の識別子を含めるようにします。
+                    </span>
+                    <span>
+                        <span class="src">
+                            The
+                            main purpose is to have a consistent
+                            <code>TODO</code> that
+                            can be searched to find out how to get more details upon
+                            request.
+                        </span>
+                        このルールの主な目的は、<code>TODO</code>に一貫性を持たせ、その件についてより詳しく知るためにはどうしたらよいか、わかるようにすることです。
+                    </span>
+                    <span>
+                        <span class="src">
+                            A
+                            <code>TODO</code> is not a commitment that the
+                            person referenced will fix the problem.
+                        </span>
+                        <code>TODO</code>は、「名前の書かれている人がその問題を直します」というコミットメントではありません。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Thus when you create
+                            a
+                            <code>TODO</code> with a name, it is almost always your
+                            name that is given.
+                        </span>
+                        したがって、あなたが<code>TODO</code>を作るときは、ほとんど常にあなたの名前で作ることになるでしょう。
+                    </span>
                 </p>
 
 
 
                 <div>
+                    <span>
+                        <span class="src">
 <pre>// TODO(kl@gmail.com): Use a "*" here for concatenation operator.
 // TODO(Zeke) change this to use relations.
 // TODO(bug 12345): remove the "Last visitors" feature
 </pre>
+                        </span>
+                        <pre>// TODO(kl@gmail.com): 結合のために*演算子を使うほうがいいのだが……
+// TODO(Zeke) 関係を使うように直さねば……
+// TODO(bug 12345): Last visitors機能は削除せねば……
+</pre>
+                    </span>
+
                 </div>
 
                 <p>
-                    If your
-                    <code>TODO</code> is of the form "At a future
-                    date do something" make sure that you either include a
-                    very specific date ("Fix by November 2005") or a very
-                    specific event ("Remove this code when all clients can
-                    handle XML responses.").
+                    <span>
+                        <span class="src">
+                            If your
+                            <code>TODO</code> is of the form "At a future
+                            date do something" make sure that you either include a
+                            very specific date ("Fix by November 2005") or a very
+                            specific event ("Remove this code when all clients can
+                            handle XML responses.").
+                        </span>
+                        もし、<code>TODO</code>が「未来のいついつ、なにをする」という形式になる場合は、必ず、具体的な日付(例:2005年11月までに直す)や、具体的なイベント(例:すべてのクライアントがXMLレスポンスを扱えるようになったらこのコードは消す)を含めるようにしてください。
+                    </span>
                 </p>
 
             </div>
 
-            <h3 id="Deprecation_Comments">Deprecation Comments</h3>
+            <h3 id="Deprecation_Comments"><span title="Deprecation Comments">非推奨な事柄に対するコメント</span></h3>
 
             <div class="summary">
                 <p>
-                    Mark deprecated interface points with
-                    <code>DEPRECATED</code>
-                    comments.
+                    <span>
+                        <span class="src">
+                            Mark deprecated interface points with
+                            <code>DEPRECATED</code>
+                            comments.
+                        </span>
+                        推奨されないインターフェースは<code>DEPRECATED</code>というコメントでマークしてください。
+                    </span>
                 </p>
             </div>
 
             <div class="stylebody">
 
                 <p>
-                    You can mark an interface as deprecated by writing a
-                    comment containing the word
-                    <code>DEPRECATED</code> in
-                    all caps. The comment goes either before the declaration
-                    of the interface or on the same line as the
-                    declaration.
+                    <span>
+                        <span class="src">
+                            You can mark an interface as deprecated by writing a
+                            comment containing the word
+                            <code>DEPRECATED</code> in
+                            all caps.
+                        </span>
+                        インターフェースに、すべて大文字の<code>DEPRECATED</code>という語句を含むコメントをつけることで、そのインターフェースが推奨されていないことを表せます。
+                    </span>
+                    <span>
+                        <span class="src">
+                            The comment goes either before the declaration
+                            of the interface or on the same line as the
+                            declaration.
+                        </span>
+                        このコメントは、インターフェースの宣言の直前か、宣言と同じ行のいずれかにつけてください。
+                    </span>
                 </p>
 
 
 
                 <p>
-                    After the word
-                    <code>DEPRECATED</code>, write your name, e-mail address,
-                    or other identifier in parentheses.
+                    <span>
+                        <span class="src">
+                            After the word
+                            <code>DEPRECATED</code>, write your name, e-mail address,
+                            or other identifier in parentheses.
+                        </span>
+                        <code>DEPRECATED</code>という語句の後に、丸カッコで囲んで、自分の名前かメールアドレス、その他何らかの自分に繋がる識別子を記載してください。
+                    </span>
                 </p>
 
                 <p>
-                    A deprecation comment must include simple, clear
-                    directions for people to fix their callsites. In C++, you
-                    can implement a deprecated function as an inline function
-                    that calls the new interface point.
+                    <span>
+                        <span class="src">
+                            A deprecation comment must include simple, clear
+                            directions for people to fix their callsites.
+                        </span>
+                        何かを非推奨とするためのコメントには、それの呼び出し元をどのように修正すればよいか、シンプルでわかりやすい指示が含まれていなければなりません。
+                    </span>
+                    <span>
+                        <span class="src">
+                            In C++, you
+                            can implement a deprecated function as an inline function
+                            that calls the new interface point.
+                        </span>
+                        C++においては、非推奨となった関数を、新しいインターフェースを呼び出すインライン関数として実装することもできます。
+                    </span>
                 </p>
 
                 <p>
-                    Marking an interface point
-                    <code>DEPRECATED</code>
-                    will not magically cause any callsites to change. If you
-                    want people to actually stop using the deprecated
-                    facility, you will have to fix the callsites yourself or
-                    recruit a crew to help you.
+                    <span>
+                        <span class="src">
+                            Marking an interface point
+                            <code>DEPRECATED</code>
+                            will not magically cause any callsites to change.
+                        </span>
+                        <code>DEPRECATED</code>でインターフェースをマークしても、魔法的な力が働いて、呼び出し元が自然に書き換わる、というようなことはありません。
+                    </span>
+                    <span>
+                        <span class="src">
+                            If you
+                            want people to actually stop using the deprecated
+                            facility, you will have to fix the callsites yourself or
+                            recruit a crew to help you.
+                        </span>
+                        もしあなたが、非推奨としたインターフェースを呼ぶのを本気でやめてほしいときは、そのコードを呼び出し元を自分自身で修正するか、手伝ってくれる仲間を集める必要があるでしょう。
+                    </span>
                 </p>
 
                 <p>
-                    New code should not contain calls to deprecated
-                    interface points. Use the new interface point instead. If
-                    you cannot understand the directions, find the person who
-                    created the deprecation and ask them for help using the
-                    new interface point.
+                    <span>
+                        <span class="src">
+                            New code should not contain calls to deprecated
+                            interface points.
+                        </span>
+                        新しいコードは、非推奨となったインターフェースの呼び出しを含むべきではありません。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Use the new interface point instead.
+                        </span>
+                        かわりに、新しいインターフェースを使いましょう。
+                    </span>
+                    <span>
+                        <span class="src">
+                            If
+                            you cannot understand the directions, find the person who
+                            created the deprecation and ask them for help using the
+                            new interface point.
+                        </span>
+                        そこに書いてある指示ではどうすればいいのかわからないかったときは、そのインターフェースを非推奨とマークした人を探して、新しいインターフェースを使うためにはどのようにすればよいか訪ねてください。
+                    </span>
                 </p>
 
 
