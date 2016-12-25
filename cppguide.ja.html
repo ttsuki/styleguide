@@ -198,7 +198,7 @@ remember it.">個々のスタイルルールは「所属するすべてのエン
             <div class="summary">
                 <p>
                     <span title="Header files should be self-contained (compile on their own) and end in .h.">ヘッダファイルは自己完結(単体でコンパイルできる)していなくてはならず、名前は<code>.h</code>で終わります。</span>
-                    <span title="Non-header files that are meant for inclusion should end in .inc and be used sparingly.">ヘッダファイルではない、includeして使われるべきものは<code>.inc</code>で終わるようにしますが、なるべく使用は控えるようにしましょう。
+                    <span title="Non-header files that are meant for inclusion should end in .inc and be used sparingly.">ヘッダファイルではない、includeして使われるべきものは<code>.inc</code>で終わるようにしますが、なるべく使用は控えるようにしましょう。</span>
                 </p>
             </div>
 
@@ -270,7 +270,7 @@ remember it.">個々のスタイルルールは「所属するすべてのエン
             <div class="summary">
                 <p>
                     <span title="Avoid using forward declarations where possible.">前方宣言は可能な限り避けましょう。</span>
-                    <span title="Just #include the headers you need.">必要ならば単にヘッダを<code>#include</code>してください。
+                    <span title="Just #include the headers you need.">必要ならば単にヘッダを<code>#include</code>してください。</span>
                 </p>
             </div>
 
@@ -375,7 +375,7 @@ remember it.">個々のスタイルルールは「所属するすべてのエン
 
                 <div class="definition">
                     <p>
-                        <span title="You can declare functions in a way that allows the compiler to expand them inline rather than calling them through the usual function call mechanism.">関数は、コンパイラに対して、通常の関数呼び出しの代わりに、直接その場に展開することを許した形で宣言することができます。
+                        <span title="You can declare functions in a way that allows the compiler to expand them inline rather than calling them through the usual function call mechanism.">関数は、コンパイラに対して、通常の関数呼び出しの代わりに、直接その場に展開することを許した形で宣言することができます。</span>
                     </p>
                 </div>
 
@@ -402,7 +402,7 @@ remember it.">個々のスタイルルールは「所属するすべてのエン
                     </p>
 
                     <p>
-                        <span title="Another useful rule of thumb: it's typically not cost effective to inline functions with loops or switch statements (unless, in the common case, the loop or switch statement is never executed).">もう１つ、有用な経験的なルールとして、大抵の場合、ループやswitch文のある関数は(それらがまったく実行されないような場合を除いて)インライン化しても効率的にはなりません。
+                        <span title="Another useful rule of thumb: it's typically not cost effective to inline functions with loops or switch statements (unless, in the common case, the loop or switch statement is never executed).">もう１つ、有用な経験的なルールとして、大抵の場合、ループやswitch文のある関数は(それらがまったく実行されないような場合を除いて)インライン化しても効率的にはなりません。</span>
                     </p>
 
                     <p>
@@ -428,7 +428,7 @@ remember it.">個々のスタイルルールは「所属するすべてのエン
             <div class="stylebody">
                 <p>
                     <span title="All of a project's header files should be listed as descendants of the project's source directory without use of UNIX directory shortcuts . (the current directory) or .. (the parent directory).">プロジェクトヘッダはプロジェクトソースディレクトリ以下に配置しなくてはなりません。UNIXディレクトリショートカットである <code>.</code>(カレントディレクトリ)や、<code>..</code>(親ディレクトリ)は省きます。</span>
-                    <span title="For example, google-awesome-project/src/base/logging.h should be included as:">たとえば、<code>google-awesome-project/src/base/logging.h</code>は次のようにインクルードされます。
+                    <span title="For example, google-awesome-project/src/base/logging.h should be included as:">たとえば、<code>google-awesome-project/src/base/logging.h</code>は次のようにインクルードされます。</span>
                 </p>
 
 <pre>#include "base/logging.h"
@@ -452,7 +452,7 @@ remember it.">個々のスタイルルールは「所属するすべてのエン
                     </li>
 
                     <li>
-                        <span title="Other libraries' .h files.">ほかのライブラリの<code>.h</code>ファイル
+                        <span title="Other libraries' .h files.">ほかのライブラリの<code>.h</code>ファイル</span>
                     </li>
 
                     <li>
@@ -467,7 +467,7 @@ remember it.">個々のスタイルルールは「所属するすべてのエン
                 </p>
 
                 <p>
-                    <span title="dir/foo.cc and dir2/foo2.h are usually in the same directory (e.g. base/basictypes_test.cc and base/basictypes.h), but may sometimes be in different directories too."><code><var>dir/foo</var>.cc</code>と<code><var>dir2/foo2</var>.h</code>は、一般的に同じディレクトリに置きますが(たとえば、<code>base/basictypes_test.cc</code>と<code>base/basictypes.h</code>)、異なるディレクトリに置いてもよいです。
+                    <span title="dir/foo.cc and dir2/foo2.h are usually in the same directory (e.g. base/basictypes_test.cc and base/basictypes.h), but may sometimes be in different directories too."><code><var>dir/foo</var>.cc</code>と<code><var>dir2/foo2</var>.h</code>は、一般的に同じディレクトリに置きますが(たとえば、<code>base/basictypes_test.cc</code>と<code>base/basictypes.h</code>)、異なるディレクトリに置いてもよいです。</span>
                 </p>
 
 
@@ -567,7 +567,7 @@ remember it.">個々のスタイルルールは「所属するすべてのエン
                             </a>.
                         </span>
                         無名名前空間については<a href="#Unnamed_Namespaces_and_Static_Variables">無名名前空間と静的変数</a>を参照してください。
-                    </span></a>.
+                    </span>.
                 </p>
             </div>
 
@@ -876,7 +876,7 @@ using namespace foo;
                                         in a header file becomes part of the public
                                         API exported by that file.
                                     </span>
-                                    内部的に使用すると明示した名前空間の中を除いて、名前空間の別名(Namespace ailiases)</i>をヘッダファイルの名前空間のスコープで使ってはいけません。なぜならば、ヘッダファイルで名前空間にインポートされたすべてのものが、そのヘッダファイルが提供するpublicなAPIの一部として公開されることになるからです。
+                                    内部的に使用すると明示した名前空間の中を除いて、名前空間の別名(Namespace ailiases)をヘッダファイルの名前空間のスコープで使ってはいけません。なぜならば、ヘッダファイルで名前空間にインポートされたすべてのものが、そのヘッダファイルが提供するpublicなAPIの一部として公開されることになるからです。
                                 </span>
                             </p>
 
@@ -1023,7 +1023,7 @@ inline void my_inline_function() {
             </div>
 
             <h3 id="Nonmember,_Static_Member,_and_Global_Functions">
-                <span title="Nonmember, Static Member, and Global Functions">メンバではない関数、静的メンバ関数、グローバル関数
+                <span title="Nonmember, Static Member, and Global Functions">メンバではない関数、静的メンバ関数、グローバル関数</span>
             </h3>
 
             <div class="summary">
@@ -11586,7 +11586,8 @@ const int kNumTestCases = 6;
                     </span>
                     <pre>// この回帰テストにおけるテストケースの総数
 const int kNumTestCases = 6;
-</pre>                </span>
+</pre>
+                </span>
 
 
             </div>
