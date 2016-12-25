@@ -5204,8 +5204,8 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
                                     phase.
                                 </span>
                                 さらに、コードの読者に全体の呼び出しグラフを理解してもらう必要を避けるために、例外安全なコードはmust isolate
-                                    logic that writes to persistent state into a "commit"
-                                    phase.
+                                logic that writes to persistent state into a "commit"
+                                phase.
                             </span>
                             <span>
                                 <span class="src">
@@ -5569,7 +5569,7 @@ bool Derived::Equal(Base* other) {
                                 <span class="src">
                                     This puts the work within the object itself.
                                 </span>
-                               この方法は、分岐する処理をオブジェクト内に書くことができます。
+                                この方法は、分岐する処理をオブジェクト内に書くことができます。
                             </span>
                         </li>
 
@@ -7186,7 +7186,7 @@ bool Derived::Equal(Base* other) {
                                     still possible, as usual, to include length
                                     specifiers, etc., after the <code>%</code> when using
                                     the <code>PRI*</code> macros.
-                                    
+
                                 </span>
                                 これらを使う場合でも、普段通り、幅指定子などを含めることができます。<code>%</code>の後ろに、<code>PRI*</code>を使う前に挿入します。
                             </span>
@@ -7292,7 +7292,7 @@ bool Derived::Equal(Base* other) {
                                 </span>
                                 例を挙げます。
                             </span>
-                    </p>
+                        </p>
 
 
 <pre>int64_t my_value = 0x123456789LL;
@@ -7554,7 +7554,8 @@ uint64_t my_mask = 3ULL &lt;&lt; 48;
                             without <code>#undef</code>ing them before the end of the header)
                             is extremely strongly discouraged.
                         </span>
-                        ヘッダからマクロをエクスポートする(言い換えると、ヘッダでマクロを定義し、そのヘッダの終わりまで<code>#undef</code>しない)ことは、非常に強く非推奨です。 </span>
+                        ヘッダからマクロをエクスポートする(言い換えると、ヘッダでマクロを定義し、そのヘッダの終わりまで<code>#undef</code>しない)ことは、非常に強く非推奨です。
+                    </span>
                     <span>
                         <span class="src">
                             If you do export a macro from a
@@ -8061,7 +8062,7 @@ TestFunction2({1, 2, 3});
                             created from <i>braced-init-list</i>:
                         </span>
                         ユーザ定義の型は、<code>std::initializer_list&lt;T&gt;</code>を引数にとるコンストラクタや代入演算子を定義することで、<i>初期化子リスト</i>からオブジェクトを生成することができます。以下に例を示します。
-</span>
+                    </span>
                 </p>
                 <span>
                     <span class="src">
@@ -8265,7 +8266,7 @@ std::for_each(v.begin(), v.end(), [weight, &amp;sum](int x) {
                         </span>
                         デフォルトのキャプチャは暗黙的にラムダ式の本体で参照されたすべての変数をキャプチャします。何らかのメンバが使われている場合は<code>this</code>もキャプチャされます。
                     </span>
-                       <span>
+                    <span>
                         <span class="src">
 <pre>const std::vector&lt;int&gt; lookup_table = ...;
 std::vector&lt;int&gt; indices = ...;
@@ -8276,7 +8277,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
 });
 </pre>
                         </span>
-                           <pre>const std::vector&lt;int&gt; lookup_table = ...;
+                        <pre>const std::vector&lt;int&gt; lookup_table = ...;
 std::vector&lt;int&gt; indices = ...;
 // lookup_tableを参照としてキャプチャし、
 // lookup_tableの要素に関連づけられたindicesの値をソートしています。
@@ -8461,7 +8462,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
 // reference.
 </pre>
                                 </span>
-                                        <pre>{
+                                <pre>{
   Foo foo;
   ...
   executor-&gt;Schedule([&amp;foo] { Frobnicate(foo); })
@@ -8857,8 +8858,8 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                         <code>boost/graph/distributed/*</code>).
                                     </span>
                                     <a href="https://www.boost.org/libs/graph/">The Boost Graph Library (BGL)</a> (<code>boost/graph</code>) ただし、serialization (<code>adj_list_serialize.hpp</code>)と、
-                                        parallel/distributed algorithms and data structures
-                                        (<code>boost/graph/parallel/*</code>, <code>boost/graph/distributed/*</code>)を除く
+                                    parallel/distributed algorithms and data structures
+                                    (<code>boost/graph/parallel/*</code>, <code>boost/graph/distributed/*</code>)を除く
                                 </span>
                             </li>
 
@@ -8967,8 +8968,8 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                         </a> from <code>boost/heap</code>
                                     </span>
                                     <a href="https://www.boost.org/libs/heap/">
-                                            Heap
-                                        </a> (<code>boost/heap</code>)
+                                        Heap
+                                    </a> (<code>boost/heap</code>)
                                 </span>
                             </li>
 
@@ -9634,7 +9635,7 @@ using other_namespace::Foo;
                                 or in an explicitly-marked internal namespace.
                             </span>
                             エイリアスは、関数の定義内や、クラスのprivateな部分、あるいは内部用と明示された名前空間の中で宣言されている場合を除いて、他の宣言と同様に、ヘッダファイルにおいて、そのヘッダの持つpublicなAPIの一部として宣言されます。
-                            
+
                         </span>
                         <span>
                             <span class="src">
@@ -9795,7 +9796,8 @@ using DataPoint = foo::bar::Bar*;
 // これはユーザの利便性のために定義されています。
 using TimeSeries = std::unordered_set&lt;DataPoint, std::hash&lt;DataPoint&gt;, DataPointComparator&gt;;
 }  // namespace a
-</pre>                   </span>
+</pre>
+                    </span>
                     <p>
                         <span>
                             <span class="src">
@@ -9848,47 +9850,101 @@ using std::unordered_set;
                 </div>
             </div>
 
-            <h2 id="Naming">Naming</h2>
+            <h2 id="Naming"><span title="Naming">命名規則</span></h2>
 
             <p>
-                The most important consistency rules are those that govern
-                naming. The style of a name immediately informs us what sort of
-                thing the named entity is: a type, a variable, a function, a
-                constant, a macro, etc., without requiring us to search for the
-                declaration of that entity. The pattern-matching engine in our
-                brains relies a great deal on these naming rules.
+                <span>
+                    <span class="src">
+                        The most important consistency rules are those that govern
+                        naming.
+                    </span>
+                    一貫性を保つためのもっとも重要ルールは、名前の付け方を決めることです。
+                </span>
+                <span>
+                    <span class="src">
+                        The style of a name immediately informs us what sort of
+                        thing the named entity is: a type, a variable, a function, a
+                        constant, a macro, etc., without requiring us to search for the
+                        declaration of that entity.
+                    </span>
+                    名前のスタイルのおかげで、名前のついたそれが何であるか、型なのか、変数なのか、関数なのか、定数なのか、マクロなのか、その宣言を探しに行かなくとも、すぐにわかるのです。
+
+                </span>
+                <span>
+                    <span class="src">
+                        The pattern-matching engine in our
+                        brains relies a great deal on these naming rules.
+                    </span>
+                    我々の脳内パターンマッチングエンジンは、これらの名前付けのルールに大きく依存しています。
+                </span>
             </p>
 
             <p>
-                Naming rules are pretty arbitrary, but
-                we feel that
-                consistency is more important than individual preferences in this
-                area, so regardless of whether you find them sensible or not,
-                the rules are the rules.
+                <span>
+                    <span class="src">
+                        Naming rules are pretty arbitrary, but
+                        we feel that
+                        consistency is more important than individual preferences in this
+                        area, so regardless of whether you find them sensible or not,
+                        the rules are the rules.
+                    </span>
+                    命名規則はかなり恣意的なものですが、我々は個人の好みよりも全体の一貫性をより重要視します。そのため、あなたがわかりやすいかと感じるかどうかに関わらず、ルールはルールと考えてください。
+                </span>
             </p>
 
-            <h3 id="General_Naming_Rules">General Naming Rules</h3>
+            <h3 id="General_Naming_Rules"><span title="General Naming Rules">全般的な命名規則</span></h3>
 
             <div class="summary">
-                <p>Names should be descriptive; avoid abbreviation.</p>
+                <p>
+                    <span>
+                        <span class="src">
+                            Names should be descriptive; avoid abbreviation.
+                        </span>
+                        記述的な名前をつけてください。省略形は避けてください。
+                    </span>
+                </p>
             </div>
 
             <div class="stylebody">
                 <p>
-                    Give as descriptive a name as possible, within reason.
-                    Do not worry about saving horizontal space as it is far
-                    more important to make your code immediately
-                    understandable by a new reader. Do not use abbreviations
-                    that are ambiguous or unfamiliar to readers outside your
-                    project, and do not abbreviate by deleting letters within
-                    a word.
+                    <span>
+                        <span class="src">
+                            Give as descriptive a name as possible, within reason.
+                        </span>
+                        可能な限り、記述的な名前をつけてください。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Do not worry about saving horizontal space as it is far
+                            more important to make your code immediately
+                            understandable by a new reader.
+                        </span>
+                        画面の横幅を気にする必要はありません。そんなことよりも、あなたのコードが新しい読者にとってすぐに理解できるようにすることの方がはるかに重要です。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Do not use abbreviations
+                            that are ambiguous or unfamiliar to readers outside your
+                            project, and do not abbreviate by deleting letters within
+                            a word.
+                        </span>
+                        曖昧な省略形や、プロジェクト外のコード読者にとって馴染みが薄い省略形は使わないでください。また語句の中の文字を削る方法による省略も行わないでください。
+                    </span>
                 </p>
-
+                <span>
+                    <span class="src">
 <pre>int price_count_reader;    // No abbreviation.
 int num_errors;            // "num" is a widespread convention.
 int num_dns_connections;   // Most people know what "DNS" stands for.
 </pre>
-
+                    </span>
+                    <pre>int price_count_reader;    // 省略されていないのでOK
+int num_errors;            // 「num」は広く行き渡った省略系なのでOK
+int num_dns_connections;   // 多くの人は「DNS」の意味を知っているからOK
+</pre>
+                </span>
+                <span>
+                    <span class="src">
 <pre class="badcode">int n;                     // Meaningless.
 int nerr;                  // Ambiguous abbreviation.
 int n_comp_conns;          // Ambiguous abbreviation.
@@ -9896,116 +9952,235 @@ int wgc_connections;       // Only your group knows what this stands for.
 int pc_reader;             // Lots of things can be abbreviated "pc".
 int cstmr_id;              // Deletes internal letters.
 </pre>
+                    </span>
+                    <pre class="badcode">int n;                     // 変数の目的がわからないのでダメ.
+int nerr;                  // 曖昧な省略形なのでダメ
+int n_comp_conns;          // 曖昧な省略形なのでダメ
+int wgc_connections;       // グループ内のメンバーしか「wgc」の意味がわからないのでダメ
+int pc_reader;             // 「pc」にはたくさんの意味があるのでダメ
+int cstmr_id;              // 文字を削っているのでダメ
+</pre>
+                </span>
 
                 <p>
-                    Note that certain universally-known abbreviations are OK, such as
-                    <code>i</code> for an iteration variable and
-                    <code>T</code> for a
-                    template parameter.
+                    <span>
+                        <span class="src">
+                            Note that certain universally-known abbreviations are OK, such as
+                            <code>i</code> for an iteration variable and
+                            <code>T</code> for a
+                            template parameter.
+                        </span>
+                        一般に広く知られている省略形を使うことはOKであることに注意してください。たとえば、イテレータ変数の<code>i</code>や、テンプレート引数の<code>T</code>などは問題ありません。
+                    </span>
                 </p>
 
                 <p>
-                    Template parameters should follow the naming style for their
-                    category: type template parameters should follow the rules for
-                    <a href="#Type_Names">type names</a>, and non-type template
-                    parameters should follow the rules for
-                    <a href="#Variable_Names">
-                        variable names
-                    </a>.
+                    <span>
+                        <span class="src">
+                            Template parameters should follow the naming style for their
+                            category: type template parameters should follow the rules for
+                            <a href="#Type_Names">type names</a>, and non-type template
+                            parameters should follow the rules for
+                            <a href="#Variable_Names">
+                                variable names
+                            </a>.
+                        </span>
+                        テンプレート引数の命名規則は、引数が型ならば<a href="#Type_Names">型名</a>に従い、そうでない場合は<a href="#Variable_Names">変数名</a>に従ってください。
+                    </span>
 
                 </p>
             </div>
 
-            <h3 id="File_Names">File Names</h3>
+            <h3 id="File_Names"><span title="File Names">ファイル名</span></h3>
 
             <div class="summary">
                 <p>
-                    Filenames should be all lowercase and can include
-                    underscores (
-                    <code>_</code>) or dashes (
-                    <code>-</code>).
-                    Follow the convention that your
+                    <span>
+                        <span class="src">
+                            Filenames should be all lowercase and can include
+                            underscores (
+                            <code>_</code>) or dashes (
+                            <code>-</code>).
+                        </span>
+                        ファイル名はすべて小文字で、アンダースコア(<code>_</code>)とダッシュ(<code>-</code>)を含むことができます。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Follow the convention that your
 
-                    project uses. If there is no consistent
-                    local pattern to follow, prefer "_".
+                            project uses.
+                        </span>
+                        プロジェクトが使用するルールに従ってください。
+                    </span>
+                    <span>
+                        <span class="src">
+                            If there is no consistent
+                            local pattern to follow, prefer "_".
+                        </span>
+                        もし、プロジェクトでの独自の定めがない場合、アンダースコアを使用しましょう。
+                    </span>
                 </p>
             </div>
 
             <div class="stylebody">
 
-                <p>Examples of acceptable file names:</p>
+                <p>
+                    <span>
+                        <span class="src">
+                            Examples of acceptable file names:
+                        </span>
+                        問題のないファイル名の例
+                    </span>
+                </p>
 
                 <ul>
                     <li>
-                        <code>my_useful_class.cc</code>
+                                <code>my_useful_class.cc</code>
                     </li>
                     <li>
-                        <code>my-useful-class.cc</code>
+                                <code>my-useful-class.cc</code>
                     </li>
                     <li>
-                        <code>myusefulclass.cc</code>
+                                <code>myusefulclass.cc</code>
                     </li>
                     <li>
-                        <code>myusefulclass_test.cc // _unittest and _regtest are deprecated.</code>
+                        <span>
+                            <span class="src">
+                                <code>myusefulclass_test.cc // _unittest and _regtest are deprecated.</code>
+                            </span>
+                            <code>myusefulclass_test.cc // _unittest や _regtest は廃止</code>
+                        </span>
                     </li>
                 </ul>
 
                 <p>
-                    C++ files should end in
-                    <code>.cc</code> and header files should end in
-                    <code>.h</code>. Files that rely on being textually included at specific points
-                    should end in
-                    <code>.inc</code> (see also the section on
-                    <a href="#Self_contained_Headers">self-contained headers</a>).
+                    <span>
+                        <span class="src">
+                            C++ files should end in
+                            <code>.cc</code> and header files should end in
+                            <code>.h</code>.
+                        </span>
+                        C++のファイルは<code>.cc</code>で終わり、ヘッダは<code>.h</code>で終わります。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Files that rely on being textually included at specific points
+                            should end in
+                            <code>.inc</code> (see also the section on
+                            <a href="#Self_contained_Headers">self-contained headers</a>).
+                        </span>
+                        特定の場所にそのままインクルードされることが目的のファイルは<code>.inc</code>で終わります(<a href="#Self_contained_Headers">自己完結型ヘッダ</a>も参照してください)。
+                    </span>
                 </p>
 
                 <p>
-                    Do not use filenames that already exist in
-                    <code>/usr/include</code>, such as
-                    <code>db.h</code>.
+                    <span>
+                        <span class="src">
+                            Do not use filenames that already exist in
+                            <code>/usr/include</code>, such as
+                            <code>db.h</code>.
+                        </span>
+                        既に<code>/usr/include</code>に存在するファイル名をつけてはいけません(たとえば<code>db.h</code>)。
+                    </span>
                 </p>
 
                 <p>
-                    In general, make your filenames very specific. For
-                    example, use
-                    <code>http_server_logs.h</code> rather than
-                    <code>logs.h</code>. A very common case is to have a pair
-                    of files called, e.g.,
-                    <code>foo_bar.h</code> and
-                    <code>foo_bar.cc</code>, defining a class called
-                    <code>FooBar</code>.
+                    <span>
+                        <span class="src">
+                            In general, make your filenames very specific.
+                        </span>
+                        通常、ファイル名は非常に明確なものをつけてください。
+                    </span>
+                    <span>
+                        <span class="src">
+                            For
+                            example, use
+                            <code>http_server_logs.h</code> rather than
+                            <code>db.h</code>.
+                        </span>
+                        たとえば、<code>db.h</code>よりも<code>http_server_logs.h</code>としてください。
+                    </span>
+                    <span>
+                        <span class="src">
+                            A very common case is to have a pair
+                            of files called, e.g.,
+                            <code>foo_bar.h</code> and
+                            <code>foo_bar.cc</code>, defining a class called
+                            <code>FooBar</code>.
+                        </span>
+                        非常に良くあるパターンは、ファイルをペアにして、たとえば<code>foo_bar.h</code>と<code>foo_bar.cc</code>で、クラス<code>FooBar</code>を定義するようなやり方です。
+                    </span>
                 </p>
 
                 <p>
-                    Inline functions must be in a
-                    <code>.h</code> file. If
-                    your inline functions are very short, they should go
-                    directly into your
-                    <code>.h</code> file.
+                    <span>
+                        <span class="src">
+                            Inline functions must be in a
+                            <code>.h</code> file.
+                        </span>
+                        インライン関数は<code>.h</code>になくてはなりません。
+                    </span>
+                    <span>
+                        <span class="src">
+                            If
+                            your inline functions are very short, they should go
+                            directly into your
+                            <code>.h</code> file.
+                        </span>
+                        もし、インライン関数が非常に短いのであれば、それは<code>.h</code>に直接記述してください。
+                    </span>
                 </p>
 
             </div>
 
-            <h3 id="Type_Names">Type Names</h3>
+            <h3 id="Type_Names"><span title="Type Names">型名</span></h3>
 
             <div class="summary">
                 <p>
-                    Type names start with a capital letter and have a capital
-                    letter for each new word, with no underscores:
-                    <code>MyExcitingClass</code>,
-                    <code>MyExcitingEnum</code>.
+                    <span>
+                        <span class="src">
+                            Type names start with a capital letter and have a capital
+                            letter for each new word, with no underscores:
+                            <code>MyExcitingClass</code>,
+                            <code>MyExcitingEnum</code>.
+                        </span>
+                        型の名前は大文字で始まり、単語の区切りごとに大文字にします。アンダースコアは使いません。たとえば、<code>MyExcitingClass</code>、<code>MyExcitingEnum</code>とします。
+                    </span>
                 </p>
             </div>
 
             <div class="stylebody">
 
                 <p>
-                    The names of all types &#8212; classes, structs, type aliases,
-                    enums, and type template parameters &#8212; have the same naming convention.
-                    Type names should start with a capital letter and have a capital letter
-                    for each new word. No underscores. For example:
+                    <span>
+                        <span class="src">
+                            The names of all types &#8212; classes, structs, type aliases,
+                            enums, and type template parameters &#8212; have the same naming convention.
+                        </span>
+                        型(クラス、構造体、型のエイリアス、列挙型、テンプレート引数)の名前はすべて同じ命名規則に従います。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Type names should start with a capital letter and have a capital letter
+                            for each new word.
+                        </span>
+                        型の名前は大文字で始めて、単語の境目ごとに大文字にします。
+                    </span>
+                    <span>
+                        <span class="src">
+                            No underscores.
+                        </span>
+                        アンダースコアは使いません。
+                    </span>
+                    <span>
+                        <span class="src">
+                            For example:
+                        </span>
+                        以下に例を示します。
+                    </span>
                 </p>
-
+                <span>
+                    <span class="src">
 <pre>// classes and structs
 class UrlTable { ...
 class UrlTableTester { ...
@@ -10020,43 +10195,98 @@ using PropertiesMap = hash_map&lt;UrlTableProperties *, string&gt;;
 // enums
 enum UrlTableErrors { ...
 </pre>
+                    </span>
+                    <pre>// クラスと構造体
+class UrlTable { ...
+class UrlTableTester { ...
+struct UrlTableProperties { ...
 
+// typedef
+typedef hash_map&lt;UrlTableProperties *, string&gt; PropertiesMap;
+
+// using
+using PropertiesMap = hash_map&lt;UrlTableProperties *, string&gt;;
+
+// 列挙型
+enum UrlTableErrors { ...
+</pre>
+                </span>
             </div>
 
-            <h3 id="Variable_Names">Variable Names</h3>
+            <h3 id="Variable_Names"><span title="Variable Names">変数名</span></h3>
 
             <div class="summary">
                 <p>
-                    The names of variables (including function parameters) and data members are
-                    all lowercase, with underscores between words. Data members of classes (but not
-                    structs) additionally have trailing underscores. For instance:
-                    <code>a_local_variable</code>,
-                    <code>a_struct_data_member</code>,
-                    <code>a_class_data_member_</code>.
+                    <span>
+                        <span class="src">
+                            The names of variables (including function parameters) and data members are
+                            all lowercase, with underscores between words.
+                        </span>
+                        変数名(関数の引数も含む)や、データメンバ名は、小文字で始め単語の間にアンダースコアを使います。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Data members of classes (but not
+                            structs) additionally have trailing underscores.
+                        </span>
+                        クラス(構造体は含まず)のデータメンバは、末尾にアンダースコアをつけます。
+                    </span>
+                    <span>
+                        <span class="src">
+                            For instance:
+                            <code>a_local_variable</code>,
+                            <code>a_struct_data_member</code>,
+                            <code>a_class_data_member_</code>.
+                        </span>
+                        たとえば、<code>a_local_variable</code>、<code>a_struct_data_member</code>、<code>a_class_data_member_</code>といった感じです。
+                    </span>
                 </p>
             </div>
 
             <div class="stylebody">
 
-                <h4 class="stylepoint_subsection">Common Variable names</h4>
+                <h4 class="stylepoint_subsection"><span title="Common Variable names">一般的な変数名</span></h4>
 
-                <p>For example:</p>
-
+                <p>
+                    <span>
+                        <span class="src">
+                            For example:
+                        </span>
+                        以下に例を示します。
+                    </span>
+                </p>
+                <span>
+                    <span class="src">
 <pre>string table_name;  // OK - uses underscore.
 string tablename;   // OK - all lowercase.
 </pre>
-
+                    </span>
+                    <pre>string table_name;  // OK - アンダースコアを使っている。
+string tablename;   // OK - すべて小文字。
+</pre>
+                </span>
+                <span>
+                    <span class="src">
 <pre class="badcode">string tableName;   // Bad - mixed case.
 </pre>
-
-                <h4 class="stylepoint_subsection">Class Data Members</h4>
+                    </span>
+                    <pre class="badcode">string tableName;   // ダメ - 大文字小文字が混ざっている。
+</pre>
+                </span>
+                <h4 class="stylepoint_subsection"><span title="Class Data Members">クラスのデータメンバ</span></h4>
 
                 <p>
-                    Data members of classes, both static and non-static, are
-                    named like ordinary nonmember variables, but with a
-                    trailing underscore.
+                    <span>
+                        <span class="src">
+                            Data members of classes, both static and non-static, are
+                            named like ordinary nonmember variables, but with a
+                            trailing underscore.
+                        </span>
+                        クラスのデータメンバは、staticであるなしに関わらず、基本的にはメンバでない変数名と同様ですが、末尾にアンダースコアをつけます。
+                    </span>
                 </p>
-
+                <span>
+                    <span class="src">
 <pre>class TableInfo {
   ...
  private:
@@ -10065,13 +10295,33 @@ string tablename;   // OK - all lowercase.
   static Pool&lt;TableInfo&gt;* pool_;  // OK.
 };
 </pre>
-
-                <h4 class="stylepoint_subsection">Struct Data Members</h4>
+                    </span>
+                    <pre>class TableInfo {
+  ...
+ private:
+  string table_name_;  // OK - 末尾にアンダースコアがついている。
+  string tablename_;   // OK.
+  static Pool&lt;TableInfo&gt;* pool_;  // OK.
+};
+</pre>
+                </span>
+                <h4 class="stylepoint_subsection"><span title="Struct Data Members">構造体のデータメンバ</span></h4>
 
                 <p>
-                    Data members of structs, both static and non-static,
-                    are named like ordinary nonmember variables. They do not have
-                    the trailing underscores that data members in classes have.
+                    <span>
+                        <span class="src">
+                            Data members of structs, both static and non-static,
+                            are named like ordinary nonmember variables.
+                        </span>
+                        構造体のデータメンバは、staticであるなしに関わらず、通常の変数と同じように名前を付けます。
+                    </span>
+                    <span>
+                        <span class="src">
+                            They do not have
+                            the trailing underscores that data members in classes have.
+                        </span>
+                        クラスのデータメンバと違い、末尾にアンダースコアはつけません。
+                    </span>
                 </p>
 
 <pre>struct UrlTableProperties {
@@ -10083,23 +10333,39 @@ string tablename;   // OK - all lowercase.
 
 
                 <p>
-                    See
-                    <a href="#Structs_vs._Classes">
-                        Structs vs.
-                        Classes
-                    </a> for a discussion of when to use a struct
-                    versus a class.
+                    <span>
+                        <span class="src">
+                            See
+                            <a href="#Structs_vs._Classes">
+                                Structs vs.
+                                Classes
+                            </a> for a discussion of when to use a struct
+                            versus a class.
+                        </span>
+                        いつ構造体を使っていつクラスを使うかに関する議論は<a href="#Structs_vs._Classes">構造体かクラスか</a>を参照してください。
+                    </span>
                 </p>
 
             </div>
 
-            <h3 id="Constant_Names">Constant Names</h3>
+            <h3 id="Constant_Names"><span title="Constant Names">定数名</span></h3>
 
             <div class="summary">
                 <p>
-                    Variables declared constexpr or const, and whose value is fixed for
-                    the duration of the program, are named with a leading "k" followed
-                    by mixed case.  For example:
+                    <span>
+                        <span class="src">
+                            Variables declared constexpr or const, and whose value is fixed for
+                            the duration of the program, are named with a leading "k" followed
+                            by mixed case.
+                        </span>
+                        constexprあるいはconstとして宣言され、プログラムの始めから終わりまで値が変わらない変数は、頭に「k」を付けて、大文字小文字を織り交ぜて宣言します。
+                    </span>
+                    <span>
+                        <span class="src">
+                            For example:
+                        </span>
+                        以下に例を示します。
+                    </span>
                 </p>
             </div>
 
@@ -10109,42 +10375,75 @@ string tablename;   // OK - all lowercase.
             <div class="stylebody">
 
                 <p>
-                    All such variables with static storage duration (i.e. statics and globals,
-                    see
-                    <a href="http://en.cppreference.com/w/cpp/language/storage_duration#Storage_duration">
-                        Storage Duration
-                    </a> for details) should be named this way.  This
-                    convention is optional for variables of other storage classes, e.g. automatic
-                    variables, otherwise the usual variable naming rules apply.
+                    <span>
+                        <span class="src">
+                            All such variables with static storage duration (i.e. statics and globals,
+                            see
+                            <a href="http://en.cppreference.com/w/cpp/language/storage_duration#Storage_duration">
+                                Storage Duration
+                            </a> for details) should be named this way.
+                        </span>
+                        静的な記憶域期間を持つ変数(つまり、静的変数やグローバル変数。詳細は<a href="http://en.cppreference.com/w/cpp/language/storage_duration#Storage_duration">Storage Duration</a>を参照)は、この方法で命名します。
+                    </span>
+                    <span>
+                        <span class="src">
+                            This
+                            convention is optional for variables of other storage classes, e.g. automatic
+                            variables, otherwise the usual variable naming rules apply.
+                        </span>
+                        他の記憶域期間に分類される変数(自動変数など)に関してはこのルールの適用は任意とし、このルールを適用しない場合は、通常の変数名の規則に従うものとします。
+                    </span>
                 </p>
                 <p>
 
                 </p>
             </div>
 
-            <h3 id="Function_Names">Function Names</h3>
+            <h3 id="Function_Names"><span title="Function Names">関数名</span></h3>
 
             <div class="summary">
                 <p>
-                    Regular functions have mixed case; accessors and mutators may be named
-                    like variables.
+                    <span>
+                        <span class="src">
+                            Regular functions have mixed case; accessors and mutators may be named
+                            like variables.
+                        </span>
+                        通常の関数は、大文字小文字を織り交ぜて命名します。アクセッサ(Getter)やミューテータ(Setter)は、変数名の命名ルールを用いることもあります。
+                    </span>
                 </p>
             </div>
 
             <div class="stylebody">
 
                 <p>
-                    Ordinarily, functions should start with a capital letter and have a
-                    capital letter for each new word
-                    (a.k.a. "
-                    <a href="https://en.wikipedia.org/wiki/Camel_case">
-                        Camel
-                        Case
-                    </a>" or "Pascal case"). Such names should not have
-                    underscores. Prefer to capitalize acronyms as single words
-                    (i.e.
-                    <code>StartRpc()</code>, not
-                    <code>StartRPC()</code>).
+                    <span>
+                        <span class="src">
+                            Ordinarily, functions should start with a capital letter and have a
+                            capital letter for each new word
+                            (a.k.a. "
+                            <a href="https://en.wikipedia.org/wiki/Camel_case">
+                                Camel
+                                Case
+                            </a>" or "Pascal case").
+                        </span>
+                        通常、関数名は大文字で始まり、単語の境目に大文字を使用します(「<a href="https://en.wikipedia.org/wiki/Camel_case">Camel Case</a>」や「Pascal Case」とも呼ばれています)。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Such names should not have
+                            underscores.
+                        </span>
+                        これらの名前にはアンダースコアは使いません。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Prefer to capitalize acronyms as single words
+                            (i.e.
+                            <code>StartRpc()</code>, not
+                            <code>StartRPC()</code>).
+                        </span>
+                        頭字語(アクロニム)はそれも1つの単語として扱いましょう(つまり、<code>StartRPC()</code>ではなく<code>StartRpc()</code>とします)。
+                    </span>
                 </p>
 
 <pre>AddTableEntry()
@@ -10153,41 +10452,90 @@ OpenFileOrDie()
 </pre>
 
                 <p>
-                    (The same naming rule applies to class- and namespace-scope
-                    constants that are exposed as part of an API and that are intended to look
-                    like functions, because the fact that they're
-                    objects rather than functions is an unimportant implementation detail.)
+                    <span>
+                        <span class="src">
+                            (The same naming rule applies to class- and namespace-scope
+                            constants that are exposed as part of an API and that are intended to look
+                            like functions, because the fact that they're
+                            objects rather than functions is an unimportant implementation detail.)
+                        </span>
+                        (クラススコープや名前空間スコープにおいて定数がAPIとして公開され、かつ、それらが関数のように振る舞う場合は、この命名規則を適用します。それらが実際には関数ではなくオブジェクトであるという事実は、実装の詳細でありさほど重要ではありません。)
+                    </span>
                 </p>
 
                 <p>
-                    Accessors and mutators (get and set functions) may be named like
-                    variables. These often correspond to actual member variables, but this is
-                    not required. For example,
-                    <code>int count()</code> and
-                    <code>
-                        void
-                        set_count(int count)
-                    </code>.
+                    <span>
+                        <span class="src">
+                            Accessors and mutators (get and set functions) may be named like
+                            variables.
+                        </span>
+                        アクセッサ(Getter)やミューテータ(Setter)は変数名のように名前を付けてもかまいません。
+                    </span>
+                    <span>
+                        <span class="src">
+                            These often correspond to actual member variables, but this is
+                            not required.
+                        </span>
+                        これらは、実際のメンバ変数と紐づけられますが、必須ではありません。
+                    </span>
+                    <span>
+                        <span class="src">
+                            For example,
+                            <code>int count()</code> and
+                            <code>
+                                void
+                                set_count(int count)
+                            </code>.
+                        </span>
+                        たとえば、<code>int count()</code>と<code>void    set_count(int count)</code>です。
+                    </span>
                 </p>
 
             </div>
 
-            <h3 id="Namespace_Names">Namespace Names</h3>
+            <h3 id="Namespace_Names"><span title="Namespace Names">名前空間の名前</span></h3>
 
             <div class="summary">
-                Namespace names are all lower-case. Top-level namespace names are
-                based on the project name
-                . Avoid collisions
-                between nested namespaces and well-known top-level namespaces.
+                <span>
+                    <span class="src">
+                        Namespace names are all lower-case.
+                    </span>
+                    名前空間名はすべて小文字にします。
+                </span>
+                <span>
+                    <span class="src">
+                        Top-level namespace names are
+                        based on the project name
+                    </span>
+                    トップレベルの名前空間は、プロジェクト名に基づいたものにします。
+                </span>
+                <span>
+                    <span class="src">
+                        Avoid collisions
+                        between nested namespaces and well-known top-level namespaces.
+                    </span>
+                    ネストされた名前空間であっても、よく知られたトップレベルの名前空間との衝突は避けてください。
+                </span>
             </div>
 
             <div class="stylebody">
                 <p>
-                    The name of a top-level namespace should usually be the
-                    name of the project or team whose code is contained in that
-                    namespace. The code in that namespace should usually be in
-                    a directory whose basename matches the namespace name (or
-                    subdirectories thereof).
+                    <span>
+                        <span class="src">
+                            The name of a top-level namespace should usually be the
+                            name of the project or team whose code is contained in that
+                            namespace.
+                        </span>
+                        トップレベルの名前空間の名前は、通常はプロジェクト名か、そのコードが格納されるチームの名前をつけます。
+                    </span>
+                    <span>
+                        <span class="src">
+                            The code in that namespace should usually be in
+                            a directory whose basename matches the namespace name (or
+                            subdirectories thereof).
+                        </span>
+                        名前空間に含まれるコードは、通常、その名前空間の名前と一致するディレクトリ(かそのサブディレクトリ)の中に置かれます。
+                    </span>
                 </p>
 
 
@@ -10195,70 +10543,138 @@ OpenFileOrDie()
 
 
                 <p>
-                    Keep in mind that the
-                    <a href="#General_Naming_Rules">
-                        rule
-                        against abbreviated names
-                    </a> applies to namespaces just as much
-                    as variable names. Code inside the namespace seldom needs to
-                    mention the namespace name, so there's usually no particular need
-                    for abbreviation anyway.
+                    <span>
+                        <span class="src">
+                            Keep in mind that the
+                            <a href="#General_Naming_Rules">
+                                rule
+                                against abbreviated names
+                            </a> applies to namespaces just as much
+                            as variable names.
+                        </span>
+                        変数名と同様の<a href="#General_Naming_Rules">省略に関するルール</a>が名前空間にも適用されることに留意してください。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Code inside the namespace seldom needs to
+                            mention the namespace name, so there's usually no particular need
+                            for abbreviation anyway.
+                        </span>
+                        名前空間の内側のコードが、その名前空間の名前を必要とすることはめったにありません。
+                        このため、いずれにせよ、通常は、何らかの省略形が必要になることはないでしょう。
+                    </span>
                 </p>
 
                 <p>
-                    Avoid nested namespaces that match well-known top-level
-                    namespaces. Collisions between namespace names can lead to surprising
-                    build breaks because of name lookup rules. In particular, do not
-                    create any nested
-                    <code>std</code> namespaces. Prefer unique project
-                    identifiers
-                    (
-                    <code>websearch::index</code>,
-                    <code>websearch::index_util</code>)
-                    over collision-prone names like
-                    <code>websearch::util</code>.
+                    <span>
+                        <span class="src">
+                            Avoid nested namespaces that match well-known top-level
+                            namespaces.
+                        </span>
+                        ネストされた名前空間の名前を、よく知られたトップレベルの名前空間と一致させることは避けてください。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Collisions between namespace names can lead to surprising
+                            build breaks because of name lookup rules.
+                        </span>
+                        このような名前空間名の衝突があると、名前検索のルールによって、想定外のビルドエラーを招きかねません。
+                    </span>
+                    <span>
+                        <span class="src">
+                            In particular, do not
+                            create any nested
+                            <code>std</code> namespaces.
+                        </span>
+                        特に、<code>std</code>という名前の名前空間は、いかなるネストの階層にも作らないでください。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Prefer unique project
+                            identifiers
+                            (
+                            <code>websearch::index</code>,
+                            <code>websearch::index_util</code>)
+                            over collision-prone names like
+                            <code>websearch::util</code>.
+                        </span>
+                        <code>websearch::util</code>のような衝突の起こりやすい名前は、プロジェクトのユニークな識別子をつけましょう(<code>websearch::index</code>, <code>websearch::index_util</code>)。
+                    </span>
                 </p>
 
                 <p>
-                    For
-                    <code>internal</code> namespaces, be wary of other code being
-                    added to the same
-                    <code>internal</code> namespace causing a collision
-                    (internal helpers within a team tend to be related and may lead to
-                    collisions). In such a situation, using the filename to make a unique
-                    internal name is helpful
-                    (
-                    <code>websearch::index::frobber_internal</code> for use
-                    in
-                    <code>frobber.h</code>)
+                    <span>
+                        <span class="src">
+                            For
+                            <code>internal</code> namespaces, be wary of other code being
+                            added to the same
+                            <code>internal</code> namespace causing a collision
+                            (internal helpers within a team tend to be related and may lead to
+                            collisions).
+                        </span>
+                        <code>internal</code>のような名前空間は、同じ<code>internal</code>名前空間に追加されている他のコードと衝突しないように特に注意が必要です(チーム内での内部用のヘルパ同士が、関係を持ってしまう傾向があり、それによって衝突を引き起こすかもしれません)。
+                    </span>
+                    <span>
+                        <span class="src">
+                            In such a situation, using the filename to make a unique
+                            internal name is helpful
+                            (
+                            <code>websearch::index::frobber_internal</code> for use
+                            in
+                            <code>frobber.h</code>)
+                        </span>
+                        このような場合は、ファイル名を使ってユニークな内部名を作る方法が役立ちます(<code>frobber.h</code>では、<code>websearch::index::frobber_internal</code>を使います)。
+                    </span>
                 </p>
 
             </div>
 
-            <h3 id="Enumerator_Names">Enumerator Names</h3>
+            <h3 id="Enumerator_Names"><span title="Enumerator Names">列挙型の名前</span></h3>
 
             <div class="summary">
                 <p>
-                    Enumerators (for both scoped and unscoped enums) should be named
-                    <i>either</i> like
-                    <a href="#Constant_Names">constants</a> or like
-                    <a href="#Macro_Names">macros</a>: either
-                    <code>kEnumName</code> or
-                    <code>ENUM_NAME</code>.
+                    <span>
+                        <span class="src">
+                            Enumerators (for both scoped and unscoped enums) should be named
+                            <i>either</i> like
+                            <a href="#Constant_Names">constants</a> or like
+                            <a href="#Macro_Names">macros</a>: either
+                            <code>kEnumName</code> or
+                            <code>ENUM_NAME</code>.
+                        </span>
+                        列挙型(スコープ内のもそうでないものも)は、<a href="#Constant_Names">定数</a>(<code>kEnumName</code>)か<a href="#Macro_Names">マクロ</a>(<code>ENUM_NAME</code>)の<em>どちらか</em>のルールに従います。
+                    </span>
                 </p>
             </div>
 
             <div class="stylebody">
 
                 <p>
-                    Preferably, the individual enumerators should be named
-                    like
-                    <a href="#Constant_Names">constants</a>. However, it
-                    is also acceptable to name them like
-                    <a href="#Macro_Names">macros</a>.  The enumeration name,
-                    <code>UrlTableErrors</code> (and
-                    <code>AlternateUrlTableErrors</code>), is a type, and
-                    therefore mixed case.
+                    <span>
+                        <span class="src">
+                            Preferably, the individual enumerators should be named
+                            like
+                            <a href="#Constant_Names">constants</a>.
+                        </span>
+                        列挙型の個々の値は<a href="#Constant_Names">定数</a>のルールに従いましょう。.
+                    </span>
+                    <span>
+                        <span class="src">
+                            However, it
+                            is also acceptable to name them like
+                            <a href="#Macro_Names">macros</a>.
+                        </span>
+                        しかし、<a href="#Macro_Names">マクロ</a>の命名規則に従ってもよいとします。
+                    </span>
+                    <span>
+                        <span class="src">
+                            The enumeration name,
+                            <code>UrlTableErrors</code> (and
+                            <code>AlternateUrlTableErrors</code>), is a type, and
+                            therefore mixed case.
+                        </span>
+                        列挙型の名前は<code>UrlTableErrors</code>(や、<code>AlternateUrlTableErrors</code>)のように、型名に従い、大文字小文字を織り交ぜて定義します。
+                    </span>
                 </p>
 
 <pre>enum UrlTableErrors {
@@ -10274,44 +10690,89 @@ enum AlternateUrlTableErrors {
 </pre>
 
                 <p>
-                    Until January 2009, the style was to name enum values
-                    like
-                    <a href="#Macro_Names">macros</a>. This caused
-                    problems with name collisions between enum values and
-                    macros. Hence, the change to prefer constant-style naming
-                    was put in place. New code should prefer constant-style
-                    naming if possible. However, there is no reason to change
-                    old code to use constant-style names, unless the old
-                    names are actually causing a compile-time problem.
+                    <span>
+                        <span class="src">
+                            Until January 2009, the style was to name enum values
+                            like
+                            <a href="#Macro_Names">macros</a>.
+                        </span>
+                        2009年1月までは、列挙値は<a href="#Macro_Names">マクロ</a>の命名規則に従っていました。
+                    </span>
+                    <span>
+                        <span class="src">
+                            This caused
+                            problems with name collisions between enum values and
+                            macros.
+                        </span>
+                        しかし、これによって列挙値とマクロとの間で名前が衝突する問題が起きました。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Hence, the change to prefer constant-style naming
+                            was put in place.
+                        </span>
+                        それゆえに、定数と同じ命名規則に従うようルールを変更しました。
+                    </span>
+                    <span>
+                        <span class="src">
+                            New code should prefer constant-style
+                            naming if possible.
+                        </span>
+                        新しいコードは、可能な限り、定数と同様の命名規則を使ってください。
+                    </span>
+                    <span>
+                        <span class="src">
+                            However, there is no reason to change
+                            old code to use constant-style names, unless the old
+                            names are actually causing a compile-time problem.
+                        </span>
+                        しかし、古いコードについては、コンパイル時に名前の問題が起きない限りは、それらを新ルールにあわせて書き換える理由はありません。
+                    </span>
                 </p>
 
 
 
             </div>
 
-            <h3 id="Macro_Names">Macro Names</h3>
+            <h3 id="Macro_Names"><span title="Macro Names">マクロ名</span></h3>
 
             <div class="summary">
                 <p>
-                    You're not really going to
-                    <a href="#Preprocessor_Macros">
-                        define a macro
-                    </a>, are you? If you do, they're like this:
-                    <code>MY_MACRO_THAT_SCARES_SMALL_CHILDREN</code>.
+                    <span>
+                        <span class="src">
+                            You're not really going to
+                            <a href="#Preprocessor_Macros">
+                                define a macro
+                            </a>, are you? If you do, they're like this:
+                            <code>MY_MACRO_THAT_SCARES_SMALL_CHILDREN</code>.
+                        </span>
+                        本当は<a href="#Preprocessor_Macros">マクロを定義</a>しようだなんて思ってないですよね？　
+                        マクロを定義する場合は、<code>MY_MACRO_THAT_SCARES_SMALL_CHILDREN</code> のようにします。
+                    </span>
                 </p>
             </div>
 
             <div class="stylebody">
 
                 <p>
-                    Please see the
-                    <a href="#Preprocessor_Macros">
-                        description
-                        of macros
-                    </a>; in general macros should
-                    <em>not</em> be used.
-                    However, if they are absolutely needed, then they should be
-                    named with all capitals and underscores.
+                    <span>
+                        <span class="src">
+                            Please see the
+                            <a href="#Preprocessor_Macros">
+                                description
+                                of macros
+                            </a>; in general macros should
+                            <em>not</em> be used.
+                        </span>
+                        まず、<a href="#Preprocessor_Macros">マクロの詳細</a>を参照してください。通常、マクロは使用されるべきでは<em>ありません</em>。
+                    </span>
+                    <span>
+                        <span class="src">
+                            However, if they are absolutely needed, then they should be
+                            named with all capitals and underscores.
+                        </span>
+                        しかし、どうしてもマクロが必要な場合は、すべて大文字にし、アンダースコアを使って名前をつけます。
+                    </span>
                 </p>
 
 <pre>#define ROUND(x) ...
@@ -10320,13 +10781,18 @@ enum AlternateUrlTableErrors {
 
             </div>
 
-            <h3 id="Exceptions_to_Naming_Rules">Exceptions to Naming Rules</h3>
+            <h3 id="Exceptions_to_Naming_Rules"><span title="Exceptions to Naming Rules">命名規則の例外</span></h3>
 
             <div class="summary">
                 <p>
-                    If you are naming something that is analogous to an
-                    existing C or C++ entity then you can follow the existing
-                    naming convention scheme.
+                    <span>
+                        <span class="src">
+                            If you are naming something that is analogous to an
+                            existing C or C++ entity then you can follow the existing
+                            naming convention scheme.
+                        </span>
+                        既存のCやC++のエンティティと類似したものに名前を付ける場合、既存の命名規則に従ってもかまいません。
+                    </span>
                 </p>
             </div>
 
@@ -10334,22 +10800,48 @@ enum AlternateUrlTableErrors {
 
                 <dl>
                     <dt><code>bigopen()</code></dt>
-                    <dd>function name, follows form of <code>open()</code></dd>
+                    <dd>
+                        <span>
+                            <span class="src">
+                                function name, follows form of <code>open()</code>
+                            </span>
+                            <code>open()</code>の形に従った関数名。
+                        </span>
+                    </dd>
 
                     <dt><code>uint</code></dt>
                     <dd><code>typedef</code></dd>
 
                     <dt><code>bigpos</code></dt>
                     <dd>
-                        <code>struct</code> or <code>class</code>, follows
-                        form of <code>pos</code>
+                        <span>
+                            <span class="src">
+                                <code>struct</code> or <code>class</code>, follows
+                                form of <code>pos</code>
+                            </span>
+                            <code>pos</code>の形に従った<code>struct</code>や<code>class</code>。
+                        </span>
                     </dd>
 
                     <dt><code>sparse_hash_map</code></dt>
-                    <dd>STL-like entity; follows STL naming conventions</dd>
+                    <dd>
+                        <span>
+                            <span class="src">
+                                STL-like entity; follows STL naming conventions
+                            </span>
+                            STLの命名規則に従った、STLライクなエンティティ。
+                        </span>
+                    </dd>
 
                     <dt><code>LONGLONG_MAX</code></dt>
-                    <dd>a constant, as in <code>INT_MAX</code></dd>
+                    <dd>
+                        <span>
+                            <span class="src">
+                                a constant, as in <code>INT_MAX</code>
+                            </span>
+                            <code>INT_MAX</code>のような定数。
+                        </span>
+                    </dd>
                 </dl>
 
             </div>
