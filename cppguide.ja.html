@@ -13154,38 +13154,60 @@ if (iter != v.end()) {
 
             </div>
 
-            <h2 id="Formatting">Formatting</h2>
+            <h2 id="Formatting">
+                <span title="Formatting">コードのフォーマット</span>
+            </h2>
 
             <p>
-                Coding style and formatting are pretty arbitrary, but a
-
-                project is much easier to follow
-                if everyone uses the same style. Individuals may not agree with every
-                aspect of the formatting rules, and some of the rules may take
-                some getting used to, but it is important that all
-
-                project contributors follow the
-                style rules so that
-                they can all read and understand
-                everyone's code easily.
+                <span>
+                    <span class="src">
+                        Coding style and formatting are pretty arbitrary, but a
+                        project is much easier to follow
+                        if everyone uses the same style.
+                    </span>
+                    コーディングスタイルとフォーマットは非常に好みによるところが大きいものですが、全員で同じスタイルを使えば、プロジェクトがそれに沿うのは簡単です。
+                </span>
+                <span>
+                    <span class="src">
+                        Individuals may not agree with every
+                        aspect of the formatting rules, and some of the rules may take
+                        some getting used to, but it is important that all
+                        project contributors follow the
+                        style rules so that
+                        they can all read and understand
+                        everyone's code easily.
+                    </span>
+                    各個人にとっては、各フォーマットルールの中には、賛同できないものもあれば、馴染み深いものもあるでしょう。
+                    しかし、重要なことはプロジェクト内のすべてのメンバーが1つのスタイルルールに統一することであり、それによって誰もがコードを読みやすく理解しやすい状態にできるのです。
+                </span>
             </p>
 
 
 
             <p>
-                To help you format code correctly, we've
-                created a
-                <a href="https://raw.githubusercontent.com/google/styleguide/gh-pages/google-c-style.el">
-                    settings file for emacs
-                </a>.
+                <span>
+                    <span class="src">
+                        To help you format code correctly, we've
+                        created a
+                        <a href="https://raw.githubusercontent.com/google/styleguide/gh-pages/google-c-style.el">
+                            settings file for emacs
+                        </a>.
+                        正しくコードをフォーマットするために、<a href="https://raw.githubusercontent.com/google/styleguide/gh-pages/google-c-style.el">emacsの設定ファイル</a>を用意しています。
+                    </span>
+                </span>
             </p>
 
-            <h3 id="Line_Length">Line Length</h3>
+            <h3 id="Line_Length"><span title="Line Length">行の長さ</span></h3>
 
             <div class="summary">
                 <p>
-                    Each line of text in your code should be at most 80
-                    characters long.
+                    <span>
+                        <span class="src">
+                            Each line of text in your code should be at most 80
+                            characters long.
+                        </span>
+                        コードの各行の長さは、長くとも80文字までにしてください。
+                    </span>
                 </p>
             </div>
 
@@ -13194,155 +13216,329 @@ if (iter != v.end()) {
 
 
                 <p>
-                    We recognize that this rule is
-                    controversial, but so much existing code already adheres
-                    to it, and we feel that consistency is important.
+                    <span>
+                        <span class="src">
+                            We recognize that this rule is
+                            controversial, but so much existing code already adheres
+                            to it, and we feel that consistency is important.
+                        </span>
+                        このルールには議論の余地があるでしょう。しかし、既に存在する多くのコードがこのルールに沿っており、そして、我々は一貫性は重要であると考えます。
+                    </span>
                 </p>
 
                 <div class="pros">
                     <p>
-                        Those who favor  this rule
-                        argue that it is rude to force them to resize
-                        their windows and there is no need for anything longer.
-                        Some folks are used to having several code windows
-                        side-by-side, and thus don't have room to widen their
-                        windows in any case. People set up their work environment
-                        assuming a particular maximum window width, and 80
-                        columns has been the traditional standard. Why change
-                        it?
+                        <span>
+                            <span class="src">
+                                Those who favor  this rule
+                                argue that it is rude to force them to resize
+                                their windows and there is no need for anything longer.
+                            </span>
+                            このルールを推す人の主張は、コードを読むために相手にウィンドウサイズを変えさせるのは失礼なことであり、またコードはそれ以上長くする必要はないというものです。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Some folks are used to having several code windows
+                                side-by-side, and thus don't have room to widen their
+                                windows in any case.
+                            </span>
+                            複数のコードウィンドウを横に並べて使っていて、これ以上ウィンドウの幅を広げるスペースはないという人もいます。
+                        </span>
+                        <span>
+                            <span class="src">
+                                People set up their work environment
+                                assuming a particular maximum window width, and 80
+                                columns has been the traditional standard.
+                            </span>
+                            多くの人が、最大ウィンドウサイズを仮定した仕事環境を準備しており、それらは伝統的に80文字が標準とされてきました。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Why change
+                                it?
+                            </span>
+                            変える理由がありますか？
+                        </span>
                     </p>
                 </div>
 
                 <div class="cons">
                     <p>
-                        Proponents of change argue that a wider line can make
-                        code more readable. The 80-column limit is an hidebound
-                        throwback to 1960s mainframes;  modern equipment has wide screens that
-                        can easily show longer lines.
+                        <span>
+                            <span class="src">
+                                Proponents of change argue that a wider line can make
+                                code more readable.
+                            </span>
+                            このルールを変えたがっている人の主張は、もっと長い行を使える方がコードが読みやすくなるはずだというものです。
+                        </span>
+                        <span>
+                            <span class="src">
+                                The 80-column limit is an hidebound
+                                throwback to 1960s mainframes;  modern equipment has wide screens that
+                                can easily show longer lines.
+                            </span>
+                            80文字という制限は1960年代のメインフレームを思い起こさせますが、現代の機器は、長い行も簡単に表示できる広いスクリーンを備えています。
+                        </span>
                     </p>
                 </div>
 
                 <div class="decision">
-                    <p> 80 characters is the maximum.</p>
-
-                    <p class="exception">
-                        Comment lines can be longer than 80
-                        characters if it is not feasible to split them without
-                        harming readability, ease of cut and paste or auto-linking
-                        -- e.g. if a line contains an example command or a literal
-                        URL longer than 80 characters.
+                    <p>
+                        <span>
+                            <span class="src">
+                                80 characters is the maximum.
+                            </span>
+                            最大80文字とします。
+                        </span>
                     </p>
 
                     <p class="exception">
-                        A raw-string literal may have content
-                        that exceeds 80 characters.  Except for test code, such literals
-                        should appear near the top of a file.
+                        <span>
+                            <span class="src">
+                                Comment lines can be longer than 80
+                                characters if it is not feasible to split them without
+                                harming readability, ease of cut and paste or auto-linking
+                                -- e.g. if a line contains an example command or a literal
+                                URL longer than 80 characters.
+                            </span>
+                            コメントのための行は、行の分割によって可読性やコピーペーストの利便性を妨げられる場合に、1行80文字を超えてもよいとします。
+                            これには、たとえば、80文字よりも長いコマンド例やURLなどが当てはまります。
+                        </span>
                     </p>
 
                     <p class="exception">
-                        An
-                        <code>#include</code> statement with a
-                        long path may exceed 80 columns.
+                        <span>
+                            <span class="src">
+                                A raw-string literal may have content
+                                that exceeds 80 characters.
+                            </span>
+                            生の文字列リテラルは80文字を超えてもよいものとします。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Except for test code, such literals
+                                should appear near the top of a file.
+                            </span>
+                            ただし、ファイルの頭の方に来るようなテスト用のコードは除きます。
+                        </span>
                     </p>
 
                     <p class="exception">
-                        You needn't be concerned about
-                        <a href="#The__define_Guard">header guards</a> that exceed
-                        the maximum length.
+                        <span>
+                            <span class="src">
+                                An
+                                <code>#include</code> statement with a
+                                long path may exceed 80 columns.
+                            </span>
+                            <code>#include</code>文は、パスが長くなることもなるため、80文字を超えてもかまわないものとします。
+                        </span>
+                    </p>
+
+                    <p class="exception">
+                        <span>
+                            <span class="src">
+                                You needn't be concerned about
+                                <a href="#The__define_Guard">header guards</a> that exceed
+                                the maximum length.
+                            </span>
+                            <a href="#The__define_Guard">インクルードガード</a>も、80文字を超えることを気にする必要はありません。
+                        </span>
                     </p>
                 </div>
 
             </div>
 
-            <h3 id="Non-ASCII_Characters">Non-ASCII Characters</h3>
+            <h3 id="Non-ASCII_Characters"><span title="Non-ASCII Characters">非アスキー文字</span></h3>
 
             <div class="summary">
                 <p>
-                    Non-ASCII characters should be rare, and must use UTF-8
-                    formatting.
+                    <span>
+                        <span class="src">
+                            Non-ASCII characters should be rare, and must use UTF-8
+                            formatting.
+                        </span>
+                        非アスキー文字は滅多に使いません。もし使う場合は必ずUTF-8フォーマットでなければなりません。
+                    </span>
                 </p>
             </div>
 
             <div class="stylebody">
 
                 <p>
-                    You shouldn't hard-code user-facing text in source,
-                    even English, so use of non-ASCII characters should be
-                    rare. However, in certain cases it is appropriate to
-                    include such words in your code. For example, if your
-                    code parses data files from foreign sources, it may be
-                    appropriate to hard-code the non-ASCII string(s) used in
-                    those data files as delimiters. More commonly, unittest
-                    code (which does not  need to be localized) might
-                    contain non-ASCII strings. In such cases, you should use
-                    UTF-8, since that is  an encoding
-                    understood by most tools able to handle more than just
-                    ASCII.
+                    <span>
+                        <span class="src">
+                            You shouldn't hard-code user-facing text in source,
+                            even English, so use of non-ASCII characters should be
+                            rare.
+                        </span>
+                        まず前提として、ユーザが目にする文字列をソースにハードコーディングしてはいけません。たとえ英語であってもダメです。このため、非アスキー文字がコード中に出てくることは滅多にありません。
+                    </span>
+                    <span>
+                        <span class="src">
+                            However, in certain cases it is appropriate to
+                            include such words in your code.
+                        </span>
+                        しかし、場合によっては、このような単語をコードに含めることが適切であることもあります。
+                    </span>
+                    <span>
+                        <span class="src">
+                            For example, if your
+                            code parses data files from foreign sources, it may be
+                            appropriate to hard-code the non-ASCII string(s) used in
+                            those data files as delimiters.
+                        </span>
+                        たとえば、あなたのコードが海外のデータファイルを解析するのであれば、非アスキーの文字列をデータの区切り文字としてソースに埋め込むのが適切かもしれません。
+                    </span>
+                    <span>
+                        <span class="src">
+                            More commonly, unittest
+                            code (which does not  need to be localized) might
+                            contain non-ASCII strings.
+                        </span>
+                        より一般的な例として、(ローカライズの必要がない)ユニットテストのためのコードは非アスキー文字を含んでいることがあります。
+                    </span>
+                    <span>
+                        <span class="src">
+                            In such cases, you should use
+                            UTF-8, since that is  an encoding
+                            understood by most tools able to handle more than just
+                            ASCII.
+                        </span>
+                        こういった場合は、UTF-8を使います。UTF-8は、ASCII以外に対応するほとんどのツールによって解釈できるエンコーディングだからです。
+                    </span>
                 </p>
 
                 <p>
-                    Hex encoding is also OK, and encouraged where it
-                    enhances readability &#8212; for example,
-                    <code>"\xEF\xBB\xBF"</code>, or, even more simply,
-                    <code>u8"\uFEFF"</code>, is the Unicode zero-width
-                    no-break space character, which would be invisible if
-                    included in the source as straight UTF-8.
+                    <span>
+                        <span class="src">
+                            Hex encoding is also OK, and encouraged where it
+                            enhances readability &#8212; for example,
+                            <code>"\xEF\xBB\xBF"</code>, or, even more simply,
+                            <code>u8"\uFEFF"</code>, is the Unicode zero-width
+                            no-break space character, which would be invisible if
+                            included in the source as straight UTF-8.
+                        </span>
+                        16真数によるエンコーディングを使うこともできます。特に、そうすることで可読性が高まる場合はそちらのほうが推奨されます。たとえば、<code>"\xEF\xBB\xBF"</code>、あるいは単に<code>u8"\uFEFF"</code>は、Unicodeにおいて、ゼロ幅で非改行の空白文字を表します。もし、これが、ふつうのUTF-8文字としてソースコードに含められていたら、それを目で見ることはできないでしょう。
+                    </span>
                 </p>
 
                 <p>
-                    Use the
-                    <code>u8</code> prefix
-                    to guarantee that a string literal containing
-                    <code>\uXXXX</code> escape sequences is encoded as UTF-8.
-                    Do not use it for strings containing non-ASCII characters
-                    encoded as UTF-8, because that will produce incorrect
-                    output if the compiler does not interpret the source file
-                    as UTF-8.
+                    <span>
+                        <span class="src">
+                            Use the
+                            <code>u8</code> prefix
+                            to guarantee that a string literal containing
+                            <code>\uXXXX</code> escape sequences is encoded as UTF-8.
+                        </span>
+                        <code>\uXXXX</code>エスケープシーケンスを含む文字列リテラルがUTF-8にエンコードされることを保証するため、<code>u8</code>接頭辞を使用してください。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Do not use it for strings containing non-ASCII characters
+                            encoded as UTF-8, because that will produce incorrect
+                            output if the compiler does not interpret the source file
+                            as UTF-8.
+                        </span>
+                        ただし、ふつうのUTF-8エンコードによる非アスキー文字を含む文字列には、これを使用しないでください。コンパイラがソースファイルをUTF-8として解釈しなかった場合に、不正な出力を生成してしまいます。
+                    </span>
                 </p>
 
                 <p>
-                    You shouldn't use the C++11
-                    <code>char16_t</code> and
-                    <code>char32_t</code> character types, since they're for
-                    non-UTF-8 text. For similar reasons you also shouldn't
-                    use
-                    <code>wchar_t</code> (unless you're writing code that
-                    interacts with the Windows API, which uses
-                    <code>wchar_t</code> extensively).
+                    <span>
+                        <span class="src">
+                            You shouldn't use the C++11
+                            <code>char16_t</code> and
+                            <code>char32_t</code> character types, since they're for
+                            non-UTF-8 text.
+                        </span>
+                        C++11の文字型<code>char16_t</code>と<code>char32_t</code>は、UTF-8以外のエンコードのためのものであるため、使用しないでください。
+                    </span>
+                    <span>
+                        <span class="src">
+                            For similar reasons you also shouldn't
+                            use
+                            <code>wchar_t</code> (unless you're writing code that
+                            interacts with the Windows API, which uses
+                            <code>wchar_t</code> extensively).
+                        </span>
+                        また、同様の理由で、<code>wchar_t</code>も使用しないでください(ただし、<code>wchar_t</code>を使用するWindows APIとやりとりするコードを書いている場合は除きます)。
+                    </span>
                 </p>
 
             </div>
 
-            <h3 id="Spaces_vs._Tabs">Spaces vs. Tabs</h3>
+            <h3 id="Spaces_vs._Tabs"><span title="Spaces vs. Tabs">スペースか、タブか</span></h3>
 
             <div class="summary">
-                <p>Use only spaces, and indent 2 spaces at a time.</p>
+                <p>
+                    <span>
+                        <span class="src">
+                            Use only spaces, and indent 2 spaces at a time.
+                        </span>
+                        スペースのみを使用してください。インデント1つにつき、スペースは2つです。
+                    </span>
+                </p>
             </div>
 
             <div class="stylebody">
 
                 <p>
-                    We use spaces for indentation. Do not use tabs in your
-                    code. You should set your editor to emit spaces when you
-                    hit the tab key.
+                    <span>
+                        <span class="src">
+                            We use spaces for indentation.
+                        </span>
+                        インデントにはスペースを使います。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Do not use tabs in your
+                            code.
+                        </span>
+                        コードにタブを使わないでください。
+                    </span>
+                    <span>
+                        <span class="src">
+                            You should set your editor to emit spaces when you
+                            hit the tab key.
+                        </span>
+                        タブキーを押したときにスペースが入力されるようにエディタを設定してください。
+                    </span>
                 </p>
 
             </div>
 
-            <h3 id="Function_Declarations_and_Definitions">Function Declarations and Definitions</h3>
+            <h3 id="Function_Declarations_and_Definitions"><span title="Function Declarations and Definitions">関数宣言と関数定義</span></h3>
 
             <div class="summary">
                 <p>
-                    Return type on the same line as function name, parameters
-                    on the same line if they fit. Wrap parameter lists which do
-                    not fit on a single line as you would wrap arguments in a
-                    <a href="#Function_Calls">function call</a>.
+                    <span>
+                        <span class="src">
+                            Return type on the same line as function name, parameters
+                            on the same line if they fit.
+                        </span>
+                        関数の戻り値の型は、1行に収まるのであれば、関数名や引数の型と同じ行に記述します。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Wrap parameter lists which do
+                            not fit on a single line as you would wrap arguments in a
+                            <a href="#Function_Calls">function call</a>.
+                        </span>
+                        引数リストが1行に収まらない場合は、<a href="#Function_Calls">関数呼び出し</a>と同様のやり方で、行を分割してください。
+                    </span>
                 </p>
             </div>
 
             <div class="stylebody">
 
-                <p>Functions look like this:</p>
+                <p>
+                    <span>
+                        <span class="src">
+                            Functions look like this:
+                        </span>
+                        関数は以下のようにします。
+                    </span>
+                </p>
 
 
 <pre>ReturnType ClassName::FunctionName(Type par_name1, Type par_name2) {
@@ -13351,7 +13547,14 @@ if (iter != v.end()) {
 }
 </pre>
 
-                <p>If you have too much text to fit on one line:</p>
+                <p>
+                    <span>
+                        <span class="src">
+                            If you have too much text to fit on one line:
+                        </span>
+                        1行が収まらないときは、以下のようにします。
+                    </span>
+                </p>
 
 <pre>ReturnType ClassName::ReallyLongFunctionName(Type par_name1, Type par_name2,
                                              Type par_name3) {
@@ -13360,8 +13563,16 @@ if (iter != v.end()) {
 }
 </pre>
 
-                <p>or if you cannot fit even the first parameter:</p>
-
+                <p>
+                    <span>
+                        <span class="src">
+                            or if you cannot fit even the first parameter:
+                        </span>
+                        最初の引数からして1行に収まらないときは、以下のようにします。
+                    </span>
+                </p>
+                <span>
+                    <span class="src">
 <pre>ReturnType LongClassName::ReallyReallyReallyLongFunctionName(
     Type par_name1,  // 4 space indent
     Type par_name2,
@@ -13370,65 +13581,162 @@ if (iter != v.end()) {
   ...
 }
 </pre>
+                    </span>
+                    <pre>ReturnType LongClassName::ReallyReallyReallyLongFunctionName(
+    Type par_name1,  // インデントはスペース 4個
+    Type par_name2,
+    Type par_name3) {
+  DoSomething();  // インデントはスペース 2個
+  ...
+}
+</pre>
+                </span>
 
-                <p>Some points to note:</p>
+                <p>
+                    <span>
+                        <span class="src">
+                            Some points to note:
+                        </span>
+                        注意すべき点がいくつかあります。
+                    </span>
+                </p>
 
                 <ul>
-                    <li>Choose good parameter names.</li>
-
                     <li>
-                        Parameter names may be omitted only if the parameter is unused and its
-                        purpose is obvious.
+                        <span>
+                            <span class="src">
+                                Choose good parameter names.
+                            </span>
+                            引数の名前をよく考えて決めてください。
+                        </span>
                     </li>
 
                     <li>
-                        If you cannot fit the return type and the function
-                        name on a single line, break between them.
+                        <span>
+                            <span class="src">
+                                Parameter names may be omitted only if the parameter is unused and its
+                                purpose is obvious.
+                            </span>
+                            引数が使われない、かつ、その目的が明らかな場合に限り、その引数の名前を省略してもかまいません。
+                        </span>
                     </li>
 
                     <li>
-                        If you break after the return type of a function
-                        declaration or definition, do not indent.
+                        <span>
+                            <span class="src">
+                                If you cannot fit the return type and the function
+                                name on a single line, break between them.
+                            </span>
+                            戻り値の型と関数名とが同じ行に収まらない場合は、その間で行を分割してください。
+                        </span>
                     </li>
 
                     <li>
-                        The open parenthesis is always on the same line as
-                        the function name.
+                        <span>
+                            <span class="src">
+                                If you break after the return type of a function
+                                declaration or definition, do not indent.
+                            </span>
+                            戻り値の型の後で改行する場合であっても、インデントはしないでください。
+                        </span>
                     </li>
 
                     <li>
-                        There is never a space between the function name
-                        and the open parenthesis.
+                        <span>
+                            <span class="src">
+                                The open parenthesis is always on the same line as
+                                the function name.
+                            </span>
+                            開き丸カッコは常に関数名と同じ行に書きます。
+                        </span>
                     </li>
 
                     <li>
-                        There is never a space between the parentheses and
-                        the parameters.
+                        <span>
+                            <span class="src">
+                                There is never a space between the function name
+                                and the open parenthesis.
+                            </span>
+                            関数名と開き丸カッコの間にはスペースを入れてはいけません。
+                        </span>
                     </li>
 
                     <li>
-                        The open curly brace is always on the end of the last line of the function
-                        declaration, not the start of the next line.
+                        <span>
+                            <span class="src">
+                                There is never a space between the parentheses and
+                                the parameters.
+                            </span>
+                            開き丸カッコと引数の間にはスペースを入れてはいけません。
+                        </span>
                     </li>
 
                     <li>
-                        The close curly brace is either on the last line by
-                        itself or on the same line as the open curly brace.
+                        <span>
+                            <span class="src">
+                                The open curly brace is always on the end of the last line of the function
+                                declaration, not the start of the next line.
+                            </span>
+                            開き波カッコは常に関数宣言の最後の行に書きます。次の行の頭ではありません。
+                        </span>
                     </li>
 
                     <li>
-                        There should be a space between the close
-                        parenthesis and the open curly brace.
+                        <span>
+                            <span class="src">
+                                The close curly brace is either on the last line by
+                                itself or on the same line as the open curly brace.
+                            </span>
+                            閉じ波カッコは、それ自身で最後の行とするか、開き波カッコと同じ行に書くかのいずれかです。
+                        </span>
                     </li>
 
-                    <li>All parameters should be aligned if possible.</li>
+                    <li>
+                        <span>
+                            <span class="src">
+                                There should be a space between the close
+                                parenthesis and the open curly brace.
+                            </span>
+                            閉じ丸カッコと開き波カッコの間にはスペースを入れます。
+                        </span>
+                    </li>
 
-                    <li>Default indentation is 2 spaces.</li>
+                    <li>
+                        <span>
+                            <span class="src">
+                                All parameters should be aligned if possible.
+                            </span>
+                            可能な限り、すべての引数を整列させます。
+                        </span>
+                    </li>
 
-                    <li>Wrapped parameters have a 4 space indent.</li>
+                    <li>
+                        <span>
+                            <span class="src">
+                                Default indentation is 2 spaces.
+                            </span>
+                            デフォルトのインデントはスペース2つです。
+                        </span>
+                    </li>
+
+                    <li>
+                        <span>
+                            <span class="src">
+                                Wrapped parameters have a 4 space indent.
+                            </span>
+                            引数リストにおいて行を分割した場合は、インデントはスペース4つです。
+                        </span>
+                    </li>
                 </ul>
 
-                <p>Unused parameters that are obvious from context may be omitted:</p>
+                <p>
+                    <span>
+                        <span class="src">
+                            Unused parameters that are obvious from context may be omitted:
+                        </span>
+                        以下の例のように、引数が使われない、かつ、その意味が文脈から明らかな場合は、引数を省略できます。
+                    </span>
+                </p>
 
 <pre>class Foo {
  public:
@@ -13440,8 +13748,13 @@ if (iter != v.end()) {
 </pre>
 
                 <p>
-                    Unused parameters that might not be obvious should comment out the variable
-                    name in the function definition:
+                    <span>
+                        <span class="src">
+                            Unused parameters that might not be obvious should comment out the variable
+                            name in the function definition:
+                        </span>
+                        使われない引数でも、意味が明らかでない場合は、関数定義の引数名をコメントアウトします。
+                    </span>
                 </p>
 
 <pre>class Shape {
@@ -13457,39 +13770,68 @@ class Circle : public Shape {
 void Circle::Rotate(double /*radians*/) {}
 </pre>
 
+                <span>
+                    <span class="src">
 <pre class="badcode">// Bad - if someone wants to implement later, it's not clear what the
 // variable means.
 void Circle::Rotate(double) {}
 </pre>
+                    </span>
+                    <pre class="badcode">// ダメ。後で誰かが実装しようとしても、引数の名前が何であったのかわからない。
+void Circle::Rotate(double) {}
+</pre>
+                </span>
 
                 <p>
-                    Attributes, and macros that expand to attributes, appear at the very
-                    beginning of the function declaration or definition, before the
-                    return type:
+                    <span>
+                        <span class="src">
+                            Attributes, and macros that expand to attributes, appear at the very
+                            beginning of the function declaration or definition, before the
+                            return type:
+                        </span>
+                        属性や、属性に展開されるマクロは、関数宣言や関数定義の一番最初(戻り値の型の前)に書きます。
+                    </span>
                 </p>
 <pre>MUST_USE_RESULT bool IsOK();
 </pre>
 
             </div>
 
-            <h3 id="Formatting_Lambda_Expressions">Lambda Expressions</h3>
+            <h3 id="Formatting_Lambda_Expressions"><span title="Lambda Expressions">ラムダ式</span></h3>
 
             <div class="summary">
                 <p>
-                    Format parameters and bodies as for any other function, and capture
-                    lists like other comma-separated lists.
+                    <span>
+                        <span class="src">
+                            Format parameters and bodies as for any other function, and capture
+                            lists like other comma-separated lists.
+                        </span>
+                        引数リストと関数の定義のフォーマットは他の関数と同様とします。キャプチャリストのフォーマットは他のカンマ区切りリストと同様とします。
+                    </span>
                 </p>
             </div>
 
             <div class="stylebody">
                 <p>
-                    For by-reference captures, do not leave a space between the
-                    ampersand (&amp;) and the variable name.
+                    <span>
+                        <span class="src">
+                            For by-reference captures, do not leave a space between the
+                            ampersand (&amp;) and the variable name.
+                        </span>
+                        参照キャプチャのアンパサンド(&amp;)と変数名との間には、スペースを入れません。
+                    </span>
                 </p>
 <pre>int x = 0;
 auto x_plus_n = [&amp;x](int n) -&gt; int { return x + n; }
 </pre>
-                <p>Short lambdas may be written inline as function arguments.</p>
+                <p>
+                    <span>
+                        <span class="src">
+                            Short lambdas may be written inline as function arguments.
+                        </span>
+                        短いラムダ式は、関数の引数としてインラインで書いてもかまいません。
+                    </span>
+                </p>
 <pre>std::set&lt;int&gt; blacklist = {7, 8, 9};
 std::vector&lt;int&gt; digits = {3, 9, 1, 8, 4, 7, 1};
 digits.erase(std::remove_if(digits.begin(), digits.end(), [&amp;blacklist](int i) {
@@ -13500,40 +13842,76 @@ digits.erase(std::remove_if(digits.begin(), digits.end(), [&amp;blacklist](int i
 
             </div>
 
-            <h3 id="Function_Calls">Function Calls</h3>
+            <h3 id="Function_Calls"><span title="Function Calls">関数呼び出し</span></h3>
 
             <div class="summary">
                 <p>
-                    Either write the call all on a single line, wrap the
-                    arguments at the parenthesis, or start the arguments on a new
-                    line indented by four spaces and continue at that 4 space
-                    indent. In the absence of other considerations, use the
-                    minimum number of lines, including placing multiple arguments
-                    on each line where appropriate.
+                    <span>
+                        <span class="src">
+                            Either write the call all on a single line, wrap the
+                            arguments at the parenthesis, or start the arguments on a new
+                            line indented by four spaces and continue at that 4 space
+                            indent.
+                        </span>
+                        関数呼び出しは1行で書くか、引数を丸カッコのところに揃えるように改行するか、スペース4つでインデントした新しい行に引数リストを書くかのいずれかとします。
+                    </span>
+                    <span>
+                        <span class="src">
+                            In the absence of other considerations, use the
+                            minimum number of lines, including placing multiple arguments
+                            on each line where appropriate.
+                        </span>
+                        他に考慮すべきことがない場合は、1行に複数の引数を含めて、可能な限り少ない行数で記述してください。
+                    </span>
                 </p>
             </div>
 
             <div class="stylebody">
 
-                <p>Function calls have the following format:</p>
+                <p>
+                    <span>
+                        <span class="src">
+                            Function calls have the following format:
+                        </span>
+                        関数呼び出しは以下のォーマットに従ってください。
+                    </span>
+                </p>
 <pre>bool result = DoSomething(argument1, argument2, argument3);
 </pre>
 
                 <p>
-                    If the arguments do not all fit on one line, they
-                    should be broken up onto multiple lines, with each
-                    subsequent line aligned with the first argument. Do not
-                    add spaces after the open paren or before the close
-                    paren:
+                    <span>
+                        <span class="src">
+                            If the arguments do not all fit on one line, they
+                            should be broken up onto multiple lines, with each
+                            subsequent line aligned with the first argument.
+                        </span>
+                        もし、引数が1行に収まらない場合、それらを複数の行に分割してください。その際、後続の行は最初の引数に揃えてください。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Do not
+                            add spaces after the open paren or before the close
+                            paren:
+                        </span>
+                        開き丸カッコの後や、閉じ丸カッコの前にスペースを入れてはいけません。
+                    </span>
                 </p>
 <pre>bool result = DoSomething(averyveryveryverylongargument1,
                           argument2, argument3);
 </pre>
 
                 <p>
-                    Arguments may optionally all be placed on subsequent
-                    lines with a four space indent:
+                    <span>
+                        <span class="src">
+                            Arguments may optionally all be placed on subsequent
+                            lines with a four space indent:
+                        </span>
+                        引数は、スペース4つでインデントされた後続行に記述することもできます。
+                    </span>
                 </p>
+                <span>
+                    <span class="src">
 <pre>if (...) {
   ...
   ...
@@ -13544,76 +13922,171 @@ digits.erase(std::remove_if(digits.begin(), digits.end(), [&amp;blacklist](int i
     ...
   }
 </pre>
+                    </span>
+                    <pre>if (...) {
+  ...
+  ...
+  if (...) {
+    bool result = DoSomething(
+        argument1, argument2,  // スペース4つでインデント
+        argument3, argument4);
+    ...
+  }
+</pre>
+                </span>
 
                 <p>
-                    Put multiple arguments on a single line to reduce the
-                    number of lines necessary for calling a function unless
-                    there is a specific readability problem. Some find that
-                    formatting with strictly one argument on each line is
-                    more readable and simplifies editing of the arguments.
-                    However, we prioritize for the reader over the ease of
-                    editing arguments, and most readability problems are
-                    better addressed with the following techniques.
+                    <span>
+                        <span class="src">
+                            Put multiple arguments on a single line to reduce the
+                            number of lines necessary for calling a function unless
+                            there is a specific readability problem.
+                        </span>
+                        関数呼び出しに必要な行数を減らすため、可読性に関する特別な事情がない限り、1行に複数の引数を配置してください。
+                    </span>
+
+                    <span>
+                        <span class="src">
+                            Some find that
+                            formatting with strictly one argument on each line is
+                            more readable and simplifies editing of the arguments.
+                        </span>
+                        人によっては、各行に1つずつ引数をおくフォーマットのほうが読みやすく、より編集しやすくなると考えるかもしれません。
+                    </span>
+
+                    <span>
+                        <span class="src">
+                            However, we prioritize for the reader over the ease of
+                            editing arguments, and most readability problems are
+                            better addressed with the following techniques.
+                        </span>
+                        しかし、我々は、編集のしやすさよりも読者のことを優先しており、可読性に関する問題は次のような方法で改善することができます。
+                    </span>
                 </p>
 
                 <p>
-                    If having multiple arguments in a single line decreases
-                    readability due to the complexity or confusing nature of the
-                    expressions that make up some arguments, try creating
-                    variables that capture those arguments in a descriptive name:
+                    <span>
+                        <span class="src">
+                            If having multiple arguments in a single line decreases
+                            readability due to the complexity or confusing nature of the
+                            expressions that make up some arguments, try creating
+                            variables that capture those arguments in a descriptive name:
+                        </span>
+                        複雑な式で引数が構成され、1行に複数の引数をおくと可読性が低下してしまうという場合には、一時変数を作り、それらの引数に記述的な名前を与えてください。
+                    </span>
                 </p>
 <pre>int my_heuristic = scores[x] * y + bases[x];
 bool result = DoSomething(my_heuristic, x, y, z);
 </pre>
 
                 <p>
-                    Or put the confusing argument on its own line with
-                    an explanatory comment:
+                    <span>
+                        <span class="src">
+                            Or put the confusing argument on its own line with
+                            an explanatory comment:
+                        </span>
+                        あるいは、意味のわかりにくい引数を、説明的なコメントともに、個別の行に配置してください。
+                    </span>
                 </p>
+                <span>
+                    <span class="src">
 <pre>bool result = DoSomething(scores[x] * y + bases[x],  // Score heuristic.
                           x, y, z);
 </pre>
+                    </span>
+                    <pre>bool result = DoSomething(scores[x] * y + bases[x],  // ヒューリスティックなスコア
+                          x, y, z);
+</pre>
+                </span>
 
                 <p>
-                    If there is still a case where one argument is
-                    significantly more readable on its own line, then put it on
-                    its own line. The decision should be specific to the argument
-                    which is made more readable rather than a general policy.
+                    <span>
+                        <span class="src">
+                            If there is still a case where one argument is
+                            significantly more readable on its own line, then put it on
+                            its own line.
+                        </span>
+                        それでもまだ、1つの引数を固有の行に書く方がずっと読みやすいという場合には、そのようにしてください。
+                    </span>
+                    <span>
+                        <span class="src">
+                            The decision should be specific to the argument
+                            which is made more readable rather than a general policy.
+                        </span>
+                        全体的なポリシーよりも、引数がより読みやすくなる方法を選びましょう。
+                    </span>
                 </p>
 
                 <p>
-                    Sometimes arguments form a structure that is important
-                    for readability. In those cases, feel free to format the
-                    arguments according to that structure:
+                    <span>
+                        <span class="src">
+                            Sometimes arguments form a structure that is important
+                            for readability.
+                        </span>
+                        ときには、引数が可読性の面で重要な構造を持つことがあります。
+                    </span>
+                    <span>
+                        <span class="src">
+                            In those cases, feel free to format the
+                            arguments according to that structure:
+                        </span>
+                        このような場合は、それらの引数をその構造に沿って自由に配置するようにしてください。
+                    </span>
                 </p>
+                <span>
+                    <span class="src">
 <pre>// Transform the widget by a 3x3 matrix.
 my_widget.Transform(x1, x2, x3,
                     y1, y2, y3,
                     z1, z2, z3);
 </pre>
+                    </span>
+                    <pre>// ウィジェットを3x3行列で変形する
+my_widget.Transform(x1, x2, x3,
+                    y1, y2, y3,
+                    z1, z2, z3);
+</pre>
+                </span>
 
             </div>
 
-            <h3 id="Braced_Initializer_List_Format">Braced Initializer List Format</h3>
+            <h3 id="Braced_Initializer_List_Format"><span title="Braced Initializer List Format">波カッコによる初期化子リスト</span></h3>
 
             <div class="summary">
                 <p>
-                    Format a
-                    <a href="#Braced_Initializer_List">braced initializer list</a>
-                    exactly like you would format a function call in its place.
+                    <span>
+                        <span class="src">
+                            Format a
+                            <a href="#Braced_Initializer_List">braced initializer list</a>
+                            exactly like you would format a function call in its place.
+                        </span>
+                        <a href="#Braced_Initializer_List">波カッコによる初期化子リスト</a>は、関数呼び出しと同じようにフォーマットします。
+                    </span>
                 </p>
             </div>
 
             <div class="stylebody">
 
                 <p>
-                    If the braced list follows a name (e.g. a type or
-                    variable name), format as if the
-                    <code>{}</code> were the
-                    parentheses of a function call with that name. If there
-                    is no name, assume a zero-length name.
+                    <span>
+                        <span class="src">
+                            If the braced list follows a name (e.g. a type or
+                            variable name), format as if the
+                            <code>{}</code> were the
+                            parentheses of a function call with that name.
+                        </span>
+                        波カッコのリストが型名や変数名のすぐ後に続く場合は、<code>{}</code>を関数呼び出しにおける丸カッコと同等と見なして扱います。
+                    </span>
+                    <span>
+                        <span class="src">
+                            If there
+                            is no name, assume a zero-length name.
+                        </span>
+                        名前がない場合は、0文字の名前があると仮定します。
+                    </span>
                 </p>
-
+                <span>
+                    <span class="src">
 <pre>// Examples of braced init list on a single line.
 return {foo, bar};
 functioncall({foo, bar});
@@ -13640,38 +14113,118 @@ MyType m = {  // Here, you could also break before {.
     {interiorwrappinglist,
      interiorwrappinglist2}};
 </pre>
+                    </span>
+                    <pre>// 波カッコ初期化子リストを1行に配置する場合の例
+return {foo, bar};
+functioncall({foo, bar});
+std::pair&lt;int, int&gt; p{foo, bar};
+
+// 複数行にする場合
+SomeFunction(
+    {"assume a zero-length name before {"},
+    some_other_function_parameter);
+SomeType variable{
+    some, other, values,
+    {"assume a zero-length name before {"},
+    SomeOtherType{
+        "Very long string requiring the surrounding breaks.",
+        some, other values},
+    SomeOtherType{"Slightly shorter string",
+                  some, other, values}};
+SomeType variable{
+    "This is too long to fit all in one line"};
+MyType m = {  // {の前で改行してもかまいません
+    superlongvariablename1,
+    superlongvariablename2,
+    {short, interior, list},
+    {interiorwrappinglist,
+     interiorwrappinglist2}};
+</pre>
+                </span>
 
             </div>
 
-            <h3 id="Conditionals">Conditionals</h3>
+            <h3 id="Conditionals"><span title="Conditionals">条件文</span></h3>
 
             <div class="summary">
                 <p>
-                    Prefer no spaces inside parentheses. The
-                    <code>if</code>
-                    and
-                    <code>else</code> keywords belong on separate lines.
+                    <span>
+                        <span class="src">
+                            Prefer no spaces inside parentheses.
+                        </span>
+                        丸カッコの中にはスペースを書かかない方が好ましいです。
+                    </span>
+                    <span>
+                        <span class="src">
+                            The
+                            <code>if</code>
+                            and
+                            <code>else</code> keywords belong on separate lines.
+                        </span>
+                        <code>if</code>と<code>else</code>は、別の行にします。
+                    </span>
                 </p>
             </div>
 
             <div class="stylebody">
 
                 <p>
-                    There are two acceptable formats for a basic
-                    conditional statement. One includes spaces between the
-                    parentheses and the condition, and one does not.
+                    <span>
+                        <span class="src">
+                            There are two acceptable formats for a basic
+                            conditional statement.
+                        </span>
+                        基本的な条件文には、2つのフォーマットが使用できます。
+                    </span>
+                    <span>
+                        <span class="src">
+                            One includes spaces between the
+                            parentheses and the condition, and one does not.
+                        </span>
+                        ひとつは、丸カッコと条件式の間にスペースを入れるもの。もうひとつは、スペースを入れないもの、です。
+                    </span>
                 </p>
 
                 <p>
-                    The most common form is without spaces. Either is
-                    fine, but
-                    <em>be consistent</em>. If you are modifying a
-                    file, use the format that is already present. If you are
-                    writing new code, use the format that the other files in
-                    that directory or project use. If in doubt and you have
-                    no personal preference, do not add the spaces.
+                    <span>
+                        <span class="src">
+                            The most common form is without spaces.
+                        </span>
+                        スペースを入れない方が多数派です。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Either is
+                            fine, but
+                            <em>be consistent</em>.
+                        </span>
+                        どちらの形でも問題ありませんが、一貫性が保たれるようにしてください。
+                    </span>
+                    <span>
+                        <span class="src">
+                            If you are modifying a
+                            file, use the format that is already present.
+                        </span>
+                        既存のファイルを変更するときには、既にそのコードに存在するフォーマットにあわせてください。
+                    </span>
+                    <span>
+                        <span class="src">
+                            If you are
+                            writing new code, use the format that the other files in
+                            that directory or project use.
+                        </span>
+                        新しいコードを書くときには、同じディレクトリ内あるいは同じプロジェクト内にある他のファイルにあわせてください。
+                    </span>
+                    <span>
+                        <span class="src">
+                            If in doubt and you have
+                            no personal preference, do not add the spaces.
+                        </span>
+                        どちらを使うべきかわからない場合、個人の好みがなければ、スペースを入れない方を採用してください。
+                    </span>
                 </p>
-
+                <span>
+                    <span class="src">
 <pre>if (condition) {  // no spaces inside parentheses
   ...  // 2 space indent.
 } else if (...) {  // The else goes on the same line as the closing brace.
@@ -13680,67 +14233,147 @@ MyType m = {  // Here, you could also break before {.
   ...
 }
 </pre>
+                    </span>
+                    <pre>if (condition) {  // 丸カッコの中にはスペースを入れない。
+  ...  // スペース2つでインデント
+} else if (...) {  // elseは、閉じ波カッコと同じ行におく。
+  ...
+} else {
+  ...
+}
+</pre>
+                </span>
 
                 <p>
-                    If you prefer you may add spaces inside the
-                    parentheses:
+                    <span>
+                        <span class="src">
+                            If you prefer you may add spaces inside the
+                            parentheses:
+                        </span>
+                        丸カッコの中にスペースを入れる場合は次のようになります。
+                    </span>
                 </p>
-
+                <span>
+                    <span class="src">
 <pre>if ( condition ) {  // spaces inside parentheses - rare
   ...  // 2 space indent.
 } else {  // The else goes on the same line as the closing brace.
   ...
 }
 </pre>
+                    </span>
+                    <pre>if ( condition ) {  // 丸カッコの中にスペースがある。(きわめて少数派)
+  ...  // スペース2つでインデント
+} else {  // else は閉じ波カッコと同じ行におく。
+  ...
+}
+</pre>
+                </span>
 
                 <p>
-                    Note that in all cases you must have a space between
-                    the
-                    <code>if</code> and the open parenthesis. You must
-                    also have a space between the close parenthesis and the
-                    curly brace, if you're using one.
+                    <span>
+                        <span class="src">
+                            Note that in all cases you must have a space between
+                            the
+                            <code>if</code> and the open parenthesis.
+                        </span>
+                        いずれの場合でも、<code>if</code>と開き丸カッコの間にはスペースをおかなくてはならないことに注意してください。
+                    </span>
+                    <span>
+                        <span class="src">
+                            You must
+                            also have a space between the close parenthesis and the
+                            curly brace, if you're using one.
+                        </span>
+                        また、どちらの場合でも閉じ丸カッコと波カッコの間にもスペースを入れなくてはいけません。
+                    </span>
                 </p>
-
+                <span>
+                    <span class="src">
 <pre class="badcode">if(condition) {   // Bad - space missing after IF.
 if (condition){   // Bad - space missing before {.
 if(condition){    // Doubly bad.
 </pre>
-
+                    </span>
+                    <pre class="badcode">if(condition) {   // ダメ。ifの後にスペースがない。
+if (condition){   // ダメ。{の前にスペースがない。
+if(condition){    // ダメダメ。
+</pre>
+                </span>
+                <span>
+                    <span class="src">
 <pre>if (condition) {  // Good - proper space after IF and before {.
 </pre>
+                    </span>
+                    <pre>if (condition) {  // 良い。ifの後、{の前に適切にスペースがある。
+</pre>
+                </span>
 
                 <p>
-                    Short conditional statements may be written on one
-                    line if this enhances readability. You may use this only
-                    when the line is brief and the statement does not use the
-                    <code>else</code> clause.
+                    <span>
+                        <span class="src">
+                            Short conditional statements may be written on one
+                            line if this enhances readability.
+                        </span>
+                        短い条件文は、それによって可読性が増す場合は1行に書いてもかまいません。
+                    </span>
+                    <span>
+                        <span class="src">
+                            You may use this only
+                            when the line is brief and the statement does not use the
+                            <code>else</code> clause.
+                        </span>
+                        ただし、行が簡潔であり、その文に<code>else</code>句がない場合に限ります。
+                    </span>
                 </p>
-
 <pre>if (x == kFoo) return new Foo();
 if (x == kBar) return new Bar();
 </pre>
-
                 <p>
-                    This is not allowed when the if statement has an
-                    <code>else</code>:
+                    <span>
+                        <span class="src">
+                            This is not allowed when the if statement has an
+                            <code>else</code>:
+                        </span>
+                        次のように、if文に<code>else</code>句がある場合は、認められません。
+                    </span>
                 </p>
-
+                <span>
+                    <span class="src">
 <pre class="badcode">// Not allowed - IF statement on one line when there is an ELSE clause
 if (x) DoThis();
 else DoThat();
 </pre>
+                    </span>
+                    <pre class="badcode">// ダメ。else句があるif文が1行になっている。
+if (x) DoThis();
+else DoThat();
+</pre>
+                </span>
 
                 <p>
-                    In general, curly braces are not required for
-                    single-line statements, but they are allowed if you like
-                    them; conditional or loop statements with complex
-                    conditions or statements may be more readable with curly
-                    braces. Some
-                    projects require that an
-                    <code>if</code> must always always have an accompanying
-                    brace.
+                    <span>
+                        <span class="src">
+                            In general, curly braces are not required for
+                            single-line statements, but they are allowed if you like
+                            them; conditional or loop statements with complex
+                            conditions or statements may be more readable with curly
+                            braces.
+                        </span>
+                        一般的に、文が1行になるときは波カッコは必須ではありません。カッコをつける方が好きであればつけてもかまいません。条件文やループ文が複雑な条件式や文を伴う場合は、波カッコがあるほうがより読みやすいかもしれません。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Some
+                            projects require that an
+                            <code>if</code> must always always have an accompanying
+                            brace.
+                        </span>
+                        プロジェクトによっては、<code>if</code>文にける波カッコを必須としている場合もあります。
+                    </span>
                 </p>
-
+                <span>
+                    <span class="src">
 <pre>if (condition)
   DoSomething();  // 2 space indent.
 
@@ -13748,14 +14381,29 @@ if (condition) {
   DoSomething();  // 2 space indent.
 }
 </pre>
+                    </span>
+                    <pre>if (condition)
+  DoSomething();  // スペース2つでインデント
+
+if (condition) {
+  DoSomething();  // スペース2つでインデント
+}
+</pre>
+                </span>
 
                 <p>
-                    However, if one part of an
-                    <code>if</code>-
-                    <code>else</code> statement uses curly
-                    braces, the other part must too:
+                    <span>
+                        <span class="src">
+                            However, if one part of an
+                            <code>if</code>-
+                            <code>else</code> statement uses curly
+                            braces, the other part must too:
+                        </span>
+                        ただし、<code>if</code>-<code>else</code>文において、そのいずれかの部分で波カッコをつける場合には、必ずもう一方にもつけなくてはなりません。
+                    </span>
                 </p>
-
+                <span>
+                    <span class="src">
 <pre class="badcode">// Not allowed - curly on IF but not ELSE
 if (condition) {
   foo;
@@ -13769,7 +14417,23 @@ else {
   bar;
 }
 </pre>
+                    </span>
+                    <pre class="badcode">// ダメ。ifには波カッコがあり、elseにはない。
+if (condition) {
+  foo;
+} else
+  bar;
 
+// ダメ。elseには波カッコがあり、ifにはない。
+if (condition)
+  foo;
+else {
+  bar;
+}
+</pre>
+                </span>
+                <span>
+                    <span class="src">
 <pre>// Curly braces around both IF and ELSE required because
 // one of the clauses used braces.
 if (condition) {
@@ -13778,6 +14442,16 @@ if (condition) {
   bar;
 }
 </pre>
+                    </span>
+                    <pre>// ifとelseの両方に波カッコが必要。一方で波カッコを使っているため。
+if (condition) {
+  foo;
+} else {
+  bar;
+}
+</pre>
+
+                </span>
 
             </div>
 
@@ -13785,37 +14459,74 @@ if (condition) {
 
             <div class="summary">
                 <p>
-                    Switch statements may use braces for blocks. Annotate
-                    non-trivial fall-through between cases.
-                    Braces are optional for single-statement loops.
-                    Empty loop bodies should use empty braces or
-                    <code>continue</code>.
+                    <span>
+                        <span class="src">
+                            Switch statements may use braces for blocks.
+                        </span>
+                    </span>
+                    <span>
+                        <span class="src">
+                            Annotate
+                            non-trivial fall-through between cases.
+                        </span>
+                    </span>
+                    <span>
+                        <span class="src">
+                            Braces are optional for single-statement loops.
+                        </span>
+                    </span>
+                    <span>
+                        <span class="src">
+                            Empty loop bodies should use empty braces or
+                            <code>continue</code>.
+                        </span>
+                    </span>
                 </p>
             </div>
 
             <div class="stylebody">
 
                 <p>
-                    <code>case</code> blocks in
-                    <code>switch</code>
-                    statements can have curly braces or not, depending on
-                    your preference. If you do include curly braces they
-                    should be placed as shown below.
+                    <span>
+                        <span class="src">
+                            <code>case</code> blocks in
+                            <code>switch</code>
+                            statements can have curly braces or not, depending on
+                            your preference.
+                        </span>
+                    </span>
+                    <span>
+                        <span class="src">
+                            If you do include curly braces they
+                            should be placed as shown below.
+                        </span>
+                    </span>
                 </p>
 
                 <p>
-                    If not conditional on an enumerated value, switch
-                    statements should always have a
-                    <code>default</code> case
-                    (in the case of an enumerated value, the compiler will
-                    warn you if any values are not handled). If the default
-                    case should never execute, simply
-                    <code>assert</code>:
+                    <span>
+                        <span class="src">
+                            If not conditional on an enumerated value, switch
+                            statements should always have a
+                            <code>default</code> case
+                            (in the case of an enumerated value, the compiler will
+                            warn you if any values are not handled).
+                        </span>
+                    </span>
+                    <span>
+                        <span class="src">
+                            If the default
+                            case should never execute, simply
+                            <code>assert</code>:
+                        </span>
+                    </span>
                 </p>
 
 
 
                 <div>
+                    <span>
+                        <span class="src">
 <pre>switch (var) {
   case 0: {  // 2 space indent
     ...      // 4 space indent
@@ -13830,13 +14541,21 @@ if (condition) {
   }
 }
 </pre>
+                        </span>
+                    </span>
                 </div>
 
 
 
 
 
-                <p> Braces are optional for single-statement loops.</p>
+                <p>
+                    <span>
+                        <span class="src">
+                            Braces are optional for single-statement loops.
+                        </span>
+                    </span>
+                </p>
 
 <pre>for (int i = 0; i &lt; kSomeNumber; ++i)
   printf("I love you\n");
@@ -13848,20 +14567,30 @@ for (int i = 0; i &lt; kSomeNumber; ++i) {
 
 
                 <p>
-                    Empty loop bodies should use an empty pair of braces or
-                    <code>continue</code>,
-                    but not a single semicolon.
+                    <span>
+                        <span class="src">
+                            Empty loop bodies should use an empty pair of braces or
+                            <code>continue</code>,
+                            but not a single semicolon.
+                        </span>
+                    </span>
                 </p>
-
+                <span>
+                    <span class="src">
 <pre>while (condition) {
   // Repeat test until it returns false.
 }
 for (int i = 0; i &lt; kSomeNumber; ++i) {}  // Good - one newline is also OK.
 while (condition) continue;  // Good - continue indicates no logic.
 </pre>
-
+                    </span>
+                </span>
+                <span>
+                    <span class="src">
 <pre class="badcode">while (condition);  // Bad - looks like part of do/while loop.
 </pre>
+                    </span>
+                </span>
 
             </div>
 
@@ -13869,16 +14598,29 @@ while (condition) continue;  // Good - continue indicates no logic.
 
             <div class="summary">
                 <p>
-                    No spaces around period or arrow. Pointer operators do not
-                    have trailing spaces.
+                    <span>
+                        <span class="src">
+                            No spaces around period or arrow.
+                        </span>
+                    </span>
+                    <span>
+                        <span class="src">
+                            Pointer operators do not
+                            have trailing spaces.
+                        </span>
+                    </span>
                 </p>
             </div>
 
             <div class="stylebody">
 
                 <p>
-                    The following are examples of correctly-formatted
-                    pointer and reference expressions:
+                    <span>
+                        <span class="src">
+                            The following are examples of correctly-formatted
+                            pointer and reference expressions:
+                        </span>
+                    </span>
                 </p>
 
 <pre>x = *p;
@@ -13886,28 +14628,47 @@ p = &amp;x;
 x = r.y;
 x = r-&gt;y;
 </pre>
-
-                <p>Note that:</p>
+                <p>
+                    <span>
+                        <span class="src">
+                            Note that:
+                        </span>
+                    </span>
+                </p>
 
                 <ul>
                     <li>
-                        There are no spaces around the period or arrow when
-                        accessing a member.
+                        <span>
+                            <span class="src">
+                                There are no spaces around the period or arrow when
+                                accessing a member.
+                            </span>
+                        </span>
                     </li>
 
                     <li>
-                        Pointer operators have no space after the
-                        <code>*</code> or
-                        <code>&amp;</code>.
+                        <span>
+                            <span class="src">
+                                Pointer operators have no space after the
+                                <code>*</code> or
+                                <code>&amp;</code>.
+                            </span>
+                        </span>
                     </li>
                 </ul>
 
                 <p>
-                    When declaring a pointer variable or argument, you may
-                    place the asterisk adjacent to either the type or to the
-                    variable name:
+                    <span>
+                        <span class="src">
+                            When declaring a pointer variable or argument, you may
+                            place the asterisk adjacent to either the type or to the
+                            variable name:
+                        </span>
+                    </span>
                 </p>
 
+                <span>
+                    <span class="src">
 <pre>// These are fine, space preceding.
 char *c;
 const string &amp;str;
@@ -13916,23 +14677,46 @@ const string &amp;str;
 char* c;
 const string&amp; str;
 </pre>
-
-                It is allowed (if unusual) to declare multiple variables in the same
-                declaration, but it is disallowed if any of those have pointer or
-                reference decorations. Such declarations are easily misread.
+                    </span>
+                </span>
+                <span>
+                    <span class="src">
+                        It is allowed (if unusual) to declare multiple variables in the same
+                        declaration, but it is disallowed if any of those have pointer or
+                        reference decorations.
+                    </span>
+                </span>
+                <span>
+                    <span class="src">
+                        Such declarations are easily misread.
+                    </span>
+                </span>
+                <span>
+                    <span class="src">
 <pre>// Fine if helpful for readability.
 int x, y;
 </pre>
+                    </span>
+                </span>
+
+                <span>
+                    <span class="src">
 <pre class="badcode">int x, *y;  // Disallowed - no &amp; or * in multiple declaration
 char * c;  // Bad - spaces on both sides of *
 const string &amp; str;  // Bad - spaces on both sides of &amp;
 </pre>
+                    </span>
+                </span>
 
                 <p>
-                    You should do this consistently within a single
-                    file,
-                    so, when modifying an existing file, use the style in
-                    that file.
+                    <span>
+                        <span class="src">
+                            You should do this consistently within a single
+                            file,
+                            so, when modifying an existing file, use the style in
+                            that file.
+                        </span>
+                    </span>
                 </p>
 
             </div>
@@ -13941,42 +14725,73 @@ const string &amp; str;  // Bad - spaces on both sides of &amp;
 
             <div class="summary">
                 <p>
-                    When you have a boolean expression that is longer than the
-                    <a href="#Line_Length">standard line length</a>, be
-                    consistent in how you break up the lines.
+                    <span>
+                        <span class="src">
+                            When you have a boolean expression that is longer than the
+                            <a href="#Line_Length">standard line length</a>, be
+                            consistent in how you break up the lines.
+                        </span>
+                    </span>
                 </p>
             </div>
 
             <div class="stylebody">
 
                 <p>
-                    In this example, the logical AND operator is always at
-                    the end of the lines:
+                    <span>
+                        <span class="src">
+                            In this example, the logical AND operator is always at
+                            the end of the lines:
+                        </span>
+                    </span>
                 </p>
 
+                <span>
+                    <span class="src">
 <pre>if (this_one_thing &gt; this_other_thing &amp;&amp;
     a_third_thing == a_fourth_thing &amp;&amp;
     yet_another &amp;&amp; last_one) {
   ...
 }
 </pre>
+                    </span>
+                </span>
 
                 <p>
-                    Note that when the code wraps in this example, both of
-                    the
-                    <code>&amp;&amp;</code> logical AND operators are at
-                    the end of the line. This is more common in Google code,
-                    though wrapping all operators at the beginning of the
-                    line is also allowed. Feel free to insert extra
-                    parentheses judiciously because they can be very helpful
-                    in increasing readability when used
-                    appropriately. Also note that you should always use
-                    the punctuation operators, such as
-                    <code>&amp;&amp;</code> and
-                    <code>~</code>, rather than
-                    the word operators, such as
-                    <code>and</code> and
-                    <code>compl</code>.
+                    <span>
+                        <span class="src">
+                            Note that when the code wraps in this example, both of
+                            the
+                            <code>&amp;&amp;</code> logical AND operators are at
+                            the end of the line.
+                        </span>
+                    </span>
+                    <span>
+                        <span class="src">
+                            This is more common in Google code,
+                            though wrapping all operators at the beginning of the
+                            line is also allowed.
+                        </span>
+                    </span>
+                    <span>
+                        <span class="src">
+                            Feel free to insert extra
+                            parentheses judiciously because they can be very helpful
+                            in increasing readability when used
+                            appropriately.
+                        </span>
+                    </span>
+                    <span>
+                        <span class="src">
+                            Also note that you should always use
+                            the punctuation operators, such as
+                            <code>&amp;&amp;</code> and
+                            <code>~</code>, rather than
+                            the word operators, such as
+                            <code>and</code> and
+                            <code>compl</code>.
+                        </span>
+                    </span>
                 </p>
 
             </div>
@@ -13985,30 +14800,45 @@ const string &amp; str;  // Bad - spaces on both sides of &amp;
 
             <div class="summary">
                 <p>
-                    Do not needlessly surround the
-                    <code>return</code>
-                    expression with parentheses.
+                    <span>
+                        <span class="src">
+                            Do not needlessly surround the
+                            <code>return</code>
+                            expression with parentheses.
+                        </span>
+                    </span>
                 </p>
             </div>
 
             <div class="stylebody">
 
                 <p>
-                    Use parentheses in
-                    <code>return expr;</code> only
-                    where you would use them in
-                    <code>x = expr;</code>.
+                    <span>
+                        <span class="src">
+                            Use parentheses in
+                            <code>return expr;</code> only
+                            where you would use them in
+                            <code>x = expr;</code>.
+                        </span>
+                    </span>
                 </p>
 
+                <span>
+                    <span class="src">
 <pre>return result;                  // No parentheses in the simple case.
 // Parentheses OK to make a complex expression more readable.
 return (some_long_condition &amp;&amp;
         another_condition);
 </pre>
-
+                    </span>
+                </span>
+                <span>
+                    <span class="src">
 <pre class="badcode">return (value);                // You wouldn't write var = (value);
 return(result);                // return is not a function!
 </pre>
+                    </span>
+                </span>
 
             </div>
 
@@ -14018,23 +14848,33 @@ return(result);                // return is not a function!
 
             <div class="summary">
                 <p>
-                    Your choice of
-                    <code>=</code>,
-                    <code>()</code>, or
-                    <code>{}</code>.
+                    <span>
+                        <span class="src">
+                            Your choice of
+                            <code>=</code>,
+                            <code>()</code>, or
+                            <code>{}</code>.
+                        </span>
+                    </span>
                 </p>
             </div>
 
             <div class="stylebody">
 
                 <p>
-                    You may choose between
-                    <code>=</code>,
-                    <code>()</code>, and
-                    <code>{}</code>; the following are
-                    all correct:
+                    <span>
+                        <span class="src">
+                            You may choose between
+                            <code>=</code>,
+                            <code>()</code>, and
+                            <code>{}</code>; the following are
+                            all correct:
+                        </span>
+                    </span>
                 </p>
 
+                <span>
+                    <span class="src">
 <pre>int x = 3;
 int x(3);
 int x{3};
@@ -14042,36 +14882,73 @@ string name = "Some Name";
 string name("Some Name");
 string name{"Some Name"};
 </pre>
+                    </span>
+                </span>
 
                 <p>
-                    Be careful when using a braced initialization list
-                    <code>{...}</code>
-                    on a type with an
-                    <code>std::initializer_list</code> constructor.
-                    A nonempty
-                    <i>braced-init-list</i> prefers the
-                    <code>std::initializer_list</code> constructor whenever
-                    possible. Note that empty braces
-                    <code>{}</code> are special, and
-                    will call a default constructor if available. To force the
-                    non-
-                    <code>std::initializer_list</code> constructor, use parentheses
-                    instead of braces.
+                    <span>
+                        <span class="src">
+                            Be careful when using a braced initialization list
+                            <code>{...}</code>
+                            on a type with an
+                            <code>std::initializer_list</code> constructor.
+                        </span>
+                    </span>
+                    <span>
+                        <span class="src">
+                            A nonempty
+                            <i>braced-init-list</i> prefers the
+                            <code>std::initializer_list</code> constructor whenever
+                            possible.
+                        </span>
+                    </span>
+                    <span>
+                        <span class="src">
+                            Note that empty braces
+                            <code>{}</code> are special, and
+                            will call a default constructor if available.
+                        </span>
+                    </span>
+                    <span>
+                        <span class="src">
+                            To force the
+                            non-
+                            <code>std::initializer_list</code> constructor, use parentheses
+                            instead of braces.
+                        </span>
+                    </span>
                 </p>
 
+                <span>
+                    <span class="src">
 <pre>std::vector&lt;int&gt; v(100, 1);  // A vector of 100 1s.
 std::vector&lt;int&gt; v{100, 1};  // A vector of 100, 1.
 </pre>
+                    </span>
+                </span>
 
                 <p>
-                    Also, the brace form prevents narrowing of integral
-                    types. This can prevent some types of programming
-                    errors.
+                    <span>
+                        <span class="src">
+                            Also, the brace form prevents narrowing of integral
+                            types.
+                        </span>
+                    </span>
+                    <span>
+                        <span class="src">
+                            This can prevent some types of programming
+                            errors.
+                        </span>
+                    </span>
                 </p>
 
+                <span>
+                    <span class="src">
 <pre>int pi(3.14);  // OK -- pi == 3.
 int pi{3.14};  // Compile error: narrowing conversion.
 </pre>
+                    </span>
+                </span>
 
             </div>
 
@@ -14079,20 +14956,30 @@ int pi{3.14};  // Compile error: narrowing conversion.
 
             <div class="summary">
                 <p>
-                    The hash mark that starts a preprocessor directive should
-                    always be at the beginning of the line.
+                    <span>
+                        <span class="src">
+                            The hash mark that starts a preprocessor directive should
+                            always be at the beginning of the line.
+                        </span>
+                    </span>
                 </p>
             </div>
 
             <div class="stylebody">
 
                 <p>
-                    Even when preprocessor directives are within the body
-                    of indented code, the directives should start at the
-                    beginning of the line.
+                    <span>
+                        <span class="src">
+                            Even when preprocessor directives are within the body
+                            of indented code, the directives should start at the
+                            beginning of the line.
+                        </span>
+                    </span>
                 </p>
 
-<pre>// Good - directives at beginning of line
+                <span>
+                    <span class="src">
+                        <pre>// Good - directives at beginning of line
   if (lopsided_score) {
 #if DISASTER_PENDING      // Correct -- Starts at beginning of line
     DropEverything();
@@ -14103,7 +14990,10 @@ int pi{3.14};  // Compile error: narrowing conversion.
     BackToNormal();
   }
 </pre>
-
+                    </span>
+                </span>
+                <span>
+                    <span class="src">
 <pre class="badcode">// Bad - indented directives
   if (lopsided_score) {
     #if DISASTER_PENDING  // Wrong!  The "#if" should be at beginning of line
@@ -14112,6 +15002,8 @@ int pi{3.14};  // Compile error: narrowing conversion.
     BackToNormal();
   }
 </pre>
+                    </span>
+                </span>
 
             </div>
 
@@ -14119,26 +15011,36 @@ int pi{3.14};  // Compile error: narrowing conversion.
 
             <div class="summary">
                 <p>
-                    Sections in
-                    <code>public</code>,
-                    <code>protected</code> and
-                    <code>private</code> order, each indented one space.
+                    <span>
+                        <span class="src">
+                            Sections in
+                            <code>public</code>,
+                            <code>protected</code> and
+                            <code>private</code> order, each indented one space.
+                        </span>
+                    </span>
                 </p>
             </div>
 
             <div class="stylebody">
 
                 <p>
-                    The basic format for a class definition (lacking the
-                    comments, see
-                    <a href="#Class_Comments">
-                        Class
-                        Comments
-                    </a> for a discussion of what comments are
-                    needed) is:
+                    <span>
+                        <span class="src">
+                            The basic format for a class definition (lacking the
+                            comments, see
+                            <a href="#Class_Comments">
+                                Class
+                                Comments
+                            </a> for a discussion of what comments are
+                            needed) is:
+                        </span>
+                    </span>
                 </p>
 
-<pre>class MyClass : public OtherClass {
+                <span>
+                    <span class="src">
+                        <pre>class MyClass : public OtherClass {
  public:      // Note the 1 space indent!
   MyClass();  // Regular 2 space indent.
   explicit MyClass(int var);
@@ -14158,50 +15060,87 @@ int pi{3.14};  // Compile error: narrowing conversion.
   int some_other_var_;
 };
 </pre>
+                    </span>
+                </span>
 
-                <p>Things to note:</p>
+                <p>
+                    <span>
+                        <span class="src">
+                            Things to note:
+                        </span>
+                    </span>
+                </p>
 
                 <ul>
                     <li>
-                        Any base class name should be on the same line as
-                        the subclass name, subject to the 80-column limit.
+                        <span>
+                            <span class="src">
+                                Any base class name should be on the same line as
+                                the subclass name, subject to the 80-column limit.
+                            </span>
+                        </span>
                     </li>
 
                     <li>
-                        The
-                        <code>public:</code>,
-                        <code>protected:</code>,
-                        and
-                        <code>private:</code> keywords should be indented
-                        one space.
+                        <span>
+                            <span class="src">
+                                The
+                                <code>public:</code>,
+                                <code>protected:</code>,
+                                and
+                                <code>private:</code> keywords should be indented
+                                one space.
+                            </span>
+                        </span>
                     </li>
 
                     <li>
-                        Except for the first instance, these keywords
-                        should be preceded by a blank line. This rule is
-                        optional in small classes.
+                        <span>
+                            <span class="src">
+                                Except for the first instance, these keywords
+                                should be preceded by a blank line.
+                            </span>
+                        </span>
+                        <span>
+                            <span class="src">
+                                This rule is
+                                optional in small classes.
+                            </span>
+                        </span>
                     </li>
 
                     <li>
-                        Do not leave a blank line after these
-                        keywords.
+                        <span>
+                            <span class="src">
+                                Do not leave a blank line after these
+                                keywords.
+                            </span>
+                        </span>
                     </li>
 
                     <li>
-                        The
-                        <code>public</code> section should be first,
-                        followed by the
-                        <code>protected</code> and finally the
-                        <code>private</code> section.
+                        <span>
+                            <span class="src">
+                                The
+                                <code>public</code> section should be first,
+                                followed by the
+                                <code>protected</code> and finally the
+                                <code>private</code> section.
+                            </span>
+                        </span>
                     </li>
 
                     <li>
-                        See
-                        <a href="#Declaration_Order">
-                            Declaration
-                            Order
-                        </a> for rules on ordering declarations within
-                        each of these sections.
+                        <span>
+                            <span class="src">
+                                See
+                                <a href="#Declaration_Order">
+                                    Declaration
+                                    Order
+                                </a> for rules on ordering declarations within
+                                each of these sections.
+                            </span>
+                        </span>
                     </li>
                 </ul>
 
@@ -14211,16 +15150,24 @@ int pi{3.14};  // Compile error: narrowing conversion.
 
             <div class="summary">
                 <p>
-                    Constructor initializer lists can be all on one line or
-                    with subsequent lines indented four spaces.
+                    <span>
+                        <span class="src">
+                            Constructor initializer lists can be all on one line or
+                            with subsequent lines indented four spaces.
+                        </span>
+                    </span>
                 </p>
             </div>
 
             <div class="stylebody">
 
-                <p>The acceptable formats for initializer lists are:</p>
+                <p>
+                    <span><span class="src">The acceptable formats for initializer lists are:</span></span>
+                </p>
 
-<pre>// When everything fits on one line:
+                <span>
+                    <span class="src">
+                        <pre>// When everything fits on one line:
 MyClass::MyClass(int var) : some_var_(var) {
   DoSomething();
 }
@@ -14245,23 +15192,37 @@ MyClass::MyClass(int var)
 MyClass::MyClass(int var)
     : some_var_(var) {}
 </pre>
+                    </span>
+                </span>
 
             </div>
 
             <h3 id="Namespace_Formatting">Namespace Formatting</h3>
 
             <div class="summary">
-                <p>The contents of namespaces are not indented.</p>
+                <p>
+                    <span>
+                        <span class="src">
+                            The contents of namespaces are not indented.
+                        </span>
+                    </span>
+                </p>
             </div>
 
             <div class="stylebody">
 
                 <p>
-                    <a href="#Namespaces">Namespaces</a> do not add an
-                    extra level of indentation. For example, use:
+                    <span>
+                        <span class="src">
+                            <a href="#Namespaces">Namespaces</a> do not add an
+                            extra level of indentation. For example, use:
+                        </span>
+                    </span>
                 </p>
 
-<pre>namespace {
+                <span>
+                    <span class="src">
+                        <pre>namespace {
 
 void foo() {  // Correct.  No extra indentation within namespace.
   ...
@@ -14269,9 +15230,19 @@ void foo() {  // Correct.  No extra indentation within namespace.
 
 }  // namespace
 </pre>
+                    </span>
+                </span>
 
-                <p>Do not indent within a namespace:</p>
+                <p>
+                    <span>
+                        <span class="src">
+                            Do not indent within a namespace:
+                        </span>
+                    </span>
+                </p>
 
+                <span>
+                    <span class="src">
 <pre class="badcode">namespace {
 
   // Wrong.  Indented when it should not be.
@@ -14281,15 +15252,25 @@ void foo() {  // Correct.  No extra indentation within namespace.
 
 }  // namespace
 </pre>
+                    </span>
+                </span>
 
                 <p>
-                    When declaring nested namespaces, put each namespace
-                    on its own line.
+                    <span>
+                        <span class="src">
+                            When declaring nested namespaces, put each namespace
+                            on its own line.
+                        </span>
+                    </span>
                 </p>
 
-<pre>namespace foo {
+                <span>
+                    <span class="src">
+                        <pre>namespace foo {
 namespace bar {
 </pre>
+                    </span>
+                </span>
 
             </div>
 
@@ -14297,8 +15278,17 @@ namespace bar {
 
             <div class="summary">
                 <p>
-                    Use of horizontal whitespace depends on location. Never put
-                    trailing whitespace at the end of a line.
+                    <span>
+                        <span class="src">
+                            Use of horizontal whitespace depends on location.
+                        </span>
+                    </span>
+                    <span>
+                        <span class="src">
+                            Never put
+                            trailing whitespace at the end of a line.
+                        </span>
+                    </span>
                 </p>
             </div>
 
@@ -14306,7 +15296,9 @@ namespace bar {
 
                 <h4 class="stylepoint_subsection">General</h4>
 
-<pre>void f(bool b) {  // Open braces should always have a space before them.
+                <span>
+                    <span class="src">
+                        <pre>void f(bool b) {  // Open braces should always have a space before them.
   ...
 int i = 0;  // Semicolons usually have no space before them.
 // Spaces inside braces for braced-init-list are optional.  If you use them,
@@ -14323,21 +15315,39 @@ class Foo : public Bar {
   void Reset() { baz_ = 0; }  // Spaces separating braces from implementation.
   ...
 </pre>
+                    </span>
+                </span>
 
                 <p>
-                    Adding trailing whitespace can cause extra work for
-                    others editing the same file, when they merge, as can
-                    removing existing trailing whitespace. So: Don't
-                    introduce trailing whitespace. Remove it if you're
-                    already changing that line, or do it in a separate
-                    clean-up
-                    operation (preferably when no-one
-                    else is working on the file).
+                    <span>
+                        <span class="src">
+                            Adding trailing whitespace can cause extra work for
+                            others editing the same file, when they merge, as can
+                            removing existing trailing whitespace.
+                        </span>
+                    </span>
+                    <span>
+                        <span class="src">
+                            So: Don't
+                            introduce trailing whitespace.
+                        </span>
+                    </span>
+                    <span>
+                        <span class="src">
+                            Remove it if you're
+                            already changing that line, or do it in a separate
+                            clean-up
+                            operation (preferably when no-one
+                            else is working on the file).
+                        </span>
+                    </span>
                 </p>
 
                 <h4 class="stylepoint_subsection">Loops and Conditionals</h4>
 
-<pre>if (b) {          // Space after the keyword in conditions and loops.
+                <span>
+                    <span class="src">
+                        <pre>if (b) {          // Space after the keyword in conditions and loops.
 } else {          // Spaces around else.
 }
 while (test) {}   // There is usually no space inside parentheses.
@@ -14362,10 +15372,14 @@ switch (i) {
     ...
   case 2: break;  // Use a space after a colon if there's code after it.
 </pre>
+                    </span>
+                </span>
 
                 <h4 class="stylepoint_subsection">Operators</h4>
 
-<pre>// Assignment operators always have spaces around them.
+                <span>
+                    <span class="src">
+                        <pre>// Assignment operators always have spaces around them.
 x = 0;
 
 // Other binary operators usually have spaces around them, but it's
@@ -14381,10 +15395,14 @@ x = -5;
 if (x &amp;&amp; !y)
   ...
 </pre>
+                    </span>
+                </span>
 
                 <h4 class="stylepoint_subsection">Templates and Casts</h4>
 
-<pre>// No spaces inside the angle brackets (&lt; and &gt;), before
+                <span>
+                    <span class="src">
+                        <pre>// No spaces inside the angle brackets (&lt; and &gt;), before
 // &lt;, or between &gt;( in a cast
 std::vector&lt;string&gt; x;
 y = static_cast&lt;char*&gt;(x);
@@ -14392,49 +15410,92 @@ y = static_cast&lt;char*&gt;(x);
 // Spaces between type and pointer are OK, but be consistent.
 std::vector&lt;char *&gt; x;
 </pre>
+                    </span>
+                </span>
 
             </div>
 
             <h3 id="Vertical_Whitespace">Vertical Whitespace</h3>
 
             <div class="summary">
-                <p>Minimize use of vertical whitespace.</p>
+                <p>
+                    <span>
+                        <span class="src">
+                            Minimize use of vertical whitespace.
+                        </span>
+                    </span>
+                </p>
             </div>
 
             <div class="stylebody">
 
                 <p>
-                    This is more a principle than a rule: don't use blank
-                    lines when you don't have to. In particular, don't put
-                    more than one or two blank lines between functions,
-                    resist starting functions with a blank line, don't end
-                    functions with a blank line, and be discriminating with
-                    your use of blank lines inside functions.
+                    <span>
+                        <span class="src">
+                            This is more a principle than a rule: don't use blank
+                            lines when you don't have to.
+                        </span>
+                    </span>
+                    <span>
+                        <span class="src">
+                            In particular, don't put
+                            more than one or two blank lines between functions,
+                            resist starting functions with a blank line, don't end
+                            functions with a blank line, and be discriminating with
+                            your use of blank lines inside functions.
+                        </span>
+                    </span>
                 </p>
 
                 <p>
-                    The basic principle is: The more code that fits on one
-                    screen, the easier it is to follow and understand the
-                    control flow of the program. Of course, readability can
-                    suffer from code being too dense as well as too spread
-                    out, so use your judgement. But in general, minimize use
-                    of vertical whitespace.
+                    <span>
+                        <span class="src">
+                            The basic principle is: The more code that fits on one
+                            screen, the easier it is to follow and understand the
+                            control flow of the program.
+                        </span>
+                    </span>
+                    <span>
+                        <span class="src">
+                            Of course, readability can
+                            suffer from code being too dense as well as too spread
+                            out, so use your judgement.
+                        </span>
+                    </span>
+                    <span>
+                        <span class="src">
+                            But in general, minimize use
+                            of vertical whitespace.
+                        </span>
+                    </span>
                 </p>
 
                 <p>
-                    Some rules of thumb to help when blank lines may be
-                    useful:
+                    <span>
+                        <span class="src">
+                            Some rules of thumb to help when blank lines may be
+                            useful:
+                        </span>
+                    </span>
                 </p>
 
                 <ul>
                     <li>
-                        Blank lines at the beginning or end of a function
-                        very rarely help readability.
+                        <span>
+                            <span class="src">
+                                Blank lines at the beginning or end of a function
+                                very rarely help readability.
+                            </span>
+                        </span>
                     </li>
 
                     <li>
-                        Blank lines inside a chain of if-else blocks may
-                        well help readability.
+                        <span>
+                            <span class="src">
+                                Blank lines inside a chain of if-else blocks may
+                                well help readability.
+                            </span>
+                        </span>
                     </li>
                 </ul>
 
@@ -14443,9 +15504,17 @@ std::vector&lt;char *&gt; x;
             <h2 id="Exceptions_to_the_Rules">Exceptions to the Rules</h2>
 
             <p>
-                The coding conventions described above are mandatory.
-                However, like all good rules, these sometimes have exceptions,
-                which we discuss here.
+                <span>
+                    <span class="src">
+                        The coding conventions described above are mandatory.
+                    </span>
+                </span>
+                <span>
+                    <span class="src">
+                        However, like all good rules, these sometimes have exceptions,
+                        which we discuss here.
+                    </span>
+                </span>
             </p>
 
 
@@ -14455,23 +15524,41 @@ std::vector&lt;char *&gt; x;
 
                 <div class="summary">
                     <p>
-                        You may diverge from the rules when dealing with code that
-                        does not conform to this style guide.
+                        <span>
+                            <span class="src">
+                                You may diverge from the rules when dealing with code that
+                                does not conform to this style guide.
+                            </span>
+                        </span>
                     </p>
                 </div>
 
                 <div class="stylebody">
 
                     <p>
-                        If you find yourself modifying code that was written
-                        to specifications other than those presented by this
-                        guide, you may have to diverge from these rules in order
-                        to stay consistent with the local conventions in that
-                        code. If you are in doubt about how to do this, ask the
-                        original author or the person currently responsible for
-                        the code. Remember that
-                        <em>consistency</em> includes
-                        local consistency, too.
+                        <span>
+                            <span class="src">
+                                If you find yourself modifying code that was written
+                                to specifications other than those presented by this
+                                guide, you may have to diverge from these rules in order
+                                to stay consistent with the local conventions in that
+                                code.
+                            </span>
+                        </span>
+                        <span>
+                            <span class="src">
+                                If you are in doubt about how to do this, ask the
+                                original author or the person currently responsible for
+                                the code.
+                            </span>
+                        </span>
+                        <span>
+                            <span class="src">
+                                Remember that
+                                <em>consistency</em> includes
+                                local consistency, too.
+                            </span>
+                        </span>
                     </p>
 
                 </div>
@@ -14483,124 +15570,235 @@ std::vector&lt;char *&gt; x;
 
             <div class="summary">
                 <p>
-                    Windows
-                    programmers have developed their own set of coding
-                    conventions, mainly derived from the conventions in Windows
-                    headers and other Microsoft code. We want to make it easy
-                    for anyone to understand your code, so we have a single set
-                    of guidelines for everyone writing C++ on any platform.
+                    <span>
+                        <span class="src">
+                            Windows
+                            programmers have developed their own set of coding
+                            conventions, mainly derived from the conventions in Windows
+                            headers and other Microsoft code.
+                        </span>
+                    </span>
+                    <span>
+                        <span class="src">
+                            We want to make it easy
+                            for anyone to understand your code, so we have a single set
+                            of guidelines for everyone writing C++ on any platform.
+                        </span>
+                    </span>
                 </p>
             </div>
 
             <div class="stylebody">
                 <p>
-                    It is worth reiterating a few of the guidelines that
-                    you might forget if you are used to the prevalent Windows
-                    style:
+                    <span>
+                        <span class="src">
+                            It is worth reiterating a few of the guidelines that
+                            you might forget if you are used to the prevalent Windows
+                            style:
+                        </span>
+                    </span>
                 </p>
 
                 <ul>
                     <li>
-                        Do not use Hungarian notation (for example, naming
-                        an integer
-                        <code>iNum</code>). Use the Google naming
-                        conventions, including the
-                        <code>.cc</code> extension
-                        for source files.
+                        <span>
+                            <span class="src">
+                                Do not use Hungarian notation (for example, naming
+                                an integer
+                                <code>iNum</code>).
+                            </span>
+                        </span>
+                        <span>
+                            <span class="src">
+                                Use the Google naming
+                                conventions, including the
+                                <code>.cc</code> extension
+                                for source files.
+                            </span>
+                        </span>
                     </li>
 
                     <li>
-                        Windows defines many of its own synonyms for
-                        primitive types, such as
-                        <code>DWORD</code>,
-                        <code>HANDLE</code>, etc. It is perfectly acceptable,
-                        and encouraged, that you use these types when calling
-                        Windows API functions. Even so, keep as close as you
-                        can to the underlying C++ types. For example, use
-                        <code>const TCHAR *</code> instead of
-                        <code>LPCTSTR</code>.
+                        <span>
+                            <span class="src">
+                                Windows defines many of its own synonyms for
+                                primitive types, such as
+                                <code>DWORD</code>,
+                                <code>HANDLE</code>, etc.
+                            </span>
+                        </span>
+                        <span>
+                            <span class="src">
+                                It is perfectly acceptable,
+                                and encouraged, that you use these types when calling
+                                Windows API functions.
+                            </span>
+                        </span>
+                        <span>
+                            <span class="src">
+                                Even so, keep as close as you
+                                can to the underlying C++ types.
+                            </span>
+                        </span>
+                        <span>
+                            <span class="src">
+                                For example, use
+                                <code>const TCHAR *</code> instead of
+                                <code>LPCTSTR</code>.
+                            </span>
+                        </span>
                     </li>
 
                     <li>
-                        When compiling with Microsoft Visual C++, set the
-                        compiler to warning level 3 or higher, and treat all
-                        warnings as errors.
+                        <span>
+                            <span class="src">
+                                When compiling with Microsoft Visual C++, set the
+                                compiler to warning level 3 or higher, and treat all
+                                warnings as errors.
+                            </span>
+                        </span>
                     </li>
 
                     <li>
-                        Do not use
-                        <code>#pragma once</code>; instead use
-                        the standard Google include guards. The path in the
-                        include guards should be relative to the top of your
-                        project tree.
+                        <span>
+                            <span class="src">
+                                Do not use
+                                <code>#pragma once</code>; instead use
+                                the standard Google include guards.
+                            </span>
+                        </span>
+                        <span>
+                            <span class="src">
+                                The path in the
+                                include guards should be relative to the top of your
+                                project tree.
+                            </span>
+                        </span>
                     </li>
 
                     <li>
-                        In fact, do not use any nonstandard extensions,
-                        like
-                        <code>#pragma</code> and
-                        <code>__declspec</code>,
-                        unless you absolutely must. Using
-                        <code>__declspec(dllimport)</code> and
-                        <code>__declspec(dllexport)</code> is allowed; however,
-                        you must use them through macros such as
-                        <code>DLLIMPORT</code> and
-                        <code>DLLEXPORT</code>, so
-                        that someone can easily disable the extensions if they
-                        share the code.
+                        <span>
+                            <span class="src">
+                                In fact, do not use any nonstandard extensions,
+                                like
+                                <code>#pragma</code> and
+                                <code>__declspec</code>,
+                                unless you absolutely must.
+                            </span>
+                        </span>
+                        <span>
+                            <span class="src">
+                                Using
+                                <code>__declspec(dllimport)</code> and
+                                <code>__declspec(dllexport)</code> is allowed; however,
+                                you must use them through macros such as
+                                <code>DLLIMPORT</code> and
+                                <code>DLLEXPORT</code>, so
+                                that someone can easily disable the extensions if they
+                                share the code.
+                            </span>
+                        </span>
                     </li>
                 </ul>
 
                 <p>
-                    However, there are just a few rules that we
-                    occasionally need to break on Windows:
+                    <span>
+                        <span class="src">
+                            However, there are just a few rules that we
+                            occasionally need to break on Windows:
+                        </span>
+                    </span>
                 </p>
 
                 <ul>
                     <li>
-                        Normally we
-                        <a href="#Multiple_Inheritance">
-                            forbid
-                            the use of multiple implementation inheritance
-                        </a>;
-                        however, it is required when using COM and some ATL/WTL
-                        classes. You may use multiple implementation
-                        inheritance to implement COM or ATL/WTL classes and
-                        interfaces.
+                        <span>
+                            <span class="src">
+                                Normally we
+                                <a href="#Multiple_Inheritance">
+                                    forbid
+                                    the use of multiple implementation inheritance
+                                </a>;
+                                however, it is required when using COM and some ATL/WTL
+                                classes.
+                            </span>
+                        </span>
+                        <span>
+                            <span class="src">
+                                You may use multiple implementation
+                                inheritance to implement COM or ATL/WTL classes and
+                                interfaces.
+                            </span>
+                        </span>
                     </li>
 
                     <li>
-                        Although you should not use exceptions in your own
-                        code, they are used extensively in the ATL and some
-                        STLs, including the one that comes with Visual C++.
-                        When using the ATL, you should define
-                        <code>_ATL_NO_EXCEPTIONS</code> to disable exceptions.
-                        You should investigate whether you can also disable
-                        exceptions in your STL, but if not, it is OK to turn on
-                        exceptions in the compiler. (Note that this is only to
-                        get the STL to compile. You should still not write
-                        exception handling code yourself.)
+                        <span>
+                            <span class="src">
+                                Although you should not use exceptions in your own
+                                code, they are used extensively in the ATL and some
+                                STLs, including the one that comes with Visual C++.
+                            </span>
+                        </span>
+                        <span>
+                            <span class="src">
+                                When using the ATL, you should define
+                                <code>_ATL_NO_EXCEPTIONS</code> to disable exceptions.
+                            </span>
+                        </span>
+                        <span>
+                            <span class="src">
+                                You should investigate whether you can also disable
+                                exceptions in your STL, but if not, it is OK to turn on
+                                exceptions in the compiler.
+                            </span>
+                        </span>
+                        <span>
+                            <span class="src">
+                                (Note that this is only to
+                                get the STL to compile.
+                            </span>
+                        </span>
+                        <span>
+                            <span class="src">
+                                You should still not write
+                                exception handling code yourself.)
+                            </span>
+                        </span>
                     </li>
 
                     <li>
-                        The usual way of working with precompiled headers
-                        is to include a header file at the top of each source
-                        file, typically with a name like
-                        <code>StdAfx.h</code>
-                        or
-                        <code>precompile.h</code>. To make your code easier
-                        to share with other projects, avoid including this file
-                        explicitly (except in
-                        <code>precompile.cc</code>), and
-                        use the
-                        <code>/FI</code> compiler option to include the
-                        file automatically.
+                        <span>
+                            <span class="src">
+                                The usual way of working with precompiled headers
+                                is to include a header file at the top of each source
+                                file, typically with a name like
+                                <code>StdAfx.h</code>
+                                or
+                                <code>precompile.h</code>.
+                            </span>
+                        </span>
+                        <span>
+                            <span class="src">
+                                To make your code easier
+                                to share with other projects, avoid including this file
+                                explicitly (except in
+                                <code>precompile.cc</code>), and
+                                use the
+                                <code>/FI</code> compiler option to include the
+                                file automatically.
+                            </span>
+                        </span>
                     </li>
 
                     <li>
-                        Resource headers, which are usually named
-                        <code>resource.h</code> and contain only macros, do not
-                        need to conform to these style guidelines.
+                        <span>
+                            <span class="src">
+                                Resource headers, which are usually named
+                                <code>resource.h</code> and contain only macros, do not
+                                need to conform to these style guidelines.
+                            </span>
+                        </span>
                     </li>
                 </ul>
 
@@ -14609,35 +15807,86 @@ std::vector&lt;char *&gt; x;
             <h2 class="ignoreLink">Parting Words</h2>
 
             <p>
-                Use common sense and
-                <em>BE CONSISTENT</em>.
+                <span>
+                    <span class="src">
+                        Use common sense and
+                        <em>BE CONSISTENT</em>.
+                    </span>
+                </span>
             </p>
 
             <p>
-                If you are editing code, take a few minutes to look at the
-                code around you and determine its style. If they use spaces
-                around their
-                <code>if</code> clauses, you should, too. If their
-                comments have little boxes of stars around them, make your
-                comments have little boxes of stars around them too.
+                <span>
+                    <span class="src">
+                        If you are editing code, take a few minutes to look at the
+                        code around you and determine its style.
+                    </span>
+                </span>
+                <span>
+                    <span class="src">
+                        If they use spaces
+                        around their
+                        <code>if</code> clauses, you should, too.
+                    </span>
+                </span>
+                <span>
+                    <span class="src">
+                        If their
+                        comments have little boxes of stars around them, make your
+                        comments have little boxes of stars around them too.
+                    </span>
+                </span>
             </p>
 
             <p>
-                The point of having style guidelines is to have a common
-                vocabulary of coding so people can concentrate on what you are
-                saying, rather than on how you are saying it. We present global
-                style rules here so people know the vocabulary. But local style
-                is also important. If code you add to a file looks drastically
-                different from the existing code around it, the discontinuity
-                throws readers out of their rhythm when they go to read it. Try
-                to avoid this.
+                <span>
+                    <span class="src">
+                        The point of having style guidelines is to have a common
+                        vocabulary of coding so people can concentrate on what you are
+                        saying, rather than on how you are saying it.
+                    </span>
+                </span>
+                <span>
+                    <span class="src">
+                        We present global
+                        style rules here so people know the vocabulary.
+                    </span>
+                </span>
+                <span>
+                    <span class="src">
+                        But local style
+                        is also important.
+                    </span>
+                </span>
+                <span>
+                    <span class="src">
+                        If code you add to a file looks drastically
+                        different from the existing code around it, the discontinuity
+                        throws readers out of their rhythm when they go to read it.
+                    </span>
+                </span>
+                <span>
+                    <span class="src">
+                        Try
+                        to avoid this.
+                    </span>
+                </span>
             </p>
 
 
 
             <p>
-                OK, enough writing about writing code; the code itself is much
-                more interesting. Have fun!
+                <span>
+                    <span class="src">
+                        OK, enough writing about writing code; the code itself is much
+                        more interesting.
+                    </span>
+                </span>
+                <span>
+                    <span class="src">
+                        Have fun!
+                    </span>
+                </span>
             </p>
 
             <hr>
