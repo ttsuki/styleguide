@@ -83,24 +83,68 @@
             </h2>
 
             <p>
-                <span title="C++ is one of the main development languages used by many of Google's open-source projects.">C++は、多くのGoogleのオープンソースプロジェクトで使われている主要言語のうちのひとつです。</span>
-                <span title="As every C++ programmer knows, the language has many powerful features, but this power brings with it complexity, which in turn can make code more bug-prone and harder to read and maintain.">C++のプログラマなら誰でも知っているように、この言語はパワフルな機能がありますが、一方でこのパワフルさが複雑さを招き、バグを発生させやすくしたり、また可読性やメンテナンス性の妨げになったりしています。</span>
+                <span>
+                    <span class="src">
+                        C++ is one of the main development languages  used by
+                        many of Google's open-source projects.
+                    </span>
+                    C++は、多くのGoogleのオープンソースプロジェクトで使われている主要言語のうちのひとつです。
+                </span>
+                <span>
+                    <span class="src">
+                        As every C++
+                        programmer knows, the language has many powerful features, but
+                        this power brings with it complexity, which in turn can make
+                        code more bug-prone and harder to read and maintain.
+                    </span>
+                    C++のプログラマなら誰でも知っているように、この言語はパワフルな機能がありますが、一方でこのパワフルさが複雑さを招き、バグを発生させやすくしたり、また可読性やメンテナンス性の妨げになったりしています。
+                </span>
             </p>
 
             <p>
-                <span title="The goal of this guide is to manage this complexity by describing in detail the dos and don'ts of writing C++ code.">本ガイドの目的は、C++のコードを書く際に、すべきこと、すべきでないことを詳しく説明することによって、この複雑性を管理下に置くことです。</span>
-                <span title="These rules exist to keep the code base manageable while still allowing coders to use C++ language features productively.">
+                <span>
+                    <span class="src">
+                        The goal of this guide is to manage this complexity by
+                        describing in detail the dos and don'ts of writing C++ code.
+                    </span>
+                    本ガイドの目的は、C++のコードを書く際に、すべきこと、すべきでないことを詳しく説明することによって、この複雑性を管理下に置くことです。
+                </span>
+                <span>
+                    <span class="src">
+                        These rules exist to
+                        keep the code base manageable while still allowing
+                        coders to use C++ language features productively.
+                    </span>
                     これらのルールは、プログラマがC++の言語機能を生産的に使用できるようにしたまま、コードベースを管理しやすくするために存在します。
                 </span>
             </p>
 
             <p>
-                <span title="Style, also known as readability, is what we call the conventions that govern our C++ code."><em>スタイル</em>とは、リーダビリティとしても知られ、私たちのC++コードを管理するための規約のことです。</span>
-                <span title="The term Style is a bit of a misnomer, since these conventions cover far more than just source file formatting.">これらの規約は、単にソースファイルのフォーマットだけではなく、広い範囲を含むため<em>スタイル</em>という用語はちょっとふさわしくないかもしれません。</span>
+                <span>
+                    <span class="src">
+                        <em>Style</em>, also known as readability, is what we call
+                        the conventions that govern our C++ code.
+                    </span>
+                    <em>スタイル</em>とは、リーダビリティとしても知られ、私たちのC++コードを管理するための規約のことです。
+                </span>
+                <span>
+                    <span class="src">
+                        The term Style is a
+                        bit of a misnomer, since these conventions cover far more than
+                        just source file formatting.
+                    </span>
+                    これらの規約は、単にソースファイルのフォーマットだけではなく、広い範囲を含むため<em>スタイル</em>という用語はちょっとふさわしくないかもしれません。
+                </span>
             </p>
 
             <p>
-                <span title="Most open-source projects developed by Google conform to the requirements in this guide.">Googleのオープンソースプロジェクトのほとんどが、本ガイドに則っています。</span>
+                <span>
+                    <span class="src">
+                        Most open-source projects developed by
+                        Google conform to the requirements in this guide.
+                    </span>
+                    Googleのオープンソースプロジェクトのほとんどが、本ガイドに則っています。
+                </span>
             </p>
 
 
@@ -108,7 +152,13 @@
 
 
             <p>
-                <span title="Note that this guide is not a C++ tutorial: we assume that the reader is familiar with the language.">注意してほしいのは、このガイドはC++のチュートリアルではないということです。このガイドは読者がC++に精通していることを想定して書かれています。</span>
+                <span>
+                    <span class="src">
+                        Note that this guide is not a C++ tutorial: we assume that
+                        the reader is familiar with the language.
+                    </span>
+                    注意してほしいのは、このガイドはC++のチュートリアルではないということです。このガイドは読者がC++に精通していることを想定して書かれています。
+                </span>
             </p>
 
             <h3 id="Goals">
@@ -116,56 +166,390 @@
             </h3>
             <div class="stylebody">
                 <p>
-                    <span title="Why do we have this document?">なぜ本ガイドは書かれたか</span>
+                    <span>
+                        <span class="src">
+                            Why do we have this document?
+                        </span>
+                        なぜ本ガイドは書かれたか
+                    </span>
                 </p>
 
                 <p>
-                    <span title="There are a few core goals that we believe this guide should serve.">このガイドで役立つと思われるいくつかの中核的目標があります。</span>
-                    <span title="These are the fundamental whys that underlie all of the individual rules.">それらは、すべての個々のルールの根底となっている基本的なものです。</span>
-                    <span title="By bringing these ideas to the fore, we hope to ground discussions and make it clearer to our broader community why the rules are in place and why particular decisions have been made.">私たちは、この考え方を前面に出すことで、議論が行われ、より広範囲なコミュニティにおいて、これらのルールがなぜ作られ、なぜそのように決められたのか、より明確に伝わることを望んでいます。</span>
-                    <span title="If you understand what goals each rule is serving, it should be clearer to everyone when a rule may be waived (some can be), and what sort of argument or alternative would be necessary to change a rule in the guide.">個々のルールがどのような目的を果たそうとしているか理解できれば、いつルールの採用を取りやめるべきか、ルールを変更するためにどんな議論や代替案が必要か、より明確になるでしょう。</span>
+                    <span>
+                        <span class="src">
+                            There are a few core goals that we believe this guide should
+                            serve.
+                        </span>
+                        このガイドで役立つと思われるいくつかの中核的目標があります。
+                    </span>
+                    <span>
+                        <span class="src">
+                            These are the fundamental <b>why</b>s that
+                            underlie all of the individual rules.
+                        </span>
+                        それらは、すべての個々のルールの根底となっている基本的なものです。
+                    </span>
+                    <span>
+                        <span class="src">
+                            By bringing these ideas to
+                            the fore, we hope to ground discussions and make it clearer to our
+                            broader community why the rules are in place and why particular
+                            decisions have been made.
+                        </span>
+                        私たちは、この考え方を前面に出すことで、議論が行われ、より広範囲なコミュニティにおいて、これらのルールがなぜ作られ、なぜそのように決められたのか、より明確に伝わることを望んでいます。
+                    </span>
+                    <span>
+                        <span class="src">
+                            If you understand what goals each rule is
+                            serving, it should be clearer to everyone when a rule may be waived
+                            (some can be), and what sort of argument or alternative would be
+                            necessary to change a rule in the guide.
+                        </span>
+                        個々のルールがどのような目的を果たそうとしているか理解できれば、いつルールの採用を取りやめるべきか、ルールを変更するためにどんな議論や代替案が必要か、より明確になるでしょう。
+                    </span>
                 </p>
 
                 <p>
-                    <span title="The goals of the style guide as we currently see them are as follows:">本スタイルガイドの目的は今のところ次のとおりです。</span>
+                    <span>
+                        <span class="src">
+                            The goals of the style guide as we currently see them are as
+                            follows:
+                        </span>
+                        本スタイルガイドの目的は今のところ次のとおりです。
+                    </span>
                 </p>
                 <dl>
-                    <dt><span title="Style rules should pull their weight">スタイルルールを重くしすぎないこと</span></dt>
+                    <dt>
+                        <span>
+                            <span class="src">
+                                Style rules should pull their weight
+                            </span>
+                            スタイルルールを重くしすぎないこと
+                        </span>
+                    </dt>
                     <dd>
-                        <span title="The benefit of a style rule must be large enough to justify asking all of our engineers to
-remember it.">個々のスタイルルールは「所属するすべてのエンジニアが覚えなくてはならない」ことを正当化できるくらいに価値のあるものでなければなりません。</span> <span title="The benefit is measured relative to the codebase we would get without the rule, so a rule against a very harmful practice may still have a small benefit if people are unlikely to do it anyway.">ルールの価値は「仮にそのルールが無かったら書かれたかもしれないコード」との比較で測定されます。このため、仮に「非常に有害な慣行に対するルール」があったとしても、「そもそもそんなルールがなくとも普通はしないよね」という場合、そのルールの価値は低いと考えます。</span> <span title="This principle mostly explains the rules we don&#8217;t have, rather than the rules we do: for example, goto contravenes many of the following principles, but is already vanishingly rare, so the Style Guide doesn&#8217;t discuss it.">この原則は、どちらかというと、本スタイルガイドに書かれていないルールについて説明しています。例えば、<code>goto</code>の濫用はこれに続く多くの原則に違反しますが、すでにそれが行われること自体がレアケースになっています。このため、本ガイドでは<code>goto</code>の濫用については取り扱いません。</span>
+                        <span>
+                            <span class="src">
+                                The benefit of a style rule
+                                must be large enough to justify asking all of our engineers to
+                                remember it.
+                            </span>
+                            個々のスタイルルールは「所属するすべてのエンジニアが覚えなくてはならない」ことを正当化できるくらいに価値のあるものでなければなりません。
+                        </span> <span>
+                            <span class="src">
+                                The benefit is measured relative to the codebase we would
+                                get without the rule, so a rule against a very harmful practice may
+                                still have a small benefit if people are unlikely to do it
+                                anyway.
+                            </span>
+                            ルールの価値は「仮にそのルールが無かったら書かれたかもしれないコード」との比較で測定されます。このため、仮に「非常に有害な慣行に対するルール」があったとしても、「そもそもそんなルールがなくとも普通はしないよね」という場合、そのルールの価値は低いと考えます。
+                        </span> <span>
+                            <span class="src">
+                                This principle mostly explains the rules we don&#8217;t have, rather
+                                than the rules we do: for example, <code>goto</code> contravenes many
+                                of the following principles, but is already vanishingly rare, so the Style
+                                Guide doesn&#8217;t discuss it.
+                            </span>
+                            この原則は、どちらかというと、本スタイルガイドに書かれていないルールについて説明しています。例えば、<code>goto</code>の濫用はこれに続く多くの原則に違反しますが、すでにそれが行われること自体がレアケースになっています。このため、本ガイドでは<code>goto</code>の濫用については取り扱いません。
+                        </span>
                     </dd>
 
-                    <dt><span title="Optimize for the reader, not the writer">コードの(書き手ではなく)読み手に優しいこと</span></dt>
-                    <dd><span title="Our codebase (and most individual components submitted to it) is expected to continue for quite some time.">我々のコードベース(と、ほとんどの個々のコンポーネント)は、今後長い長い時を経ていくことが予想されます。</span> <span title="As a result, more time will be spent reading most of our code than writing it.">結果的に、そのコードを書くのに費やした時間に比べて、はるかに多くの時間がコードを読むために割かれることでしょう。</span> <span title="We explicitly choose to optimize for the experience of our average software engineer reading, maintaining, and debugging code in our codebase rather than ease when writing said code.">私たちは、私たちの平均的なエンジニアが「簡単にコードが書けること」よりも、「コードを読み、メンテし、デバッグがやりやすいこと」に最適化することを明示的に選択します。</span> <span title="&quot;Leave a trace for the reader&quot; is a particularly common sub-point of this principle:">特に「読者のためのヒントを残す」がこの原則の共通のサブテーマになっています。</span> <span title="When something surprising or unusual is happening in a snippet of code (for example, transfer of pointer ownership), leaving textual hints for the reader at the point of use is valuable (std::unique_ptr demonstrates the ownership transfer unambiguously at the call site).">コードの中で見慣れないことをするとき(たとえばポインタの所有権を移す)、読み手のためにヒントを残しておくことは価値があります(<code>std::unique_ptr</code>は明白に所有権を移すことを示しています)。</span> </dd>
-
-                    <dt><span title="Be consistent with existing code">既存のコードと一貫性が保たれていること</span></dt>
-                    <dd> <span title="Using one style consistently through our codebase lets us focus on other (more important) issues.">１つのスタイルをコードベース全体で一貫して用いることで、私たちは他の(より重要な)問題にフォーカスすることができます。</span> <span title="Consistency also allows for automation: tools that format your code or adjust your #includes only work properly when your code is consistent with the expectations of the tooling.">一貫性は自動化を進めやすくもします。コードフォーマットツールは、ツールが期待するコードとあなたのコードが一貫しているときにのみ正しく動作します。</span> <span title="In many cases, rules that are attributed to &quot;Be Consistent&quot; boil down to &quot;Just pick one and stop worrying about it&quot;">多くの場合「一貫性を保つ」に起因するルールは「ただ１つを選び、それについて悩むことをやめる」ということです。</span> <span title="the potential value of allowing flexibility on these points is outweighed by the cost of having people argue over them.">これらの点の多様性を認めることの潜在的な価値よりも、それについて議論するコストの方が上回っているのです。</span></dd>
-
-                    <dt><span title="Be consistent with the broader C++ community when appropriate">より広範囲なC++コミュニティと一貫性があること</span></dt>
-                    <dd><span title="Consistency with the way other organizations use C++ has value for the same reasons as consistency within our code base.">C++を使う他の組織のやり方と一貫性を保つことも、我々コードベース内で一貫性を保つことと同じ理由で価値があります。</span><span title="If a feature in the C++ standard solves a problem, or if some idiom is widely known and accepted, that's an argument for using it.">あるC++標準の機能が問題を解けるのならば、あるイディオムが広く知られて受け入れられているのならば、それを使うための議論をします。</span> <span title="However, sometimes standard features and idioms are flawed, or were just designed without our codebase's needs in mind.">しかし、時折、標準的な機能やイディオムは、不備があったり、あるいは単に私たちのコードベースのニーズを満たさない形でデザインされていたりします。</span> <span title="In those cases (as described below) it's appropriate to constrain or ban standard features.">このような場合、これらの標準機能は制限または禁止することが適切です。</span> <span title="In some cases we prefer a homegrown or third-party library over a library defined in the C++ Standard, either out of perceived superiority or insufficient value to transition the codebase to the standard interface.">いくつかのケースでは、C++標準ライブラリよりも自家製もしくはサードパーティのライブラリを選ぶ場合もあります。標準的なインターフェースにコードベースを移行することには知的優位性も十分な価値もありません。</span></dd>
-
-                    <dt><span title="Avoid surprising or dangerous constructs">見慣れない、あるいは危険な構成は避けること</span></dt>
+                    <dt>
+                        <span>
+                            <span class="src">
+                                Optimize for the reader, not the writer
+                            </span>
+                            コードの(書き手ではなく)読み手に優しいこと
+                        </span>
+                    </dt>
                     <dd>
-                        <span title="C++ has features that are more surprising or dangerous than one might think at a glance.">C++には、ちょっと考えただけでは気が付かないかもしれない、驚くような、あるいは危険な機能も存在します。</span> <span title="Some style guide restrictions are in place to prevent falling into these pitfalls.">本ガイドにおけるいくつかの制限ルールは、このような落とし穴を避けるためのものです。</span> <span title="There is a high bar for style guide waivers on such restrictions, because waiving such rules often directly risks compromising program correctness.">これらのルールを破棄するとプログラムの正確性が失われる可能性があるため、それらのルールを破棄するためには高いハードルを設けています。</span>
+                        <span>
+                            <span class="src">
+                                Our codebase (and most individual components submitted to it) is
+                                expected to continue for quite some time.
+                            </span>
+                            我々のコードベース(と、ほとんどの個々のコンポーネント)は、今後長い長い時を経ていくことが予想されます。
+                        </span> <span>
+                            <span class="src">
+                                As a result, more time will
+                                be spent reading most of our code than writing it.
+                            </span>
+                            結果的に、そのコードを書くのに費やした時間に比べて、はるかに多くの時間がコードを読むために割かれることでしょう。
+                        </span> <span>
+                            <span class="src">
+                                We explicitly
+                                choose to optimize for the experience of our average software engineer
+                                reading, maintaining, and debugging code in our codebase rather than
+                                ease when writing said code.
+                            </span>
+                            私たちは、私たちの平均的なエンジニアが「簡単にコードが書けること」よりも、「コードを読み、メンテし、デバッグがやりやすいこと」に最適化することを明示的に選択します。
+                        </span> <span>
+                            <span class="src">
+                                "Leave a trace for the reader" is a
+                                particularly common sub-point of this principle:
+                            </span>
+                            特に「読者のためのヒントを残す」がこの原則の共通のサブテーマになっています。
+                        </span> <span>
+                            <span class="src">
+                                When something
+                                surprising or unusual is happening in a snippet of code (for example,
+                                transfer of pointer ownership), leaving textual hints for the reader
+                                at the point of use is valuable (<code>std::unique_ptr</code>
+                                demonstrates the ownership transfer unambiguously at the call
+                                site).
+                            </span>
+                            コードの中で見慣れないことをするとき(たとえばポインタの所有権を移す)、読み手のためにヒントを残しておくことは価値があります(<code>std::unique_ptr</code>は明白に所有権を移すことを示しています)。
+                        </span>
                     </dd>
 
-                    <dt><span title="Avoid constructs that our average C++ programmer would find tricky or hard to maintain">平均的なC++プログラマがトリッキーと感じたり、メンテしにくいと感じたりするような構成は避けること</span></dt>
-                    <dd><span title="C++ has features that may not be generally appropriate because of the complexity they introduce to the code.">C++はその複雑さゆえに、コードに導入するのが適切でないような機能も持っています。</span> <span title="In widely used code, it may be more acceptable to use trickier language constructs, because any benefits of more complex implementation are multiplied widely by usage, and the cost in understanding the complexity does not need to be paid again when working with new portions of the codebase.">広く使われているコードの中は、トリッキーな言語構造の方が受け入れられることもあるかもしれません。その場合の理由は、より複雑な実装が過去に繰り返されてきたことや、その複雑なものを理解するコストは、コードベースの新しい部分で仕事をする時にもう一度払う必要はないからです。</span> <span title="When in doubt, waivers to rules of this type can be sought by asking  your project leads.">これを疑うのであれば、このタイプのルールの破棄についてプロジェクトリーダーと相談してください。</span> <span title="This is specifically important for our codebase because code ownership and team membership changes over time: even if everyone that works with some piece of code currently understands it, such understanding is not guaranteed to hold a few years from now.">これは我々のコードベースでは特に重要です。なぜなら、コードの担当者やチームメンバーは時とともに変わるからです。誰かがそのコードを理解して触っていたとしても、その理解が今から1年後にも保たれている保証はどこにもありません。</span></dd>
+                    <dt>
+                        <span>
+                            <span class="src">
+                                Be consistent with existing code
+                            </span>
+                            既存のコードと一貫性が保たれていること
+                        </span>
+                    </dt>
+                    <dd>
+                        <span>
+                            <span class="src">
+                                sing one style consistently through our codebase lets us focus on
+                                other (more important) issues.
+                            </span>
+                            １つのスタイルをコードベース全体で一貫して用いることで、私たちは他の(より重要な)問題にフォーカスすることができます。
+                        </span> <span>
+                            <span class="src">
+                                Consistency also allows for
+                                automation: tools that format your code or adjust
+                                your <code>#include</code>s only work properly when your code is
+                                consistent with the expectations of the tooling.
+                            </span>
+                            一貫性は自動化を進めやすくもします。コードフォーマットツールは、ツールが期待するコードとあなたのコードが一貫しているときにのみ正しく動作します。
+                        </span> <span>
+                            <span class="src">
+                                In many cases, rules
+                                that are attributed to "Be Consistent" boil down to "Just pick one and
+                                stop worrying about it";
+                            </span>
+                            多くの場合「一貫性を保つ」に起因するルールは「ただ１つを選び、それについて悩むことをやめる」ということです。
+                        </span> <span>
+                            <span class="src">
+                                the potential value of allowing flexibility
+                                on these points is outweighed by the cost of having people argue over
+                                them.
+                            </span>
+                            これらの点の多様性を認めることの潜在的な価値よりも、それについて議論するコストの方が上回っているのです。
+                        </span>
+                    </dd>
 
-                    <dt><span title="Be mindful of our scale">我々のプロジェクト規模に留意すること</span></dt>
-                    <dd><span title="With a codebase of 100+ million lines and thousands of engineers, some mistakes and simplifications for one engineer can become costly for many.">1億行以上のコードがあり、何千人ものエンジニアがいる状況において、ある一人のエンジニアのミスや単純化によるコストは非常に高くつくことがあります。</span> <span title="For instance it's particularly important to avoid polluting the global namespace: name collisions across a codebase of hundreds of millions of lines are difficult to work with and hard to avoid if everyone puts things into the global namespace.">たとえば、グローバル名前空間汚染を避けることは非常に重要です。何億行ものコードベースの間で、もし、誰もがグローバル名前空間に何でもかんでもおいていたら、名前の衝突は不可避です。</span></dd>
+                    <dt>
+                        <span>
+                            <span class="src">
+                                Be consistent with the broader C++ community when appropriate
+                            </span>
+                            より広範囲なC++コミュニティと一貫性があること
+                        </span>
+                    </dt>
+                    <dd>
+                        <span>
+                            <span class="src">
+                                Consistency with the way other organizations use C++ has value for
+                                the same reasons as consistency within our code base.
+                            </span>
+                            C++を使う他の組織のやり方と一貫性を保つことも、我々コードベース内で一貫性を保つことと同じ理由で価値があります。
+                        </span><span>
+                            <span class="src">
+                                If a feature in
+                                the C++ standard solves a problem, or if some idiom is widely known
+                                and accepted, that's an argument for using it.
+                            </span>
+                            あるC++標準の機能が問題を解けるのならば、あるイディオムが広く知られて受け入れられているのならば、それを使うための議論をします。
+                        </span> <span>
+                            <span class="src">
+                                However, sometimes
+                                standard features and idioms are flawed, or were just designed without
+                                our codebase's needs in mind.
+                            </span>
+                            しかし、時折、標準的な機能やイディオムは、不備があったり、あるいは単に私たちのコードベースのニーズを満たさない形でデザインされていたりします。
+                        </span> <span>
+                            <span class="src">
+                                In those cases (as described below) it's
+                                appropriate to constrain or ban standard features.
+                            </span>
+                            このような場合、これらの標準機能は制限または禁止することが適切です。
+                        </span> <span>
+                            <span class="src">
+                                In some cases we
+                                prefer a homegrown or third-party library over a library defined in
+                                the C++ Standard, either out of perceived superiority or insufficient
+                                value to transition the codebase to the standard interface.
+                            </span>
+                            いくつかのケースでは、C++標準ライブラリよりも自家製もしくはサードパーティのライブラリを選ぶ場合もあります。標準的なインターフェースにコードベースを移行することには知的優位性も十分な価値もありません。
+                        </span>
+                    </dd>
 
-                    <dt><span title="Concede to optimization when necessary">必要な最適化は厭わない</span></dt>
-                    <dd><span title="Performance optimizations can sometimes be necessary and appropriate, even when they conflict with the other principles of this document.">たとえ本ガイドのルールと競合したとしても、ときにパフォーマンスの最適化は必要かつ適切な場合もあります。</span></dd>
+                    <dt>
+                        <span>
+                            <span class="src">
+                                Avoid surprising or dangerous constructs
+                            </span>
+                            見慣れない、あるいは危険な構成は避けること
+                        </span>
+                    </dt>
+                    <dd>
+                        <span>
+                            <span class="src">
+                                C++ has features that are more surprising or dangerous than one
+                                might think at a glance.
+                            </span>
+                            C++には、ちょっと考えただけでは気が付かないかもしれない、驚くような、あるいは危険な機能も存在します。
+                        </span> <span>
+                            <span class="src">
+                                Some style guide restrictions are in place to
+                                prevent falling into these pitfalls.
+                            </span>
+                            本ガイドにおけるいくつかの制限ルールは、このような落とし穴を避けるためのものです。
+                        </span> <span>
+                            <span class="src">
+                                There is a high bar for style
+                                guide waivers on such restrictions, because waiving such rules often
+                                directly risks compromising program correctness.
+                            </span>
+                            これらのルールを破棄するとプログラムの正確性が失われる可能性があるため、それらのルールを破棄するためには高いハードルを設けています。
+                        </span>
+                    </dd>
+
+                    <dt>
+                        <span>
+                            <span class="src">
+                                Avoid constructs that our average C++ programmer would find tricky
+                                or hard to maintain
+                            </span>
+                            平均的なC++プログラマがトリッキーと感じたり、メンテしにくいと感じたりするような構成は避けること
+                        </span>
+                    </dt>
+                    <dd>
+                        <span>
+                            <span class="src">
+                                C++ has features that may not be generally appropriate because of
+                                the complexity they introduce to the code.
+                            </span>
+                            C++はその複雑さゆえに、コードに導入するのが適切でないような機能も持っています。
+                        </span> <span>
+                            <span class="src">
+                                In widely used
+                                code, it may be more acceptable to use
+                                trickier language constructs, because any benefits of more complex
+                                implementation are multiplied widely by usage, and the cost in understanding
+                                the complexity does not need to be paid again when working with new
+                                portions of the codebase.
+                            </span>
+                            広く使われているコードの中は、トリッキーな言語構造の方が受け入れられることもあるかもしれません。その場合の理由は、より複雑な実装が過去に繰り返されてきたことや、その複雑なものを理解するコストは、コードベースの新しい部分で仕事をする時にもう一度払う必要はないからです。
+                        </span> <span>
+                            <span class="src">
+                                When in doubt, waivers to rules of this type
+                                can be sought by asking  your project leads.
+                            </span>
+                            これを疑うのであれば、このタイプのルールの破棄についてプロジェクトリーダーと相談してください。
+                        </span> <span>
+                            <span class="src">
+                                This is specifically
+                                important for our codebase because code ownership and team membership
+                                changes over time: even if everyone that works with some piece of code
+                                currently understands it, such understanding is not guaranteed to hold a
+                                few years from now.
+                            </span>
+                            これは我々のコードベースでは特に重要です。なぜなら、コードの担当者やチームメンバーは時とともに変わるからです。誰かがそのコードを理解して触っていたとしても、その理解が今から1年後にも保たれている保証はどこにもありません。
+                        </span>
+                    </dd>
+
+                    <dt>
+                        <span>
+                            <span class="src">
+                                Be mindful of our scale
+                            </span>
+                            我々のプロジェクト規模に留意すること
+                        </span>
+                    </dt>
+                    <dd>
+                        <span>
+                            <span class="src">
+                                With a codebase of 100+ million lines and thousands of engineers,
+                                some mistakes and simplifications for one engineer can become costly
+                                for many.
+                            </span>
+                            1億行以上のコードがあり、何千人ものエンジニアがいる状況において、ある一人のエンジニアのミスや単純化によるコストは非常に高くつくことがあります。
+                        </span> <span>
+                            <span class="src">
+                                For instance it's particularly important to
+                                avoid polluting the global namespace: name collisions across a
+                                codebase of hundreds of millions of lines are difficult to work with
+                                and hard to avoid if everyone puts things into the global
+                                namespace.
+                            </span>
+                            たとえば、グローバル名前空間汚染を避けることは非常に重要です。何億行ものコードベースの間で、もし、誰もがグローバル名前空間に何でもかんでもおいていたら、名前の衝突は不可避です。
+                        </span>
+                    </dd>
+
+                    <dt>
+                        <span>
+                            <span class="src">
+                                Concede to optimization when necessary
+                            </span>
+                            必要な最適化は厭わない
+                        </span>
+                    </dt>
+                    <dd>
+                        <span>
+                            <span class="src">
+                                Performance optimizations can sometimes be necessary and
+                                appropriate, even when they conflict with the other principles of this
+                                document.
+                            </span>
+                            たとえ本ガイドのルールと競合したとしても、ときにパフォーマンスの最適化は必要かつ適切な場合もあります。
+                        </span>
+                    </dd>
                 </dl>
 
                 <p>
-                    <span title="The intent of this document is to provide maximal guidance with reasonable restriction.">本文書の目的は理にかなった制限の下での最大限のガイダンスを提供することです。</span>
-                    <span title="As always, common sense and good taste should prevail.">いつもどおり、常識や良識が優先されるべきです。</span>
-                    <span title="By this we specifically refer to the established conventions of the entire Google C++ community, not just your personal preferences or those of your team.">これによって、我々は、具体的に、あなたの個人的な好みやあなたのチームについてだけではなく、Google C++コミュニティ全体で確立された規約に言及します。</span>
-                    <span title="Be skeptical about and reluctant to use clever or unusual constructs: the absence of a prohibition is not the same as a license to proceed.">巧妙なあるいは見慣れない構成には、懐疑的であってください。禁止されていないことはやっていいというわけではありません。</span>
-                    <span title="Use your judgment, and if you are unsure, please don't hesitate to ask your project leads to get additional input.">自分の判断に従ってください。ルールに賛同できない場合には、自プロジェクトのリーダーに対して更なるインプットを求めることを躊躇わないようにしください。</span>
+                    <span>
+                        <span class="src">
+                            The intent of this document is to provide maximal guidance with
+                            reasonable restriction.
+                        </span>
+                        本文書の目的は理にかなった制限の下での最大限のガイダンスを提供することです。
+                    </span>
+                    <span>
+                        <span class="src">
+                            As always, common sense and good taste should
+                            prevail.
+                        </span>
+                        いつもどおり、常識や良識が優先されるべきです。
+                    </span>
+                    <span>
+                        <span class="src">
+                            By this we specifically refer to the established conventions
+                            of the entire Google C++ community, not just your personal preferences
+                            or those of your team.
+                        </span>
+                        これによって、我々は、具体的に、あなたの個人的な好みやあなたのチームについてだけではなく、Google C++コミュニティ全体で確立された規約に言及します。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Be skeptical about and reluctant to use
+                            clever or unusual constructs: the absence of a prohibition is not the
+                            same as a license to proceed.
+                        </span>
+                        巧妙なあるいは見慣れない構成には、懐疑的であってください。禁止されていないことはやっていいというわけではありません。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Use your judgment, and if you are
+                            unsure, please don't hesitate to ask your project leads to get additional
+                            input.
+                        </span>
+                        自分の判断に従ってください。ルールに賛同できない場合には、自プロジェクトのリーダーに対して更なるインプットを求めることを躊躇わないようにしください。
+                    </span>
                 </p>
 
             </div>
@@ -177,17 +561,43 @@ remember it.">個々のスタイルルールは「所属するすべてのエン
             </h2>
 
             <p>
-                <span title="In general, every .cc file should have an associated .h file.">原則的に、全ての<code>.cc</code>ファイルは関連付く<code>.h</code>ファイルを持つようにします。</span>
-                <span title="There are some common exceptions, such as unittests and small .cc files containing just a main() function.">ただし、ユニットテストや<code>main()</code>だけを含むような小さな<code>.cc</code>は例外です。</span>
+                <span>
+                    <span class="src">
+                        In general, every <code>.cc</code> file should have an
+                        associated <code>.h</code> file.
+                    </span>
+                    原則的に、全ての<code>.cc</code>ファイルは関連付く<code>.h</code>ファイルを持つようにします。
+                </span>
+                <span>
+                    <span class="src">
+                        There are some common
+                        exceptions, such as  unittests and
+                        small <code>.cc</code> files containing just a
+                        <code>main()</code> function.
+                    </span>
+                    ただし、ユニットテストや<code>main()</code>だけを含むような小さな<code>.cc</code>は例外です。
+                </span>
             </p>
 
 
             <p>
-                <span title="Correct use of header files can make a huge difference to the readability, size and performance of your code.">正しくヘッダーファイルを扱うことは、コードの可読性やサイズ、パフォーマンスに大きな違いをもたらします。</span>
+                <span>
+                    <span class="src">
+                        Correct use of header files can make a huge difference to
+                        the readability, size and performance of your code.
+                    </span>
+                    正しくヘッダーファイルを扱うことは、コードの可読性やサイズ、パフォーマンスに大きな違いをもたらします。
+                </span>
             </p>
 
             <p>
-                <span title="The following rules will guide you through the various pitfalls of using header files.">以下のルールはヘッダーファイルに関する様々な落とし穴を避けて通るための道しるべとなるはずです。</span>
+                <span>
+                    <span class="src">
+                        The following rules will guide you through the various
+                        pitfalls of using header files.
+                    </span>
+                    以下のルールはヘッダーファイルに関する様々な落とし穴を避けて通るための道しるべとなるはずです。
+                </span>
             </p>
 
             <a id="The_-inl.h_Files"></a>
@@ -197,35 +607,130 @@ remember it.">個々のスタイルルールは「所属するすべてのエン
 
             <div class="summary">
                 <p>
-                    <span title="Header files should be self-contained (compile on their own) and end in .h.">ヘッダファイルは自己完結(単体でコンパイルできる)していなくてはならず、名前は<code>.h</code>で終わります。</span>
-                    <span title="Non-header files that are meant for inclusion should end in .inc and be used sparingly.">ヘッダファイルではない、includeして使われるべきものは<code>.inc</code>で終わるようにしますが、なるべく使用は控えるようにしましょう。</span>
+                    <span>
+                        <span class="src">
+                            Header files should be self-contained (compile on their own) and
+                            end in <code>.h</code>.
+                        </span>
+                        ヘッダファイルは自己完結(単体でコンパイルできる)していなくてはならず、名前は<code>.h</code>で終わります。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Non-header files that are meant for inclusion
+                            should end in <code>.inc</code> and be used sparingly.
+                        </span>
+                        ヘッダファイルではない、includeして使われるべきものは<code>.inc</code>で終わるようにしますが、なるべく使用は控えるようにしましょう。
+                    </span>
                 </p>
             </div>
 
             <div class="stylebody">
                 <p>
-                    <span title="All header files should be self-contained.">すべてのヘッダは自己完結していなくてはなりません。</span>
-                    <span title="Users and refactoring tools should not have to adhere to special conditions to include the header.">ヘッダの使用者やリファクタリングツールは、そのヘッダがincludeされる際に、なんら特別な条件を守る必要がないようにします。</span>
-                    <span title="Specifically, a header should have header guards and include all other headers it needs.">特に、ヘッダには<a href="#The__define_Guard">インクルードガード</a>を持たせ、そのヘッダ自身が必要とするすべての他のヘッダをincludeします。</span>
+                    <span>
+                        <span class="src">
+                            All header files should be self-contained.
+                        </span>
+                        すべてのヘッダは自己完結していなくてはなりません。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Users and refactoring
+                            tools should not have to adhere to special conditions to include the
+                            header.
+                        </span>
+                        ヘッダの使用者やリファクタリングツールは、そのヘッダがincludeされる際に、なんら特別な条件を守る必要がないようにします。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Specifically, a header should
+                            have <a href="#The__define_Guard">header guards</a> and include all
+                            other headers it needs.
+                        </span>
+                        特に、ヘッダには<a href="#The__define_Guard">インクルードガード</a>を持たせ、そのヘッダ自身が必要とするすべての他のヘッダをincludeします。
+                    </span>
                 </p>
 
                 <p>
-                    <span title="Prefer placing the definitions for template and inline functions in the same file as their declarations.">テンプレートやインライン関数などの定義は、宣言と同じファイルに含めましょう。</span>
-                    <span title="The definitions of these constructs must be included into every .cc file that uses them, or the program may fail to link in some build configurations.">これらの定義は、それを用いるすべての<code>.cc</code>ファイルに含まれる必要があり、さもなくばビルド環境によってはリンクに失敗するかもしれません。</span>
-                    <span title="If declarations and definitions are in different files, including the former should transitively include the latter.">もし宣言と定義が違うファイルに分かれているならば、前者は後者をincludeすべきです。</span>
-                    <span title="Do not move these definitions to separately included header files (-inl.h); this practice was common in the past, but is no longer allowed.">これらの定義を分割ヘッダファイル(<code>-inl.h</code>)に移動してはなりません。その手法は古いやり方であり、現在は禁止されています。</span>
+                    <span>
+                        <span class="src">
+                            Prefer placing the definitions for template and inline functions in
+                            the same file as their declarations.
+                        </span>
+                        テンプレートやインライン関数などの定義は、宣言と同じファイルに含めましょう。
+                    </span>
+                    <span>
+                        <span class="src">
+                            The definitions of these
+                            constructs must be included into every <code>.cc</code> file that uses
+                            them, or the program may fail to link in some build configurations.
+                        </span>
+                        これらの定義は、それを用いるすべての<code>.cc</code>ファイルに含まれる必要があり、さもなくばビルド環境によってはリンクに失敗するかもしれません。
+                    </span>
+                    <span>
+                        <span class="src">
+                            If
+                            declarations and definitions are in different files, including the
+                            former should transitively include the latter.
+                        </span>
+                        もし宣言と定義が違うファイルに分かれているならば、前者は後者をincludeすべきです。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Do not move these
+                            definitions to separately included header files (-inl.h);
+                            this practice was common in the past, but is no longer allowed.
+                        </span>
+                        これらの定義を分割ヘッダファイル(<code>-inl.h</code>)に移動してはなりません。その手法は古いやり方であり、現在は禁止されています。
+                    </span>
                 </p>
 
                 <p>
-                    <span title="As an exception, a template that is explicitly instantiated for all relevant sets of template arguments, or that is a private implementation detail of a class, is allowed to be defined in the one and only .cc file that instantiates the template.">例外として、すべての関連するテンプレート引数セットについて明示的に例示されたテンプレートや、クラスのprivateな実装であるテンプレートは、そのテンプレートを実体化している唯一の<code>.cc</code>ファイルで定義しても構いません。</span>
+                    <span>
+                        <span class="src">
+                            As an exception, a template that is explicitly instantiated for
+                            all relevant sets of template arguments, or that is a private
+                            implementation detail of a class, is allowed to be defined in the one
+                            and only <code>.cc</code> file that instantiates the template.
+                        </span>
+                        例外として、すべての関連するテンプレート引数セットについて明示的に例示されたテンプレートや、クラスのprivateな実装であるテンプレートは、そのテンプレートを実体化している唯一の<code>.cc</code>ファイルで定義しても構いません。
+                    </span>
                 </p>
 
                 <p>
-                    <span title="There are rare cases where a file designed to be included is not self-contained.">レアケースながら、includeされるが自己完結でないようなデザインも存在します。</span>
-                    <span title="These are typically intended to be included at unusual locations, such as the middle of another file.">これらはたいていの場合、別のファイルの途中(中ほど)など変わった場所でinlucdeされることを想定しています。</span>
-                    <span title="They might not use header guards, and might not include their prerequisites.">それらのファイルは、<a href="#The__define_Guard">インクルードガード</a>を持っていなかったり、そのヘッダ内で必要なものをincludeしていなかったりします。</span>
-                    <span titile="Name such files with the .inc extension.">このようなファイルには、<code>.inc</code>拡張子を持たせるようにします。</span>
-                    <span title="Use sparingly, and prefer self-contained headers when possible.">また、なるべく使用は避け、可能な限り自己完結型ヘッダを使うことを選択しましょう。</span>
+                    <span>
+                        <span class="src">
+                            There are rare cases where a file designed to be included is not
+                            self-contained.
+                        </span>
+                        レアケースながら、includeされるが自己完結でないようなデザインも存在します。
+                    </span>
+                    <span>
+                        <span class="src">
+                            These are typically intended to be included at unusual
+                            locations, such as the middle of another file.
+                        </span>
+                        これらはたいていの場合、別のファイルの途中(中ほど)など変わった場所でinlucdeされることを想定しています。
+                    </span>
+                    <span>
+                        <span class="src">
+                            They might not
+                            use header guards, and might not include their prerequisites.
+                        </span>
+                        それらのファイルは、<a href="#The__define_Guard">インクルードガード</a>を持っていなかったり、そのヘッダ内で必要なものをincludeしていなかったりします。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Name such files with the <code>.inc</code>
+                            extension.
+                        </span>
+                        このようなファイルには、<code>.inc</code>拡張子を持たせるようにします。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Use sparingly, and prefer self-contained headers when possible.
+                        </span>
+                        また、なるべく使用は避け、可能な限り自己完結型ヘッダを使うことを選択しましょう。
+                    </span>
                 </p>
 
             </div>
@@ -236,8 +741,21 @@ remember it.">個々のスタイルルールは「所属するすべてのエン
 
             <div class="summary">
                 <p>
-                    <span title="All header files should have #define guards to prevent multiple inclusion.">すべてのヘッダファイルは、インクルードガード(<code>#define</code> guards)を持たなくてはなりません。</span>
-                    <span title="The format of the symbol name should be &lt;PROJECT&gt;_&lt;PATH&gt;_&lt;FILE&gt;_H_.">その際のシンボル名は<code><i>&lt;PROJECT&gt;</i>_<i>&lt;PATH&gt;</i>_<i>&lt;FILE&gt;</i>_H_</code>の形でなくてはなりません。</span>
+                    <span>
+                        <span class="src">
+                            All header files should have <code>#define</code> guards to
+                            prevent multiple inclusion.
+                        </span>
+                        すべてのヘッダファイルは、インクルードガード(<code>#define</code> guards)を持たなくてはなりません。
+                    </span>
+                    <span>
+                        <span class="src">
+                            The format of the symbol name
+                            should be
+                            <code><i>&lt;PROJECT&gt;</i>_<i>&lt;PATH&gt;</i>_<i>&lt;FILE&gt;</i>_H_</code>.
+                        </span>
+                        その際のシンボル名は<code><i>&lt;PROJECT&gt;</i>_<i>&lt;PATH&gt;</i>_<i>&lt;FILE&gt;</i>_H_</code>の形でなくてはなりません。
+                    </span>
                 </p>
             </div>
 
@@ -246,8 +764,21 @@ remember it.">個々のスタイルルールは「所属するすべてのエン
 
 
                 <p>
-                    <span title="To guarantee uniqueness, they should be based on the full path in a project's source tree.">ユニーク性を保証するため、プロジェクト内ソースツリーのフルパスに基づくものにします。</span>
-                    <span title="For example, the file foo/src/bar/baz.h in project foo should have the following guard:">たとえば、プロジェクトfooに含まれるファイル<code>foo/src/bar/baz.h</code>のガードは次のようにします。</span>
+                    <span>
+                        <span class="src">
+                            To guarantee uniqueness, they should
+                            be based on the full path in a project's source tree.
+                        </span>
+                        ユニーク性を保証するため、プロジェクト内ソースツリーのフルパスに基づくものにします。
+                    </span>
+                    <span>
+                        <span class="src">
+                            For example, the file <code>foo/src/bar/baz.h</code> in
+                            project <code>foo</code> should have the following
+                            guard:
+                        </span>
+                        たとえば、プロジェクトfooに含まれるファイル<code>foo/src/bar/baz.h</code>のガードは次のようにします。
+                    </span>
                 </p>
 
 <pre>#ifndef FOO_BAR_BAZ_H_
@@ -269,8 +800,18 @@ remember it.">個々のスタイルルールは「所属するすべてのエン
 
             <div class="summary">
                 <p>
-                    <span title="Avoid using forward declarations where possible.">前方宣言は可能な限り避けましょう。</span>
-                    <span title="Just #include the headers you need.">必要ならば単にヘッダを<code>#include</code>してください。</span>
+                    <span>
+                        <span class="src">
+                            Avoid using forward declarations where possible.
+                        </span>
+                        前方宣言は可能な限り避けましょう。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Just <code>#include</code> the headers you need.
+                        </span>
+                        必要ならば単にヘッダを<code>#include</code>してください。
+                    </span>
                 </p>
             </div>
 
@@ -278,19 +819,45 @@ remember it.">個々のスタイルルールは「所属するすべてのエン
 
                 <div class="definition">
                     <p>
-                        <span title="A &quot;forward declaration&quot; is a declaration of a class, function, or template without an associated definition.">前方宣言とは、関連付く定義のないクラス・関数・テンプレートの宣言のことです。</span>
+                        <span>
+                            <span class="src">
+                                A "forward declaration" is a declaration of a class,
+                                function, or template without an associated definition.
+                            </span>
+                            前方宣言とは、関連付く定義のないクラス・関数・テンプレートの宣言のことです。
+                        </span>
                     </p>
                 </div>
 
                 <div class="pros">
                     <ul>
                         <li>
-                            <span title="Forward declarations can save compile time, as #includes force the compiler to open more files and process more input.">前方宣言は、<code>#include</code>がコンパイラに多数のファイルを開かせてそれを処理させるためのコンパイル時間を節約することができます。</span>
+                            <span>
+                                <span class="src">
+                                    Forward declarations can save compile time, as
+                                    <code>#include</code> force the compiler to open
+                                    more files and process more input.
+                                </span>
+                                前方宣言は、<code>#include</code>がコンパイラに多数のファイルを開かせてそれを処理させるためのコンパイル時間を節約することができます。
+                            </span>
                         </li>
 
                         <li>
-                            <span title="Forward declarations can save on unnecessary recompilation.">前方宣言は、不必要な再コンパイルを抑えることができます。</span>
-                            <span title="#includes can force your code to be recompiled more often, due to unrelated changes in the header."><code>#include</code>は、ヘッダの変更があなたのコードに無関係な場合でもコードを再コンパイルする必要があるため、再コンパイルの頻度が上がります。</span>
+                            <span>
+                                <span class="src">
+                                    Forward declarations can save on unnecessary
+                                    recompilation.
+                                </span>
+                                前方宣言は、不必要な再コンパイルを抑えることができます。
+                            </span>
+                            <span>
+                                <span class="src">
+                                    <code>#include</code> can force
+                                    your code to be recompiled more often, due to unrelated
+                                    changes in the header.
+                                </span>
+                                <code>#include</code>は、ヘッダの変更があなたのコードに無関係な場合でもコードを再コンパイルする必要があるため、再コンパイルの頻度が上がります。
+                            </span>
                         </li>
                     </ul>
                 </div>
@@ -298,21 +865,62 @@ remember it.">個々のスタイルルールは「所属するすべてのエン
                 <div class="cons">
                     <ul>
                         <li>
-                            <span title="Forward declarations can hide a dependency, allowing user code to skip necessary recompilation when headers change.">前方宣言は、依存性を隠してしまうため、コードの再コンパイルが必要な場合でも、それをスキップさせてしまうことがあります。</span>
+                            <span>
+                                <span class="src">
+                                    Forward declarations can hide a dependency, allowing
+                                    user code to skip necessary recompilation when headers
+                                    change.
+                                </span>
+                                前方宣言は、依存性を隠してしまうため、コードの再コンパイルが必要な場合でも、それをスキップさせてしまうことがあります。
+                            </span>
                         </li>
 
                         <li>
-                            <span title="A forward declaration may be broken by subsequent changes to the library.">前方宣言は、将来のライブラリ側の変更によって壊れる可能性があります。</span>
-                            <span title="Forward declarations of functions and templates can prevent the header owners from making otherwise-compatible changes to their APIs, such as widening a parameter type, adding a template parameter with a default value, or migrating to a new namespace.">関数やテンプレートの前方宣言は、元のヘッダの持ち主がAPIに対する互換性のない変更(パラメータの型を拡張したり、デフォルト値とともにテンプレートパラメータを増やしたり、新しい名前空間への移行したり)をすることを妨げになります。</span>
+                            <span>
+                                <span class="src">
+                                    A forward declaration may be broken by subsequent
+                                    changes to the library.
+                                </span>
+                                前方宣言は、将来のライブラリ側の変更によって壊れる可能性があります。
+                            </span>
+                            <span>
+                                <span class="src">
+                                    Forward declarations of functions
+                                    and templates can prevent the header owners from making
+                                    otherwise-compatible changes to their APIs, such as
+                                    widening a parameter type, adding a template parameter
+                                    with a default value, or migrating to a new namespace.
+                                </span>
+                                関数やテンプレートの前方宣言は、元のヘッダの持ち主がAPIに対する互換性のない変更(パラメータの型を拡張したり、デフォルト値とともにテンプレートパラメータを増やしたり、新しい名前空間への移行したり)をすることを妨げになります。
+                            </span>
                         </li>
 
                         <li>
-                            <span title="Forward declaring symbols from namespace std yields undefined behavior."><code>std::</code>名前空間のシンボルに対する前方宣言は未定義動作を引き起こします。</span>
+                            <span>
+                                <span class="src">
+                                    Forward declaring symbols from namespace
+                                    <code>std::</code> yields undefined behavior.
+                                </span>
+                                <code>std::</code>名前空間のシンボルに対する前方宣言は未定義動作を引き起こします。
+                            </span>
                         </li>
 
                         <li>
-                            <span title="It can be difficult to determine whether a forward declaration or a full #include is needed.">前方宣言だけで済むのか、<code>#include</code>が必要かを判断するのは、難しいことがあります。</span>
-                            <span title="Replacing an #include with a forward declaration can silently change the meaning of code:">次のコードの<code>#include</code>を単に前方宣言に置き換えてしまうと、コードの意味が変わってしまいます。</span>
+                            <span>
+                                <span class="src">
+                                    It can be difficult to determine whether a forward
+                                    declaration or a full <code>#include</code> is needed.
+                                </span>
+                                前方宣言だけで済むのか、<code>#include</code>が必要かを判断するのは、難しいことがあります。
+                            </span>
+                            <span>
+                                <span class="src">
+                                    Replacing an <code>#include</code> with a forward
+                                    declaration can silently change the meaning of
+                                    code:
+                                </span>
+                                次のコードの<code>#include</code>を単に前方宣言に置き換えてしまうと、コードの意味が変わってしまいます。
+                            </span>
                             <pre>      // b.h:
       struct B {};
       struct D : B {};
@@ -324,15 +932,36 @@ remember it.">個々のスタイルルールは「所属するすべてのエン
       void test(D* x) { f(x); }  // calls f(B*)
       </pre>
 
-                            <span title="If the #include was replaced with forward decls for B and D, test() would call f(void*)."><code>B</code>と<code>D</code>に対する<code>#include</code>を、単に前方宣言に置き換えてしまった場合、test()は <code>f(void*)</code> を呼び出すことになるでしょう。</span>
+                            <span>
+                                <span class="src">
+                                    If the <code>#include</code> was replaced with forward
+                                    decls for <code>B</code> and <code>D</code>,
+                                    <code>test()</code> would call <code>f(void*)</code>.
+                                </span>
+                                <code>B</code>と<code>D</code>に対する<code>#include</code>を、単に前方宣言に置き換えてしまった場合、test()は <code>f(void*)</code> を呼び出すことになるでしょう。
+                            </span>
                         </li>
 
                         <li>
-                            <span title="Forward declaring multiple symbols from a header can be more verbose than simply #include-ing the header.">ある1つのヘッダに含まれる複数のシンボルを前方宣言することは、単にそのヘッダを<code>#include</code>するよりも冗長になってしまいます。</span>
+                            <span>
+                                <span class="src">
+                                    Forward declaring multiple symbols from a header
+                                    can be more verbose than simply
+                                    <code>#include</code>ing the header.
+                                </span>
+                                ある1つのヘッダに含まれる複数のシンボルを前方宣言することは、単にそのヘッダを<code>#include</code>するよりも冗長になってしまいます。
+                            </span>
                         </li>
 
                         <li>
-                            <span title="Structuring code to enable forward declarations (e.g. using pointer members instead of object members) can make the code slower and more complex.">前方宣言を使ってコードを作ろうとすると、(メンバにオブジェクトではなくポインタにしなくてはならないなど)、実行速度を下げ、しかも複雑なコードを書く羽目になるかもしれません。</span>
+                            <span>
+                                <span class="src">
+                                    Structuring code to enable forward declaration
+                                    (e.g. using pointer members instead of object members)
+                                    can make the code slower and more complex.
+                                </span>
+                                前方宣言を使ってコードを作ろうとすると、(メンバにオブジェクトではなくポインタにしなくてはならないなど)、実行速度を下げ、しかも複雑なコードを書く羽目になるかもしれません。
+                            </span>
                         </li>
 
 
@@ -342,20 +971,45 @@ remember it.">個々のスタイルルールは「所属するすべてのエン
                 <div class="decision">
                     <ul>
                         <li>
-                            <span title="Try to avoid forward declarations of entities defined in another project.">外部プロジェクト内に存在するモノの前方宣言は避けましょう。</span>
+                            <span>
+                                <span class="src">
+                                    Try to avoid forward declarations of entities
+                                    defined in another project.
+                                </span>
+                                外部プロジェクト内に存在するモノの前方宣言は避けましょう。
+                            </span>
                         </li>
 
                         <li>
-                            <span title="When using a function declared in a header file, always #include that header.">ヘッダで宣言されている関数を使いたい場合は、常にそのヘッダを<code>#include</code>しましょう。</span>
+                            <span>
+                                <span class="src">
+                                    When using a function declared in a header file,
+                                    always <code>#include</code> that header.
+                                </span>
+                                ヘッダで宣言されている関数を使いたい場合は、常にそのヘッダを<code>#include</code>しましょう。
+                            </span>
                         </li>
 
                         <li>
-                            <span title="When using a class template, prefer to #include its header file.">クラステンプレートを使いたい場合、ヘッダを<code>#include</code>しましょう。</span>
+                            <span>
+                                <span class="src">
+                                    When using a class template, prefer to #include its header file.
+                                </span>
+                                クラステンプレートを使いたい場合、ヘッダを<code>#include</code>しましょう。
+                            </span>
                         </li>
                     </ul>
 
                     <p>
-                        <span title="Please see Names and Order of Includes for rules about when to #include a header.">ヘッダの<code>#include</code>関するルール<a href="#Names_and_Order_of_Includes">インクルードの名前と順序</a>も読んでください。</span>
+                        <span>
+                            <span class="src">
+                                Please see <a href="#Names_and_Order_of_Includes">
+                                    Names and Order
+                                    of Includes
+                                </a> for rules about when to #include a header.
+                            </span>
+                            ヘッダの<code>#include</code>関するルール<a href="#Names_and_Order_of_Includes">インクルードの名前と順序</a>も読んでください。
+                        </span>
                     </p>
                 </div>
 
@@ -367,7 +1021,13 @@ remember it.">個々のスタイルルールは「所属するすべてのエン
 
             <div class="summary">
                 <p>
-                    <span title="Define functions inline only when they are small, say, 10 lines or fewer.">インライン関数は、関数の定義が小さいとき(10行以下)だけ使うようにしましょう。</span>
+                    <span>
+                        <span class="src">
+                            Define functions inline only when they are small, say, 10
+                            lines or fewer.
+                        </span>
+                        インライン関数は、関数の定義が小さいとき(10行以下)だけ使うようにしましょう。
+                    </span>
                 </p>
             </div>
 
@@ -375,40 +1035,126 @@ remember it.">個々のスタイルルールは「所属するすべてのエン
 
                 <div class="definition">
                     <p>
-                        <span title="You can declare functions in a way that allows the compiler to expand them inline rather than calling them through the usual function call mechanism.">関数は、コンパイラに対して、通常の関数呼び出しの代わりに、直接その場に展開することを許した形で宣言することができます。</span>
+                        <span>
+                            <span class="src">
+                                You can declare functions in a way that allows the compiler to expand
+                                them inline rather than calling them through the usual
+                                function call mechanism.
+                            </span>
+                            関数は、コンパイラに対して、通常の関数呼び出しの代わりに、直接その場に展開することを許した形で宣言することができます。
+                        </span>
                     </p>
                 </div>
 
                 <div class="pros">
                     <p>
-                        <span title="Inlining a function can generate more efficient object code, as long as the inlined function is small.">関数のインライン化によって、インライン化される関数が小さければ、効率的なオブジェクトコードを生成することができるようになります。</span>
-                        <span title="Feel free to inline accessors and mutators, and other short, performance-critical functions.">アクセサ(訳注:日本語圏でいうGetterのこと)やミューテータ(訳注:日本語圏でいうSetterのこと)、パフォーマンスクリティカルな小さい関数はどんどんインライン化しましょう。</span>
+                        <span>
+                            <span class="src">
+                                Inlining a function can generate more efficient object
+                                code, as long as the inlined function is small.
+                            </span>
+                            関数のインライン化によって、インライン化される関数が小さければ、効率的なオブジェクトコードを生成することができるようになります。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Feel free
+                                to inline accessors and mutators, and other short,
+                                performance-critical functions.
+                            </span>
+                            アクセサ(訳注:日本語圏でいうGetterのこと)やミューテータ(訳注:日本語圏でいうSetterのこと)、パフォーマンスクリティカルな小さい関数はどんどんインライン化しましょう。
+                        </span>
                     </p>
                 </div>
 
                 <div class="cons">
                     <p>
-                        <span title="Overuse of inlining can actually make programs slower.">インライン関数を使いすぎると実のところプログラムは遅くなることもあります。</span>
-                        <span title="Depending on a function's size, inlining it can cause the code size to increase or decrease.">関数のサイズによっては、インライン化によってコードのサイズも増えたり減ったりします。</span>
-                        <span title="Inlining a very small accessor function will usually decrease code size while inlining a very large function can dramatically increase code size.">とても小さいアクセッサ関数をインライン化する場合たいていコードのサイズは小さくなりますが、一方で、大きな関数をインライン化してしまうと全体のコードサイズは劇的に大きくなってしまうこともあります。</span>
-                        <span title="On modern processors smaller code usually runs faster due to better use of the instruction cache.">イマドキのCPUにおいては、大抵の場合、命令キャッシュがうまく使える小さいコードの方が動作が速いです。</span>
+                        <span>
+                            <span class="src">
+                                Overuse of inlining can actually make programs slower.
+                            </span>
+                            インライン関数を使いすぎると実のところプログラムは遅くなることもあります。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Depending on a function's size, inlining it can cause the
+                                code size to increase or decrease.
+                            </span>
+                            関数のサイズによっては、インライン化によってコードのサイズも増えたり減ったりします。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Inlining a very small
+                                accessor function will usually decrease code size while
+                                inlining a very large function can dramatically increase code size.
+                            </span>
+                            とても小さいアクセッサ関数をインライン化する場合たいていコードのサイズは小さくなりますが、一方で、大きな関数をインライン化してしまうと全体のコードサイズは劇的に大きくなってしまうこともあります。
+                        </span>
+                        <span>
+                            <span class="src">
+                                On modern processors smaller code usually runs
+                                faster due to better use of the instruction cache.
+                            </span>
+                            イマドキのCPUにおいては、大抵の場合、命令キャッシュがうまく使える小さいコードの方が動作が速いです。
+                        </span>
                     </p>
                 </div>
 
                 <div class="decision">
                     <p>
-                        <span title="A decent rule of thumb is to not inline a function if it is more than 10 lines long.">経験的なルールとして、関数が10行より多くなったらインライン化すべきではないです。</span>
-                        <span title="Beware of destructors, which are often longer than they appear because of implicit member- and base-destructor calls!">デストラクタに特に気を付けましょう。デストラクタは、暗黙的にメンバのデストラクタと基底デストラクタを呼び出すため見た目より長くなることがしばしばあるのです！</span>
+                        <span>
+                            <span class="src">
+                                A decent rule of thumb is to not inline a function if
+                                it is more than 10 lines long.
+                            </span>
+                            経験的なルールとして、関数が10行より多くなったらインライン化すべきではないです。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Beware of destructors,
+                                which are often longer than they appear because of
+                                implicit member- and base-destructor calls!
+                            </span>
+                            デストラクタに特に気を付けましょう。デストラクタは、暗黙的にメンバのデストラクタと基底デストラクタを呼び出すため見た目より長くなることがしばしばあるのです！
+                        </span>
                     </p>
 
                     <p>
-                        <span title="Another useful rule of thumb: it's typically not cost effective to inline functions with loops or switch statements (unless, in the common case, the loop or switch statement is never executed).">もう１つ、有用な経験的なルールとして、大抵の場合、ループやswitch文のある関数は(それらがまったく実行されないような場合を除いて)インライン化しても効率的にはなりません。</span>
+                        <span>
+                            <span class="src">
+                                Another useful rule of thumb: it's typically not cost
+                                effective to inline functions with loops or switch
+                                statements (unless, in the common case, the loop or
+                                switch statement is never executed).
+                            </span>
+                            もう１つ、有用な経験的なルールとして、大抵の場合、ループやswitch文のある関数は(それらがまったく実行されないような場合を除いて)インライン化しても効率的にはなりません。
+                        </span>
                     </p>
 
                     <p>
-                        <span title="It is important to know that functions are not always inlined even if they are declared as such; for example, virtual and recursive functions are not normally inlined.">重要な知識として、インライン関数はインラインで宣言されたからといって常にインライン化されるわけではありません。たとえば仮想関数や再帰関数は通常インライン化されません。</span>
-                        <span title="Usually recursive functions should not be inline.">通常、再帰関数はインライン化すべきではありません。</span>
-                        <span title="The main reason for making a virtual function inline is to place its definition in the class, either for convenience or to document its behavior, e.g., for accessors and mutators.">仮想関数をクラス内にインラインで定義する理由は、利便性や、(GetterやSetterの場合など)動作に関するドキュメントとしての役割があるからです。</span>
+                        <span>
+                            <span class="src">
+                                It is important to know that functions are not always
+                                inlined even if they are declared as such; for example,
+                                virtual and recursive functions are not normally inlined.
+                            </span>
+                            重要な知識として、インライン関数はインラインで宣言されたからといって常にインライン化されるわけではありません。たとえば仮想関数や再帰関数は通常インライン化されません。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Usually recursive functions should not be inline.
+                            </span>
+                            通常、再帰関数はインライン化すべきではありません。
+                        </span>
+                        <span>
+                            <span class="src">
+                                The
+                                main reason for making a virtual function inline is to
+                                place its definition in the class, either for convenience
+                                or to document its behavior, e.g., for accessors and
+                                mutators.
+                            </span>
+                            仮想関数をクラス内にインラインで定義する理由は、利便性や、(GetterやSetterの場合など)動作に関するドキュメントとしての役割があるからです。
+                        </span>
                     </p>
                 </div>
 
@@ -420,22 +1166,59 @@ remember it.">個々のスタイルルールは「所属するすべてのエン
 
             <div class="summary">
                 <p>
-                    <span title="Use standard order for readability and to avoid hidden dependencies:">可読性を保つため、また、依存関係が隠れるのを防ぐため、次に示す順序でヘッダをincludeします。</span>
-                    <span title="Related header, C library, C++ library,  other libraries' .h, your project's .h.">関連付くヘッダ, Cライブラリヘッダ, C++ライブラリヘッダ, 他のライブラリヘッダ, 自分のプロジェクトのヘッダ.</span>
+                    <span>
+                        <span class="src">
+                            Use standard order for readability and to avoid hidden
+                            dependencies:
+                        </span>
+                        可読性を保つため、また、依存関係が隠れるのを防ぐため、次に示す順序でヘッダをincludeします。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Related header, C library, C++ library,  other libraries'
+                            <code>.h</code>, your project's <code>.h</code>.
+                        </span>
+                        関連付くヘッダ, Cライブラリヘッダ, C++ライブラリヘッダ, 他のライブラリヘッダ, 自分のプロジェクトのヘッダ.
+                    </span>
                 </p>
             </div>
 
             <div class="stylebody">
                 <p>
-                    <span title="All of a project's header files should be listed as descendants of the project's source directory without use of UNIX directory shortcuts . (the current directory) or .. (the parent directory).">プロジェクトヘッダはプロジェクトソースディレクトリ以下に配置しなくてはなりません。UNIXディレクトリショートカットである <code>.</code>(カレントディレクトリ)や、<code>..</code>(親ディレクトリ)は省きます。</span>
-                    <span title="For example, google-awesome-project/src/base/logging.h should be included as:">たとえば、<code>google-awesome-project/src/base/logging.h</code>は次のようにインクルードされます。</span>
+                    <span>
+                        <span class="src">
+                            All of a project's header files should be
+                            listed as descendants of the project's source
+                            directory without use of UNIX directory shortcuts
+                            <code>.</code> (the current directory) or <code>..</code>
+                            (the parent directory).
+                        </span>
+                        プロジェクトヘッダはプロジェクトソースディレクトリ以下に配置しなくてはなりません。UNIXディレクトリショートカットである <code>.</code>(カレントディレクトリ)や、<code>..</code>(親ディレクトリ)は省きます。
+                    </span>
+                    <span>
+                        <span class="src">
+                            For example,
+                            <code>google-awesome-project/src/base/logging.h</code>
+                            should be included as:
+                        </span>
+                        たとえば、<code>google-awesome-project/src/base/logging.h</code>は次のようにインクルードされます。
+                    </span>
                 </p>
 
 <pre>#include "base/logging.h"
 </pre>
 
                 <p>
-                    <span title="In dir/foo.cc or dir/foo_test.cc, whose main purpose is to implement or test the stuff in dir2/foo2.h, order your includes as follows:"><code><var>dir2/foo2</var>.h</code>の宣言を実装もしくはテストする目的のファイル、<code><var>dir/foo</var>.cc</code>や<code><var>dir/foo_test</var>.cc</code>の中では、次の順序でincludeします。</span>
+                    <span>
+                        <span class="src">
+                            In <code><var>dir/foo</var>.cc</code> or
+                            <code><var>dir/foo_test</var>.cc</code>, whose main
+                            purpose is to implement or test the stuff in
+                            <code><var>dir2/foo2</var>.h</code>, order your includes
+                            as follows:
+                        </span>
+                        <code><var>dir2/foo2</var>.h</code>の宣言を実装もしくはテストする目的のファイル、<code><var>dir/foo</var>.cc</code>や<code><var>dir/foo_test</var>.cc</code>の中では、次の順序でincludeします。
+                    </span>
                 </p>
 
                 <ol>
@@ -444,49 +1227,136 @@ remember it.">個々のスタイルルールは「所属するすべてのエン
                     </li>
 
                     <li>
-                        <span title="C system files.">C システムヘッダ</span>
+                        <span>
+                            <span class="src">
+                                C system files.
+                            </span>
+                            C システムヘッダ
+                        </span>
                     </li>
 
                     <li>
-                        <span title="C++ system files.">C++ システムヘッダ</span>
+                        <span>
+                            <span class="src">
+                                C++ system files.
+                            </span>
+                            C++ システムヘッダ
+                        </span>
                     </li>
 
                     <li>
-                        <span title="Other libraries' .h files.">ほかのライブラリの<code>.h</code>ファイル</span>
+                        <span>
+                            <span class="src">
+                                Other libraries' .h files.
+                            </span>
+                            ほかのライブラリの<code>.h</code>ファイル
+                        </span>
                     </li>
 
                     <li>
-                        <span title="Your project's .h files.">あなたのプロジェクトの.hファイル</span>
+                        <span>
+                            <span class="src">
+                                Your project's .h files.
+                            </span>
+                            あなたのプロジェクトの.hファイル
+                        </span>
                     </li>
                 </ol>
 
                 <p>
-                    <span title="With the preferred ordering, if dir2/foo2.h omits any necessary includes, the build of dir/foo.cc or dir/foo_test.cc will break.">この順番であれば、もし<code><var>dir2/foo2</var>.h</code>が必要なincludeを省くと、<code><var>dir/foo</var>.cc</code>や<code><var>dir/foo</var>_test.cc</code>のビルドが失敗します。</span>
+                    <span>
+                        <span class="src">
+                            With the preferred ordering, if
+                            <code><var>dir2/foo2</var>.h</code> omits any necessary
+                            includes, the build of <code><var>dir/foo</var>.cc</code>
+                            or <code><var>dir/foo</var>_test.cc</code> will break.
+                        </span>
+                        この順番であれば、もし<code><var>dir2/foo2</var>.h</code>が必要なincludeを省くと、<code><var>dir/foo</var>.cc</code>や<code><var>dir/foo</var>_test.cc</code>のビルドが失敗します。
+                    </span>
 
-                    <span title="Thus, this rule ensures that build breaks show up first for the people working on these files, not for innocent people in other packages.">このルールであれば、ビルドが壊れたことを、他のパッケージで作業している無実の人ではなく、このファイルで作業をしていた人に一番最初に見せることができます。</span>
+                    <span>
+                        <span class="src">
+                            Thus, this rule ensures that build breaks show up first
+                            for the people working on these files, not for innocent
+                            people in other packages.
+                        </span>
+                        このルールであれば、ビルドが壊れたことを、他のパッケージで作業している無実の人ではなく、このファイルで作業をしていた人に一番最初に見せることができます。
+                    </span>
                 </p>
 
                 <p>
-                    <span title="dir/foo.cc and dir2/foo2.h are usually in the same directory (e.g. base/basictypes_test.cc and base/basictypes.h), but may sometimes be in different directories too."><code><var>dir/foo</var>.cc</code>と<code><var>dir2/foo2</var>.h</code>は、一般的に同じディレクトリに置きますが(たとえば、<code>base/basictypes_test.cc</code>と<code>base/basictypes.h</code>)、異なるディレクトリに置いてもよいです。</span>
+                    <span>
+                        <span class="src">
+                            <code><var>dir/foo</var>.cc</code> and
+                            <code><var>dir2/foo2</var>.h</code> are usually in the same
+                            directory (e.g. <code>base/basictypes_test.cc</code> and
+                            <code>base/basictypes.h</code>), but may sometimes be in different
+                            directories too.
+                        </span>
+                        <code><var>dir/foo</var>.cc</code>と<code><var>dir2/foo2</var>.h</code>は、一般的に同じディレクトリに置きますが(たとえば、<code>base/basictypes_test.cc</code>と<code>base/basictypes.h</code>)、異なるディレクトリに置いてもよいです。
+                    </span>
                 </p>
 
 
                 <p>
-                    <span title="Within each section the includes should be ordered alphabetically.">各セクション内ではアルファベット順に並べます。</span>
-                    <span title="Note that older code might not conform to this rule and should be fixed when convenient.">古いコードはこのルールに沿ってないかもしれませんが、利便性を考えたときは修正(訳注:be fixed)します。</span>
+                    <span>
+                        <span class="src">
+                            Within each section the includes should be ordered
+                            alphabetically.
+                        </span>
+                        各セクション内ではアルファベット順に並べます。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Note that older code might not conform to
+                            this rule and should be fixed when convenient.
+                        </span>
+                        古いコードはこのルールに沿ってないかもしれませんが、利便性を考えたときは修正(訳注:be fixed)します。
+                    </span>
                 </p>
 
                 <p>
-                    <span title="You should include all the headers that define the symbols you rely upon, except in the unusual case of forward declaration.">ヘッダは、<a href="#Forward_Declarations">前方宣言</a>の例外を除いて、ヘッダが定義するシンボルに関連するすべてのヘッダをインクルードしなくてはなりません。</span>
-                    <span title="If you rely on symbols from bar.h, don't count on the fact that you included foo.h which (currently) includes bar.h: include bar.h yourself, unless foo.h explicitly demonstrates its intent to provide you the symbols of bar.h.">
+                    <span>
+                        <span class="src">
+                            You should include all the headers that define the symbols you rely
+                            upon, except in the unusual case of <a href="#Forward_Declarations">
+                                forward
+                                declaration
+                            </a>.
+                        </span>
+                        ヘッダは、<a href="#Forward_Declarations">前方宣言</a>の例外を除いて、ヘッダが定義するシンボルに関連するすべてのヘッダをインクルードしなくてはなりません。
+                    </span>
+                    <span>
+                        <span class="src">
+                            If you rely on symbols from <code>bar.h</code>,
+                            don't count on the fact that you included <code>foo.h</code> which
+                            (currently) includes <code>bar.h</code>: include <code>bar.h</code>
+                            yourself, unless <code>foo.h</code> explicitly demonstrates its intent
+                            to provide you the symbols of <code>bar.h</code>.
+                        </span>
+
                         もし、あなたが<code>bar.h</code>のシンボルに依存した定義をしようとしているのであれば、(仮にその時点で<code>bar.h</code>をインクルードしている<code>foo.h</code>をインクルードしていたとしてもその事実は忘れて、)素直に<code>bar.h</code>をインクルードするようにします。<code>foo.h</code>が<code>bar.h</code>のシンボルを提供すると明示的に説明している場合は除きます。
                     </span>
 
-                    <span title="However, any includes present in the related header do not need to be included again in the related cc (i.e., foo.cc can rely on foo.h's includes).">関連ヘッダでインクルードしているヘッダは、<code>cc</code>ファイルで再度インクルードしないようにします。(つまり、<code>foo.cc</code>は、<code>foo.h</code>がインクルードに依存することができます)</span>
+                    <span>
+                        <span class="src">
+                            However, any
+                            includes present in the related header do not need to be included
+                            again in the related <code>cc</code> (i.e., <code>foo.cc</code> can
+                            rely on <code>foo.h</code>'s includes).
+                        </span>
+                        関連ヘッダでインクルードしているヘッダは、<code>cc</code>ファイルで再度インクルードしないようにします。(つまり、<code>foo.cc</code>は、<code>foo.h</code>がインクルードに依存することができます)
+                    </span>
                 </p>
 
                 <p>
-                    <span title="For example, the includes in google-awesome-project/src/foo/internal/fooserver.cc might look like this:">
+                    <span>
+                        <span class="src">
+                            For example, the includes in
+                            <code>google-awesome-project/src/foo/internal/fooserver.cc</code>
+                            might look like this:
+                        </span>
+
                         例をあげます。<code>google-awesome-project/src/foo/internal/fooserver.cc</code>のインクルードは次のようになります。
                     </span>
                 </p>
@@ -506,10 +1376,33 @@ remember it.">個々のスタイルルールは「所属するすべてのエン
 </pre>
 
                 <p class="exception">
-                    <span title="Sometimes, system-specific code needs conditional includes.">システム特有のコードは、しばしば条件が必要なインクルードを必要とする場合があります。</span>
-                    <span title="Such code can put conditional includes after other includes.">このようなコードは他のインクルードの後に条件付きインクルードを配置します。</span>
-                    <span title="Of course, keep your system-specific code small and localized.">もちろんのことですが、システム特有のコードは小さく局所的に保つようにしましょう。</span>
-                    <span title="Example:">例:</span>
+                    <span>
+                        <span class="src">
+                            Sometimes, system-specific code needs
+                            conditional includes.
+                        </span>
+                        システム特有のコードは、しばしば条件が必要なインクルードを必要とする場合があります。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Such code can put conditional
+                            includes after other includes.
+                        </span>
+                        このようなコードは他のインクルードの後に条件付きインクルードを配置します。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Of course, keep your
+                            system-specific code small and localized.
+                        </span>
+                        もちろんのことですが、システム特有のコードは小さく局所的に保つようにしましょう。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Example:
+                        </span>
+                        例:
+                    </span>
                 </p>
 
 <pre>#include "foo/public/fooserver.h"
