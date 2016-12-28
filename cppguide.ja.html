@@ -14455,7 +14455,7 @@ if (condition) {
 
             </div>
 
-            <h3 id="Loops_and_Switch_Statements">Loops and Switch Statements</h3>
+            <h3 id="Loops_and_Switch_Statements"><span title="Loops and Switch Statements">ループとswitch文</span></h3>
 
             <div class="summary">
                 <p>
@@ -14463,23 +14463,27 @@ if (condition) {
                         <span class="src">
                             Switch statements may use braces for blocks.
                         </span>
+                        switch文でブロックを作るために波カッコを使用できます。
                     </span>
                     <span>
                         <span class="src">
                             Annotate
                             non-trivial fall-through between cases.
                         </span>
+                        case間をfall-throughする時には、自明な場合を除いて、注釈をつけてください。
                     </span>
                     <span>
                         <span class="src">
                             Braces are optional for single-statement loops.
                         </span>
+                        ループの本体が1つの文からなる場合、波カッコはつけてもつけなくてもかまいません。
                     </span>
                     <span>
                         <span class="src">
                             Empty loop bodies should use empty braces or
                             <code>continue</code>.
                         </span>
+                        空のループには、波カッコによる空のブロックか、<code>continue</code>文を使用してください。
                     </span>
                 </p>
             </div>
@@ -14494,12 +14498,14 @@ if (condition) {
                             statements can have curly braces or not, depending on
                             your preference.
                         </span>
+                        <code>switch</code>中の<code>case</code>ブロックでは、波カッコを使っても使わなくてもかまいません。
                     </span>
                     <span>
                         <span class="src">
                             If you do include curly braces they
                             should be placed as shown below.
                         </span>
+                        波カッコを使う場合は、以下の例のように配置します。
                     </span>
                 </p>
 
@@ -14512,6 +14518,7 @@ if (condition) {
                             (in the case of an enumerated value, the compiler will
                             warn you if any values are not handled).
                         </span>
+                        switch文の条件値が列挙型でない場合は、必ず<code>default</code>ブロックが必要です(列挙型の値によるswitch文は、caseが漏れてもコンパイラが警告してくれるでしょう)。
                     </span>
                     <span>
                         <span class="src">
@@ -14519,6 +14526,7 @@ if (condition) {
                             case should never execute, simply
                             <code>assert</code>:
                         </span>
+                        defaultブロックが絶対に実行されない場合には、単に<code>assert</code>します。
                     </span>
                 </p>
 
@@ -14542,6 +14550,20 @@ if (condition) {
 }
 </pre>
                         </span>
+                        <pre>switch (var) {
+  case 0: {  // スペース2つでインデント
+    ...      // スペース4つでインデント
+    break;
+  }
+  case 1: {
+    ...
+    break;
+  }
+  default: {
+    assert(false);
+  }
+}
+</pre>
                     </span>
                 </div>
 
@@ -14554,6 +14576,7 @@ if (condition) {
                         <span class="src">
                             Braces are optional for single-statement loops.
                         </span>
+                        ひとつの文からなるループにおいて、波カッコはつけてもつけなくてもかまいません。
                     </span>
                 </p>
 
@@ -14573,6 +14596,7 @@ for (int i = 0; i &lt; kSomeNumber; ++i) {
                             <code>continue</code>,
                             but not a single semicolon.
                         </span>
+                        ループ本体が空になる場合は、波カッコによる空のブロックとするか、<code>continue</code>を使います。セミコロンだけを書いてはいけません。
                     </span>
                 </p>
                 <span>
@@ -14584,17 +14608,25 @@ for (int i = 0; i &lt; kSomeNumber; ++i) {}  // Good - one newline is also OK.
 while (condition) continue;  // Good - continue indicates no logic.
 </pre>
                     </span>
+                    <pre>while (condition) {
+  // falseが変えるまでテストを続ける。
+}
+for (int i = 0; i &lt; kSomeNumber; ++i) {}  // OK。新しい1行でもOK。
+while (condition) continue;  // OK。continueで、ロジックがないことを示す。
+</pre>
                 </span>
                 <span>
                     <span class="src">
 <pre class="badcode">while (condition);  // Bad - looks like part of do/while loop.
 </pre>
                     </span>
+                    <pre class="badcode">while (condition);  // ダメ。do-whileループの一部に見える。
+</pre>
                 </span>
 
             </div>
 
-            <h3 id="Pointer_and_Reference_Expressions">Pointer and Reference Expressions</h3>
+            <h3 id="Pointer_and_Reference_Expressions"><span title="Pointer and Reference Expressions">ポインタと参照の表現</span></h3>
 
             <div class="summary">
                 <p>
@@ -14602,12 +14634,14 @@ while (condition) continue;  // Good - continue indicates no logic.
                         <span class="src">
                             No spaces around period or arrow.
                         </span>
+                        ピリオドやアロー演算子の周りにスペースは使いません。
                     </span>
                     <span>
                         <span class="src">
                             Pointer operators do not
                             have trailing spaces.
                         </span>
+                        ポインタ演算子の後にはスペースを使いません。
                     </span>
                 </p>
             </div>
@@ -14620,6 +14654,7 @@ while (condition) continue;  // Good - continue indicates no logic.
                             The following are examples of correctly-formatted
                             pointer and reference expressions:
                         </span>
+                        正しいフォーマットのポインタおよび参照の例を以下に示します。
                     </span>
                 </p>
 
@@ -14633,6 +14668,7 @@ x = r-&gt;y;
                         <span class="src">
                             Note that:
                         </span>
+                        以下のことに注意してください。
                     </span>
                 </p>
 
@@ -14643,6 +14679,7 @@ x = r-&gt;y;
                                 There are no spaces around the period or arrow when
                                 accessing a member.
                             </span>
+                            メンバにアクセスするためのピリオドやアロー演算子の周りにはスペースを使いません。
                         </span>
                     </li>
 
@@ -14653,6 +14690,7 @@ x = r-&gt;y;
                                 <code>*</code> or
                                 <code>&amp;</code>.
                             </span>
+                            ポインタ演算子(<code>*</code>や<code>&amp;</code>)の後にはスペースを使いません。
                         </span>
                     </li>
                 </ul>
@@ -14664,6 +14702,7 @@ x = r-&gt;y;
                             place the asterisk adjacent to either the type or to the
                             variable name:
                         </span>
+                        変数や引数をポインタとして宣言するときは、アスタリスクを型名か変数名かのどちらにつけてもかまいません。
                     </span>
                 </p>
 
@@ -14678,6 +14717,14 @@ char* c;
 const string&amp; str;
 </pre>
                     </span>
+                    <pre>// これらはどちらもOK。スペースが先。
+char *c;
+const string &amp;str;
+
+// これらもOK。スペースが後。
+char* c;
+const string&amp; str;
+</pre>
                 </span>
                 <span>
                     <span class="src">
@@ -14685,11 +14732,13 @@ const string&amp; str;
                         declaration, but it is disallowed if any of those have pointer or
                         reference decorations.
                     </span>
+                    複数の変数をまとめて宣言してもかまいません。しかし、それらの中に1つでもポインタや参照が含まれる場合は、同時に宣言してはいけません。
                 </span>
                 <span>
                     <span class="src">
                         Such declarations are easily misread.
                     </span>
+                    そのような宣言は簡単に読み違えてしまうからです。
                 </span>
                 <span>
                     <span class="src">
@@ -14697,6 +14746,9 @@ const string&amp; str;
 int x, y;
 </pre>
                     </span>
+                    <pre>// 可読性が高まる場合はOK。
+int x, y;
+</pre>
                 </span>
 
                 <span>
@@ -14706,6 +14758,10 @@ char * c;  // Bad - spaces on both sides of *
 const string &amp; str;  // Bad - spaces on both sides of &amp;
 </pre>
                     </span>
+                    <pre class="badcode">int x, *y;  // 禁止。&amp;や*が複数宣言の中に含められている。
+char * c;  // ダメ。*の前後両方にスペースがある。
+const string &amp; str;  // ダメ。&amp;の前後両方にスペースがある。
+</pre>
                 </span>
 
                 <p>
@@ -14716,12 +14772,13 @@ const string &amp; str;  // Bad - spaces on both sides of &amp;
                             so, when modifying an existing file, use the style in
                             that file.
                         </span>
+                        ファイル内の一貫性を保つようにしてください。既存のファイルを変更する場合は、そのファイルのスタイルにあわせてください。
                     </span>
                 </p>
 
             </div>
 
-            <h3 id="Boolean_Expressions">Boolean Expressions</h3>
+            <h3 id="Boolean_Expressions"><span title="Boolean Expressions">ブーリアンの表現</span></h3>
 
             <div class="summary">
                 <p>
@@ -14731,6 +14788,7 @@ const string &amp; str;  // Bad - spaces on both sides of &amp;
                             <a href="#Line_Length">standard line length</a>, be
                             consistent in how you break up the lines.
                         </span>
+                        ブーリアンの式が<a href="#Line_Length">標準の行の長さ</a>を超えるような場合、行の区切り方に一貫性を持たせてください。
                     </span>
                 </p>
             </div>
@@ -14743,6 +14801,7 @@ const string &amp; str;  // Bad - spaces on both sides of &amp;
                             In this example, the logical AND operator is always at
                             the end of the lines:
                         </span>
+                        以下の例では、論理積演算子を常に行末においています。
                     </span>
                 </p>
 
@@ -14755,6 +14814,12 @@ const string &amp; str;  // Bad - spaces on both sides of &amp;
 }
 </pre>
                     </span>
+                    <pre>if (this_one_thing &gt; this_other_thing &amp;&amp;
+    a_third_thing == a_fourth_thing &amp;&amp;
+    yet_another &amp;&amp; last_one) {
+  ...
+}
+</pre>
                 </span>
 
                 <p>
@@ -14765,6 +14830,7 @@ const string &amp; str;  // Bad - spaces on both sides of &amp;
                             <code>&amp;&amp;</code> logical AND operators are at
                             the end of the line.
                         </span>
+                        この例において、2つの<code>&amp;&amp;</code>論理積演算子が、いずれも行末に来ていることに注目してください。
                     </span>
                     <span>
                         <span class="src">
@@ -14772,6 +14838,7 @@ const string &amp; str;  // Bad - spaces on both sides of &amp;
                             though wrapping all operators at the beginning of the
                             line is also allowed.
                         </span>
+                        演算子は次の行の頭に書いてもかまいませんが、Googleのコードにおいてよく見るのは、先のような行末に置く形です。
                     </span>
                     <span>
                         <span class="src">
@@ -14780,6 +14847,7 @@ const string &amp; str;  // Bad - spaces on both sides of &amp;
                             in increasing readability when used
                             appropriately.
                         </span>
+                        また、丸カッコを適切に扱うことで式の可読性が向上するため、丸カッコは自由に挿入してください。
                     </span>
                     <span>
                         <span class="src">
@@ -14791,12 +14859,13 @@ const string &amp; str;  // Bad - spaces on both sides of &amp;
                             <code>and</code> and
                             <code>compl</code>.
                         </span>
+                        演算子には<code>and</code>や<code>compl</code>のようなワードによる演算子ではなく、常に<code>&amp;&amp;</code>や<code>~</code>のような記号による演算子を使用してください。
                     </span>
                 </p>
 
             </div>
 
-            <h3 id="Return_Values">Return Values</h3>
+            <h3 id="Return_Values"><span title="Return Values">戻り値</span></h3>
 
             <div class="summary">
                 <p>
@@ -14806,6 +14875,7 @@ const string &amp; str;  // Bad - spaces on both sides of &amp;
                             <code>return</code>
                             expression with parentheses.
                         </span>
+                        <code>return</code>文の式を不必要に丸カッコで囲んではいけません。
                     </span>
                 </p>
             </div>
@@ -14820,6 +14890,7 @@ const string &amp; str;  // Bad - spaces on both sides of &amp;
                             where you would use them in
                             <code>x = expr;</code>.
                         </span>
+                        <code>return expr;</code>に丸カッコを使うのは、式が<code>x = expr;</code>の形をしている場合のみです。
                     </span>
                 </p>
 
@@ -14831,6 +14902,12 @@ return (some_long_condition &amp;&amp;
         another_condition);
 </pre>
                     </span>
+                    <pre>return result;                  // シンプルなときは丸カッコは使わない。
+
+// これはOK。複雑な式を読みやすくするために、丸カッコを使っている。
+return (some_long_condition &amp;&amp;
+        another_condition);
+</pre>
                 </span>
                 <span>
                     <span class="src">
@@ -14838,13 +14915,16 @@ return (some_long_condition &amp;&amp;
 return(result);                // return is not a function!
 </pre>
                     </span>
+                    <pre class="badcode">return (value);                // var = (value);と書いてはいけない。
+return(result);                // returnは関数ではない！
+</pre>
                 </span>
 
             </div>
 
 
 
-            <h3 id="Variable_and_Array_Initialization">Variable and Array Initialization</h3>
+            <h3 id="Variable_and_Array_Initialization"><span title="Variable and Array Initialization">変数と配列の初期化</span></h3>
 
             <div class="summary">
                 <p>
@@ -14855,6 +14935,7 @@ return(result);                // return is not a function!
                             <code>()</code>, or
                             <code>{}</code>.
                         </span>
+                        <code>=</code>か、<code>()</code>か、<code>{}</code>か、から選びます。
                     </span>
                 </p>
             </div>
@@ -14870,6 +14951,7 @@ return(result);                // return is not a function!
                             <code>{}</code>; the following are
                             all correct:
                         </span>
+                        <code>=</code>か、<code>()</code>か、<code>{}</code>か、が使用できます。次の例はすべてOKです。
                     </span>
                 </p>
 
@@ -14883,6 +14965,13 @@ string name("Some Name");
 string name{"Some Name"};
 </pre>
                     </span>
+                    <pre>int x = 3;
+int x(3);
+int x{3};
+string name = "Some Name";
+string name("Some Name");
+string name{"Some Name"};
+</pre>
                 </span>
 
                 <p>
@@ -14893,6 +14982,7 @@ string name{"Some Name"};
                             on a type with an
                             <code>std::initializer_list</code> constructor.
                         </span>
+                        型が<code>std::initializer_list</code>を引数にとるコンストラクタを持つ場合、波カッコによる初期化子リストを使う場合は注意が必要です。
                     </span>
                     <span>
                         <span class="src">
@@ -14901,6 +14991,7 @@ string name{"Some Name"};
                             <code>std::initializer_list</code> constructor whenever
                             possible.
                         </span>
+                        型に<code>std::initializer_list</code>をとるコンストラクタがあると、空でない波カッコ初期化リストはいつでもこれを呼び出します。
                     </span>
                     <span>
                         <span class="src">
@@ -14908,6 +14999,7 @@ string name{"Some Name"};
                             <code>{}</code> are special, and
                             will call a default constructor if available.
                         </span>
+                        ただし、リストが空<code>{}</code>のときは特殊で、デフォルトコンストラクタ(あれば)が呼ばれます。
                     </span>
                     <span>
                         <span class="src">
@@ -14916,6 +15008,7 @@ string name{"Some Name"};
                             <code>std::initializer_list</code> constructor, use parentheses
                             instead of braces.
                         </span>
+                        強制的に<code>std::initializer_list</code>ではないコンストラクタを呼びたい場合は、波カッコではなく丸カッコを使ってください。
                     </span>
                 </p>
 
@@ -14925,6 +15018,9 @@ string name{"Some Name"};
 std::vector&lt;int&gt; v{100, 1};  // A vector of 100, 1.
 </pre>
                     </span>
+                    <pre>std::vector&lt;int&gt; v(100, 1);  // 1が100個。
+std::vector&lt;int&gt; v{100, 1};  // 100と1。
+</pre>
                 </span>
 
                 <p>
@@ -14933,12 +15029,14 @@ std::vector&lt;int&gt; v{100, 1};  // A vector of 100, 1.
                             Also, the brace form prevents narrowing of integral
                             types.
                         </span>
+                        また、整数型に波カッコによる初期化子の形を用いると、小さい型への変換を防ぐことができます。
                     </span>
                     <span>
                         <span class="src">
                             This can prevent some types of programming
                             errors.
                         </span>
+                        これによって、プログラミング上のミスを防げる場合もあります。
                     </span>
                 </p>
 
@@ -14948,11 +15046,14 @@ std::vector&lt;int&gt; v{100, 1};  // A vector of 100, 1.
 int pi{3.14};  // Compile error: narrowing conversion.
 </pre>
                     </span>
+                    <pre>int pi(3.14);  // OK。 pi == 3 だけど。
+int pi{3.14};  // コンパイルエラー: より小さい型への変換
+</pre>
                 </span>
 
             </div>
 
-            <h3 id="Preprocessor_Directives">Preprocessor Directives</h3>
+            <h3 id="Preprocessor_Directives"><span title="Preprocessor Directives">プリプロセッサディレクティブ</span></h3>
 
             <div class="summary">
                 <p>
@@ -14961,6 +15062,7 @@ int pi{3.14};  // Compile error: narrowing conversion.
                             The hash mark that starts a preprocessor directive should
                             always be at the beginning of the line.
                         </span>
+                        プリプロセッサディレクティブに使われる<code>#</code>は、常に行の先頭になくてはなりません。
                     </span>
                 </p>
             </div>
@@ -14974,6 +15076,7 @@ int pi{3.14};  // Compile error: narrowing conversion.
                             of indented code, the directives should start at the
                             beginning of the line.
                         </span>
+                        たとえプリプロセッサディレクティブをインデントされているコードの中に書く場合であっても、ディレクティブは行頭に記述します。
                     </span>
                 </p>
 
@@ -14991,6 +15094,17 @@ int pi{3.14};  // Compile error: narrowing conversion.
   }
 </pre>
                     </span>
+                    <pre>// OK。プリプロセッサが行の頭にある。
+  if (lopsided_score) {
+#if DISASTER_PENDING      // 正しい。行頭から始める。
+    DropEverything();
+# if NOTIFY               // #の後ろにスペースがあってもOK(必須ではない)。
+    NotifyClient();
+# endif
+#endif
+    BackToNormal();
+  }
+</pre>
                 </span>
                 <span>
                     <span class="src">
@@ -15003,11 +15117,19 @@ int pi{3.14};  // Compile error: narrowing conversion.
   }
 </pre>
                     </span>
+                    <pre class="badcode">// ダメ。ディレクティブがインデントされている。
+  if (lopsided_score) {
+    #if DISASTER_PENDING  // 間違い！ "#if"は行頭になくてはならない。
+    DropEverything();
+    #endif                // 間違い！ #endifをインデントしてはダメ。
+    BackToNormal();
+  }
+</pre>
                 </span>
 
             </div>
 
-            <h3 id="Class_Format">Class Format</h3>
+            <h3 id="Class_Format"><span title="Class Format">クラスのフォーマット</span></h3>
 
             <div class="summary">
                 <p>
@@ -15018,6 +15140,7 @@ int pi{3.14};  // Compile error: narrowing conversion.
                             <code>protected</code> and
                             <code>private</code> order, each indented one space.
                         </span>
+                        クラス内のセクションは<code>public</code>、<code>protected</code>、<code>private</code>の順で並べ、それぞれスペース1文字でインデントします。
                     </span>
                 </p>
             </div>
@@ -15035,6 +15158,7 @@ int pi{3.14};  // Compile error: narrowing conversion.
                             </a> for a discussion of what comments are
                             needed) is:
                         </span>
+                        基本的なクラス定義のフォーマットを以下に示します(コメントは省略しています。コメントについては、<a href="#Class_Comments">クラスのコメント</a>で議論しています)
                     </span>
                 </p>
 
@@ -15061,6 +15185,26 @@ int pi{3.14};  // Compile error: narrowing conversion.
 };
 </pre>
                     </span>
+                    <pre>class MyClass : public OtherClass {
+ public:      // スペース1つでインデント！
+  MyClass();  // スペース2つでインデント(いつもの)
+  explicit MyClass(int var);
+  ~MyClass() {}
+
+  void SomeFunction();
+  void SomeFunctionThatDoesNothing() {
+  }
+
+  void set_some_var(int var) { some_var_ = var; }
+  int some_var() const { return some_var_; }
+
+ private:
+  bool SomeInternalFunction();
+
+  int some_var_;
+  int some_other_var_;
+};
+</pre>
                 </span>
 
                 <p>
@@ -15068,6 +15212,7 @@ int pi{3.14};  // Compile error: narrowing conversion.
                         <span class="src">
                             Things to note:
                         </span>
+                        次の点に注意してください。
                     </span>
                 </p>
 
@@ -15078,6 +15223,7 @@ int pi{3.14};  // Compile error: narrowing conversion.
                                 Any base class name should be on the same line as
                                 the subclass name, subject to the 80-column limit.
                             </span>
+                            基底クラスの名前は派生クラスの名前と同じ行に配置されるべきです。行の長さの制限にも従ってください。
                         </span>
                     </li>
 
@@ -15091,6 +15237,7 @@ int pi{3.14};  // Compile error: narrowing conversion.
                                 <code>private:</code> keywords should be indented
                                 one space.
                             </span>
+                            <code>public:</code>と<code>protected:</code>と<code>private:</code>キーワードは、スペース1つでインデントします。
                         </span>
                     </li>
 
@@ -15100,12 +15247,14 @@ int pi{3.14};  // Compile error: narrowing conversion.
                                 Except for the first instance, these keywords
                                 should be preceded by a blank line.
                             </span>
+                            最初のキーワードを除いて、それらの前には空行を挟みます。
                         </span>
                         <span>
                             <span class="src">
                                 This rule is
                                 optional in small classes.
                             </span>
+                            小さなクラスにおいては、このルールに従わなくてもかまいません。
                         </span>
                     </li>
 
@@ -15115,6 +15264,7 @@ int pi{3.14};  // Compile error: narrowing conversion.
                                 Do not leave a blank line after these
                                 keywords.
                             </span>
+                            これらのキーワードの後には空行を入れてはいけません。
                         </span>
                     </li>
 
@@ -15127,6 +15277,7 @@ int pi{3.14};  // Compile error: narrowing conversion.
                                 <code>protected</code> and finally the
                                 <code>private</code> section.
                             </span>
+                            <code>public</code>セクションが最初、次に<code>protected</code>、最後に<code>private</code>の順番にします。
                         </span>
                     </li>
 
@@ -15140,13 +15291,14 @@ int pi{3.14};  // Compile error: narrowing conversion.
                                 </a> for rules on ordering declarations within
                                 each of these sections.
                             </span>
+                            各セクション内における宣言の順序に関するルールについては<a href="#Declaration_Order">宣言の順序</a>を参照してください。
                         </span>
                     </li>
                 </ul>
 
             </div>
 
-            <h3 id="Constructor_Initializer_Lists">Constructor Initializer Lists</h3>
+            <h3 id="Constructor_Initializer_Lists"><span title="Constructor Initializer Lists">コンストラクタの初期化子リスト</span></h3>
 
             <div class="summary">
                 <p>
@@ -15155,6 +15307,7 @@ int pi{3.14};  // Compile error: narrowing conversion.
                             Constructor initializer lists can be all on one line or
                             with subsequent lines indented four spaces.
                         </span>
+                        コンストラクタの初期化子リストは、すべて同じ行に納めるか、行を分けて2行目以降をスペース4つでインデントして書きます。
                     </span>
                 </p>
             </div>
@@ -15162,12 +15315,17 @@ int pi{3.14};  // Compile error: narrowing conversion.
             <div class="stylebody">
 
                 <p>
-                    <span><span class="src">The acceptable formats for initializer lists are:</span></span>
+                    <span>
+                        <span class="src">
+                            The acceptable formats for initializer lists are:
+                        </span>
+                        初期化子リストの正しい例は次の通りです。
+                    </span>
                 </p>
 
                 <span>
                     <span class="src">
-                        <pre>// When everything fits on one line:
+<pre>// When everything fits on one line:
 MyClass::MyClass(int var) : some_var_(var) {
   DoSomething();
 }
@@ -15193,11 +15351,36 @@ MyClass::MyClass(int var)
     : some_var_(var) {}
 </pre>
                     </span>
+                    <pre>// 1行にすべて収まるとき
+MyClass::MyClass(int var) : some_var_(var) {
+  DoSomething();
+}
+
+// 1行に収まらない場合は、コロンの手前で行を区切り、
+// スペース4つでインデントしなくてはならない。
+MyClass::MyClass(int var)
+    : some_var_(var), some_other_var_(var + 1) {
+  DoSomething();
+}
+
+// 初期化子リストが複数に分かれる場合は、
+// 各変数ごとに1行を使うようにし、それらを整列させる。
+MyClass::MyClass(int var)
+    : some_var_(var),             // スペース4つでインデント。
+      some_other_var_(var + 1) {  // 行頭は揃える。
+  DoSomething();
+}
+
+// 他のコードブロックと同様に、1行に収まる場合は
+// 閉じ波カッコと開き波カッコとを同じ行においてもよい。
+MyClass::MyClass(int var)
+    : some_var_(var) {}
+</pre>
                 </span>
 
             </div>
 
-            <h3 id="Namespace_Formatting">Namespace Formatting</h3>
+            <h3 id="Namespace_Formatting"><span title="Namespace Formatting">名前空間のフォーマット</span></h3>
 
             <div class="summary">
                 <p>
@@ -15205,6 +15388,7 @@ MyClass::MyClass(int var)
                         <span class="src">
                             The contents of namespaces are not indented.
                         </span>
+                        名前空間内の内容はインデントしません。
                     </span>
                 </p>
             </div>
@@ -15215,8 +15399,16 @@ MyClass::MyClass(int var)
                     <span>
                         <span class="src">
                             <a href="#Namespaces">Namespaces</a> do not add an
-                            extra level of indentation. For example, use:
+                            extra level of indentation.
                         </span>
+                        <a href="#Namespaces">名前空間</a>ではインデントを足しません。
+                    </span>
+
+                    <span>
+                        <span class="src">
+                            For example, use:
+                        </span>
+                        たとえば、次のように使用します。
                     </span>
                 </p>
 
@@ -15231,6 +15423,14 @@ void foo() {  // Correct.  No extra indentation within namespace.
 }  // namespace
 </pre>
                     </span>
+                    <pre>namespace {
+
+void foo() {  // 正しい。名前空間ではインデントしない。
+  ...
+}
+
+}  // namespace
+</pre>
                 </span>
 
                 <p>
@@ -15238,6 +15438,7 @@ void foo() {  // Correct.  No extra indentation within namespace.
                         <span class="src">
                             Do not indent within a namespace:
                         </span>
+                        名前空間の中ではインデントしてはいけません。
                     </span>
                 </p>
 
@@ -15253,6 +15454,15 @@ void foo() {  // Correct.  No extra indentation within namespace.
 }  // namespace
 </pre>
                     </span>
+                    <pre class="badcode">namespace {
+
+  // 間違い。インデントされるべきではない。
+  void foo() {
+    ...
+  }
+
+}  // namespace
+</pre>
                 </span>
 
                 <p>
@@ -15261,6 +15471,7 @@ void foo() {  // Correct.  No extra indentation within namespace.
                             When declaring nested namespaces, put each namespace
                             on its own line.
                         </span>
+                        ネストされた名前空間を宣言するときは、各名前空間ごとに別の行にわけます。
                     </span>
                 </p>
 
@@ -15270,11 +15481,14 @@ void foo() {  // Correct.  No extra indentation within namespace.
 namespace bar {
 </pre>
                     </span>
+                    <pre>namespace foo {
+namespace bar {
+</pre>
                 </span>
 
             </div>
 
-            <h3 id="Horizontal_Whitespace">Horizontal Whitespace</h3>
+            <h3 id="Horizontal_Whitespace"><span title="Horizontal Whitespace">水平方向の空白</span></h3>
 
             <div class="summary">
                 <p>
@@ -15282,19 +15496,21 @@ namespace bar {
                         <span class="src">
                             Use of horizontal whitespace depends on location.
                         </span>
+                        水平方向の空白は場所に応じて使いわけます。
                     </span>
                     <span>
                         <span class="src">
                             Never put
                             trailing whitespace at the end of a line.
                         </span>
+                        行末に空白をおいてはいけません。
                     </span>
                 </p>
             </div>
 
             <div class="stylebody">
 
-                <h4 class="stylepoint_subsection">General</h4>
+                <h4 class="stylepoint_subsection"><span title="General">全般</span></h4>
 
                 <span>
                     <span class="src">
@@ -15316,6 +15532,24 @@ class Foo : public Bar {
   ...
 </pre>
                     </span>
+                    <pre>void f(bool b) {  // 開き波カッコの前には常にスペースをおく。
+  ...
+
+int i = 0;  // セミコロンの前にスペースはおかない。
+
+// 波カッコ初期化子リストの内側はスペースはおいてもおかなくてもよい。
+// ただし、スペースをいれる場合は必ず左右の両方におく。
+int x[] = { 0 };
+int x[] = {0};
+
+// 継承や初期化子のコロンの前後にはスペースをおく。
+class Foo : public Bar {
+ public:
+  // インライン関数の実装において、波カッコと実装の間にはスペースをおく。
+  Foo(int b) : Bar(), baz_(b) {}  // 空の実装にはスペースをおかない。
+  void Reset() { baz_ = 0; }  // 波カッコと実装との間にはスペースをおく。
+  ...
+</pre>
                 </span>
 
                 <p>
@@ -15325,12 +15559,14 @@ class Foo : public Bar {
                             others editing the same file, when they merge, as can
                             removing existing trailing whitespace.
                         </span>
+                        行末のスペースは、同じファイルを編集する他の人がマージするときに、行末スペースの削除という余計な仕事を発生させる場合があります。
                     </span>
                     <span>
                         <span class="src">
                             So: Don't
                             introduce trailing whitespace.
                         </span>
+                        このため、行末にスペースを入れてはいけません。
                     </span>
                     <span>
                         <span class="src">
@@ -15340,10 +15576,11 @@ class Foo : public Bar {
                             operation (preferably when no-one
                             else is working on the file).
                         </span>
+                        もし行末のスペースがある行を編集したときは、そのタイミングで取り除いてください。あるいは、別途コード整理のタイミングで取り除いてください(その場合は、誰もそのファイルを編集していないときがいいでしょう)。
                     </span>
                 </p>
 
-                <h4 class="stylepoint_subsection">Loops and Conditionals</h4>
+                <h4 class="stylepoint_subsection"><span title="Loops and Conditionals">ループと条件式</span></h4>
 
                 <span>
                     <span class="src">
@@ -15373,9 +15610,37 @@ switch (i) {
   case 2: break;  // Use a space after a colon if there's code after it.
 </pre>
                     </span>
+                    <pre>if (b) {          // 条件文やループキーワードの後ろにはスペースをおく。
+} else {          // elseの前後にはスペースをおく。
+}
+while (test) {}   // 丸カッコの内側には通常はスペースをおかない。
+switch (i) {
+for (int i = 0; i &lt; 5; ++i) {
+
+// ループ文と条件式の丸カッコの内側には、スペースをおいてもかまわないが、
+// そのようなケースはほとんどない。周りとの一貫性を保つこと。
+switch ( i ) {
+if ( test ) {
+for ( int i = 0; i &lt; 5; ++i ) {
+
+// ループでは、常にセミコロンの後にスペースをおく。
+// セミコロンの前にもスペースをおいてもかまわないが、
+// そのようなケースもまたほとんどない。
+for ( ; i &lt; 5 ; ++i) {
+  ...
+
+// レンジベースのループでは、常にコロンの前後にスペースをおく。
+for (auto x : counts) {
+  ...
+}
+switch (i) {
+  case 1:         // caseのコロンの前にはスペースをおかない。
+    ...
+  case 2: break;  // コロンの後ろにコードがある場合はスペースをおく。
+</pre>
                 </span>
 
-                <h4 class="stylepoint_subsection">Operators</h4>
+                <h4 class="stylepoint_subsection"><span title="Operators">演算子</span></h4>
 
                 <span>
                     <span class="src">
@@ -15396,9 +15661,25 @@ if (x &amp;&amp; !y)
   ...
 </pre>
                     </span>
+                    <pre>// 代入演算子の前後には常にスペースをおく。
+x = 0;
+
+// その他の二項演算子の前後には、通常はスペースをおくが、
+// 項の前後のスペースは、適宜削除してもかまわない。
+// 丸カッコを使う場合は、その内側にはスペースをおくべきでない。
+v = w * x + y / z;
+v = w*x + y/z;
+v = w * (x + z);
+
+// 単項演算子においては、その引数との間にスペースはおかない。
+x = -5;
+++x;
+if (x &amp;&amp; !y)
+  ...
+</pre>
                 </span>
 
-                <h4 class="stylepoint_subsection">Templates and Casts</h4>
+                <h4 class="stylepoint_subsection"><span title="Templates and Casts">テンプレートとキャスト</span></h4>
 
                 <span>
                     <span class="src">
@@ -15411,11 +15692,19 @@ y = static_cast&lt;char*&gt;(x);
 std::vector&lt;char *&gt; x;
 </pre>
                     </span>
+                    <pre>// 山括弧の内側(<code>&lt;</code> and <code>&gt;</code>)にはスペースをおかない。
+// キャストにおける<code>&lt;</code>の前や、<code>&gt;</code>と<code>(</code>との間にもスペースをおかない。
+std::vector&lt;string&gt; x;
+y = static_cast&lt;char*&gt;(x);
+
+// ポインタと型名の間のスペースはOK。ただし、周囲との一貫性を保つこと。
+std::vector&lt;char *&gt; x;
+</pre>
                 </span>
 
             </div>
 
-            <h3 id="Vertical_Whitespace">Vertical Whitespace</h3>
+            <h3 id="Vertical_Whitespace"><span title="Vertical Whitespace">垂直方向の空白</span></h3>
 
             <div class="summary">
                 <p>
@@ -15423,6 +15712,7 @@ std::vector&lt;char *&gt; x;
                         <span class="src">
                             Minimize use of vertical whitespace.
                         </span>
+                        垂直方向の空白は最低限にしてください。
                     </span>
                 </p>
             </div>
@@ -15435,6 +15725,7 @@ std::vector&lt;char *&gt; x;
                             This is more a principle than a rule: don't use blank
                             lines when you don't have to.
                         </span>
+                        これはルールというよりも原則です。不必要な場合は空行を使ってはいけません。
                     </span>
                     <span>
                         <span class="src">
@@ -15444,6 +15735,7 @@ std::vector&lt;char *&gt; x;
                             functions with a blank line, and be discriminating with
                             your use of blank lines inside functions.
                         </span>
+                        特に、関数と関数との間の空行は1行か2行とし、関数を空行で始めることは控え、関数を空行で終わらせず、関数の中の空行には分別を持ちましょう。
                     </span>
                 </p>
 
@@ -15454,6 +15746,7 @@ std::vector&lt;char *&gt; x;
                             screen, the easier it is to follow and understand the
                             control flow of the program.
                         </span>
+                        基本的な原則は「より多くのコードが1画面内に収まるようにすれば、プログラムのコントロールフローが追いかけやすく理解しやすくなる」というものです。
                     </span>
                     <span>
                         <span class="src">
@@ -15461,12 +15754,14 @@ std::vector&lt;char *&gt; x;
                             suffer from code being too dense as well as too spread
                             out, so use your judgement.
                         </span>
+                        もちろん、コードが過剰に密集していると、広がりすぎているのと同じくらい読みにくくなってしまいます。そこは自らの判断に従ってください。
                     </span>
                     <span>
                         <span class="src">
                             But in general, minimize use
                             of vertical whitespace.
                         </span>
+                        ただ、一般的には、縦方向の空白は最低限必要なだけにしてください。
                     </span>
                 </p>
 
@@ -15476,6 +15771,7 @@ std::vector&lt;char *&gt; x;
                             Some rules of thumb to help when blank lines may be
                             useful:
                         </span>
+                        空行の使い方に関する経験則として、次のようなルールが有用かもしれません。
                     </span>
                 </p>
 
@@ -15486,6 +15782,7 @@ std::vector&lt;char *&gt; x;
                                 Blank lines at the beginning or end of a function
                                 very rarely help readability.
                             </span>
+                            関数の最初と最後の空行を入れても、コードが読みやすくなることはまずありません。
                         </span>
                     </li>
 
@@ -15495,32 +15792,35 @@ std::vector&lt;char *&gt; x;
                                 Blank lines inside a chain of if-else blocks may
                                 well help readability.
                             </span>
+                            if-elseブロックの連鎖の中に空行を入れると、読みやすくなることがあります。
                         </span>
                     </li>
                 </ul>
 
             </div>
 
-            <h2 id="Exceptions_to_the_Rules">Exceptions to the Rules</h2>
+            <h2 id="Exceptions_to_the_Rules"><span title="Exceptions to the Rules">ルールの例外</span></h2>
 
             <p>
                 <span>
                     <span class="src">
                         The coding conventions described above are mandatory.
                     </span>
+                    ここまでに説明したコーディング規約はどれも必須のものです。
                 </span>
                 <span>
                     <span class="src">
                         However, like all good rules, these sometimes have exceptions,
                         which we discuss here.
                     </span>
+                    しかし、すべての良いルールがそうであるように、これらのルールにはいくつかの例外があります。それらをここで議論します。
                 </span>
             </p>
 
 
 
             <div>
-                <h3 id="Existing_Non-conformant_Code">Existing Non-conformant Code</h3>
+                <h3 id="Existing_Non-conformant_Code"><span title="Existing Non-conformant Code">ルールを満たしていない既存のコード</span></h3>
 
                 <div class="summary">
                     <p>
@@ -15529,6 +15829,7 @@ std::vector&lt;char *&gt; x;
                                 You may diverge from the rules when dealing with code that
                                 does not conform to this style guide.
                             </span>
+                            このスタイルガイドのルールを満たしていない既存のコードを扱うときには、このガイドのルールからは外れてかまいません。
                         </span>
                     </p>
                 </div>
@@ -15544,6 +15845,7 @@ std::vector&lt;char *&gt; x;
                                 to stay consistent with the local conventions in that
                                 code.
                             </span>
+                            コードを編集しているとき、元のコードが、本ガイドのルールではなく、別のルールに従っていると気づくことがあるかもしれません。そのような場合には、そのコードの規約との一貫性を保つために、本ガイドのルールからは外れなくてはならないでしょう。
                         </span>
                         <span>
                             <span class="src">
@@ -15551,6 +15853,7 @@ std::vector&lt;char *&gt; x;
                                 original author or the person currently responsible for
                                 the code.
                             </span>
+                            どうしていいか迷った場合、コードの作者や現在の責任者に確認してください。
                         </span>
                         <span>
                             <span class="src">
@@ -15558,7 +15861,8 @@ std::vector&lt;char *&gt; x;
                                 <em>consistency</em> includes
                                 local consistency, too.
                             </span>
-                        </span>
+                            「<em>一貫性</em>」には、こういった局所的な一貫性も含まれているということを忘れないでください。
+</span>
                     </p>
 
                 </div>
@@ -15566,7 +15870,7 @@ std::vector&lt;char *&gt; x;
 
 
 
-            <h3 id="Windows_Code">Windows Code</h3>
+            <h3 id="Windows_Code"><span title="Windows Code">Windowsのコード</span></h3>
 
             <div class="summary">
                 <p>
@@ -15577,6 +15881,7 @@ std::vector&lt;char *&gt; x;
                             conventions, mainly derived from the conventions in Windows
                             headers and other Microsoft code.
                         </span>
+                        Windowsプログラマの間では、独自のコーディング規約が開発されてきました。それらは、主にWindowsのヘッダや、その他のMicrosoftのコードのコーディング規約から派生してきたものです。
                     </span>
                     <span>
                         <span class="src">
@@ -15584,6 +15889,7 @@ std::vector&lt;char *&gt; x;
                             for anyone to understand your code, so we have a single set
                             of guidelines for everyone writing C++ on any platform.
                         </span>
+                        我々は、コードが誰にでも簡単に理解されることを望んでおり、そのために、プラットフォームに依存しない、すべてのC++を書く人に向けたただ1つのガイドラインを用意しているのです。
                     </span>
                 </p>
             </div>
@@ -15596,6 +15902,7 @@ std::vector&lt;char *&gt; x;
                             you might forget if you are used to the prevalent Windows
                             style:
                         </span>
+                        あなたが広く普及しているWindowsルールに馴染んでいるようであれば、よく忘れられがちな以下のガイドラインをおさらいしておきましょう。
                     </span>
                 </p>
 
@@ -15607,6 +15914,7 @@ std::vector&lt;char *&gt; x;
                                 an integer
                                 <code>iNum</code>).
                             </span>
+                            ハンガリアン記法(たとえば、整数型に<code>iNum</code>と名付ける)は使わないでください。
                         </span>
                         <span>
                             <span class="src">
@@ -15615,6 +15923,7 @@ std::vector&lt;char *&gt; x;
                                 <code>.cc</code> extension
                                 for source files.
                             </span>
+                            ソースコードの拡張子が<code>.cc</code>であることも含め、Googleの命名規則に従ってください。
                         </span>
                     </li>
 
@@ -15626,6 +15935,7 @@ std::vector&lt;char *&gt; x;
                                 <code>DWORD</code>,
                                 <code>HANDLE</code>, etc.
                             </span>
+                            Windowsは組み込み型に対する独自のシノニム(同義語)を定義しています(たとえば、<code>DWORD</code>や<code>HANDLE</code>など)。
                         </span>
                         <span>
                             <span class="src">
@@ -15633,12 +15943,14 @@ std::vector&lt;char *&gt; x;
                                 and encouraged, that you use these types when calling
                                 Windows API functions.
                             </span>
+                            Windows APIを呼び出すときにこれらの型を使用することはまったく問題なく、むしろ推奨されることです。
                         </span>
                         <span>
                             <span class="src">
                                 Even so, keep as close as you
                                 can to the underlying C++ types.
                             </span>
+                            ただし、その場合であっても、極力、基本的なC++の型から離れないようにしてください。
                         </span>
                         <span>
                             <span class="src">
@@ -15646,6 +15958,7 @@ std::vector&lt;char *&gt; x;
                                 <code>const TCHAR *</code> instead of
                                 <code>LPCTSTR</code>.
                             </span>
+                            たとえば、<code>LPCTSTR</code>ではなく<code>const TCHAR *</code>を使用してください。
                         </span>
                     </li>
 
@@ -15656,6 +15969,7 @@ std::vector&lt;char *&gt; x;
                                 compiler to warning level 3 or higher, and treat all
                                 warnings as errors.
                             </span>
+                            コンパイラにMicrosoft Visual C++を使う場合は、コンパイラの警告レベルを3以上に設定し、すべての警告をエラーとして扱うように設定してください。
                         </span>
                     </li>
 
@@ -15666,6 +15980,7 @@ std::vector&lt;char *&gt; x;
                                 <code>#pragma once</code>; instead use
                                 the standard Google include guards.
                             </span>
+                            <code>#pragma once</code>は使用してはいけません。その代わりに、Google標準のインクルードガードを使用してください。
                         </span>
                         <span>
                             <span class="src">
@@ -15673,6 +15988,7 @@ std::vector&lt;char *&gt; x;
                                 include guards should be relative to the top of your
                                 project tree.
                             </span>
+                            インクルードガードのパスは、プロジェクトツリーのルートからの相対パスを使用します。
                         </span>
                     </li>
 
@@ -15685,6 +16001,7 @@ std::vector&lt;char *&gt; x;
                                 <code>__declspec</code>,
                                 unless you absolutely must.
                             </span>
+                            <code>#pragma</code>や<code>__declspec</code>のような、非標準の拡張は、どうしても必要な場合を除いて使わないでください。
                         </span>
                         <span>
                             <span class="src">
@@ -15697,6 +16014,7 @@ std::vector&lt;char *&gt; x;
                                 that someone can easily disable the extensions if they
                                 share the code.
                             </span>
+                            <code>__declspec(dllimport)</code>と<code>__declspec(dllexport)</code>は使っても問題ありません。しかし、その場合であっても必ず、<code>DLLIMPORT</code>や<code>DLLEXPORT</code>のようなマクロを通して使わなければいけません。そうしておくことで、他の人が簡単にそのような拡張を無効化することができるようになります。
                         </span>
                     </li>
                 </ul>
@@ -15707,6 +16025,7 @@ std::vector&lt;char *&gt; x;
                             However, there are just a few rules that we
                             occasionally need to break on Windows:
                         </span>
+                        しかし、Windowsにおいては、場合によってルールを曲げなくてはいけないこともあります。
                     </span>
                 </p>
 
@@ -15722,6 +16041,7 @@ std::vector&lt;char *&gt; x;
                                 however, it is required when using COM and some ATL/WTL
                                 classes.
                             </span>
+                            通常、<a href="#Multiple_Inheritance">実装の多重継承は禁止されています</a>が、COMやATL/WTLクラスを使おうとすると、それが必要になってきます。
                         </span>
                         <span>
                             <span class="src">
@@ -15729,6 +16049,7 @@ std::vector&lt;char *&gt; x;
                                 inheritance to implement COM or ATL/WTL classes and
                                 interfaces.
                             </span>
+                            COMやATL/WTLクラスやインターフェースを実装するためであれば、実装の多重継承を使用してもかまいません。
                         </span>
                     </li>
 
@@ -15739,12 +16060,14 @@ std::vector&lt;char *&gt; x;
                                 code, they are used extensively in the ATL and some
                                 STLs, including the one that comes with Visual C++.
                             </span>
+                            例外は、自分のコードに使うべきではありませんが、ATLやSTLやその他Visual C++からくるコードにおいて広く使われています。
                         </span>
                         <span>
                             <span class="src">
                                 When using the ATL, you should define
                                 <code>_ATL_NO_EXCEPTIONS</code> to disable exceptions.
                             </span>
+                            ATLを使う場合には、<code>_ATL_NO_EXCEPTIONS</code>を定義して、例外を無効にしてください。
                         </span>
                         <span>
                             <span class="src">
@@ -15752,18 +16075,21 @@ std::vector&lt;char *&gt; x;
                                 exceptions in your STL, but if not, it is OK to turn on
                                 exceptions in the compiler.
                             </span>
+                            STLを使う場合は、使用するSTLで例外を無効にできるかどうかを確認し、それができない場合は、例外が使えるようにコンパイラの設定を変更してもかまいません。
                         </span>
                         <span>
                             <span class="src">
                                 (Note that this is only to
                                 get the STL to compile.
                             </span>
+                            (しかし、例外はSTLをコンパイルするためだけに使用するということに注意してください。
                         </span>
                         <span>
                             <span class="src">
                                 You should still not write
                                 exception handling code yourself.)
                             </span>
+                            この場合でも、例外を処理するコードを自分で書くべきではありません。)
                         </span>
                     </li>
 
@@ -15777,6 +16103,7 @@ std::vector&lt;char *&gt; x;
                                 or
                                 <code>precompile.h</code>.
                             </span>
+                            プリコンパイル済みヘッダを使ったよくある仕事のやり方は、各ソースファイルの最も先頭で、典型的には<code>StdAfx.h</code>や<code>precompile.h</code>という名前を持つヘッダファイルをインクルードするというものです。
                         </span>
                         <span>
                             <span class="src">
@@ -15788,6 +16115,7 @@ std::vector&lt;char *&gt; x;
                                 <code>/FI</code> compiler option to include the
                                 file automatically.
                             </span>
+                            明示的にこれをインクルードするようなことは避け、コンパイラオプション<code>/FI</code>を使用して自動的にインクルードするようにしてください(<code>precompile.cc</code>は例外とします)。そうすることによって、他のプロジェクトとコードを共有しやすくすることができます。
                         </span>
                     </li>
 
@@ -15798,13 +16126,14 @@ std::vector&lt;char *&gt; x;
                                 <code>resource.h</code> and contain only macros, do not
                                 need to conform to these style guidelines.
                             </span>
+                            リソースヘッダ(通常は<code>resource.h</code>という名前を持ち、マクロのみを含んでいるファイル)はこのルールに従う必要はありません。
                         </span>
                     </li>
                 </ul>
 
             </div>
 
-            <h2 class="ignoreLink">Parting Words</h2>
+            <h2 class="ignoreLink"><span title="Parting Words">おわりに</span></h2>
 
             <p>
                 <span>
@@ -15812,6 +16141,7 @@ std::vector&lt;char *&gt; x;
                         Use common sense and
                         <em>BE CONSISTENT</em>.
                     </span>
+                    常識を大切にし、<em>一貫性を持ってください</em>。
                 </span>
             </p>
 
@@ -15821,6 +16151,7 @@ std::vector&lt;char *&gt; x;
                         If you are editing code, take a few minutes to look at the
                         code around you and determine its style.
                     </span>
+                    コードを編集する前には、1～2分、コード全体を眺める時間をとって、そのコードの持つスタイルを判別してください。
                 </span>
                 <span>
                     <span class="src">
@@ -15828,6 +16159,7 @@ std::vector&lt;char *&gt; x;
                         around their
                         <code>if</code> clauses, you should, too.
                     </span>
+                    <code>if</code>の周りにスペースがあったら、あなたもそのようにします。
                 </span>
                 <span>
                     <span class="src">
@@ -15835,6 +16167,7 @@ std::vector&lt;char *&gt; x;
                         comments have little boxes of stars around them, make your
                         comments have little boxes of stars around them too.
                     </span>
+                    コメントがアスタリスクで囲まれた箱になっていたら、あなたのコメントもアスタリスクで囲って箱にしましょう。
                 </span>
             </p>
 
@@ -15845,18 +16178,21 @@ std::vector&lt;char *&gt; x;
                         vocabulary of coding so people can concentrate on what you are
                         saying, rather than on how you are saying it.
                     </span>
+                    スタイルガイドラインを持つことの要点は、コーディングにおける共通のボキャブラリを持つということです。これによって、みんなが、どう話すかという話し方ではなく、何を話すかという話の内容に集中できるようになるのです。
                 </span>
                 <span>
                     <span class="src">
                         We present global
                         style rules here so people know the vocabulary.
                     </span>
+                    我々はここでグローバルなスタイルルールを説明しています。これによって、みんなが、共通のボキャブラリを持つことができます。
                 </span>
                 <span>
                     <span class="src">
                         But local style
                         is also important.
                     </span>
+                    しかし、ローカルなスタイルもまた重要なものです。
                 </span>
                 <span>
                     <span class="src">
@@ -15864,12 +16200,14 @@ std::vector&lt;char *&gt; x;
                         different from the existing code around it, the discontinuity
                         throws readers out of their rhythm when they go to read it.
                     </span>
+                    もし、あなたがファイルに追加したコードが、その周囲の既存のコードと大きく違って見えてしまうと、その境目によっ読者のリズムを崩してしまいます。
                 </span>
                 <span>
                     <span class="src">
                         Try
                         to avoid this.
                     </span>
+                    これを避けるよう努めましょう。
                 </span>
             </p>
 
@@ -15881,11 +16219,13 @@ std::vector&lt;char *&gt; x;
                         OK, enough writing about writing code; the code itself is much
                         more interesting.
                     </span>
+                    よし、コードを書くことについて書くのはもう十分でしょう。コードそのものを書くほうがもっとずっと面白いです。
                 </span>
                 <span>
                     <span class="src">
                         Have fun!
                     </span>
+                    楽しんでください！
                 </span>
             </p>
 
