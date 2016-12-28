@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>Google C++ Style Guide (Japanese)</title>
+    <title>Google C++ スタイルガイド(日本語全訳) Google C++ Style Guide (Japanese)</title>
     <link rel="stylesheet" type="text/css" href="include/styleguide.ja.css">
     <script language="javascript" src="include/styleguide.ja.js"></script>
 
@@ -23,7 +23,7 @@
             left: -99999px;
         }
 
-        span.src {
+        span.src, div.src {
             display: none;
         }
     </style>
@@ -32,7 +32,7 @@
         $(document).ready(function () {
             $("body").append('<div id="tip_popup"></div>');
             var tip = $('#tip_popup');
-            $("span").each(function () {
+            $("span,div").each(function () {
                 if ($(this).attr("title")) {
                     $(this).attr("data-title", $(this).attr("title"));
                     $(this).removeAttr("title");
@@ -40,8 +40,8 @@
                     $(this).mousemove(function (m) { tip.css({ left: (m.pageX + 20) + "px", top: (m.pageY + 20) + "px" }); });
                     $(this).mouseout(function () { tip.css({ left: "-99999px" }); });
                 }
-                else if ($(this).children("span.src")) {
-                    $(this).mousemove(function (m) { tip.html($(this).children("span.src").html()); });
+                else if ($(this).children(".src").html()) {
+                    $(this).mousemove(function (m) { tip.html($(this).children(".src").html()); });
                     $(this).mousemove(function (m) { tip.css({ left: (m.pageX + 20) + "px", top: (m.pageY + 20) + "px" }); });
                     $(this).mouseout(function () { tip.css({ left: "-99999px" }); });
                 }
@@ -55,7 +55,7 @@
 <body onload="initStyleGuide();">
     <div id="content">
         <h1>
-            <span title="Google C++ Style Guide">Google C++ スタイルガイド</span> 日本語訳
+            <span title="Google C++ Style Guide">Google C++ スタイルガイド</span> 日本語全訳
         </h1>
         <div>
             本ドキュメントは
@@ -1634,8 +1634,8 @@ inline namespace Y {
                                     名前空間は、include文や<a href="https://gflags.github.io/gflags/">gflags</a>の定義と宣言、他の名前空間のクラスの前方宣言の後に続くソースコードをすべて包むようにしてください。
                                 </span>
                             </p>
-                            <span>
-                                <span class="src">
+                            <div>
+                                <div class="src">
 <pre>// In the .h file
 namespace mynamespace {
 
@@ -1649,7 +1649,7 @@ class MyClass {
 
 }  // namespace mynamespace
 </pre>
-                                </span>
+                                </div>
                                 <pre>// .h ファイル
 namespace mynamespace {
 
@@ -1673,7 +1673,7 @@ void MyClass::Foo() {
 
 }  // namespace mynamespace
 </pre>
-                            </span>
+                            </div>
 
                             <p>
                                 <span>
@@ -1684,8 +1684,8 @@ void MyClass::Foo() {
                                     より複雑な <code>.cc</code>ファイルは、flagsやusing宣言などを含む場合もあります。
                                 </span>
                             </p>
-                            <span>
-                                <span class="src">
+                            <div>
+                                <div class="src">
 <pre>#include "a.h"
 
 DEFINE_FLAG(bool, someflag, false, "dummy flag");
@@ -1698,7 +1698,7 @@ using ::foo::bar;
 
 }  // namespace a
 </pre>
-                                </span>
+                                </div>
                                 <pre>#include "a.h"
 
 DEFINE_FLAG(bool, someflag, false, "dummy flag");
@@ -1711,7 +1711,7 @@ using ::foo::bar;
 
 }  // namespace a
 </pre>
-                            </span>
+                            </div>
                         </li>
 
                         <li>
@@ -1747,16 +1747,16 @@ using ::foo::bar;
                                     名前空間内のすべての名前を利用できるようにするための<i>usingディレクティブ</i>は使ってはいけません。
                                 </span>
                             </p>
-                            <span>
-                                <span class="src">
+                            <div>
+                                <div class="src">
 <pre class="badcode">// Forbidden -- This pollutes the namespace.
 using namespace foo;
 </pre>
-                                </span>
+                                </div>
                                 <pre class="badcode">// ダメ。名前空間を汚染している。
 using namespace foo;
 </pre>
-                            </span>
+                            </div>
                         </li>
 
                         <li>
@@ -1773,18 +1773,18 @@ using namespace foo;
                                 </span>
                             </p>
 
-                            <span>
-                                <span class="src">
+                            <div>
+                                <div class="src">
                                     <pre>// Shorten access to some commonly used names in .cc files.
 namespace baz = ::foo::bar::baz;
 </pre>
-                                </span>
+                                </div>
                                 <pre>// .ccファイルの中でたくさん使われる名前へのショートカットを作る。
 namespace baz = ::foo::bar::baz;
 </pre>
-                            </span>
-                            <span>
-                                <span class="src">
+                            </div>
+                            <div>
+                                <div class="src">
 <pre>// Shorten access to some commonly used names (in a .h file).
 namespace librarian {
 namespace impl {  // Internal, not part of the API.
@@ -1798,7 +1798,7 @@ inline void my_inline_function() {
 }
 }  // namespace librarian
 </pre>
-                                </span><pre>// .hファイルの中で、よく使われる名前へのショートカットを作る。
+                                </div><pre>// .hファイルの中で、よく使われる名前へのショートカットを作る。
 namespace librarian {
 namespace impl {  // 内部用。APIではありません。
 namespace sidetable = ::pipeline_diagnostics::sidetable;
@@ -1811,7 +1811,7 @@ inline void my_inline_function() {
 }
 }  // namespace librarian
 </pre>
-                            </span>
+                            </div>
 
                         </li>
                         <li>
@@ -2106,44 +2106,44 @@ class FooBar {
                         特に、変数の初期化は宣言と同時に行うようにし、宣言と代入を別に行うようなことは避けてください。例:
                     </span>
                 </p>
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre class="badcode">int i;
 i = f();      // Bad -- initialization separate from declaration.
 </pre>
-                    </span>
+                    </div>
                     <pre class="badcode">int i;
 i = f();      // 悪い例。初期化が宣言と分かれている。
 </pre>
-                </span>
-                <span>
-                    <span class="src">
+                </div>
+                <div>
+                    <div class="src">
 <pre>int j = g();  // Good -- declaration has initialization.
 </pre>
-                    </span>
+                    </div>
                     <pre>int j = g();  // よい例。宣言と同時に初期化が行われている。
 </pre>
-                </span>
-                <span>
-                    <span class="src">
+                </div>
+                <div>
+                    <div class="src">
 <pre class="badcode">std::vector&lt;int&gt; v;
 v.push_back(1);  // Prefer initializing using brace initialization.
 v.push_back(2);
 </pre>
-                    </span>
+                    </div>
                     <pre class="badcode">std::vector&lt;int&gt; v;
 v.push_back(1);  // {}による初期化を使う方がよい。
 v.push_back(2);
 </pre>
-                </span>
-                <span>
-                    <span class="src">
+                </div>
+                <div>
+                    <div class="src">
 <pre>std::vector&lt;int&gt; v = {1, 2};  // Good -- v starts initialized.
 </pre>
-                    </span>
+                    </div>
                     <pre>std::vector&lt;int&gt; v = {1, 2};  // よい例。 vは初期化されている。
 </pre>
-                </span>
+                </div>
 
                 <p>
                     <span>
@@ -2170,22 +2170,22 @@ v.push_back(2);
                         ただし、もし変数がオブジェクトだったとすると、スコープに入るたびに毎回コンストラクタが呼ばれ、オブジェクトが生成され、スコープから出るたびに毎回デストラクタが呼ばれることになります。
                     </span>
                 </p>
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre class="badcode">// Inefficient implementation:
 for (int i = 0; i &lt; 1000000; ++i) {
   Foo f;  // My ctor and dtor get called 1000000 times each.
   f.DoSomething(i);
 }
 </pre>
-                    </span>
+                    </div>
                     <pre class="badcode">// 非効率的な実装
 for (int i = 0; i &lt; 1000000; ++i) {
   Foo f;  // コンストラクタとデストラクタがそれぞれ 1000000 回ずつ呼ばれる。
   f.DoSomething(i);
 }
 </pre>
-                </span>
+                </div>
 
                 <p>
                     <span>
@@ -2196,20 +2196,20 @@ for (int i = 0; i &lt; 1000000; ++i) {
                         こういった場合、変数はループの外で宣言する方が効率的になる場合があります。
                     </span>
                 </p>
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre>Foo f;  // My ctor and dtor get called once each.
 for (int i = 0; i &lt; 1000000; ++i) {
   f.DoSomething(i);
 }
 </pre>
-                    </span>
+                    </div>
                     <pre>Foo f;  // コンストラクタとデストラクタは1回ずつ呼ばれる。
 for (int i = 0; i &lt; 1000000; ++i) {
   f.DoSomething(i);
 }
 </pre>
-                </span>
+                </div>
             </div>
 
             <h3 id="Static_and_Global_Variables">
@@ -3156,8 +3156,8 @@ void Func(Foo f);
                             また、クラスがコピー可能である、もしくは、ムーブのみ可能であることを忘れずにドキュメント化してください。
                         </span>
                     </p>
-                    <span>
-                        <span class="src">
+                    <div>
+                        <div class="src">
 <pre class="badcode">class Foo {
  public:
   Foo(Foo&amp;&amp; other) : field_(other.field) {}
@@ -3167,7 +3167,7 @@ void Func(Foo f);
   Field field_;
 };
 </pre>
-                        </span>
+                        </div>
                         <pre class="badcode">class Foo {
  public:
   Foo(Foo&amp;&amp; other) : field_(other.field) {}
@@ -3177,7 +3177,7 @@ void Func(Foo f);
   Field field_;
 };
 </pre>
-                    </span>
+                    </div>
 
                     <p>
                         <span>
@@ -3211,17 +3211,17 @@ void Func(Foo f);
                             型にコピー操作・ムーブ操作をサポートさせたくないときは、以下の例のように、<code>public:</code>セクション内において<code>= delete</code>を使って、明示的にそれらを無効にしてください。
                         </span>
                     </p>
-                    <span>
-                        <span class="src">
+                    <div>
+                        <div class="src">
 <pre class="code">// MyClass is neither copyable nor movable.
 MyClass(const MyClass&amp;) = delete;
 MyClass&amp; operator=(const MyClass&amp;) = delete;
 </pre>
-                        </span><pre class="code">// MyClassは、コピーもムーブも不可
+                        </div><pre class="code">// MyClassは、コピーもムーブも不可
 MyClass(const MyClass&amp;) = delete;
 MyClass&amp; operator=(const MyClass&amp;) = delete;
 </pre>
-                    </span>
+                    </div>
 
                     <p></p>
 
@@ -7910,8 +7910,8 @@ bool Derived::Equal(Base* other) {
                         </p>
 
                         <div>
-                            <span>
-                                <span class="src">
+                            <div>
+                                <div class="src">
                                     <pre>// printf macros for size_t, in the style of inttypes.h
 #ifdef _LP64
 #define __PRIS_PREFIX "z"
@@ -7930,7 +7930,7 @@ bool Derived::Equal(Base* other) {
 #define PRIXS __PRIS_PREFIX "X"
 #define PRIoS __PRIS_PREFIX "o"
   </pre>
-                                </span>
+                                </div>
                                 <pre>// size_t の printf 用マクロ
 #ifdef _LP64
 #define __PRIS_PREFIX "z"
@@ -7950,7 +7950,7 @@ bool Derived::Equal(Base* other) {
 #define PRIXS __PRIS_PREFIX "X"
 #define PRIoS __PRIS_PREFIX "o"
   </pre>
-                            </span>
+                            </div>
                         </div>
 
                         <table border="1" summary="portable printf specifiers">
@@ -8603,14 +8603,14 @@ uint64_t my_mask = 3ULL &lt;&lt; 48;
 memset(&amp;data, 0, sizeof(data));
 </pre>
 
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre class="badcode">memset(&amp;data, 0, sizeof(Struct));
 </pre>
-                    </span>
+                    </div>
                     <pre class="badcode">memset(&amp;data, 0, sizeof(Struct));  // これは避ける
 </pre>
-                </span>
+                </div>
 
 <pre>if (raw_size &lt; sizeof(int)) {
   LOG(ERROR) &lt;&lt; "compressed record not big enough for count: " &lt;&lt; raw_size;
@@ -8824,8 +8824,8 @@ auto i = y.Find(key);
                                 </span>
                                 これは特に、局所変数<code>key</code>と<code>value</code>が<code>.first</code>と<code>.second</code>への別名として定義される場合とセットの場合に言えます。
                             </span>
-                            <span>
-                                <span class="src">
+                            <div>
+                                <div class="src">
 <pre class="code">for (const auto&amp; item : some_map) {
   const KeyType&amp; key = item.first;
   const ValType&amp; value = item.second;
@@ -8834,7 +8834,7 @@ auto i = y.Find(key);
   // the too-common case of extra copies in this iteration.
 }
 </pre>
-                                </span>
+                                </div>
                                 <pre class="code">for (const auto&amp; item : some_map) {
   const KeyType&amp; key = item.first;
   const ValType&amp; value = item.second;
@@ -8843,7 +8843,7 @@ auto i = y.Find(key);
   // 書き手はこのイテレーションにおいてよくあるコピーの問題を回避できています。
 }
 </pre>
-                            </span>
+                            </div>
                         </li>
                     </ul>
 
@@ -8897,8 +8897,8 @@ Point p = {1, 2};
                         それらの使用例を以下に示します。
                     </span>
                 </p>
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre>// Vector takes a braced-init-list of elements.
 std::vector&lt;string&gt; v{"foo", "bar"};
 
@@ -8922,7 +8922,7 @@ for (int i : {-1, -2, -3}) {}
 void TestFunction2(std::vector&lt;int&gt; v) {}
 TestFunction2({1, 2, 3});
 </pre>
-                    </span>
+                    </div>
                     <pre>// vector はその要素となる初期化子リストをとります。.
 std::vector&lt;string&gt; v{"foo", "bar"};
 
@@ -8946,7 +8946,7 @@ for (int i : {-1, -2, -3}) {}
 void TestFunction2(std::vector&lt;int&gt; v) {}
 TestFunction2({1, 2, 3});
 </pre>
-                </span>
+                </div>
                 <p>
                     <span>
                         <span class="src">
@@ -8957,8 +8957,8 @@ TestFunction2({1, 2, 3});
                         ユーザ定義の型は、<code>std::initializer_list&lt;T&gt;</code>を引数にとるコンストラクタや代入演算子を定義することで、<i>初期化子リスト</i>からオブジェクトを生成することができます。以下に例を示します。
                     </span>
                 </p>
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre>class MyType {
  public:
   // std::initializer_list references the underlying init list.
@@ -8973,7 +8973,7 @@ TestFunction2({1, 2, 3});
 };
 MyType m{2, 3, 5, 7};
 </pre>
-                    </span>
+                    </div>
                     <pre>class MyType {
  public:
   // std::initializer_list は、渡された初期化子リストを参照します。
@@ -8988,7 +8988,7 @@ MyType m{2, 3, 5, 7};
 };
 MyType m{2, 3, 5, 7};
 </pre>
-                </span>
+                </div>
                 <p>
                     <span>
                         <span class="src">
@@ -8999,8 +8999,8 @@ MyType m{2, 3, 5, 7};
                         最後になりますが、初期化子リストは、<code>std::initializer_list&lt;T&gt;</code>のコンストラクタを持たないふつうのデータ型のコンストラクタを呼ぶこともできます。
                     </span>
                 </p>
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre>double d{1.23};
 // Calls ordinary constructor as long as MyOtherType has no
 // std::initializer_list constructor.
@@ -9013,7 +9013,7 @@ MyOtherType m = {1, "b"};
 // If the constructor is explicit, you can't use the "= {}" form.
 MyOtherType m{"b"};
 </pre>
-                    </span>
+                    </div>
                     <pre>double d{1.23};
 // MyOtherTypeはstd::initializer_listのコンストラクタを持っていないため、
 // 通常のコンストラクタが呼び出されます。
@@ -9027,7 +9027,7 @@ MyOtherType m = {1, "b"};
 // 「= {}」の形を使用することはできません。
 MyOtherType m{"b"};
 </pre>
-                </span>
+                </div>
                 <p>
                     <span>
                         <span class="src">
@@ -9044,22 +9044,22 @@ MyOtherType m{"b"};
                         要素が1つの場合、その意味がわかりません。
                     </span>
                 </p>
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre class="badcode">auto d = {1.23};        // d is a std::initializer_list&lt;double&gt;
 </pre>
-                    </span>
+                    </div>
                     <pre class="badcode">auto d = {1.23};        // d は std::initializer_list&lt;double&gt;
 </pre>
-                </span>
-                <span>
-                    <span class="src">
+                </div>
+                <div>
+                    <div class="src">
 <pre>auto d = double{1.23};  // Good -- d is a double, not a std::initializer_list.
 </pre>
-                    </span>
+                    </div>
                     <pre>auto d = double{1.23};  // これはOK。dはdouble。std::initializer_listにはなりません。
 </pre>
-                </span>
+                </div>
                 <p>
                     <span>
                         <span class="src">
@@ -9134,8 +9134,8 @@ MyOtherType m{"b"};
                             明示的なキャプチャのためには、次のように、各変数を、値とするか参照とするかを指定しつつリストに並べます。
                         </span>
                     </p>
-                    <span>
-                        <span class="src">
+                    <div>
+                        <div class="src">
 <pre>int weight = 3;
 int sum = 0;
 // Captures `weight` by value and `sum` by reference.
@@ -9143,7 +9143,7 @@ std::for_each(v.begin(), v.end(), [weight, &amp;sum](int x) {
   sum += weight * x;
 });
 </pre>
-                        </span>
+                        </div>
                         <pre>int weight = 3;
 int sum = 0;
 // weigthは値として、sumは参照としてキャプチャしています。
@@ -9151,7 +9151,7 @@ std::for_each(v.begin(), v.end(), [weight, &amp;sum](int x) {
   sum += weight * x;
 });
 </pre>
-                    </span>
+                    </div>
                     <span>
                         <span class="src">
                             Default captures implicitly capture any variable referenced in the
@@ -9159,8 +9159,8 @@ std::for_each(v.begin(), v.end(), [weight, &amp;sum](int x) {
                         </span>
                         デフォルトのキャプチャは暗黙的にラムダ式の本体で参照されたすべての変数をキャプチャします。何らかのメンバが使われている場合は<code>this</code>もキャプチャされます。
                     </span>
-                    <span>
-                        <span class="src">
+                    <div>
+                        <div class="src">
 <pre>const std::vector&lt;int&gt; lookup_table = ...;
 std::vector&lt;int&gt; indices = ...;
 // Captures `lookup_table` by reference, sorts `indices` by the value
@@ -9169,7 +9169,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
   return lookup_table[a] &lt; lookup_table[b];
 });
 </pre>
-                        </span>
+                        </div>
                         <pre>const std::vector&lt;int&gt; lookup_table = ...;
 std::vector&lt;int&gt; indices = ...;
 // lookup_tableを参照としてキャプチャし、
@@ -9179,7 +9179,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
 });
 </pre>
 
-                    </span>
+                    </div>
                     <p>
                         <span>
                             <span class="src">
@@ -9306,8 +9306,8 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 </span>
                                 以下に例を示します。悪い例から。
                             </span>
-                            <span>
-                                <span class="src">
+                            <div>
+                                <div class="src">
 <pre class="badcode">{
   Foo foo;
   ...
@@ -9320,7 +9320,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
 // the function returns, that would be bad, because both `foo`
 // and the enclosing object could have been destroyed.
 </pre>
-                                </span>
+                                </div>
                                 <pre class="badcode">{
   Foo foo;
   ...
@@ -9335,15 +9335,15 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
 // fooも、このラムダを取り囲んでいたオブジェクトも
 // すでに存在していないかもしれないからです。
 </pre>
-                            </span>
+                            </div>
                             <span>
                                 <span class="src">
                                     prefer to write:
                                 </span>
                                 以下のように書きましょう。
                             </span>
-                            <span>
-                                <span class="src">
+                            <div>
+                                <div class="src">
 <pre>{
   Foo foo;
   ...
@@ -9354,7 +9354,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
 // function, and it's clearer that `foo` is dangerously captured by
 // reference.
 </pre>
-                                </span>
+                                </div>
                                 <pre>{
   Foo foo;
   ...
@@ -9365,7 +9365,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
 // Frobnicateがメンバ関数である場合、コンパイルに失敗します。
 // また、fooが危険なキャプチャをされていることがより明確になります。
 </pre>
-                            </span>
+                            </div>
                         </li>
                         <li>
                             <span>
@@ -10667,8 +10667,8 @@ using other_namespace::Foo;
                             たとえば、以下の例を見てください。これらのエイリアスは、クライアントコードにおいてそれらがどう扱われることを意図しているかドキュメント化しています。
                         </span>
                     </p>
-                    <span>
-                        <span class="src">
+                    <div>
+                        <div class="src">
 <pre>namespace a {
 // Used to store field measurements. DataPoint may change from Bar* to some internal type.
 // Client code should treat it as an opaque pointer.
@@ -10678,7 +10678,7 @@ using DataPoint = foo::bar::Bar*;
 using TimeSeries = std::unordered_set&lt;DataPoint, std::hash&lt;DataPoint&gt;, DataPointComparator&gt;;
 }  // namespace a
 </pre>
-                        </span>
+                        </div>
                         <pre>namespace a {
 // フィールドの測定値を保存するために使用されます。
 // DataPoint は Bar* から他の内部型に変更されるかもしれません。
@@ -10690,7 +10690,7 @@ using DataPoint = foo::bar::Bar*;
 using TimeSeries = std::unordered_set&lt;DataPoint, std::hash&lt;DataPoint&gt;, DataPointComparator&gt;;
 }  // namespace a
 </pre>
-                    </span>
+                    </div>
                     <p>
                         <span>
                             <span class="src">
@@ -10699,8 +10699,8 @@ using TimeSeries = std::unordered_set&lt;DataPoint, std::hash&lt;DataPoint&gt;, 
                             一方、次の例のエイリアスは、意図に関するドキュメントがなく、さらにその半分はクライアントで使用する目的ですらありません。
                         </span>
                     </p>
-                    <span>
-                        <span class="src">
+                    <div>
+                        <div class="src">
 <pre class="badcode">namespace a {
 // Bad: none of these say how they should be used.
 using DataPoint = foo::bar::Bar*;
@@ -10709,7 +10709,7 @@ using std::hash;           // Bad: just for local convenience
 typedef unordered_set&lt;DataPoint, hash&lt;DataPoint&gt;, DataPointComparator&gt; TimeSeries;
 }  // namespace a
 </pre>
-                        </span>
+                        </div>
                         <pre class="badcode">namespace a {
 // ダメ: どのように扱われるべきかが書かれていない。
 using DataPoint = foo::bar::Bar*;
@@ -10718,7 +10718,7 @@ using std::hash;           // ダメ: 自分の利便性のため
 typedef unordered_set&lt;DataPoint, hash&lt;DataPoint&gt;, DataPointComparator&gt; TimeSeries;
 }  // namespace a
 </pre>
-                    </span>
+                    </div>
                     <p>
                         <span>
                             <span class="src">
@@ -10729,16 +10729,16 @@ typedef unordered_set&lt;DataPoint, hash&lt;DataPoint&gt;, DataPointComparator&g
                         </span>
                     </p>
 
-                    <span>
-                        <span class="src">
+                    <div>
+                        <div class="src">
 <pre>// In a .cc file
 using std::unordered_set;
 </pre>
-                        </span>
+                        </div>
                         <pre>// .ccファイルの中
 using std::unordered_set;
 </pre>
-                    </span>
+                    </div>
 
                 </div>
             </div>
@@ -10824,20 +10824,20 @@ using std::unordered_set;
                         曖昧な省略形や、プロジェクト外のコード読者にとって馴染みが薄い省略形は使わないでください。また語句の中の文字を削る方法による省略も行わないでください。
                     </span>
                 </p>
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre>int price_count_reader;    // No abbreviation.
 int num_errors;            // "num" is a widespread convention.
 int num_dns_connections;   // Most people know what "DNS" stands for.
 </pre>
-                    </span>
+                    </div>
                     <pre>int price_count_reader;    // 省略されていないのでOK
 int num_errors;            // 「num」は広く行き渡った省略系なのでOK
 int num_dns_connections;   // 多くの人は「DNS」の意味を知っているからOK
 </pre>
-                </span>
-                <span>
-                    <span class="src">
+                </div>
+                <div>
+                    <div class="src">
 <pre class="badcode">int n;                     // Meaningless.
 int nerr;                  // Ambiguous abbreviation.
 int n_comp_conns;          // Ambiguous abbreviation.
@@ -10845,7 +10845,7 @@ int wgc_connections;       // Only your group knows what this stands for.
 int pc_reader;             // Lots of things can be abbreviated "pc".
 int cstmr_id;              // Deletes internal letters.
 </pre>
-                    </span>
+                    </div>
                     <pre class="badcode">int n;                     // 変数の目的がわからないのでダメ.
 int nerr;                  // 曖昧な省略形なのでダメ
 int n_comp_conns;          // 曖昧な省略形なのでダメ
@@ -10853,7 +10853,7 @@ int wgc_connections;       // グループ内のメンバーしか「wgc」の�
 int pc_reader;             // 「pc」にはたくさんの意味があるのでダメ
 int cstmr_id;              // 文字を削っているのでダメ
 </pre>
-                </span>
+                </div>
 
                 <p>
                     <span>
@@ -11072,8 +11072,8 @@ int cstmr_id;              // 文字を削っているのでダメ
                         以下に例を示します。
                     </span>
                 </p>
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre>// classes and structs
 class UrlTable { ...
 class UrlTableTester { ...
@@ -11088,7 +11088,7 @@ using PropertiesMap = hash_map&lt;UrlTableProperties *, string&gt;;
 // enums
 enum UrlTableErrors { ...
 </pre>
-                    </span>
+                    </div>
                     <pre>// クラスと構造体
 class UrlTable { ...
 class UrlTableTester { ...
@@ -11103,7 +11103,7 @@ using PropertiesMap = hash_map&lt;UrlTableProperties *, string&gt;;
 // 列挙型
 enum UrlTableErrors { ...
 </pre>
-                </span>
+                </div>
             </div>
 
             <h3 id="Variable_Names"><span title="Variable Names">変数名</span></h3>
@@ -11148,24 +11148,24 @@ enum UrlTableErrors { ...
                         以下に例を示します。
                     </span>
                 </p>
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre>string table_name;  // OK - uses underscore.
 string tablename;   // OK - all lowercase.
 </pre>
-                    </span>
+                    </div>
                     <pre>string table_name;  // OK - アンダースコアを使っている。
 string tablename;   // OK - すべて小文字。
 </pre>
-                </span>
-                <span>
-                    <span class="src">
+                </div>
+                <div>
+                    <div class="src">
 <pre class="badcode">string tableName;   // Bad - mixed case.
 </pre>
-                    </span>
+                    </div>
                     <pre class="badcode">string tableName;   // ダメ - 大文字小文字が混ざっている。
 </pre>
-                </span>
+                </div>
                 <h4 class="stylepoint_subsection"><span title="Class Data Members">クラスのデータメンバ</span></h4>
 
                 <p>
@@ -11178,8 +11178,8 @@ string tablename;   // OK - すべて小文字。
                         クラスのデータメンバは、staticであるなしに関わらず、基本的にはメンバでない変数名と同様ですが、末尾にアンダースコアをつけます。
                     </span>
                 </p>
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre>class TableInfo {
   ...
  private:
@@ -11188,7 +11188,7 @@ string tablename;   // OK - すべて小文字。
   static Pool&lt;TableInfo&gt;* pool_;  // OK.
 };
 </pre>
-                    </span>
+                    </div>
                     <pre>class TableInfo {
   ...
  private:
@@ -11197,7 +11197,7 @@ string tablename;   // OK - すべて小文字。
   static Pool&lt;TableInfo&gt;* pool_;  // OK.
 };
 </pre>
-                </span>
+                </div>
                 <h4 class="stylepoint_subsection"><span title="Struct Data Members">構造体のデータメンバ</span></h4>
 
                 <p>
@@ -11971,8 +11971,8 @@ enum AlternateUrlTableErrors {
             </div>
 
             <div class="stylebody">
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre>// Iterates over the contents of a GargantuanTable.
 // Example:
 //    GargantuanTableIterator* iter = table-&gt;NewIterator();
@@ -11984,7 +11984,7 @@ class GargantuanTableIterator {
   ...
 };
 </pre>
-                    </span>
+                    </div>
                     <pre>// GargantuanTable全体をイテレートします
 // 使用例:
 //    GargantuanTableIterator* iter = table-&gt;NewIterator();
@@ -11996,7 +11996,7 @@ class GargantuanTableIterator {
   ...
 };
 </pre>
-                </span>
+                </div>
 
                 <p>
                     <span>
@@ -12192,8 +12192,8 @@ class GargantuanTableIterator {
                         以下に例を示します。
                     </span>
                 </p>
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre>// Returns an iterator for this table.  It is the client's
 // responsibility to delete the iterator when it is done with it,
 // and it must not use the iterator once the GargantuanTable object
@@ -12210,7 +12210,7 @@ class GargantuanTableIterator {
 // and avoid the extra seek.
 Iterator* GetIterator() const;
 </pre>
-                    </span>
+                    </div>
                     <pre>// この表に対するイテレータを返します。
 // このイテレータは不要となった際に関数の呼び出し元でdeleteする必要があります。
 // また、イテレータの元となるGargantuanTableオブジェクトをdeleteした場合、
@@ -12226,7 +12226,7 @@ Iterator* GetIterator() const;
 // NewIterator()関数を使用するほうが、余分なシークを避けられるため、高速です。
 Iterator* GetIterator() const;
 </pre>
-                </span>
+                </div>
 
 
                 <p>
@@ -12246,16 +12246,16 @@ Iterator* GetIterator() const;
                         以下の例において、「それ以外の場合はfalseを返します」は不要です。それは暗黙的なことだからです。
                     </span>
                 </p>
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre>// Returns true if the table cannot hold any more entries.
 bool IsTableFull();
 </pre>
-                    </span>
+                    </div>
                     <pre>// 表がこれ以上の要素を持てない場合、trueを返します。
 bool IsTableFull();
 </pre>
-                </span>
+                </div>
 
 
                 <p>
@@ -12436,20 +12436,20 @@ bool IsTableFull();
                     </span>
                 </p>
 
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre>private:
  // Used to bounds-check table accesses. -1 means
  // that we don't yet know how many entries the table has.
  int num_total_entries_;
 </pre>
-                    </span>
+                    </div>
                     <pre>private:
  // テーブルアクセスの境界値チェックに使います。
  // -1 は、まだテーブルにいくつの要素があるかわからないことを意味します。
  int num_total_entries_;
 </pre>
-                </span>
+                </div>
 
 
                 <h4 class="stylepoint_subsection"><span title="Global Variables">グローバル変数に対するコメント</span></h4>
@@ -12470,17 +12470,17 @@ bool IsTableFull();
                         以下に例を示します。
                     </span>
                 </p>
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 
 <pre>// The total number of tests cases that we run through in this regression test.
 const int kNumTestCases = 6;
 </pre>
-                    </span>
+                    </div>
                     <pre>// この回帰テストにおけるテストケースの総数
 const int kNumTestCases = 6;
 </pre>
-                </span>
+                </div>
 
 
             </div>
@@ -12518,8 +12518,8 @@ const int kNumTestCases = 6;
                         </span>
                     </span>
                 </p>
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre>// Divide result by two, taking into account that x
 // contains the carry from the add.
 for (int i = 0; i &lt; result-&gt;size(); i++) {
@@ -12528,7 +12528,7 @@ for (int i = 0; i &lt; result-&gt;size(); i++) {
   x &amp;= 1;
 }
 </pre>
-                    </span>
+                    </div>
                     <pre>// resultを2で割る。
 // xには加算からのキャリーが含まれることを考慮する。
 for (int i = 0; i &lt; result-&gt;size(); i++) {
@@ -12537,7 +12537,7 @@ for (int i = 0; i &lt; result-&gt;size(); i++) {
   x &amp;= 1;
 }
 </pre>
-                </span>
+                </div>
 
 
                 <h4 class="stylepoint_subsection"><span title="Line Comments">行末コメント</span></h4>
@@ -12564,20 +12564,20 @@ for (int i = 0; i &lt; result-&gt;size(); i++) {
                         </span>
                     </span>
                 </p>
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre>// If we have enough memory, mmap the data portion too.
 mmap_budget = max&lt;int64&gt;(0, mmap_budget - index_-&gt;length());
 if (mmap_budget &gt;= data_size_ &amp;&amp; !MmapData(mmap_chunk_bytes, mlock))
   return;  // Error already logged.
 </pre>
-                    </span>
+                    </div>
                     <pre>// メモリが十分あれば、mmap the data portion too.
 mmap_budget = max&lt;int64&gt;(0, mmap_budget - index_-&gt;length());
 if (mmap_budget &gt;= data_size_ &amp;&amp; !MmapData(mmap_chunk_bytes, mlock))
   return;  // エラーは記録済み
 </pre>
-                </span>
+                </div>
 
                 <p>
                     <span>
@@ -12600,8 +12600,8 @@ if (mmap_budget &gt;= data_size_ &amp;&amp; !MmapData(mmap_chunk_bytes, mlock))
                         後続の行にも続けてコメントを書くときは、それらを揃えたほうが読みやすいです。
                     </span>
                 </p>
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre>DoSomething();                  // Comment here so the comments line up.
 DoSomethingElseThatIsLonger();  // Two spaces between the code and the comment.
 { // One space before comment when opening a new scope is allowed,
@@ -12615,7 +12615,7 @@ std::vector&lt;string&gt; list{
                     "Second item"};
 DoSomething(); /* For trailing block comments, one space is fine. */
 </pre>
-                    </span>
+                    </div>
 
                     <pre>DoSomething();                  // 行頭を調整したコメント
 DoSomethingElseThatIsLonger();  // コードとコメントの間には、スペース2つ。
@@ -12633,7 +12633,7 @@ std::vector&lt;string&gt; list{
 
 DoSomething(); /* 行末のブロックコメントはスペース1つでOKです。 */
 </pre>
-                </span>
+                </div>
 
 
                 <h4 class="stylepoint_subsection"><span title="Function Argument Comments">関数の引数に対するコメント</span></h4>
@@ -12746,16 +12746,16 @@ DoSomething(); /* 行末のブロックコメントはスペース1つでOKで�
                     </span>
                     次の例を考えてみましょう。
                 </span>
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre class="badcode">// What are these arguments?
 const DecimalNumber product = CalculateProduct(values, 7, false, nullptr);
 </pre>
-                    </span>
+                    </div>
                     <pre class="badcode">// これらの引数の意味は？
 const DecimalNumber product = CalculateProduct(values, 7, false, nullptr);
 </pre>
-                </span>
+                </div>
 
 
                 <p>
@@ -12766,22 +12766,22 @@ const DecimalNumber product = CalculateProduct(values, 7, false, nullptr);
                         これに対して……
                     </span>
                 </p>
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre>ProductOptions options;
 options.set_precision_decimals(7);
 options.set_use_cache(ProductOptions::kDontUseCache);
 const DecimalNumber product =
     CalculateProduct(values, options, /*completion_callback=*/nullptr);
 </pre>
-                    </span>
+                    </div>
                     <pre>ProductOptions options;
 options.set_precision_decimals(7);
 options.set_use_cache(ProductOptions::kDontUseCache);
 const DecimalNumber product =
     CalculateProduct(values, options, /*completion_callback=*/nullptr);
 </pre>
-                </span>
+                </div>
 
 
                 <h4 class="stylepoint_subsection"><span title="Don'ts">してはならないこと</span></h4>
@@ -12817,22 +12817,22 @@ const DecimalNumber product =
                     </span>
                     以下のコードを比べてみましょう。
                 </span>
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre class="badcode">// Find the element in the vector.  &lt;-- Bad: obvious!
 auto iter = std::find(v.begin(), v.end(), element);
 if (iter != v.end()) {
   Process(element);
 }
 </pre>
-                    </span>
+                    </div>
                     <pre class="badcode">// vectorの中から要素を検索する。  &lt;-- ダメ。そんなことはコードを見れば明らか。
 auto iter = std::find(v.begin(), v.end(), element);
 if (iter != v.end()) {
   Process(element);
 }
 </pre>
-                </span>
+                </div>
 
 
                 <span>
@@ -12841,22 +12841,22 @@ if (iter != v.end()) {
                     </span>
                     と、
                 </span>
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre>// Process "element" unless it was already processed.
 auto iter = std::find(v.begin(), v.end(), element);
 if (iter != v.end()) {
   Process(element);
 }
 </pre>
-                    </span>
+                    </div>
                     <pre>// まだ処理していない要素があれば処理する。
 auto iter = std::find(v.begin(), v.end(), element);
 if (iter != v.end()) {
   Process(element);
 }
 </pre>
-                </span>
+                </div>
 
                 <span>
                     <span class="src">
@@ -13006,18 +13006,18 @@ if (iter != v.end()) {
 
 
                 <div>
-                    <span>
-                        <span class="src">
+                    <div>
+                        <div class="src">
 <pre>// TODO(kl@gmail.com): Use a "*" here for concatenation operator.
 // TODO(Zeke) change this to use relations.
 // TODO(bug 12345): remove the "Last visitors" feature
 </pre>
-                        </span>
+                        </div>
                         <pre>// TODO(kl@gmail.com): 結合のために*演算子を使うほうがいいのだが……
 // TODO(Zeke) 関係を使うように直さねば……
 // TODO(bug 12345): Last visitors機能は削除せねば……
 </pre>
-                    </span>
+                    </div>
 
                 </div>
 
@@ -13571,8 +13571,8 @@ if (iter != v.end()) {
                         最初の引数からして1行に収まらないときは、以下のようにします。
                     </span>
                 </p>
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre>ReturnType LongClassName::ReallyReallyReallyLongFunctionName(
     Type par_name1,  // 4 space indent
     Type par_name2,
@@ -13581,7 +13581,7 @@ if (iter != v.end()) {
   ...
 }
 </pre>
-                    </span>
+                    </div>
                     <pre>ReturnType LongClassName::ReallyReallyReallyLongFunctionName(
     Type par_name1,  // インデントはスペース 4個
     Type par_name2,
@@ -13590,7 +13590,7 @@ if (iter != v.end()) {
   ...
 }
 </pre>
-                </span>
+                </div>
 
                 <p>
                     <span>
@@ -13770,17 +13770,17 @@ class Circle : public Shape {
 void Circle::Rotate(double /*radians*/) {}
 </pre>
 
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre class="badcode">// Bad - if someone wants to implement later, it's not clear what the
 // variable means.
 void Circle::Rotate(double) {}
 </pre>
-                    </span>
+                    </div>
                     <pre class="badcode">// ダメ。後で誰かが実装しようとしても、引数の名前が何であったのかわからない。
 void Circle::Rotate(double) {}
 </pre>
-                </span>
+                </div>
 
                 <p>
                     <span>
@@ -13910,8 +13910,8 @@ digits.erase(std::remove_if(digits.begin(), digits.end(), [&amp;blacklist](int i
                         引数は、スペース4つでインデントされた後続行に記述することもできます。
                     </span>
                 </p>
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre>if (...) {
   ...
   ...
@@ -13922,7 +13922,7 @@ digits.erase(std::remove_if(digits.begin(), digits.end(), [&amp;blacklist](int i
     ...
   }
 </pre>
-                    </span>
+                    </div>
                     <pre>if (...) {
   ...
   ...
@@ -13933,7 +13933,7 @@ digits.erase(std::remove_if(digits.begin(), digits.end(), [&amp;blacklist](int i
     ...
   }
 </pre>
-                </span>
+                </div>
 
                 <p>
                     <span>
@@ -13988,16 +13988,16 @@ bool result = DoSomething(my_heuristic, x, y, z);
                         あるいは、意味のわかりにくい引数を、説明的なコメントともに、個別の行に配置してください。
                     </span>
                 </p>
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre>bool result = DoSomething(scores[x] * y + bases[x],  // Score heuristic.
                           x, y, z);
 </pre>
-                    </span>
+                    </div>
                     <pre>bool result = DoSomething(scores[x] * y + bases[x],  // ヒューリスティックなスコア
                           x, y, z);
 </pre>
-                </span>
+                </div>
 
                 <p>
                     <span>
@@ -14033,20 +14033,20 @@ bool result = DoSomething(my_heuristic, x, y, z);
                         このような場合は、それらの引数をその構造に沿って自由に配置するようにしてください。
                     </span>
                 </p>
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre>// Transform the widget by a 3x3 matrix.
 my_widget.Transform(x1, x2, x3,
                     y1, y2, y3,
                     z1, z2, z3);
 </pre>
-                    </span>
+                    </div>
                     <pre>// ウィジェットを3x3行列で変形する
 my_widget.Transform(x1, x2, x3,
                     y1, y2, y3,
                     z1, z2, z3);
 </pre>
-                </span>
+                </div>
 
             </div>
 
@@ -14085,8 +14085,8 @@ my_widget.Transform(x1, x2, x3,
                         名前がない場合は、0文字の名前があると仮定します。
                     </span>
                 </p>
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre>// Examples of braced init list on a single line.
 return {foo, bar};
 functioncall({foo, bar});
@@ -14113,7 +14113,7 @@ MyType m = {  // Here, you could also break before {.
     {interiorwrappinglist,
      interiorwrappinglist2}};
 </pre>
-                    </span>
+                    </div>
                     <pre>// 波カッコ初期化子リストを1行に配置する場合の例
 return {foo, bar};
 functioncall({foo, bar});
@@ -14140,7 +14140,7 @@ MyType m = {  // {の前で改行してもかまいません
     {interiorwrappinglist,
      interiorwrappinglist2}};
 </pre>
-                </span>
+                </div>
 
             </div>
 
@@ -14223,8 +14223,8 @@ MyType m = {  // {の前で改行してもかまいません
                         どちらを使うべきかわからない場合、個人の好みがなければ、スペースを入れない方を採用してください。
                     </span>
                 </p>
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre>if (condition) {  // no spaces inside parentheses
   ...  // 2 space indent.
 } else if (...) {  // The else goes on the same line as the closing brace.
@@ -14233,7 +14233,7 @@ MyType m = {  // {の前で改行してもかまいません
   ...
 }
 </pre>
-                    </span>
+                    </div>
                     <pre>if (condition) {  // 丸カッコの中にはスペースを入れない。
   ...  // スペース2つでインデント
 } else if (...) {  // elseは、閉じ波カッコと同じ行におく。
@@ -14242,7 +14242,7 @@ MyType m = {  // {の前で改行してもかまいません
   ...
 }
 </pre>
-                </span>
+                </div>
 
                 <p>
                     <span>
@@ -14253,22 +14253,22 @@ MyType m = {  // {の前で改行してもかまいません
                         丸カッコの中にスペースを入れる場合は次のようになります。
                     </span>
                 </p>
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre>if ( condition ) {  // spaces inside parentheses - rare
   ...  // 2 space indent.
 } else {  // The else goes on the same line as the closing brace.
   ...
 }
 </pre>
-                    </span>
+                    </div>
                     <pre>if ( condition ) {  // 丸カッコの中にスペースがある。(きわめて少数派)
   ...  // スペース2つでインデント
 } else {  // else は閉じ波カッコと同じ行におく。
   ...
 }
 </pre>
-                </span>
+                </div>
 
                 <p>
                     <span>
@@ -14288,26 +14288,26 @@ MyType m = {  // {の前で改行してもかまいません
                         また、どちらの場合でも閉じ丸カッコと波カッコの間にもスペースを入れなくてはいけません。
                     </span>
                 </p>
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre class="badcode">if(condition) {   // Bad - space missing after IF.
 if (condition){   // Bad - space missing before {.
 if(condition){    // Doubly bad.
 </pre>
-                    </span>
+                    </div>
                     <pre class="badcode">if(condition) {   // ダメ。ifの後にスペースがない。
 if (condition){   // ダメ。{の前にスペースがない。
 if(condition){    // ダメダメ。
 </pre>
-                </span>
-                <span>
-                    <span class="src">
+                </div>
+                <div>
+                    <div class="src">
 <pre>if (condition) {  // Good - proper space after IF and before {.
 </pre>
-                    </span>
+                    </div>
                     <pre>if (condition) {  // 良い。ifの後、{の前に適切にスペースがある。
 </pre>
-                </span>
+                </div>
 
                 <p>
                     <span>
@@ -14338,18 +14338,18 @@ if (x == kBar) return new Bar();
                         次のように、if文に<code>else</code>句がある場合は、認められません。
                     </span>
                 </p>
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre class="badcode">// Not allowed - IF statement on one line when there is an ELSE clause
 if (x) DoThis();
 else DoThat();
 </pre>
-                    </span>
+                    </div>
                     <pre class="badcode">// ダメ。else句があるif文が1行になっている。
 if (x) DoThis();
 else DoThat();
 </pre>
-                </span>
+                </div>
 
                 <p>
                     <span>
@@ -14372,8 +14372,8 @@ else DoThat();
                         プロジェクトによっては、<code>if</code>文にける波カッコを必須としている場合もあります。
                     </span>
                 </p>
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre>if (condition)
   DoSomething();  // 2 space indent.
 
@@ -14381,7 +14381,7 @@ if (condition) {
   DoSomething();  // 2 space indent.
 }
 </pre>
-                    </span>
+                    </div>
                     <pre>if (condition)
   DoSomething();  // スペース2つでインデント
 
@@ -14389,7 +14389,7 @@ if (condition) {
   DoSomething();  // スペース2つでインデント
 }
 </pre>
-                </span>
+                </div>
 
                 <p>
                     <span>
@@ -14402,8 +14402,8 @@ if (condition) {
                         ただし、<code>if</code>-<code>else</code>文において、そのいずれかの部分で波カッコをつける場合には、必ずもう一方にもつけなくてはなりません。
                     </span>
                 </p>
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre class="badcode">// Not allowed - curly on IF but not ELSE
 if (condition) {
   foo;
@@ -14417,7 +14417,7 @@ else {
   bar;
 }
 </pre>
-                    </span>
+                    </div>
                     <pre class="badcode">// ダメ。ifには波カッコがあり、elseにはない。
 if (condition) {
   foo;
@@ -14431,9 +14431,9 @@ else {
   bar;
 }
 </pre>
-                </span>
-                <span>
-                    <span class="src">
+                </div>
+                <div>
+                    <div class="src">
 <pre>// Curly braces around both IF and ELSE required because
 // one of the clauses used braces.
 if (condition) {
@@ -14442,7 +14442,7 @@ if (condition) {
   bar;
 }
 </pre>
-                    </span>
+                    </div>
                     <pre>// ifとelseの両方に波カッコが必要。一方で波カッコを使っているため。
 if (condition) {
   foo;
@@ -14451,7 +14451,7 @@ if (condition) {
 }
 </pre>
 
-                </span>
+                </div>
 
             </div>
 
@@ -14533,8 +14533,8 @@ if (condition) {
 
 
                 <div>
-                    <span>
-                        <span class="src">
+                    <div>
+                        <div class="src">
 <pre>switch (var) {
   case 0: {  // 2 space indent
     ...      // 4 space indent
@@ -14549,7 +14549,7 @@ if (condition) {
   }
 }
 </pre>
-                        </span>
+                        </div>
                         <pre>switch (var) {
   case 0: {  // スペース2つでインデント
     ...      // スペース4つでインデント
@@ -14564,7 +14564,7 @@ if (condition) {
   }
 }
 </pre>
-                    </span>
+                    </div>
                 </div>
 
 
@@ -14599,30 +14599,30 @@ for (int i = 0; i &lt; kSomeNumber; ++i) {
                         ループ本体が空になる場合は、波カッコによる空のブロックとするか、<code>continue</code>を使います。セミコロンだけを書いてはいけません。
                     </span>
                 </p>
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre>while (condition) {
   // Repeat test until it returns false.
 }
 for (int i = 0; i &lt; kSomeNumber; ++i) {}  // Good - one newline is also OK.
 while (condition) continue;  // Good - continue indicates no logic.
 </pre>
-                    </span>
+                    </div>
                     <pre>while (condition) {
   // falseが変えるまでテストを続ける。
 }
 for (int i = 0; i &lt; kSomeNumber; ++i) {}  // OK。新しい1行でもOK。
 while (condition) continue;  // OK。continueで、ロジックがないことを示す。
 </pre>
-                </span>
-                <span>
-                    <span class="src">
+                </div>
+                <div>
+                    <div class="src">
 <pre class="badcode">while (condition);  // Bad - looks like part of do/while loop.
 </pre>
-                    </span>
+                    </div>
                     <pre class="badcode">while (condition);  // ダメ。do-whileループの一部に見える。
 </pre>
-                </span>
+                </div>
 
             </div>
 
@@ -14706,8 +14706,8 @@ x = r-&gt;y;
                     </span>
                 </p>
 
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre>// These are fine, space preceding.
 char *c;
 const string &amp;str;
@@ -14716,7 +14716,7 @@ const string &amp;str;
 char* c;
 const string&amp; str;
 </pre>
-                    </span>
+                    </div>
                     <pre>// これらはどちらもOK。スペースが先。
 char *c;
 const string &amp;str;
@@ -14725,7 +14725,7 @@ const string &amp;str;
 char* c;
 const string&amp; str;
 </pre>
-                </span>
+                </div>
                 <span>
                     <span class="src">
                         It is allowed (if unusual) to declare multiple variables in the same
@@ -14740,29 +14740,29 @@ const string&amp; str;
                     </span>
                     そのような宣言は簡単に読み違えてしまうからです。
                 </span>
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre>// Fine if helpful for readability.
 int x, y;
 </pre>
-                    </span>
+                    </div>
                     <pre>// 可読性が高まる場合はOK。
 int x, y;
 </pre>
-                </span>
+                </div>
 
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre class="badcode">int x, *y;  // Disallowed - no &amp; or * in multiple declaration
 char * c;  // Bad - spaces on both sides of *
 const string &amp; str;  // Bad - spaces on both sides of &amp;
 </pre>
-                    </span>
+                    </div>
                     <pre class="badcode">int x, *y;  // 禁止。&amp;や*が複数宣言の中に含められている。
 char * c;  // ダメ。*の前後両方にスペースがある。
 const string &amp; str;  // ダメ。&amp;の前後両方にスペースがある。
 </pre>
-                </span>
+                </div>
 
                 <p>
                     <span>
@@ -14805,22 +14805,22 @@ const string &amp; str;  // ダメ。&amp;の前後両方にスペースがあ�
                     </span>
                 </p>
 
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre>if (this_one_thing &gt; this_other_thing &amp;&amp;
     a_third_thing == a_fourth_thing &amp;&amp;
     yet_another &amp;&amp; last_one) {
   ...
 }
 </pre>
-                    </span>
+                    </div>
                     <pre>if (this_one_thing &gt; this_other_thing &amp;&amp;
     a_third_thing == a_fourth_thing &amp;&amp;
     yet_another &amp;&amp; last_one) {
   ...
 }
 </pre>
-                </span>
+                </div>
 
                 <p>
                     <span>
@@ -14894,31 +14894,31 @@ const string &amp; str;  // ダメ。&amp;の前後両方にスペースがあ�
                     </span>
                 </p>
 
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre>return result;                  // No parentheses in the simple case.
 // Parentheses OK to make a complex expression more readable.
 return (some_long_condition &amp;&amp;
         another_condition);
 </pre>
-                    </span>
+                    </div>
                     <pre>return result;                  // シンプルなときは丸カッコは使わない。
 
 // これはOK。複雑な式を読みやすくするために、丸カッコを使っている。
 return (some_long_condition &amp;&amp;
         another_condition);
 </pre>
-                </span>
-                <span>
-                    <span class="src">
+                </div>
+                <div>
+                    <div class="src">
 <pre class="badcode">return (value);                // You wouldn't write var = (value);
 return(result);                // return is not a function!
 </pre>
-                    </span>
+                    </div>
                     <pre class="badcode">return (value);                // var = (value);と書いてはいけない。
 return(result);                // returnは関数ではない！
 </pre>
-                </span>
+                </div>
 
             </div>
 
@@ -14955,8 +14955,8 @@ return(result);                // returnは関数ではない！
                     </span>
                 </p>
 
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre>int x = 3;
 int x(3);
 int x{3};
@@ -14964,7 +14964,7 @@ string name = "Some Name";
 string name("Some Name");
 string name{"Some Name"};
 </pre>
-                    </span>
+                    </div>
                     <pre>int x = 3;
 int x(3);
 int x{3};
@@ -14972,7 +14972,7 @@ string name = "Some Name";
 string name("Some Name");
 string name{"Some Name"};
 </pre>
-                </span>
+                </div>
 
                 <p>
                     <span>
@@ -15012,16 +15012,16 @@ string name{"Some Name"};
                     </span>
                 </p>
 
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre>std::vector&lt;int&gt; v(100, 1);  // A vector of 100 1s.
 std::vector&lt;int&gt; v{100, 1};  // A vector of 100, 1.
 </pre>
-                    </span>
+                    </div>
                     <pre>std::vector&lt;int&gt; v(100, 1);  // 1が100個。
 std::vector&lt;int&gt; v{100, 1};  // 100と1。
 </pre>
-                </span>
+                </div>
 
                 <p>
                     <span>
@@ -15040,16 +15040,16 @@ std::vector&lt;int&gt; v{100, 1};  // 100と1。
                     </span>
                 </p>
 
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre>int pi(3.14);  // OK -- pi == 3.
 int pi{3.14};  // Compile error: narrowing conversion.
 </pre>
-                    </span>
+                    </div>
                     <pre>int pi(3.14);  // OK。 pi == 3 だけど。
 int pi{3.14};  // コンパイルエラー: より小さい型への変換
 </pre>
-                </span>
+                </div>
 
             </div>
 
@@ -15080,8 +15080,8 @@ int pi{3.14};  // コンパイルエラー: より小さい型への変換
                     </span>
                 </p>
 
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
                         <pre>// Good - directives at beginning of line
   if (lopsided_score) {
 #if DISASTER_PENDING      // Correct -- Starts at beginning of line
@@ -15093,7 +15093,7 @@ int pi{3.14};  // コンパイルエラー: より小さい型への変換
     BackToNormal();
   }
 </pre>
-                    </span>
+                    </div>
                     <pre>// OK。プリプロセッサが行の頭にある。
   if (lopsided_score) {
 #if DISASTER_PENDING      // 正しい。行頭から始める。
@@ -15105,9 +15105,9 @@ int pi{3.14};  // コンパイルエラー: より小さい型への変換
     BackToNormal();
   }
 </pre>
-                </span>
-                <span>
-                    <span class="src">
+                </div>
+                <div>
+                    <div class="src">
 <pre class="badcode">// Bad - indented directives
   if (lopsided_score) {
     #if DISASTER_PENDING  // Wrong!  The "#if" should be at beginning of line
@@ -15116,7 +15116,7 @@ int pi{3.14};  // コンパイルエラー: より小さい型への変換
     BackToNormal();
   }
 </pre>
-                    </span>
+                    </div>
                     <pre class="badcode">// ダメ。ディレクティブがインデントされている。
   if (lopsided_score) {
     #if DISASTER_PENDING  // 間違い！ "#if"は行頭になくてはならない。
@@ -15125,7 +15125,7 @@ int pi{3.14};  // コンパイルエラー: より小さい型への変換
     BackToNormal();
   }
 </pre>
-                </span>
+                </div>
 
             </div>
 
@@ -15162,8 +15162,8 @@ int pi{3.14};  // コンパイルエラー: より小さい型への変換
                     </span>
                 </p>
 
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
                         <pre>class MyClass : public OtherClass {
  public:      // Note the 1 space indent!
   MyClass();  // Regular 2 space indent.
@@ -15184,7 +15184,7 @@ int pi{3.14};  // コンパイルエラー: より小さい型への変換
   int some_other_var_;
 };
 </pre>
-                    </span>
+                    </div>
                     <pre>class MyClass : public OtherClass {
  public:      // スペース1つでインデント！
   MyClass();  // スペース2つでインデント(いつもの)
@@ -15205,7 +15205,7 @@ int pi{3.14};  // コンパイルエラー: より小さい型への変換
   int some_other_var_;
 };
 </pre>
-                </span>
+                </div>
 
                 <p>
                     <span>
@@ -15323,8 +15323,8 @@ int pi{3.14};  // コンパイルエラー: より小さい型への変換
                     </span>
                 </p>
 
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre>// When everything fits on one line:
 MyClass::MyClass(int var) : some_var_(var) {
   DoSomething();
@@ -15350,7 +15350,7 @@ MyClass::MyClass(int var)
 MyClass::MyClass(int var)
     : some_var_(var) {}
 </pre>
-                    </span>
+                    </div>
                     <pre>// 1行にすべて収まるとき
 MyClass::MyClass(int var) : some_var_(var) {
   DoSomething();
@@ -15376,7 +15376,7 @@ MyClass::MyClass(int var)
 MyClass::MyClass(int var)
     : some_var_(var) {}
 </pre>
-                </span>
+                </div>
 
             </div>
 
@@ -15412,8 +15412,8 @@ MyClass::MyClass(int var)
                     </span>
                 </p>
 
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
                         <pre>namespace {
 
 void foo() {  // Correct.  No extra indentation within namespace.
@@ -15422,7 +15422,7 @@ void foo() {  // Correct.  No extra indentation within namespace.
 
 }  // namespace
 </pre>
-                    </span>
+                    </div>
                     <pre>namespace {
 
 void foo() {  // 正しい。名前空間ではインデントしない。
@@ -15431,7 +15431,7 @@ void foo() {  // 正しい。名前空間ではインデントしない。
 
 }  // namespace
 </pre>
-                </span>
+                </div>
 
                 <p>
                     <span>
@@ -15442,8 +15442,8 @@ void foo() {  // 正しい。名前空間ではインデントしない。
                     </span>
                 </p>
 
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
 <pre class="badcode">namespace {
 
   // Wrong.  Indented when it should not be.
@@ -15453,7 +15453,7 @@ void foo() {  // 正しい。名前空間ではインデントしない。
 
 }  // namespace
 </pre>
-                    </span>
+                    </div>
                     <pre class="badcode">namespace {
 
   // 間違い。インデントされるべきではない。
@@ -15463,7 +15463,7 @@ void foo() {  // 正しい。名前空間ではインデントしない。
 
 }  // namespace
 </pre>
-                </span>
+                </div>
 
                 <p>
                     <span>
@@ -15475,16 +15475,16 @@ void foo() {  // 正しい。名前空間ではインデントしない。
                     </span>
                 </p>
 
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
                         <pre>namespace foo {
 namespace bar {
 </pre>
-                    </span>
+                    </div>
                     <pre>namespace foo {
 namespace bar {
 </pre>
-                </span>
+                </div>
 
             </div>
 
@@ -15512,8 +15512,8 @@ namespace bar {
 
                 <h4 class="stylepoint_subsection"><span title="General">全般</span></h4>
 
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
                         <pre>void f(bool b) {  // Open braces should always have a space before them.
   ...
 int i = 0;  // Semicolons usually have no space before them.
@@ -15531,7 +15531,7 @@ class Foo : public Bar {
   void Reset() { baz_ = 0; }  // Spaces separating braces from implementation.
   ...
 </pre>
-                    </span>
+                    </div>
                     <pre>void f(bool b) {  // 開き波カッコの前には常にスペースをおく。
   ...
 
@@ -15550,7 +15550,7 @@ class Foo : public Bar {
   void Reset() { baz_ = 0; }  // 波カッコと実装との間にはスペースをおく。
   ...
 </pre>
-                </span>
+                </div>
 
                 <p>
                     <span>
@@ -15582,8 +15582,8 @@ class Foo : public Bar {
 
                 <h4 class="stylepoint_subsection"><span title="Loops and Conditionals">ループと条件式</span></h4>
 
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
                         <pre>if (b) {          // Space after the keyword in conditions and loops.
 } else {          // Spaces around else.
 }
@@ -15609,7 +15609,7 @@ switch (i) {
     ...
   case 2: break;  // Use a space after a colon if there's code after it.
 </pre>
-                    </span>
+                    </div>
                     <pre>if (b) {          // 条件文やループキーワードの後ろにはスペースをおく。
 } else {          // elseの前後にはスペースをおく。
 }
@@ -15638,12 +15638,12 @@ switch (i) {
     ...
   case 2: break;  // コロンの後ろにコードがある場合はスペースをおく。
 </pre>
-                </span>
+                </div>
 
                 <h4 class="stylepoint_subsection"><span title="Operators">演算子</span></h4>
 
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
                         <pre>// Assignment operators always have spaces around them.
 x = 0;
 
@@ -15660,7 +15660,7 @@ x = -5;
 if (x &amp;&amp; !y)
   ...
 </pre>
-                    </span>
+                    </div>
                     <pre>// 代入演算子の前後には常にスペースをおく。
 x = 0;
 
@@ -15677,12 +15677,12 @@ x = -5;
 if (x &amp;&amp; !y)
   ...
 </pre>
-                </span>
+                </div>
 
                 <h4 class="stylepoint_subsection"><span title="Templates and Casts">テンプレートとキャスト</span></h4>
 
-                <span>
-                    <span class="src">
+                <div>
+                    <div class="src">
                         <pre>// No spaces inside the angle brackets (&lt; and &gt;), before
 // &lt;, or between &gt;( in a cast
 std::vector&lt;string&gt; x;
@@ -15691,7 +15691,7 @@ y = static_cast&lt;char*&gt;(x);
 // Spaces between type and pointer are OK, but be consistent.
 std::vector&lt;char *&gt; x;
 </pre>
-                    </span>
+                    </div>
                     <pre>// 山括弧の内側(<code>&lt;</code> and <code>&gt;</code>)にはスペースをおかない。
 // キャストにおける<code>&lt;</code>の前や、<code>&gt;</code>と<code>(</code>との間にもスペースをおかない。
 std::vector&lt;string&gt; x;
@@ -15700,7 +15700,7 @@ y = static_cast&lt;char*&gt;(x);
 // ポインタと型名の間のスペースはOK。ただし、周囲との一貫性を保つこと。
 std::vector&lt;char *&gt; x;
 </pre>
-                </span>
+                </div>
 
             </div>
 
