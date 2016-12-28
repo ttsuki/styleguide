@@ -1,5 +1,5 @@
-﻿<!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="ja">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>Google C++ スタイルガイド(日本語全訳) Google C++ Style Guide (Japanese)</title>
@@ -27,7 +27,7 @@
             display: none;
         }
     </style>
-    <script language="javascript">
+    <script>
         // 翻訳ポップアップ
         $(document).ready(function () {
             $("body").append('<div id="tip_popup"></div>');
@@ -45,11 +45,9 @@
                     $(this).mousemove(function (m) { tip.css({ left: (m.pageX + 20) + "px", top: (m.pageY + 20) + "px" }); });
                     $(this).mouseout(function () { tip.css({ left: "-99999px" }); });
                 }
-
             });
         });
     </script>
-
     <link rel="shortcut icon" type="image/x-icon" href="https://www.google.com/favicon.ico" />
 </head>
 <body onload="initStyleGuide();">
