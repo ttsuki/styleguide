@@ -3,10 +3,26 @@
 body {
   background-color: #fff;
   color: #333;
-  font-family: sans-serif;
-  font-size: 10pt;
+  font-family: "游ゴシック体", YuGothic, "游ゴシック", "Yu Gothic", "メイリオ", sans-serif;
+  font-weight: 500;
   margin-right: 100px;
   margin-left: 100px;
+}
+code, pre {
+  font-family: "Lucida Console", "Consolas", monospace;
+  font-size: small;
+  line-height: 150%;
+}
+
+div > p {
+  padding-left: 2em;
+}
+pre {
+  margin-left: 4em;
+}
+
+dt {
+  margin-top: 1em;
 }
 
 h1 {
@@ -19,7 +35,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 2em;
   margin-bottom: 1em;
   padding: 25px;
-  font-weight:bold;
+  font-weight: bold;
 }
 
 h2,
@@ -76,8 +92,7 @@ code.bad, code.badcode {
 
 pre.bad, pre.badcode {
   background-color:#ffe6d8;
-  border-top:1px inset #a03;
-  border-left:1px inset #a03;
+  border:1px inset #a03;
 }
 
 hr {
