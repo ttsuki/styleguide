@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
     <title>Google C++ スタイルガイド(日本語全訳) Google C++ Style Guide (Japanese)</title>
-    <link rel="stylesheet" type="text/css" href="include/styleguide.ja.css">
-    <script language="javascript" src="include/styleguide.ja.js"></script>
+    <link rel="stylesheet" href="include/styleguide.ja.css">
+    <script src="include/styleguide.ja.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <style>
         /* 翻訳ポップアップ */
         span:hover {
-            background-color: #FFC;
+            background-color: #FaFC;
         }
 
         #tip_popup {
@@ -48,7 +48,7 @@
             });
         });
     </script>
-    <link rel="shortcut icon" type="image/x-icon" href="https://www.google.com/favicon.ico" />
+    <link rel="shortcut icon" href="https://www.google.com/favicon.ico" />
 </head>
 <body onload="initStyleGuide();">
     <div id="content">
@@ -61,7 +61,7 @@
         </div>
         <div>
             commit
-            <a href="https://github.com/google/styleguide/blob/db0a26320f3e930c6ea7225ed53539b4fb31310c/cppguide.html">db0a263  on 18 Nov</a> を底本としています。(訳文にマウスを重ねると原文が表示されます)
+            <a href="https://github.com/google/styleguide/blob/63107a12eb85a4da33e2585a912234e4794cea06/cppguide.html">63107a1  on 15 Aug, 2018</a>> を底本としています。(訳文にマウスを重ねると原文が表示されます)
         </div>
         <div>
             オリジナルと同様
@@ -552,7 +552,53 @@
 
             </div>
 
+            <!-- todo -->
+            <h2 id="C++_Version">
+                    <span title="C++ Version">C++のバージョン</span>
+            </h2>
 
+            <p>
+                <span>
+                    <span class="src">
+                        Currently, code should target C++11, i.e., should not use C++14 or
+                        C++17 features.
+                    </span>
+                    現状、コードはC++11をターゲットとしており、C++14やC++17の機能は使っていません。
+                </span>
+                <span>
+                    <span class="src">
+                        The C++ version targeted by this guide will advance
+                        (aggressively) over time.
+                    </span>
+                    このガイドがターゲットとするC++のバージョンは時間とともに、かつ積極的に進行します。
+                </span>
+            </p>
+            
+            <p>
+                <span>
+                    <span class="src">
+                        Code should avoid features that have been removed from
+                        the latest language version (currently C++17), as well as the rare
+                        cases where code has a different meaning in that latest version.
+                      
+                    </span>
+                    コードは、最新の言語バージョン(現時点ではC++17)で廃止されている機能を使うのは避けるべきです。
+                    また、最新バージョンにおいて意味が変わってしまうようなレアケースも同様に避けるべきです。
+                </span>
+                <span>
+                    <span class="src">
+                        Use of some C++ features is restricted or disallowed.
+                    </span>
+                    いくつかのC++の機能は制限されているか、禁止されています。
+                </span>
+                <span>
+                    <span class="src">
+                        Do not use
+                        <a href="#Nonstandard_Extensions">non-standard extensions</a>
+                    </span>
+                    非標準の拡張は使わないでください。
+                </span>
+            </p>
 
             <h2 id="Header_Files">
                 <span title="Header Files">ヘッダファイル</span>
@@ -1104,7 +1150,7 @@
                                 A decent rule of thumb is to not inline a function if
                                 it is more than 10 lines long.
                             </span>
-                            経験的なルールとして、関数が10行より多くなったらインライン化すべきではないです。
+                            経験的なルールとして、関数が10行より多くなったらインライン化すべきではありません。
                         </span>
                         <span>
                             <span class="src">
@@ -1225,6 +1271,13 @@
                     </li>
 
                     <li>
+                        <span class="src">
+                            A blank line
+                        </span>
+                        空行
+                    </li>
+
+                    <li>
                         <span>
                             <span class="src">
                                 C system files.
@@ -1240,6 +1293,13 @@
                             </span>
                             C++ システムヘッダ
                         </span>
+                    </li>
+
+                     <li>
+                        <span class="src">
+                            A blank line
+                        </span>
+                        空行
                     </li>
 
                     <li>
@@ -1260,6 +1320,15 @@
                         </span>
                     </li>
                 </ol>
+
+                <p>
+                    <span>
+                        <span class="src">
+                            Note that any adjacent blank lines should be collapsed.
+                        </span>
+                        連続した空行は1つにまとめるのを忘れないでください。
+                    </span>
+                </p>
 
                 <p>
                     <span>
@@ -1296,6 +1365,19 @@
                 </p>
 
 
+                <p>
+                    <span>
+                        <span class="src">
+                            Note that the C compatibility headers such as <code>stddef.h</code>
+                            are essentially interchangeable with their C++ counterparts
+                            (<code>cstddef</code>)
+                            Either style is acceptable, but prefer consistency with existing code.
+                        </span>
+                        <code>stddef.h</code>のようなC言語の互換ヘッダは、C++の相当するヘッダと置き換えることができます(<code>cstddef</code>)。
+                        どちらのスタイルでもかまいませんが、既存のコードとの一貫性を優先してください。
+                    </span>
+                </p>
+                    
                 <p>
                     <span>
                         <span class="src">
@@ -1364,8 +1446,6 @@
 
 #include &lt;sys/types.h&gt;
 #include &lt;unistd.h&gt;
-
-#include &lt;hash_map&gt;
 #include &lt;vector&gt;
 
 #include "base/basictypes.h"
@@ -1522,20 +1602,20 @@
                         </span>
                     </p>
 
-<pre>namespace X {
-inline namespace Y {
+<pre>namespace outer {
+inline namespace inner {
   void foo();
-}  // namespace Y
-}  // namespace X
+}  // namespace inner
+}  // namespace outer
 </pre>
 
                     <p>
                         <span>
                             <span class="src">
-                                The expressions <code>X::Y::foo()</code> and
-                                <code>X::foo()</code> are interchangeable.
+                                The expressions <code>outer::inner::foo()</code> and
+                                <code>outer::foo()</code> are interchangeable.
                             </span>
-                            このとき、式<code>X::Y::foo()</code>は<code>X::foo()</code>とも書けます。
+                            このとき、式<code>outer::inner::foo()</code>は<code>outer::foo()</code>とも書けます。
                         </span>
                         <span>
                             <span class="src">
@@ -1688,13 +1768,13 @@ void MyClass::Foo() {
 
 DEFINE_FLAG(bool, someflag, false, "dummy flag");
 
-namespace a {
+namespace mynamespace {
 
 using ::foo::bar;
 
-...code for a...         // Code goes against the left margin.
+...code for mynamespace...    // Code goes against the left margin.
 
-}  // namespace a
+}  // namespace mynamespace
 </pre>
                                 </div>
                                 <pre>#include "a.h"
@@ -1711,6 +1791,17 @@ using ::foo::bar;
 </pre>
                             </div>
                         </li>
+
+<!-- todo-->
+  <li>To place generated protocol
+  message code in a namespace, use the
+  <code>package</code> specifier in the
+  <code>.proto</code> file. See
+  
+  <a href="https://developers.google.com/protocol-buffers/docs/reference/cpp-generated#package">
+  Protocol Buffer Packages</a>
+  for details.</li>
+
 
                         <li>
                             <span>
@@ -1849,11 +1940,17 @@ inline void my_inline_function() {
                     <p>
                         <span>
                             <span class="src">
-                                All declarations can be given internal linkage by placing them in
-                                unnamed namespaces, and functions and variables can be given internal linkage by
+                                All declarations can be given internal linkage by placing them in unnamed
+                                namespaces.
+                            </span>
+                            無名名前空間内のすべての宣言は内部リンケージとなります。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Functions and variables can also be given internal linkage by
                                 declaring them <code>static</code>.
                             </span>
-                            無名名前空間内のすべての宣言は内部リンケージとなります。また<code>static</code>に宣言された関数や変数も内部リンケージとなります。
+                            また<code>static</code>に宣言された関数や変数も内部リンケージとなります。
                         </span>
                         <span>
                             <span class="src">
@@ -1864,8 +1961,8 @@ inline void my_inline_function() {
                         </span>
                         <span>
                             <span class="src">
-                                If a different file declares something
-                                with the same name, then the two entities are completely independent.
+                                If a different file declares something with
+                                the same name, then the two entities are completely independent.
                             </span>
                             仮に、他のファイルで同じ名前が宣言されていたとしても、それらは2つの独立した別々の実体として扱われます。
                         </span>
@@ -1928,16 +2025,15 @@ inline void my_inline_function() {
                     </span>
                     <span>
                         <span class="src">
-                            Prefer grouping functions with a namespace instead of
-                            using a class as if it were a namespace.
+                            Do not use a class simply to group static functions.
                         </span>
-                        グローバル関数をグループ化するときは、クラスではなく名前空間を使いましょう。
+                        静的関数をグループにまとめるためにクラスを使ってはいけません。
                     </span>
                     <span>
                         <span class="src">
-                            Static methods of a class should
-                            generally be closely related to instances of the class or the class's static
-                            data.
+                            Static
+                            methods of a class should generally be closely related to instances of the
+                            class or the class's static data.
                         </span>
                         静的メンバ関数は、そのクラスのインスタンスや静的メンバ変数と関連性が強い場合にのみ用います。
                     </span>
@@ -2004,41 +2100,15 @@ inline void my_inline_function() {
                         </span>
                         <span>
                             <span class="src">
-                                Rather than creating classes only to group static member
-                                functions which do not share static data, use
-                                <a href="#Namespaces">namespaces</a> instead.
-                                静的な変数を共有しない、通常の関数をまとめるだけのクラスを作るのではなく、<a href="#Namespaces">名前空間</a>を使います。
+                                Do not create classes only to group static member functions;
+                                this is no different than just giving the function names a
+                                common prefix, and such grouping is usually unnecessary anyway.
                             </span>
-                        </span>
-                        <span>
-                            <span class="src">
-                                For a header
-                                <code>myproject/foo_bar.h</code>, for example, write
-                            </span>
-                            例として、<code>myproject/foo_bar.h</code>は以下のように記述します。
+                            静的なメンバ関数をグループにまとめるためだけにクラスを作ってはいけません。
+                            これは、関数の名前に共通の接頭辞をつけることと何ら変わりがありません。
+                            そして、通常、そのようなグルーピングは不要です。
                         </span>
                     </p>
-<pre>namespace myproject {
-namespace foo_bar {
-void Function1();
-void Function2();
-}  // namespace foo_bar
-}  // namespace myproject
-</pre>
-                    <p>
-                        <span>
-                            <span class="src">instead of</span>
-                            悪い例:
-                        </span>
-                    </p>
-<pre class="badcode">namespace myproject {
-class FooBar {
- public:
-  static void Function1();
-  static void Function2();
-};
-}  // namespace myproject
-</pre>
                     <p>
                         <span>
                             <span class="src">
@@ -2210,212 +2280,304 @@ for (int i = 0; i &lt; 1000000; ++i) {
                 </div>
             </div>
 
-            <h3 id="Static_and_Global_Variables">
-                <span title="Static and Global Variables">静的変数とグローバル変数</span>
-            </h3>
+<h3 id="Static_and_Global_Variables">
+    <span title="Static and Global Variables">静的変数とグローバル変数</span>
+</h3>
 
-            <div class="summary">
-                <p>
-                    <span>
-                        <span class="src">
-                            Variables of class type with <a href="http://en.cppreference.com/w/cpp/language/storage_duration#Storage_duration">
-                                static storage duration
-                            </a> are forbidden: they cause hard-to-find bugs due
-                            to indeterminate order of construction and destruction.
-                        </span>
-                        <a href="http://en.cppreference.com/w/cpp/language/storage_duration#Storage_duration">静的記憶域期間(static storage duration)</a>を持ったクラス型の変数は禁止です。これらの変数は不定な順番で生成(construct)・破壊(destruct)されるため、発見が困難な不具合を引き起こすことにつながります。
-                    </span>
-                    <span>
-                        <span class="src">
-                            However, such
-                            variables are allowed if they are <code>constexpr</code>: they have no
-                            dynamic initialization or destruction.
-                        </span>
-                        ただし、そのような変数でも<code>constexpr</code>と共に定義される場合は使用が認められます。これらは動的な初期化や破壊が行われないため問題になりません。
-                    </span>
-                </p>
-            </div>
+<!-- todo -->
+<div class="summary">
+<p>Objects with
+<a href="http://en.cppreference.com/w/cpp/language/storage_duration#Storage_duration">
+static storage duration</a> are forbidden unless they are
+<a href="http://en.cppreference.com/w/cpp/types/is_destructible">trivially
+destructible</a>. Informally this means that the destructor does not do
+anything, even taking member and base destructors into account. More formally it
+means that the type has no user-defined or virtual destructor and that all bases
+and non-static members are trivially destructible.
+Static function-local variables may use dynamic initialization.
+Use of dynamic initialization for static class member variables or variables at
+namespace scope is discouraged, but allowed in limited circumstances; see below
+for details.</p>
 
-            <div class="stylebody">
+<p>As a rule of thumb: a global variable satisfies these requirements if its
+declaration, considered in isolation, could be <code>constexpr</code>.</p>
+</div>
 
-                <p>
-                    <span>
-                        <span class="src">
-                            Objects with static storage duration, including global
-                            variables, static variables, static class member
-                            variables, and function static variables, must be Plain
-                            Old Data (POD): only ints, chars, floats, or pointers, or
-                            arrays/structs of POD.
-                        </span>
-                        静的な生存時間を持つオブジェクト(グローバル変数や静的変数、静的クラスメンバ変数、関数内静的変数を含む)は、必ずPlain Old Data(POD)でなくてはなりません。PODとは、組み込みの整数型(int,char,...)、浮動小数点型(float,double,...)、ポインタ、PODの配列、PODだけで構成された構造体のことです。
-                    </span>
-                </p>
+<div class="stylebody">
 
-                <p>
-                    <span>
-                        <span class="src">
-                            The order in which class constructors and initializers
-                            for static variables are called is only partially
-                            specified in C++ and can even change from build to build,
-                            which can cause bugs that are difficult to find.
-                        </span>
-                        C++において、静的変数のコンストラクタや初期化子の呼び出し順序は、部分的にしか決められておらず、ビルドのたびに変わる可能性すらあり、これらは非常に見つけづらいバグの元となります。
-                    </span>
-                    <span>
-                        <span class="src">
-                            Therefore in addition to banning globals of class type,
-                            we do not allow non-local static variables to be initialized
-                            with the result of a function, unless that function (such
-                            as getenv(), or getpid()) does not itself depend on any
-                            other globals.
-                        </span>
-                        このため、クラス型のグローバル変数に加え、(呼び出す関数が他のグローバルに依存していない場合を除いて)関数の結果によって初期化されるローカルでない静的変数も許容できません。
-                    </span>
-                    <span>
-                        <span class="src">
-                            However, a static POD variable within
-                            function scope may be initialized with the result of a
-                            function, since its initialization order is well-defined
-                            and does not occur until control passes through its
-                            declaration.
-                        </span>
-                        一方で、関数スコープの静的POD変数は、その初期化順序は十分に定義され、かつ、その宣言を初めて通過するまで初期化されないため、関数の結果で初期化されても問題ありません。
-                    </span>
-                </p>
+<div class="definition">
+<p>Every object has a <dfn>storage duration</dfn>, which correlates with its
+lifetime. Objects with static storage duration live from the point of their
+initialization until the end of the program. Such objects appear as variables at
+namespace scope ("global variables"), as static data members of classes, or as
+function-local variables that are declared with the <code>static</code>
+specifier. Function-local static variables are initialized when control first
+passes through their declaration; all other objects with static storage duration
+are initialized as part of program start-up. All objects with static storage
+duration are destroyed at program exit (which happens before unjoined threads
+are terminated).</p>
 
-                <p>
-                    <span>
-                        <span class="src">
-                            Likewise, global and static variables are destroyed
-                            when the program terminates, regardless of whether the
-                            termination is by returning from <code>main()</code> or
-                            by calling <code>exit()</code>.
-                        </span>
-                        ここまでの初期化の話と同様に、グローバル変数や静的変数は、(<code>main()</code>の処理が終わったか<code>exit()</code>の呼び出しであるかに関わらず)プログラムの終了時に破壊されます。
-                    </span>
-                    <span>
-                        <span class="src">
-                            The order in which
-                            destructors are called is defined to be the reverse of
-                            the order in which the constructors were called.
-                        </span>
-                        このときのデストラクタが呼ばれる順序は、コンストラクタが呼ばれた順の逆順と定義されていますが、
-                    </span>
-                    <span>
-                        <span class="src">
-                            Since
-                            constructor order is indeterminate, so is destructor
-                            order.
-                        </span>
-                        そもそも、コンストラクタの呼び出し順序は決まっていないため、デストラクタの呼び出し順序も決まっていません。
-                    </span>
-                    <span>
-                        <span class="src">
-                            For example, at program-end time a static variable
-                            might have been destroyed, but code still running
-                            &#8212; perhaps in another thread
-                            &#8212; tries to access it and fails.
-                        </span>
-                        たとえば、プログラム終了処理時には静的変数は破壊されますが、まだ実行中のコード(おそらく別スレッド)がその変数にアクセスしようとして失敗するかもしれません。
-                    </span>
-                    <span>
-                        <span class="src">
-                            Or the
-                            destructor for a static <code>string</code> variable
-                            might be run prior to the destructor for another variable
-                            that contains a reference to that string.
-                        </span>
-                        あるいは、静的な<code>string</code>のデストラクタが、その文字列への参照を持つ別の変数のデストラクタよりも先に実行されてしまうかもしれません。
-                    </span>
-                </p>
+<p>Initialization may be <dfn>dynamic</dfn>, which means that something
+non-trivial happens during initialization. (For example, consider a constructor
+that allocates memory, or a variable that is initialized with the current
+process ID.) The other kind of initialization is <dfn>static</dfn>
+initialization. The two aren't quite opposites, though: static
+initialization <em>always</em> happens to objects with static storage duration
+(initializing the object either to a given constant or to a representation
+consisting of all bytes set to zero), whereas dynamic initialization happens
+after that, if required.</p>
+</div>
 
-                <p>
-                    <span>
-                        <span class="src">
-                            One way to alleviate the destructor problem is to
-                            terminate the program by calling
-                            <code>quick_exit()</code> instead of <code>exit()</code>.
-                        </span>
-                        このデストラクタ問題を軽減する1つの方法は、プログラムを終了するために<code>exit()</code>ではなく<code>quick_exit()</code>を呼び出すことです。
-                    </span>
-                    <span>
-                        <span class="src">
-                            The difference is that <code>quick_exit()</code> does not
-                            invoke destructors and does not invoke any handlers that
-                            were registered by calling <code>atexit()</code>.
-                        </span>
-                        <code>quick_exit()</code>は、<code>exit()</code>と違って、変数のデストラクタを呼び出さず、<code>atexit()</code>で事前に登録されたハンドラも呼び出しません。
-                    </span>
-                    <span>
-                        <span class="src">
-                            If you
-                            have a handler that needs to run when a program
-                            terminates via <code>quick_exit()</code> (flushing logs,
-                            for example), you can register it using
-                            <code>at_quick_exit()</code>.
-                        </span>
-                        たとえばログのflushなど、<code>quick_exit()</code>でプログラムを終了する場合に実行しないといけないことがある場合は<code>at_quick_exit()</code>で、ハンドラを登録することができます。
-                    </span>
-                    <span>
-                        <span class="src">
-                            (If you have a handler that
-                            needs to run at both <code>exit()</code> and
-                            <code>quick_exit()</code>, you need to register it in
-                            both places.)
-                        </span>
-                        (<code>exit()</code>と<code>quick_exit()</code>のどちらが呼び出されてもハンドラを実行したい場合は、両方に登録しておく必要があります。)
-                    </span>
-                </p>
+<div class="pros">
+<p>Global and static variables are very useful for a large number of
+applications: named constants, auxiliary data structures internal to some
+translation unit, command-line flags, logging, registration mechanisms,
+background infrastructure, etc.</p>
+</div>
 
-                <p>
-                    <span>
-                        <span class="src">
-                            As a result we only allow static variables to contain
-                            POD data.
-                        </span>
-                        結果的には、静的変数に格納できるものはPODだけです。
-                    </span>
-                    <span>
-                        <span class="src">
-                            This rule completely disallows
-                            <code>std::vector</code> (use C arrays instead), or
-                            <code>string</code> (use <code>const char []</code>).
-                        </span>
-                        このルールは、静的な<code>std::vector</code>や<code>string</code>を認めないことを意味します。
-                        これらの代わりに、Cの配列や、<code>const char[]</code>を使うようにしてください。
-                    </span>
-                </p>
+<div class="cons">
+<p>Global and static variables that use dynamic initialization or have
+non-trivial destructors create complexity that can easily lead to hard-to-find
+bugs. Dynamic initialization is not ordered across translation units, and
+neither is destruction (except that destruction
+happens in reverse order of initialization). When one initialization refers to
+another variable with static storage duration, it is possible that this causes
+an object to be accessed before its lifetime has begun (or after its lifetime
+has ended). Moreover, when a program starts threads that are not joined at exit,
+those threads may attempt to access objects after their lifetime has ended if
+their destructor has already run.</p>
+</div>
+
+<div class="decision">
+<h4>Decision on destruction</h4>
+
+<p>When destructors are trivial, their execution is not subject to ordering at
+all (they are effectively not "run"); otherwise we are exposed to the risk of
+accessing objects after the end of their lifetime. Therefore, we only allow
+objects with static storage duration if they are trivially destructible.
+Fundamental types (like pointers and <code>int</code>) are trivially
+destructible, as are arrays of trivially destructible types. Note that
+variables marked with <code>constexpr</code> are trivially destructible.</p>
+<pre>const int kNum = 10;  // allowed
+
+struct X { int n; };
+const X kX[] = {{1}, {2}, {3}};  // allowed
+
+void foo() {
+  static const char* const kMessages[] = {"hello", "world"};  // allowed
+}
+
+// allowed: constexpr guarantees trivial destructor
+constexpr std::array&lt;int, 3&gt; kArray = {{1, 2, 3}};</pre>
+<pre class="badcode">// bad: non-trivial destructor
+const string kFoo = "foo";
+
+// bad for the same reason, even though kBar is a reference (the
+// rule also applies to lifetime-extended temporary objects)
+const string&amp; kBar = StrCat("a", "b", "c");
+
+void bar() {
+  // bad: non-trivial destructor
+  static std::map&lt;int, int&gt; kData = {{1, 0}, {2, 0}, {3, 0}};
+}</pre>
+
+<p>Note that references are not objects, and thus they are not subject to the
+constraints on destructibility. The constraint on dynamic initialization still
+applies, though. In particular, a function-local static reference of the form
+<code>static T&amp; t = *new T;</code> is allowed.</p>
+
+<h4>Decision on initialization</h4>
+
+<p>Initialization is a more complex topic. This is because we must not only
+consider whether class constructors execute, but we must also consider the
+evaluation of the initializer:</p>
+<pre class="neutralcode">int n = 5;    // fine
+int m = f();  // ? (depends on f)
+Foo x;        // ? (depends on Foo::Foo)
+Bar y = g();  // ? (depends on g and on Bar::Bar)</pre>
+
+<p>All but the first statement expose us to indeterminate initialization
+ordering.</p>
+
+<p>The concept we are looking for is called <em>constant initialization</em> in
+the formal language of the C++ standard. It means that the initializing
+expression is a constant expression, and if the object is initialized by a
+constructor call, then the constructor must be specified as
+<code>constexpr</code>, too:</p>
+<pre>struct Foo { constexpr Foo(int) {} };
+
+int n = 5;  // fine, 5 is a constant expression
+Foo x(2);   // fine, 2 is a constant expression and the chosen constructor is constexpr
+Foo a[] = { Foo(1), Foo(2), Foo(3) };  // fine</pre>
+
+<p>Constant initialization is always allowed. Constant initialization of
+static storage duration variables should be marked with <code>constexpr</code>
+or where possible the
+
+<a href="https://github.com/abseil/abseil-cpp/blob/03c1513538584f4a04d666be5eb469e3979febba/absl/base/attributes.h#L540">
+<code>ABSL_CONST_INIT</code></a>
+attribute. Any non-local static storage
+duration variable that is not so marked should be presumed to have
+dynamic initialization, and reviewed very carefully.</p>
+
+<p>By contrast, the following initializations are problematic:</p>
+
+<pre class="badcode">// Some declarations used below.
+time_t time(time_t*);      // not constexpr!
+int f();                   // not constexpr!
+struct Bar { Bar() {} };
+
+// Problematic initializations.
+time_t m = time(nullptr);  // initializing expression not a constant expression
+Foo y(f());                // ditto
+Bar b;                     // chosen constructor Bar::Bar() not constexpr</pre>
+
+<p>Dynamic initialization of nonlocal variables is discouraged, and in general
+it is forbidden. However, we do permit it if no aspect of the program depends
+on the sequencing of this initialization with respect to all other
+initializations. Under those restrictions, the ordering of the initialization
+does not make an observable difference. For example:</p>
+<pre>int p = getpid();  // allowed, as long as no other static variable
+                   // uses p in its own initialization</pre>
+
+<p>Dynamic initialization of static local variables is allowed (and common).</p>
 
 
+</div>
 
-                <p>
-                    <span>
-                        <span class="src">
-                            If you need a static or global
-                            variable of a class type, consider initializing a pointer
-                            (which will never be freed), from either your main()
-                            function or from pthread_once().
-                        </span>
-                        もし、クラス型の静的変数やグローバル変数がほしくなった場合は、変数をポインタとして用意し、<code>main()</code>や<code>pthread_once()</code>の処理の中などで初期化する方法を検討してください(ポインタの解放処理はどこにも書きません)
-                        。
-                    </span>
-                    <span>
-                        <span class="src">
-                            Note that this must be a
-                            raw pointer, not a "smart" pointer, since the smart
-                            pointer's destructor will have the order-of-destructor
-                            issue that we are trying to avoid.
-                        </span>
-                        このとき宣言するポインタは生のポインタとし、スマートポインタ等を使用してはいけません。
-                        スマートポインタのデストラクタは、ここまで回避しようとしてきたデストラクタ呼び出し順序の問題を再燃させてしまいます。
-                    </span>
-                </p>
+<h4>Common patterns</h4>
 
+<ul>
+  <li>Global strings: if you require a global or static string constant,
+    consider using a simple character array, or a char pointer to the first
+    element of a string literal. String literals have static storage duration
+    already and are usually sufficient.</li>
+  <li>Maps, sets, and other dynamic containers: if you require a static, fixed
+    collection, such as a set to search against or a lookup table, you cannot
+    use the dynamic containers from the standard library as a static variable,
+    since they have non-trivial destructors. Instead, consider a simple array of
+    trivial types, e.g. an array of arrays of ints (for a "map from int to
+    int"), or an array of pairs (e.g. pairs of <code>int</code> and <code>const
+    char*</code>). For small collections, linear search is entirely sufficient
+    (and efficient, due to memory locality). If necessary, keep the collection in
+    sorted order and use a binary search algorithm. If you do really prefer a
+    dynamic container from the standard library, consider using a function-local
+    static pointer, as described below.</li>
+  <li>Smart pointers (<code>unique_ptr</code>, <code>shared_ptr</code>): smart
+    pointers execute cleanup during destruction and are therefore forbidden.
+    Consider whether your use case fits into one of the other patterns described
+    in this section. One simple solution is to use a plain pointer to a
+    dynamically allocated object and never delete it (see last item).</li>
+  <li>Static variables of custom types: if you require static, constant data of
+    a type that you need to define yourself, give the type a trivial destructor
+    and a <code>constexpr</code> constructor.</li>
+  <li>If all else fails, you can create an object dynamically and never delete
+    it by binding the pointer to a function-local static pointer variable:
+    <code>static const auto* const impl = new T(args...);</code> (If the
+    initialization is more complex, it can be moved into a function or lambda
+    expression.)</li>
+</ul>
 
+</div> 
 
+<h3 id="thread_local">thread_local Variables</h3>
 
+<div class="summary">
+<p><code>thread_local</code> variables that aren't declared inside a function
+must be initialized with a true compile-time constant,
+and this must be enforced by using the
 
-            </div>
+<a href="https://github.com/abseil/abseil-cpp/blob/master/absl/base/attributes.h">
+<code>ABSL_CONST_INIT</code></a>
+attribute. Prefer
+<code>thread_local</code> over other ways of defining thread-local data.</p>
+</div>
+
+<div class="stylebody">
+
+<div class="definition">
+<p>Starting with C++11, variables can be declared with the
+<code>thread_local</code> specifier:</p>
+<pre>thread_local Foo foo = ...;
+</pre>
+<p>Such a variable is actually a collection of objects, so that when different
+threads access it, they are actually accessing different objects.
+<code>thread_local</code> variables are much like
+<a href="#Static_and_Global_Variables">static storage duration variables</a>
+in many respects. For instance, they can be declared at namespace scope,
+inside functions, or as static class members, but not as ordinary class
+members.</p>
+
+<p><code>thread_local</code> variable instances are initialized much like
+static variables, except that they must be initialized separately for each
+thread, rather than once at program startup. This means that
+<code>thread_local</code> variables declared within a function are safe, but
+other <code>thread_local</code> variables are subject to the same
+initialization-order issues as static variables (and more besides).</p>
+
+<p><code>thread_local</code> variable instances are destroyed when their thread
+terminates, so they do not have the destruction-order issues of static
+variables.</p>
+</div>
+
+<div class="pros">
+<ul>
+  <li>Thread-local data is inherently safe from races (because only one thread
+    can ordinarily access it), which makes <code>thread_local</code> useful for
+    concurrent programming.</li>
+  <li><code>thread_local</code> is the only standard-supported way of creating
+    thread-local data.</li>
+</ul>
+</div>
+
+<div class="cons">
+<ul>
+  <li>Accessing a <code>thread_local</code> variable may trigger execution of
+    an unpredictable and uncontrollable amount of other code.</li>
+  <li><code>thread_local</code> variables are effectively global variables,
+    and have all the drawbacks of global variables other than lack of
+    thread-safety.</li>
+  <li>The memory consumed by a <code>thread_local</code> variable scales with
+    the number of running threads (in the worst case), which can be quite large
+    in a  program.</li>
+  <li>An ordinary class member cannot be <code>thread_local</code>.</li>
+  <li><code>thread_local</code> may not be as efficient as certain compiler
+    intrinsics.</li>
+</ul>
+</div>
+
+<div class="decision">
+  <p><code>thread_local</code> variables inside a function have no safety
+    concerns, so they can be used without restriction. Note that you can use
+    a function-scope <code>thread_local</code> to simulate a class- or
+    namespace-scope <code>thread_local</code> by defining a function or
+    static method that exposes it:</p>
+
+<pre>Foo&amp; MyThreadLocalFoo() {
+  thread_local Foo result = ComplicatedInitialization();
+  return result;
+}
+</pre>
+
+  <p><code>thread_local</code> variables at class or namespace scope must be
+    initialized with a true compile-time constant (i.e. they must have no
+    dynamic initialization). To enforce this,
+    <code>thread_local</code> variables at class or namespace scope must be
+    annotated with
+    
+    <a href="https://github.com/abseil/abseil-cpp/blob/master/absl/base/attributes.h">
+    <code>ABSL_CONST_INIT</code></a>
+    (or <code>constexpr</code>, but that should be rare):</p>
+
+<pre>ABSL_CONST_INIT thread_local Foo foo = ...;
+</pre>
+
+  <p><code>thread_local</code> should be preferred over other mechanisms for
+    defining thread-local data.</p>
+</div>
+
+</div> 
+
 
             <h2 id="Classes">
                 <span title="Classes">クラス</span>
@@ -2580,9 +2742,11 @@ for (int i = 0; i &lt; 1000000; ++i) {
                         <span>
                             <span class="src">
                                 Otherwise, consider a factory function
-                                or <code>Init()</code> method.
+                                or <code>Init()</code> method as described in
+                                <a href="https://abseil.io/tips/42">TotW #42</a>
+                                .
                             </span>
-                            さもなくば、ファクトリ関数や<code>Init()</code>メソッドの導入を検討しましょう。
+                            さもなくば、<a href="https://abseil.io/tips/42">TotW #42</a>で説明されているような、ファクトリ関数や<code>Init()</code>メソッドの導入を検討しましょう。
                         </span>
                         <span>
                             <span class="src">
@@ -2723,9 +2887,14 @@ void Func(Foo f);
                             <span>
                                 <span class="src">
                                     Implicit conversions can be a simpler alternative to
-                                    overloading.
+                                    overloading, such as when a single
+                                    function with a <code>string_view</code> parameter takes the
+                                    place of separate overloads for <code>string</code> and
+                                    <code>const char*</code>.
                                 </span>
                                 暗黙的型変換は単にオーバーロードの代替手段としても利用可能です。
+                                たとえば、<code>string_view</code>を引数に受け取る関数が1つあるだけで、
+                                別々に定義される<code>string</code>や<code>const char*</code>のオーバーロードの代わりになるでしょう。
                             </span>
                         </li>
                         <li>
@@ -2851,9 +3020,9 @@ void Func(Foo f);
                         <span>
                             <span class="src">
                                 Constructors that cannot be called with a single argument
-                                should usually omit <code>explicit</code>.
+                                may omit <code>explicit</code>.
                             </span>
-                            通常、1つの引数では呼び出せないコンストラクタについては<code>explicit</code>を省略します。
+                            1つの引数では呼び出せないコンストラクタにおいては、<code>explicit</code>を省略できます。
                         </span>
                         <span>
                             <span class="src">
@@ -2877,17 +3046,17 @@ void Func(Foo f);
                 <p>
                     <span>
                         <span class="src">
-                            Support copying and/or moving if these operations are clear and meaningful
-                            for your type.
+                            A class's public API should make explicit whether the class is copyable,
+                            move-only, or neither copyable nor movable. 
                         </span>
-                        コピーやムーブは、それの実装が明確でかつ意味のある場合に限って実装してください。
+                        公開APIとしてのクラスは、そのクラスがコピー可能なのか、ムーブしかできないのか、コピーもムーブもできないのか、明示されているべきです。
                     </span>
                     <span>
                         <span class="src">
-                            Otherwise, disable the implicitly generated special functions
-                            that perform copies and moves.
+                            Support copying and/or
+                            moving if these operations are clear and meaningful for your type.
                         </span>
-                        それ以外の場合には、暗黙的に自動生成されるコピー・ムーブ関数は無効にしてください。
+                        型を作る時、その型において、コピー操作やムーブ操作が、明確かつ有意義である場合に、コピー・ムーブ操作をサポートしましょう。
                     </span>
                 </p>
             </div>
@@ -2898,47 +3067,66 @@ void Func(Foo f);
                     <p>
                         <span>
                             <span class="src">
-                                A copyable type allows its objects to be initialized or assigned
-                                from any other object of the same type, without changing the value of the source.
+                                A movable type is one that can be initialized and assigned
+                                from temporaries.
                             </span>
-                            型をコピー可能にすることによって、他の同じ型のオブジェクトから、元となるオブジェクトを変更することなく、自分自身の初期化や自分自身への代入ができるようになります。
+                            ムーブ可能な型は、一時オブジェクトからの初期化または代入が可能な型です。
                         </span>
+                    </p>
+                    <p>
+                        <span>
+                            <span class="src">
+                                A copyable type is one that can be initialized or assigned from
+                                any other object of the same type (so is also movable by definition), with the
+                                stipulation that the value of the source does not change.
+                            </span>
+                        </span>
+                        <span>
+                            <span class="src">
+                                <code>std::unique_ptr&lt;int&gt;</code> is an example of a movable but not
+                                copyable type (since the value of the source
+                                <code>std::unique_ptr&lt;int&gt;</code> must be modified during assignment to
+                                the destination). 
+                            </span>
+                            たとえば、<code>std::unique_ptr&lt;int&gt;</code>は、ムーブ可能かつコピー不可能な型の一例です。
+                            (なぜなら、別の変数への代入操作を行うとき、代入元の<code>std::unique_ptr&lt;int&gt;</code>は変更される必要があります。)
+                        </span>
+
+                        <span>
+                            <span class="src">
+                                <code>int</code> and <code>string</code> are examples of
+                                movable types that are also copyable.
+                            </span>
+                            <code>int</code>や<code>string</code>は、ムーブ可能かつコピーも可能な例です。
+                        </span>
+
+                        <span>
+                            <span class="src">
+                                (For <code>int</code>, the move and copy
+                                operations are the same; for <code>string</code>, there exists a move operation
+                                that is less expensive than a copy.)
+                            </span>
+                            (<code>int</code>において、ムーブ操作とコピー操作は同一です。
+                            <code>string</code>においては、コピー操作よりも安価なムーブ操作が存在します。)
+                        </span>
+
+
                         <span>
                             <span class="src">
                                 For user-defined types, the copy behavior is defined by the copy
                                 constructor and the copy-assignment operator.
                             </span>
-                            ユーザ定義の型においては、コピーの挙動は、コピーコンストラクタやコピー代入演算子によって定義されます。
+                            ユーザ定義の型においては、コピーの挙動は、コピーコンストラクタとコピー代入演算子によって定義されます。
                         </span>
-                        <span>
-                            <span class="src">
-                                <code>string</code> is an example of a copyable type.
-                            </span>
-                            コピー可能な型の一例として<code>string</code>があります。
-                        </span>
-                    </p>
 
-                    <p>
                         <span>
                             <span class="src">
-                                A movable type is one that can be initialized and assigned
-                                from temporaries (all copyable types are therefore movable).
+                                Move behavior is defined by the
+                                move constructor and the move-assignment operator, if they exist, or by the
+                                copy constructor and the copy-assignment operator otherwise.
                             </span>
-                            ムーブ可能な型は、一時オブジェクトからの初期化または代入が可能な型です(ゆえに、コピー可能な型は常にムーブ可能な型です)。
-                        </span>
-                        <span>
-                            <span class="src">
-                                <code>std::unique_ptr&lt;int&gt;</code> is an example of a movable but not
-                                copyable type.
-                            </span>
-                            ムーブは可能ですがコピーは不可能な型の一例として<code>std::unique_ptr&lt;int&gt;</code>があります。
-                        </span>
-                        <span>
-                            <span class="src">
-                                For user-defined types, the move behavior is defined by the move
-                                constructor and the move-assignment operator.
-                            </span>
-                            ユーザ定義の型においては、ムーブの挙動は、ムーブコンストラクタやムーブ代入演算子によって定義されます。
+                            ムーブの挙動は、ムーブコンストラクタとムーブ代入演算子が存在する場合はそれらによって定義されます。
+                            それが存在しない場合は、ムーブの挙動は、コピーコンストラクタとコピー代入演算子によって定義されます。
                         </span>
                     </p>
 
@@ -3101,127 +3289,83 @@ void Func(Foo f);
                     </p>
                 </div>
 
-                <div class="decision">
+<!-- todo -->
+<div class="decision">
 
-                    <p>
-                        <span>
-                            <span class="src">
-                                Provide the copy and move operations if their meaning is clear to a casual
-                                user and the copying/moving does not incur unexpected costs.
-                            </span>
-                            カジュアルなユーザから見て、操作の意味が明確で、かつコストも十分想定できる場合、コピー操作やムーブ操作が可能なようにしてください。
-                        </span>
-                        <span>
-                            <span class="src">
-                                If you define a
-                                copy or move constructor, define the corresponding assignment operator, and
-                                vice-versa.
-                            </span>
-                            コピーコンストラクタやムーブコンストラクタを独自に定義する場合は、それに紐付く代入演算子も併せて実装してください(逆の場合も同様です)。
-                        </span>
-                        <span>
-                            <span class="src">
-                                If your type is copyable, do not define move operations unless they
-                                are significantly more efficient than the corresponding copy operations.
-                            </span>
-                            型がコピー可能な場合は、コピーに比べて非常に効率的にムーブできる場合を除いて、ムーブ操作を定義しないでください。
-                        </span>
-                        <span>
-                            <span class="src">
-                                If your
-                                type is not copyable, but the correctness of a move is obvious to users of the
-                                type, you may make the type move-only by defining both of the move operations.
-                            </span>
-                            また、コピー可能ではないが、ムーブ操作の正当性が明らかなときは、それぞれのムーブ操作を定義することで、ムーブのみ可能な型とすることもできます。
-                        </span>
-                    </p>
+<p>Every class's public interface should make explicit which copy and move
+operations the class supports. This should usually take the form of explicitly
+declaring and/or deleting the appropriate operations in the <code>public</code>
+section of the declaration.</p>
 
-                    <p>
-                        <span>
-                            <span class="src">
-                                If your type provides copy operations, it is recommended that you design
-                                your class so that the default implementation of those operations is correct.
-                            </span>
-                            型がコピー操作をサポートする場合、できるだけコンパイラによるデフォルト実装が正しい操作となるようにクラスをデザインしてください。
-                        </span>
-                        <span>
-                            <span class="src">
-                                Remember to review the correctness of any defaulted operations as you would any
-                                other code, and to document that your class is copyable and/or cheaply movable
-                                if that's an API guarantee.
-                            </span>
-                            また、他のコードと同様に、デフォルトで生成されるコピー操作の正当性についても、忘れずにレビューを行ってください。
-                            また、クラスがコピー可能である、もしくは、ムーブのみ可能であることを忘れずにドキュメント化してください。
-                        </span>
-                    </p>
-                    <div>
-                        <div class="src">
-<pre class="badcode">class Foo {
+<p>Specifically, a copyable class should explicitly declare the copy
+operations, a move-only class should explicitly declare the move operations,
+and a non-copyable/movable class should explicitly delete the copy operations.
+Explicitly declaring or deleting all four copy/move operations is permitted,
+but not required. If you provide a copy or move assignment operator, you
+must also provide the corresponding constructor.</p>
+
+<pre>class Copyable {
  public:
-  Foo(Foo&amp;&amp; other) : field_(other.field) {}
-  // Bad, defines only move constructor, but not operator=.
+  Copyable(const Copyable&amp; rhs) = default;
+  Copyable&amp; operator=(const Copyable&amp; rhs) = default;
 
- private:
-  Field field_;
+  // The implicit move operations are suppressed by the declarations above.
+};
+
+class MoveOnly {
+ public:
+  MoveOnly(MoveOnly&amp;&amp; rhs);
+  MoveOnly&amp; operator=(MoveOnly&amp;&amp; rhs);
+
+  // The copy operations are implicitly deleted, but you can
+  // spell that out explicitly if you want:
+  MoveOnly(const MoveOnly&amp;) = delete;
+  MoveOnly&amp; operator=(const MoveOnly&amp;) = delete;
+};
+
+class NotCopyableOrMovable {
+ public:
+  // Not copyable or movable
+  NotCopyableOrMovable(const NotCopyableOrMovable&amp;) = delete;
+  NotCopyableOrMovable&amp; operator=(const NotCopyableOrMovable&amp;)
+      = delete;
+
+  // The move operations are implicitly disabled, but you can
+  // spell that out explicitly if you want:
+  NotCopyableOrMovable(NotCopyableOrMovable&amp;&amp;) = delete;
+  NotCopyableOrMovable&amp; operator=(NotCopyableOrMovable&amp;&amp;)
+      = delete;
 };
 </pre>
-                        </div>
-                        <pre class="badcode">class Foo {
- public:
-  Foo(Foo&amp;&amp; other) : field_(other.field) {}
-  // ダメ。ムーブコンストラクタだけが実装されていて、operator= がない。.
 
- private:
-  Field field_;
-};
-</pre>
-                    </div>
+<p>These declarations/deletions can be omitted only if they are obvious: for
+example, if a base class isn't copyable or movable, derived classes naturally
+won't be either. Similarly, a <a href="#Structs_vs._Classes">struct</a>'s
+copyability/movability is normally determined by the copyability/movability
+of its data members (this does not apply to classes because in Google code
+their data members are not public). Note that if you explicitly declare or
+delete any of the copy/move operations, the others are not obvious, and so
+this paragraph does not apply (in particular, the rules in this section
+that apply to "classes" also apply to structs that declare or delete any
+copy/move operations).</p>
 
-                    <p>
-                        <span>
-                            <span class="src">
-                                Due to the risk of slicing, avoid providing an assignment
-                                operator or public copy/move constructor for a class that's
-                                intended to be derived from (and avoid deriving from a class
-                                with such members).
-                            </span>
-                            スライシングのリスクがあるため、継承されることを目的としているクラスは、publicなコピー・ムーブコンストラクタ、コピー・ムーブ代入演算子を提供しないでください。また、それらの操作を提供しているクラスから派生することは避けてください。
-                        </span>
-                        <span>
-                            <span class="src">
-                                If your base class needs to be
-                                copyable, provide a public virtual <code>Clone()</code>
-                                method, and a protected copy constructor that derived classes
-                                can use to implement it.
-                            </span>
-                            基底クラスをコピー可能としたい場合、public virtualな<code>Clone()</code>メソッドを提供するようにしてください。
-                            また、protectedなコピーコンストラクタを提供し、派生クラスのコピーの実装がそれを利用できるようにしておいてください。
-                        </span>
-                    </p>
+<p>A type should not be copyable/movable if the meaning of
+copying/moving is unclear to a casual user, or if it incurs unexpected
+costs. Move operations for copyable types are strictly a performance
+optimization and are a potential source of bugs and complexity, so
+avoid defining them unless they are significantly more efficient than
+the corresponding copy operations.  If your type provides copy operations, it is
+recommended that you design your class so that the default implementation of
+those operations is correct. Remember to review the correctness of any
+defaulted operations as you would any other code.</p>
 
-                    <p>
-                        <span>
-                            <span class="src">
-                                If you do not want to support copy/move operations on your type,
-                                explicitly disable them using <code>= delete</code> in
-                                the <code>public:</code> section:
-                            </span>
-                            型にコピー操作・ムーブ操作をサポートさせたくないときは、以下の例のように、<code>public:</code>セクション内において<code>= delete</code>を使って、明示的にそれらを無効にしてください。
-                        </span>
-                    </p>
-                    <div>
-                        <div class="src">
-<pre class="code">// MyClass is neither copyable nor movable.
-MyClass(const MyClass&amp;) = delete;
-MyClass&amp; operator=(const MyClass&amp;) = delete;
-</pre>
-                        </div><pre class="code">// MyClassは、コピーもムーブも不可
-MyClass(const MyClass&amp;) = delete;
-MyClass&amp; operator=(const MyClass&amp;) = delete;
-</pre>
-                    </div>
-
-                    <p></p>
+<p>Due to the risk of slicing, prefer to avoid providing a public assignment
+operator or copy/move constructor for a class that's
+intended to be derived from (and prefer to avoid deriving from a class
+with such members). If your base class needs to be
+copyable, provide a public virtual <code>Clone()</code>
+method, and a protected copy constructor that derived classes
+can use to implement it.</p>
 
                 </div>
             </div>
@@ -3334,6 +3478,7 @@ MyClass&amp; operator=(const MyClass&amp;) = delete;
 
             </div>
 
+            <a id="Multiple_Inheritance"></a>
             <h3 id="Inheritance">
                 <span title="Inheritance">継承</span>
             </h3>
@@ -3363,20 +3508,19 @@ MyClass&amp; operator=(const MyClass&amp;) = delete;
                             <span class="src">
                                 When a sub-class
                                 inherits from a base class, it includes the definitions
-                                of all the data and operations that the parent base class
+                                of all the data and operations that the base class
                                 defines.
                             </span>
-                            派生クラスが基底クラスから継承するとき、派生クラスは親となる基底クラスで定義されているすべてのデータと操作の定義を含むようになります。
+                            派生クラスが基底クラスから継承するとき、派生クラスは基底クラスで定義されているすべてのデータと操作の定義を含むようになります。
                         </span>
                         <span>
                             <span class="src">
-                                In practice, inheritance is used in two major
-                                ways in C++: implementation inheritance, in which actual
-                                code is inherited by the child, and
-                                <a href="#Interfaces">interface inheritance</a>, in which
-                                only method names are inherited.
+                                "Interface inheritance" is inheritance from a
+                                pure abstract base class (one with no state or defined
+                                methods); all other inheritance is "implementation
+                                inheritance".
                             </span>
-                            実際には、C++の継承は2種類の方法があります。実際のコードが継承される「実装の継承」と、メソッド名だけが継承される「<a href="#Interfaces">インターフェースの継承</a>」です。
+                            "インターフェースの継承"は、純粋抽象基底クラス(状態やメソッドの定義を持たないクラス)からの継承のことを言い、それ以外の継承はすべて"実装の継承"です。
                         </span>
                     </p>
                 </div>
@@ -3436,13 +3580,22 @@ MyClass&amp; operator=(const MyClass&amp;) = delete;
                             </span>
                             派生クラスは、基底クラスでvirtualとして宣言されていないものをオーバーライドすることはできず、実装を変えることはできません。
                         </span>
+                    </p>
+                    <p>
                         <span>
                             <span class="src">
-                                The base class may also define some data
-                                members, so that specifies physical layout of the base
-                                class.
+                                Multiple inheritance is especially problematic, because
+                                it often imposes a higher performance overhead (in fact,
+                                the performance drop from single inheritance to multiple
+                                inheritance can often be greater than the performance
+                                drop from ordinary to virtual dispatch), and because
+                                it risks leading to "diamond" inheritance patterns,
+                                which are prone to ambiguity, confusion, and outright bugs.
                             </span>
-                            また、基底クラスはデータメンバを定義しているかもしれず、それによって基底クラスの物理的なレイアウトも決まってしまいます。
+                            多重継承は問題を引き起こしやすいです。
+                            多重継承はパフォーマンス上のオーバーヘッドが大きくなることがあります。
+                            (実際、多重継承によって発生するパフォーマンス低下は、通常の呼び出しを仮想ディスパッチにするよりも大きくなりがちです)
+                            また、曖昧、混乱、あからさまなバグを引き起こしがちな、ダイヤモンド継承パターンに繋がる危険性を孕んでいます。
                         </span>
                     </p>
                 </div>
@@ -3496,23 +3649,6 @@ MyClass&amp; operator=(const MyClass&amp;) = delete;
                     <p>
                         <span>
                             <span class="src">
-                                Make your destructor <code>virtual</code> if
-                                necessary.
-                            </span>
-                            必要に応じてデストラクタは<code>virtual</code>にしてください。
-                        </span>
-                        <span>
-                            <span class="src">
-                                If your class has virtual methods, its
-                                destructor should be virtual.
-                            </span>
-                            もし、クラスが仮想関数を持っているのであれば、デストラクタも仮想でなくてはなりません。
-                        </span>
-                    </p>
-
-                    <p>
-                        <span>
-                            <span class="src">
                                 Limit the use of <code>protected</code> to those
                                 member functions that might need to be accessed from
                                 subclasses.
@@ -3534,27 +3670,16 @@ MyClass&amp; operator=(const MyClass&amp;) = delete;
                         <span>
                             <span class="src">
                                 Explicitly annotate overrides of virtual functions
-                                or virtual destructors with an <code>override</code>
+                                or virtual destructors with exactly one of an <code>override</code>
                                 or (less frequently) <code>final</code> specifier.
                             </span>
-                            オーバーライドする仮想関数や仮想デストラクタには、明示的に<code>override</code>あるいは<code>final</code>指定子をつけてください。
+                            オーバーライドする仮想関数や仮想デストラクタには、明示的に<code>override</code>あるいは<code>final</code>指定子のいずれか1つをつけてください。
                         </span>
                         <span>
                             <span class="src">
-                                Older (pre-C++11) code will use the
-                                <code>virtual</code> keyword as an inferior
-                                alternative annotation.
+                                Do not use <code>virtual</code> when declaring an override.
                             </span>
-                            古い(C++11より前の)コードでは、劣っていますが代替として<code>virtual</code>キーワードをつけてください。
-                        </span>
-                        <span>
-                            <span class="src">
-                                For clarity, use exactly one of
-                                <code>override</code>, <code>final</code>, or
-                                <code>virtual</code> when declaring an override.
-                            </span>
-                            明快さのため、オーバーライドするときには、必ず<code>override</code>か<code>final</code>か
-                            <code>virtual</code>のいずれかのキーワードを使用してください。
+                            オーバーライドのために<code>virtual</code>を使ってはいけません。
                         </span>
                         <span>
                             <span class="src">
@@ -3576,308 +3701,17 @@ MyClass&amp; operator=(const MyClass&amp;) = delete;
                             これらの指定子はドキュメントの役割も果たします。もし、指定子がない場合、コードの読者は関数やデストラクタが仮想なのかそうでないのかを解決するためには、すべての継承元をたどって調べなくてはならなくなります。
                         </span>
                     </p>
-                </div>
 
-            </div>
-
-            <h3 id="Multiple_Inheritance">
-                <span title="Multiple Inheritance">多重継承</span>
-            </h3>
-
-            <div class="summary">
-                <p>
-                    <span>
-                        <span class="src">
-                            Only very rarely is multiple implementation inheritance
-                            actually useful.
-                        </span>
-                        実装の継承において、多重継承が有用なことはほとんどありません。
-                    </span>
-                    <span>
-                        <span class="src">
-                            We allow multiple inheritance only when at
-                            most one of the base classes has an implementation; all
-                            other base classes must be <a href="#Interfaces">
-                                pure
-                                interface
-                            </a> classes tagged with the
-                            <code>Interface</code> suffix.
-                        </span>
-                        多重継承の使用が認められるのは、基底クラスのうち実装を持つものが多くとも1つまでで、他の基底クラスはすべて
-                        <code>Interface</code>接尾辞でタグ付けされた<a href="#Interfaces">純粋なインターフェース</a>クラスであるときにのみに限定されます。
-                    </span>
-                </p>
-            </div>
-
-            <div class="stylebody">
-
-                <div class="definition">
-                    <p>
+                     <p>
                         <span>
                             <span class="src">
-                                Multiple inheritance allows a sub-class to have more than
-                                one base class.
+                                Multiple inheritance is permitted, but multiple <em>implementation</em>
+                                inheritance is strongly discouraged.
                             </span>
-                            多重継承により、複数の基底クラスを持った派生クラスを作ることができます。
-                        </span>
-                        <span>
-                            <span class="src">
-                                We distinguish between base classes that are
-                                <em>pure interfaces</em> and those that have an
-                                <em>implementation</em>.
-                            </span>
-                            ここでは、基底クラスを<em>純粋インターフェース</em>と<em>実装</em>を持ったものに分類して考えます。
+                            多重継承は禁止されていません。しかし、実装の多重継承は、強く非推奨です。
                         </span>
                     </p>
                 </div>
-
-                <div class="pros">
-                    <p>
-                        <span>
-                            <span class="src">
-                                Multiple implementation inheritance may let you re-use
-                                even more code than single inheritance (see <a href="#Inheritance">Inheritance</a>).
-                            </span>
-                            実装の多重継承は、単一の継承よりもたくさんのコードを再利用できるかもしれません(参考:<a href="#Inheritance">継承</a>)。
-                        </span>
-                    </p>
-                </div>
-
-                <div class="cons">
-                    <p>
-                        <span>
-                            <span class="src">
-                                Only very rarely is multiple <em>implementation</em>
-                                inheritance actually useful.
-                            </span>
-                            実際のところ、実装の多重継承が役に立つことはほとんどありません。
-                        </span>
-                        <span>
-                            <span class="src">
-                                When multiple implementation
-                                inheritance seems like the solution, you can usually find
-                                a different, more explicit, and cleaner solution.
-                            </span>
-                            多重継承が問題の答えに見えたとしても、たいていは、もっと明示的できれいな別の方法がきっとあるはずです。
-                        </span>
-                    </p>
-                </div>
-
-                <div class="decision">
-                    <p>
-                        <span>
-                            <span class="src">
-                                Multiple inheritance is allowed only when all
-                                superclasses, with the possible exception of the first one,
-                                are <a href="#Interfaces">pure interfaces</a>.
-                            </span>
-                            多重継承が認められるのは、1つめの基底クラスを除いて、他のすべての基底クラスが<a href="#Interfaces">純粋なインターフェース</a>であるときのみです。
-                        </span>
-                        <span>
-                            <span class="src">
-                                In order to
-                                ensure that they remain pure interfaces, they must end with
-                                the <code>Interface</code> suffix.
-                            </span>
-                            クラスが純粋インターフェースであることを保証するために、それらのクラスは<code>Interface</code>接尾辞を持っていなくてはなりません。
-                        </span>
-                    </p>
-                </div>
-
-                <div class="note">
-                    <p>
-                        <span>
-                            <span class="src">
-                                There is an <a href="#Windows_Code">exception</a> to
-                                this rule on Windows.
-                            </span>
-                            このルールには<a href="#Windows_Code">Windowsに関する例外</a>があります。
-                        </span>
-                    </p>
-                </div>
-
-            </div>
-
-            <h3 id="Interfaces">
-                <span title="Interfaces">インターフェース</span>
-            </h3>
-
-            <div class="summary">
-                <p>
-                    <span>
-                        <span class="src">
-                            Classes that satisfy certain conditions are allowed, but
-                            not required, to end with an <code>Interface</code> suffix.
-                        </span>
-                        いくつかの特定の条件を満たすクラスは、クラス名を<code>Interface</code>接尾辞で終わることができます(が、必須ではありません)。
-                    </span>
-                </p>
-            </div>
-
-            <div class="stylebody">
-
-                <div class="definition">
-                    <p>
-                        <span>
-                            <span class="src">
-                                A class is a pure interface if it meets the following
-                                requirements:
-                            </span>
-                            クラスが次の要件を満たすとき、クラスは純粋なインターフェースであると言います。
-                        </span>
-                    </p>
-
-                    <ul>
-                        <li>
-                            <span>
-                                <span class="src">
-                                    It has only public pure virtual ("<code>
-                                        =
-                                        0
-                                    </code>") methods and static methods (but see below
-                                    for destructor).
-                                </span>
-                                public な純粋仮想関数(<code> = 0</code>で宣言された関数)と、静的なメンバ関数(と次で説明するデストラクタ)しかもたない。
-                            </span>
-                        </li>
-
-                        <li>
-                            <span>
-                                <span class="src">
-                                    It may not have non-static data members.
-                                </span>
-                                静的でないデータメンバを持たない。
-                            </span>
-                        </li>
-
-                        <li>
-                            <span>
-                                <span class="src">
-                                    It need not have any constructors defined.
-                                </span>
-                                いかなるコンストラクタも定義されていない。
-                            </span>
-                            <span>
-                                <span class="src">
-                                    If a
-                                    constructor is provided, it must take no arguments and
-                                    it must be protected.
-                                </span>
-                                コンストラクタが定義されている場合は、引数をとらず、protectedでなくてはならない。
-                            </span>
-                        </li>
-
-                        <li>
-                            <span>
-                                <span class="src">
-                                    If it is a subclass, it may only be derived from
-                                    classes that satisfy these conditions and are tagged
-                                    with the <code>Interface</code> suffix.
-                                </span>
-                                クラスが派生クラスである場合には、基底とするクラスが、これら同じ条件を満たしていて、かつ、<code>Interface</code>接尾辞でタグ付けされていなくてはならない。
-                            </span>
-                        </li>
-                    </ul>
-
-                    <p>
-                        <span>
-                            <span class="src">
-                                An interface class can never be directly instantiated
-                                because of the pure virtual method(s) it declares.
-                            </span>
-                            インターフェースクラスは、それ自身が純粋仮想関数を宣言しているため、直接インスタンス化されることはありません。
-                        </span>
-                        <span>
-                            <span class="src">
-                                To
-                                make sure all implementations of the interface can be
-                                destroyed correctly, the interface must also declare a
-                                virtual destructor (in an exception to the first rule,
-                                this should not be pure).
-                            </span>
-                            インターフェースの持つすべての実装が正しく破壊されることを保証するために、インターフェースは仮想デストラクタを宣言しなくてはなりません(これは、最初のルールに対する唯一の例外として、定義を持たなくてはなりません)。
-                        </span>
-                        <span>
-                            <span class="src">
-                                See Stroustrup, <cite>
-                                    The C++
-                                    Programming Language
-                                </cite>, 3rd edition, section 12.4
-                                for details.
-                            </span>
-                            詳細はStroustrup著 <cite>The C++ Programming Language</cite>, 3rd edition セクション 12.4 を参照してください。
-                        </span>
-                    </p>
-                </div>
-
-                <div class="pros">
-                    <p>
-                        <span>
-                            <span class="src">
-                                Tagging a class with the <code>Interface</code> suffix
-                                lets others know that they must not add implemented
-                                methods or non static data members.
-                            </span>
-                            クラスを<code>Interface</code>でタグ付けすることで、他のプログラマに対して、このクラスに実装や静的でないメンバ変数を追加してはならないということを伝えられます。
-                        </span>
-                        <span>
-                            <span class="src">
-                                This is particularly
-                                important in the case of <a href="#Multiple_Inheritance">multiple inheritance</a>.
-                            </span>
-                            これは特に、<a href="#Multiple_Inheritance">多重継承</a>される場合において重要なことです。
-                        </span>
-                        <span>
-                            <span class="src">
-                                Additionally, the interface concept is already
-                                well-understood by Java programmers.
-                            </span>
-                            加えて、インターフェースはJavaプログラマの間ではよく知られているコンセプトです。
-                        </span>
-                    </p>
-                </div>
-
-                <div class="cons">
-                    <p>
-                        <span>
-                            <span class="src">
-                                The <code>Interface</code> suffix lengthens the class
-                                name, which can make it harder to read and understand.
-                            </span>
-                            <code>Interface</code>という接尾辞をつけると、クラス名が長くなり、読みにくく、理解にしくくなるかもしれません。
-                        </span>
-                        <span>
-                            <span class="src">
-                                Also, the interface property may be considered an
-                                implementation detail that shouldn't be exposed to
-                                clients.
-                            </span>
-                            また、インターフェースの性質は、クライアントに対して公開すべきでない実装の詳細であると考えることもできます。
-                        </span>
-                    </p>
-                </div>
-
-                <div class="decision">
-                    <p>
-                        <span>
-                            <span class="src">
-                                A class may end
-                                with <code>Interface</code> only if it meets the above
-                                requirements.
-                            </span>
-                            クラスが上記の要件を満たす場合は<code>Interface</code>接尾辞をつけることができます。
-                        </span>
-                        <span>
-                            <span class="src">
-                                We do not require the converse, however:
-                                classes that meet the above requirements are not required
-                                to end with <code>Interface</code>.
-                            </span>
-                            逆の要件はありません。つまり、上記の要件を満たすクラスが<code>Interface</code>接尾辞を持たなくてはならないということはありません。
-                        </span>
-                    </p>
-                </div>
-
             </div>
 
             <h3 id="Operator_Overloading">
@@ -4012,7 +3846,7 @@ MyClass&amp; operator=(const MyClass&amp;) = delete;
                             <span>
                                 <span class="src">
                                     Finding the call sites for overloaded operators may
-                                    requre a search tool that's aware of C++ syntax, rather
+                                    require a search tool that's aware of C++ syntax, rather
                                     than e.g. grep.
                                 </span>
                                 オーバーロードされた演算子の呼び出し元を検索しようとする場合、grepでは要をなさず、C++の文法を理解するツールを使用する必要があります。
@@ -4290,25 +4124,30 @@ MyClass&amp; operator=(const MyClass&amp;) = delete;
                 <p>
                     <span>
                         <span class="src">
-                            Make data members <code>private</code>, unless they are
+                            Make data classes' members <code>private</code>, unless they are
                             <code>static const</code> (and follow the <a href="#Constant_Names">
                                 naming convention for constants
                             </a>).
                         </span>
-                        データメンバーは<code>private</code>としてください。
+                        クラスのデータメンバーは<code>private</code>としてください。
                         ただし、<code>static const</code>であるもの(<a href="#Constant_Names">定数に関する命名規則</a>も参照)を除きます。
                     </span>
+                </p>
+            </div>
+            <div class="stylebody">
+                <p></p>
                     <span>
                         <span class="src">
                             For technical
-                            reasons, we allow data members of a test fixture class to
+                            reasons, we allow data members of a test fixture class in a .cc file to
                             be <code>protected</code> when using
                             <a href="https://github.com/google/googletest">
                                 Google
                                 Test
                             </a>).
                         </span>
-                        技術的な理由により、<a href="https://github.com/google/googletest">Google Test</a>を使う場合のテスト用のクラスのデータメンバは<code>protected</code>であってもよいとします。
+                        <a href="https://github.com/google/googletest">Google Test</a>を使う場合、
+                        技術的な理由により、.ccファイル内のテスト用のクラスのデータメンバは<code>protected</code>であってもよいとします。
                     </span>
                 </p>
             </div>
@@ -4396,18 +4235,25 @@ MyClass&amp; operator=(const MyClass&amp;) = delete;
                 <span title="Functions">関数</span>
             </h2>
 
-            <h3 id="Function_Parameter_Ordering">
-                <span title="Parameter Ordering">引数の順序</span>
+            <a id="Function_Parameter_Ordering"></a>
+            <h3 id="Output_Parameters">
+                <span title="Output Parameters">出力用の引数</span>
             </h3>
 
             <div class="summary">
                 <p>
                     <span>
                         <span class="src">
-                            When defining a function, parameter order is: inputs, then
-                            outputs.
+                            Prefer using return values rather than output parameters.
                         </span>
-                        関数を定義するときの引数の順序は入力が先、出力が後とします。
+                        出力用引数よりも戻り値を使用してください。
+                    </span>
+                    <span>
+                        <span class="src">
+                            If output-only parameters are used they should appear after
+                            input parameters.
+                        </span>
+                        出力のみの引数を用いる場合は、入力引数よりも後に並べてください。
                     </span>
                 </p>
             </div>
@@ -4416,20 +4262,42 @@ MyClass&amp; operator=(const MyClass&amp;) = delete;
                 <p>
                     <span>
                         <span class="src">
-                            Parameters to C/C++ functions are either input to the
-                            function, output from the function, or both.
+                            The output of a C++ function is naturally provided via
+                            a return value and sometimes via output parameters.
                         </span>
-                        C/C++の関数に渡される引数は、関数への入力であるか、関数への出力であるか、あるいはその両方です。
+                        C++関数の出力は、通常は戻り値で与えられますが、しばしば出力用の引数も使われます。
+                    </span>
+
+                </p>
+                <p>
+                    <span>
+                        <span class="src">
+                            Prefer using return values instead of output parameters
+                            since they improve readability and oftentimes provide the same
+                            or better performance.
+                        </span>
+                        可読性の向上や、同等以上のパフォーマンスが得られるため、基本的には、出力用引数よりも戻り値を使用しましょう。
+                    </span>
+                </p>
+                <p>
+                    <span>
+                        <span class="src">
+                            Parameters are either input to the function, output from the
+                            function, or both.
+                        </span>
+                        引数は、関数への入力用、関数からの出力用、あるいは入出力の両方のいずれかです。
                     </span>
                     <span>
                         <span class="src">
-                            Input
-                            parameters are usually values or <code>const</code>
-                            references, while output and input/output parameters will
-                            be pointers to non-<code>const</code>.
+                            Input parameters are usually values or
+                            <code>const</code> references, while output and input/output
+                            parameters will be pointers to non-<code>const</code>.
                         </span>
-                        入力となる引数は、通常は、値渡しか、<code>const</code>参照渡しです。一方で出力となる引数、あるいは入力と出力の両方となる引数は、非<code>const</code>なポインタとなります。
+                        入力用の引数は、通常、値であるか<code>const</code>参照であるのに対して、出力用・入出力用の引数は非<code>const</code>へのポインタでしょう。
                     </span>
+                </p>
+
+                <p>
                     <span>
                         <span class="src">
                             When ordering
@@ -4448,6 +4316,7 @@ MyClass&amp; operator=(const MyClass&amp;) = delete;
                         特に、新しい引数を追加するときは、新しいからという理由だけで関数の最後に追加してはいけません。新しく追加する引数が入力のための引数であるのならば、それは出力引数の前に配置します。
                     </span>
                 </p>
+
 
                 <p>
                     <span>
@@ -4562,9 +4431,9 @@ MyClass&amp; operator=(const MyClass&amp;) = delete;
                 <p>
                     <span>
                         <span class="src">
-                            All parameters passed by reference must be labeled
+                            All parameters passed by lvalue reference must be labeled
                             <code>const</code>.
-                            参照渡しされる引数は必ず<code>const</code>でなくてはなりません。
+                            左辺値参照渡しされる引数は必ず<code>const</code>でなくてはなりません。
                         </span>
                     </span>
                 </p>
@@ -4773,7 +4642,15 @@ MyClass&amp; operator=(const MyClass&amp;) = delete;
                                 </code> and overload it with another that
                                 takes <code>const char*</code>.
                             </span>
-                            <code>const string&amp;</code>を引数にとる関数と、<code>const char*</code>を引数にとるオーバーロードとを書くことができます。
+                            たとえば、<code>const string&amp;</code>を引数にとる関数と、<code>const char*</code>を引数にとるオーバーロードとを書くことができるでしょう。
+                        </span>
+                        <span>
+                            <span class="src">
+                                However, in this case consider
+                                <code>std::string_view</code>
+                                    instead.
+                            </span>
+                            ただ、この例の場合、<code>std::string_view</code>を使うことを検討してください。
                         </span>
                     </p>
 
@@ -4801,6 +4678,19 @@ MyClass&amp; operator=(const MyClass&amp;) = delete;
                             </span>
                             この機能は、テンプレート化されたコードにおいて必要とされ、また、ビジターパターンにおいても有用となるでしょう。
                         </span>
+                    </p>
+
+                    <p>
+                        <span>
+                            <span class="src">
+                                Overloading based on const or ref qualification may make utility
+                                code more usable, more efficient, or both.
+                                (See <a href="http://abseil.io/tips/148">TotW 148</a> for more.)
+                            </span>
+                            constや 参照修飾子によるオーバーロードは、ユーティリティコードをより有用にしたり効率的にしたり、またその両方の恩恵をもたらします。
+                            (詳しくは <a href="http://abseil.io/tips/148">TotW 148</a> を見てください)
+                        </span>
+    
                     </p>
                 </div>
 
@@ -4830,24 +4720,37 @@ MyClass&amp; operator=(const MyClass&amp;) = delete;
                     <p>
                         <span>
                             <span class="src">
-                                If you want to overload a function, consider qualifying
-                                the name with some information about the arguments, e.g.,
-                                <code>AppendString()</code>, <code>AppendInt()</code>
-                                rather than just <code>Append()</code>.
+                                You may overload a function when there are no semantic differences
+                                between variants. 
                             </span>
-                            関数をオーバーロードしたくなったら、まずは名前に引数の情報をつける(たとえば、<code>Append()</code>の代わりに、<code>AppendString()</code>や<code>AppendInt()</code>とする)やり方を検討してください。
+                            互いに意味上の違いがないのであれば、関数をオーバーロードすることができます。
                         </span>
                         <span>
                             <span class="src">
-                                If you are
-                                overloading a function to support variable number of
-                                arguments of the same type, consider making it take a
-                                <code>std::vector</code> so that the user can use an
-                                <a href="#Braced_Initializer_List">
-                                    initializer list
-                                </a> to specify the arguments.
+                                These overloads may vary in types, qualifiers, or
+                                argument count.
                             </span>
-                            また、型は同一でも、その型の引数をいくつとるかによってオーバーロードを定義したいときは、<code>std::vector</code>を引数にとるようにするやり方を検討してください。その方法ならば、ユーザは<a href="#Braced_Initializer_List">初期化子リスト</a>の形で引数を渡せます。
+                            これらのオーバーロードは、型が異なったり、修飾子が異なったり、引数の数が違うかもしれません。
+                        </span>
+                        <span>
+                            <span class="src">
+                                However, a reader of such a call must not need to know
+                                which member of the overload set is chosen, only that <b>something</b>
+                                from the set is being called.
+                            </span>
+                            しかし、そのようなオーバーロードを呼び出しているコードを読んでいるときには、
+                            オーバーロードのセットのうちのどれかが呼ばれているということさえわかればよく、
+                            具体的にどの定義が呼び出されているのかを知る必要はありません。
+                        </span>
+                        <span>
+                            <span class="src">
+                                If you can document all entries in the
+                                overload set with a single comment in the header, that is a good sign
+                                that it is a well-designed overload set.
+                            </span>
+                            あなたがヘッダファイルにドキュメントコメントを書く際、
+                            あるオーバーロードのセットのすべてについて、1つのコメントで賄えるのであれば、
+                            それは、そのオーバーロードのセットがよくデザインされているということの証です。
                         </span>
                     </p>
                 </div>
@@ -5136,14 +5039,18 @@ MyClass&amp; operator=(const MyClass&amp;) = delete;
                             次の例を見てください。
                         </span>
                     </p>
-                    <pre>template &lt;class T, class U&gt; auto add(T t, U u) -&gt; decltype(t + u);</pre>
+                    <pre>    template &lt;typename T, typename U&gt;
+    auto add(T t, U u) -&gt; decltype(t + u);
+</pre>
                     <span>
                         <span class="src">
                             versus
                         </span>
                         対
                     </span>
-                    <pre>template &lt;class T, class U&gt; decltype(declval&lt;T&amp;&gt;() + declval&lt;U&amp;&gt;()) add(T t, U u);</pre>
+                    <pre>    template &lt;typename T, typename U&gt;
+    decltype(declval&lt;T&amp;&gt;() + declval&lt;U&amp;&gt;()) add(T t, U u);
+</pre>
                 </div>
 
                 <div class="cons">
@@ -5151,10 +5058,10 @@ MyClass&amp; operator=(const MyClass&amp;) = delete;
                         <span>
                             <span class="src">
                                 Trailing return type syntax is relatively new and it has no
-                                analogue in C++-like languages like C and Java, so some readers may
+                                analogue in C++-like languages such as C and Java, so some readers may
                                 find it unfamiliar.
                             </span>
-                            戻り値の型を後置する構文は、比較的新しく、C++系言語(C言語やJavaなど)には類似の構文がありません。このため、コードの読者にとってなじみが薄いかもしれません。
+                            戻り値の型を後置する構文は、比較的新しく、他のC++系言語(C言語やJavaなど)には類似の構文がありません。このため、コードの読者にとってなじみが薄いかもしれません。
                         </span>
                     </p>
                     <p>
@@ -5692,12 +5599,53 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
                 <p>
                     <span>
                         <span class="src">
-                            Use rvalue references only to define move constructors and move assignment
-                            operators, or for perfect forwarding.
+                            Use rvalue references to:
                         </span>
-                        右辺値参照はムーブコンストラクタとムーブ代入演算子を定義するときと、Perfect Forwardingを行う場合のみに使用できます。
+                        右辺値参照は次のような場合に使用します。
                     </span>
                 </p>
+
+                <ul>
+                    <li>
+                        <span>
+                            <span class="src">
+                                Define move constructors and move assignment operators.
+                            </span>
+                            ムーブコンストラクタ・ムーブ代入演算子を定義するとき。
+                        </span>
+                    </li>
+
+                    <li>
+                        <span>
+                            <span class="src">
+                                Define <a href="#Function_Overloading">overload sets</a> with
+                                const&amp; and &amp;&amp; variants if you have evidence that this
+                                provides meaningfully better performance than passing by value,
+                                or if you're writing low-overhead generic code that needs to support
+                                arbitrary types.
+                            </span>
+                            単なる値渡しよりもパフォーマンス面で優位性があるとわかっている場合、
+                            あるいは、任意の型をサポートする必要のある汎用的な低オーバーヘッドのコードを書こうとしている場合などで、
+                            const&amp; や &amp;&amp; な変数に対する<a href="#Function_Overloading">オーバーロード</a>を定義するとき。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Beware combinatorial overload sets, that is, seldom
+                                overload more than one parameter.
+                            </span>
+                            combinatorialなオーバーロードのセットに注意してください。通常、2つ以上のパラメータのオーバーロードを行うのはまれです。
+                        </span>
+                    </li>
+                    <li>
+                        <span>
+                            <span class="src">
+                                Support 'perfect forwarding' in generic code.
+                            </span>
+                            汎用的なコードにおいて、完全転送(perfect forwarding)をサポートしたいとき。
+                        </span>
+                    </li>
+                </ul>
+                
             </div>
 
             <div class="stylebody">
@@ -5730,6 +5678,24 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
                             たとえば、<code>void f(string&amp;&amp; s);</code>は、stringの右辺値参照を引数にとる関数を宣言しています。
                         </span>
                     </p>
+
+                    <p id="Forwarding_references">
+                            <span>
+                                <span class="src">
+                                        When the token '&amp;&amp;' is applied to
+                                        an unqualified template argument in a function
+                                        parameter, special template argument deduction
+                                        rules apply.
+                                </span>
+                                関数のパラメータにおいて、unqualifiedなテンプレート引数に '&amp;&amp;' が使われた場合、特殊な推論(deduction)ルールが適用されます。
+                            </span>
+                            <span>
+                                <span class="src">
+                                        Such a reference is called forwarding reference.
+                                </span>
+                                このような参照は、参照の転送と呼ばれます。
+                            </span>
+                        </p>
                 </div>
 
                 <div class="pros">
@@ -5755,23 +5721,10 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
                             </span>
                             <span>
                                 <span class="src">
-                                    In some cases this can result in a major performance
+                                    In many cases this can result in a major performance
                                     improvement.
                                 </span>
-                                いくつかの場合において、これらは大きなパフォーマンス向上に繋がります。
-                            </span>
-                        </li>
-
-                        <li>
-                            <span>
-                                <span class="src">
-                                    Rvalue references make it possible to write a
-                                    generic function wrapper that forwards its arguments to
-                                    another function, and works whether or not its
-                                    arguments are temporary objects. (This is sometimes called
-                                    "perfect forwarding".)
-                                </span>
-                                右辺値参照によって、引数を転送(forward)する汎用的な関数のラッパーを書くことができるようになります。これは、引数が一時オブジェクトであるか否かにかかわらず動作します。これをPerfect Forwardingと呼ぶこともあります。
+                                多くの場合において、これらは大きなパフォーマンス向上に繋がります。
                             </span>
                         </li>
 
@@ -5798,6 +5751,23 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
                                 <code>std::move</code>は、<code>std::unique_ptr</code>のような、いくつかの標準ライブラリを効率的に使うために必要とされます。
                             </span>
                         </li>
+                        
+                        <li>
+                            <span>
+                                <span class="src">
+                                    <a href="#Forwarding_references">Forwarding references</a> which
+                                    use the rvalue reference token, make it possible to write a
+                                    generic function wrapper that forwards its arguments to
+                                    another function, and works whether or not its
+                                    arguments are temporary objects and/or const.
+                                    This is called 'perfect forwarding'.
+                                </span>
+                                右辺値参照を使う<a href="#Forwarding_references">転送</a>によって、
+                                引数を転送(forward)する汎用的な関数のラッパーを書くことができるようになります。
+                                これは、引数が一時オブジェクトであるか否か、constであるか否かにかかわらず動作します。
+                                これを「完全転送('perfect forwarding')」と呼びます。
+                            </span>
+                        </li>
                     </ul>
                 </div>
 
@@ -5806,21 +5776,37 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
                         <li>
                             <span>
                                 <span class="src">
-                                    Rvalue references are a relatively new feature
-                                    (introduced as part of C++11), and not yet widely
-                                    understood.
+                                    Rvalue references are not yet widely understood.
                                 </span>
-                                右辺値参照は、C++11の一部として導入された比較的新しい機能のため、まだ広く理解されていません。
+                                右辺値参照は まだ広く理解されていません。
                             </span>
                             <span>
                                 <span class="src">
-                                    Rules like reference collapsing, and
-                                    automatic synthesis of move constructors, are
-                                    complicated.
+                                    Rules like automatic synthesis of move constructors and reference
+                                    collapsing (the latter refers to the special rules that apply to a T&amp;&amp;
+                                    parameter in a function template) are somewhat obscure.
                                 </span>
-                                参照が破壊される、ムーブコンストラクタが自動生成されるなどのルールは難しいものです。
+                                ムーブコンストラクタが自動生成されたり、参照が破壊されたり(後者はT&amp;&amp;を引数とする関数テンプレートに適用される特殊ルールのことです)といったルールは、あまり知られていません。
                             </span>
                         </li>
+
+                        <li>
+                            <span>
+                                <span class="src">
+                                    Rvalue references are often misused. 
+                                </span>
+                                右辺値参照はしばしば間違った使い方がなされます。
+                            </span>
+                            <span>
+                                    <span class="src">
+                                        Using rvalue
+                                        references is counter-intuitive in signatures where the argument is expected
+                                        to have a valid specified state after the function call, or where no move
+                                        operation is performed.
+                                    </span>
+                                    右辺値参照に与えた引数が関数呼び出しの後に有効な状態を持つことを期待したり、ムーブ操作が行われなかったりと、右辺値参照を使うことは見た目に対して非直感的です。
+                                </span>
+                            </li>
                     </ul>
                 </div>
 
@@ -5828,23 +5814,64 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
                     <p>
                         <span>
                             <span class="src">
-                                Use rvalue references only to define move constructors and move assignment
+                                You may use rvalue references to define move constructors and move assignment
                                 operators (as described in <a href="#Copyable_Movable_Types">
                                     Copyable and
                                     Movable Types
-                                </a>) and, in conjunction with <code><a href="http://en.cppreference.com/w/cpp/utility/forward">std::forward</a></code>,
-                                to support perfect forwarding.
+                                </a>).
                             </span>
-                            右辺値参照は、ムーブコンストラクタ・ムーブ代入演算子(詳細は<a href="#Copyable_Movable_Types">コピー可能な型・ムーブ可能な型</a>)を定義するため、もしくは、Perfect Forwardingをサポートするために<a href="http://en.cppreference.com/w/cpp/utility/forward">std::forward</a>とあわせて使う場合にのみ使用してください。
+                            右辺値参照は、ムーブコンストラクタ・ムーブ代入演算子(詳細は<a href="#Copyable_Movable_Types">コピー可能な型・ムーブ可能な型</a>)を定義するために使用できます。
                         </span>
                         <span>
                             <span class="src">
-                                You may use <code>std::move</code> to express
-                                moving a value from one object to another rather than copying it.
+                                See the <a href="primer#copying_moving">C++ Primer</a> for more information about
+                                move semantics and <code>std::move</code>.
                             </span>
-                            オブジェクトからオブジェクトへ、値が(コピーではなく)ムーブすることを表現するために<code>std::move</code>を使用しても構いません。
+                            ムーブセマンティクスと<code>std::move</code>についてのより詳しい情報は、<a href="primer#copying_moving">C++ Primer</a>を参照してください。
                         </span>
                     </p>
+                    <p>
+                        <span>
+                            <span class="src">
+                                You may use rvalue references to define pairs of overloads, one taking
+                                Foo&amp;&amp; and the other taking const Foo&amp;.
+                            </span>
+                            右辺値参照は、<code>Foo&amp;&amp;</code> と <code>const Foo&amp;</code> を引数にとるオーバーロードの組を定義するために使用できます。
+                        </span>
+                        <span>
+                            <span class="src">
+                                Usually the preferred
+                                solution is just to pass by value, but an overloaded pair of functions
+                                sometimes yields better performance and is sometimes necessary in generic code
+                                that needs to support a wide variety of types.
+                            </span>
+                            通常は、値渡しがもっとも好ましい方法方法ですが、しばしば、これらのオーバーロード関数の組を用いることでパフォーマンスが向上したり、多くの型をサポートする汎用的なコードを書くために必要となったりします。
+                        </span>
+                        <span>
+                            <span class="src">
+                                As always: if you're writing
+                                more complicated code for the sake of performance, make sure you have evidence
+                                that it actually helps.
+                            </span>
+                            パフォーマンスのために複雑なコードを書く場合はいつも、そのコードが実際のパフォーマンスに貢献しているという証拠を確かめるようにしてください。
+                        </span>
+                    </p> 
+                    <p>
+                        <span>
+                            <span class="src">
+                                You may use forwarding references in conjunction with <code><a href="http://en.cppreference.com/w/cpp/utility/forward">std::forward</a></code>,
+                                to support perfect forwarding.
+                            </span>
+                        </span>
+                        完全転送をサポートするために<a href="http://en.cppreference.com/w/cpp/utility/forward">std::forward</a>とあわせて使う場合にも使用できます。
+                        <span>
+                            <span class="src">
+                            </span>
+                        </span>
+                    </p> 
+           
+                
+                
                 </div>
 
             </div>
@@ -6247,12 +6274,12 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
                     <p>
                         <span>
                             <span class="src">
-                                This prohibition also applies to the exception-related
-                                features added in C++11, such as <code>noexcept</code>,
-                                <code>std::exception_ptr</code>, and
+                                This prohibition also applies to the exception handling related
+                                features added in C++11, such as 
+                                <code>std::exception_ptr</code> and
                                 <code>std::nested_exception</code>.
                             </span>
-                            この禁止はC++11で導入された例外に関連する機能(<code>noexcept</code>や<code>std::exception_ptr</code>、<code>std::nested_exception</code>など)についても同様に適用されます。
+                            この禁止はC++11で導入された例外に関連する機能(<code>std::exception_ptr</code>、<code>std::nested_exception</code>など)についても同様に適用されます。
                         </span>
                     </p>
 
@@ -6266,7 +6293,98 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
                         </span>
                     </p>
                 </div>
+            </div>
 
+
+            <h3 id="noexcept"><code>noexcept</code></h3>
+
+            <div class="summary">
+            <p>Specify <code>noexcept</code> when it is useful and correct.</p>
+            </div>
+            
+            <div class="stylebody">
+            <div class="definition">
+            <p>The <code>noexcept</code> specifier is used to specify whether
+            a function will throw exceptions or not. If an exception
+            escapes from a function marked <code>noexcept</code>, the program
+            crashes via <code>std::terminate</code>.</p>
+            
+            <p>The <code>noexcept</code> operator performs a compile-time
+            check that returns true if an expression is declared to not
+            throw any exceptions.</p>
+            
+            </div>
+            
+            <div class="pros">
+            <ul>
+              <li>Specifying move constructors as <code>noexcept</code>
+              improves performance in some cases, e.g.
+              <code>std::vector&lt;T&gt;::resize()</code> moves rather than
+              copies the objects if T's move constructor is
+              <code>noexcept</code>.</li>
+            
+              <li>Specifying <code>noexcept</code> on a function can
+              trigger compiler optimizations in environments where
+              exceptions are enabled, e.g. compiler does not have to
+              generate extra code for stack-unwinding, if it knows
+              that no exceptions can be thrown due to a
+              <code>noexcept</code> specifier.</li>
+            </ul>
+            </div>
+            
+            <div class="cons">
+            <ul>
+              <li>
+              
+              In projects following this guide
+              that have exceptions disabled it is hard
+              to ensure that <code>noexcept</code>
+              specifiers are correct, and hard to define what
+              correctness even means.</li>
+            
+              <li>It's hard, if not impossible, to undo <code>noexcept</code>
+              because it eliminates a guarantee that callers may be relying
+              on, in ways that are hard to detect.</li>
+            </ul>
+            </div>
+            
+            <div class="decision">
+            <p>You may use <code>noexcept</code> when it is useful for
+            performance if it accurately reflects the intended semantics
+            of your function, i.e. that if an exception is somehow thrown
+            from within the function body then it represents a fatal error.
+            You can assume that <code>noexcept</code> on move constructors
+            has a meaningful performance benefit. If you think
+            there is significant performance benefit from specifying
+            <code>noexcept</code> on some other function, please discuss it
+            with 
+            your project leads.</p>
+            
+            <p>Prefer unconditional <code>noexcept</code> if exceptions are
+            completely disabled (i.e. most Google C++ environments).
+            Otherwise, use conditional <code>noexcept</code> specifiers
+            with simple conditions, in ways that evaluate false only in
+            the few cases where the function could potentially throw.
+            The tests might include type traits check on whether the
+            involved operation might throw (e.g.
+            <code>std::is_nothrow_move_constructible</code> for
+            move-constructing objects), or on whether allocation can throw
+            (e.g. <code>absl::default_allocator_is_nothrow</code> for
+            standard default allocation). Note in many cases the only
+            possible cause for an exception is allocation failure (we
+            believe move constructors should not throw except due to
+            allocation failure), and there are many applications where it&#8217;s
+            appropriate to treat memory exhaustion as a fatal error rather
+            than an exceptional condition that your program should attempt
+            to recover from.  Even for other
+            potential failures you should prioritize interface simplicity
+            over supporting all possible exception throwing scenarios:
+            instead of writing a complicated <code>noexcept</code> clause
+            that depends on whether a hash function can throw, for example,
+            simply document that your component doesn&#8217;t support hash
+            functions throwing and make it unconditionally
+            <code>noexcept</code>.</p>
+            
             </div>
 
             <h3 id="Run-Time_Type_Information__RTTI_"><span title="Run-Time Type Information (RTTI)">実行時型情報(RTTI)</span></h3>
@@ -6405,7 +6523,7 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
 <pre>bool Base::Equal(Base* other) = 0;
 bool Derived::Equal(Base* other) {
   Derived* that = dynamic_cast&lt;Derived*&gt;(other);
-  if (that == NULL)
+  if (that == nullptr)
     return false;
   ...
 }
@@ -6772,6 +6890,14 @@ bool Derived::Equal(Base* other) {
                         </span>
                         ストリームは、それを使うのが適切な場合に、シンプルな使い方に限定して、使用してください。
                     </span>
+                    <span>
+                        <span class="src">
+                            Overload <code>&lt;&lt;</code> for streaming only for types
+                            representing values, and write only the user-visible value, not any
+                            implementation details.
+                        </span>
+                        ストリームにおける<code>&lt;&lt;</code>のオーバーロードは、値を表す型に対してその値を出力するだけの実装とし、それ以外の実装を持たないようにします。
+                    </span>
                 </p>
             </div>
 
@@ -6911,22 +7037,6 @@ bool Derived::Equal(Base* other) {
                                 </span>
                                 ストリームAPIは繊細で複雑なため、プログラマがそれらを効率的に扱うためにはストリームに関するそれなりの経験を要します。
                             </span>
-                            <span>
-                                <span class="src">
-                                    However, streams were historically banned in Google code (except
-                                    for logging and diagnostics), so Google engineers tend not to
-                                    have that experience.
-                                </span>
-                                しかしながら、Googleのコードにおいては、歴史的にストリームは禁止されていました(ログと診断用のコードを除く)。このため、Googleのエンジニアはストリームにあまり詳しくない傾向があります。
-                            </span>
-                            <span>
-                                <span class="src">
-                                    Consequently, streams-based code is likely
-                                    to be less readable and maintainable by Googlers than code based
-                                    on more familiar abstractions.
-                                </span>
-                                したかって、Googleの人間にとっては、他の、より馴染み深い抽象概念に基づいているものと比べて、ストリームの概念に基づくコードは可読性やメンテナンス性が高くありません。
-                            </span>
                         </li>
 
                         <li>
@@ -6973,6 +7083,21 @@ bool Derived::Equal(Base* other) {
                             </span>
                             周りのコードやコードベース全体と一貫性を持たせてください。もし、この問題に対応するためのツールが既にあるのならば、それを使うようにしてください。
                         </span>
+
+                        <span>
+                            <span class="src">
+                                In particular,
+
+                                logging libraries are usually a better
+                                choice than <code>std::cerr</code> or <code>std::clog</code>
+                                for diagnostic output, and the libraries in
+                                
+                                <code>absl/strings</code>
+                                or the equivalent are usually a
+                                better choice than <code>std::stringstream</code>.
+                            </span>
+                            実際のところは、診断に関する出力については<code>std::cerr</code> や <code>std::clog</code> より、ロギングのためのライブラリを使う方がいいでしょう。
+                            <code>absl/strings</code>やそれと同等のライブラリを使うことは、<code>std::stringstream</code>よりもよい選択となるでしょう。
                     </p>
 
                     <p>
@@ -7005,11 +7130,11 @@ bool Derived::Equal(Base* other) {
                         </span>
                         <span>
                             <span class="src">
-                                Use explicit formatting functions  rather than
+                                Use explicit formatting functions (see e.g. <code>absl/strings</code>) rather than
                                 stream manipulators or formatting flags to control formatting
                                 details such as number base, precision, or padding.
                             </span>
-                            基数や精度、出力幅などの制御のためには、マニピュレータやフラグではなく、明示的なフォーマット関数を使用してください。
+                            基数や精度、出力幅などの制御のためには、マニピュレータやフラグではなく、明示的なフォーマット関数(たとえば<code>absl/strings</code>)を使用してください。
                         </span>
                     </p>
 
@@ -7575,9 +7700,9 @@ bool Derived::Equal(Base* other) {
                     <p>
                         <span>
                             <span class="src">
-                                C++ does not specify the sizes of its integer types.
+                                C++ does not specify the sizes of integer types like <code>int</code>.
                             </span>
-                            C++において、整数型のサイズは仕様として決められていません。
+                            C++の仕様において、<code>int</code>のような整数型のサイズは決められていません。
                         </span>
                         <span>
                             <span class="src">
@@ -7757,10 +7882,10 @@ bool Derived::Equal(Base* other) {
                         <span>
                             <span class="src">
                                 Integer
-                                conversions and promotions can cause non-intuitive
-                                behavior.
+                                conversions and promotions can cause undefined behavior, leading to security bugs and
+                                other problems.
                             </span>
-                            整数型の変換や型の拡張は、ときに直感に反する挙動を示す場合があります。
+                            整数型の変換や型の拡張は、ときに未定義の動作を引き起こし、セキュリティに関するバグやその他の問題を引き起こします。
                         </span>
                     </p>
                 </div>
@@ -7772,83 +7897,66 @@ bool Derived::Equal(Base* other) {
                     <p>
                         <span>
                             <span class="src">
-                                Some people, including some textbook authors,
-                                recommend using unsigned types to represent numbers that
-                                are never negative.
+                                Unsigned integers are good for representing bitfields and modular
+                                arithmetic.
                             </span>
-                            著名な本の著者も含めて、プログラマの中には、絶対に負の値をとらない変数にはunsignedな型を使うのを推奨する人もいます。
+                            unsignedな整数は、ビットフィールドを表したり、合同算術を行うときに有用です。
                         </span>
                         <span>
                             <span class="src">
-                                This is intended as a form of
-                                self-documentation.
+                                Because of historical accident, the C++ standard also uses
+                                unsigned integers to represent the size of containers - many members
+                                of the standards body believe this to be a mistake, but it is
+                                effectively impossible to fix at this point.
                             </span>
-                            これは、それ自体がドキュメントの働きをすることを狙ったものです。
+                            歴史的な事情により、C++標準では、コンテナのサイズを表すために unsigned な整数を使用しています。
+                            多くの標準化委員会のメンバーが、これは失敗だったと考えていますが、もはや修正できる状態にはありません。
                         </span>
                         <span>
                             <span class="src">
-                                However, in C, the advantages of such
-                                documentation are outweighed by the real bugs it can
-                                introduce.
+                                The fact that unsigned
+                                arithmetic doesn't model the behavior of a simple integer, but is
+                                instead defined by the standard to model modular arithmetic (wrapping
+                                around on overflow/underflow), means that a significant class of bugs
+                                cannot be diagnosed by the compiler.
                             </span>
-                            しかし、C言語においては、このようなドキュメント化のメリットよりも、現実のバグを引き込むリスクの方が高いです。
+                            unsignedな整数の演算は、単純な整数の演算とは異なり、合同算術によって定義され(オーバーフロー・アンダーフロー時に周回する)ますが、
+                            このことがコンパイラに検出できない大きなバグのカテゴリを生み出しています。
                         </span>
                         <span>
                             <span class="src">
-                                Consider:
+                                In other cases, the defined
+                                behavior impedes optimization.
                             </span>
-                            次のコードを考えてみてください。
+                            また、他のケースにおいては、定義されている挙動が最適化を妨げることもあります。
                         </span>
                     </p>
-
-<pre>for (unsigned int i = foo.Length()-1; i &gt;= 0; --i) ...
-</pre>
-
                     <p>
                         <span>
                             <span class="src">
-                                This code will never terminate!
+                                That said, mixing signedness of integer types is responsible for an
+                                equally large class of problems.
                             </span>
-                            そう、無限ループです。
+                            同様に、signedな整数型とunsignedな整数型を混ぜて使うことは、大きなカテゴリの問題の原因となります。
                         </span>
                         <span>
                             <span class="src">
-                                Sometimes gcc will
-                                notice this bug and warn you, but often it will not.
+                                The best advice we can provide: try
+                                to use iterators and containers rather than pointers and sizes, try
+                                not to mix signedness, and try to avoid unsigned types (except for
+                                representing bitfields or modular arithmetic).
                             </span>
-                            GCCはこのようなバグに気づいて警告してくれることもありますが、してくれないことも多いです。
+                            これについて我々にできる最高のアドバイスは、
+                            「コンテナについては、sizeとポインタではなく、イテレータを使うこと」
+                            「signed整数とunsigned整数を混ぜて使わないこと」
+                            「(ビットフィールドと合同算術を除いて)そもそも、unsigned整数型を使わないこと」です。
                         </span>
                         <span>
                             <span class="src">
-                                Equally bad bugs can occur when comparing signed and
-                                unsigned variables.
+                                Do not use an unsigned
+                                type merely to assert that a variable is non-negative.
                             </span>
-                            同様の残念なバグは、signed変数とunsigned変数との比較でも発生し得ます。
-                        </span>
-                        <span>
-                            <span class="src">
-                                Basically, C's type-promotion scheme
-                                causes unsigned types to behave differently than one
-                                might expect.
-                            </span>
-                            基本的に、C言語の型の拡張のスキームは、unsigned型に対して期待していたものとは異なる動作を引き起こします。
-                        </span>
-                    </p>
-
-                    <p>
-                        <span>
-                            <span class="src">
-                                So, document that a variable is non-negative using
-                                assertions.
-                            </span>
-                            変数が負にならないことをドキュメント化するためには、assertionを使ってください。
-                        </span>
-                        <span>
-                            <span class="src">
-                                Don't use an unsigned
-                                type.
-                            </span>
-                            unsigned型は使ってはいけません。
+                            たかだか、変数が非負であることを表すためだけにunsigned型を使ってはいけません。
                         </span>
                     </p>
                 </div>
@@ -7882,223 +7990,75 @@ bool Derived::Equal(Base* other) {
                         <p>
                             <span>
                                 <span class="src">
-                                    <code>printf()</code> specifiers for some types
-                                    are not cleanly portable between 32-bit and 64-bit
-                                    systems.
+                                    Correct portable <code>printf()</code> conversion specifiers for
+                                    some integral typedefs rely on macro expansions that we find unpleasant to
+                                    use and impractical to require (the <code>PRI</code> macros from
+                                    <code>&lt;cinttypes&gt;</code>).
                                 </span>
-                                <code>printf()</code>の仕様は、32ビットシステムと64ビットシステムの間で、きれいに互換がとれていません。
+                                <code>printf()</code>の正しく移植性のある整数の変換指定子は、マクロ展開(<code>&lt;cinttypes&gt;</code>に含まれる<code>PRI</code>系マクロ群がそれです)に依存しており、些か不格好で、実用的でもありません。
                             </span>
                             <span>
                                 <span class="src">
-                                    C99 defines some portable format specifiers.
+                                    Unless there is no reasonable alternative
+                                    for your particular case, try to avoid or even upgrade APIs that rely on the
+                                    <code>printf</code> family.
                                 </span>
-                                C99で、移植性のあるいくつか書式指定子の定義が行われました。
+                                あなたのプロジェクトで、理にかなった代用品が見つけられない場合、 <code>printf</code>に依存したAPIを使うのをやめるか、APIのアップグレードを試みましょう。
                             </span>
                             <span>
                                 <span class="src">
-                                    Unfortunately, MSVC 7.1 does not understand some of
-                                    these specifiers and the standard is missing a few,
-                                    so we
-                                    have to define our own ugly versions in some cases
-                                    (in the style of the standard include file
-                                    <code>inttypes.h</code>):
+                                    Instead use a library supporting typesafe numeric
+                                    formatting, such as
+                                    <a href="https://github.com/abseil/abseil-cpp/blob/master/absl/strings/str_cat.h"><code>StrCat</code></a>
+                                    or
+                                    <a href="https://github.com/abseil/abseil-cpp/blob/master/absl/strings/substitute.h"><code>Substitute</code></a>
+                                    for fast simple conversions,
+                                
+                                   or <a href="#Streams"><code>std::ostream</code></a>.
                                 </span>
-                                しかし、MSVC 7.1はそれらの仕様を理解せず、標準的なものもいくつか欠けています。そこで、我々は、以下に示すような、独自の醜いバージョンを定義する必要がありました(標準インクルードファイルである<code>inttypes.h</code>と同じスタイル):。
+                                代わりに、
+                                <a href="https://github.com/abseil/abseil-cpp/blob/master/absl/strings/str_cat.h"><code>StrCat</code></a>や、
+                                高速でシンプルな変換には<a href="https://github.com/abseil/abseil-cpp/blob/master/absl/strings/substitute.h"><code>Substitute</code></a>、
+                                もしくは、<a href="#Streams"><code>std::ostream</code></a>などの、型安全な整数書式化のライブラリを使いましょう。
+                                
                             </span>
                         </p>
-
-                        <div>
-                            <div>
-                                <div class="src">
-                                    <pre>// printf macros for size_t, in the style of inttypes.h
-#ifdef _LP64
-#define __PRIS_PREFIX "z"
-#else
-#define __PRIS_PREFIX
-#endif
-
-// Use these macros after a % in a printf format string
-// to get correct 32/64 bit behavior, like this:
-// size_t size = records.size();
-// printf("%" PRIuS "\n", size);
-
-#define PRIdS __PRIS_PREFIX "d"
-#define PRIxS __PRIS_PREFIX "x"
-#define PRIuS __PRIS_PREFIX "u"
-#define PRIXS __PRIS_PREFIX "X"
-#define PRIoS __PRIS_PREFIX "o"
-  </pre>
-                                </div>
-                                <pre>// size_t の printf 用マクロ
-#ifdef _LP64
-#define __PRIS_PREFIX "z"
-#else
-#define __PRIS_PREFIX
-#endif
-
-// これらのマクロを、printfの書式指定文字列の中の%の後ろで使うことで、
-// 32ビットと64ビットで正しい挙動が得られる。
-// 例: 
-//   size_t size = records.size();
-//   printf("%" PRIuS "\n", size);
-
-#define PRIdS __PRIS_PREFIX "d"
-#define PRIxS __PRIS_PREFIX "x"
-#define PRIuS __PRIS_PREFIX "u"
-#define PRIXS __PRIS_PREFIX "X"
-#define PRIoS __PRIS_PREFIX "o"
-  </pre>
-                            </div>
-                        </div>
-
-                        <table border="1" summary="portable printf specifiers">
-                            <tbody>
-                                <tr align="center">
-                                    <th><span title="Type">型</span></th>
-                                    <th><span title="DO NOT use">使わない</span></th>
-                                    <th><span title="DO use">使う</span></th>
-                                    <th><span title="Notes">備考</span></th>
-                                </tr>
-
-                                <tr align="center">
-                                    <td>
-                                        <code>void *</code> (or any pointer)
-                                    </td>
-                                    <td>
-                                        <code>%lx</code>
-                                    </td>
-                                    <td>
-                                        <code>%p</code>
-                                    </td>
-                                    <td></td>
-                                </tr>
-
-
-
-                                <tr align="center">
-                                    <td>
-                                        <code>int64_t</code>
-                                    </td>
-                                    <td>
-                                        <code>%qd</code>,
-                                        <code>%lld</code>
-                                    </td>
-                                    <td>
-                                        <code>%" PRId64 "</code>
-                                    </td>
-                                    <td></td>
-                                </tr>
-
-
-
-                                <tr align="center">
-                                    <td>
-                                        <code>uint64_t</code>
-                                    </td>
-                                    <td>
-                                        <code>%qu</code>,
-                                        <code>%llu</code>,
-                                        <code>%llx</code>
-                                    </td>
-                                    <td>
-                                        <code>%" PRIu64 "</code>,
-                                        <code>%" PRIx64 "</code>
-                                    </td>
-                                    <td></td>
-                                </tr>
-
-
-
-                                <tr align="center">
-                                    <td>
-                                        <code>size_t</code>
-                                    </td>
-                                    <td>
-                                        <code>%u</code>
-                                    </td>
-                                    <td>
-                                        <code>%" PRIuS "</code>,
-                                        <code>%" PRIxS "</code>
-                                    </td>
-                                    <td>
-                                        <span title="C99 specifies">C99の仕様では</span>
-                                        <code>%zu</code>
-                                    </td>
-                                </tr>
-
-                                <tr align="center">
-                                    <td>
-                                        <code>ptrdiff_t</code>
-                                    </td>
-                                    <td>
-                                        <code>%d</code>
-                                    </td>
-                                    <td>
-                                        <code>%" PRIdS "</code>
-                                    </td>
-                                    <td>
-                                        <span title="C99 specifies">C99の仕様では</span>
-                                        <code>%td</code>
-                                    </td>
-                                </tr>
-
-
-                            </tbody>
-                        </table>
 
                         <p>
                             <span>
                                 <span class="src">
-                                    Note that the <code>PRI*</code> macros expand to
-                                    independent strings which are concatenated by the
-                                    compiler.
+                                    Unfortunately, the <code>PRI</code> macros are the only portable way to
+                                    specify a conversion for the standard bitwidth typedefs (e.g.
+                                    <code>int64_t</code>, <code>uint64_t</code>, <code>int32_t</code>,
+                                    <code>uint32_t</code>, etc).
                                 </span>
-                                各<code>PRI*</code>マクロは、独立した文字列に展開され、コンパイラにより連結されます。
+                                ビット幅指定による整数型へのtypedefs(
+                                <code>int64_t</code>, <code>uint64_t</code>, <code>int32_t</code>,
+                                <code>uint32_t</code>, 等)の変換指定子については、
+                                残念ながら、<code>PRI</code>系マクロ群のみが唯一移植性のある方法です。
                             </span>
                             <span>
                                 <span class="src">
-                                    Hence if you are using a non-constant
-                                    format string, you need to insert the value of the
-                                    macro into the format, rather than the name.
+                                    Where possible, avoid passing arguments of types specified by bitwidth
+                                    typedefs to <code>printf</code>-based APIs. 
                                 </span>
-                                ゆえに、書式指定文字列にリテラルを使っていない場合は、マクロの名前ではなく、マクロを展開した値を挿入する必要があります。
+                                可能であれば、<code>printf</code>系のAPIに、このような、ビット幅によって決まる型の引数を渡すのは避けてください。
                             </span>
                             <span>
                                 <span class="src">
-                                    Note also
-                                    that spaces are required around the macro identifier to
-                                    separate it from the string literal.
+                                    Note that it is acceptable
+                                    to use typedefs for which printf has dedicated length modifiers, such as
+                                    <code>size_t</code> (<code>z</code>),
+                                    <code>ptrdiff_t</code> (<code>t</code>), and
+                                    <code>maxint_t</code> (<code>j</code>).
                                 </span>
-                                また、マクロの識別子の前後には、文字列リテラルと分離するためのスペースが必要なことも注意してください。
+                                一方で、printfが長さ指定子を持っているような型(たとえば
+                                <code>size_t</code> (<code>z</code>),
+                                <code>ptrdiff_t</code> (<code>t</code>),
+                                <code>maxint_t</code> (<code>j</code>)等)は問題なく扱えることも忘れないでください。
                             </span>
-                            <span>
-                                <span class="src">
-                                    It is
-                                    still possible, as usual, to include length
-                                    specifiers, etc., after the <code>%</code> when using
-                                    the <code>PRI*</code> macros.
-
-                                </span>
-                                これらを使う場合でも、普段通り、幅指定子などを含めることができます。<code>%</code>の後ろに、<code>PRI*</code>を使う前に挿入します。
-                            </span>
-                            <span>
-                                <span class="src">
-                                    So, e.g.
-                                    <code>printf("x = %30" PRIuS "\n", x)</code> would
-                                    expand on 32-bit Linux to <code>
-                                        printf("x = %30" "u"
-                                        "\n", x)
-                                    </code>, which the compiler will treat as
-                                    <code>printf("x = %30u\n", x)</code>.
-                                </span>
-                                たとえば、 <code>printf("x = %30" PRIuS "\n", x)</code>は、32ビットのLinuxでは、<code>printf("x = %30" "u" "\n", x)</code>と展開され、コンパイラはこれを<code>printf("x = %30u\n", x)</code>として扱うでしょう。
-                            </span>
-                        </p>
-
-
-
+                          </p>
                     </li>
-
                     <li>
                         <span>
                             <span class="src">
@@ -8171,23 +8131,14 @@ bool Derived::Equal(Base* other) {
                         <p>
                             <span>
                                 <span class="src">
-                                    Use the <code>LL</code> or <code>ULL</code>
-                                    suffixes as needed to create 64-bit constants.
+                                    Use <a href="#Casting">braced-initialization</a> as needed to create
+                                    64-bit constants. For example:
                                 </span>
-                                64ビット定数を作るためには、<code>LL</code>か<code>ULL</code>といった接頭辞を使ってください。
-                            </span>
-                            <span>
-                                <span class="src">
-                                    For
-                                    example:
-                                </span>
-                                例を挙げます。
+                                64ビット定数を作るためには、次の例のように、波括弧初期化を使いましょう。
                             </span>
                         </p>
-
-
-<pre>int64_t my_value = 0x123456789LL;
-uint64_t my_mask = 3ULL &lt;&lt; 48;
+<pre>int64_t my_value{0x123456789};
+uint64_t my_mask{3ULL &lt;&lt; 48};
 </pre>
                     </li>
                 </ul>
@@ -8472,11 +8423,10 @@ uint64_t my_mask = 3ULL &lt;&lt; 48;
                 <p>
                     <span>
                         <span class="src">
-                            Use <code>0</code> for integers, <code>0.0</code> for
-                            reals, <code>nullptr</code> (or <code>NULL</code>) for
-                            pointers, and <code>'\0'</code> for chars.
+                            Use <code>0</code> for integers, <code>0.0</code> for reals,
+                            <code>nullptr</code> for pointers, and <code>'\0'</code> for chars.
                         </span>
-                        整数には<code>0</code>、実数には<code>0.0</code>、ポインタには<code>nullptr</code>(か、<code>NULL</code>)、文字には<code>'\0'</code>を使ってください。
+                        整数には<code>0</code>、実数には<code>0.0</code>、ポインタには<code>nullptr</code>、文字には<code>'\0'</code>を使ってください。
                     </span>
                 </p>
             </div>
@@ -8486,69 +8436,52 @@ uint64_t my_mask = 3ULL &lt;&lt; 48;
                 <p>
                     <span>
                         <span class="src">
-                            Use <code>0</code> for integers and <code>0.0</code>
-                            for reals.
+                            Use <code>0</code> for integers and <code>0.0</code> for reals.
                         </span>
                         整数には<code>0</code>、実数には<code>0.0</code>を使ってください。
                     </span>
+                </p>
+
+                <p>
                     <span>
                         <span class="src">
-                            This is not controversial.
+                            For pointers (address values), use <code>nullptr</code>, as this
+                            provides type-safety.
                         </span>
-                        ここに議論の余地はありません。
+                        ポインタ(アドレス値)には、<code>nullptr</code>を使用します。型安全です。
+                    </span>
+                </p>
+                <p>
+                    <span>
+                        <span class="src">
+                            For C++03 projects, prefer <code>NULL</code> to <code>0</code>.
+                        </span>
+                        C++03のプロジェクトでは、<code>0</code>よりも <code>NULL</code>がよいです。
+                    </span>
+                    <span>
+                        <span class="src">
+                            While the
+                            values are equivalent, <code>NULL</code> looks more like a pointer to the
+                            reader, and some C++ compilers provide special definitions of <code>NULL</code>
+                            which enable them to give useful warnings.
+                        </span>
+                        これらの値は同じですが、<code>NULL</code>は、読者にとって、よりポインタらしく見えることと、C++コンパイラによっては、<code>NULL</code>に特別な定義を与えており、有用な警告を発してくれる場合があります。
                     </span>
                 </p>
 
                 <p>
                     <span>
                         <span class="src">
-                            For
-                            pointers (address values), there is a choice between
-                            <code>0</code>, <code>NULL</code>, and
-                            <code>nullptr</code>.
+                            Use <code>'\0'</code> for the null character.
                         </span>
-                        ポインタ(やアドレス)には、<code>0</code>か<code>NULL</code>か<code>nullptr</code>かという選択があります。
+                        ヌル文字には<code>'\0'</code>を使います。
                     </span>
                     <span>
                         <span class="src">
-                            For projects that allow C++11
-                            features, use <code>nullptr</code>.
+                            Using the correct type makes
+                            the code more readable.
                         </span>
-                        C++11が使えるプロジェクトにおいては、<code>nullptr</code>を使ってください。
-                    </span>
-                    <span>
-                        <span class="src">
-                            For C++03 projects,
-                            we prefer <code>NULL</code> because it looks like a
-                            pointer.
-                        </span>
-                        C++03のプロジェクトでは、見た目にポインタとわかるようにするため、<code>NULL</code>を使いましょう。
-                    </span>
-                    <span>
-                        <span class="src">
-                            In fact, some C++ compilers provide special
-                            definitions of <code>NULL</code> which enable them to
-                            give useful warnings, particularly in situations where
-                            <code>sizeof(NULL)</code> is not equal to
-                            <code>sizeof(0)</code>.
-                        </span>
-                        実際には、いくつかのC++コンパイラは、<code>NULL</code>の特別な定義を提供しており、特に、<code>sizeof(NULL)</code>と<code>sizeof(0)</code>とが一致しない場合などにおいて、有用な警告を発してくれます。
-                    </span>
-                </p>
-
-                <p>
-                    <span>
-                        <span class="src">
-                            Use <code>'\0'</code> for chars.
-                        </span>
-                        文字には<code>'\0'</code>を使います。
-                    </span>
-                    <span>
-                        <span class="src">
-                            This is the correct
-                            type and also makes code more readable.
-                        </span>
-                        これは、正しい型であり、かつ可読性も向上します。
+                        正しい型を使うことで、コードの可読性が向上します。
                     </span>
                 </p>
 
@@ -8642,8 +8575,6 @@ memset(&amp;data, 0, sizeof(data));
             <div class="stylebody">
 
                 <div class="pros">
-                    <p>
-                    </p>
                     <ul>
                         <li>
                             <span>
@@ -8786,12 +8717,13 @@ auto i = y.Find(key);
                                 <span class="src">
                                     Initialization of a pointer or smart pointer
                                     with calls
-                                    to <code>new</code>
+                                    to <code>new</code> and 
+                                    <code>std::make_unique</code>
                                     commonly falls into this category, as does use of <code>auto</code> in
                                     a range-based loop over a container whose type is spelled out
                                     nearby.
                                 </span>
-                                <code>new</code>を伴うポインタやスマートポインタの初期化がこのカテゴリに属します。また、近くに型が書かれているコンテナに対する、レンジベースのループの<code>auto</code>も同様です。
+                                <code>new</code>や <code>std::make_unique</code>の呼び出しを伴うポインタやスマートポインタの初期化がこのカテゴリに属します。また、近くに型が書かれているコンテナに対する、レンジベースのループの<code>auto</code>も同様です。
                             </span>
                         </li>
                         <li>
@@ -8905,7 +8837,7 @@ std::vector&lt;string&gt; v{"foo", "bar"};
 std::vector&lt;string&gt; v = {"foo", "bar"};
 
 // Usable with 'new' expressions.
-auto p = new vector&lt;string&gt;{"foo", "bar"};
+auto p = new std::vector&lt;string&gt;{"foo", "bar"};
 
 // A map can take a list of pairs. Nested braced-init-lists work.
 std::map&lt;int, string&gt; m = {{1, "one"}, {2, "2"}};
@@ -9390,22 +9322,6 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                     complex lambdas with default capture by value.
                                 </span>
                                 長いラムダ式や複雑なラムダ式には、値のデフォルトキャプチャは使わないようにしましょう。
-                            </span>
-                        </li>
-                        <li>
-                            <span>
-                                <span class="src">
-                                    Keep unnamed lambdas short.
-                                </span>
-                                無名のラムダ式は短く保ってください。
-                            </span>
-                            <span>
-                                <span class="src">
-                                    If a lambda body is more than
-                                    maybe five lines long, prefer to give the lambda a name, or to
-                                    use a named function instead of a lambda.
-                                </span>
-                                ラムダ式がおおむね5行を超えるような場合には、ラムダ式に名前をつけるか、ラムダ式ではなく名前のついたふつうの関数を使ってください。
                             </span>
                         </li>
                         <li>
@@ -10097,7 +10013,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 because the implementation cannot recursively call <code>std::hash</code>
                                 on data members.
                             </span>
-                            専門的化にとってさえも、合成型に対する<code>std::hash</code>の特殊化を正しく実装するのは非常に困難です。なぜならば、その実装は、データメンバに対する<code>std::hash</code>を再帰的に呼び出すことができないからです。
+                            専門家にとってでさえも、合成型に対する<code>std::hash</code>の特殊化を正しく実装するのは非常に困難です。なぜならば、その実装は、データメンバに対する<code>std::hash</code>を再帰的に呼び出すことができないからです。
                         </span>
                         <span>
                             <span class="src">
@@ -10221,10 +10137,10 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                     <p>
                         <span>
                             <span class="src">
-                                C++11 was the official standard until august 2014, and
+                                C++11 was the official standard until 2014, and
                                 is supported by most C++ compilers.
                             </span>
-                            C++11は2014年の8月から標準化され、多くのC++コンパイラによってサポートされています。
+                            C++11は2014年から標準化され、多くのC++コンパイラによってサポートされています。
                         </span>
                         <span>
                             <span class="src">
@@ -10342,18 +10258,6 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                             </span>
                         </li>
 
-                        <li>
-                            <span>
-                                <span class="src">
-                                    Ref-qualifiers on member functions, such as <code>
-                                        void X::Foo()
-                                        &amp;
-                                    </code> or <code>void X::Foo() &amp;&amp;</code>, because of concerns
-                                    that they're an overly obscure feature.
-                                </span>
-                                <code>void X::Foo() &amp;</code>、<code>void X::Foo() &amp;&amp;</code>のような、メンバ関数に対する参照修飾子。あまりにもこの機能の知名度が低いため。
-                            </span>
-                        </li>
 
 
 
@@ -10392,9 +10296,10 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                                 <code>Foo f = {.field = 3}</code>), inline assembly, <code>__COUNTER__</code>,
                                 <code>__PRETTY_FUNCTION__</code>, compound statement expressions (e.g.
                                 <code>foo = ({ int x; Bar(&amp;x); x })</code>, variable-length arrays and
-                                <code>alloca()</code>, and the <code>a?:b</code> syntax.
+                                <code>alloca()</code>, and the "<a href="https://en.wikipedia.org/wiki/Elvis_operator">Elvis Operator</a>"
+                                <code>a?:b</code>.
                             </span>
-                            たとえば、GCCの<code>__attribute__</code>や、<code>__builtin_prefetch</code>のようなintrinsic関数、<code>Foo f = {.field = 3}</code>のようなdesignated initializer、インラインアセンブリ、<code>__COUNTER__</code>、<code>__PRETTY_FUNCTION__</code>、<code>foo = ({ int x; Bar(&amp;x); x })</code>のようなcompound statement expression、可変長配列と<code>alloca()</code>、<code>a?:b</code>といった文法などです。
+                            たとえば、GCCの<code>__attribute__</code>や、<code>__builtin_prefetch</code>のようなintrinsic関数、<code>Foo f = {.field = 3}</code>のようなdesignated initializer、インラインアセンブリ、<code>__COUNTER__</code>、<code>__PRETTY_FUNCTION__</code>、<code>foo = ({ int x; Bar(&amp;x); x })</code>のようなcompound statement expression、可変長配列と<code>alloca()</code>、「<a href="https://ja.wikipedia.org/wiki/%E3%82%A8%E3%83%AB%E3%83%93%E3%82%B9%E6%BC%94%E7%AE%97%E5%AD%90">エルビス演算子</a>」<code>a?:b</code>などです。
                         </span>
                     </p>
                 </div>
@@ -10518,6 +10423,18 @@ using Bar = Foo;
 using other_namespace::Foo;
 </pre>
 
+                    <p>
+                        <span>
+                            <span class="src">
+                                In new code, <code>using</code> is preferable to <code>typedef</code>,
+                                because it provides a more consistent syntax with the rest of C++ and works
+                                with templates.
+                            </span>
+                            新しいコードにおいては、<code>typedef</code>よりも<code>using</code>を使う方がよいでしょう。
+                            <code>using</code>は、C++の他の部分との一貫性がよく、またテンプレートにおいても機能します。
+                        </span>
+                    </p>
+  
                     <p>
                         <span>
                             <span class="src">
@@ -10667,26 +10584,26 @@ using other_namespace::Foo;
                     </p>
                     <div>
                         <div class="src">
-<pre>namespace a {
+<pre>namespace mynamespace {
 // Used to store field measurements. DataPoint may change from Bar* to some internal type.
 // Client code should treat it as an opaque pointer.
-using DataPoint = foo::bar::Bar*;
+using DataPoint = foo::Bar*;
 
 // A set of measurements. Just an alias for user convenience.
 using TimeSeries = std::unordered_set&lt;DataPoint, std::hash&lt;DataPoint&gt;, DataPointComparator&gt;;
-}  // namespace a
+}  // namespace mynamespace
 </pre>
                         </div>
-                        <pre>namespace a {
+                        <pre>namespace mynamespace {
 // フィールドの測定値を保存するために使用されます。
 // DataPoint は Bar* から他の内部型に変更されるかもしれません。
 // クライアントコードにおいては、これを透過的なポインタとして扱ってください。
-using DataPoint = foo::bar::Bar*;
+using DataPoint = foo::Bar*;
 
 // 測定のセットです。
 // これはユーザの利便性のために定義されています。
 using TimeSeries = std::unordered_set&lt;DataPoint, std::hash&lt;DataPoint&gt;, DataPointComparator&gt;;
-}  // namespace a
+}  // namespace mynamespace
 </pre>
                     </div>
                     <p>
@@ -10699,22 +10616,22 @@ using TimeSeries = std::unordered_set&lt;DataPoint, std::hash&lt;DataPoint&gt;, 
                     </p>
                     <div>
                         <div class="src">
-<pre class="badcode">namespace a {
+<pre class="badcode">namespace mynamespace {
 // Bad: none of these say how they should be used.
-using DataPoint = foo::bar::Bar*;
+using DataPoint = foo::Bar*;
 using std::unordered_set;  // Bad: just for local convenience
 using std::hash;           // Bad: just for local convenience
 typedef unordered_set&lt;DataPoint, hash&lt;DataPoint&gt;, DataPointComparator&gt; TimeSeries;
-}  // namespace a
+}  // namespace mynamespace
 </pre>
                         </div>
-                        <pre class="badcode">namespace a {
+                        <pre class="badcode">namespace mynamespace {
 // ダメ: どのように扱われるべきかが書かれていない。
-using DataPoint = foo::bar::Bar*;
+using DataPoint = foo::Bar*;
 using std::unordered_set;  // ダメ: 自分の利便性のため
 using std::hash;           // ダメ: 自分の利便性のため
 typedef unordered_set&lt;DataPoint, hash&lt;DataPoint&gt;, DataPointComparator&gt; TimeSeries;
-}  // namespace a
+}  // namespace mynamespace
 </pre>
                     </div>
                     <p>
@@ -10730,11 +10647,11 @@ typedef unordered_set&lt;DataPoint, hash&lt;DataPoint&gt;, DataPointComparator&g
                     <div>
                         <div class="src">
 <pre>// In a .cc file
-using std::unordered_set;
+using foo::Bar;
 </pre>
                         </div>
                         <pre>// .ccファイルの中
-using std::unordered_set;
+using foo::Bar;
 </pre>
                     </div>
 
@@ -10821,6 +10738,22 @@ using std::unordered_set;
                         </span>
                         曖昧な省略形や、プロジェクト外のコード読者にとって馴染みが薄い省略形は使わないでください。また語句の中の文字を削る方法による省略も行わないでください。
                     </span>
+                    <span>
+                        <span class="src">
+                            Abbreviations that would be familiar to someone
+                            outside your project with relevant domain knowledge are OK.
+                        </span>
+                        プロジェクト外の人にとっても、関連する知識として一般的な省略語については問題ありません。
+                    </span>
+                    <span>
+                        <span class="src">
+                            As a rule of thumb, an abbreviation is probably OK if it's listed
+                            in
+                            
+                            Wikipedia.
+                        </span>
+                        平たく言えば、Wikipediaに書いてあるような省略語はOKと言えるでしょう。
+                    </span>
                 </p>
                 <div>
                     <div class="src">
@@ -10865,6 +10798,32 @@ int cstmr_id;              // 文字を削っているのでダメ
                     </span>
                 </p>
 
+                <p>
+                    <span>
+                        <span class="src">
+                            For some symbols, this style guide recommends names to start with a capital
+                            letter and to have a capital letter for each new word (a.k.a.
+                            "<a href="https://en.wikipedia.org/wiki/Camel_case">Camel Case</a>"
+                            or "Pascal case").
+                        </span>
+                        For some symbols, this style guide recommends names to start with a capital
+                        letter and to have a capital letter for each new word (a.k.a.
+                        "<a href="https://en.wikipedia.org/wiki/Camel_case">Camel Case</a>"
+                        or "Pascal case").
+                    </span>
+
+                    <span>
+                        <span class="src">
+                            When abbreviations or acronyms appear in such
+                            names, prefer to capitalize the abbreviations or acronyms as single words (i.e
+                            <code>StartRpc()</code>, not <code>StartRPC()</code>).
+                        </span>
+                        When abbreviations or acronyms appear in such
+                        names, prefer to capitalize the abbreviations or acronyms as single words (i.e
+                        <code>StartRpc()</code>, not <code>StartRPC()</code>).
+                    </span>
+    
+                </p>
                 <p>
                     <span>
                         <span class="src">
@@ -11002,26 +10961,6 @@ int cstmr_id;              // 文字を削っているのでダメ
                         非常に良くあるパターンは、ファイルをペアにして、たとえば<code>foo_bar.h</code>と<code>foo_bar.cc</code>で、クラス<code>FooBar</code>を定義するようなやり方です。
                     </span>
                 </p>
-
-                <p>
-                    <span>
-                        <span class="src">
-                            Inline functions must be in a
-                            <code>.h</code> file.
-                        </span>
-                        インライン関数は<code>.h</code>になくてはなりません。
-                    </span>
-                    <span>
-                        <span class="src">
-                            If
-                            your inline functions are very short, they should go
-                            directly into your
-                            <code>.h</code> file.
-                        </span>
-                        もし、インライン関数が非常に短いのであれば、それは<code>.h</code>に直接記述してください。
-                    </span>
-                </p>
-
             </div>
 
             <h3 id="Type_Names"><span title="Type Names">型名</span></h3>
@@ -11253,6 +11192,13 @@ string tablename;   // OK - すべて小文字。
                     </span>
                     <span>
                         <span class="src">
+                            Underscores can be used as separators in the rare cases
+                            where capitalization cannot be used for separation.
+                        </span>
+                        大文字化できない一部のケースにおいては、アンダースコアを用いることができます。
+                    </span>
+                    <span>
+                        <span class="src">
                             For example:
                         </span>
                         以下に例を示します。
@@ -11260,7 +11206,7 @@ string tablename;   // OK - すべて小文字。
                 </p>
             </div>
 
-<pre>const int kDaysInAWeek = 7;
+<pre>const int kAndroid8_0_0 = 24;  // Android 8.0.0
 </pre>
 
             <div class="stylebody">
@@ -11310,30 +11256,9 @@ string tablename;   // OK - すべて小文字。
                     <span>
                         <span class="src">
                             Ordinarily, functions should start with a capital letter and have a
-                            capital letter for each new word
-                            (a.k.a. "
-                            <a href="https://en.wikipedia.org/wiki/Camel_case">
-                                Camel
-                                Case
-                            </a>" or "Pascal case").
+                            capital letter for each new word.
                         </span>
-                        通常、関数名は大文字で始まり、単語の境目に大文字を使用します(「<a href="https://en.wikipedia.org/wiki/Camel_case">Camel Case</a>」や「Pascal Case」とも呼ばれています)。
-                    </span>
-                    <span>
-                        <span class="src">
-                            Such names should not have
-                            underscores.
-                        </span>
-                        これらの名前にはアンダースコアは使いません。
-                    </span>
-                    <span>
-                        <span class="src">
-                            Prefer to capitalize acronyms as single words
-                            (i.e.
-                            <code>StartRpc()</code>, not
-                            <code>StartRPC()</code>).
-                        </span>
-                        頭字語(アクロニム)はそれも1つの単語として扱いましょう(つまり、<code>StartRPC()</code>ではなく<code>StartRpc()</code>とします)。
+                        通常、関数名は大文字で始まり、新しい単語が現れるごとに大文字を使用します。
                     </span>
                 </p>
 
@@ -11341,14 +11266,13 @@ string tablename;   // OK - すべて小文字。
 DeleteUrl()
 OpenFileOrDie()
 </pre>
-
                 <p>
                     <span>
                         <span class="src">
                             (The same naming rule applies to class- and namespace-scope
                             constants that are exposed as part of an API and that are intended to look
-                            like functions, because the fact that they're
-                            objects rather than functions is an unimportant implementation detail.)
+                            like functions, because the fact that they're objects rather than functions
+                            is an unimportant implementation detail.)
                         </span>
                         (クラススコープや名前空間スコープにおいて定数がAPIとして公開され、かつ、それらが関数のように振る舞う場合は、この命名規則を適用します。それらが実際には関数ではなくオブジェクトであるという事実は、実装の詳細でありさほど重要ではありません。)
                     </span>
@@ -11422,7 +11346,7 @@ OpenFileOrDie()
                     <span>
                         <span class="src">
                             The code in that namespace should usually be in
-                            a directory whose basename matches the namespace name (or
+                            a directory whose basename matches the namespace name (or in
                             subdirectories thereof).
                         </span>
                         名前空間に含まれるコードは、通常、その名前空間の名前と一致するディレクトリ(かそのサブディレクトリ)の中に置かれます。
@@ -11635,10 +11559,10 @@ enum AlternateUrlTableErrors {
                             <a href="#Preprocessor_Macros">
                                 define a macro
                             </a>, are you? If you do, they're like this:
-                            <code>MY_MACRO_THAT_SCARES_SMALL_CHILDREN</code>.
+                            <code>MY_MACRO_THAT_SCARES_SMALL_CHILDREN_AND_ADULTS_ALIKE</code>.
                         </span>
                         本当は<a href="#Preprocessor_Macros">マクロを定義</a>しようだなんて思ってないですよね？　
-                        マクロを定義する場合は、<code>MY_MACRO_THAT_SCARES_SMALL_CHILDREN</code> のようにします。
+                        マクロを定義する場合は、<code>MY_MACRO_THAT_SCARES_SMALL_CHILDREN_AND_ADULTS_ALIKE</code> のようにします。
                     </span>
                 </p>
             </div>
@@ -11904,6 +11828,13 @@ enum AlternateUrlTableErrors {
                             author line, consider deleting the author line.
                         </span>
                         著者に関するの行を含め、ファイルに対して大きな変更を加えた場合は、著者に関する行を削除することを検討してください。
+                    </span>
+                    <span>
+                        <span class="src">
+                            New files should usually not contain copyright notice or
+                            author line.
+                        </span>
+                        新しいファイルについては、通常、著作権表記や著者の行は含めません。
                     </span>
                 </p>
 
@@ -12235,26 +12166,7 @@ Iterator* GetIterator() const;
                         </span>
                         コメントを不必要に冗長にしたり、完全に明らかなことをわざわざコメントしたりしてはいけません。
                     </span>
-                    <span>
-                        <span class="src">
-                            Notice below that it is not necessary
-                            to say "returns false otherwise" because this is
-                            implied.
-                        </span>
-                        以下の例において、「それ以外の場合はfalseを返します」は不要です。それは暗黙的なことだからです。
-                    </span>
                 </p>
-                <div>
-                    <div class="src">
-<pre>// Returns true if the table cannot hold any more entries.
-bool IsTableFull();
-</pre>
-                    </div>
-                    <pre>// 表がこれ以上の要素を持てない場合、trueを返します。
-bool IsTableFull();
-</pre>
-                </div>
-
 
                 <p>
                     <span>
@@ -12518,7 +12430,7 @@ const int kNumTestCases = 6;
                 </p>
                 <div>
                     <div class="src">
-<pre>// Divide result by two, taking into account that x
+<pre>// Divides result by two, taking into account that x
 // contains the carry from the add.
 for (int i = 0; i &lt; result-&gt;size(); i++) {
   x = (x &lt;&lt; 8) + (*result)[i];
@@ -12538,7 +12450,7 @@ for (int i = 0; i &lt; result-&gt;size(); i++) {
                 </div>
 
 
-                <h4 class="stylepoint_subsection"><span title="Line Comments">行末コメント</span></h4>
+                <h4 class="stylepoint_subsection" id="Function_Argument_Comments"><span title="Line Comments">行末コメント</span></h4>
 
                 <p>
                     <span>
@@ -13293,55 +13205,68 @@ if (iter != v.end()) {
                     <p class="exception">
                         <span>
                             <span class="src">
-                                Comment lines can be longer than 80
-                                characters if it is not feasible to split them without
-                                harming readability, ease of cut and paste or auto-linking
-                                -- e.g. if a line contains an example command or a literal
-                                URL longer than 80 characters.
+                                A line may exceed 80 characters if it is
                             </span>
-                            コメントのための行は、行の分割によって可読性やコピーペーストの利便性を妨げられる場合に、1行80文字を超えてもよいとします。
-                            これには、たとえば、80文字よりも長いコマンド例やURLなどが当てはまります。
+                          
                         </span>
                     </p>
+                    <ul>
+                        <li>
+                            <span>
+                                <span class="src">
+                                    a comment line which is not feasible to split without harming
+                                    readability, ease of cut and paste or auto-linking -- e.g. if a line
+                                    contains an example command or a literal URL longer than 80 characters.
+                                </span>
+                                コメントのための行は、行の分割によって可読性やコピーペーストの利便性を妨げられる場合に、1行80文字を超えてもよいとします。
+                                これには、たとえば、80文字よりも長いコマンド例やURLなどが当てはまります。
+                            </span>
+                        </li>
 
-                    <p class="exception">
-                        <span>
-                            <span class="src">
-                                A raw-string literal may have content
-                                that exceeds 80 characters.
+                        <li>
+                            <span>
+                                <span class="src">
+                                    a raw-string literal with content that exceeds 80 characters.
+                                </span>
+                                生の文字列リテラルは80文字を超えてもよいものとします。
                             </span>
-                            生の文字列リテラルは80文字を超えてもよいものとします。
-                        </span>
-                        <span>
-                            <span class="src">
-                                Except for test code, such literals
-                                should appear near the top of a file.
+                            <span>
+                                <span class="src">
+                                    Except for
+                                    test code, such literals should appear near the top of a file.
+                                </span>
+                                ただし、ファイルの頭の方に来るようなテスト用のコードは除きます。
                             </span>
-                            ただし、ファイルの頭の方に来るようなテスト用のコードは除きます。
-                        </span>
-                    </p>
 
-                    <p class="exception">
-                        <span>
-                            <span class="src">
-                                An
-                                <code>#include</code> statement with a
-                                long path may exceed 80 columns.
-                            </span>
-                            <code>#include</code>文は、パスが長くなることもなるため、80文字を超えてもかまわないものとします。
-                        </span>
-                    </p>
+                        </li>
 
-                    <p class="exception">
-                        <span>
-                            <span class="src">
-                                You needn't be concerned about
-                                <a href="#The__define_Guard">header guards</a> that exceed
-                                the maximum length.
+                        <li>
+                            <span>
+                                <span class="src">
+                                    an include statement.
+                                </span>
+                                <code>#include</code>文。
                             </span>
-                            <a href="#The__define_Guard">インクルードガード</a>も、80文字を超えることを気にする必要はありません。
-                        </span>
-                    </p>
+                        </li>
+                        
+                        <li>
+                            <span>
+                                <span class="src">
+                                    a <a href="#The__define_Guard">header guard</a>
+                                </span>
+                                <a href="#The__define_Guard">ヘッダガード</a>。
+                            </span>
+                        </li>
+
+                        <li>
+                            <span>
+                                <span class="src">
+                                    a using-declaration
+                                </span>
+                                using宣言。
+                            </span>
+                        </li>
+                    </ul>
                 </div>
 
             </div>
@@ -13612,10 +13537,10 @@ if (iter != v.end()) {
                     <li>
                         <span>
                             <span class="src">
-                                Parameter names may be omitted only if the parameter is unused and its
-                                purpose is obvious.
+                                A parameter name may be omitted only if the parameter is not used in the
+                                function's definition.
                             </span>
-                            引数が使われない、かつ、その目的が明らかな場合に限り、その引数の名前を省略してもかまいません。
+                            関数の定義において引数が使われない場合に限り、その引数の名前を省略してもかまいません。
                         </span>
                     </li>
 
@@ -14364,10 +14289,10 @@ else DoThat();
                         <span class="src">
                             Some
                             projects require that an
-                            <code>if</code> must always always have an accompanying
+                            <code>if</code> must always have an accompanying
                             brace.
                         </span>
-                        プロジェクトによっては、<code>if</code>文にける波カッコを必須としている場合もあります。
+                        プロジェクトによっては、<code>if</code>文にける波括弧を必須としている場合もあります。
                     </span>
                 </p>
                 <div>
@@ -14478,10 +14403,9 @@ if (condition) {
                     </span>
                     <span>
                         <span class="src">
-                            Empty loop bodies should use empty braces or
-                            <code>continue</code>.
+                            Empty loop bodies should use either empty braces or <code>continue</code>.
                         </span>
-                        空のループには、波カッコによる空のブロックか、<code>continue</code>文を使用してください。
+                        空のループには、波括弧による空のブロックか、<code>continue</code>文を使用してください。
                     </span>
                 </p>
             </div>
@@ -14521,10 +14445,10 @@ if (condition) {
                     <span>
                         <span class="src">
                             If the default
-                            case should never execute, simply
-                            <code>assert</code>:
+                            case should never execute, treat this as an error.
+                            For example:
                         </span>
-                        defaultブロックが絶対に実行されない場合には、単に<code>assert</code>します。
+                        defaultブロックが絶対に実行されない場合、次の例のように、エラーとして扱ってください。
                     </span>
                 </p>
 
@@ -14566,8 +14490,38 @@ if (condition) {
                 </div>
 
 
+<!-- todo -->
+<p>Fall-through from one case label to
+another must be annotated using the
+<code>ABSL_FALLTHROUGH_INTENDED;</code> macro (defined in
 
+<code>absl/base/macros.h</code>).
+<code>ABSL_FALLTHROUGH_INTENDED;</code> should be placed at a
+point of execution where a fall-through to the next case
+label occurs. A common exception is consecutive case
+labels without intervening code, in which case no
+annotation is needed.</p>
 
+<div>
+<pre>switch (x) {
+  case 41:  // No annotation needed here.
+  case 43:
+    if (dont_be_picky) {
+      // Use this instead of or along with annotations in comments.
+      ABSL_FALLTHROUGH_INTENDED;
+    } else {
+      CloseButNoCigar();
+      break;
+    }
+  case 42:
+    DoSomethingSpecial();
+    ABSL_FALLTHROUGH_INTENDED;
+  default:
+    DoSomethingGeneric();
+    break;
+}
+</pre>
+</div>
 
                 <p>
                     <span>
@@ -14590,11 +14544,10 @@ for (int i = 0; i &lt; kSomeNumber; ++i) {
                 <p>
                     <span>
                         <span class="src">
-                            Empty loop bodies should use an empty pair of braces or
-                            <code>continue</code>,
-                            but not a single semicolon.
+                                Empty loop bodies should use either an empty pair of braces or
+                                <code>continue</code> with no braces, rather than a single semicolon.
                         </span>
-                        ループ本体が空になる場合は、波カッコによる空のブロックとするか、<code>continue</code>を使います。セミコロンだけを書いてはいけません。
+                        ループ本体が空になる場合は、波括弧による空のブロックとするか、波括弧なしの<code>continue</code>を使います。セミコロンだけを書いてはいけません。
                     </span>
                 </p>
                 <div>
@@ -14724,6 +14677,19 @@ char* c;
 const string&amp; str;
 </pre>
                 </div>
+                
+                <p>
+                    <span>
+                        <span class="src">
+                            You should do this consistently within a single
+                            file,
+                            so, when modifying an existing file, use the style in
+                            that file.
+                        </span>
+                        ファイル内の一貫性を保つようにしてください。既存のファイルを変更する場合は、そのファイルのスタイルにあわせてください。
+                    </span>
+                </p>
+    
                 <span>
                     <span class="src">
                         It is allowed (if unusual) to declare multiple variables in the same
@@ -14761,18 +14727,6 @@ char * c;  // ダメ。*の前後両方にスペースがある。
 const string &amp; str;  // ダメ。&amp;の前後両方にスペースがある。
 </pre>
                 </div>
-
-                <p>
-                    <span>
-                        <span class="src">
-                            You should do this consistently within a single
-                            file,
-                            so, when modifying an existing file, use the style in
-                            that file.
-                        </span>
-                        ファイル内の一貫性を保つようにしてください。既存のファイルを変更する場合は、そのファイルのスタイルにあわせてください。
-                    </span>
-                </p>
 
             </div>
 
@@ -15012,12 +14966,12 @@ string name{"Some Name"};
 
                 <div>
                     <div class="src">
-<pre>std::vector&lt;int&gt; v(100, 1);  // A vector of 100 1s.
-std::vector&lt;int&gt; v{100, 1};  // A vector of 100, 1.
+<pre>std::vector&lt;int&gt; v(100, 1);  // A vector containing 100 items: All 1s.
+std::vector&lt;int&gt; v{100, 1};  // A vector containing 2 items: 100 and 1.
 </pre>
                     </div>
-                    <pre>std::vector&lt;int&gt; v(100, 1);  // 1が100個。
-std::vector&lt;int&gt; v{100, 1};  // 100と1。
+                    <pre>std::vector&lt;int&gt; v(100, 1);  // 中身は「1」が100個。
+std::vector&lt;int&gt; v{100, 1};  // 中身は「100」と「1」の2個。
 </pre>
                 </div>
 
@@ -15444,7 +15398,7 @@ void foo() {  // 正しい。名前空間ではインデントしない。
                     <div class="src">
 <pre class="badcode">namespace {
 
-  // Wrong.  Indented when it should not be.
+  // Wrong!  Indented when it should not be.
   void foo() {
     ...
   }
@@ -15454,7 +15408,7 @@ void foo() {  // 正しい。名前空間ではインデントしない。
                     </div>
                     <pre class="badcode">namespace {
 
-  // 間違い。インデントされるべきではない。
+  // 間違い！　インデントされるべきではない。
   void foo() {
     ...
   }
@@ -15720,46 +15674,44 @@ std::vector&lt;char *&gt; x;
                 <p>
                     <span>
                         <span class="src">
-                            This is more a principle than a rule: don't use blank
-                            lines when you don't have to.
+                            This is more a principle than a rule: don't use blank lines when
+                            you don't have to.
                         </span>
                         これはルールというよりも原則です。不必要な場合は空行を使ってはいけません。
                     </span>
                     <span>
                         <span class="src">
-                            In particular, don't put
-                            more than one or two blank lines between functions,
-                            resist starting functions with a blank line, don't end
-                            functions with a blank line, and be discriminating with
-                            your use of blank lines inside functions.
+                            In particular, don't put more than one or two blank
+                            lines between functions, resist starting functions with a blank line,
+                            don't end functions with a blank line, and be sparing with your use of
+                            blank lines.
                         </span>
-                        特に、関数と関数との間の空行は1行か2行とし、関数を空行で始めることは控え、関数を空行で終わらせず、関数の中の空行には分別を持ちましょう。
+                        特に、関数と関数との間の空行は1行か2行とし、関数を空行で始めることは控え、関数を空行で終わらせず、関数の中の空行は節約しましょう。
+                    </span>
+                    <span>
+                        <span class="src">
+                            A blank line within a block of code serves like a
+                            paragraph break in prose: visually separating two thoughts.
+                        </span>
+                        コードブロックの中の空行は、散文において段落を区切るような、2つの考えを視覚的に分離する効果があります。
                     </span>
                 </p>
 
                 <p>
                     <span>
                         <span class="src">
-                            The basic principle is: The more code that fits on one
-                            screen, the easier it is to follow and understand the
-                            control flow of the program.
+                            The basic principle is: The more code that fits on one screen, the
+                            easier it is to follow and understand the control flow of the
+                            program.
                         </span>
                         基本的な原則は「より多くのコードが1画面内に収まるようにすれば、プログラムのコントロールフローが追いかけやすく理解しやすくなる」というものです。
                     </span>
                     <span>
                         <span class="src">
-                            Of course, readability can
-                            suffer from code being too dense as well as too spread
-                            out, so use your judgement.
+                            Use whitespace purposefully to provide separation in that
+                            flow.
                         </span>
-                        もちろん、コードが過剰に密集していると、広がりすぎているのと同じくらい読みにくくなってしまいます。そこは自らの判断に従ってください。
-                    </span>
-                    <span>
-                        <span class="src">
-                            But in general, minimize use
-                            of vertical whitespace.
-                        </span>
-                        ただ、一般的には、縦方向の空白は最低限必要なだけにしてください。
+                        空白は、フローの分離を与える目的をもって使いましょう。
                     </span>
                 </p>
 
@@ -15778,9 +15730,9 @@ std::vector&lt;char *&gt; x;
                         <span>
                             <span class="src">
                                 Blank lines at the beginning or end of a function
-                                very rarely help readability.
+                                do not help readability.
                             </span>
-                            関数の最初と最後の空行を入れても、コードが読みやすくなることはまずありません。
+                            関数の最初と最後の空行を入れても、コードが読みやすくなることはありません。
                         </span>
                     </li>
 
@@ -15791,6 +15743,21 @@ std::vector&lt;char *&gt; x;
                                 well help readability.
                             </span>
                             if-elseブロックの連鎖の中に空行を入れると、読みやすくなることがあります。
+                        </span>
+                    </li>
+
+                    <li>
+                        <span>
+                            <span class="src">
+                                A blank line before a comment line usually helps
+                                readability &#8212; the introduction of a new comment suggests
+                                the start of a new thought, and the blank line makes it clear
+                                that the comment goes with the following thing instead of the
+                                preceding.
+                            </span>
+                            コメント行の前の空白はたいていの場合は可読性を高めます。
+                            新しいコメントの導入は新しい思考の始まりを促します。
+                            そして、空行が、コメントがその後に続く何かに関わっていることを明確にします。
                         </span>
                     </li>
                 </ul>
@@ -16131,7 +16098,7 @@ std::vector&lt;char *&gt; x;
 
             </div>
 
-            <h2 class="ignoreLink"><span title="Parting Words">おわりに</span></h2>
+            <h2 class="Parting_Words"><span title="Parting Words">おわりに</span></h2>
 
             <p>
                 <span>
