@@ -3922,14 +3922,24 @@ class NotCopyableOrMovable {
             </span>
         </li>
         <li>
-            Because they can't be namespace-qualified, uses of UDLs also require
-            use of either using-directives (which <a href="#Namespaces">we ban</a>) or
-            using-declarations (which <a href="#Aliases">we ban in header files</a> except
-            when the imported names are part of the interface exposed by the header
-            file in question).
-            Given that header files would have to avoid UDL
-            suffixes, we prefer to avoid having conventions for literals differ
-            between header files and source files.
+            <span>
+                <span class="src">
+                    Because they can't be namespace-qualified, uses of UDLs also require
+                    use of either using-directives (which <a href="#Namespaces">we ban</a>) or
+                    using-declarations (which <a href="#Aliases">we ban in header files</a> except
+                    when the imported names are part of the interface exposed by the header
+                    file in question).
+                </span>
+                UDLは名前空間修飾ができないので、UDLを使うには、usingディレクティブ(<a href="#Namespaces">禁止</a>)か using宣言(<a href="#Aliases">ヘッダーファイルでは禁止</a>。ただし、取り込んだ名前が当該ヘッダーファイルで公開されるインターフェースの一部である場合を除く)のどちらかを使う必要があります。
+            </span>
+            <span>
+                <span class="src">
+                    Given that header files would have to avoid UDL
+                    suffixes, we prefer to avoid having conventions for literals differ
+                    between header files and source files.
+                </span>
+                ヘッダーファイルではUDL接尾辞を避けるのであれば、ヘッダーファイルとソースファイルとでリテラルに関する規約を別々にしたくはありません。
+            </span>        
         </li>
     </ul>
 
@@ -4211,35 +4221,69 @@ class NotCopyableOrMovable {
     </p>
     <ol>
         <li>
-            Types and type aliases (<code>typedef</code>, <code>using</code>,
-            <code>enum</code>, nested structs and classes, and <code>friend</code> types)
+           <span>
+                <span class="src">
+                    Types and type aliases (<code>typedef</code>, <code>using</code>,
+                    <code>enum</code>, nested structs and classes, and <code>friend</code> types)
+                 </span>
+                型と型エイリアス (<code>typedef</code>, <code>using</code>,
+                <code>enum</code>, ネストされた構造体とクラス, <code>friend</code> 型)
+            </span> 
         </li>
 
         <li>
-            Static constants
+            <span>
+                <span class="src">
+                    Static constants
+                </span>
+                静的定数
+            </span> 
         </li>
 
         <li>
-            Factory functions
+            <span>
+                <span class="src">
+                    Factory functions
+                </span>
+                ファクトリ関数
+            </span> 
         </li>
 
         <li>
-            Constructors and assignment operators
+            <span>
+                <span class="src">
+                    Constructors and assignment operators
+                </span>
+                コンストラクタと代入演算子
+            </span> 
         </li>
 
         <li>
-            Destructor
+            <span>
+                <span class="src">
+                    Destructor
+                </span>
+                デストラクタ
+            </span> 
         </li>
 
         <li>
-
-            All other functions (<code>static</code> and non-<code>static</code> member
-            functions, and <code>friend</code> functions)
-
+            <span>
+                <span class="src">
+                    All other functions (<code>static</code> and non-<code>static</code> member
+                    functions, and <code>friend</code> functions)
+                    </span>
+                その他すべての関数 (<code>static</code> と非<code>static</code> メンバ関数、<code>friend</code>関数)
+            </span> 
         </li>
 
         <li>
-            Data members (static and non-static)
+            <span>
+                <span class="src">
+                    Data members (static and non-static)
+                </span>
+                データメンバ(静的と非静的)
+            </span> 
         </li>
     </ol>
 
@@ -4297,55 +4341,123 @@ class NotCopyableOrMovable {
                 improve readability, and often provide the same or better
                 performance.
             </span>
-            出力用引数よりも戻り値を使用してください。可読性の向上や、同等以上のパフォーマンスが得られるため。
+            出力用引数よりも戻り値を使用しましょう。
+            可読性が向上し、同等以上のパフォーマンスが得られます。
         </span>
-        performance.
     </p>
 
     <p>
-        Prefer to return by value or, failing that, return by reference.
-        Avoid returning a pointer unless it can be null.
+        <span>
+            <span class="src">
+                Prefer to return by value or, failing that, return by reference.
+            </span>
+            できるだけ値返しを使用し、無理であれば参照返しを使いましょう。
+        </span>
+        <span>
+            <span class="src">
+                Avoid returning a pointer unless it can be null.
+            </span>
+            ポインタ返しはヌルを取りうる場合以外は避けましょう。
+        </span>
     </p>
 
     <p>
-        Parameters are either inputs to the function, outputs from the
-        function, or both.
-        Non-optional input parameters should usually be values
-        or <code>const</code> references, while non-optional output and
-        input/output parameters should usually be references (which cannot be null).
-        Generally, use <code>std::optional</code> to represent optional by-value
-        inputs, and use a <code>const</code> pointer when the non-optional form would
-        have used a reference.
-        Use non-<code>const</code> pointers to represent
-        optional outputs and optional input/output parameters.
+        <span>
+            <span class="src">
+                Parameters are either inputs to the function, outputs from the
+                function, or both.
+            </span>
+            引数は、関数への入力用、関数からの出力用、あるいは入出力の両方のいずれかです。
+        </span>
+        <span>
+            <span class="src">
+                Non-optional input parameters should usually be values
+                or <code>const</code> references, while non-optional output and
+                input/output parameters should usually be references (which cannot be null).
+            </span>
+            指定必須の入力用引数は通常、値か<code>const</code>参照とすべき一方、指定必須の出力用・入出力用の引数は非<code>const</code>への参照（ヌルは不可）とすべきです。
+        </span>
+        <span>
+            <span class="src">
+                Generally, use <code>std::optional</code> to represent optional by-value
+                inputs, and use a <code>const</code> pointer when the non-optional form would
+                have used a reference.
+            </span>
+            一般的に、必須でない入力には値渡しの<code>std::optional</code>を使用し、必須だとした場合の形式が参照ならば<code>const</code>ポインタを使います。
+        </span>
+        <span>
+            <span class="src">
+                Use non-<code>const</code> pointers to represent
+                optional outputs and optional input/output parameters.        
+            </span>
+            必須でない出力や必須でない入出力には、非<code>const</code>ポインタを使用します。
+        </span>
     </p>
 
-
-
     <p>
+        <span>
+            <span class="src">
+                Avoid defining functions that require a <code>const</code> reference parameter
+                to outlive the call, because <code>const</code> reference parameters bind
+                to temporaries.
+            </span>
+            <code>const</code>参照引数は一時オブジェクトに紐づくので、<code>const</code>参照引数が呼び出し後も存続しなければならない関数を定義すべきではありません。
+        </span>
 
-        Avoid defining functions that require a <code>const</code> reference parameter
-        to outlive the call, because <code>const</code> reference parameters bind
-        to temporaries.
-        Instead, find a way to eliminate the lifetime requirement
-        (for example, by copying the parameter), or pass it by <code>const</code>
-        pointer and document the lifetime and non-null requirements.
-
-
+        <span>
+            <span class="src">
+                Instead, find a way to eliminate the lifetime requirement
+                (for example, by copying the parameter), or pass it by <code>const</code>
+                pointer and document the lifetime and non-null requirements.
+            </span>
+            その代わり、例えば引数をコピーするなど、存続させなくてもよい方法を探すべきです。
+            もしくはその引数を<code>const</code>ポインタ渡しとして、生存期間と非ヌルに関する要求をドキュメント化すべきです。
+        </span>
     </p>
 
     <p>
-        When ordering function parameters, put all input-only
-        parameters before any output parameters.
-        In particular,
-        do not add new parameters to the end of the function just
-        because they are new; place new input-only parameters before
-        the output parameters.
-        This is not a hard-and-fast rule.
-        Parameters that
-        are both input and output muddy the waters, and, as always,
-        consistency with related functions may require you to bend the rule.
-        Variadic functions may also require unusual parameter ordering.
+        <span>
+            <span class="src">
+                When ordering function parameters, put all input-only
+                parameters before any output parameters.
+            </span>
+            引数の順番を決めるときは、すべての入力のみに使われる引数を、いかなる出力の引数よりも前に配置します。
+        </span>
+
+        <span>
+            <span class="src">
+                In particular,
+                do not add new parameters to the end of the function just
+                because they are new; place new input-only parameters before
+                the output parameters.
+            </span>
+            特に、新しい引数を追加するときは、新しいからという理由だけで関数の最後に追加せずに、出力引数の前に配置します。
+        </span>
+
+        <span>
+            <span class="src">
+                This is not a hard-and-fast rule.
+            </span>
+            これは絶対のルールではありません。
+        </span>
+
+        <span>
+            <span class="src">
+                Parameters that
+                are both input and output muddy the waters, and, as always,
+                consistency with related functions may require you to bend the rule.
+            </span>
+            入力と出力の両方の役割を持つ引数は、明確な線引きはできません。
+            また、関連する関数との一貫性を保つためにはこのルールを曲げなくてはならないかもしれません。
+        </span>
+
+        <span>
+            <span class="src">
+                Variadic functions may also require unusual parameter ordering.
+            </span>
+            可変長引数関数もまた、普通ではない引数の順序が必要になります。
+        </span>
+
     </p>
 
     <h3 id="Write_Short_Functions">
@@ -5416,13 +5528,13 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
                 parameter, special template argument deduction
                 rules apply.
             </span>
-            関数のパラメータにおいて、unqualifiedなテンプレート引数に '&amp;&amp;' が使われた場合、特殊な推論(deduction)ルールが適用されます。
+            関数のパラメータにおいて、修飾子のないテンプレート引数に '&amp;&amp;' が使われた場合、特殊な推論ルールが適用されます。
         </span>
         <span>
             <span class="src">
                 Such a reference is called forwarding reference.
             </span>
-            このような参照は、参照の転送と呼ばれます。
+            このような参照は、転送参照と呼ばれます。
         </span>
     </p>
     <p class="pros"></p>
@@ -5489,8 +5601,8 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
                     arguments are temporary objects and/or const.
                     This is called 'perfect forwarding'.
                 </span>
-                右辺値参照を使う<a href="#Forwarding_references">転送</a>によって、
-                引数を転送(forward)する汎用的な関数のラッパーを書くことができるようになります。
+                右辺値参照と同じ記号を使う<a href="#Forwarding_references">転送参照</a>によって、
+                引数を転送する汎用的な関数のラッパーを書くことができるようになります。
                 これは、引数が一時オブジェクトであるか否か、constであるか否かにかかわらず動作します。
                 これを「完全転送('perfect forwarding')」と呼びます。
             </span>
@@ -5512,7 +5624,7 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
                     collapsing and the special deduction rule for forwarding references
                     are somewhat obscure.
                 </span>
-                ムーブコンストラクタが自動生成されたり、参照が破壊されたり(後者はT&amp;&amp;を引数とする関数テンプレートに適用される特殊ルールのことです)といったルールは、あまり知られていません。
+                参照の折り畳み(reference collapsing)や転送参照といったルールは、あまり知られていません。
             </span>
         </li>
 
@@ -5537,9 +5649,15 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
 
     <p class="decision"></p>
     <p>
-        Do not use rvalue references (or apply the <code>&amp;&amp;</code>
-        qualifier to methods), except as follows:
+        <span>
+            <span class="src">
+                Do not use rvalue references (or apply the <code>&amp;&amp;</code>
+                qualifier to methods), except as follows:
+            </span>
+            右辺値参照や<code>&amp;&amp;</code>参照修飾子のメソッドへの適用は、以下のとき以外使用しません。
+        </span>
     </p>
+
     <ul>
         <li>
             <span>
@@ -5550,17 +5668,30 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
                         Movable Types
                     </a>).
                 </span>
-                右辺値参照は、ムーブコンストラクタ・ムーブ代入演算子(詳細は<a href="#Copyable_Movable_Types">コピー可能な型・ムーブ可能な型</a>)を定義するために使用できます。
+                ムーブコンストラクタ・ムーブ代入演算子(詳細は<a href="#Copyable_Movable_Types">コピー可能な型・ムーブ可能な型</a>)を定義するために使用できます。
             </span>
         </li>
 
         <li>
-            You may use them to define <code>&amp;&amp;</code>-qualified methods that
-            logically "consume" <code>*this</code>, leaving it in an unusable
-            or empty state.
-            Note that this applies only to method qualifiers (which come
-            after the closing parenthesis of the function signature); if you want to
-            "consume" an ordinary function parameter, prefer to pass it by value.
+            <span>
+                <span class="src">
+                    You may use them to define <code>&amp;&amp;</code>-qualified methods that
+                    logically "consume" <code>*this</code>, leaving it in an unusable
+                    or empty state.
+                    Note that this applies only to method qualifiers (which come
+                    after the closing parenthesis of the function signature); if you want to
+                    "consume" an ordinary function parameter, prefer to pass it by value.
+                </span>
+                <code>*this</code>を利用不能状態や空状態にして理論上「消費」するような、<code>&amp;&amp;</code>参照修飾されたメソッドを定義するために使用できます。
+            </span>
+            <span>
+                <span class="src">
+                    Note that this applies only to method qualifiers (which come
+                    after the closing parenthesis of the function signature); if you want to
+                    "consume" an ordinary function parameter, prefer to pass it by value.
+                </span>
+                関数シグネチャの閉じ括弧のあとに続く、メソッド指定子にのみ適用されることに注意してください。もし普通の関数引数を「消費」したいのであれば、値渡しをしてください。
+            </span>
         </li>
 
         <li>
@@ -5571,7 +5702,7 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
                     to support perfect forwarding.
                 </span>
             </span>
-            完全転送をサポートするために<a href="http://en.cppreference.com/w/cpp/utility/forward">std::forward</a>とあわせて使う場合にも使用できます。
+            完全転送をサポートするために<a href="http://en.cppreference.com/w/cpp/utility/forward">std::forward</a>とあわせて使う場合に、転送参照を使用できます。
             <span>
                 <span class="src">
                 </span>
@@ -5584,7 +5715,7 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
                     You may use them to define pairs of overloads, such as one taking
                     <code>Foo&amp;&amp;</code> and the other taking <code>const Foo&amp;</code>.
                 </span>
-                右辺値参照は、<code>Foo&amp;&amp;</code> と <code>const Foo&amp;</code> を引数にとるオーバーロードの組を定義するために使用できます。
+                <code>Foo&amp;&amp;</code> と <code>const Foo&amp;</code> を引数にとるオーバーロードの組を定義するために使用できます。
             </span>
             <span>
                 <span class="src">
@@ -7039,17 +7170,36 @@ bool Derived::Equal(Base* other) {
     <p class="decision"></p>
     <p>
         <span>
-            We strongly recommend using <code>const</code>
-            in APIs (i.e., on function parameters, methods, and
-            non-local variables) wherever it is meaningful and accurate.
-            This
-            provides consistent, mostly compiler-verified documentation
-            of what objects an operation can mutate.
-            Having
-            a consistent and reliable way to distinguish reads from writes
-            is critical to writing thread-safe code, and is useful in
-            many other contexts as well.
-            In particular:
+            <span class="src">
+                    We strongly recommend using <code>const</code>
+                    in APIs (i.e., on function parameters, methods, and
+                    non-local variables) wherever it is meaningful and accurate.
+                </span>
+            正確で有意義なときには、API にいつでも(引数や非ローカル変数など)<code>const</code>を使うことを強く推奨します。
+        </span>
+        <span>
+            <span class="src">
+                    This
+                    provides consistent, mostly compiler-verified documentation
+                    of what objects an operation can mutate.
+                </span>
+            これにより、各操作が変更するオブジェクトについて、一貫性がありコンパイラに検証されたドキュメントが提供されます。
+        </span>
+        <span>
+            <span class="src">
+                Having
+                a consistent and reliable way to distinguish reads from writes
+                is critical to writing thread-safe code, and is useful in
+                many other contexts as well.
+                </span>
+               読み込みと書き込みを一貫性と信頼性を持って判別することは、スレッドセーフなコードを書くうえでは不可欠ですし、その他多くの場合にも有用です。
+        </span>
+
+        <span>
+            <span class="src">
+                In particular:
+            </span>
+            具体的には:
         </span>
     </p>
 
@@ -7066,16 +7216,21 @@ bool Derived::Equal(Base* other) {
             </span>
         </li>
         <li>
-            For a function parameter passed by value, <code>const</code> has
-            no effect on the caller, thus is not recommended in function
-            declarations.
-            See
-
-
-            <a href="https://abseil.io/tips/109">TotW #109</a>.
-
-
-
+            <span>
+                <span class="src">
+                    For a function parameter passed by value, <code>const</code> has
+                    no effect on the caller, thus is not recommended in function
+                    declarations.
+                </span>
+                関数の引数を値渡しする場合、<code>const</code>は呼び出し側になんの意味もないため、関数宣言の中では推奨されません。
+            </span>
+            <span>
+                <span class="src">
+                    See
+                    <a href="https://abseil.io/tips/109">TotW #109</a>.
+                </span>
+                <a href="https://abseil.io/tips/109">TotW #109</a>を読んでください。
+            </span>
         </li>
         <li>
             Declare methods to be <code>const</code> unless they
@@ -7086,15 +7241,30 @@ bool Derived::Equal(Base* other) {
     </ul>
 
     <p>
-        Using <code>const</code> on local variables is neither encouraged
-        nor discouraged.
+        <span>
+            <span class="src">
+                    Using <code>const</code> on local variables is neither encouraged
+                    nor discouraged.
+            </span>
+            ローカル変数に <code>const</code>を使うことは推奨でも非推奨でもありません。
+        </span>
     </p>
 
     <p>
-        All of a class's <code>const</code> operations should be safe
-        to invoke concurrently with each other.
-        If that's not feasible, the class must
-        be clearly documented as "thread-unsafe".
+        <span>
+            <span class="src">
+                All of a class's <code>const</code> operations should be safe
+                to invoke concurrently with each other.
+            </span>
+            クラスのすべての<code>const</code>な操作は、互いに並行に実行できなければなりません。
+        </span>
+        <span>
+            <span class="src">
+                If that's not feasible, the class must
+                be clearly documented as "thread-unsafe".        
+            </span>
+            それができない場合、そのクラスは「スレッドセーフではない」とドキュメントに明記しなければなりません。
+        </span>
     </p>
 
     <h4 class="stylepoint_subsection"><span title="Where to put the const">constをどこに置くか</span></h4>
@@ -8103,14 +8273,24 @@ memset(&amp;data, 0, sizeof(data));
 </pre>
 
     <a id="auto"></a>
-    <h3 id="Type_deduction"><span title="auto などの型推定"></span></h3>
+    <h3 id="Type_deduction"><span title="Type Deduction (including auto)">auto などの型推定</span></h3>
 
 
     <p>
-        Use type deduction only if it makes the code clearer to readers who aren't
-        familiar with the project, or if it makes the code safer.
-        Do not use it
-        merely to avoid the inconvenience of writing an explicit type.
+        <span>
+            <span class="src">
+                Use type deduction only if it makes the code clearer to readers who aren't
+                familiar with the project, or if it makes the code safer.
+            </span>
+            型推論は、コードをプロジェクトに慣れていない読者に読みやすくしたり、より安全にするためにのみ使用してください。
+        </span>
+        <span>
+            <span class="src">
+                Do not use it
+                merely to avoid the inconvenience of writing an explicit type.
+            </span>
+            単に明示的な型を書くのが不便だからという理由で使用しないでください。
+        </span>
     </p>
 
     <p class="definition">
@@ -9533,7 +9713,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                     it's tied to a more template-heavy interface
                     style.
                 </span>
-                コンパイル時有理数(<code>&lt;ratio&gt;</code>)。より重いテンプレートを使ったインターフェースのスタイルと紐付いているため。
+                コンパイル時有理数(<code>&lt;ratio&gt;</code>)。より重いテンプレートを使ったインターフェースのスタイルと紐付いている懸念があるため。
             </span>
         </li>
 
@@ -9548,10 +9728,16 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
             </span>
         </li>
         <li>
-            The <code>&lt;filesystem&gt;</code> header, which
+            <span>
+                <span class="src">
+                    The <code>&lt;filesystem&gt;</code> header, which
 
-            does not have sufficient support for testing, and suffers
-            from inherent security vulnerabilities.
+                    does not have sufficient support for testing, and suffers
+                    from inherent security vulnerabilities.
+                </span>
+                <code>&lt;filesystem&gt;</code>ヘッダ。テストへのサポートが十分でなく、性質上セキュリティ脆弱性を抱えやすいため。
+            </span>
+
         </li>
     </ul>
     </div>
