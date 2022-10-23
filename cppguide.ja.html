@@ -3448,34 +3448,62 @@ class NotCopyableOrMovable {
             </span>
         </p>
 
-        <h3 id="Structs_vs._Tuples">Structs vs.
-            Pairs and Tuples</h3>
+        <h3 id="Structs_vs._Tuples"><span title="Structs vs. Pairs and Tuples">構造体かペアやタプルか</span></h3>
 
+
+
+
+
+        ペアとタプルは、ペアまたはタプルの要素に特定の意味がない一般的なコードで適切な場合があります。 それらの使用は、既存のコードまたは API と相互運用するために必要になる場合もあります。
         <p>
-            Prefer to use a <code>struct</code> instead of a pair or a
-            tuple whenever the elements can have meaningful names.
+            <span>
+                <span class="src">
+                    Prefer to use a <code>struct</code> instead of a pair or a
+                    tuple whenever the elements can have meaningful names.
+                </span>
+                要素に意味のある名前を付けることができる場合は常に、ペアまたはタプルの代わりに<code>struct</code>を使いましょう。
+            </span>
         </p>
 
         <p>
+            <span>
+                <span class="src">
+                    While using pairs and tuples can avoid the need to define a custom type,
+                    potentially saving work when <em>writing</em> code, a meaningful field
+                    name will almost always be much clearer when <em>reading</em> code than
+                    <code>.first</code>, <code>.second</code>, or <code>std::get&lt;X&gt;</code>.
+                </span>
+                ペアとタプルを使用すると、カスタム型を定義する必要がなくなり、コードを<em>書く</em>ときの作業が節約できるかもしれませんが、
+                ほとんどの場合、意味のあるフィールド名は、コードを<em>読む</em>ときに <code>.first</code>、<code>.second</code>、もしくは <code>std::get&lt;X&gt;</code> よりもずっと明確です。
+            </span>
 
-            While using pairs and tuples can avoid the need to define a custom type,
-            potentially saving work when <em>writing</em> code, a meaningful field
-            name will almost always be much clearer when <em>reading</em> code than
-            <code>.first</code>, <code>.second</code>, or <code>std::get&lt;X&gt;</code>.
-            While C++14's introduction of <code>std::get&lt;Type&gt;</code> to access a
-            tuple element by type rather than index (when the type is unique) can
-            sometimes partially mitigate this, a field name is usually substantially
-            clearer and more informative than a type.
-
+            <span>
+                <span class="src">
+                    While C++14's introduction of <code>std::get&lt;Type&gt;</code> to access a
+                    tuple element by type rather than index (when the type is unique) can
+                    sometimes partially mitigate this, a field name is usually substantially
+                    clearer and more informative than a type.
+                </span>
+                型が一意の場合、C++14で導入された<code>std::get&lt;Type&gt;</code>によって、インデックスではなく型によって
+                タプル要素にアクセスできるので、これが一部軽減される場合がありますが、ふつうフィールド名は型よりもずっと明確で情報量が多いです。
+            </span>
         </p>
 
         <p>
-
-            Pairs and tuples may be appropriate in generic code where there are not
-            specific meanings for the elements of the pair or tuple.
-            Their use may
-            also be required in order to interoperate with existing code or APIs.
-
+            <span>
+                <span class="src">
+                    Pairs and tuples may be appropriate in generic code where there are not
+                    specific meanings for the elements of the pair or tuple.
+                </span>
+                ペアとタプルは、ペアまたはタプルの要素に特定の意味がない汎用的なコードで適切な場合があります。
+            </span>
+            <span>
+                <span class="src">
+                    Their use may
+                    also be required in order to interoperate with existing code or APIs.
+                </span>
+                既存のコードやAPIとの相互運用に必要となる場合もあります。
+            </span>
         </p>
 
         <a id="Multiple_Inheritance"></a>
@@ -9207,7 +9235,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                     (That means that a lambda that
                     appears in a non-static class member function and refers to non-static
                     class members in its body must capture <code>this</code> explicitly or
-                    via <code>[&amp;]</code>.) 
+                    via <code>[&amp;]</code>.)
                 </span>
                 (つまり、非staticクラスメンバ関数内にあったり、非staticクラスメンバを内部で参照するラムダ式は必ず<code>this</code>や<code>[&amp;]</code>で明示的にキャプチャしてください。)
             </span>
@@ -9242,7 +9270,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                 その代わり、従来の方法で新しい変数を宣言しそれをキャプチャするか、ラムダ式による短縮表現をやめて関数オブジェクトを明示的に定義してください。
             </span>
         </li>
-                  <li>
+        <li>
             <span>
                 <span class="src">
                     See the section on <a href="#Type_deduction">type deduction</a>
@@ -9250,7 +9278,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                 </span>
                 引数や戻り値型の指定方法は<a href="#Type_deduction">型推論</a>を見てください。
             </span>
-                </li>
+        </li>
     </ul>
     </div>
 
@@ -10195,20 +10223,38 @@ using ::foo::Bar;
     </div>
     </div>
 
-    <h2 id="Inclusive_Language">Inclusive Language</h2>
+    <h2 id="Inclusive_Language"><span title="Inclusive Language">インクルーシブ・ランゲージ</span></h2>
 
     <p>
-        In all code, including naming and comments, use inclusive language
-        and avoid terms that other programmers might find disrespectful or offensive
-        (such as "master" and "slave", "blacklist" and "whitelist", or "redline"),
-        even if the terms also have an ostensibly neutral meaning.
-        Similarly, use gender-neutral language unless you're referring
-        to a specific person (and using their pronouns).
-        For example,
-        use "they"/"them"/"their" for people of unspecified gender
-        (<a href="https://apastyle.apa.org/style-grammar-guidelines/grammar/singular-they">even
-            when singular</a>), and "it"/"its" for software, computers, and other
-        things that aren't people.
+        <span>
+            <span class="src">
+                In all code, including naming and comments, use inclusive language
+                and avoid terms that other programmers might find disrespectful or offensive
+                (such as "master" and "slave", "blacklist" and "whitelist", or "redline"),
+                even if the terms also have an ostensibly neutral meaning.
+            </span>
+            命名やコメントを含むすべてのコードで「インクルーシブ・ランゲージ」を使用し、他のプログラマーが無礼または不快に感じる可能性のある用語
+            (「マスター」と「スレーブ」、「ブラックリスト」と「ホワイトリスト」、または「レッドライン」など) は、その用語に表面上は中立的な意味があったとしても、使用を避けます。
+        </span>
+        <span>
+            <span class="src">
+                Similarly, use gender-neutral language unless you're referring
+                to a specific person (and using their pronouns).
+            </span>
+            同様に、特定の人(およびその人の代名詞)に言及している場合を除き、性別に中立な言葉を使用してください。
+        </span>
+        <span>
+            <span class="src">
+                For example,
+                use "they"/"them"/"their" for people of unspecified gender
+                (<a href="https://apastyle.apa.org/style-grammar-guidelines/grammar/singular-they">even
+                    when singular</a>), and "it"/"its" for software, computers, and other
+                things that aren't people.
+            </span>
+            たとえば、 "they" / "them" / "their" は、性別が特定されていない人
+            (<a href="https://apastyle.apa.org/style-grammar-guidelines/grammar/singular-they">単数の場合でも</a>)
+            に使用し、"it" / "its" は、ソフトウェア、コンピューター、およびその他の人ではないものに使用します。
+        </span>
     </p>
 
     <h2 id="Naming"><span title="Naming">命名規則</span></h2>
@@ -10333,8 +10379,8 @@ using ::foo::Bar;
   const int kMaxAllowedConnections = ...;  // Clear meaning within context
 };
 </pre>
-    </div>
-    <pre>class MyClass {
+        </div>
+        <pre>class MyClass {
  public:
   int CountFooErrors(const std::vector&lt;Foo&gt;&amp; foos) {
     int n = 0;  // Clear meaning given limited scope and context
@@ -10350,11 +10396,11 @@ using ::foo::Bar;
  private:
   const int kMaxAllowedConnections = ...;  // 文脈から意味が明確
 }; </pre>
-</div>       
+    </div>
 
-<div>
-    <div class="src">
-<pre class="badcode">class MyClass {
+    <div>
+        <div class="src">
+            <pre class="badcode">class MyClass {
  public:
   int CountFooErrors(const std::vector&lt;Foo&gt;&amp; foos) {
     int total_number_of_foo_errors = 0;  // Overly verbose given limited scope and context
@@ -10371,8 +10417,8 @@ using ::foo::Bar;
   const int kNum = ...;  // Unclear meaning within broad scope
 };
 </pre>
-</div>
-<pre class="badcode">class MyClass {
+        </div>
+        <pre class="badcode">class MyClass {
  public:
   int CountFooErrors(const std::vector&lt;Foo&gt;&amp; foos) {
     int total_number_of_foo_errors = 0;  // スコープと文脈に対して品雑すぎる
@@ -10389,7 +10435,7 @@ using ::foo::Bar;
   const int kNum = ...;  // 広いスコープに対して意味が不明確
 };
 </pre>
-</div>
+    </div>
 
     <p>
         <span>
@@ -10431,7 +10477,7 @@ using ::foo::Bar;
             いくつかのシンボルについては、このスタイルガイドでは、名前を大文字で始め、新しい単語ごとに大文字にすることを推奨しています
             各単語の最初の文字を大文字にして小文字と混在させる場合（「<a href="https://en.wikipedia.org/wiki/Camel_case">キャメルケース</a>」または「<a
                 href="https://en.wiktionary.org/wiki/Pascal_case">パスカルケース</a>」と呼ばれています）、
-            略語や頭字語は単一の単語として大文字で表記することが望ましいです（例えば <code>StartRPC()</code>ではなく<code>StartRpc()</code>）。
+            略語や頭字語は単一の単語として表記することが望ましいです（例えば <code>StartRPC()</code>ではなく<code>StartRpc()</code>）。
         </span>
     </p>
     <p>
@@ -12970,20 +13016,40 @@ digits.erase(std::remove_if(digits.begin(), digits.end(), [&amp;to_remove](int i
              digits.end());
 </pre>
 
-    <h3 id="Floating_Literals">Floating-point Literals</h3>
+    <h3 id="Floating_Literals">浮動小数点リテラル</h3>
 
     <p>
-        Floating-point literals should always have a radix point, with digits on both
-        sides, even if they use exponential notation.
-        Readability is improved if all
-        floating-point literals take this familiar form, as this helps ensure that they
-        are not mistaken for integer literals, and that the
-        <code>E</code>/<code>e</code> of the exponential notation is not mistaken for a
-        hexadecimal digit.
-        It is fine to initialize a floating-point variable with an
-        integer literal (assuming the variable type can exactly represent that integer),
-        but note that a number in exponential notation is never an integer literal.
-
+        <span>
+            <span class="src">
+                Floating-point literals should always have a radix point, with digits on both
+                sides, even if they use exponential notation.
+            </span>
+            浮動小数点リテラルには、指数表記を使用する場合でも、常に浮動小数点を表記し、両側に数字を置きます。
+        </span>
+        <span>
+            <span class="src">
+                Readability is improved if all
+                floating-point literals take this familiar form, as this helps ensure that they
+                are not mistaken for integer literals, and that the
+                <code>E</code>/<code>e</code> of the exponential notation is not mistaken for a
+                hexadecimal digit.
+            </span>
+            すべての浮動小数点リテラルがこの使い慣れた形式を取ると、浮動小数点リテラルが整数リテラルと間違われたり、
+            指数表記の <code>E</code>や<code>e</code> が 16 進数と間違われたりすることがなくなり、読みやすさが向上します。
+        </span>
+        <span>
+            <span class="src">
+            </span>
+        </span>
+        <span>
+            <span class="src">
+                It is fine to initialize a floating-point variable with an
+                integer literal (assuming the variable type can exactly represent that integer),
+                but note that a number in exponential notation is never an integer literal.
+            </span>
+            浮動小数点変数を整数リテラルで初期化することは問題ありません (変数の型がその整数を正確に表すことができると仮定して)が、
+            指数表記の数値は決して整数リテラルではないことに注意してください。
+        </span>
     </p>
 
     <pre class="badcode">float f = 1.f;
@@ -13409,7 +13475,7 @@ if (condition1 &amp;&amp;
                 Annotate
                 non-trivial fall-through between cases.
             </span>
-            case間をfall-throughする時には、自明な場合を除いて、注釈をつけてください。
+            case間をフォールスルーする時には、自明な場合を除いて、注釈をつけてください。
         </span>
         <span>
             <span class="src">
@@ -13500,35 +13566,49 @@ if (condition1 &amp;&amp;
         </div>
 
         <p>
-            Fall-through from one case label to
-            another must be annotated using the
-            <code>[[fallthrough]];</code> attribute.
-            <code>[[fallthrough]];</code> should be placed at a
-            point of execution where a fall-through to the next case
-            label occurs.
-            A common exception is consecutive case
-            labels without intervening code, in which case no
-            annotation is needed.
+            <span>
+                <span class="src">
+                    Fall-through from one case label to
+                    another must be annotated using the
+                    <code>[[fallthrough]];</code> attribute.
+                </span>
+                あるケースラベルから別のラベルへのフォールスルーは、<code>[[fallthrough]];</code>属性での注釈が必要です。
+            </span>
+            <span>
+                <span class="src">
+                    <code>[[fallthrough]];</code> should be placed at a
+                    point of execution where a fall-through to the next case
+                    label occurs.
+                </span>
+                <code>[[fallthrough]];</code>は次のケースラベルへのフォールスルーが起きる実行箇所に置くべきです。
+            </span>
+            <span>
+                <span class="src">
+                    A common exception is consecutive case
+                    labels without intervening code, in which case no
+                    annotation is needed.
+                </span>
+                よくある例外は間にコードを持たない連続したラベルで、このときは注釈不要です。
+            </span>
         </p>
 
         <pre>switch (x) {
-          case 41:  // No annotation needed here.
-          case 43:
-            if (dont_be_picky) {
-              // Use this instead of or along with annotations in comments.
-              [[fallthrough]];
-            } else {
-              CloseButNoCigar();
-              break;
-            }
-          case 42:
-            DoSomethingSpecial();
-            [[fallthrough]];
-          default:
-            DoSomethingGeneric();
-            break;
-        }
-        </pre>
+    case 41:  // No annotation needed here.
+    case 43:
+    if (dont_be_picky) {
+        // Use this instead of or along with annotations in comments.
+        [[fallthrough]];
+    } else {
+        CloseButNoCigar();
+        break;
+    }
+    case 42:
+    DoSomethingSpecial();
+    [[fallthrough]];
+    default:
+    DoSomethingGeneric();
+    break;
+} </pre>
 
         <p>
             <span>
@@ -15066,7 +15146,7 @@ std::vector&lt;char *&gt; x;
     </ul>
 
     </div>
-
+    
     <h2 class="Parting_Words"><span title="Parting Words">おわりに</span></h2>
 
     <p>
@@ -15161,10 +15241,10 @@ std::vector&lt;char *&gt; x;
         </span>
     </p>
 
-    <hr>
+<hr>
 
-    </div>
-    </div>
+</div>
+</div>
 </body>
 
 </html>
