@@ -569,7 +569,6 @@
             </span>
         </p>
 
-        <!-- todo -->
         <h2 id="C++_Version">
             <span title="C++ Version">C++のバージョン</span>
         </h2>
@@ -2436,7 +2435,7 @@ Bar b;                     // Chosen constructor Bar::Bar() not constexpr</pre>
                 <code>static const auto&amp; impl = *new T(args...);</code>).
             </li>
         </ul>
-
+        <!-- todo -->
         <h3 id="thread_local">thread_local Variables</h3>
 
         <p><code>thread_local</code> variables that aren't declared inside a function
@@ -3244,24 +3243,48 @@ void Func(Foo f);
                 また、余計なコピーを助長し、パフォーマンス上の問題になることもあります。
             </span>
         </p>
-        <!-- todo -->
         <p class="decision"></p>
+        <p>
+            <span>
+                <span class="src">
+                    Every class's public interface must make clear which copy and move
+                    operations the class supports. This should usually take the form of explicitly
+                    declaring and/or deleting the appropriate operations in the <code>public</code>
+                    section of the declaration.
+                </span>
+                すべてのクラスのパブリック インターフェイスは、クラスがサポートするコピーやムーブ操作を明確にする必要があります。
+                これは通常、宣言の<code>public</code>セクションで適切な操作を明示的に宣言および/または削除する形式を取る必要があります。
+            </span>
+        </p>
 
-        <p>Every class's public interface must make clear which copy and move
-            operations the class supports. This should usually take the form of explicitly
-            declaring and/or deleting the appropriate operations in the <code>public</code>
-            section of the declaration.</p>
-
-        <p>Specifically, a copyable class should explicitly declare the copy
-            operations, a move-only class should explicitly declare the move operations,
-            and a non-copyable/movable class should explicitly delete the copy operations.
-            A
-            copyable class may also declare move operations in order to support efficient
-            moves.
-            Explicitly declaring or deleting all four copy/move operations is permitted,
-            but not required. If you provide a copy or move assignment operator, you
-            must also provide the corresponding constructor.</p>
-
+        <p>
+            <span>
+                <span class="src">
+                    Specifically, a copyable class should explicitly declare the copy
+                    operations, a move-only class should explicitly declare the move operations,
+                    and a non-copyable/movable class should explicitly delete the copy operations.
+                </span>
+                特に、コピー可能なクラスはコピー操作を明示的に宣言する必要があり、ムーブ専用クラスは移動操作を明示的に宣言する必要があり、コピーもムーブも不可なクラスはコピー操作を明示的に削除する必要があります。
+            </span>
+            <span>
+                <span class="src">
+                    A
+                    copyable class may also declare move operations in order to support efficient
+                    moves.
+                </span>
+                コピー可能なクラスは、効率的なムーブをサポートするために、ムーブ操作を宣言することもできます。
+            </span>
+            <span>
+                <span class="src">
+                    Explicitly declaring or deleting all four copy/move operations is permitted,
+                    but not required. If you provide a copy or move assignment operator, you
+                    must also provide the corresponding constructor.
+                </span>
+                4 つのコピー/ムーブ作すべてを明示的に宣言または削除することは許可されていますが、必須ではありません。
+                コピーまたはムーブ代入演算子を提供する場合は、対応するコンストラクターも提供する必要があります。
+            </span>
+        </p>
+        <!-- todo -->
         <pre>class Copyable {
  public:
   Copyable(const Copyable&amp; other) = default;
@@ -3298,47 +3321,95 @@ class NotCopyableOrMovable {
 </pre>
 
         <p>
-            These declarations/deletions can be omitted only if they are obvious:
+            <span>
+                <span class="src">
+                    These declarations/deletions can be omitted only if they are obvious:
+                </span>
+                これらの宣言/削除は、明らかな場合にのみ省略できます。
+            </span>
         </p>
         <ul>
             <li>
-                If the class has no <code>private</code> section, like a
-                <a href="#Structs_vs._Classes">struct</a> or an interface-only base class,
-                then the copyability/movability can be determined by the
-                copyability/movability of any public data members.
-
+                <span>
+                    <span class="src">
+                        If the class has no <code>private</code> section, like a
+                        <a href="#Structs_vs._Classes">struct</a> or an interface-only base class,
+                        then the copyability/movability can be determined by the
+                        copyability/movability of any public data members.
+                    </span>
+                    <a href="#Structs_vs._Classes">構造体</a>やインターフェイスのみの基本クラスのように、
+                    クラスに<code>private</code>セクションがない場合、コピーやムーブの可能性は、
+                    パブリックデータメンバのコピーやムーブ可能性によって決定できます。
+                </span>
             </li>
             <li>
-                If a base class clearly isn't copyable or movable, derived classes
-                naturally won't be either.
-                An interface-only base class that leaves these
-                operations implicit is not sufficient to make concrete subclasses clear.
-
+                <span>
+                    <span class="src">
+                        If a base class clearly isn't copyable or movable, derived classes
+                        naturally won't be either.
+                    </span>
+                    基底クラスが明らかにコピーやムーブ可能でない場合、派生クラスも当然コピーやムーブ可能ではありません。
+                </span>
+                <span>
+                    <span class="src">
+                        An interface-only base class that leaves these
+                        operations implicit is not sufficient to make concrete subclasses clear.
+                    </span>
+                    インターフェイスのみの基本クラスがこれらの操作を暗黙のままにしているとき、具体的なサブクラスにとって十分に明確ではありません。
+                </span>
             </li>
             <li>
-                Note that if you explicitly declare or delete either the constructor or
-                assignment operation for copy, the other copy operation is not obvious and
-                must be declared or deleted.
-                Likewise for move operations.
-
+                <span>
+                    <span class="src">
+                        Note that if you explicitly declare or delete either the constructor or
+                        assignment operation for copy, the other copy operation is not obvious and
+                        must be declared or deleted.
+                        Likewise for move operations.
+                    </span>
+                    コンストラクタまたはコピー代入操作のいずれかを明示的に宣言または削除する場合、
+                    もう片方のコピー操作は明白ではないため、宣言または削除する必要があることに注意してください。
+                    ムーブ操作についても同様です。
+                </span>
             </li>
         </ul>
-        <p>A type should not be copyable/movable if the meaning of
-            copying/moving is unclear to a casual user, or if it incurs unexpected
-            costs. Move operations for copyable types are strictly a performance
-            optimization and are a potential source of bugs and complexity, so
-            avoid defining them unless they are significantly more efficient than
-            the corresponding copy operations. If your type provides copy operations, it is
-            recommended that you design your class so that the default implementation of
-            those operations is correct. Remember to review the correctness of any
-            defaulted operations as you would any other code.</p>
-
         <p>
-            To eliminate the risk of slicing, prefer to make base classes abstract,
-            by making their constructors protected, by declaring their destructors protected,
-            or by giving them one or more pure virtual member functions.
-            Prefer to avoid
-            deriving from concrete classes.
+            <span>
+                <span class="src">
+                    A type should not be copyable/movable if the meaning of
+                    copying/moving is unclear to a casual user, or if it incurs unexpected
+                    costs. Move operations for copyable types are strictly a performance
+                    optimization and are a potential source of bugs and complexity, so
+                    avoid defining them unless they are significantly more efficient than
+                    the corresponding copy operations. If your type provides copy operations, it is
+                    recommended that you design your class so that the default implementation of
+                    those operations is correct. Remember to review the correctness of any
+                    defaulted operations as you would any other code.
+                </span>
+                コピー/ムーブの意味が普通のユーザーにとって不明確な場合、または予期しないコストが発生する場合、
+                型はコピー可能/ムーブ可能であってはなりません。
+                コピー可能な型のムーブ操作は厳密にはパフォーマンスの最適化であり、バグや複雑さの原因となる可能性があるため、
+                対応するコピー操作よりもはるかに効率的でない限り、それらを定義しないでください。
+                型がコピー操作を提供する場合、それらの操作の既定の実装で正しく動くようにクラス設計することをお勧めします。
+                他のコードと同じように、デフォルトの操作が正しいことを忘れずにレビューしてください。
+            </span>
+        </p>
+        <p>
+            <span>
+                <span class="src">
+                    To eliminate the risk of slicing, prefer to make base classes abstract,
+                    by making their constructors protected, by declaring their destructors protected,
+                    or by giving them one or more pure virtual member functions.
+                </span>
+                スライシングのリスクを排除するには、コンストラクタを protected にするか、デストラクタを protected 宣言するか、
+                1つ以上の純粋な仮想メンバ関数を与えることによって、基底クラスを抽象化しましょう。
+            </span>
+            <span>
+                <span class="src">
+                    Prefer to avoid
+                    deriving from concrete classes.
+                </span>
+                具象クラスからの派生を避けましょう。
+            </span>
         </p>
 
         <h3 id="Structs_vs._Classes">
@@ -6172,6 +6243,7 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
     </p>
     </div>
 
+    <!-- todo -->
     <h3 id="noexcept"><code>noexcept</code></h3>
 
     <p>
@@ -8346,6 +8418,7 @@ memset(&amp;data, 0, sizeof(data));
 }
 </pre>
 
+    <!-- todo -->
     <a id="auto"></a>
     <h3 id="Type_deduction"><span title="Type Deduction (including auto)">auto などの型推定</span></h3>
 
@@ -8739,33 +8812,60 @@ auto i = y.Find(key);
         you get the order of the fields wrong.
     </p>
 
-    <h3 id="CTAD">Class Template Argument Deduction</h3>
+    <h3 id="CTAD"><span title="Class Template Argument Deduction">クラステンプレートの引数推論</span></h3>
 
     <p>
-        Use class template argument deduction only with templates that have
-        explicitly opted into supporting it.
+        <span>
+            <span class="src">
+                Use class template argument deduction only with templates that have
+                explicitly opted into supporting it.
+            </span>
+            クラス テンプレートの引数推論は、それをサポートすることを明示的に選択したテンプレートでのみ使用してください。
+        </span>
     </p>
 
     <p class="definition">
     </p>
     <p>
-        <a href="https://en.cppreference.com/w/cpp/language/class_template_argument_deduction">Class
-            template argument deduction</a> (often abbreviated "CTAD") occurs when
-        a variable is declared with a type that names a template, and the template
-        argument list is not provided (not even empty angle brackets):
+        <span>
+            <span class="src">
+                <a href="https://en.cppreference.com/w/cpp/language/class_template_argument_deduction">Class
+                    template argument deduction</a> (often abbreviated "CTAD") occurs when
+                a variable is declared with a type that names a template, and the template
+                argument list is not provided (not even empty angle brackets):
+            </span>
+            変数がテンプレート型であると宣言され、テンプレートの引数リストが提供されていない (空の山括弧でさえない) 場合、
+            <a href="https://en.cppreference.com/w/cpp/language/class_template_argument_deduction">クラス テンプレートの引数推論</a>
+            (しばしば "CTAD" と省略される) が発生します。
+        </span>
     </p>
     <pre class="neutralcode">std::array a = {1, 2, 3};  // `a` is a std::array&lt;int, 3&gt;</pre>
     <p>
-        The compiler deduces the arguments from the initializer using the
-        template's "deduction guides", which can be explicit or implicit.
+        <span>
+            <span class="src">
+                The compiler deduces the arguments from the initializer using the
+                template's "deduction guides", which can be explicit or implicit.
+            </span>
+            コンパイラは、明示的または暗黙的なテンプレートの「推定ガイド」を使用して、初期化子から引数を推定します。
+        </span>
     </p>
-
     <p>
-        Explicit deduction guides look like function declarations with trailing
-        return types, except that there's no leading <code>auto</code>, and the
-        function name is the name of the template.
-        For example, the above example
-        relies on this deduction guide for <code>std::array</code>:
+        <span>
+            <span class="src">
+                Explicit deduction guides look like function declarations with trailing
+                return types, except that there's no leading <code>auto</code>, and the
+                function name is the name of the template.
+            </span>
+            明示的な推論ガイドは、先頭に<code>auto</code>がなく、関数名がテンプレートの名前であることを除いて、
+            戻り値の型が末尾にある関数宣言のように見えます。
+        </span>
+        <span>
+            <span class="src">
+                For example, the above example
+                relies on this deduction guide for <code>std::array</code>:
+            </span>
+            たとえば、上記の例は、<code>std::array</code>の次の推論ガイドに依存しています。
+        </span>
     </p>
     <pre class="neutralcode">namespace std {
     template &lt;class T, class...
@@ -8773,62 +8873,123 @@ auto i = y.Find(key);
     array(T, U...) -&gt; std::array&lt;T, 1 + sizeof...(U)&gt;;
     }</pre>
     <p>
-        Constructors in a primary template (as opposed to a template specialization)
-        also implicitly define deduction guides.
+        <span>
+            <span class="src">
+                Constructors in a primary template (as opposed to a template specialization)
+                also implicitly define deduction guides.
+            </span>
+            (テンプレートの特殊化とは異なり) プライマリ テンプレートのコンストラクタも、推論ガイドを暗黙的に定義します。
+        </span>
     </p>
 
     <p>
-        When you declare a variable that relies on CTAD, the compiler selects
-        a deduction guide using the rules of constructor overload resolution,
-        and that guide's return type becomes the type of the variable.
+        <span>
+            <span class="src">
+                When you declare a variable that relies on CTAD, the compiler selects
+                a deduction guide using the rules of constructor overload resolution,
+                and that guide's return type becomes the type of the variable.
+            </span>
+            CTAD に依存する変数を宣言すると、コンパイラはコンストラクターのオーバーロード解決の規則を使用して推論ガイドを選択し、
+            そのガイドの戻り値の型が変数の型になります。
+        </span>
     </p>
 
     <p class="pros">
     </p>
     <p>
-        CTAD can sometimes allow you to omit boilerplate from your code.
+        <span>
+            <span class="src">
+                CTAD can sometimes allow you to omit boilerplate from your code.
+            </span>
+            CTAD では、コードから定型文を省略できる場合があります。
+        </span>
     </p>
 
     <p class="cons">
     </p>
     <p>
-        The implicit deduction guides that are generated from constructors
-        may have undesirable behavior, or be outright incorrect.
-        This is
-        particularly problematic for constructors written before CTAD was
-        introduced in C++17, because the authors of those constructors had no
-        way of knowing about (much less fixing) any problems that their
-        constructors would cause for CTAD.
-        Furthermore, adding explicit deduction
-        guides to fix those problems might break any existing code that relies on
-        the implicit deduction guides.
+        <span>
+            <span class="src">
+                The implicit deduction guides that are generated from constructors
+                may have undesirable behavior, or be outright incorrect.
+            </span>
+            コンストラクタから生成された暗黙的な推論ガイドは、望ましくない動作をしたり、まったく正しくない場合があります。
+        </span>
+        <span>
+            <span class="src">
+                This is
+                particularly problematic for constructors written before CTAD was
+                introduced in C++17, because the authors of those constructors had no
+                way of knowing about (much less fixing) any problems that their
+                constructors would cause for CTAD.
+            </span>
+            これは、C++17でCTAD が導入される前に作成されたコンストラクタで特に問題になります。
+            これらのコンストラクタの作成者はコンストラクタが CTAD に引き起こす問題を知る方法がなかったので、
+            修正されていることはほとんどないためです。
+        </span>
+        <span>
+            <span class="src">
+                Furthermore, adding explicit deduction
+                guides to fix those problems might break any existing code that relies on
+                the implicit deduction guides.
+            </span>
+            さらに、これらの問題を修正するために明示的な推論ガイドを追加すると、暗黙的な推論ガイドに依存する既存のコードが壊れる可能性があります。
+        </span>
     </p>
 
     <p>
-        CTAD also suffers from many of the same drawbacks as <code>auto</code>,
-        because they are both mechanisms for deducing all or part of a variable's
-        type from its initializer.
-        CTAD does give the reader more information
-        than <code>auto</code>, but it also doesn't give the reader an obvious
-        cue that information has been omitted.
+        <span>
+            <span class="src">
+                CTAD also suffers from many of the same drawbacks as <code>auto</code>,
+                because they are both mechanisms for deducing all or part of a variable's
+                type from its initializer.
+            </span>
+            CTAD にも<code>auto</code>と同じ欠点が数多くあります。
+            これは、どちらも初期化子から変数の型のすべてまたは一部を推測するためのメカニズムであるためです。
+        </span>
+        <span>
+            <span class="src">
+                CTAD does give the reader more information
+                than <code>auto</code>, but it also doesn't give the reader an obvious
+                cue that information has been omitted.
+            </span>
+            CTAD は <code>auto</code>よりも多くの情報を読者に提供しますが、情報の省略について明確な手掛かりを与える訳ではありません。
+        </span>
     </p>
 
     <p class="decision">
     </p>
     <p>
-        Do not use CTAD with a given template unless the template's maintainers
-        have opted into supporting use of CTAD by providing at least one explicit
-        deduction guide (all templates in the <code>std</code> namespace are
-        also presumed to have opted in).
-        This should be enforced with a compiler
-        warning if available.
+        <span>
+            <span class="src">
+                Do not use CTAD with a given template unless the template's maintainers
+                have opted into supporting use of CTAD by providing at least one explicit
+                deduction guide (all templates in the <code>std</code> namespace are
+                also presumed to have opted in).
+            </span>
+            テンプレートのメンテナーが少なくとも 1 つの明示的な推論ガイドを提供して CTAD の使用をサポートすることを選択していない限り、
+            特定のテンプレートで CTAD を使用しないでください (<code>std</code>名前空間のすべてのテンプレートは選択していると見なされます)。
+        </span>
+        <span>
+            <span class="src">
+                This should be enforced with a compiler
+                warning if available.
+            </span>
+            これは、利用可能な場合、コンパイラの警告で強制する必要があります。
+        </span>
     </p>
 
     <p>
-        Uses of CTAD must also follow the general rules on
-        <a href="#Type_deduction">Type deduction</a>.
+        <span>
+            <span class="src">
+                Uses of CTAD must also follow the general rules on
+                <a href="#Type_deduction">Type deduction</a>.
+            </span>
+            CTAD の使用は、<a href="#Type_deduction">型推論</a>に関する一般規則にも従う必要があります。
+        </span>
     </p>
 
+    <!-- todo -->
     <h3 id="Designated_initializers">Designated Initializers</h3>
 
     <p>
@@ -8997,26 +9158,42 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
 </pre>
 
         <p>
-            A variable capture can also have an explicit initializer, which can
-            be used for capturing move-only variables by value, or for other situations
-            not handled by ordinary reference or value captures:
+            <span>
+                <span class="src">
+                    A variable capture can also have an explicit initializer, which can
+                    be used for capturing move-only variables by value, or for other situations
+                    not handled by ordinary reference or value captures:
+                </span>
+                変数キャプチャには、明示的な初期化子を含めることもできます。これは、ムーブ専用の変数を値でキャプチャする場合や、通常の参照や値のキャプチャでは処理されないその他の状況に使用できます。
         </p>
         <pre>std::unique_ptr&lt;Foo&gt; foo = ...;
         [foo = std::move(foo)] () {
           ...
         }</pre>
         <p>
-            Such captures (often called "init captures" or "generalized lambda captures")
-            need not actually "capture" anything from the enclosing scope, or even have
-            a name from the enclosing scope; this syntax is a fully general way to define
-            members of a lambda object:
+            <span>
+                <span class="src">
+                    Such captures (often called "init captures" or "generalized lambda captures")
+                    need not actually "capture" anything from the enclosing scope, or even have
+                    a name from the enclosing scope; this syntax is a fully general way to define
+                    members of a lambda object:
+                </span>
+                このようなキャプチャ (「初期化キャプチャ」または「一般化されたラムダ キャプチャ」と呼ばれることが多い)
+                は、実際には、囲んでいるスコープから何かを「キャプチャ」する必要はなく、囲んでいるスコープから名前を持っている必要さえありません。
+                この構文は、ラムダオブジェクトのメンバーを定義するための完全に一般的な方法です。
+            </span>
         </p>
         <pre class="neutralcode">[foo = std::vector&lt;int&gt;({1, 2, 3})] () {
           ...
         }</pre>
         <p>
-            The type of a capture with an initializer is deduced using the same rules
-            as <code>auto</code>.
+            <span>
+                <span class="src">
+                    The type of a capture with an initializer is deduced using the same rules
+                    as <code>auto</code>.
+                </span>
+                初期化子を使用したキャプチャの型は、<code>auto</code>と同じ規則を使用して推定されます。
+            </span>
         </p>
 
         <p class="pros"></p>
@@ -13546,7 +13723,7 @@ if (condition1 &amp;&amp;
             <span class="src">
                 Switch statements may use braces for blocks.
             </span>
-            switch文でブロックを作るために波カッコを使用できます。
+            switch文でブロックを作るために波括弧を使用できます。
         </span>
         <span>
             <span class="src">
@@ -14894,14 +15071,23 @@ std::vector&lt;char *&gt; x;
             </span>
         </li>
         <li>
-            Blank lines immediately inside a declaration of a namespace or block of
-            namespaces may help readability by visually separating the load-bearing
-            content from the (largely non-semantic) organizational wrapper.
-
-            Especially
-            when the first declaration inside the namespace(s) is preceded by a comment,
-            this becomes a special case of the previous rule, helping the comment to
-            "attach" to the subsequent declaration.
+            <span>
+                <span class="src">
+                    Blank lines immediately inside a declaration of a namespace or block of
+                    namespaces may help readability by visually separating the load-bearing
+                    content from the (largely non-semantic) organizational wrapper.
+                </span>
+                名前空間または名前空間のブロックの宣言のすぐ内側にある空白行は、(ほとんど意味を持たない) 組織のラッパーから負荷を伴うコンテンツを視覚的に分離することによって、読みやすさを向上させる場合があります。
+            </span>
+            <span>
+                <span class="src">
+                    Especially
+                    when the first declaration inside the namespace(s) is preceded by a comment,
+                    this becomes a special case of the previous rule, helping the comment to
+                    "attach" to the subsequent declaration.
+                </span>
+                特に、名前空間内の最初の宣言の前にコメントがある場合、これは前のルールの特殊なケースになり、コメントが後続の宣言に「くっついている」ことを示すのに役立ちます。
+            </span>
         </li>
     </ul>
 
