@@ -3474,7 +3474,8 @@ class NotCopyableOrMovable {
                     <code>.first</code>, <code>.second</code>, or <code>std::get&lt;X&gt;</code>.
                 </span>
                 ペアとタプルを使用すると、カスタム型を定義する必要がなくなり、コードを<em>書く</em>ときの作業が節約できるかもしれませんが、
-                ほとんどの場合、意味のあるフィールド名は、コードを<em>読む</em>ときに <code>.first</code>、<code>.second</code>、もしくは <code>std::get&lt;X&gt;</code> よりもずっと明確です。
+                ほとんどの場合、意味のあるフィールド名は、コードを<em>読む</em>ときに <code>.first</code>、<code>.second</code>、もしくは
+                <code>std::get&lt;X&gt;</code> よりもずっと明確です。
             </span>
 
             <span>
@@ -9094,21 +9095,41 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
             </span>
         </li>
         <li>
-            Captures actually declare new variables (whether or not the captures have
-            initializers), but they look nothing like any other variable declaration
-            syntax in C++.
-            In particular, there's no place for the variable's type,
-            or even an <code>auto</code> placeholder (although init captures can
-            indicate it indirectly, e.g., with a cast).
-            This can make it difficult to
-            even recognize them as declarations.
+            <span>
+                <span class="src">
+                    Captures actually declare new variables (whether or not the captures have
+                    initializers), but they look nothing like any other variable declaration
+                    syntax in C++.
+                </span>
+                キャプチャは(キャプチャに初期化子があるかどうかに関係なく)実際に新しい変数を宣言しますが、C++ の他の変数宣言構文とはまったく異なります。
+            </span>
+            <span>
+                <span class="src">
+                    In particular, there's no place for the variable's type,
+                    or even an <code>auto</code> placeholder (although init captures can
+                    indicate it indirectly, e.g., with a cast).
+                </span>
+                特に、変数の型や<code>auto</code>プレースホルダーの場所はありません (ただし、初期化キャプチャは、キャストなどを使用して間接的にそれを示すことができます)。
+                <span>
+                    <span class="src">
+                        This can make it difficult to
+                        even recognize them as declarations.
+                    </span>
+                    これにより、それらを宣言として認識することさえ困難になる可能性があります。
+                </span>
         </li>
 
         <li>
-            Init captures inherently rely on <a href="#Type_deduction">type
-                deduction</a>, and suffer from many of the same drawbacks as
-            <code>auto</code>, with the additional problem that the syntax doesn't
-            even cue the reader that deduction is taking place.
+            <span>
+                <span class="src">
+                    Init captures inherently rely on <a href="#Type_deduction">type
+                        deduction</a>, and suffer from many of the same drawbacks as
+                    <code>auto</code>, with the additional problem that the syntax doesn't
+                    even cue the reader that deduction is taking place.
+                </span>
+                初期化キャプチャは本質的に<a
+                    href="#Type_deduction">型推論</a>に依存しており、<code>auto</code>と同じ欠点の多くに悩まされているうえ、構文が推論が行われていることを読者に知らせることさえできないという追加の問題があります。
+            </span>
         </li>
 
         <li>
@@ -13359,13 +13380,25 @@ MyType m = {  // {の前で改行してもかまいません
     <h3 id="Conditionals"><span title="Conditionals">条件文</span></h3>
 
     <p>
-        In an <code>if</code> statement, including its optional <code>else if</code>
-        and <code>else</code> clauses, put one space between the <code>if</code> and the
-        opening parenthesis, and between the closing parenthesis and the curly brace (if
-        any), but no spaces between the parentheses and the condition or initializer.
-        If
-        the optional initializer is present, put a space or newline after the semicolon,
-        but not before.
+        <span>
+            <span class="src">
+                In an <code>if</code> statement, including its optional <code>else if</code>
+                and <code>else</code> clauses, put one space between the <code>if</code> and the
+                opening parenthesis, and between the closing parenthesis and the curly brace (if
+                any), but no spaces between the parentheses and the condition or initializer.
+            </span>
+            <code>if</code> ステートメント及び<code>else if</code> 句や <code>else</code> 句では、
+            <code>if</code> と開き括弧の間、および閉じ括弧と波括弧 (存在する場合) の間に 1つのスペースを入れますが、
+            括弧と条件または初期化子の間にはスペースを入れません。
+        </span>
+        <span>
+            <span class="src">
+                If
+                the optional initializer is present, put a space or newline after the semicolon,
+                but not before.
+            </span>
+            オプションの初期化子が存在する場合、スペースまたは改行をセミコロンの後に入れますが、前には入れません。
+        </span>
     </p>
 
     <div>
@@ -13387,13 +13420,28 @@ if (int a = f();a == 10) {   // ダメ。セミコロンの後にスペースが
     </div>
 
     <p>
-        Use curly braces for the controlled statements following
-        <code>if</code>, <code>else if</code> and <code>else</code>.
-        Break the line
-        immediately after the opening brace, and immediately before the closing brace.
-        A
-        subsequent <code>else</code>, if any, appears on the same line as the preceding
-        closing brace, separated by a space.
+        <span>
+            <span class="src">
+                Use curly braces for the controlled statements following
+                <code>if</code>, <code>else if</code> and <code>else</code>.
+            </span>
+            <code>if</code>、<code>else if</code>、<code>else</code> に続く制御ステートメントには波括弧を使用します。
+        </span>
+        <span>
+            <span class="src">
+                Break the line
+                immediately after the opening brace, and immediately before the closing brace.
+            </span>
+            開き波括弧の直後と閉じ波括弧の直前で改行します。
+        </span>
+        <span>
+            <span class="src">
+                A
+                subsequent <code>else</code>, if any, appears on the same line as the preceding
+                closing brace, separated by a space.
+            </span>
+            後続の<code>else</code>がある場合は、前の閉じ波括弧と同じ行にスペースで区切って表示されます。
+        </span>
     </p>
 
     <pre>
@@ -13407,16 +13455,30 @@ if (condition) {                   // no spaces inside parentheses, space before
 }</pre>
 
     <p>
-        For historical reasons, we allow one exception to the above rules: if an
-        <code>if</code> statement has no <code>else</code> or <code>else if</code>
-        clauses, then the curly braces for the controlled statement or the line breaks
-        inside the curly braces may be omitted if as a result the entire <code>if</code>
-        statement appears on either a single line (in which case there is a space
-        between the closing parenthesis and the controlled statement) or on two lines
-        (in which case there is a line break after the closing parenthesis and there are
-        no braces).
-        For example, the following forms are allowed under this
-        exception.
+        <span>
+            <span class="src">
+                For historical reasons, we allow one exception to the above rules: if an
+                <code>if</code> statement has no <code>else</code> or <code>else if</code>
+                clauses, then the curly braces for the controlled statement or the line breaks
+                inside the curly braces may be omitted if as a result the entire <code>if</code>
+                statement appears on either a single line (in which case there is a space
+                between the closing parenthesis and the controlled statement) or on two lines
+                (in which case there is a line break after the closing parenthesis and there are
+                no braces).
+            </span>
+            歴史的な理由から、上記のルールには 1 つの例外を認めています。
+            <code>if</code>ステートメントに<code>else</code>または<code>else if</code>句がなく、
+            <code>if</code>ステートメント全体が1 行 (閉じ括弧と被制御ステートメントの間にスペースがある場合)
+            または 2 行 (閉じ括弧の後に改行があり、波括弧がない場合) で表示される場合、
+            制御ステートメントの波括弧または波括弧内の改行は省​​略できます。
+        </span>
+        <span>
+            <span class="src">
+                For example, the following forms are allowed under this
+                exception.
+            </span>
+            たとえば、次のフォームはこの例外の下で許可されます。
+        </span>
     </p>
 
     <pre>if (x == kFoo) return new Foo();
@@ -13428,16 +13490,32 @@ if (x == kQuz) { return new Quz(1, 2, 3); }
 </pre>
 
     <p>
-        Use this style only when the statement is brief, and consider that
-        conditional statements with complex conditions or controlled statements may be
-        more readable with curly braces.
-        Some
-        projects
-        require curly braces always.
+        <span>
+            <span class="src">
+                Use this style only when the statement is brief, and consider that
+                conditional statements with complex conditions or controlled statements may be
+                more readable with curly braces.
+            </span>
+            このスタイルは、ステートメントが短い場合にのみ使用してください。
+            複雑な条件を含む条件付きステートメントや制御ステートメントは、波括弧を使用すると読みやすくなる可能性があることを考慮してください。
+        </span>
+        <span>
+            <span class="src">
+                Some
+                projects
+                require curly braces always.
+            </span>
+            一部のプロジェクトでは常に波括弧が必要です。
+        </span>
     </p>
 
     <p>
-        Finally, these are not permitted:
+        <span>
+            <span class="src">
+                Finally, these are not permitted:
+            </span>
+            最後に、次のようにしてはいけません。
+        </span>
     </p>
 
     <pre class="badcode">// Bad - IF statement with ELSE is missing braces
@@ -15146,105 +15224,8 @@ std::vector&lt;char *&gt; x;
     </ul>
 
     </div>
-    
-    <h2 class="Parting_Words"><span title="Parting Words">おわりに</span></h2>
-
-    <p>
-        <span>
-            <span class="src">
-                Use common sense and
-                <em>BE CONSISTENT</em>.
-            </span>
-            常識を大切にし、<em>一貫性を持ってください</em>。
-        </span>
-    </p>
-
-    <p>
-        <span>
-            <span class="src">
-                If you are editing code, take a few minutes to look at the
-                code around you and determine its style.
-            </span>
-            コードを編集する前には、1～2分、コード全体を眺める時間をとって、そのコードの持つスタイルを判別してください。
-        </span>
-        <span>
-            <span class="src">
-                If they use spaces
-                around their
-                <code>if</code> clauses, you should, too.
-            </span>
-            <code>if</code>の周りにスペースがあったら、あなたもそのようにします。
-        </span>
-        <span>
-            <span class="src">
-                If their
-                comments have little boxes of stars around them, make your
-                comments have little boxes of stars around them too.
-            </span>
-            コメントがアスタリスクで囲まれた箱になっていたら、あなたのコメントもアスタリスクで囲って箱にしましょう。
-        </span>
-    </p>
-
-    <p>
-        <span>
-            <span class="src">
-                The point of having style guidelines is to have a common
-                vocabulary of coding so people can concentrate on what you are
-                saying, rather than on how you are saying it.
-            </span>
-            スタイルガイドラインを持つことの要点は、コーディングにおける共通のボキャブラリを持つということです。これによって、みんなが、どう話すかという話し方ではなく、何を話すかという話の内容に集中できるようになるのです。
-        </span>
-        <span>
-            <span class="src">
-                We present global
-                style rules here so people know the vocabulary.
-            </span>
-            我々はここでグローバルなスタイルルールを説明しています。これによって、みんなが、共通のボキャブラリを持つことができます。
-        </span>
-        <span>
-            <span class="src">
-                But local style
-                is also important.
-            </span>
-            しかし、ローカルなスタイルもまた重要なものです。
-        </span>
-        <span>
-            <span class="src">
-                If code you add to a file looks drastically
-                different from the existing code around it, the discontinuity
-                throws readers out of their rhythm when they go to read it.
-            </span>
-            もし、あなたがファイルに追加したコードが、その周囲の既存のコードと大きく違って見えてしまうと、その境目によっ読者のリズムを崩してしまいます。
-        </span>
-        <span>
-            <span class="src">
-                Try
-                to avoid this.
-            </span>
-            これを避けるよう努めましょう。
-        </span>
-    </p>
-
-    <p>
-        <span>
-            <span class="src">
-                OK, enough writing about writing code; the code itself is much
-                more interesting.
-            </span>
-            よし、コードを書くことについて書くのはもう十分でしょう。コードそのものを書くほうがもっとずっと面白いです。
-        </span>
-        <span>
-            <span class="src">
-                Have fun!
-            </span>
-            楽しんでください！
-        </span>
-    </p>
-
-<hr>
-
-</div>
-</div>
+    </div>
+    </div>
 </body>
 
 </html>
