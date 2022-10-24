@@ -2225,62 +2225,192 @@ for (int i = 0; i &lt; 1000000; ++i) {
             <span title="Static and Global Variables">静的変数とグローバル変数</span>
         </h3>
 
-        <!-- todo -->
-
-        <p>Objects with
-            <a href="http://en.cppreference.com/w/cpp/language/storage_duration#Storage_duration">
-                static storage duration</a> are forbidden unless they are
-            <a href="http://en.cppreference.com/w/cpp/types/is_destructible">trivially
-                destructible</a>.Informally this means that the destructor does not do
-            anything, even taking member and base destructors into account. More formally it
-            means that the type has no user-defined or virtual destructor and that all bases
-            and non-static members are trivially destructible.
-            Static function-local variables may use dynamic initialization.
-            Use of dynamic initialization for static class member variables or variables at
-            namespace scope is discouraged, but allowed in limited circumstances; see below
-            for details.
+        <p>
+            <span>
+                <span class="src">
+                    Objects with
+                    <a href="http://en.cppreference.com/w/cpp/language/storage_duration#Storage_duration">
+                        static storage duration</a> are forbidden unless they are
+                    <a href="http://en.cppreference.com/w/cpp/types/is_destructible">trivially
+                        destructible</a>.
+                </span>
+                <a
+                    href="http://en.cppreference.com/w/cpp/language/storage_duration#Storage_duration">静的な記憶域の有効期間</a>を持つオブジェクトは、
+                それらが<a href="http://en.cppreference.com/w/cpp/types/is_destructible">自明に破壊可能</a>でない限り禁止されています。
+            </span>
+            <span>
+                <span class="src">
+                    Informally this means that the destructor does not do
+                    anything, even taking member and base destructors into account.
+                </span>
+                非公式にはこれは、そのメンバと基底のデストラクタを考慮しても、デストラクタが何もしないことを意味します。
+            </span>
+            <span>
+                <span class="src">
+                    More formally it
+                    means that the type has no user-defined or virtual destructor and that all bases
+                    and non-static members are trivially destructible.
+                </span>
+                より正式には、型にユーザー定義または仮想デストラクタがなく、すべての基底および非静的メンバが自明に破壊可能であることを意味します。
+            </span>
+            <span>
+                <span class="src">
+                    Static function-local variables may use dynamic initialization.
+                </span>
+                静的関数ローカル変数は、動的初期化を使用する場合があります。
+            </span>
+            <span>
+                <span class="src">
+                    Use of dynamic initialization for static class member variables or variables at
+                    namespace scope is discouraged, but allowed in limited circumstances; see below
+                    for details.
+                </span>
+                静的クラス メンバ変数または名前空間スコープでの変数の動的初期化の使用は推奨されませんが、限られた状況で許可されます。
+                詳細については、以下を参照してください。
+            </span>
         </p>
 
-        <p>As a rule of thumb: a global variable satisfies these requirements if its
-            declaration, considered in isolation, could be <code>constexpr</code>.</p>
+        <p>
+            <span>
+                <span class="src">
+                    As a rule of thumb: a global variable satisfies these requirements if its
+                    declaration, considered in isolation, could be <code>constexpr</code>.
+                </span>
+                大雑把にいって、グローバル変数は、その宣言が単独で考慮されて<code>constexpr</code>である場合、これらの要件を満たします。
+            </span>
+        </p>
 
         <p class="definition"></p>
-        <p>Every object has a <dfn>storage duration</dfn>, which correlates with its
-            lifetime. Objects with static storage duration live from the point of their
-            initialization until the end of the program. Such objects appear as variables at
-            namespace scope ("global variables"), as static data members of classes, or as
-            function-local variables that are declared with the <code>static</code>
-            specifier. Function-local static variables are initialized when control first
-            passes through their declaration; all other objects with static storage duration
-            are initialized as part of program start-up. All objects with static storage
-            duration are destroyed at program exit (which happens before unjoined threads
-            are terminated).</p>
-
-        <p>Initialization may be <dfn>dynamic</dfn>, which means that something
-            non-trivial happens during initialization. (For example, consider a constructor
-            that allocates memory, or a variable that is initialized with the current
-            process ID.) The other kind of initialization is <dfn>static</dfn>
-            initialization. The two aren't quite opposites, though: static
-            initialization <em>always</em> happens to objects with static storage duration
-            (initializing the object either to a given constant or to a representation
-            consisting of all bytes set to zero), whereas dynamic initialization happens
-            after that, if required.</p>
+        <p>
+            <span>
+                <span class="src">
+                    Every object has a <dfn>storage duration</dfn>, which correlates with its
+                    lifetime.
+                </span>
+                すべてのオブジェクトには<dfn>記憶域の有効期間</dfn>があり、そのライフタイムと相関しています。
+            </span>
+            <span>
+                <span class="src">
+                    Objects with static storage duration live from the point of their
+                    initialization until the end of the program.
+                </span>
+                静的な記憶域の有効期間を持つオブジェクトは、初期化の時点からプログラムの終了まで存続します。
+            </span>
+            <span>
+                <span class="src">
+                    Such objects appear as variables at
+                    namespace scope ("global variables"), as static data members of classes, or as
+                    function-local variables that are declared with the <code>static</code>
+                    specifier.
+                </span>
+                このようなオブジェクトは、名前空間スコープの変数 (「グローバル変数」)、クラスの静的データメンバ、
+                または<code>static</code>指定子で宣言された関数ローカル変数として表示されます。
+            </span>
+            <span>
+                <span class="src">
+                    Function-local static variables are initialized when control first
+                    passes through their declaration; all other objects with static storage duration
+                    are initialized as part of program start-up.
+                </span>
+                関数ローカルの静的変数は、制御が最初に宣言を通過するときに初期化されます。
+                静的な記憶域期間を持つ他のすべてのオブジェクトは、プログラムの起動時に初期化されます。
+            </span>
+            <span>
+                <span class="src">
+                    All objects with static storage
+                    duration are destroyed at program exit (which happens before unjoined threads
+                    are terminated).
+                </span>
+                静的な記憶域の有効期間を持つすべてのオブジェクトは、プログラムの終了時に破棄されます (結合されていないスレッドが終了する前に発生します)。
+            </span>
+        </p>
+        <p>
+            <span>
+                <span class="src">
+                    Initialization may be <dfn>dynamic</dfn>, which means that something
+                    non-trivial happens during initialization.
+                </span>
+                初期化は<dfn>動的な</dfn>場合があり、初期化中に自明でないことが発生するかもしれません。
+            </span>
+            <span>
+                <span class="src">
+                    (For example, consider a constructor
+                    that allocates memory, or a variable that is initialized with the current
+                    process ID.)
+                </span>
+                (たとえば、メモリを割り当てるコンストラクタや、現在のプロセス ID で初期化される変数を考えてみましょう。)
+            </span>
+            <span>
+                <span class="src">
+                    The other kind of initialization is <dfn>static</dfn>
+                    initialization.
+                </span>
+                もう 1 つの種類の初期化は<dfn>静的な</dfn>初期化です。
+            </span>
+            <span>
+                <span class="src">
+                    The two aren't quite opposites, though: static
+                    initialization <em>always</em> happens to objects with static storage duration
+                    (initializing the object either to a given constant or to a representation
+                    consisting of all bytes set to zero), whereas dynamic initialization happens
+                    after that, if required.
+                </span>
+                ただし、この 2 つは正反対ではありません。
+                静的な初期化は、静的なストレージ期間を持つオブジェクトに対して<em>常に</em>発生します。
+                (オブジェクトを、指​​定された定数またはすべてのバイトがゼロに設定された表現に初期化します。)
+                動的初期化はその後で、必要があれば発生します。
+            </span>
+        </p>
         <p class="pros"></p>
-        <p>Global and static variables are very useful for a large number of
-            applications: named constants, auxiliary data structures internal to some
-            translation unit, command-line flags, logging, registration mechanisms,
-            background infrastructure, etc.</p>
+        <p>
+            <span>
+                <span class="src">
+                    Global and static variables are very useful for a large number of
+                    applications: named constants, auxiliary data structures internal to some
+                    translation unit, command-line flags, logging, registration mechanisms,
+                    background infrastructure, etc.
+                </span>
+                グローバル変数と静的変数は、名前付き定数、一部の翻訳単位内部の補助データ構造、コマンドライン フラグ、
+                ロギング、登録メカニズム、バックグラウンド インフラストラクチャなど、多数のアプリケーションで非常に役立ちます。
+            </span>
+        </p>
         <p class="cons"></p>
-        <p>Global and static variables that use dynamic initialization or have
-            non-trivial destructors create complexity that can easily lead to hard-to-find
-            bugs. Dynamic initialization is not ordered across translation units, and
-            neither is destruction (except that destruction
-            happens in reverse order of initialization). When one initialization refers to
-            another variable with static storage duration, it is possible that this causes
-            an object to be accessed before its lifetime has begun (or after its lifetime
-            has ended). Moreover, when a program starts threads that are not joined at exit,
-            those threads may attempt to access objects after their lifetime has ended if
-            their destructor has already run.</p>
+        <p>
+            <span>
+                <span class="src">
+                    Global and static variables that use dynamic initialization or have
+                    non-trivial destructors create complexity that can easily lead to hard-to-find
+                    bugs.
+                </span>
+                動的な初期化を使用するか、重要なデストラクタを持つグローバルおよび静的変数は複雑さを生み出し、見つけにくいバグに簡単につながる可能性があります。
+            </span>
+            <span>
+                <span class="src">
+                    Dynamic initialization is not ordered across translation units, and
+                    neither is destruction (except that destruction
+                    happens in reverse order of initialization).
+                </span>
+                破棄が初期化の逆順で発生することを除けば、動的な初期化や破棄は、翻訳単位全体で順序付けられていません。
+            </span>
+            <span>
+                <span class="src">
+                    When one initialization refers to
+                    another variable with static storage duration, it is possible that this causes
+                    an object to be accessed before its lifetime has begun (or after its lifetime
+                    has ended).
+                </span>
+                1 つの初期化で静的な記憶域期間を持つ別の変数を参照すると、オブジェクトの有効期間が開始する前 (または有効期間が終了した後) にオブジェクトがアクセスされる可能性があります。
+            </span>
+            <span>
+                <span class="src">
+                    Moreover, when a program starts threads that are not joined at exit,
+                    those threads may attempt to access objects after their lifetime has ended if
+                    their destructor has already run.
+                </span>
+                さらに、プログラムが終了時に結合されていないスレッドを開始すると、それらのスレッドは、デストラクタが既に実行されている場合、存続期間が終了した後にオブジェクトにアクセスしようとする場合があります。
+            </span>
+        </p>
+        <!-- todo -->
         <p class="decision"></p>
         <h4>Decision on destruction</h4>
 
@@ -3280,8 +3410,8 @@ void Func(Foo f);
                     but not required. If you provide a copy or move assignment operator, you
                     must also provide the corresponding constructor.
                 </span>
-                4 つのコピー/ムーブ作すべてを明示的に宣言または削除することは許可されていますが、必須ではありません。
-                コピーまたはムーブ代入演算子を提供する場合は、対応するコンストラクターも提供する必要があります。
+                4 つのコピー/ムーブ操作すべてを明示的に宣言または削除することは許可されていますが、必須ではありません。
+                コピーまたはムーブ代入演算子を提供する場合は、対応するコンストラクタも提供する必要があります。
             </span>
         </p>
         <!-- todo -->
@@ -3337,7 +3467,7 @@ class NotCopyableOrMovable {
                         then the copyability/movability can be determined by the
                         copyability/movability of any public data members.
                     </span>
-                    <a href="#Structs_vs._Classes">構造体</a>やインターフェイスのみの基本クラスのように、
+                    <a href="#Structs_vs._Classes">構造体</a>やインターフェイスのみの基底クラスのように、
                     クラスに<code>private</code>セクションがない場合、コピーやムーブの可能性は、
                     パブリックデータメンバのコピーやムーブ可能性によって決定できます。
                 </span>
@@ -3355,7 +3485,7 @@ class NotCopyableOrMovable {
                         An interface-only base class that leaves these
                         operations implicit is not sufficient to make concrete subclasses clear.
                     </span>
-                    インターフェイスのみの基本クラスがこれらの操作を暗黙のままにしているとき、具体的なサブクラスにとって十分に明確ではありません。
+                    インターフェイスのみの基底クラスがこれらの操作を暗黙のままにしているとき、具体的なサブクラスにとって十分に明確ではありません。
                 </span>
             </li>
             <li>
