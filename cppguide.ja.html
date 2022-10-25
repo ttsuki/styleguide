@@ -8548,9 +8548,8 @@ memset(&amp;data, 0, sizeof(data));
 }
 </pre>
 
-    <!-- todo -->
     <a id="auto"></a>
-    <h3 id="Type_deduction"><span title="Type Deduction (including auto)">auto などの型推定</span></h3>
+    <h3 id="Type_deduction"><span title="Type Deduction (including auto)">auto などの型推論</span></h3>
 
 
     <p>
@@ -8574,132 +8573,286 @@ memset(&amp;data, 0, sizeof(data));
     </p>
 
     <p>
-        There are several contexts in which C++ allows (or even requires) types to
-        be deduced by the compiler, rather than spelled out explicitly in the code:
+        <span>
+            <span class="src">
+                There are several contexts in which C++ allows (or even requires) types to
+                be deduced by the compiler, rather than spelled out explicitly in the code:
+            </span>
+            C++ では、コードで明示的に記述されるのではなく、コンパイラによって型が推論されることを許可する (または必要とする) 状況がいくつかあります。
+        </span>
     </p>
     <dl>
         <dt>
-            <a href="https://en.cppreference.com/w/cpp/language/template_argument_deduction">Function template argument
-                deduction</a>
+            <span>
+                <span class="src">
+                    <a href="https://en.cppreference.com/w/cpp/language/template_argument_deduction">Function template
+                        argument
+                        deduction</a>
+                </span>
+                <a href="https://en.cppreference.com/w/cpp/language/template_argument_deduction">関数テンプレートの引数推論</a>
+            </span>
         </dt>
         <dd>
-            A function template can be invoked without explicit template arguments.
-            The compiler deduces those arguments from the types of the function
-            arguments:
+            <span>
+                <span class="src">
+                    A function template can be invoked without explicit template arguments.
+                </span>
+                関数テンプレートは、明示的なテンプレート引数なしで呼び出すことができます。
+            </span>
+            <span>
+                <span class="src">
+                    The compiler deduces those arguments from the types of the function
+                    arguments:
+                </span>
+                コンパイラは、関数の引数の型からこれらの引数を推測します。
+            </span>
             <pre class="neutralcode">template &lt;typename T&gt;
-    void f(T t);
-    
-    f(0);  // Invokes f&lt;int&gt;(0)</pre>
+void f(T t);
 
+f(0);  // Invokes f&lt;int&gt;(0)</pre>
         </dd>
         <dt>
-            <a href="https://en.cppreference.com/w/cpp/language/auto"><code>auto</code> variable declarations</a>
+            <span>
+                <span class="src">
+                    <a href="https://en.cppreference.com/w/cpp/language/auto"><code>auto</code> variable
+                        declarations</a>
+                </span>
+                <a href="https://en.cppreference.com/w/cpp/language/auto"><code>auto</code>変数宣言</a>
+            </span>
         </dt>
         <dd>
-            A variable declaration can use the <code>auto</code> keyword in place
-            of the type.
-            The compiler deduces the type from the variable's
-            initializer, following the same rules as function template argument
-            deduction with the same initializer (so long as you don't use curly braces
-            instead of parentheses).
+            <span>
+                <span class="src">
+                    A variable declaration can use the <code>auto</code> keyword in place
+                    of the type.
+                </span>
+                変数宣言では、型の代わりに<code>auto</code>キーワードを使用できます。
+            </span>
+
+            <span>
+                <span class="src">
+                    The compiler deduces the type from the variable's
+                    initializer, following the same rules as function template argument
+                    deduction with the same initializer (so long as you don't use curly braces
+                    instead of parentheses).
+                </span>
+                コンパイラは変数の初期化子から、関数テンプレートでの同じ初期化子の引数推論と同じ規則に従って、
+                型を推論します (括弧の代わりに中括弧を使用しない限り)。
+            </span>
+
             <pre class="neutralcode">auto a = 42;  // a is an int
-    auto&amp; b = a;  // b is an int&amp;
-    auto c = b;   // c is an int
-    auto d{42};   // d is an int, not a std::initializer_list&lt;int&gt;
-    </pre>
-            <code>auto</code> can be qualified with <code>const</code>, and can be
-            used as part of a pointer or reference type, but it can't be used as a
-            template argument.
-            A rare variant of this syntax uses
-            <code>decltype(auto)</code> instead of <code>auto</code>, in which case
-            the deduced type is the result of applying
-            <a href="https://en.cppreference.com/w/cpp/language/decltype"><code>decltype</code></a>
-            to the initializer.
-
+auto&amp; b = a;  // b is an int&amp;
+auto c = b;   // c is an int
+auto d{42};   // d is an int, not a std::initializer_list&lt;int&gt;</pre>
+            <span>
+                <span class="src">
+                    <code>auto</code> can be qualified with <code>const</code>, and can be
+                    used as part of a pointer or reference type, but it can't be used as a
+                    template argument.
+                </span>
+                <code>auto</code>は<code>const</code>で修飾でき、ポインタまたは参照型の一部として使用できますが、
+                テンプレート引数として使用することはできません。
+            </span>
+            <span>
+                <span class="src">
+                    A rare variant of this syntax uses
+                    <code>decltype(auto)</code> instead of <code>auto</code>, in which case
+                    the deduced type is the result of applying
+                    <a href="https://en.cppreference.com/w/cpp/language/decltype"><code>decltype</code></a>
+                    to the initializer.
+                </span>
+                この構文のまれな派生は、<code>auto</code>の代わりに<code>decltype(auto)</code>を使用します。
+                この場合、推論される型は<a href="https://en.cppreference.com/w/cpp/language/decltype"><code>decltype</code></a>
+                を初期化子に適用した結果です。
+            </span>
         </dd>
         <dt>
-            <a href="https://en.cppreference.com/w/cpp/language/function#Return_type_deduction">Function return type
-                deduction</a>
+            <span>
+                <span class="src">
+                    <a href="https://en.cppreference.com/w/cpp/language/function#Return_type_deduction">Function return
+                        type
+                        deduction</a>
+                </span>
+                <a href="https://en.cppreference.com/w/cpp/language/function#Return_type_deduction">関数の戻り値の型推論</a>
+            </span>
         </dt>
         <dd>
-            <code>auto</code> (and <code>decltype(auto)</code>) can also be used in
-            place of a function return type.
-            The compiler deduces the return type from
-            the <code>return</code> statements in the function body, following the same
-            rules as for variable declarations:
+            <span>
+                <span class="src">
+                    <code>auto</code> (and <code>decltype(auto)</code>) can also be used in
+                    place of a function return type.
+                </span>
+                関数の戻り型の代わりに <code>auto</code> (および<code>decltype(auto)</code>) を使用することもできます。
+            </span>
+            <span>
+                <span class="src">
+                    The compiler deduces the return type from
+                    the <code>return</code> statements in the function body, following the same
+                    rules as for variable declarations:
+                </span>
+                コンパイラは、変数宣言と同じ規則に従って、関数本体の<code>return</code>ステートメントから戻り値の型を推測します。
+            </span>
             <pre class="neutralcode">auto f() { return 0; }  // The return type of f is int</pre>
-            <a href="#Lambda_expressions">Lambda expression</a> return types can be
-            deduced in the same way, but this is triggered by omitting the return type,
-            rather than by an explicit <code>auto</code>.
-            Confusingly,
-            <a href="#trailing_return">trailing return type</a> syntax for functions
-            also uses <code>auto</code> in the return-type position, but that doesn't
-            rely on type deduction; it's just an alternate syntax for an explicit
-            return type.
-
+            <span>
+                <span class="src">
+                    <a href="#Lambda_expressions">Lambda expression</a> return types can be
+                    deduced in the same way, but this is triggered by omitting the return type,
+                    rather than by an explicit <code>auto</code>.
+                </span>
+                <a href="#Lambda_expressions">ラムダ式</a>の戻り値の型は同じ方法で推測できますが、これは明示的な<code>auto</code>ではなく、
+                戻り値の型を省略することによって引き起こされます。
+            </span>
+            <span>
+                <span class="src">
+                    Confusingly,
+                    <a href="#trailing_return">trailing return type</a> syntax for functions
+                    also uses <code>auto</code> in the return-type position, but that doesn't
+                    rely on type deduction; it's just an alternate syntax for an explicit
+                    return type.
+                </span>
+                紛らわしいことに、関数の<a href="#trailing_return">末尾の戻り値の型</a>の構文でも、戻り値の型の位置に<code>auto</code>が使用されていますが、
+                これは型推論に頼っていません。これは、明示的な戻り値の型の代替構文にすぎません。
+            </span>
         </dd>
         <dt>
-            <a href="https://isocpp.org/wiki/faq/cpp14-language#generic-lambdas">Generic lambdas</a>
+            <span>
+                <span class="src">
+                    <a href="https://isocpp.org/wiki/faq/cpp14-language#generic-lambdas">Generic lambdas</a>
+                </span>
+                <a href="https://isocpp.org/wiki/faq/cpp14-language#generic-lambdas">汎用ラムダ</a>
+            </span>
         </dt>
         <dd>
-            A lambda expression can use the <code>auto</code> keyword in place of
-            one or more of its parameter types.
-            This causes the lambda's call operator
-            to be a function template instead of an ordinary function, with a separate
-            template parameter for each <code>auto</code> function parameter:
+            <span>
+                <span class="src">
+                    A lambda expression can use the <code>auto</code> keyword in place of
+                    one or more of its parameter types.
+                </span>
+                ラムダ式では、1 つ以上の引数型の位置に<code>auto</code>キーワードを使用できます。
+            </span>
+            <span>
+                <span class="src">
+                    This causes the lambda's call operator
+                    to be a function template instead of an ordinary function, with a separate
+                    template parameter for each <code>auto</code> function parameter:
+                </span>
+                これにより、ラムダの呼び出し演算子が通常の関数ではなく関数テンプレートになり、
+                各<code>auto</code>関数引数に個別のテンプレート引数が使用されます。
+            </span>
             <pre class="neutralcode">// Sort `vec` in decreasing order
-    std::sort(vec.begin(), vec.end(), [](auto lhs, auto rhs) { return lhs &gt; rhs; });</pre>
-
+std::sort(vec.begin(), vec.end(), [](auto lhs, auto rhs) { return lhs &gt; rhs; });</pre>
         </dd>
         <dt>
-            <a href="https://isocpp.org/wiki/faq/cpp14-language#lambda-captures">Lambda init captures</a>
+            <span>
+                <span class="src">
+                    <a href="https://isocpp.org/wiki/faq/cpp14-language#lambda-captures">Lambda init captures</a>
+                </span>
+                <a href="https://isocpp.org/wiki/faq/cpp14-language#lambda-captures">ラムダの初期化キャプチャ</a>
+            </span>
         </dt>
         <dd>
-            Lambda captures can have explicit initializers, which can be used to
-            declare wholly new variables rather than only capturing existing ones:
+            <span>
+                <span class="src">
+                    Lambda captures can have explicit initializers, which can be used to
+                    declare wholly new variables rather than only capturing existing ones:
+                </span>
+                ラムダ キャプチャには明示的な初期化子を持つことができます。
+                これは、既存の変数をキャプチャするだけでなく、まったく新しい変数を宣言するために使用できます。
+            </span>
             <pre class="neutralcode">[x = 42, y = "foo"] { ...
-    }  // x is an int, and y is a const char*</pre>
-            This syntax doesn't allow the type to be specified; instead, it's deduced
-            using the rules for <code>auto</code> variables.
-
+}  // x is an int, and y is a const char*</pre>
+            <span>
+                <span class="src">
+                    This syntax doesn't allow the type to be specified; instead, it's deduced
+                    using the rules for <code>auto</code> variables.
+                </span>
+                この構文では、型を指定できません。代わりに、<code>auto</code>変数のルールを使用して推論されます。
+            </span>
         </dd>
         <dt>
-            <a href="https://en.cppreference.com/w/cpp/language/class_template_argument_deduction">Class template
-                argument deduction</a>
+            <span>
+                <span class="src">
+                    <a href="https://en.cppreference.com/w/cpp/language/class_template_argument_deduction">Class
+                        template
+                        argument deduction</a>
+                </span>
+                <a href="https://en.cppreference.com/w/cpp/language/class_template_argument_deduction">
+                    クラス テンプレートの引数推論</a>
+            </span>
         </dt>
         <dd>
-            See <a href="#CTAD">below</a>.
+            <span>
+                <span class="src">
+                    See <a href="#CTAD">below</a>.
+                </span>
+                <a href="#CTAD">下記参照</a>。
+            </span>
         </dd>
         <dt>
-            <a href="https://en.cppreference.com/w/cpp/language/structured_binding">Structured bindings</a>
+            <span>
+                <span class="src">
+                    <a href="https://en.cppreference.com/w/cpp/language/structured_binding">Structured bindings</a>
+                </span>
+                <a href="https://en.cppreference.com/w/cpp/language/structured_binding">構造化バインディング</a>
+            </span>
         </dt>
         <dd>
-            When declaring a tuple, struct, or array using <code>auto</code>, you can
-            specify names for the individual elements instead of a name for the whole
-            object; these names are called "structured bindings", and the whole
-            declaration is called a "structured binding declaration".
-            This syntax
-            provides no way of specifying the type of either the enclosing object
-            or the individual names:
+            <span>
+                <span class="src">
+                    When declaring a tuple, struct, or array using <code>auto</code>, you can
+                    specify names for the individual elements instead of a name for the whole
+                    object; these names are called "structured bindings", and the whole
+                    declaration is called a "structured binding declaration".
+                </span>
+                <code>auto</code>
+                を使用してタプル、構造体、または配列を宣言する場合、オブジェクト全体の名前ではなく、個々の要素の名前を推論できます。
+                これらの名前は「構造化バインディング」と呼ばれ、宣言全体は「構造化バインディング宣言」と呼ばれます。
+            </span>
+            <span>
+                <span class="src">
+                    This syntax
+                    provides no way of specifying the type of either the enclosing object
+                    or the individual names:
+                </span>
+                この構文では、囲んでいるオブジェクトまたは個々の名前の型を指定する方法はありません。
+            </span>
             <pre class="neutralcode">auto [iter, success] = my_map.insert({key, value});
-    if (!success) {
-      iter-&gt;second = value;
-    }</pre>
-            The <code>auto</code> can also be qualified with <code>const</code>,
-            <code>&amp;</code>, and <code>&amp;&amp;</code>, but note that these qualifiers
-            technically apply to the anonymous tuple/struct/array, rather than the
-            individual bindings.
-            The rules that determine the types of the bindings
-            are quite complex; the results tend to be unsurprising, except that
-            the binding types typically won't be references even if the declaration
-            declares a reference (but they will usually behave like references anyway).
-
+if (!success) {
+    iter-&gt;second = value;
+}</pre>
+            <span>
+                <span class="src">
+                    The <code>auto</code> can also be qualified with <code>const</code>,
+                    <code>&amp;</code>, and <code>&amp;&amp;</code>, but note that these qualifiers
+                    technically apply to the anonymous tuple/struct/array, rather than the
+                    individual bindings.
+                </span>
+                <code>auto</code> は、<code>const</code>、<code>&amp;</code>、および <code>&amp;&amp;</code>
+                で修飾することもできますが、これらの修飾子は技術的には、個々のバインディングではなく、
+                匿名のタプル/構造体/配列に適用されることに注意してください。
+            </span>
+            <span>
+                <span class="src">
+                    The rules that determine the types of the bindings
+                    are quite complex; the results tend to be unsurprising, except that
+                    the binding types typically won't be references even if the declaration
+                    declares a reference (but they will usually behave like references anyway).
+                </span>
+                バインディングのタイプを決定するルールは非常に複雑です。
+                驚くような結果になるのは稀ですが、宣言で参照だと宣言されていても、バインディングの型は通常は参照にはなりません。
+                (ただしいずれにせよ、通常は参照のように動作します)。
+            </span>
         </dd>
     </dl>
 
     <p>
-        (These summaries omit many details and caveats; see the links for further
-        information.)
+        <span>
+            <span class="src">
+                (These summaries omit many details and caveats; see the links for further
+                information.)
+            </span>
+            (これらの要約では、多くの詳細と警告が省略されています。詳細については、各リンクを参照してください。)
+        </span>
     </p>
 
     <p class="pros"></p>
@@ -8728,7 +8881,7 @@ memset(&amp;data, 0, sizeof(data));
                     It is sometimes safer to let the type be deduced, since that avoids
                     the possibility of unintended copies or type conversions.
                 </span>
-                また、意図しないコピーや型変換を避けるために、変数の型を推定させるほうがより安全な場合もあります。
+                また、意図しないコピーや型変換を避けるために、変数の型を推論させるほうがより安全な場合もあります。
             </span>
         </li>
     </ul>
@@ -8796,150 +8949,299 @@ auto i = y.Find(key);
     </p>
 
     <p>
-        The fundamental rule is: use type deduction only to make the code
-        clearer or safer, and do not use it merely to avoid the
-        inconvenience of writing an explicit type.
-        When judging whether the
-        code is clearer, keep in mind that your readers are not necessarily
-        on your team, or familiar with your project, so types that you and
-        your reviewer experience as unnecessary clutter will very often
-        provide useful information to others.
-        For example, you can assume that
-        the return type of <code>make_unique&lt;Foo&gt;()</code> is obvious,
-        but the return type of <code>MyWidgetFactory()</code> probably isn't.
+        <span>
+            <span class="src">
+                The fundamental rule is: use type deduction only to make the code
+                clearer or safer, and do not use it merely to avoid the
+                inconvenience of writing an explicit type.
+            </span>
+            基本的なルールは次のとおりです。
+            型推論は、コードをより明確または安全にするためだけに使用し、明示的な型を記述する不便さを回避するためだけに使用しないでください。
+        </span>
+        <span>
+            <span class="src">
+                When judging whether the
+                code is clearer, keep in mind that your readers are not necessarily
+                on your team, or familiar with your project, so types that you and
+                your reviewer experience as unnecessary clutter will very often
+                provide useful information to others.
+            </span>
+            コードがより明確かどうかを判断するときは、読者が必ずしもあなたのチームに所属しているわけでも、
+            あなたのプロジェクトに精通しているわけでもないことに注意してください。
+            あなたやレビュアーが不要なゴミだと感じるものが、他人にとって頻繁に有益な情報を与えているのです。
+        </span>
+        <span>
+            <span class="src">
+                For example, you can assume that
+                the return type of <code>make_unique&lt;Foo&gt;()</code> is obvious,
+                but the return type of <code>MyWidgetFactory()</code> probably isn't.
+            </span>
+            たとえば、<code>make_unique&lt;Foo&gt;()</code> の戻り値の型は明らかですが、
+            <code>MyWidgetFactory()</code> の戻り値の型はおそらくそうではないと想定できます。
+        </span>
+    </p>
+    <p>
+        <span>
+            <span class="src">
+                These principles apply to all forms of type deduction, but the
+                details vary, as described in the following sections.
+            </span>
+            これらの原則はすべての形式の型推論に適用されますが、詳細は次のセクションで説明するように異なります。
+        </span>
     </p>
 
+    <h4 title="Function template argument deduction">関数テンプレートの引数推論</h4>
     <p>
-        These principles apply to all forms of type deduction, but the
-        details vary, as described in the following sections.
+        <span>
+            <span class="src">
+                Function template argument deduction is almost always OK.
+            </span>
+            関数テンプレートの引数推論は、ほとんどの場合問題ありません。
+        </span>
+        <span>
+            <span class="src">
+                Type deduction
+                is the expected default way of interacting with function templates,
+                because it allows function templates to act like infinite sets of ordinary
+                function overloads.
+            </span>
+            型推論は、関数テンプレートを通常の関数オーバーロードの無限集合のように動作させられるため、
+            関数テンプレートを取り扱う既定の方法として想定されています。
+        </span>
+        <span>
+            <span class="src">
+                Consequently, function templates are almost always
+                designed so that template argument deduction is clear and safe, or
+                doesn't compile.
+            </span>
+            したがって、ほとんど常に、関数テンプレートは、テンプレート引数の推論が明確かつ安全でなければコンパイルされないように設計されています。
+        </span>
     </p>
 
-    <h4>Function template argument deduction</h4>
-
+    <h4 title="Local variable type deduction">ローカル変数の型推論</h4>
     <p>
-        Function template argument deduction is almost always OK.
-        Type deduction
-        is the expected default way of interacting with function templates,
-        because it allows function templates to act like infinite sets of ordinary
-        function overloads.
-        Consequently, function templates are almost always
-        designed so that template argument deduction is clear and safe, or
-        doesn't compile.
-    </p>
-
-    <h4>Local variable type deduction</h4>
-
-    <p>
-        For local variables, you can use type deduction to make the code clearer
-        by eliminating type information that is obvious or irrelevant, so that
-        the reader can focus on the meaningful parts of the code:
+        <span>
+            <span class="src">
+                For local variables, you can use type deduction to make the code clearer
+                by eliminating type information that is obvious or irrelevant, so that
+                the reader can focus on the meaningful parts of the code:
+            </span>
+            ローカル変数の場合、型推論を使用して、明白または無関係な型情報を削除することでコードをより明確にすることができます。
+            これにより、読者はコードの意味のある部分に集中できます。
+        </span>
     </p>
     <pre class="neutralcode">std::unique_ptr&lt;WidgetWithBellsAndWhistles&gt; widget_ptr =
-        std::make_unique&lt;WidgetWithBellsAndWhistles&gt;(arg1, arg2);
-    absl::flat_hash_map&lt;std::string,
-                        std::unique_ptr&lt;WidgetWithBellsAndWhistles&gt;&gt;::const_iterator
-        it = my_map_.find(key);
-    std::array&lt;int, 6&gt; numbers = {4, 8, 15, 16, 23, 42};</pre>
+    std::make_unique&lt;WidgetWithBellsAndWhistles&gt;(arg1, arg2);
+absl::flat_hash_map&lt;std::string,
+                    std::unique_ptr&lt;WidgetWithBellsAndWhistles&gt;&gt;::const_iterator
+    it = my_map_.find(key);
+std::array&lt;int, 6&gt; numbers = {4, 8, 15, 16, 23, 42};</pre>
 
     <pre class="goodcode">auto widget_ptr = std::make_unique&lt;WidgetWithBellsAndWhistles&gt;(arg1, arg2);
-    auto it = my_map_.find(key);
-    std::array numbers = {4, 8, 15, 16, 23, 42};</pre>
+auto it = my_map_.find(key);
+std::array numbers = {4, 8, 15, 16, 23, 42};</pre>
 
     <p>
-        Types sometimes contain a mixture of useful information and boilerplate,
-        such as <code>it</code> in the example above: it's obvious that the
-        type is an iterator, and in many contexts the container type and even the
-        key type aren't relevant, but the type of the values is probably useful.
-        In such situations, it's often possible to define local variables with
-        explicit types that convey the relevant information:
+        <span>
+            <span class="src">
+                Types sometimes contain a mixture of useful information and boilerplate,
+                such as <code>it</code> in the example above: it's obvious that the
+                type is an iterator, and in many contexts the container type and even the
+                key type aren't relevant, but the type of the values is probably useful.
+            </span>
+            型には、上記例の<code>it</code>のように、有用な情報と定型文が混在している場合があります。
+            型がイテレータであることは明らかであり、多くの文脈では、コンテナの型やキーの型でさえ関係ありませんが、
+            値の型はおそらく役に立ちます。
+        </span>
+        <span>
+            <span class="src">
+                In such situations, it's often possible to define local variables with
+                explicit types that convey the relevant information:
+            </span>
+            このような状況では、関連する情報を伝える明示的な型を使用してローカル変数を定義できることがよくあります。
+        </span>
     </p>
     <pre class="goodcode">if (auto it = my_map_.find(key); it != my_map_.end()) {
-      WidgetWithBellsAndWhistles&amp; widget = *it-&gt;second;
-      // Do stuff with `widget`
-    }</pre>
+    WidgetWithBellsAndWhistles&amp; widget = *it-&gt;second;
+    // Do stuff with `widget`
+}</pre>
     <p>
-        If the type is a template instance, and the parameters are
-        boilerplate but the template itself is informative, you can use
-        class template argument deduction to suppress the boilerplate.
-        However,
-        cases where this actually provides a meaningful benefit are quite rare.
-        Note that class template argument deduction is also subject to a
-        <a href="#CTAD">separate style rule</a>.
+        <span>
+            <span class="src">
+                If the type is a template instance, and the parameters are
+                boilerplate but the template itself is informative, you can use
+                class template argument deduction to suppress the boilerplate.
+            </span>
+            型がテンプレート インスタンスで、そのパラメータは定型文だが、テンプレート自体は有用な情報を含む場合、
+            クラス テンプレートの引数推論を使用して定型文を抑制することができます。
+        </span>
+        <span>
+            <span class="src">
+                However,
+                cases where this actually provides a meaningful benefit are quite rare.
+            </span>
+            ただし、これが実際に意味のある利益をもたらすケースは非常にまれです。
+        </span>
+        <span>
+            <span class="src">
+                Note that class template argument deduction is also subject to a
+                <a href="#CTAD">separate style rule</a>.
+            </span>
+            クラス テンプレートの引数推論も、<a href="#CTAD">別のスタイル ルール</a>に従うことに注意してください。
+        </span>
     </p>
 
     <p>
-        Do not use <code>decltype(auto)</code> if a simpler option will work,
-        because it's a fairly obscure feature, so it has a high cost in code
-        clarity.
+        <span>
+            <span class="src">
+                Do not use <code>decltype(auto)</code> if a simpler option will work,
+                because it's a fairly obscure feature, so it has a high cost in code
+                clarity.
+            </span>
+            より単純なオプションで十分な場合は、 <code>decltype(auto)</code> を使用しないでください。
+            これはかなりあいまいな機能であるため、コードの明確化に大きなコストがかかるためです。
+        </span>
     </p>
 
-    <h4>Return type deduction</h4>
+    <h4 title="Return type deduction">戻り値の型推論</h4>
 
     <p>
-        Use return type deduction (for both functions and lambdas) only if the
-        function body has a very small number of <code>return</code> statements,
-        and very little other code, because otherwise the reader may not be able
-        to tell at a glance what the return type is.
-        Furthermore, use it only
-        if the function or lambda has a very narrow scope, because functions with
-        deduced return types don't define abstraction boundaries: the implementation
-        <em>is</em> the interface.
-        In particular, public functions in header files
-        should almost never have deduced return types.
+        <span>
+            <span class="src">
+                Use return type deduction (for both functions and lambdas) only if the
+                function body has a very small number of <code>return</code> statements,
+                and very little other code, because otherwise the reader may not be able
+                to tell at a glance what the return type is.
+            </span>
+            関数とラムダどちらの場合でも、関数本体に含まれる<code>return</code>ステートメントの数が非常に少なく、
+            その他のコードがほとんどない場合にのみ、戻り値の型推論を使用してください。
+            そうしないと、読者は戻り値の型が一目でわからない可能性があるためです。
+        </span>
+        <span>
+            <span class="src">
+                Furthermore, use it only
+                if the function or lambda has a very narrow scope, because functions with
+                deduced return types don't define abstraction boundaries: the implementation
+                <em>is</em> the interface.
+            </span>
+            さらに、戻り値の型が推論される関数は抽象化の境界を定義しないため、関数またはラムダのスコープが
+            非常に狭い場合にのみ使用してください。実装<em>が</em>インターフェイスです。
+        </span>
+        <span>
+            <span class="src">
+                In particular, public functions in header files
+                should almost never have deduced return types.
+            </span>
+            特に、ヘッダファイル内のパブリック関数では、戻り値の型推論を含むことはほとんどありません。
+        </span>
     </p>
 
-    <h4>Parameter type deduction</h4>
+    <h4 title="Parameter type deduction">引数の型推論</h4>
 
     <p>
-        <code>auto</code> parameter types for lambdas should be used with caution,
-        because the actual type is determined by the code that calls the lambda,
-        rather than by the definition of the lambda.
-        Consequently, an explicit
-        type will almost always be clearer unless the lambda is explicitly called
-        very close to where it's defined (so that the reader can easily see both),
-        or the lambda is passed to an interface so well-known that it's
-        obvious what arguments it will eventually be called with (e.g.,
-        the <code>std::sort</code> example above).
+        <span>
+            <span class="src">
+                <code>auto</code> parameter types for lambdas should be used with caution,
+                because the actual type is determined by the code that calls the lambda,
+                rather than by the definition of the lambda.
+            </span>
+            ラムダの<code>auto</code>引数の実際の型は、ラムダの定義ではなく、
+            ラムダを呼び出すコードによって決定されるため、注意して使用する必要があります。
+        </span>
+        <span>
+            <span class="src">
+                Consequently, an explicit
+                type will almost always be clearer unless the lambda is explicitly called
+                very close to where it's defined (so that the reader can easily see both),
+                or the lambda is passed to an interface so well-known that it's
+                obvious what arguments it will eventually be called with (e.g.,
+                the <code>std::sort</code> example above).
+            </span>
+            したがって、ラムダが定義のすぐ近くで明示的に呼び出されており、読者が両方を容易に読めるか、
+            ラムダが非常によく知られたインターフェイスに渡されており、最終的にどの引数で呼び出されるかが明らか(例えば上記例の<code>std::sort</code>)な場合を除いて、
+            ほとんどの場合、明示的な型の方がより明確になります。
+        </span>
     </p>
 
-    <h4>Lambda init captures</h4>
+    <h4 title="Lambda init captures">ラムダ初期化キャプチャ</h4>
 
     <p>
-        Init captures are covered by a <a href="#Lambda_expressions">more specific
-            style rule</a>, which largely supersedes the general rules for
-        type deduction.
+        <span>
+            <span class="src">
+                Init captures are covered by a <a href="#Lambda_expressions">more specific
+                    style rule</a>, which largely supersedes the general rules for
+                type deduction.
+            </span>
+            初期化キャプチャは、<a href="#Lambda_expressions">より具体的なスタイル ルール</a>によってカバーされます。これは、型推論の一般的なルールに大きく取って代わります。
+        </span>
     </p>
 
-    <h4>Structured bindings</h4>
+    <h4 title="Structured bindings">構造化バインディング</h4>
 
     <p>
-        Unlike other forms of type deduction, structured bindings can actually
-        give the reader additional information, by giving meaningful names to the
-        elements of a larger object.
-        This means that a structured binding declaration
-        may provide a net readability improvement over an explicit type, even in cases
-        where <code>auto</code> would not.
-        Structured bindings are especially
-        beneficial when the object is a pair or tuple (as in the <code>insert</code>
-        example above), because they don't have meaningful field names to begin with,
-        but note that you generally <a href="#Structs_vs._Tuples">shouldn't use
-            pairs or tuples</a> unless a pre-existing API like <code>insert</code>
-        forces you to.
+        <span>
+            <span class="src">
+                Unlike other forms of type deduction, structured bindings can actually
+                give the reader additional information, by giving meaningful names to the
+                elements of a larger object.
+            </span>
+            他の形式の型推論とは異なり、構造化バインディングは、より大きなオブジェクトの要素に意味のある名前を付けることによって、
+            実際に読者へ追加情報を提供できます。
+        </span>
+        <span>
+            <span class="src">
+                This means that a structured binding declaration
+                may provide a net readability improvement over an explicit type, even in cases
+                where <code>auto</code> would not.
+            </span>
+            これは、構造化されたバインディング宣言は、<code>auto</code>がそうしない場合でも、
+            明示的な型よりも読みやすさが大幅に向上する可能性があることを意味します。
+        </span>
+        <span>
+            <span class="src">
+                Structured bindings are especially
+                beneficial when the object is a pair or tuple (as in the <code>insert</code>
+                example above), because they don't have meaningful field names to begin with,
+                but note that you generally <a href="#Structs_vs._Tuples">shouldn't use
+                    pairs or tuples</a> unless a pre-existing API like <code>insert</code>
+                forces you to.
+            </span>
+            構造化バインディングは、上記例の<code>insert</code>のように、オブジェクトがペアやタプルである場合に特に有益です。
+            最初から意味のあるフィールド名がないためです。
+            ただし、<code>insert</code> などの既存の API によって強制されない限り、通常は<a href="#Structs_vs._Tuples">ペアやタプルは使わない</a>でください。
+        </span>
     </p>
 
     <p>
-        If the object being bound is a struct, it may sometimes be helpful to
-        provide names that are more specific to your usage, but keep in mind that
-        this may also mean the names are less recognizable to your reader than the
-        field names.
-        We recommend using a comment to indicate the name of the
-        underlying field, if it doesn't match the name of the binding, using the
-        same syntax as for function parameter comments:
+        <span>
+            <span class="src">
+                If the object being bound is a struct, it may sometimes be helpful to
+                provide names that are more specific to your usage, but keep in mind that
+                this may also mean the names are less recognizable to your reader than the
+                field names.
+            </span>
+            バインドされているオブジェクトが構造体である場合は、その使用法に特化した名前を付けると分かりやすい場合がありますが、
+            それでも読者にとって、フィールド名よりも名前が認識しにくいかもしれないことに注意してください。
+        </span>
+        <span>
+            <span class="src">
+                We recommend using a comment to indicate the name of the
+                underlying field, if it doesn't match the name of the binding, using the
+                same syntax as for function parameter comments:
+            </span>
+            基になるフィールドの名前を示すためにコメントを使用することをお勧めします。
+            バインディングの名前と一致しない場合は、関数引数のコメントと同じ構文を使用します。
+        </span>
     </p>
     <pre>auto [/*field_name1=*/bound_name1, /*field_name2=*/bound_name2] = ...</pre>
     <p>
-        As with function parameter comments, this can enable tools to detect if
-        you get the order of the fields wrong.
+        <span>
+            <span class="src">
+                As with function parameter comments, this can enable tools to detect if
+                you get the order of the fields wrong.
+            </span>
+            これにより、関数引数のコメントと同様に、フィールドの順序が間違っているかどうかをツールが検出できるようになります。
+        </span>
     </p>
 
     <h3 id="CTAD"><span title="Class Template Argument Deduction">クラステンプレートの引数推論</span></h3>
@@ -8976,7 +9278,7 @@ auto i = y.Find(key);
                 The compiler deduces the arguments from the initializer using the
                 template's "deduction guides", which can be explicit or implicit.
             </span>
-            コンパイラは、明示的または暗黙的なテンプレートの「推定ガイド」を使用して、初期化子から引数を推定します。
+            コンパイラは、明示的または暗黙的なテンプレートの「推論ガイド」を使用して、初期化子から引数を推論します。
         </span>
     </p>
     <p>
@@ -9019,7 +9321,7 @@ auto i = y.Find(key);
                 a deduction guide using the rules of constructor overload resolution,
                 and that guide's return type becomes the type of the variable.
             </span>
-            CTAD に依存する変数を宣言すると、コンパイラはコンストラクターのオーバーロード解決の規則を使用して推論ガイドを選択し、
+            CTAD に依存する変数を宣言すると、コンパイラはコンストラクタのオーバーロード解決の規則を使用して推論ガイドを選択し、
             そのガイドの戻り値の型が変数の型になります。
         </span>
     </p>
@@ -9322,7 +9624,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                     The type of a capture with an initializer is deduced using the same rules
                     as <code>auto</code>.
                 </span>
-                初期化子を使用したキャプチャの型は、<code>auto</code>と同じ規則を使用して推定されます。
+                初期化子を使用したキャプチャの型は、<code>auto</code>と同じ規則を使用して推論されます。
             </span>
         </p>
 
