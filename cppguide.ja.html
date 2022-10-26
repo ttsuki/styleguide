@@ -2410,17 +2410,36 @@ for (int i = 0; i &lt; 1000000; ++i) {
                 さらに、プログラムが終了時に結合されていないスレッドを開始すると、それらのスレッドは、デストラクタが既に実行されている場合、存続期間が終了した後にオブジェクトにアクセスしようとする場合があります。
             </span>
         </p>
-        <!-- todo -->
         <p class="decision"></p>
-        <h4>Decision on destruction</h4>
+        <h4 title="Decision on destruction">破壊の結論</h4>
 
-        <p>When destructors are trivial, their execution is not subject to ordering at
-            all (they are effectively not "run"); otherwise we are exposed to the risk of
-            accessing objects after the end of their lifetime. Therefore, we only allow
-            objects with static storage duration if they are trivially destructible.
-            Fundamental types (like pointers and <code>int</code>) are trivially
-            destructible, as are arrays of trivially destructible types. Note that
-            variables marked with <code>constexpr</code> are trivially destructible.</p>
+        <p>
+            <span>
+                <span class="src">
+                    When destructors are trivial, their execution is not subject to ordering at
+                    all (they are effectively not "run"); otherwise we are exposed to the risk of
+                    accessing objects after the end of their lifetime.
+                </span>
+                デストラクタが自明な場合、それらの実行は順序付けの対象とはなりません (実質的に「実行」されません)。
+                そうでなければ、オブジェクトの有効期間が終了した後にオブジェクトにアクセスするリスクにさらされます。
+            </span>
+            <span>
+                <span class="src">
+                    Therefore, we only allow
+                    objects with static storage duration if they are trivially destructible.
+                </span>
+                したがって、静的な記憶域の有効期間を持つオブジェクトは、それらが自明に破壊できる場合にのみ許可されます。
+            </span>
+            <span>
+                <span class="src">
+                    Fundamental types (like pointers and <code>int</code>) are trivially
+                    destructible, as are arrays of trivially destructible types. Note that
+                    variables marked with <code>constexpr</code> are trivially destructible.
+                </span>
+                基本的な型 (ポインタや<code>int</code>など) は自明に破壊できます。自明に破壊可能な型の配列も同様です。
+                <code>constexpr</code> でマークされた変数は自明に破壊可能であることに注意してください。
+            </span>
+        </p>
         <pre>const int kNum = 10;  // Allowed
 
 struct X { int n; };
@@ -2444,33 +2463,81 @@ void bar() {
   static std::map&lt;int, int&gt; kData = {{1, 0}, {2, 0}, {3, 0}};
 }</pre>
 
-        <p>Note that references are not objects, and thus they are not subject to the
-            constraints on destructibility. The constraint on dynamic initialization still
-            applies, though.
-            In particular, a function-local static reference of the form
-            <code>static T&amp; t = *new T;</code> is allowed.
+        <p>
+            <span>
+                <span class="src">
+                    Note that references are not objects, and thus they are not subject to the
+                    constraints on destructibility.
+                </span>
+                参照はオブジェクトではないため、破壊可能性に関する制約を受けないことに注意してください。
+            </span>
+            <span>
+                <span class="src">
+                    The constraint on dynamic initialization still
+                    applies, though.
+                </span>
+                ただし、動的初期化に関する制約は引き続き適用されます。
+            </span>
+            <span>
+                <span class="src">
+                    In particular, a function-local static reference of the form
+                    <code>static T&amp; t = *new T;</code> is allowed.
+                </span>
+                特に、<code>static T&amp; t = *new T;</code> 形式の関数ローカルな静的参照が許可されます。
+            </span>
         </p>
 
-        <h4>Decision on initialization</h4>
+        <h4 title="Decision on initialization">初期化の結論</h4>
 
-        <p>Initialization is a more complex topic.
-            This is because we must not only
-            consider whether class constructors execute, but we must also consider the
-            evaluation of the initializer:</p>
+        <p>
+            <span>
+                <span class="src">
+                    Initialization is a more complex topic.
+                </span>
+                初期化は、より複雑なトピックです。
+            </span>
+            <span>
+                <span class="src">
+                    This is because we must not only
+                    consider whether class constructors execute, but we must also consider the
+                    evaluation of the initializer:
+                </span>
+                これは、クラス コンストラクタが実行されるかどうかを考慮するだけでなく、初期化子の評価も考慮する必要があるためです。
+            </span>
+        </p>
         <pre class="neutralcode">int n = 5;    // Fine
 int m = f();  // ? (Depends on f)
 Foo x;        // ? (Depends on Foo::Foo)
 Bar y = g();  // ? (Depends on g and on Bar::Bar)</pre>
 
-        <p>All but the first statement expose us to indeterminate initialization
-            ordering.</p>
+        <p>
+            <span>
+                <span class="src">
+                    All but the first statement expose us to indeterminate initialization
+                    ordering.
+                </span>
+                最初を除くすべてのステートメントで、不確定な初期化順序にさらされます。
+            </span>
+        </p>
 
-        <p>The concept we are looking for is called <em>constant initialization</em> in
-            the formal language of the C++ standard.
-            It means that the initializing
-            expression is a constant expression, and if the object is initialized by a
-            constructor call, then the constructor must be specified as
-            <code>constexpr</code>, too:
+        <p>
+            <span>
+                <span class="src">
+                    The concept we are looking for is called <em>constant initialization</em> in
+                    the formal language of the C++ standard.
+                </span>
+                私たちが探している概念は、C++ 標準の形式言語で<em>定数初期化</em>と呼ばれます。
+            </span>
+            <span>
+                <span class="src">
+                    It means that the initializing
+                    expression is a constant expression, and if the object is initialized by a
+                    constructor call, then the constructor must be specified as
+                    <code>constexpr</code>, too:
+                </span>
+                これは、初期化式が定数式であることを意味し、オブジェクトがコンストラクタ呼び出しによって
+                初期化される場合、コンストラクタも <code>constexpr</code> として指定する必要があります。
+            </span>
         </p>
         <pre>struct Foo { constexpr Foo(int) {} };
 
@@ -2478,22 +2545,46 @@ int n = 5;  // Fine, 5 is a constant expression.
 Foo x(2);   // Fine, 2 is a constant expression and the chosen constructor is constexpr.
 Foo a[] = { Foo(1), Foo(2), Foo(3) };  // Fine</pre>
 
-        <p>Constant initialization is always allowed.
-            Constant initialization of
-            static storage duration variables should be marked with <code>constexpr</code>
-            or where possible the
-
-            <a
-                href="https://github.com/abseil/abseil-cpp/blob/03c1513538584f4a04d666be5eb469e3979febba/absl/base/attributes.h#L540">
-                <code>ABSL_CONST_INIT</code></a>
-            attribute.
-            Any non-local static storage
-            duration variable that is not so marked should be presumed to have
-            dynamic initialization, and reviewed very carefully.
+        <p>
+            <span>
+                <span class="src">
+                    Constant initialization is always allowed.
+                </span>
+                定数の初期化は常に許可されます。
+            </span>
+            <span>
+                <span class="src">
+                    Constant initialization of
+                    static storage duration variables should be marked with <code>constexpr</code>
+                    or where possible the
+                    <a
+                        href="https://github.com/abseil/abseil-cpp/blob/03c1513538584f4a04d666be5eb469e3979febba/absl/base/attributes.h#L540">
+                        <code>ABSL_CONST_INIT</code></a>
+                    attribute.
+                </span>
+                静的な記憶域の有効期間の変数の一定の初期化は、<code>constexpr</code> または可能な場合は
+                <a
+                    href="https://github.com/abseil/abseil-cpp/blob/03c1513538584f4a04d666be5eb469e3979febba/absl/base/attributes.h#L540">
+                    <code>ABSL_CONST_INIT</code></a>
+                属性でマークする必要があります。
+            </span>
+            <span>
+                <span class="src">
+                    Any non-local static storage
+                    duration variable that is not so marked should be presumed to have
+                    dynamic initialization, and reviewed very carefully.
+                </span>
+                そのようにマークされていない非ローカルの静的な記憶域の有効期間の変数は、動的に初期化されていると推定され、非常に慎重にレビューされる必要があります。
+            </span>
         </p>
 
         <p>
-            By contrast, the following initializations are problematic:
+            <span>
+                <span class="src">
+                    By contrast, the following initializations are problematic:
+                </span>
+                対照的に、次の初期化には問題があります。
+            </span>
         </p>
 
         <pre class="badcode">// Some declarations used below.
@@ -2506,63 +2597,162 @@ time_t m = time(nullptr);  // Initializing expression not a constant expression
 Foo y(f());                // Ditto
 Bar b;                     // Chosen constructor Bar::Bar() not constexpr</pre>
 
-        <p>Dynamic initialization of nonlocal variables is discouraged, and in general
-            it is forbidden.
-            However, we do permit it if no aspect of the program depends
-            on the sequencing of this initialization with respect to all other
-            initializations.
-            Under those restrictions, the ordering of the initialization
-            does not make an observable difference.
-            For example:</p>
+        <p>
+            <span>
+                <span class="src">
+                    Dynamic initialization of nonlocal variables is discouraged, and in general
+                    it is forbidden.
+                </span>
+                非ローカル変数の動的初期化は推奨されておらず、一般に禁止されています。
+            </span>
+            <span>
+                <span class="src">
+                    However, we do permit it if no aspect of the program depends
+                    on the sequencing of this initialization with respect to all other
+                    initializations.
+                </span>
+                ただし、プログラムのどの側面も、他のすべての初期化に関してこの初期化の順序付けに依存しない場合は、許可されます。
+            </span>
+            <span>
+                <span class="src">
+                    Under those restrictions, the ordering of the initialization
+                    does not make an observable difference.
+                    For example:
+                </span>
+                これらの制限の下では、初期化の順序によって目に見える違いが生じることはありません。例えば：
+            </span>
+        </p>
         <pre>int p = getpid();  // Allowed, as long as no other static variable
                    // uses p in its own initialization.</pre>
 
-        <p>Dynamic initialization of static local variables is allowed (and common).</p>
-        <h4>Common patterns</h4>
-
+        <p>
+            <span>
+                <span class="src">
+                    Dynamic initialization of static local variables is allowed (and common).
+                </span>
+                静的ローカル変数の動的初期化は許可されています (そして一般的です)。
+            </span>
+        </p>
+        <h4 title="Common patterns">よくあるパターン</h4>
         <ul>
-            <li>Global strings: if you require a named global or static string constant,
-                consider using a <code>constexpr</code> variable of
-                <code>string_view</code>, character array, or character pointer, pointing
-                to a string literal.
-                String literals have static storage duration already
-                and are usually sufficient.
-                See <a href="https://abseil.io/tips/140">TotW #140.</a>
+            <li>
+                <span>
+                    <span class="src">
+                        Global strings: if you require a named global or static string constant,
+                        consider using a <code>constexpr</code> variable of
+                        <code>string_view</code>, character array, or character pointer, pointing
+                        to a string literal.
+                    </span>
+                    グローバル文字列: 名前付きのグローバルまたは静的な文字列定数が必要な場合は、
+                    文字列リテラルを指す、<code>string_view</code>、文字配列、または文字ポインタの<code>constexpr</code>変数の使用を検討してください。
+                </span>
+                <span>
+                    <span class="src">
+                        String literals have static storage duration already
+                        and are usually sufficient.
+                        See <a href="https://abseil.io/tips/140">TotW #140.</a>
+                    </span>
+                    文字列リテラルにはすでに静的な記憶域の有効期間があり、通常は十分です。 <a href="https://abseil.io/tips/140">TotW #140.</a> を参照してください。
+                </span>
             </li>
-            <li>Maps, sets, and other dynamic containers: if you require a static, fixed
-                collection, such as a set to search against or a lookup table, you cannot
-                use the dynamic containers from the standard library as a static variable,
-                since they have non-trivial destructors.
-                Instead, consider
-                a simple array of trivial types, e.g., an array of arrays of ints (for a "map from int to
-                int"), or an array of pairs (e.g., pairs of <code>int</code> and <code>const
+            <li>
+                <span>
+                    <span class="src">
+                        Maps, sets, and other dynamic containers: if you require a static, fixed
+                        collection, such as a set to search against or a lookup table, you cannot
+                        use the dynamic containers from the standard library as a static variable,
+                        since they have non-trivial destructors.
+                    </span>
+                    マップ、集合、およびその他の動的コンテナ: 検索対象の集合やルックアップテーブルなどの静的な固定コレクションが必要な場合、
+                    標準ライブラリの動的コンテナは自明なデストラクタを持たないので、静的変数として使用することはできません。
+                </span>
+                <span>
+                    <span class="src">
+                        Instead, consider
+                        a simple array of trivial types, e.g., an array of arrays of ints (for a "map from int
+                        to
+                        int"), or an array of pairs (e.g., pairs of <code>int</code> and <code>const
     char*</code>).
-                For small collections, linear search is entirely sufficient
-                (and efficient, due to memory locality); consider using the facilities from
-                <a
-                    href="https://github.com/abseil/abseil-cpp/blob/master/absl/algorithm/container.h">absl/algorithm/container.h</a>
-                for the standard operations.
-                If necessary, keep the collection in sorted
-                order and use a binary search algorithm.
-                If you do really prefer a dynamic container from the standard library, consider using
-                a function-local static pointer, as described below.
-            </li>
-            <li>Smart pointers (<code>unique_ptr</code>, <code>shared_ptr</code>): smart
-                pointers execute cleanup during destruction and are therefore forbidden.
-                Consider whether your use case fits into one of the other patterns described
-                in this section.
-                One simple solution is to use a plain pointer to a
-                dynamically allocated object and never delete it (see last item).
+                    </span>
+                    代わりに、自明な型の単純な配列、たとえば int の配列の配列 (「int から int へのマップ」の場合)、またはペアの配列 (たとえば、int と const char*
+                    のペア) を検討してください。
+                </span>
+
+                <span>
+                    <span class="src">
+                        For small collections, linear search is entirely sufficient
+                        (and efficient, due to memory locality); consider using the facilities from
+                        <a
+                            href="https://github.com/abseil/abseil-cpp/blob/master/absl/algorithm/container.h">absl/algorithm/container.h</a>
+                        for the standard operations.
+                    </span>
+                    小さなコレクションの場合は、線形検索で十分です (メモリの局所性により効率的です)。標準的な操作には
+                    <a
+                        href="https://github.com/abseil/abseil-cpp/blob/master/absl/algorithm/container.h">absl/algorithm/container.h</a>
+                    の機能を使用することを検討してください。
+                </span>
+
+                <span>
+                    <span class="src">
+                        If necessary, keep the collection in sorted
+                        order and use a binary search algorithm.
+                    </span>
+                    必要に応じて、コレクションを並べ替えた状態に保ち、二分探索アルゴリズムを使用します。
+                </span>
+
+                <span>
+                    <span class="src">
+                        If you do really prefer a dynamic container from the standard library, consider using
+                        a function-local static pointer, as described below.
+                    </span>
+                    標準ライブラリの動的コンテナを本当に好む場合は、以下で説明するように、関数ローカルな静的ポインタの使用を検討してください。
+                </span>
+
             </li>
             <li>
-                Static variables of custom types: if you require static, constant data of
-                a type that you need to define yourself, give the type a trivial destructor
-                and a <code>constexpr</code> constructor.
+                <span>
+                    <span class="src">
+                        Smart pointers (<code>unique_ptr</code>, <code>shared_ptr</code>): smart
+                        pointers execute cleanup during destruction and are therefore forbidden.
+                    </span>
+                    スマート ポインタ (<code>unique_ptr</code>, <code>shared_ptr</code>): スマート ポインタは破棄中にクリーンアップを実行するため、禁止されています。
+                </span>
+                <span>
+                    <span class="src">
+                        Consider whether your use case fits into one of the other patterns described
+                        in this section.
+                    </span>
+                    使用方法が、このセクションで説明する他のパターンのいずれかに当てはまらないか検討してください。
+                </span>
+                <span>
+                    <span class="src">
+                        One simple solution is to use a plain pointer to a
+                        dynamically allocated object and never delete it (see last item).
+                    </span>
+                    簡単な解決策の 1 つは、動的に割り当てられたオブジェクトへの単純なポインタを使用し、決して削除しないことです (最後の項目を参照)。
+                </span>
             </li>
             <li>
-                If all else fails, you can create an object dynamically and never delete
-                it by using a function-local static pointer or reference (e.g.,
-                <code>static const auto&amp; impl = *new T(args...);</code>).
+                <span>
+                    <span class="src">
+                        Static variables of custom types: if you require static, constant data of
+                        a type that you need to define yourself, give the type a trivial destructor
+                        and a <code>constexpr</code> constructor.
+                    </span>
+                    カスタム型の静的変数: 自分で定義する必要がある型の静的な定数データが​​必要な場合は、
+                    その型に自明なデストラクタと <code>constexpr</code> コンストラクタを持たせます。
+                </span>
+            </li>
+            <li>
+                <span>
+                    <span class="src">
+                        If all else fails, you can create an object dynamically and never delete
+                        it by using a function-local static pointer or reference (e.g.,
+                        <code>static const auto&amp; impl = *new T(args...);</code>).
+                    </span>
+                    上記のすべてができない場合は、関数ローカルの静的なポインタまたは参照を使用して、オブジェクトを動的に作成し、決して削除しないでください。
+                    (例: <code>static const auto&amp; impl = *new T(args...);</code>)
+                </span>
             </li>
         </ul>
         <!-- todo -->
@@ -6373,47 +6563,80 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
     </p>
     </div>
 
-    <!-- todo -->
     <h3 id="noexcept"><code>noexcept</code></h3>
 
     <p>
-        Specify <code>noexcept</code> when it is useful and correct.
+        <span>
+            <span class="src">
+                Specify <code>noexcept</code> when it is useful and correct.
+            </span>
+            有用で正しいときだけ<code>noexcept</code>を指定します。
+        </span>
     </p>
 
     <p class="definition">
     </p>
     <p>
-        The <code>noexcept</code> specifier is used to specify whether
-        a function will throw exceptions or not.
-        If an exception
-        escapes from a function marked <code>noexcept</code>, the program
-        crashes via <code>std::terminate</code>.
+        <span>
+            <span class="src">
+                The <code>noexcept</code> specifier is used to specify whether
+                a function will throw exceptions or not.
+            </span>
+            <code>noexcept</code>指定子は、関数が例外をスローするかどうかを指定するために使用されます。
+        </span>
+        <span>
+            <span class="src">
+                If an exception
+                escapes from a function marked <code>noexcept</code>, the program
+                crashes via <code>std::terminate</code>.
+            </span>
+            <code>noexcept</code>とマークされた関数から例外が抜け出すと、プログラムは <code>std::terminate</code> を介してクラッシュします。
+        </span>
     </p>
 
     <p>
-        The <code>noexcept</code> operator performs a compile-time
-        check that returns true if an expression is declared to not
-        throw any exceptions.
+        <span>
+            <span class="src">
+                The <code>noexcept</code> operator performs a compile-time
+                check that returns true if an expression is declared to not
+                throw any exceptions.
+            </span>
+            <code>noexcept</code>演算子は、式が例外をスローしないと宣言されている場合に true を返すコンパイル時のチェックを実行します。
+        </span>
     </p>
 
     <p class="pros">
     </p>
     <ul>
         <li>
-            Specifying move constructors as <code>noexcept</code>
-            improves performance in some cases, e.g.,
-            <code>std::vector&lt;T&gt;::resize()</code> moves rather than
-            copies the objects if T's move constructor is
-            <code>noexcept</code>.
+            <span>
+                <span class="src">
+                    Specifying move constructors as <code>noexcept</code>
+                    improves performance in some cases, e.g.,
+                    <code>std::vector&lt;T&gt;::resize()</code> moves rather than
+                    copies the objects if T's move constructor is
+                    <code>noexcept</code>.
+                </span>
+                ムーブコンストラクタを <code>noexcept</code> として指定すると、場合によってはパフォーマンスが向上します。
+                たとえば、T のムーブコンストラクタが
+                <code>noexcept</code>の場合、<code>std::vector&lt;T&gt;::resize()</code>はオブジェクトをコピーするのではなくムーブします。
+            </span>
         </li>
 
         <li>
-            Specifying <code>noexcept</code> on a function can
-            trigger compiler optimizations in environments where
-            exceptions are enabled, e.g., compiler does not have to
-            generate extra code for stack-unwinding, if it knows
-            that no exceptions can be thrown due to a
-            <code>noexcept</code> specifier.
+            <span>
+                <span class="src">
+                    Specifying <code>noexcept</code> on a function can
+                    trigger compiler optimizations in environments where
+                    exceptions are enabled, e.g., compiler does not have to
+                    generate extra code for stack-unwinding, if it knows
+                    that no exceptions can be thrown due to a
+                    <code>noexcept</code> specifier.
+                </span>
+                関数で <code>noexcept</code> を指定すると、例外が有効になっている環境でコンパイラの最適化をトリガーできます。
+                たとえば、コンパイラは、<code>noexcept</code>指定子によって例外をスローしないことがわかっている場合、
+                スタックの巻き戻しのために追加のコードを生成する必要はありません。
+            </span>
         </li>
     </ul>
 
@@ -6421,65 +6644,119 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
     </p>
     <ul>
         <li>
-
-
-            In projects following this guide
-            that have exceptions disabled it is hard
-            to ensure that <code>noexcept</code>
-            specifiers are correct, and hard to define what
-            correctness even means.
+            <span>
+                <span class="src">
+                    In projects following this guide
+                    that have exceptions disabled it is hard
+                    to ensure that <code>noexcept</code>
+                    specifiers are correct, and hard to define what
+                    correctness even means.
+                </span>
+                例外が無効になっているこのガイドに従うプロジェクトでは、<code>noexcept</code> 指定子の正しさを保証することは難しく、正しさとは何を意味するのか定義することさえ困難です。
+            </span>
         </li>
 
         <li>
-            It's hard, if not impossible, to undo <code>noexcept</code>
-            because it eliminates a guarantee that callers may be relying
-            on, in ways that are hard to detect.
+            <span>
+                <span class="src">
+                    It's hard, if not impossible, to undo <code>noexcept</code>
+                    because it eliminates a guarantee that callers may be relying
+                    on, in ways that are hard to detect.
+                </span>
+                呼び出し元が依存しているかもしれない保証を、検出が困難な方法で消去してしまうため、<code>noexcept</code> を元に戻すのは、不可能ではないにしても困難です。
+            </span>
         </li>
     </ul>
 
     <p class="decision">
     </p>
     <p>
-        You may use <code>noexcept</code> when it is useful for
-        performance if it accurately reflects the intended semantics
-        of your function, i.e., that if an exception is somehow thrown
-        from within the function body then it represents a fatal error.
-        You can assume that <code>noexcept</code> on move constructors
-        has a meaningful performance benefit.
-        If you think
-        there is significant performance benefit from specifying
-        <code>noexcept</code> on some other function, please discuss it
-        with
-        your project leads.
+        <span>
+            <span class="src">
+                You may use <code>noexcept</code> when it is useful for
+                performance if it accurately reflects the intended semantics
+                of your function, i.e., that if an exception is somehow thrown
+                from within the function body then it represents a fatal error.
+            </span>
+            例えば関数本体内から何らかの方法でスローされる例外が致命的なエラーを表す場合など、関数の意図されたセマンティクスを正確に反映している場合、
+            パフォーマンスのために <code>noexcept</code> を使用できます。
+        </span>
+        <span>
+            <span class="src">
+                You can assume that <code>noexcept</code> on move constructors
+                has a meaningful performance benefit.
+            </span>
+            ムーブ コンストラクタの <code>noexcept</code> には、有意なパフォーマンス上の利点があると想定できます。
+        </span>
+        <span>
+            <span class="src">
+                If you think
+                there is significant performance benefit from specifying
+                <code>noexcept</code> on some other function, please discuss it
+                with
+                your project leads.
+            </span>
+            他の関数で <code>noexcept</code> を指定することでパフォーマンスが大幅に向上すると思われる場合は、プロジェクト リーダーと話し合ってください。
+        </span>
     </p>
 
     <p>
-        Prefer unconditional <code>noexcept</code> if exceptions are
-        completely disabled (i.e., most Google C++ environments).
-        Otherwise, use conditional <code>noexcept</code> specifiers
-        with simple conditions, in ways that evaluate false only in
-        the few cases where the function could potentially throw.
-        The tests might include type traits check on whether the
-        involved operation might throw (e.g.,
-        <code>std::is_nothrow_move_constructible</code> for
-        move-constructing objects), or on whether allocation can throw
-        (e.g., <code>absl::default_allocator_is_nothrow</code> for
-        standard default allocation).
-        Note in many cases the only
-        possible cause for an exception is allocation failure (we
-        believe move constructors should not throw except due to
-        allocation failure), and there are many applications where it’s
-        appropriate to treat memory exhaustion as a fatal error rather
-        than an exceptional condition that your program should attempt
-        to recover from.
-        Even for other
-        potential failures you should prioritize interface simplicity
-        over supporting all possible exception throwing scenarios:
-        instead of writing a complicated <code>noexcept</code> clause
-        that depends on whether a hash function can throw, for example,
-        simply document that your component doesn’t support hash
-        functions throwing and make it unconditionally
-        <code>noexcept</code>.
+        <span>
+            <span class="src">
+                Prefer unconditional <code>noexcept</code> if exceptions are
+                completely disabled (i.e., most Google C++ environments).
+            </span>
+            例外が完全に無効になっている場合 (つまりほとんどの Google C++ 環境) は、無条件の <code>noexcept</code> を優先します。
+        </span>
+        <span>
+            <span class="src">
+                Otherwise, use conditional <code>noexcept</code> specifiers
+                with simple conditions, in ways that evaluate false only in
+                the few cases where the function could potentially throw.
+            </span>
+            それ以外の場合は、単純な条件で条件付き <code>noexcept</code> 指定子を使用して、関数が潜在的にスローする可能性のあるいくつかのケースでのみ false と評価されるようにします。
+        </span>
+        <span>
+            <span class="src">
+                The tests might include type traits check on whether the
+                involved operation might throw (e.g.,
+                <code>std::is_nothrow_move_constructible</code> for
+                move-constructing objects), or on whether allocation can throw
+                (e.g., <code>absl::default_allocator_is_nothrow</code> for
+                standard default allocation).
+            </span>
+            テストには、関連する操作がスローするかどうか (ムーブコンストラクトされたオブジェクトの <code>std::is_nothrow_move_constructible</code> など)、
+            または割り当てがスローできるかどうか (標準のデフォルト割り当ての <code>absl::default_allocator_is_nothrow</code> など)
+            に関する型トレイトのチェックが含まれる場合があります。
+        </span>
+        <span>
+            <span class="src">
+                Note in many cases the only
+                possible cause for an exception is allocation failure (we
+                believe move constructors should not throw except due to
+                allocation failure), and there are many applications where it’s
+                appropriate to treat memory exhaustion as a fatal error rather
+                than an exceptional condition that your program should attempt
+                to recover from.
+            </span>
+            多くの場合、例外の唯一の原因は割り当ての失敗であることに注意してください (ムーブ コンストラクタは、割り当ての失敗以外ではスローすべきではないと考えています)。
+            また、メモリの枯渇を、プログラムが回復を試みる例外的な状態ではなく、致命的なエラーとして扱うことが適切なアプリケーションが数多くあります。
+        </span>
+        <span>
+            <span class="src">
+                Even for other
+                potential failures you should prioritize interface simplicity
+                over supporting all possible exception throwing scenarios:
+                instead of writing a complicated <code>noexcept</code> clause
+                that depends on whether a hash function can throw, for example,
+                simply document that your component doesn’t support hash
+                functions throwing and make it unconditionally
+                <code>noexcept</code>.
+            </span>
+            他の潜在的なエラーの場合でも、考えられるすべての例外スロー シナリオをサポートするよりも、インターフェイスのシンプルさを優先する必要があります。
+            ハッシュ関数がスローできるかに依存する複雑な <code>noexcept</code> 句を記述する代わりに、例えば、コンポーネントがハッシュ関数のスローを
+            サポートしていないことを文書化し、無条件に <code>noexcept</code> にします。
+        </span>
     </p>
 
     <h3 id="Run-Time_Type_Information__RTTI_"><span title="Run-Time Type Information (RTTI)">実行時型情報(RTTI)</span></h3>
@@ -8637,7 +8914,7 @@ f(0);  // Invokes f&lt;int&gt;(0)</pre>
                     instead of parentheses).
                 </span>
                 コンパイラは変数の初期化子から、関数テンプレートでの同じ初期化子の引数推論と同じ規則に従って、
-                型を推論します (括弧の代わりに中括弧を使用しない限り)。
+                型を推論します (括弧の代わりに波括弧を使用しない限り)。
             </span>
 
             <pre class="neutralcode">auto a = 42;  // a is an int
@@ -9421,19 +9698,29 @@ std::array numbers = {4, 8, 15, 16, 23, 42};</pre>
         </span>
     </p>
 
-    <!-- todo -->
-    <h3 id="Designated_initializers">Designated Initializers</h3>
+    <h3 id="Designated_initializers" title="Designated Initializers">指示付き初期化子</h3>
 
     <p>
-        Use designated initializers only in their C++20-compliant form.
+        <span>
+            <span class="src">
+                Use designated initializers only in their C++20-compliant form.
+            </span>
+            指示付き初期化子は、C++20 準拠の形式でのみ使用してください。
+        </span>
     </p>
 
     <p class="definition">
     </p>
     <p>
-        <a href="https://en.cppreference.com/w/cpp/language/aggregate_initialization#Designated_initializers">
-            Designated initializers</a> are a syntax that allows for initializing an
-        aggregate ("plain old struct") by naming its fields explicitly:
+        <span>
+            <span class="src">
+                <a href="https://en.cppreference.com/w/cpp/language/aggregate_initialization#Designated_initializers">
+                    Designated initializers</a> are a syntax that allows for initializing an
+                aggregate ("plain old struct") by naming its fields explicitly:
+            </span>
+            <a href="https://en.cppreference.com/w/cpp/language/aggregate_initialization#Designated_initializers">指示付き初期化子</a>は、
+            フィールドに明示的に名前を付けることで集約 ("plain old struct") を初期化できる構文です。
+        </span>
     </p>
     <pre class="neutralcode">  struct Point {
         float x = 0.0;
@@ -9447,42 +9734,72 @@ std::array numbers = {4, 8, 15, 16, 23, 42};</pre>
         // z will be 0.0
       };</pre>
     <p>
-        The explicitly listed fields will be initialized as specified, and others
-        will be initialized in the same way they would be in a traditional aggregate
-        initialization expression like <code>Point{1.0, 2.0}</code>.
+        <span>
+            <span class="src">
+                The explicitly listed fields will be initialized as specified, and others
+                will be initialized in the same way they would be in a traditional aggregate
+                initialization expression like <code>Point{1.0, 2.0}</code>.
+            </span>
+            明示的にリストされたフィールドは指定どおりに初期化され、その他のフィールドは <code>Point{1.0, 2.0}</code> などの従来の集約初期化式と同じ方法で初期化されます。
+        </span>
     </p>
 
     <p class="pros">
     </p>
     <p>
-        Designated initializers can make for convenient and highly readable
-        aggregate expressions, especially for structs with less straightforward
-        ordering of fields than the <code>Point</code> example above.
+        <span>
+            <span class="src">
+                Designated initializers can make for convenient and highly readable
+                aggregate expressions, especially for structs with less straightforward
+                ordering of fields than the <code>Point</code> example above.
+            </span>
+            指示付き初期化子は、特に上記の <code>Point</code> の例よりもフィールドの順序付けが単純でない構造体の場合に、便利で読みやすい集計式を作成できます。
+        </span>
     </p>
 
     <p class="cons">
     </p>
     <p>
-        While designated initializers have long been part of the C standard and
-        supported by C++ compilers as an extension, only recently have they made it
-        into the C++ standard, being added as part of C++20.
+        <span>
+            <span class="src">
+                While designated initializers have long been part of the C standard and
+                supported by C++ compilers as an extension, only recently have they made it
+                into the C++ standard, being added as part of C++20.
+            </span>
+            指定初期化子は長い間 C 標準の一部であり、C++ コンパイラによって拡張機能としてサポートされていましたが、C++20 の一部として追加され、C++ 標準に組み込まれたのはごく最近のことです。
+        </span>
     </p>
 
     <p>
-        The rules in the C++ standard are stricter than in C and compiler extensions,
-        requiring that the designated initializers appear in the same order as the
-        fields appear in the struct definition.
-        So in the example above, it is legal
-        according to C++20 to initialize <code>x</code> and then <code>z</code>, but not
-        <code>y</code> and then <code>x</code>.
+        <span>
+            <span class="src">
+                The rules in the C++ standard are stricter than in C and compiler extensions,
+                requiring that the designated initializers appear in the same order as the
+                fields appear in the struct definition.
+            </span>
+            C++ 標準の規則は、C 標準やコンパイラの拡張機能よりも厳密であり、指示付き初期化子は、構造体の定義にフィールドが現れるのと同じ順序で現れる必要があります。
+        </span>
+        <span>
+            <span class="src">
+                So in the example above, it is legal
+                according to C++20 to initialize <code>x</code> and then <code>z</code>, but not
+                <code>y</code> and then <code>x</code>.
+            </span>
+            したがって、上記の例では、C++20 によれば、<code>x</code> のあとに <code>z</code> を初期化することは正当ですが、<code>y</code> のあとに <code>x</code> はできません。
+        </span>
     </p>
 
     <p class="decision">
     </p>
     <p>
-        Use designated initializers only in the form that is compatible with the
-        C++20 standard: with initializers in the same order as the corresponding fields
-        appear in the struct definition.
+        <span>
+            <span class="src">
+                Use designated initializers only in the form that is compatible with the
+                C++20 standard: with initializers in the same order as the corresponding fields
+                appear in the struct definition.
+            </span>
+            指示付き初期化子は、C++20 標準と互換性のある形式でのみ使用してください。対応するフィールドが構造体定義に現れるのと同じ順序で初期化子を使用します。
+        </span>
     </p>
 
     <h3 id="Lambda_expressions"><span title="Lambda expressions">ラムダ式</span></h3>
