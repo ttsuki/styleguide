@@ -2705,7 +2705,7 @@ Bar b;                     // Chosen constructor Bar::Bar() not constexpr</pre>
                         If you do really prefer a dynamic container from the standard library, consider using
                         a function-local static pointer, as described below.
                     </span>
-                    標準ライブラリの動的コンテナを本当に好む場合は、以下で説明するように、関数ローカルな静的ポインタの使用を検討してください。
+                    標準ライブラリの動的コンテナを本当に使いたい場合は、以下で説明するように、関数ローカルな静的ポインタの使用を検討してください。
                 </span>
 
             </li>
@@ -2755,64 +2755,129 @@ Bar b;                     // Chosen constructor Bar::Bar() not constexpr</pre>
                 </span>
             </li>
         </ul>
-        <!-- todo -->
-        <h3 id="thread_local">thread_local Variables</h3>
 
-        <p><code>thread_local</code> variables that aren't declared inside a function
-            must be initialized with a true compile-time constant,
-            and this must be enforced by using the
+        <h3 id="thread_local" title="thread_local Variables">thread_local 変数</h3>
+        <p>
+            <span>
+                <span class="src">
+                    <code>thread_local</code> variables that aren't declared inside a function
+                    must be initialized with a true compile-time constant,
+                    and this must be enforced by using the
 
-            <a href="https://github.com/abseil/abseil-cpp/blob/master/absl/base/attributes.h">
-                <code>ABSL_CONST_INIT</code></a>
-            attribute.
-            Prefer
-            <code>thread_local</code> over other ways of defining thread-local data.
+                    <a href="https://github.com/abseil/abseil-cpp/blob/master/absl/base/attributes.h">
+                        <code>ABSL_CONST_INIT</code></a>
+                    attribute.
+                </span>
+                関数内で宣言されていない<code>thread_local</code>変数は、真のコンパイル時定数で初期化する必要があり、これは
+                <a href="https://github.com/abseil/abseil-cpp/blob/master/absl/base/attributes.h">
+                    <code>ABSL_CONST_INIT</code></a>
+                属性を使用して強制する必要があります。
+            </span>
+            <span>
+                <span class="src">
+                    Prefer
+                    <code>thread_local</code> over other ways of defining thread-local data.
+                </span>
+                スレッド ローカルなデータを定義する他の方法よりも、<code>thread_local</code>を優先します。
+            </span>
         </p>
 
         <p class="definition"></p>
-        <p>Variables can be declared with the
-            <code>thread_local</code> specifier:
+        <p>
+            <span>
+                <span class="src">
+                    Variables can be declared with the
+                    <code>thread_local</code> specifier:
+                </span>
+                変数は、<code>thread_local</code>指定子で宣言できます。
+            </span>
         </p>
         <pre>thread_local Foo foo = ...;
 </pre>
         <p>
-            Such a variable is actually a collection of objects, so that when different
-            threads access it, they are actually accessing different objects.
-            <code>thread_local</code> variables are much like
-            <a href="#Static_and_Global_Variables">static storage duration variables</a>
-            in many respects.
-            For instance, they can be declared at namespace scope,
-            inside functions, or as static class members, but not as ordinary class
-            members.
+            <span>
+                <span class="src">
+                    Such a variable is actually a collection of objects, so that when different
+                    threads access it, they are actually accessing different objects.
+                </span>
+                このような変数は、実際にはオブジェクトのコレクションであるため、異なるスレッドがそれにアクセスすると、
+                実際には異なるオブジェクトにアクセスしています。
+            </span>
+
+            <span>
+                <span class="src">
+                    <code>thread_local</code> variables are much like
+                    <a href="#Static_and_Global_Variables">static storage duration variables</a>
+                    in many respects.
+                </span>
+                <code>thread_local</code>変数は、多くの点で<a href="#Static_and_Global_Variables">静的な記憶域の有効期間の変数</a>によく似ています。
+            </span>
+            <span>
+                <span class="src">
+                    For instance, they can be declared at namespace scope,
+                    inside functions, or as static class members, but not as ordinary class
+                    members.
+                </span>
+                たとえば、名前空間スコープ、関数内、または静的クラスメンバとして宣言できますが、通常のクラスメンバとして宣言することはできません。
+            </span>
         </p>
 
         <p>
-            <code>thread_local</code> variable instances are initialized much like
-            static variables, except that they must be initialized separately for each
-            thread, rather than once at program startup.
-            This means that
-            <code>thread_local</code> variables declared within a function are safe, but
-            other <code>thread_local</code> variables are subject to the same
-            initialization-order issues as static variables (and more besides).
+            <span>
+                <span class="src">
+                    <code>thread_local</code> variable instances are initialized much like
+                    static variables, except that they must be initialized separately for each
+                    thread, rather than once at program startup.
+                </span>
+                <code>thread_local</code>変数インスタンスは、静的変数と同じように初期化されますが、プログラムの起動時に一度ではなく、
+                スレッドごとに個別に初期化される必要がある点が異なります。
+            </span>
+
+            <span>
+                <span class="src">
+                    This means that
+                    <code>thread_local</code> variables declared within a function are safe, but
+                    other <code>thread_local</code> variables are subject to the same
+                    initialization-order issues as static variables (and more besides).
+                </span>
+                これは、関数内で宣言された<code>thread_local</code>変数は安全であることを意味しますが、
+                他の<code>thread_local</code>変数は、静的変数と同じ初期化順序やそれ以外の問題の影響を受けます。
+            </span>
         </p>
 
         <p>
-            <code>thread_local</code> variable instances are not destroyed before their
-            thread terminates, so they do not have the destruction-order issues of static
-            variables.
+            <span>
+                <span class="src">
+                    <code>thread_local</code> variable instances are not destroyed before their
+                    thread terminates, so they do not have the destruction-order issues of static
+                    variables.
+                </span>
+                <code>thread_local</code>変数インスタンスは、スレッドが終了する前に破棄されないため、静的変数の破棄順序の問題はありません。
+            </span>
         </p>
 
         <p class="pros">
         </p>
         <ul>
             <li>
-                Thread-local data is inherently safe from races (because only one thread
-                can ordinarily access it), which makes <code>thread_local</code> useful for
-                concurrent programming.
+                <span>
+                    <span class="src">
+                        Thread-local data is inherently safe from races (because only one thread
+                        can ordinarily access it), which makes <code>thread_local</code> useful for
+                        concurrent programming.
+                    </span>
+                    1つのスレッドしか通常はアクセスできないので、スレッドローカルなデータは本質的に競合に対して安全なため、
+                    <code>thread_local</code>は並行プログラミングに役立ちます。
+                </span>
             </li>
             <li>
-                <code>thread_local</code> is the only standard-supported way of creating
-                thread-local data.
+                <span>
+                    <span class="src">
+                        <code>thread_local</code> is the only standard-supported way of creating
+                        thread-local data.
+                    </span>
+                    <code>thread_local</code>は、標準がサポートする唯一のスレッドローカルなデータの作成方法です。
+                </span>
             </li>
         </ul>
 
@@ -2820,25 +2885,50 @@ Bar b;                     // Chosen constructor Bar::Bar() not constexpr</pre>
         </p>
         <ul>
             <li>
-                Accessing a <code>thread_local</code> variable may trigger execution of
-                an unpredictable and uncontrollable amount of other code.
+                <span>
+                    <span class="src">
+                        Accessing a <code>thread_local</code> variable may trigger execution of
+                        an unpredictable and uncontrollable amount of other code.
+                    </span>
+                    <code>thread_local</code>変数にアクセスすると、予測不能で制御不能な量の他のコードが実行される可能性があります。
+                </span>
             </li>
             <li>
-                <code>thread_local</code> variables are effectively global variables,
-                and have all the drawbacks of global variables other than lack of
-                thread-safety.
+                <span>
+                    <span class="src">
+                        <code>thread_local</code> variables are effectively global variables,
+                        and have all the drawbacks of global variables other than lack of
+                        thread-safety.
+                    </span>
+                    <code>thread_local</code>変数は事実上グローバル変数であり、スレッドセーフの欠如以外のグローバル変数のすべての欠点があります。
+                </span>
             </li>
             <li>
-                The memory consumed by a <code>thread_local</code> variable scales with
-                the number of running threads (in the worst case), which can be quite large
-                in a program.
+                <span>
+                    <span class="src">
+                        The memory consumed by a <code>thread_local</code> variable scales with
+                        the number of running threads (in the worst case), which can be quite large
+                        in a program.
+                    </span>
+                    <code>thread_local</code>変数によって消費されるメモリは最悪の場合、実行中のスレッド数に比例し、プログラム内で非常に大きくなる可能性があります。
+                </span>
             </li>
             <li>
-                Non-static data members cannot be <code>thread_local</code>.
+                <span>
+                    <span class="src">
+                        Non-static data members cannot be <code>thread_local</code>.
+                    </span>
+                    静的でないデータメンバを<code>thread_local</code>にすることはできません。
+                </span>
             </li>
             <li>
-                <code>thread_local</code> may not be as efficient as certain compiler
-                intrinsics.
+                <span>
+                    <span class="src">
+                        <code>thread_local</code> may not be as efficient as certain compiler
+                        intrinsics.
+                    </span>
+                    <code>thread_local</code>は、特定のコンパイラ組み込み関数ほど効率的ではない場合があります。
+                </span>
             </li>
 
         </ul>
@@ -2846,39 +2936,70 @@ Bar b;                     // Chosen constructor Bar::Bar() not constexpr</pre>
         <p class="decision">
         </p>
         <p>
-            <code>thread_local</code> variables inside a function have no safety
-            concerns, so they can be used without restriction.
-            Note that you can use
-            a function-scope <code>thread_local</code> to simulate a class- or
-            namespace-scope <code>thread_local</code> by defining a function or
-            static method that exposes it:
+            <span>
+                <span class="src">
+                    <code>thread_local</code> variables inside a function have no safety
+                    concerns, so they can be used without restriction.
+                </span>
+                関数内の<code>thread_local</code>変数には安全上の懸念がないため、制限なく使用できます。
+            </span>
+
+            <span>
+                <span class="src">
+                    Note that you can use
+                    a function-scope <code>thread_local</code> to simulate a class- or
+                    namespace-scope <code>thread_local</code> by defining a function or
+                    static method that exposes it:
+                </span>
+                関数スコープの<code>thread_local</code>を使用して、それを公開する関数または静的メソッドを定義することにより、
+                クラスまたは名前空間スコープの<code>thread_local</code>を模擬できることに注意してください。
+            </span>
         </p>
 
         <pre>Foo&amp; MyThreadLocalFoo() {
-          thread_local Foo result = ComplicatedInitialization();
-          return result;
-        }
-        </pre>
+    thread_local Foo result = ComplicatedInitialization();
+    return result;
+}</pre>
 
         <p>
-            <code>thread_local</code> variables at class or namespace scope must be
-            initialized with a true compile-time constant (i.e., they must have no
-            dynamic initialization).
-            To enforce this, <code>thread_local</code> variables
-            at class or namespace scope must be annotated with
+            <span>
+                <span class="src">
+                    <code>thread_local</code> variables at class or namespace scope must be
+                    initialized with a true compile-time constant (i.e., they must have no
+                    dynamic initialization).
+                </span>
+                クラスまたは名前空間スコープの<code>thread_local</code>変数は、真のコンパイル時定数での初期化が必要です。
+                 例えば、動的初期化させない必要があります。
+            </span>
+
+            <span>
+                <span class="src">
+                    To enforce this, <code>thread_local</code> variables
+                    at class or namespace scope must be annotated with
 
 
-            <a href="https://github.com/abseil/abseil-cpp/blob/master/absl/base/attributes.h">
-                <code>ABSL_CONST_INIT</code></a>
-            (or <code>constexpr</code>, but that should be rare):
+                    <a href="https://github.com/abseil/abseil-cpp/blob/master/absl/base/attributes.h">
+                        <code>ABSL_CONST_INIT</code></a>
+                    (or <code>constexpr</code>, but that should be rare):
+                </span>
+                これを強制するには、クラスや名前空間スコープの<code>thread_local</code>変数に
+                <a href="https://github.com/abseil/abseil-cpp/blob/master/absl/base/attributes.h">
+                    <code>ABSL_CONST_INIT</code></a>
+                (または<code>constexpr</code>ですが、まれなはずです) で注釈を付ける必要があります。
+            </span>
         </p>
 
         <pre>ABSL_CONST_INIT thread_local Foo foo = ...;
         </pre>
 
         <p>
-            <code>thread_local</code> should be preferred over other mechanisms for
-            defining thread-local data.
+            <span>
+                <span class="src">
+                    <code>thread_local</code> should be preferred over other mechanisms for
+                    defining thread-local data.
+                </span>
+                スレッド ローカルなデータを定義するには<code>thread_local</code>を、他の機構よりも優先する必要があります。
+            </span>
         </p>
 
         <h2 id="Classes">
@@ -3840,12 +3961,6 @@ class NotCopyableOrMovable {
         </p>
 
         <h3 id="Structs_vs._Tuples"><span title="Structs vs. Pairs and Tuples">構造体かペアやタプルか</span></h3>
-
-
-
-
-
-        ペアとタプルは、ペアまたはタプルの要素に特定の意味がない一般的なコードで適切な場合があります。 それらの使用は、既存のコードまたは API と相互運用するために必要になる場合もあります。
         <p>
             <span>
                 <span class="src">
@@ -9718,7 +9833,8 @@ std::array numbers = {4, 8, 15, 16, 23, 42};</pre>
                     Designated initializers</a> are a syntax that allows for initializing an
                 aggregate ("plain old struct") by naming its fields explicitly:
             </span>
-            <a href="https://en.cppreference.com/w/cpp/language/aggregate_initialization#Designated_initializers">指示付き初期化子</a>は、
+            <a
+                href="https://en.cppreference.com/w/cpp/language/aggregate_initialization#Designated_initializers">指示付き初期化子</a>は、
             フィールドに明示的に名前を付けることで集約 ("plain old struct") を初期化できる構文です。
         </span>
     </p>
@@ -9785,7 +9901,8 @@ std::array numbers = {4, 8, 15, 16, 23, 42};</pre>
                 according to C++20 to initialize <code>x</code> and then <code>z</code>, but not
                 <code>y</code> and then <code>x</code>.
             </span>
-            したがって、上記の例では、C++20 によれば、<code>x</code> のあとに <code>z</code> を初期化することは正当ですが、<code>y</code> のあとに <code>x</code> はできません。
+            したがって、上記の例では、C++20 によれば、<code>x</code> のあとに <code>z</code> を初期化することは正当ですが、<code>y</code> のあとに <code>x</code>
+            はできません。
         </span>
     </p>
 
