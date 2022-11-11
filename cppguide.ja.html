@@ -59,14 +59,9 @@
             <span title="Google C++ Style Guide">Google C++ スタイルガイド</span> 日本語全訳
         </h1>
         <p>
-            本ドキュメントは
-            <a href="https://github.com/google/styleguide/">https://github.com/google/styleguide/</a> にて公開されているGoogle
-            C++ Style Guideを日本語に訳したものです。
-        </p>
-        <p>
-            commit
-            <a href="https://github.com/google/styleguide/blob/8638b2665f29e46a505df55887b28900e4ceb3ff/cppguide.html">8638b26
-                Oct 14, 2022</a> を底本としています。(訳文にマウスを重ねると原文が表示されます)
+            本ドキュメントは<a href="https://github.com/google/styleguide/">https://github.com/google/styleguide/</a> にて公開されているGoogle C++ Style Guideを日本語に訳したものです。<br>
+            commit <a href="https://github.com/google/styleguide/blob/8638b2665f29e46a505df55887b28900e4ceb3ff/cppguide.html">8638b26 (Oct 14, 2022)</a> を底本としています。<br>
+            オリジナルの最新版は <a href="https://google.github.io/styleguide/cppguide.html">https://google.github.io/styleguide/cppguide.html</a>で読むことができます。
         </p>
         <p>
             オリジナルと同様
@@ -76,6 +71,9 @@
             誤訳の指摘・改善案は
             <a href="https://github.com/ttsuki/styleguide/issues">Issues</a> or
             <a href="https://github.com/ttsuki/styleguide/pulls">Pull Requests</a>までお願いします。
+        </p>
+        <p>
+            訳文にマウスを重ねると原文が表示されます。
         </p>
         <div class="horizontal_toc" id="tocDiv"></div>
 
@@ -98,7 +96,7 @@
                     this power brings with it complexity, which in turn can make
                     code more bug-prone and harder to read and maintain.
                 </span>
-                C++のプログラマなら誰でも知っているように、この言語はパワフルな機能がありますが、一方でこのパワフルさが複雑さを招き、バグを発生させやすくしたり、また可読性やメンテナンス性の妨げになったりしています。
+                C++のプログラマなら誰でも知っているように、この言語にはパワフルな機能がありますが、同時に、そのパワフルさが複雑さを招き、バグを発生させやすくしたり、また可読性やメンテナンス性の妨げになったりもしています。
             </span>
         </p>
 
@@ -116,7 +114,7 @@
                     keep the code base manageable while still allowing
                     coders to use C++ language features productively.
                 </span>
-                これらのルールは、プログラマがC++の言語機能を生産的に使用できるようにしたまま、コードベースを管理しやすくするために存在します。
+                これらのルールは、C++プログラマが、言語機能の生産性を生かしつつも、コードベースを管理可能な状態に保つために存在します。
             </span>
         </p>
 
@@ -126,7 +124,7 @@
                     <em>Style</em>, also known as readability, is what we call
                     the conventions that govern our C++ code.
                 </span>
-                "<em>スタイル</em>"とは、可読性(リーダビリティ)としても知られ、私たちのC++コードを管理するための規約のことです。
+                「<em>スタイル</em>」は、可読性(リーダビリティ)としても知られ、私たちのC++コードを管理するための規約のことです。
             </span>
             <span>
                 <span class="src">
@@ -134,7 +132,7 @@
                     bit of a misnomer, since these conventions cover far more than
                     just source file formatting.
                 </span>
-                これらの規約は、単にソースファイルのフォーマットだけではなく、広い範囲を含むため<em>スタイル</em>という用語はちょっとふさわしくないかもしれません。
+                これらの規約は、単なるソースファイルのフォーマットだけではなく、広い範囲を含むため<em>スタイル</em>という用語はちょっとふさわしくないかもしれません。
             </span>
         </p>
 
@@ -144,7 +142,7 @@
                     Most open-source projects developed by
                     Google conform to the requirements in this guide.
                 </span>
-                Googleのオープンソースプロジェクトのほとんどが、本ガイドに則っています。
+                Googleで開発されるほとんどのオープンソースプロジェクトが、本ガイドに則っています。
             </span>
         </p>
 
@@ -154,7 +152,7 @@
                     Note that this guide is not a C++ tutorial: we assume that
                     the reader is familiar with the language.
                 </span>
-                注意してほしいのは、このガイドはC++のチュートリアルではないということです。このガイドは読者がC++に精通していることを想定して書かれています。
+                注意してほしいのは、このガイドはC++のチュートリアルではないということです。むしろ、このガイドは読者がC++に精通していることを想定して書かれています。
             </span>
         </p>
 
@@ -166,7 +164,7 @@
                 <span class="src">
                     Why do we have this document?
                 </span>
-                なぜ、このガイドが書かれたのでしょうか？
+                なぜ、このガイドは書かれたのでしょうか？
             </span>
         </p>
 
@@ -176,14 +174,14 @@
                     There are a few core goals that we believe this guide should
                     serve.
                 </span>
-                本ガイドの役割として提供されるべき、いくつかの核となるような目標があります。
+                本ガイドによって提供される、いくつかの核となる目標があります。
             </span>
             <span>
                 <span class="src">
                     These are the fundamental <b>why</b>s that
                     underlie all of the individual rules.
                 </span>
-                その目標とは、このガイドで示されるすべての個々のルールの根底にあり、基本を成すような「なぜ」の集まりです。
+                その目標とは、このガイドで示されるすべての個々のルールの根底にある、基礎的な「なぜ」の集まりです。
             </span>
             <span>
                 <span class="src">
@@ -192,7 +190,7 @@
                     broader community why the rules are in place and why particular
                     decisions have been made.
                 </span>
-                私たちは、この考え方を前面に出すことで、議論が行われ、より広範囲なコミュニティにおいて、これらのルールがなぜ作られ、なぜそのように決められたのか、より明確に伝わることを望んでいます。
+                私たちは、この考え方を前面に出すことで、議論を根付かせ、より広範囲のコミュニティにおいて、これらのルールがなぜ作られ、なぜそのように決められたのか、より明確に伝わることを望んでいます。
             </span>
             <span>
                 <span class="src">
@@ -201,7 +199,7 @@
                     (some can be), and what sort of argument or alternative would be
                     necessary to change a rule in the guide.
                 </span>
-                個々のルールがどのような目的を果たそうとしているか理解できれば、いつルールの採用を取りやめるべきか、ルールを変更するためにどんな議論や代替案が必要か、より明確になるでしょう。
+                個々のルールがどのような目的を果たそうとしているか理解すれば、いつルールの採用を取りやめるべきか、ルールを変更するためにどんな議論や代替案が必要か、より明確になることでしょう。
             </span>
         </p>
 
@@ -211,7 +209,7 @@
                     The goals of the style guide as we currently see them are as
                     follows:
                 </span>
-                本スタイルガイドの目的は今のところ次のとおりです。
+                本スタイルガイドの目的は、現時点では次のとおりです。
             </span>
         </p>
         <dl>
@@ -231,15 +229,17 @@
                         remember it.
                     </span>
                     個々のスタイルルールは「所属するすべてのエンジニアが覚えなくてはならない」ことを正当化できるくらいに価値のあるものでなければなりません。
-                </span> <span>
+                </span>
+                <span>
                     <span class="src">
                         The benefit is measured relative to the codebase we would
                         get without the rule, so a rule against a very harmful practice may
                         still have a small benefit if people are unlikely to do it
                         anyway.
                     </span>
-                    ルールの価値は「仮にそのルールが無かったら書かれたかもしれないコード」との比較で測定されます。このため、仮に「非常に有害な慣行に対するルール」があったとしても、「そもそもそんなルールがなくとも普通はしないよね」という場合、そのルールの価値は低いと考えます。
-                </span> <span>
+                    ルールの価値は「仮にそのルールが無かったら書かれたかもしれないコード」との比較で測定します。仮に「非常に有害な慣行に対するルール」を考えたとしても、「そもそも、そのようなルールがなくとも、普通はそんなことはしない」ならば、そのルールは価値が低いという風に考えます。
+                </span>
+                <span>
                     <span class="src">
                         This principle mostly explains the rules we don&#8217;t have, rather
                         than the rules we do: for example, <code>goto</code> contravenes many
@@ -279,13 +279,15 @@
                         ease when writing said code.
                     </span>
                     私たちは、私たちの平均的なエンジニアが「簡単にコードが書けること」よりも、「コードを読み、メンテし、デバッグがやりやすいこと」に最適化することを明示的に選択します。
-                </span> <span>
+                </span>
+                <span>
                     <span class="src">
                         "Leave a trace for the reader" is a
                         particularly common sub-point of this principle:
                     </span>
-                    特に「コード読者のためのヒントを残す」がこの原則の共通のサブテーマになっています。
-                </span> <span>
+                    特に「コード読者のためのヒントを残す」は、この原則の共通のサブテーマになっています。
+                </span>
+                <span>
                     <span class="src">
                         When something
                         surprising or unusual is happening in a snippet of code (for example,
@@ -294,7 +296,7 @@
                         demonstrates the ownership transfer unambiguously at the call
                         site).
                     </span>
-                    コードの中で見慣れないことをするとき(たとえばポインタの所有権を移す)、読み手のためにヒントを残しておくことは価値があります(<code>std::unique_ptr</code>を使えば、所有権が移されることを曖昧性なく表現できます)。
+                    コードの中で見慣れないことをするとき(たとえばポインタの所有権を移す)、読み手のためにヒントを残しておくことは価値があります(ただのポインタではなく、<code>std::unique_ptr</code>を使えば、所有権が移されることを曖昧性なく表現できます)。
                 </span>
             </dd>
 
@@ -313,48 +315,54 @@
                         other (more important) issues.
                     </span>
                     １つのスタイルをコードベース全体で一貫して用いることで、私たちは他の(より重要な)問題にフォーカスすることができます。
-                </span> <span>
+                </span>
+                <span>
                     <span class="src">
                         Consistency also allows for automation:
                         tools that format your code or adjust your <code>#include</code>s only
                         work properly when your code is consistent with the expectations of
                         the tooling.
                     </span>
-                    一貫性は自動化を進めやすくもします: コードフォーマットツールは、あなたのコードがツールの期待と一貫しているときにのみきちんと動作するでしょう。
-                </span> <span>
+                    一貫性は自動化を進めやすくもします。コードフォーマットツールは、あなたのコードがツールの期待と一貫しているときにのみきちんと動作するでしょう。
+                </span>
+                <span>
                     <span class="src">
                         In many cases, rules that are attributed to "Be
                         Consistent" boil down to "Just pick one and stop worrying about it";
                     </span>
-                    多くの場合「一貫性を保つ」に帰結するルールは「ただ１つを選び、それについて悩むことをやめる」ということです。
-                </span> <span>
+                    多くの場合「一貫性を保つ」に帰結するルールは「ある１つのやり方を選ぶと決め、それについて悩むことをやめる」ということです。
+                </span>
+                <span>
                     <span class="src">
                         the potential value of allowing flexibility on these points is
                         outweighed by the cost of having people argue over them. 
                     </span>
-                    これらの点における多様性を認めることでの潜在的な価値よりも、それについて議論するコストの方が上回るからです。
-                </span> <span>
+                    これらの点で多様性を認めることによって得られる潜在的な価値よりも、それについて議論するコストの方が上回る場合がほとんどでしょう。
+                </span>
+                <span>
                     <span class="src">
                         However,
                         there are limits to consistency; it is a good tie breaker when there
                         is no clear technical argument, nor a long-term direction.
                     </span>
-                    しかし、一貫性には限界もあります。一貫性は、明確な技術的論拠や長期的な方向性がない場合には、よい判断材料となるでしょう。
-                </span> <span>
+                    その一方で、一貫性には限界があります。一貫性は、明確な技術的論拠や長期的な方向性がない場合には、よい判断材料となるでしょう。
+                </span>
+                <span>
                     <span class="src">
                         It applies
                         more heavily locally (per file, or for a tightly-related set of
                         interfaces).
                     </span>
                     ローカル（ファイルごと、もしくは密に関連するインターフェイスの集合）には、より重く適用されます。
-                </span> <span>
+                </span>
+                <span>
                     <span class="src">
                         Consistency should not generally be used as a
                         justification to do things in an old style without considering the
                         benefits of the new style, or the tendency of the codebase to converge
                         on newer styles over time.
                     </span>
-                    その一方で、新しいスタイルの利点や、コードベースが時間とともに新しいスタイルに移り変わっていく傾向を無視して、古いスタイルのまま物事を進めるための言い訳に使ってはなりません。
+                    新しいスタイルの利点や、コードベースが時間とともに新しいスタイルに移り変わっていく傾向を無視して、古いスタイルのまま物事を進めるための言い訳として、一貫性を用いるべきではありません。
                 </span>
             </dd>
 
@@ -372,27 +380,27 @@
                         Consistency with the way other organizations use C++ has value for
                         the same reasons as consistency within our code base.
                     </span>
-                    C++を使う他の組織のやり方と一貫性を保つことも、我々コードベース内で一貫性を保つことと同じ理由で価値があります。
+                    C++を使う他の組織の手法と一貫性を保つことも、我々のコードベース内で一貫性を保つことと同じ理由で価値があります。
                 </span><span>
                     <span class="src">
                         If a feature in
                         the C++ standard solves a problem, or if some idiom is widely known
                         and accepted, that's an argument for using it.
                     </span>
-                    もし、あるC++標準の機能を使って問題を解決できるのならば、あるいは、あるイディオムが広く知られて受け入れられているのならば、それを用いることの理由にできるでしょう。
+                    もし、あるC++標準の機能を使って問題を解決できるのならば、あるいは、あるイディオムが広く知られて受け入れられているのならば、それを使う理由になるでしょう。
                 </span> <span>
                     <span class="src">
                         However, sometimes
                         standard features and idioms are flawed, or were just designed without
                         our codebase's needs in mind.
                     </span>
-                    しかし、時折、標準的な機能やイディオムは、不備があったり、あるいは単に私たちのコードベースのニーズを満たさない形でデザインされていたりします。
+                    しかし、時折、標準的な機能やイディオムには、不備があったり、あるいは単に私たちのコードベースのニーズを満たさない形でデザインされていたりします。
                 </span> <span>
                     <span class="src">
                         In those cases (as described below) it's
                         appropriate to constrain or ban standard features.
                     </span>
-                    後述しますが、そのような場合には、これらの標準機能は制限または禁止することが適切です。
+                    後述しますが、そのような場合は、これらの標準機能は制限または禁止する方が適切です。
                 </span> <span>
                     <span class="src">
                         In some cases we
@@ -431,7 +439,7 @@
                         guide waivers on such restrictions, because waiving such rules often
                         directly risks compromising program correctness.
                     </span>
-                    これらのルールを破棄することは、直接的にプログラムの正しさを損なう可能性があるため、それらのルールを破棄については高いハードルがあります。
+                    これらのルールを取り消すと、直接的にプログラムの正しさを損なう危険性があるため、そのようなルールの破棄については高いハードルがあります。
                 </span>
             </dd>
 
@@ -460,13 +468,13 @@
                         the complexity does not need to be paid again when working with new
                         portions of the codebase.
                     </span>
-                    広く使われているコードの中は、トリッキーな言語構造の方が受け入れられることもあるかもしれません。その理由は、その複雑な実装が使用されることによって価値が広く倍増しており、かつ、コードベースの新しい部分で仕事をする時には、その複雑さを理解するためのコストを再び払う必要がなくなっているからです。
+                    広く使われているコードの中は、トリッキーな言語構造の方が受け入れられることもあるかもしれません。その理由は、その複雑な実装が使用されることによって価値が広く倍増しており、かつ、コードベースの新しい部分で仕事をする時には、その複雑さを再度理解するためのコストを払う必要がなくなっているからです。
                 </span> <span>
                     <span class="src">
                         When in doubt, waivers to rules of this type
                         can be sought by asking your project leads.
                     </span>
-                    これについて疑問を感じる場合は、このタイプのルールを破棄することについてプロジェクトリーダーと相談してください。
+                    これについて疑問を感じる場合は、このタイプのルールを取り消すことについてプロジェクトリーダーと相談してください。
                 </span> <span>
                     <span class="src">
                         This is specifically
@@ -475,7 +483,7 @@
                         currently understands it, such understanding is not guaranteed to hold a
                         few years from now.
                     </span>
-                    これは我々のコードベースでは特に重要です。なぜなら、コードの担当者やチームメンバーは時とともに変わるからです。現時点で全員がそのコードを理解していたとしても、その理解が今から1年後にも保たれている保証はどこにもありません。
+                    これは我々のコードベースでは特に重要です。なぜなら、コードの担当者やチームメンバーは時とともに変わっていくからです。現時点で全員がそのコードを理解していたとしても、その状態が今から2年後にも保たれている保証はどこにもありません。
                 </span>
             </dd>
 
@@ -484,7 +492,7 @@
                     <span class="src">
                         Be mindful of our scale
                     </span>
-                    我々のプロジェクト規模に留意すること
+                    我々の「規模」に留意すること
                 </span>
             </dt>
             <dd>
@@ -512,7 +520,7 @@
                     <span class="src">
                         Concede to optimization when necessary
                     </span>
-                    必要ならば最適化は容認する
+                    必要な最適化は容認する
                 </span>
             </dt>
             <dd>
@@ -533,7 +541,7 @@
                     The intent of this document is to provide maximal guidance with
                     reasonable restriction.
                 </span>
-                本文書の趣旨は、理にかなった制限の下での最大限のガイダンスを提供することです。
+                本文書の趣旨は、理にかなった制限の下での最大限の道しるべを提供することです。
             </span>
             <span>
                 <span class="src">
@@ -548,7 +556,7 @@
                     of the entire Google C++ community, not just your personal preferences
                     or those of your team.
                 </span>
-                このガイダンスは、あなたの個人的な好みやチームの好みについてだけではなく、Google C++コミュニティ全体で確立された慣習に言及しています。
+                このガイダンスは、あなた個人の好みやチームの好みについてだけではなく、GoogleのC++コミュニティ全体で確立された慣習に言及しています。
             </span>
             <span>
                 <span class="src">
@@ -556,7 +564,7 @@
                     clever or unusual constructs: the absence of a prohibition is not the
                     same as a license to proceed.
                 </span>
-                巧妙(clever)な、あるいは見慣れない構成を使うことに対して懐疑的であってください。禁止されていなければやってもよい、というわけではありません。
+                巧妙(clever)な構成、見慣れない構成に対して、懐疑的な姿勢を持ち、避けるようにしてください(禁止されていなければやってもよい、というわけではありません)。
             </span>
             <span>
                 <span class="src">
@@ -579,7 +587,7 @@
                     features, with the exception of <a href="#Designated_initializers">designated
                         initializers</a>.
                 </span>
-                現状、コードはC++17をターゲットとし、C++2xの機能は<a href="#Designated_initializers">指示付き初期化子</a>を除いて使いません。
+                現状、コードはC++17をターゲットとします。C++2xの機能は<a href="#Designated_initializers">指示付き初期化子</a>を除いて使うべきではありません。
             </span>
             <span>
                 <span class="src">
@@ -611,7 +619,7 @@
         </p>
 
         <h2 id="Header_Files">
-            <span title="Header Files">ヘッダファイル</span>
+            <span title="Header Files">ヘッダーファイル</span>
         </h2>
 
         <p>
@@ -664,14 +672,14 @@
                     Header files should be self-contained (compile on their own) and
                     end in <code>.h</code>.
                 </span>
-                ヘッダファイルは自己完結(単体でコンパイルできる)していなくてはならず、名前は<code>.h</code>で終わります。
+                ヘッダーファイルは自己完結(単体でコンパイルできる)していなくてはならず、名前は<code>.h</code>で終わります。
             </span>
             <span>
                 <span class="src">
                     Non-header files that are meant for inclusion
                     should end in <code>.inc</code> and be used sparingly.
                 </span>
-                ヘッダファイルではない、includeして使われるべきものは<code>.inc</code>で終わるようにしますが、なるべく使用は控えるようにしましょう。
+                ヘッダーファイルではない、includeして使われるべきものは<code>.inc</code>で終わるようにしますが、なるべく使用は控えるようにしましょう。
             </span>
         </p>
 
@@ -680,7 +688,7 @@
                 <span class="src">
                     All header files should be self-contained.
                 </span>
-                すべてのヘッダは自己完結していなくてはなりません。
+                すべてのヘッダーは自己完結していなくてはなりません。
             </span>
             <span>
                 <span class="src">
@@ -688,7 +696,7 @@
                     tools should not have to adhere to special conditions to include the
                     header.
                 </span>
-                ヘッダの使用者やリファクタリングツールは、そのヘッダがincludeされる際に、なんら特別な条件を守る必要がないようにします。
+                ヘッダーの使用者やリファクタリングツールは、そのヘッダーがincludeされる際に、なんら特別な条件を守る必要がないようにします。
             </span>
             <span>
                 <span class="src">
@@ -696,7 +704,7 @@
                     have <a href="#The__define_Guard">header guards</a> and include all
                     other headers it needs.
                 </span>
-                特に、ヘッダには<a href="#The__define_Guard">インクルードガード</a>を持たせ、そのヘッダ自身が必要とするすべての他のヘッダをincludeします。
+                特に、ヘッダーには<a href="#The__define_Guard">インクルードガード</a>を持たせ、そのヘッダー自身が必要とするすべての他のヘッダーをincludeします。
             </span>
         </p>
 
@@ -707,7 +715,7 @@
                     header will instantiate, the inline functions and templates must also have
                     definitions in the header, either directly or in files it includes.
                 </span>
-                ヘッダが、インライン関数や、そのヘッダの利用側でインスタンス化するテンプレートを宣言している場合、それらインライン関数やテンプレートの定義もまた同ヘッダ内もしくは同ヘッダからインクルードされるファイルの中で行われなければなりません。
+                ヘッダーが、インライン関数や、そのヘッダーの利用側でインスタンス化するテンプレートを宣言している場合、それらインライン関数やテンプレートの定義もまた同ヘッダー内もしくは同ヘッダーからインクルードされるファイルの中で行われなければなりません。
             </span>
             <span>
                 <span class="src">
@@ -716,7 +724,7 @@
                     this practice was common in the past, but is no longer allowed.
                 </span>
                 これらの定義を別途インクルードされるヘッダーファイル (<code>-inl.h</code>) に移動しないでください。
-                昔は、このやり方が一般的でしたが、現在ではもはや許容されません。
+                昔は、そのやり方が一般的でしたが、現在ではもはや許容されません。
             </span>
             <span>
                 <span class="src">
@@ -750,7 +758,7 @@
                     They might not
                     use <a href="#The__define_Guard">header guards</a>, and might not include their prerequisites.
                 </span>
-                それらのファイルは、<a href="#The__define_Guard">インクルードガード</a>を持っていなかったり、そのヘッダ内で必要なものをincludeしていなかったりします。
+                それらのファイルは、<a href="#The__define_Guard">インクルードガード</a>を持っていなかったり、そのヘッダー内で必要なものをincludeしていなかったりします。
             </span>
             <span>
                 <span class="src">
@@ -763,7 +771,7 @@
                 <span class="src">
                     Use sparingly, and prefer self-contained headers when possible.
                 </span>
-                また、なるべく使用は避け、可能な限り自己完結型ヘッダを使うことを選択しましょう。
+                また、なるべく使用は避け、可能な限り自己完結型ヘッダーを使うことを選択しましょう。
             </span>
         </p>
 
@@ -777,7 +785,7 @@
                     All header files should have <code>#define</code> guards to
                     prevent multiple inclusion.
                 </span>
-                すべてのヘッダファイルは、インクルードガード(<code>#define</code> guards)を持たなくてはなりません。
+                すべてのヘッダーファイルは、インクルードガード(<code>#define</code> guards)を持たなくてはなりません。
             </span>
             <span>
                 <span class="src">
@@ -824,14 +832,14 @@
                     the file should directly include a header file which properly intends
                     to provide a declaration or definition of that symbol.
                 </span>
-                ソースファイルやヘッダファイルから他の場所で定義されたシンボルを参照する場合、そのシンボルの宣言・定義の提供が意図されたヘッダーファイルを直接インクルードするようにします。
+                ソースファイルやヘッダーファイルから他の場所で定義されたシンボルを参照する場合、そのシンボルの宣言・定義の提供が意図されたヘッダーファイルを直接インクルードするようにします。
             </span>
             <span>
                 <span class="src">
                     It should not
                     include header files for any other reason.
                 </span>
-                その他の理由でヘッダファイルをインクルードしてはいけません。
+                それ以外の理由ではヘッダーファイルをインクルードすべきではありません。
             </span>
         </p>
 
@@ -848,7 +856,7 @@
                     no-longer-needed <code>#include</code> statements from their headers without
                     breaking clients.
                 </span>
-                遷移的なインクルードを行っていると、ヘッダの作者が、ヘッダ内で不要になった<code>#include</code>を削除した場合に、クライアントのコードが壊れてしまうことがあります。
+                遷移的なインクルードを行っていると、ヘッダーの作者が、ヘッダー内で不要になった<code>#include</code>を削除した場合に、クライアントのコードが壊れてしまうことがあります。
             </span>
             <span>
                 <span class="src">
@@ -857,7 +865,7 @@
                     symbol from it even if <code>foo.h</code>
                     includes <code>bar.h</code>.
                 </span>
-                これは紐付くヘッダにも適用されます。たとえば<code>foo.cc</code>で<code>bar.h</code>のシンボルを使用する場合に、
+                これは紐付くヘッダーにも適用されます。たとえば<code>foo.cc</code>で<code>bar.h</code>のシンボルを使用する場合に、
                 たとえ<code>foo.h</code>において既に<code>bar.h</code>をインクルードしていたとしても、<code>foo.cc</code>で改めて<code>bar.h</code>をインクルードすべきということです。
             </span>
         </p>
@@ -877,7 +885,7 @@
                 <span class="src">
                     Instead, <a href="#Include_What_You_Use">include the headers you need</a>.
                 </span>
-                そのかわりに<a href="#Include_What_You_Use">必要なヘッダをinclude</a>してください。
+                そのかわりに<a href="#Include_What_You_Use">必要なヘッダーをinclude</a>してください。
             </span>
         </p>
 
@@ -888,7 +896,7 @@
                     A "forward declaration" is a declaration of an entity
                     without an associated definition.
                 </span>
-                前方宣言とは、関連付く定義のない「何か」の宣言のことです。
+                前方宣言とは、関連付く定義のない何らかの宣言のことです。
             </span>
         </p>
         <pre>// In a C++ source file:
@@ -906,7 +914,7 @@ ABSL_DECLARE_FLAG(flag_in_b);
                         <code>#include</code>s force the compiler to open
                         more files and process more input.
                     </span>
-                    前方宣言は、<code>#include</code>がコンパイラに多数のファイルを開かせてそれを処理させるためのコンパイル時間を節約することができます。
+                    前方宣言を用いると、コンパイラが<code>#include</code>によって多数のファイルを開いて処理する分のコンパイル時間を節約することができます。
                 </span>
             </li>
 
@@ -924,7 +932,7 @@ ABSL_DECLARE_FLAG(flag_in_b);
                         your code to be recompiled more often, due to unrelated
                         changes in the header.
                     </span>
-                    <code>#include</code>は、ヘッダの変更があなたのコードに無関係な場合でもコードを再コンパイルする必要があるため、再コンパイルの頻度が上がります。
+                    <code>#include</code>は、ヘッダーの変更があなたのコードに無関係な場合でもコードを再コンパイルする必要があるため、再コンパイルの頻度が上がります。
                 </span>
             </li>
         </ul>
@@ -938,7 +946,7 @@ ABSL_DECLARE_FLAG(flag_in_b);
                         user code to skip necessary recompilation when headers
                         change.
                     </span>
-                    前方宣言は、依存性を隠してしまうため、コードの再コンパイルが必要な場合でも、それをスキップさせてしまうことがあります。
+                    前方宣言は、依存性を隠してしまうため、実際には必要なコードの再コンパイルをスキップさせてしまうことがあります。
                 </span>
             </li>
 
@@ -959,7 +967,7 @@ ABSL_DECLARE_FLAG(flag_in_b);
                         A forward declaration may be broken by subsequent
                         changes to the library.
                     </span>
-                    前方宣言は、将来のライブラリ側の変更によって壊れる可能性があります。
+                    前方宣言は、将来のライブラリ側の変更によって壊れることがあります。
                 </span>
                 <span>
                     <span class="src">
@@ -969,7 +977,7 @@ ABSL_DECLARE_FLAG(flag_in_b);
                         widening a parameter type, adding a template parameter
                         with a default value, or migrating to a new namespace.
                     </span>
-                    関数やテンプレートの前方宣言は、ヘッダのメンテナが、APIに対して互換性のない変更(パラメータの型を拡張したり、デフォルト値とともにテンプレートパラメータを増やしたり、新しい名前空間への移行したり)を行う際に妨げとなる場合があります。
+                    関数やテンプレートの前方宣言があると、ヘッダーのメンテナが、APIに対して互換性のない変更(パラメータの型を拡張したり、デフォルト値とともにテンプレートパラメータを増やしたり、新しい名前空間への移行したり)を行う際に妨げとなる場合があります。
                 </span>
             </li>
 
@@ -1025,7 +1033,7 @@ void test(D* x) { f(x); }  // Calls f(B*)</pre>
                         can be more verbose than simply
                         <code>#include</code>ing the header.
                     </span>
-                    ある1つのヘッダに含まれる複数のシンボルを前方宣言することは、単にそのヘッダを<code>#include</code>するよりも冗長になってしまいます。
+                    ある1つのヘッダーに含まれる複数のシンボルを前方宣言することは、単にそのヘッダーを<code>#include</code>するよりも冗長になってしまいます。
                 </span>
             </li>
 
@@ -1086,7 +1094,7 @@ void test(D* x) { f(x); }  // Calls f(B*)</pre>
                     Inlining a function can generate more efficient object
                     code, as long as the inlined function is small.
                 </span>
-                関数のインライン化によって、インライン化される関数が小さければ、効率的なオブジェクトコードを生成することができるようになります。
+                関数が十分に小さければ、その関数をインライン化するこによって、効率的なオブジェクトコードを生成することができるようになります。
             </span>
             <span>
                 <span class="src">
@@ -1094,7 +1102,7 @@ void test(D* x) { f(x); }  // Calls f(B*)</pre>
                     to inline accessors and mutators, and other short,
                     performance-critical functions.
                 </span>
-                getter関数(原: accessors)やsetter関数(原: mutators)、パフォーマンスクリティカルな小さい関数はどんどんインライン化しましょう。
+                getter関数(原: accessors)やsetter関数(原: mutators)、パフォーマンスクリティカルな小さい関数はためらわずにインライン化しましょう。
             </span>
         </p>
         <p class="cons"></p>
@@ -1103,14 +1111,14 @@ void test(D* x) { f(x); }  // Calls f(B*)</pre>
                 <span class="src">
                     Overuse of inlining can actually make programs slower.
                 </span>
-                インライン関数を使いすぎると、実際にはプログラムの実行速度を下げていることもあります。
+                インライン関数を濫用すると、実際にはプログラムの実行速度を下げてしまうこともあります。
             </span>
             <span>
                 <span class="src">
                     Depending on a function's size, inlining it can cause the
                     code size to increase or decrease.
                 </span>
-                関数のサイズによって、インライン化後のコードのサイズも増えたり減ったりします。
+                関数のサイズによって、インライン化後のコードのサイズは増えたり減ったりします。
             </span>
             <span>
                 <span class="src">
@@ -1125,7 +1133,7 @@ void test(D* x) { f(x); }  // Calls f(B*)</pre>
                     On modern processors smaller code usually runs
                     faster due to better use of the instruction cache.
                 </span>
-                現代のCPUにおいては、多くの場合、命令キャッシュがうまく使えるため、小さいコードの方が高速に動作します。
+                現代のCPUにおいては、通常は、より小さいコードの方が、命令キャッシュをうまく使えるため、高速に動作します。
             </span>
         </p>
         <p class="decision"></p>
@@ -1135,7 +1143,7 @@ void test(D* x) { f(x); }  // Calls f(B*)</pre>
                     A decent rule of thumb is to not inline a function if
                     it is more than 10 lines long.
                 </span>
-                経験的なルールとして、関数が10行より多くなったらインライン化すべきではありません。
+                経験的なルールとして、関数が10行より多くなったらインライン化を避けるべきです。
             </span>
             <span>
                 <span class="src">
@@ -1143,7 +1151,7 @@ void test(D* x) { f(x); }  // Calls f(B*)</pre>
                     which are often longer than they appear because of
                     implicit member- and base-destructor calls!
                 </span>
-                デストラクタに特に気を付けましょう。デストラクタは、暗黙的にメンバのデストラクタと基底デストラクタを呼び出すため見た目より長くなることがしばしばあるのです！
+                特に、デストラクタに気を付けましょう。デストラクタは、暗黙的にメンバのデストラクタと基底デストラクタを呼び出すため、実際には見た目より長くなっていることがままあるのです。
             </span>
         </p>
 
@@ -1155,7 +1163,7 @@ void test(D* x) { f(x); }  // Calls f(B*)</pre>
                     statements (unless, in the common case, the loop or
                     switch statement is never executed).
                 </span>
-                もう１つ、有用な経験的なルールとして、大抵の場合、ループやswitch文のある関数は(それらの文がまったく実行されないような場合を除いて)インライン化しても効率的にはなりません。
+                もう１つ、有用な経験的なルールとして、大抵の場合、ループやswitch文のある関数は(それらの文がまったく実行されないような場合を除いて)インライン化しても効率的になりません。
             </span>
         </p>
 
@@ -1166,7 +1174,7 @@ void test(D* x) { f(x); }  // Calls f(B*)</pre>
                     inlined even if they are declared as such; for example,
                     virtual and recursive functions are not normally inlined.
                 </span>
-                重要な知識として、インライン関数はインラインで宣言されたからといって常にインライン化されるわけではありません。たとえば仮想関数や再帰関数は通常インライン化されません。
+                重要な知識として、インライン関数はインラインと宣言されたからといって、必ずインライン化されるわけではありません。たとえば仮想関数や再帰関数は通常インライン化されません。
             </span>
             <span>
                 <span class="src">
@@ -1197,7 +1205,7 @@ void test(D* x) { f(x); }  // Calls f(B*)</pre>
                     other libraries' headers, your project's
                     headers.
                 </span>
-                インクルードは次の順番で行います: 紐付くヘッダ、C言語のシステムヘッダ、C++標準ライブラリヘッダ、その他のライブラリのヘッダ、自分のプロジェクト内のヘッダ
+                インクルードは次の順番で行います: 紐付くヘッダー、C言語のシステムヘッダー、C++標準ライブラリヘッダー、その他のライブラリのヘッダー、自分のプロジェクト内のヘッダー
             </span>
         </p>
 
@@ -1210,7 +1218,7 @@ void test(D* x) { f(x); }  // Calls f(B*)</pre>
                     <code>.</code> (the current directory) or <code>..</code>
                     (the parent directory).
                 </span>
-                プロジェクトヘッダはプロジェクトソースディレクトリ以下に配置しなくてはなりません。UNIXディレクトリのエイリアスである<code>.</code>(カレントディレクトリ)や、<code>..</code>(親ディレクトリ)は省きます。
+                プロジェクトヘッダーはプロジェクトソースディレクトリ以下に配置しなくてはなりません。UNIXディレクトリのエイリアスである<code>.</code>(カレントディレクトリ)や、<code>..</code>(親ディレクトリ)は省きます。
             </span>
             <span>
                 <span class="src">
@@ -1254,7 +1262,7 @@ void test(D* x) { f(x); }  // Calls f(B*)</pre>
                     <code>.h</code> extension), e.g., <code>&lt;unistd.h&gt;</code>,
                     <code>&lt;stdlib.h&gt;</code>.
                 </span>
-                C言語のシステムヘッダ(より正確には、<code>&lt;&gt;</code>で囲み、拡張子<code>.h</code>を持つもの)、たとえば<code>&lt;unistd.h&gt;</code>や<code>&lt;stdlib.h&gt;</code>
+                C言語のシステムヘッダー(より正確には、<code>&lt;&gt;</code>で囲み、拡張子<code>.h</code>を持つもの)、たとえば<code>&lt;unistd.h&gt;</code>や<code>&lt;stdlib.h&gt;</code>
             </li>
 
             <li>
@@ -1269,7 +1277,7 @@ void test(D* x) { f(x); }  // Calls f(B*)</pre>
                     C++ standard library headers (without file extension), e.g.,
                     <code>&lt;algorithm&gt;</code>, <code>&lt;cstddef&gt;</code>.
                 </span>
-                C++標準ライブラリのヘッダ(拡張子のないもの)、たとえば<code>&lt;algorithm&gt;</code>や<code>&lt;cstddef&gt;</code>
+                C++標準ライブラリのヘッダー(拡張子のないもの)、たとえば<code>&lt;algorithm&gt;</code>や<code>&lt;cstddef&gt;</code>
             </li>
 
             <li>
@@ -1310,7 +1318,7 @@ void test(D* x) { f(x); }  // Calls f(B*)</pre>
                 <span class="src">
                     Separate each non-empty group with one blank line.
                 </span>
-                空でないグループの間には空行を1つ入れてください。
+                空でないグループの間には空行を1つ入れます。
             </span>
         </p>
 
@@ -1322,7 +1330,7 @@ void test(D* x) { f(x); }  // Calls f(B*)</pre>
                     includes, the build of <code><var>dir/foo</var>.cc</code>
                     or <code><var>dir/foo</var>_test.cc</code> will break.
                 </span>
-                この順番であれば、もし紐付くヘッダ<code><var>dir2/foo2</var>.h</code>が必要なインクルードを省くと、<code><var>dir/foo</var>.cc</code>や<code><var>dir/foo</var>_test.cc</code>のビルドが失敗します。
+                この順番にしておけば、紐付くヘッダー<code><var>dir2/foo2</var>.h</code>で必要なインクルードを省いてしまったときに、<code><var>dir/foo</var>.cc</code>や<code><var>dir/foo</var>_test.cc</code>のビルドが失敗します。
             </span>
 
             <span>
@@ -1331,7 +1339,7 @@ void test(D* x) { f(x); }  // Calls f(B*)</pre>
                     for the people working on these files, not for innocent
                     people in other packages.
                 </span>
-                このルールであれば、ビルドが壊れたことを、他のパッケージで作業している無実の人ではなく、これのファイルで作業をしていた本人に最初に見せることができます。
+                このルールによって、ビルドが壊れたときに、他のパッケージで作業している無実の人ではなく、それらのファイルで作業をしていた本人に最初に見せることができます。
             </span>
         </p>
 
@@ -1344,7 +1352,7 @@ void test(D* x) { f(x); }  // Calls f(B*)</pre>
                     <code>base/basictypes.h</code>), but may sometimes be in different
                     directories too.
                 </span>
-                <code><var>dir/foo</var>.cc</code>と<code><var>dir2/foo2</var>.h</code>は、一般的に同じディレクトリに置きますが(たとえば、<code>base/basictypes_test.cc</code>と<code>base/basictypes.h</code>)、異なるディレクトリに置いてもよいです。
+                <code><var>dir/foo</var>.cc</code>と<code><var>dir2/foo2</var>.h</code>は、通常は同じディレクトリに置きますが(たとえば、<code>base/basictypes_test.cc</code>と<code>base/basictypes.h</code>)、異なるディレクトリに置くこともできます。
             </span>
         </p>
 
@@ -1356,7 +1364,7 @@ void test(D* x) { f(x); }  // Calls f(B*)</pre>
                     (<code>cstddef</code>).
                     Either style is acceptable, but prefer consistency with existing code.
                 </span>
-                <code>stddef.h</code>のようなC言語のヘッダは、C++の相当するヘッダと置き換えることができます(<code>cstddef</code>)。
+                <code>stddef.h</code>のようなC言語のヘッダーは、C++の相当するヘッダーと置き換えることができます(<code>cstddef</code>)。
                 どちらのスタイルでもかまいませんが、既存のコードとの一貫性を優先してください。
             </span>
         </p>
@@ -1374,7 +1382,7 @@ void test(D* x) { f(x); }  // Calls f(B*)</pre>
                     Note that older code might not conform to
                     this rule and should be fixed when convenient.
                 </span>
-                古いコードはこのルールに沿ってないかもしれませんが、利便性を考えたときは修正(訳注:be fixed)します。
+                古いコードはこのルールに沿ってないかもしれませんが、修正したほうが利便性がよければ修正しましょう。
             </span>
         </p>
 
@@ -1386,7 +1394,7 @@ void test(D* x) { f(x); }  // Calls f(B*)</pre>
                     might look like this:
                 </span>
 
-                例をあげます。<code>google-awesome-project/src/foo/internal/fooserver.cc</code>のインクルードは次のようになります。
+                たとえば、<code>google-awesome-project/src/foo/internal/fooserver.cc</code>のインクルードは次のようになります。
             </span>
         </p>
 
@@ -1408,21 +1416,21 @@ void test(D* x) { f(x); }  // Calls f(B*)</pre>
                     Sometimes, system-specific code needs
                     conditional includes.
                 </span>
-                システム特有のコードは、しばしば条件が必要なインクルードを必要とする場合があります。
+                システム特有のコードは、しばしば条件付きのインクルードを必要とする場合があります。
             </span>
             <span>
                 <span class="src">
                     Such code can put conditional
                     includes after other includes.
                 </span>
-                このようなコードは他のインクルードの後に条件付きインクルードを配置します。
+                そのような場合、それ以外のインクルードの後に条件付きインクルードを配置します。
             </span>
             <span>
                 <span class="src">
                     Of course, keep your
                     system-specific code small and localized.
                 </span>
-                もちろんのことですが、システム特有のコードは小さく局所的に保つようにしましょう。
+                もちろんのことですが、システム特有のコードは小さく局所的に保ってください。
             </span>
             <span>
                 <span class="src">
@@ -1492,7 +1500,7 @@ void test(D* x) { f(x); }  // Calls f(B*)</pre>
                     into distinct, named scopes, and so are useful for preventing
                     name collisions in the global scope.
                 </span>
-                名前空間は、グローバルなスコープを名前付きのスコープに分割し、グローバルスコープにおける名前の衝突を防ぐのに有用です。
+                名前空間は、グローバルなスコープを名前付きのスコープに分割し、グローバルスコープにおいて名前が衝突するのを防ぐために有用です。
             </span>
         </p>
         <p class="pros"></p>
@@ -1504,7 +1512,7 @@ void test(D* x) { f(x); }  // Calls f(B*)</pre>
                     in large programs while allowing most code to use reasonably
                     short names.
                 </span>
-                名前空間を用いることで、大きなプログラムにおける名前の衝突を避け、コードの大部分で理にかなった短い名前を使うことができるようになります。
+                名前空間を用いると、大きなプログラム内での名前の衝突を避け、コードの大部分で理にかなった短い名前を使うことができるようになります。
             </span>
         </p>
 
@@ -1524,14 +1532,14 @@ void test(D* x) { f(x); }  // Calls f(B*)</pre>
                     do not collide, and code within each project's namespace
                     can continue to refer to <code>Foo</code> without the prefix.
                 </span>
-                しかし、各プロジェクトが独自の名前空間を持っていれば、同名だったシンボル<code>project1::Foo</code>と<code>project2::Foo</code>は区別できるようになり、衝突しなくなります。そして、各プロジェクトの名前空間内のコードは、引き続き、プレフィクスなしの<code>Foo</code>で参照することができます。
+                しかし、各プロジェクトが独自の名前空間を持っていれば、同名だったシンボル<code>project1::Foo</code>と<code>project2::Foo</code>は区別できるようになり、衝突しなくなります。しかも、各プロジェクトの名前空間内のコードは、引き続き、プレフィクスなしの<code>Foo</code>で参照することができます。
             </span>
         </p>
 
         <p>
             <span>
                 <span class="src">Inline namespaces automatically place their names in the enclosing scope.</span>
-                インライン名前空間は、自動的に、その内部に持つ名前を、自身を囲む(外側の)スコープに配置します。
+                インライン名前空間は、その内部に持つ名前を、自動的に外側のスコープに配置します。
             </span>
 
             <span>
@@ -1623,14 +1631,18 @@ inline namespace inner {
         <ul>
             <li>
                 <span>
-                    <span class="src">Follow the rules on <a href="#Namespace_Names">Namespace Names</a></span>
+                    <span class="src">
+                        Follow the rules on <a href="#Namespace_Names">Namespace Names</a>
+                    </span>
                     <a href="#Namespace_Names">名前空間の名前</a>のルールに従ってください。
                 </span>
             </li>
             <li>
                 <span>
-                    <span class="src">Terminate multi-line namespaces with comments as shown in the given
-                        examples.</span>
+                    <span class="src">
+                        Terminate multi-line namespaces with comments as shown in the given
+                        examples.
+                    </span>
                     複数行にわたる名前空間の終わりには、先の例の通り、コメントをつけてください。
                 </span>
             </li>
@@ -1779,7 +1791,7 @@ using ::foo::bar;
                     <span class="src">
                         To declare entities from the standard
                         library, include the appropriate header file.
-                    </span>標準ライブラリのエンティティを宣言するためには適切なヘッダファイルをインクルードします。
+                    </span>標準ライブラリのエンティティを宣言するためには適切なヘッダーファイルをインクルードします。
                 </span>
             </li>
 
@@ -1815,7 +1827,7 @@ using namespace foo;
                             in a header file becomes part of the public
                             API exported by that file.
                         </span>
-                        内部的に使用すると明示した名前空間の中を除いて、名前空間の別名(Namespace ailiases)をヘッダファイルの名前空間のスコープで使ってはいけません。なぜならば、ヘッダファイルで名前空間にインポートされたすべてのものが、そのヘッダファイルが提供するpublicなAPIの一部として公開されることになるからです。
+                        内部的に使用すると明示した名前空間の中を除いて、名前空間の別名(Namespace ailiases)をヘッダーファイルの名前空間のスコープで使ってはいけません。なぜならば、ヘッダーファイルで名前空間にインポートされたすべてのものが、そのヘッダーファイルが提供するパブリックなAPIの一部として公開されることになるからです。
                     </span>
                 </p>
 
@@ -1958,7 +1970,7 @@ inline void my_inline_function() {
 </pre>
 
         <h3 id="Nonmember,_Static_Member,_and_Global_Functions">
-            <span title="Nonmember, Static Member, and Global Functions">メンバではない関数、静的メンバ関数、グローバル関数</span>
+            <span title="Nonmember, Static Member, and Global Functions">非メンバ関数、静的メンバ関数、グローバル関数</span>
         </h3>
 
         <p>
@@ -1967,7 +1979,7 @@ inline void my_inline_function() {
                     Prefer placing nonmember functions in a namespace; use completely global
                     functions rarely.
                 </span>
-                メンバではない関数はいずれかの名前空間内におきましょう。完全なグローバル関数はめったに使ってはいけません。
+                非メンバ関数(通常の関数)はいずれかの名前空間内におきましょう。完全なグローバル関数はまず使いません。
             </span>
             <span>
                 <span class="src">
@@ -1992,7 +2004,7 @@ inline void my_inline_function() {
                     Nonmember and static member functions can be useful in
                     some situations.
                 </span>
-                静的メンバ関数や、メンバではない通常の関数は、いくつかのシチュエーションで有用です。
+                通常の関数や静的メンバ関数は、いくつかのシチュエーションで有用です。
             </span>
             <span>
                 <span class="src">
@@ -2034,7 +2046,7 @@ inline void my_inline_function() {
                     Nonmember functions should not depend on external
                     variables, and should nearly always exist in a namespace.
                 </span>
-                メンバでない関数は、外部の変数に依存すべきではありません。
+                通常の関数は、外部の変数に依存すべきではありません。
                 また、常に近しい名前空間の中に存在していなければなりません。
             </span>
             <span>
@@ -2044,8 +2056,8 @@ inline void my_inline_function() {
                     common prefix, and such grouping is usually unnecessary anyway.
                 </span>
                 静的なメンバをグループにまとめるためだけにクラスを作ってはいけません。
-                これは、名前に共通の接頭辞をつけることと何ら変わりがありません。
-                そして、そのようなグルーピングは、いずれにせよ、通常は不要なものです。
+                これは、名前に共通の接頭辞をつけることと何ら違いがありません。
+                そして、いずれにせよ、そのようなグルーピングは、通常は不要なはずです。
             </span>
         </p>
         <p>
@@ -2096,7 +2108,7 @@ inline void my_inline_function() {
                     declaration and see what type the variable is and what it
                     was initialized to.
                 </span>
-                そうすることによって、コードの読者が、変数の宣言がどこにあるか、型は何か、どのように初期化されたかを、見つけやすくすることができます。
+                そうすることで、コードの読者が、変数の宣言がどこにあるか、型は何か、どのように初期化されたか、といったことを見つけやすくなります。
             </span>
             <span>
                 <span class="src">
@@ -2225,7 +2237,7 @@ for (int i = 0; i &lt; 1000000; ++i) {
                         destructible</a>.
                 </span>
                 「<a href="http://en.cppreference.com/w/cpp/language/storage_duration#Storage_duration">静的な記憶域の有効期間(static storage duration)</a>」を持つオブジェクトは、
-                それらが「<a href="http://en.cppreference.com/w/cpp/types/is_destructible">自明に破壊可能(trivially destructible)</a>」でない限り禁止されています。
+                それらが「<a href="http://en.cppreference.com/w/cpp/types/is_destructible">自明に破壊可能(trivially destructible)</a>」でない限り禁止します。
             </span>
             <span>
                 <span class="src">
@@ -2246,7 +2258,7 @@ for (int i = 0; i &lt; 1000000; ++i) {
                 <span class="src">
                     Static function-local variables may use dynamic initialization.
                 </span>
-                静的な関数ローカルスコープの変数は、動的な初期化を使用する場合があります。
+                静的な関数ローカルスコープの変数は、動的な初期化を行うことができます。
             </span>
             <span>
                 <span class="src">
@@ -2254,7 +2266,7 @@ for (int i = 0; i &lt; 1000000; ++i) {
                     namespace scope is discouraged, but allowed in limited circumstances; see below
                     for details.
                 </span>
-                クラスの静的メンバ変数や名前空間スコープ変数を動的に初期化することは推奨されませんが、いくつかの限られた状況では認められます。このような状況についての詳細は後述します。
+                クラスの静的メンバ変数や名前空間スコープ変数に対して、動的な初期化を行うことは非推奨ですが、いくつかの限られた状況では認められます。このような状況についての詳細は後述します。
             </span>
         </p>
 
@@ -2275,7 +2287,7 @@ for (int i = 0; i &lt; 1000000; ++i) {
                     Every object has a <dfn>storage duration</dfn>, which correlates with its
                     lifetime.
                 </span>
-                すべてのオブジェクトには<dfn>記憶域の有効期間(storage duration)</dfn>があり、そのライフタイムと相関しています。
+                すべてのオブジェクトには<dfn>記憶域の有効期間(storage duration)</dfn>があり、その寿命と相関しています。
             </span>
             <span>
                 <span class="src">
@@ -2318,7 +2330,7 @@ for (int i = 0; i &lt; 1000000; ++i) {
                     Initialization may be <dfn>dynamic</dfn>, which means that something
                     non-trivial happens during initialization.
                 </span>
-                初期化は<dfn>動的な(dynamic)</dfn>場合があり、その初期化中には「自明でない(non-trivial)」ことも発生するかもしれません。
+                初期化は<dfn>動的(dynamic)</dfn>に行われる場合があり、その初期化中には「自明でない(non-trivial)」ことも発生するかもしれません。
             </span>
             <span>
                 <span class="src">
@@ -2333,7 +2345,7 @@ for (int i = 0; i &lt; 1000000; ++i) {
                     The other kind of initialization is <dfn>static</dfn>
                     initialization.
                 </span>
-                もう1つの種類の初期化は<dfn>静的な(static)</dfn>初期化です。
+                もう1つの種類の初期化は<dfn>静的(static)</dfn>初期化です。
             </span>
             <span>
                 <span class="src">
@@ -2343,10 +2355,10 @@ for (int i = 0; i &lt; 1000000; ++i) {
                     consisting of all bytes set to zero), whereas dynamic initialization happens
                     after that, if required.
                 </span>
-                ただし、この2つは完全に正反対というわけではありません。
-                静的な初期化は、すべての静的な記憶域期間を持つオブジェクトに対して、<em>必ず</em>発生します。
+                この2つの初期化は完全に正反対というわけではありません。
+                静的初期化は、すべての静的な記憶域期間を持つオブジェクトに対して、<em>必ず</em>発生します。
                 (オブジェクトを、何らかの与えられた定数やゼロで埋めることで初期化します。)
-                一方で、動的な初期化は、静的な初期化の後に、必要に応じて行われます。
+                一方で、動的初期化は、静的初期化の後に、必要に応じて行われます。
             </span>
         </p>
         <p class="pros"></p>
@@ -2387,7 +2399,7 @@ for (int i = 0; i &lt; 1000000; ++i) {
                     an object to be accessed before its lifetime has begun (or after its lifetime
                     has ended).
                 </span>
-                ある1つの初期化が、他の静的記憶域時間を持つ変数を参照している場合、そのオブジェクトの有効期間が始まる前(あるいは終わった後)にそのオブジェクトにアクセスしてしまう恐れがあります。
+                ある1つの初期化が、他の静的記憶域時間を持つ変数を参照している場合、そのオブジェクトが初期化される前(あるいは寿命が終わった後)にそのオブジェクトにアクセスしてしまう恐れがあります。
             </span>
             <span>
                 <span class="src">
@@ -2395,7 +2407,7 @@ for (int i = 0; i &lt; 1000000; ++i) {
                     those threads may attempt to access objects after their lifetime has ended if
                     their destructor has already run.
                 </span>
-                もっといえば、もしプログラム内で、プログラム終了時に終了を待機(join)されないスレッドを作っていた場合、それらのスレッドが、デストラクタが実行された後の有効期間が終わったオブジェクトにアクセスしようとしてしまうかもしれません。
+                もっといえば、もしプログラム内で、プログラム終了時に終了を待機(join)されないスレッドを作っていた場合、既にデストラクタが実行さて寿命が終わっているオブジェクトにアクセスしようとしてしまうかもしれません。
             </span>
         </p>
         <p class="decision"></p>
@@ -2409,7 +2421,7 @@ for (int i = 0; i &lt; 1000000; ++i) {
                     accessing objects after the end of their lifetime.
                 </span>
                 デストラクタが自明(trivial)な場合、それらの実行は順序付けの対象とはなりません(そもそも「実行」されません)。
-                そうでない場合は、オブジェクトが破壊されて有効期間が終わった後にアクセスしてしまうリスクにさらされることになります。
+                そうでない場合は、オブジェクトが破壊されて寿命が終わった後にアクセスしてしまうリスクにさらされることになります。
             </span>
             <span>
                 <span class="src">
@@ -2425,7 +2437,7 @@ for (int i = 0; i &lt; 1000000; ++i) {
                     variables marked with <code>constexpr</code> are trivially destructible.
                 </span>
                 基本的な型(ポインタや<code>int</code>など)は自明に破壊できます。自明に破壊可能な型の配列も同様です。
-                <code>constexpr</code>な変数は自明に破壊可能なことも覚えておきましょう。
+                また、<code>constexpr</code>な変数は自明に破壊可能であるということも覚えておくとよいでしょう。
             </span>
         </p>
 <div>
@@ -2500,7 +2512,7 @@ void bar() {
                     In particular, a function-local static reference of the form
                     <code>static T&amp; t = *new T;</code> is allowed.
                 </span>
-                特に、<code>static T&amp; t = *new T;</code> 形式の関数ローカルな静的参照が許可されます。
+                特に、<code>static T&amp; t = *new T;</code> 形式の関数ローカルな静的参照変数は許可されます。
             </span>
         </p>
 
@@ -2551,7 +2563,7 @@ Bar y = g();  // ? (gとBarのコンストラクタに依存)</pre>
                     The concept we are looking for is called <em>constant initialization</em> in
                     the formal language of the C++ standard.
                 </span>
-                私たちが探している概念は、C++標準の形式言語で「<em>定数初期化</em>」と呼ばれます。
+                私たちが探している概念は、C++標準の形式言語において「<em>定数初期化</em>」と呼ばれているものです。
             </span>
             <span>
                 <span class="src">
@@ -2560,8 +2572,7 @@ Bar y = g();  // ? (gとBarのコンストラクタに依存)</pre>
                     constructor call, then the constructor must be specified as
                     <code>constexpr</code>, too:
                 </span>
-                定数初期化とは、初期化式が定数式であることを意味し、オブジェクトがコンストラクタ呼び出しによって
-                初期化される場合には、そのコンストラクタも <code>constexpr</code> として指定する必要があります。
+                定数初期化とは、初期化式が定数式であるということを意味し、オブジェクトがコンストラクタ呼び出しによって初期化される場合には、そのコンストラクタも <code>constexpr</code> として指定されている必要があります。
             </span>
         </p>
 <div>
@@ -2724,7 +2735,7 @@ Bar b;                     // 選択されるコンストラクタ Bar::Bar() �
                         int"), or an array of pairs (e.g., pairs of <code>int</code> and <code>const
     char*</code>).
                     </span>
-                    かわりに、自明(trivial)な型の単純な配列、たとえば <code>int</code>の配列の配列 (「int から int への連想配列」として)や、値ペア(たとえば、<code>int</code> and <code>const
+                    かわりに、自明(trivial)な型の単純な配列、たとえば <code>int</code>の配列の配列 (「int から int への連想配列」として)や、値ペア(たとえば、<code>int</code> と <code>const
     char*</code>の値ペア)の配列等を検討してください。
                 </span>
 
@@ -2848,7 +2859,7 @@ Bar b;                     // 選択されるコンストラクタ Bar::Bar() �
                     Such a variable is actually a collection of objects, so that when different
                     threads access it, they are actually accessing different objects.
                 </span>
-                このような変数は、実際にはオブジェクトのコレクションであるため、異なるスレッドからそれにアクセスするとき、実際には異なるオブジェクトにアクセスしています。
+                このような変数は、実際にはオブジェクトのコレクションです。そのため、異なるスレッドからアクセスすると、実際にはそれぞれ異なるオブジェクトにアクセスしています。
             </span>
 
             <span>
@@ -2986,7 +2997,7 @@ Bar b;                     // 選択されるコンストラクタ Bar::Bar() �
                     <code>thread_local</code> variables inside a function have no safety
                     concerns, so they can be used without restriction.
                 </span>
-                関数内の<code>thread_local</code>変数には安全上の懸念がないため、徳辺の制限なく使用してかまいません。
+                関数内の<code>thread_local</code>変数には安全上の懸念がないため、制限なく使用してかまいません。
             </span>
 
             <span>
@@ -3311,7 +3322,7 @@ void Func(Foo f);
                 This kind of code isn't technically an implicit conversion, but the
                 language treats it as one as far as <code>explicit</code> is concerned.
             </span>
-            このようなコードは何らテクニカルな暗黙的型変換はしていませんが、言語上<code>explicit</code>に関連していると見なして扱われます。
+            このようなコードは何らテクニカルな暗黙的型変換はしていませんが、言語上は<code>explicit</code>の懸念があると見なして扱われます。
         </span>
 
         <p class="pros"></p>
@@ -3360,7 +3371,7 @@ void Func(Foo f);
                         destination type does not match the user's expectation, or
                         the user is unaware that any conversion will take place.
                     </span>
-                    暗黙的型変換は、型の不一致によるバグを隠してしまうことがあります。たとえば、変換先の型がユーザの期待どおりにならなかったり、そもそもその場で型変換が行わることに気づかなかったりします。
+                    暗黙的型変換は、型の不一致によるバグを隠してしまうことがあります。たとえば、変換先の型がユーザーの期待どおりにならなかったり、そもそもその場で型変換が行わることに気づかなかったりします。
                 </span>
             </li>
 
@@ -3405,9 +3416,6 @@ void Func(Foo f);
                         when there are bidirectional implicit conversions.
                     </span>
                     暗黙的型変換は、呼び出し元における曖昧性を引き起こします。特に、それらが双方向に暗黙的変換が可能な場合です。
-                    <!-- todo -->
-                        Implicit conversions can lead to call-site ambiguities, especially
-                        when there are bidirectional implicit conversions.
                 </span>
                 <span>
                     <span class="src">
@@ -3416,7 +3424,7 @@ void Func(Foo f);
                         or by a single type that has both an implicit constructor and an
                         implicit type conversion operator.
                     </span>
-                    これは、そのような型同士の双方が暗黙的型変換の機能を提供していたり、片方のタイプが暗黙的型変換を行うコンストラクタと型変換演算子の両方を実装している場合に起こります。
+                    これは、そのような型同士の双方が暗黙的型変換の機能を提供していたり、一方の型が暗黙的型変換を行うコンストラクタと型変換演算子の両方を実装している場合に起こります。
                 </span>
             </li>
 
@@ -3427,7 +3435,7 @@ void Func(Foo f);
                         the destination type is implicit, particularly if the
                         list has only a single element.
                     </span>
-                    リスト初期化子は、変換先の型が暗黙的型変換を持つとき同じ問題にぶつかります(特にリストに1要素しか持っていなかった場合)。
+                    リストによる初期化では、変換先の型が暗黙的型変換を持つとき同じ問題にぶつかります(特にリストに1要素しか持っていなかった場合)。
                 </span>
             </li>
         </ul>
@@ -3467,7 +3475,7 @@ void Func(Foo f);
                     your project leads to request
                     a waiver of this rule.
                 </span>
-                そのような場合においては、プロジェクトリーダーと相談し、このルールの適用から外してください。
+                そのような場合においては、プロジェクトリーダーと相談し、このルールの適用対象外としてください。
             </span>
         </p>
 
@@ -3501,14 +3509,14 @@ void Func(Foo f);
                     A class's public API must make clear whether the class is copyable,
                     move-only, or neither copyable nor movable.
                 </span>
-                公開APIとしてのクラスは、そのクラスがコピー可能なのか、ムーブしかできないのか、コピーもムーブもできないのか、明らかにしなければなりません。
+                公開APIとしてのクラスは、そのクラスがコピー可能なのか、ムーブのみ可能なのか、そのいずれも不可能なのかを明示しなくてはなりません。
             </span>
             <span>
                 <span class="src">
                     Support copying and/or
                     moving if these operations are clear and meaningful for your type.
                 </span>
-                型を作る時、その型において、コピー操作やムーブ操作が、明確かつ有意義である場合に、コピー・ムーブ操作をサポートしましょう。
+                新しく型を作るときには、その型において、コピー操作やムーブ操作が、明確かつ有意義である場合に、それらの操作をサポートしましょう。
             </span>
         </p>
 
@@ -3538,8 +3546,8 @@ void Func(Foo f);
                     <code>std::unique_ptr&lt;int&gt;</code> must be modified during assignment to
                     the destination).
                 </span>
-                たとえば、<code>std::unique_ptr&lt;int&gt;</code>は、ムーブ可能かつコピー不可能な型の一例です。
-                (なぜなら、別の変数への代入操作を行うとき、代入元の<code>std::unique_ptr&lt;int&gt;</code>は変更される必要があります。)
+                たとえば、<code>std::unique_ptr&lt;int&gt;</code>は、ムーブ可能かつコピー不可な型の一例です。
+                (別の<code>std::unique_ptr&lt;int&gt;</code>変数への代入操作を行うとき、代入元は変更される必要があります。)
             </span>
 
             <span>
@@ -3547,7 +3555,7 @@ void Func(Foo f);
                     <code>int</code> and <code>std::string</code> are examples of
                     movable types that are also copyable.
                 </span>
-                <code>int</code>や<code>std::string</code>は、ムーブ可能かつコピーも可能な例です。
+                <code>int</code>や<code>std::string</code>は、ムーブもコピーも可能な例です。
             </span>
 
             <span>
@@ -3565,7 +3573,7 @@ void Func(Foo f);
                     For user-defined types, the copy behavior is defined by the copy
                     constructor and the copy-assignment operator.
                 </span>
-                ユーザ定義の型においては、コピーの挙動は、コピーコンストラクタとコピー代入演算子によって定義されます。
+                ユーザー定義の型においては、コピーの挙動は、コピーコンストラクタとコピー代入演算子によって定義されます。
             </span>
 
             <span>
@@ -3574,8 +3582,8 @@ void Func(Foo f);
                     move constructor and the move-assignment operator, if they exist, or by the
                     copy constructor and the copy-assignment operator otherwise.
                 </span>
-                ムーブの挙動は、ムーブコンストラクタとムーブ代入演算子が存在する場合はそれらによって定義されます。
-                それが存在しない場合は、ムーブの挙動は、コピーコンストラクタとコピー代入演算子によって定義されます。
+                ムーブの挙動は、ムーブコンストラクタとムーブ代入演算子が存在する場合にそれらによって定義されます。
+                それらが存在しない場合は、ムーブの挙動は、コピーコンストラクタとコピー代入演算子によって定義されます。
             </span>
         </p>
 
@@ -3604,7 +3612,7 @@ void Func(Foo f);
                     lifetime, mutability, and similar issues, and no need to specify them in the
                     contract.
                 </span>
-                オブジェクトのポインタ渡し・参照渡しと違って、オブジェクトの所有権や生存時間、可変性(mutability)、あるいはそれらに類する危険がなく、それらに関する前提条件を述べる必要もなくなります。
+                オブジェクトのポインタ渡し・参照渡しと違って、オブジェクトの所有権や寿命、可変性(mutability)、あるいはそれらに類する危険がなく、それらに関する前提条件を述べる必要もなくなります。
             </span>
             <span>
                 <span class="src">
@@ -3620,7 +3628,7 @@ void Func(Foo f);
                     require pass-by-value, such as most containers, and they allow for additional
                     flexibility in e.g., type composition.
                 </span>
-                さらに、このようなオブジェクトは、多くのコンテナ型のような値渡しを要求するAPIに利用することができる他、型の合成などにおいて柔軟な扱い方ができるようにもなります。
+                さらに、このようなオブジェクトは、多くのコンテナ型のような値渡しを要求するAPIに利用することができるようになったり、型の抱合などにおいて柔軟な扱い方ができるようになったりします。
             </span>
         </p>
         <p>
@@ -3632,7 +3640,7 @@ void Func(Foo f);
                     because they can be generated by the compiler, either implicitly or
                     with <code>= default</code>.
                 </span>
-                コピー・ムーブを行うコンストラクタや代入演算子は、一般に、<code>Clone()</code>, <code>CopyFrom()</code>あるいは<code>Swap()</code>といった代替的な方法に比べて、正しく定義することが容易です。なぜならば、これらのコンストラクタや代入演算子は暗黙的に、または明示的に<code>= default</code>と記載することで、コンパイラに生成させることができるためです。
+                コピー・ムーブを行うコンストラクタや代入演算子は、一般に、<code>Clone()</code>, <code>CopyFrom()</code>あるいは<code>Swap()</code>といった代替的な方法に比べて、正しく定義することが容易です。これらのコンストラクタや代入演算子は暗黙的に、または明示的に<code>= default</code>と記載することで、コンパイラに生成させることができるためです。
             </span>
             <span>
                 <span class="src">
@@ -3651,7 +3659,7 @@ void Func(Foo f);
                     <a href="http://en.cppreference.com/w/cpp/language/copy_elision">
                         copy elision</a>.
                 </span>
-                また、コピーコンストラクタやムーブコンストラクタは一般的に、より効率的に動作します。なぜならば、これらはヒープメモリは確保せず、初期化と割り当てをまとめて行い、<a href="http://en.cppreference.com/w/cpp/language/copy_elision">copy elision</a>のような適切な最適化が行われるためです。
+                また、一般的に、コピーコンストラクタやムーブコンストラクタは、効率的に動作します。これらはヒープメモリは確保せず、初期化と割り当てをまとめて行い、<a href="http://en.cppreference.com/w/cpp/language/copy_elision">copy elision</a>のような適切な最適化が行われるためです。
             </span>
         </p>
 
@@ -3704,7 +3712,7 @@ void Func(Foo f);
                     Defaulted or carelessly-implemented copy operations can be incorrect, and the
                     resulting bugs can be confusing and difficult to diagnose.
                 </span>
-                デフォルト実装や雑に実装されたコピー操作は誤ったものとなる可能性があり、結果的に困惑的な診断の難しいバグを招くことがあります。
+                デフォルト実装や雑に実装されたコピー操作は誤ったものとなる可能性があり、見つけるのが難しいバグを招くことがあります。
             </span>
         </p>
 
@@ -3714,7 +3722,7 @@ void Func(Foo f);
                     Copy constructors are invoked implicitly, which makes the
                     invocation easy to miss.
                 </span>
-                コピーコンストラクタは暗黙的に呼び出されるため、呼び出しを見落としやすいです。
+                コピーコンストラクタは暗黙的に呼び出されるため、その呼び出しを見落としやすいです。
             </span>
             <span>
                 <span class="src">
@@ -3741,7 +3749,7 @@ void Func(Foo f);
                     section of the declaration.
                 </span>
                 すべてのクラスの公開インターフェイスは、クラスがコピーやムーブのどの操作をサポートしているかを明らかにしておかなければなりません。
-                これは通常、クラス宣言の<code>public</code>セクションで適切な操作を明示的に宣言および/または削除するという形式で行うようにします。
+                これは通常、クラス宣言の<code>public</code>セクションで適切な操作を明示的に宣言するか削除するという形式で行うようにします。
             </span>
         </p>
 
@@ -3862,9 +3870,7 @@ class NotCopyableOrMovable {
                         then the copyability/movability can be determined by the
                         copyability/movability of any public data members.
                     </span>
-                    <a href="#Structs_vs._Classes">構造体</a>やインターフェイスのみの基底クラスのように、
-                    クラスに<code>private</code>セクションがない場合、コピーやムーブの可能性は、
-                    パブリックデータメンバのコピーやムーブ可能性によって決定できます。
+                    <a href="#Structs_vs._Classes">構造体</a>やインターフェイスのみの基底クラスのように、クラスに<code>private</code>セクションがない場合、コピーやムーブの可能性は、パブリックデータメンバのコピーやムーブ可能性によって決定できます。
                 </span>
             </li>
             <li>
@@ -3873,14 +3879,14 @@ class NotCopyableOrMovable {
                         If a base class clearly isn't copyable or movable, derived classes
                         naturally won't be either.
                     </span>
-                    基底クラスが明らかにコピーやムーブ可能でない場合、派生クラスも当然コピーやムーブ可能ではありません。
+                    基底クラスが明らかにコピー可能やムーブ可能でない場合、派生クラスも当然にコピー可能やムーブ可能ではありません。
                 </span>
                 <span>
                     <span class="src">
                         An interface-only base class that leaves these
                         operations implicit is not sufficient to make concrete subclasses clear.
                     </span>
-                    インターフェイスのみの基底クラスがこれらの操作を暗黙のままにしているとき、具体的なサブクラスにとって十分に明確であるとはいえません。
+                    基底クラスがインターフェイスのみを提供し、これらの操作について暗黙のままにしているとき、具体的なサブクラスにとって十分に明確であるということはできません。
                 </span>
             </li>
             <li>
@@ -3890,7 +3896,7 @@ class NotCopyableOrMovable {
                         assignment operation for copy, the other copy operation is not obvious and
                         must be declared or deleted.
                     </span>
-                    コピーコンストラクタまたはコピー代入演算子のいずれかを明示的に宣言または削除する場合、もう一方のコピー操作は明白ではないため、宣言または削除する必要があることに注意してください。
+                    コピーコンストラクタまたはコピー代入演算子のいずれかを明示的に宣言または削除する場合、もう一方のコピー操作も自明となるわけではないため、それらも同時に宣言または削除する必要があることに注意してください。
                 </span>
                 <span>
                     <span class="src">
@@ -3907,7 +3913,7 @@ class NotCopyableOrMovable {
                     copying/moving is unclear to a casual user, or if it incurs unexpected
                     costs.
                 </span>
-                コピー/ムーブの意味がカジュアルなユーザーにとって不明確な場合、または予期しないコストが発生する場合、型をコピー可能/ムーブ可能にすべきではありません。
+                コピー/ムーブの意味がカジュアルなユーザーにとってわかりにくい場合、または予期しないコストが発生する場合、型をコピー可能/ムーブ可能にしないでください。
             </span>
             <span>
                 <span class="src">
@@ -3916,7 +3922,7 @@ class NotCopyableOrMovable {
                     avoid defining them unless they are significantly more efficient than
                     the corresponding copy operations.
                 </span>
-                コピー可能な型に対するムーブ操作は、厳密にはパフォーマンスの最適化であって、潜在的なバグや複雑さの原因になります。関連するコピー操作よりもはるかに効率的に機能するというような場合を除いて、ムーブ操作を定義するのは避けてください。
+                コピー可能な型におけるムーブ操作は、厳密にはパフォーマンスの最適化であり、潜在的にバグや複雑さの原因になります。関連するコピー操作よりもはるかに効率的に機能するというような場合を除いて、ムーブ操作を定義するのは避けてください。
             </span>
             <span>
                 <span class="src">
@@ -3924,14 +3930,14 @@ class NotCopyableOrMovable {
                     recommended that you design your class so that the default implementation of
                     those operations is correct.
                 </span>
-                あなたの型でコピー操作を提供しようとする際には、(コンパイラが生成する)デフォルト実装が正しい動作となるように型を設計することをおすすめします。
+                新しい型でコピー操作を提供しようとする際には、コンパイラが生成するデフォルト実装が、そのまま正しい動作となるように型を設計することをおすすめします。
             </span>
             <span>
                 <span class="src">
                     Remember to review the correctness of any
                     defaulted operations as you would any other code.
                 </span>
-                そして、そのデフォルト実装で正しいのかどうかについて、他のコードと同じように、レビューするのも忘れないようにしましょう。
+                その際、デフォルト実装でコピーが行われることの正しさについて、他のコードと同じように、レビューするのも忘れないようにしましょう。
             </span>
         </p>
         <p>
@@ -3941,8 +3947,7 @@ class NotCopyableOrMovable {
                     by making their constructors protected, by declaring their destructors protected,
                     or by giving them one or more pure virtual member functions.
                 </span>
-                スライシングのリスクを排除するには、コンストラクタを protected にするか、デストラクタを protected 宣言するか、
-                1つ以上の純粋な仮想メンバ関数を与えることによって、基底クラスを抽象化しましょう。
+                スライシングのリスクを排除するために、基底クラスは抽象クラスとなるようにしましょう。そのためには、コンストラクタを protected にするか、デストラクタを protected 宣言するか、1つ以上の純粋な仮想メンバ関数を与えるようにします。
             </span>
             <span>
                 <span class="src">
@@ -3992,7 +3997,7 @@ class NotCopyableOrMovable {
                     <code>structs</code> should be used for passive objects that carry
                     data, and may have associated constants.
                 </span>
-                <code>struct</code>はデータと、場合によっては関連する定数を運ぶ、受動的なオブジェクトに使われるべきです。
+                構造体(<code>struct</code>)はデータと関連する定数を運ぶ、受動的なオブジェクトに使用してください。
             </span>
             <span>
                 <span class="src">
@@ -4007,7 +4012,7 @@ class NotCopyableOrMovable {
                     different fields, since direct user access to those fields may
                     break those invariants.
                 </span>
-                構造体はフィールド間の暗黙的な不変条件を持ってはいけません。ユーザーは直接フィールドにアクセスするため、そのような条件は崩れてしまうかもしれません。
+                フィールド間の暗黙的な不変条件を持たせてはいけません(ユーザーは直接フィールドにアクセスするため、そのような条件は崩れてしまうかもしれません)。
             </span>
             <span>
                 <span class="src">
@@ -4015,7 +4020,7 @@ class NotCopyableOrMovable {
                     be present; however, these methods must not require or enforce any
                     invariants.
                 </span>
-                コンストラクタやデストラクタ、ヘルパメソッドを持ってもかまいません。しかし、これらのメンバ関数が不変条件を要求したり強制したりしてはいけません。
+                コンストラクタやデストラクタ、ヘルパメソッドを持つことはかまいません。しかし、それらのメンバ関数が不変条件を要求したり強制したりしてはいけません。
             </span>
         </p>
 
@@ -4025,14 +4030,14 @@ class NotCopyableOrMovable {
                     If more functionality or invariants are required, a
                     <code>class</code> is more appropriate.
                 </span>
-                それ以上の機能性や不変条件の維持が必要な場合は、<code>class</code>の方が適切です。
+                それ以上の機能性や不変条件が必要な場合は、クラス(<code>class</code>)の方が適切です。
             </span>
             <span>
                 <span class="src">
                     If in doubt, make
                     it a <code>class</code>.
                 </span>
-                迷ったら<code>class</code>にしましょう。
+                迷ったらクラスにしましょう。
             </span>
         </p>
 
@@ -4045,7 +4050,7 @@ class NotCopyableOrMovable {
                     <a href="#Template_metaprogramming">template metafunctions</a>,
                     and some functors.
                 </span>
-                STLとの一貫性を持たせるため、traitsや<a href="#Template_metaprogramming">テンプレートメタ関数</a>、いくつかのファンクタなどの、状態を持たない型については、<code>class</code>のかわりに<code>struct</code>を使ってもかまいません。
+                STLとの一貫性を持たせるため、traitsや<a href="#Template_metaprogramming">テンプレートメタ関数</a>、いくつかの関数オブジェクトなどの、状態を持たない型については、<code>class</code>のかわりに<code>struct</code>を使ってもかまいません。
             </span>
         </p>
 
@@ -4079,7 +4084,7 @@ class NotCopyableOrMovable {
                     name will almost always be much clearer when <em>reading</em> code than
                     <code>.first</code>, <code>.second</code>, or <code>std::get&lt;X&gt;</code>.
                 </span>
-                値ペアやタプルを使用すると、カスタム型を定義する必要がなくなり、コードを<em>書く</em>ときの作業量を節約できるかもしれませんが、コードを<em>読む</em>ときのことを考えれば、ほとんど、ほぼ常に、意味のあるフィールド名がつけられていた方が、<code>.first</code>、<code>.second</code>や<code>std::get&lt;X&gt;</code>よりも、ずっと明確になります。
+                値ペアやタプルを使用すると、カスタム型を定義する必要がなくなり、コードを<em>書く</em>ときの作業量を節約できるかもしれません。しかし、コードを<em>読む</em>ときのことを考えれば、ほとんど、ほぼ常に、<code>.first</code>、<code>.second</code>や<code>std::get&lt;X&gt;</code>よりも、意味のあるフィールド名がつけられていた方がずっとわかりやすいはずです。
             </span>
 
             <span>
@@ -4089,7 +4094,7 @@ class NotCopyableOrMovable {
                     sometimes partially mitigate this, a field name is usually substantially
                     clearer and more informative than a type.
                 </span>
-                型が一意の場合、C++14で導入された<code>std::get&lt;Type&gt;</code>によって、インデックスではなく型名によってタプルの要素にアクセスできるので、部分的には軽減される場合がありますが、一般的に、フィールド名の方が、型名よりもずっと明確で情報量も多いです。
+                型が一意である場合には、C++14で導入された<code>std::get&lt;Type&gt;</code>によって、インデックスではなく型名によってタプルの要素にアクセスできるので、部分的には軽減される場合もありますが、一般的には、フィールド名の方が、型名よりもずっと明確で情報量も多いです。
             </span>
         </p>
 
@@ -4099,14 +4104,14 @@ class NotCopyableOrMovable {
                     Pairs and tuples may be appropriate in generic code where there are not
                     specific meanings for the elements of the pair or tuple.
                 </span>
-                値ペアとタプルは、値ペアまたはタプルの要素に特定の意味がない、またはつけられない、汎用的なコードで適切な場合があります。
+                値ペアとタプルは、その要素に特定の意味がない、またはつけられない、汎用的なコードで適切な場合があります。
             </span>
             <span>
                 <span class="src">
                     Their use may
                     also be required in order to interoperate with existing code or APIs.
                 </span>
-                あるいは、既存のコードやAPIとの相互運用に必要となる場合もあります。
+                あるいは、既存のコードやAPIとの相互運用には必要となる場合もあるかもしれません。
             </span>
         </p>
 
@@ -4120,7 +4125,7 @@ class NotCopyableOrMovable {
                 <span class="src">
                     Composition is often more appropriate than inheritance.
                 </span>
-                しばしば、継承より抱合(コンポジション)の方が適切な場合もあります。
+                しばしば、抱合(composition)の方が、継承よりも適切な場合があります。
             </span>
             <span>
                 <span class="src">
@@ -4139,7 +4144,7 @@ class NotCopyableOrMovable {
                     of all the data and operations that the base class
                     defines.
                 </span>
-                派生クラスが基底クラスから継承するとき、派生クラスは基底クラスで定義されているすべてのデータと操作の定義を含むようになります。
+                派生クラスが基底クラスを継承するとき、派生クラスは基底クラスで定義されているすべてのデータと操作の定義を含むようになります。
             </span>
             <span>
                 <span class="src">
@@ -4148,7 +4153,7 @@ class NotCopyableOrMovable {
                     methods); all other inheritance is "implementation
                     inheritance".
                 </span>
-                "インターフェースの継承"は、純粋抽象基底クラス(状態やメソッドの定義を持たないクラス)からの継承のことを言い、それ以外の継承はすべて"実装の継承"です。
+                「インターフェースの継承」は、純粋抽象基底クラス(状態やメソッドの定義を持たないクラス)からの継承のことを言い、それ以外の継承はすべて「実装の継承」です。
             </span>
         </p>
         <p class="pros"></p>
@@ -4166,7 +4171,7 @@ class NotCopyableOrMovable {
                     and the compiler can understand the operation and detect
                     errors.
                 </span>
-                継承はコンパイル時の宣言であるため、コンパイラは操作を理解し、エラーを検出します。
+                継承はコンパイル時の宣言であるため、コンパイラは操作を理解し、エラーを検出できます。
             </span>
             <span>
                 <span class="src">
@@ -4174,7 +4179,7 @@ class NotCopyableOrMovable {
                     programmatically enforce that a class expose a particular
                     API.
                 </span>
-                インターフェースの継承は、プログラム的に、クラスが特定のAPIを公開することを強制するために使用します。
+                インターフェースの継承では、プログラム的に、クラスが特定のAPIを公開することを強制させることができます。
             </span>
             <span>
                 <span class="src">
@@ -4182,7 +4187,7 @@ class NotCopyableOrMovable {
                     when a class does not define a necessary method of the
                     API.
                 </span>
-                同様に、コンパイラは、クラスが必要なメソッドを定義していない場合に、それをエラーとして検出します。
+                同様に、コンパイラは、クラスが必要なメソッドを定義していない場合に、それをエラーとして検出できます。
             </span>
         </p>
         <p class="cons"></p>
@@ -4234,7 +4239,7 @@ class NotCopyableOrMovable {
                     want to do private inheritance, you should be including
                     an instance of the base class as a member instead.
                 </span>
-                privateな継承を行いたい場合は、継承の代わりに基底クラスのインスタンスをメンバーとして持つようにしましょう。
+                privateな継承を行いたい場合は、継承のかわりに基底クラスのインスタンスをメンバーとして持つようにしましょう。
             </span>
             <span>
                 <span class="src">
@@ -4242,7 +4247,7 @@ class NotCopyableOrMovable {
                     <code>final</code> on classes when you don't intend to support using
                     them as base classes.
                 </span>
-                基底クラスとしての使用されることを想定しないクラスには<code>final</code>をつけることもできます。
+                基底クラスとしての使用されることを想定しないクラスには<code>final</code>をつけるとよいでしょう。
             </span>
         </p>
 
@@ -4258,7 +4263,7 @@ class NotCopyableOrMovable {
                     Composition
                     is often more appropriate.
                 </span>
-                抱合(コンポジション)の方が適切な場合もしばしばあります。
+                抱合(composition)の方が適切な場合もしばしばあります。
             </span>
             <span>
                 <span class="src">
@@ -4288,7 +4293,7 @@ class NotCopyableOrMovable {
                         members should be private
                     </a>.
                 </span>
-                特に、<a href="#Access_Control">データメンバはすべてprivateとする</a>ようにしましょう。
+                <a href="#Access_Control">データメンバはすべてprivate</a>としてください。
             </span>
         </p>
 
@@ -4314,7 +4319,7 @@ class NotCopyableOrMovable {
                     not an override of a base class virtual function will
                     not compile, and this helps catch common errors.
                 </span>
-                その根拠は、<code>override</code>か<code>final</code>でマークされた関数やデスクトラクタは、基底クラスの仮想関数をオーバーライドしていないときにコンパイルできなくなるため、問題に気づきやすくなるためです。
+                この根拠は、<code>override</code>か<code>final</code>でマークされた関数やデスクトラクタは、基底クラスの仮想関数をオーバーライドしていないときにコンパイルエラーとなるため、問題に気づきやすくできるからです。
             </span>
             <span>
                 <span class="src">
@@ -4324,7 +4329,7 @@ class NotCopyableOrMovable {
                     class in question to determine if the function or
                     destructor is virtual or not.
                 </span>
-                これらの指定子はドキュメントの役割も果たします。もし、指定子がない場合、コードの読者は関数やデストラクタが仮想なのかそうでないのかを解決するためには、すべての継承元をたどって調べなくてはならないでしょう。
+                これらの指定子はドキュメントの役割も果たします。もし、指定子がない場合、コードの読者は関数やデストラクタが仮想なのかそうでないのかを解決するために、すべての継承元をたどって調べなくてはなりません。
             </span>
         </p>
 
@@ -4353,7 +4358,7 @@ class NotCopyableOrMovable {
                 <span class="src">
                     Do not use user-defined literals.
                 </span>
-                ユーザ定義のリテラルは使用してはいけません。
+                ユーザー定義のリテラルは使用してはいけません。
             </span>
         </p>
 
@@ -4369,7 +4374,7 @@ class NotCopyableOrMovable {
                     <code>operator</code> keyword, so long as one of the parameters
                     is a user-defined type.
                 </span>
-                C++では、<code>operator</code>キーワードを使うことで、ユーザ定義の型を引数とした<a href="http://en.cppreference.com/w/cpp/language/operators">組み込み演算子のオーバーロードを宣言</a>することができます。
+                C++では、<code>operator</code>キーワードを使うことで、ユーザー定義の型を引数とした<a href="http://en.cppreference.com/w/cpp/language/operators">組み込み演算子のオーバーロードを宣言</a>することができます。
             </span>
             <span>
                 <span class="src">
@@ -4389,7 +4394,7 @@ class NotCopyableOrMovable {
                     intuitive by enabling user-defined types to behave the same
                     as built-in types.
                 </span>
-                演算子のオーバーロードは、ユーザ定義の型に組み込み型と同様の振る舞いをさせることができるようになるため、コードを簡潔で直感的にすることができます。
+                演算子のオーバーロードを用いると、ユーザー定義の型に組み込み型と同様の振る舞いをさせることができるようになるため、コードを簡潔で直感的にすることができます。
             </span>
             <span>
                 <span class="src">
@@ -4400,7 +4405,7 @@ class NotCopyableOrMovable {
                     and enable them to interoperate with libraries that expect
                     those names.
                 </span>
-                オーバーロードされた演算子は、決まった操作に対して慣例に沿った名前を与えます(<code>==</code>や<code>&lt;</code>、<code>=</code>、<code>&lt;&lt;</code>など)。これらの慣例に従うことは、ユーザ定義の型に対する可読性を向上させ、それらの名前を期待しているライブラリとの相互運用性を高めることができます。
+                オーバーロードされた演算子は、よくある操作に対する慣例的な見た目を持ちます(<code>==</code>や<code>&lt;</code>、<code>=</code>、<code>&lt;&lt;</code>など)。これらの慣例に従うことは、ユーザー定義の型に対する可読性を向上させ、それらの演算子を期待しているライブラリとの相互運用性を高めることができます。
             </span>
         </p>
 
@@ -4410,7 +4415,7 @@ class NotCopyableOrMovable {
                     User-defined literals are a very concise notation for
                     creating objects of user-defined types.
                 </span>
-                ユーザ定義のリテラルは、ユーザ定義のオブジェクトを生成する非常に簡潔な表記方法です。
+                ユーザー定義のリテラルは、ユーザー定義のオブジェクトを生成する非常に簡潔な表記方法です。
             </span>
         </p>
         <p class="cons"></p>
@@ -4422,7 +4427,7 @@ class NotCopyableOrMovable {
                         set of operator overloads requires some care, and failure
                         to do so can lead to confusion and bugs.
                     </span>
-                    正しい、一貫性を持った、よくある形の演算子のセットを提供するためには、細かな注意が必要となり、失敗すると、混乱やバグを引き起こしかねません。
+                    正しく、一貫性を持つ、よくある形の演算子の組を提供するためには、細やかな注意が必要となり、失敗すると、混乱やバグを引き起こしかねません。
                 </span>
             </li>
 
@@ -4454,7 +4459,7 @@ class NotCopyableOrMovable {
                         thinking that expensive operations are cheap, built-in
                         operations.
                     </span>
-                    演算子のオーバーロードは、本来高コストな処理を組み込み演算子のように低コストに見せかけてしまうことができます。このことは私たちの直感に反します。
+                    演算子のオーバーロードは、その見た目に反して本来高コストな処理を、組み込み演算子のように低コストに見せかけてしまうことができてしまいます。
                 </span>
             </li>
 
@@ -4476,7 +4481,7 @@ class NotCopyableOrMovable {
                         wrong, you may get a different overload rather than a
                         compiler error.
                     </span>
-                    オーバーロードされた演算子の引数の型を間違えたとき、単にコンパイルエラーになるのであればまだよいのですが、エラーにならず別の演算子の呼び出しに解決されてしまうかもしれません。
+                    オーバーロードされた演算子の引数の型を間違えたとき、コンパイルエラーにならずに、別の演算子の呼び出しに解決されてしまうことがあります。
                 </span>
                 <span>
                     <span class="src">
@@ -4522,7 +4527,7 @@ class NotCopyableOrMovable {
                         so there's a risk of different files introducing
                         different definitions of the same operator.
                     </span>
-                    オペレータはしばしばクラスの外で定義されますが、その場合、異なるファイルにある異なる定義を引き込んでしまう危険性があります。
+                    演算子はしばしばクラスの外で定義されますが、その場合、異なるファイルにある異なる定義を引き込んでしまう危険性があります。
                 </span>
                 <span>
                     <span class="src">
@@ -4531,7 +4536,7 @@ class NotCopyableOrMovable {
                         in undefined behavior, which can manifest as subtle
                         run-time bugs.
                     </span>
-                    同じバイナリ内でそれらの実装の異なるオペレーターの両方がリンクされてしまった場合、未定義の動作を引き起こし、細かいバグを引き起こすことになるでしょう。
+                    同じバイナリ内でそれらの実装の異なる演算子の両方がリンクされてしまった場合、未定義の動作を引き起こし、細かい実行時バグとなるでしょう。
                 </span>
             </li>
 
@@ -4544,9 +4549,9 @@ class NotCopyableOrMovable {
                         shorthand for <code>std::string_view("Hello World")</code>.
                         Existing notations are clearer, though less terse.
                     </span>
-                    ユーザ定義のリテラル(UDL)は、文法的に新しい形式を生み出しますが、それらは十分経験を積んだC++プログラマにとってさえ親しみの薄いものです。
+                    ユーザー定義のリテラル(UDL)は、文法的に新しい形式を生み出します。しかし、それらは十分経験を積んだC++プログラマにとっても親しみの薄いものです。
                     (例えば<code>std::string_view("Hello World")</code>の略記としての<code>"Hello World"sv</code>など)
-                    既存の表記は、簡潔でこそありませんが、より明瞭です。
+                    従来からの表記は、簡潔でこそありませんが、より明瞭です。
                 </span>
             </li>
             <li>
@@ -4558,8 +4563,7 @@ class NotCopyableOrMovable {
                         when the imported names are part of the interface exposed by the header
                         file in question).
                     </span>
-                    UDLは名前空間修飾ができないので、UDLを使うには、usingディレクティブ(<a href="#Namespaces">禁止</a>)か using宣言(<a
-                        href="#Aliases">ヘッダーファイルでは禁止</a>。ただし、取り込んだ名前が当該ヘッダーファイルで公開されるインターフェースの一部である場合を除く)のどちらかを使う必要があります。
+                    UDLは名前空間修飾ができないので、UDLを使うには、usingディレクティブ(<a href="#Namespaces">名前空間の章で禁止</a>)か using宣言(<a href="#Aliases">ヘッダーファイルでは禁止</a>。ただし、取り込んだ名前が当該ヘッダーファイルで公開されるインターフェースの一部である場合を除く)のいずれかを使う必要があります。
                 </span>
                 <span>
                     <span class="src">
@@ -4567,7 +4571,7 @@ class NotCopyableOrMovable {
                         suffixes, we prefer to avoid having conventions for literals differ
                         between header files and source files.
                     </span>
-                    そしてヘッダーファイルではUDL接尾辞を避ける以上、ヘッダーファイルとソースファイルとでリテラルに関する規約を別々にしなくてはなりませんが、それは避けたいです。
+                    ヘッダーファイルでUDL接尾辞を避ける以上、ヘッダーファイルとソースファイルとでリテラルに関する規約を別々にしなくてはなりませんが、それも避けたいです。
                 </span>
             </li>
         </ul>
@@ -4604,7 +4608,7 @@ class NotCopyableOrMovable {
                     define them in the same headers, .cc files, and namespaces
                     as the types they operate on.
                 </span>
-                より厳密には、それらは型と同じヘッダか.ccファイル、そして型と同じ名前空間の中で定義してください。
+                より厳密には、それらは型と同じヘッダーか.ccファイル、そして型と同じ名前空間の中で定義してください。
             </span>
             <span>
                 <span class="src">
@@ -4663,7 +4667,7 @@ class NotCopyableOrMovable {
                     confuse your users if <code>a &lt; b</code> compiles but
                     <code>b &lt; a</code> doesn't.
                 </span>
-                <code>a &lt; b</code>はコンパイルできるけど<code>b &lt; a</code>はコンパイルできないのような状況は、ユーザを混乱させることになります。
+                <code>a &lt; b</code>はコンパイルできるけど<code>b &lt; a</code>はコンパイルできないというような状況は、ユーザーを混乱させることになります。
             </span>
         </p>
 
@@ -4699,7 +4703,7 @@ class NotCopyableOrMovable {
                     use a custom comparator rather than overloading
                     <code>&lt;</code>.
                 </span>
-                たとえば、型の値同士で順序づけできない、<code>std::set</code>に入れたいがためだけに<code>&lt;</code>をオーバーロードしてはいけません。このような型を<code>std::set</code>に入れたい場合は、カスタムの比較子(comparator)を使うようにします。
+                たとえば、型の値同士で順序づけできない、<code>std::set</code>に入れたいがためだけに<code>&lt;</code>をオーバーロードしてはなりません。このような型を<code>std::set</code>に入れたい場合は、カスタムの比較子(comparator)を使うようにします。
             </span>
         </p>
 
@@ -4710,7 +4714,7 @@ class NotCopyableOrMovable {
                     <code>,</code> (comma), or unary <code>&amp;</code>.
                 </span>
                 演算子<code>&amp;&amp;</code>と<code>||</code>と<code>,</code>
-                (カンマ演算子)、単項演算子<code>&amp;</code>はオーバーロードをしてはいけません。
+                (カンマ演算子)、単項演算子<code>&amp;</code>はオーバーロードをしてはなりません。
             </span>
             <span>
                 <span class="src">
@@ -4718,14 +4722,14 @@ class NotCopyableOrMovable {
                     <code>operator""</code>, i.e., do not introduce user-defined
                     literals.
                 </span>
-                また、<code>operator""</code>のオーバーロードもしてはいけません。つまり、ユーザ定義リテラルを導入してはいけません。
+                また、<code>operator""</code>のオーバーロードもしてはいけません。つまり、ユーザー定義リテラルを導入してはなりません。
             </span>
             <span>
                 <span class="src">
                     Do not use any such literals provided by others
                     (including the standard library).
                 </span>
-                標準ライブラリも含めて、他者から提供されるいかなるリテラルも使用してはいけません。
+                標準ライブラリも含めて、他者から提供されるいかなるリテラル演算子も使用してはなりません。
             </span>
         </p>
 
@@ -4795,14 +4799,14 @@ class NotCopyableOrMovable {
                 </a>).
             </span>
             <a href="https://github.com/google/googletest">Google Test</a>を使う場合、
-            技術的な理由により、.ccファイル内で定義されたテスト用のクラスのデータメンバは<code>protected</code>であってもよいとします。
+            技術的な理由により、.ccファイル内で定義されたテスト用のクラスのデータメンバは<code>protected</code>であってもよいものとします。
         </span>
         <span>
             <span class="src">
                 If a test fixture class is defined outside of the .cc file it is used in, for example in a .h file,
                 make data members <code>private</code>.
             </span>
-            ただし、テストフィクスチャクラスが、そのクラスを利用する .cc ファイル外で定義される場合(たとえば .h ファイル内)は、データメンバは<code>private</code>にします。
+            ただし、テストフィクスチャクラスが、そのクラスを利用する .cc ファイル外で定義される場合(たとえば .h ファイル内)は、データメンバは<code>private</code>にしてください。
         </span>
     </p>
     <h3 id="Declaration_Order">
@@ -4815,7 +4819,7 @@ class NotCopyableOrMovable {
                 Group similar declarations together, placing public parts
                 earlier.
             </span>
-            似ている宣言は1つにまとめ、publicな部分を先におきます。
+            似ている宣言は1つにまとめ、パブリックな部分を先におきます。
         </span>
     </p>
 
@@ -5038,8 +5042,8 @@ class NotCopyableOrMovable {
                 (for example, by copying the parameter), or pass it by <code>const</code>
                 pointer and document the lifetime and non-null requirements.
             </span>
-            かわりに、その有効期限を存続させなくてもよい方法を探す(例えば引数をコピーするなど)か、
-            もしくはその引数を<code>const</code>ポインタ渡しとして、生存期間と非nullに関する要件をドキュメントにします。
+            かわりに、その寿命が存続していなくてもよい方法を探す(例えば引数をコピーするなど)か、
+            もしくはその引数を<code>const</code>ポインタ渡しとして、寿命と非nullに関する要件をドキュメントにします。
         </span>
     </p>
 
@@ -5059,7 +5063,7 @@ class NotCopyableOrMovable {
                 because they are new; place new input-only parameters before
                 the output parameters.
             </span>
-            特に、関数に新しい引数を追加するとき、新しいという理由だけで最後に追加するようなことはせず、入力専用引数は出力引数よりも前に配置するようにしましょう。
+            特に、関数に新しい引数を追加するとき、新しいという理由だけで最後に追加することは避け、入力専用引数は出力引数よりも前に来るようにしましょう。
         </span>
 
         <span>
@@ -5076,14 +5080,14 @@ class NotCopyableOrMovable {
                 consistency with related functions may require you to bend the rule.
             </span>
             入力と出力の両方の役割を持つ引数は、明確な線引きはできません。
-            また、関連する関数との一貫性を保つためにはこのルールを曲げなくてはならないかもしれません。
+            また、関連する関数との一貫性を保つためにはこのルールを曲げる必要があるかもしれません。
         </span>
 
         <span>
             <span class="src">
                 Variadic functions may also require unusual parameter ordering.
             </span>
-            可変長引数関数もまた、通常とは異なる引数の順序を必要とするかもしれません。
+            可変長引数関数もまた、通常とは異なる引数の順序を必要とするでしょう。
         </span>
 
     </p>
@@ -5147,7 +5151,7 @@ class NotCopyableOrMovable {
             <span class="src">
                 Small functions are also easier to test.
             </span>
-            小さな関数はテストすることも容易です。
+            小さな関数はテストも容易です。
         </span>
     </p>
 
@@ -5158,7 +5162,7 @@ class NotCopyableOrMovable {
                 working with
                 some code.
             </span>
-            作業をしていると、長い複雑なコードに出くわすこともあるでしょう。
+            作業をしていると、長く複雑なコードに出くわすこともあるでしょう。
         </span>
         <span>
             <span class="src">
@@ -5170,7 +5174,7 @@ class NotCopyableOrMovable {
                 the function into smaller and more manageable pieces.
             </span>
             既存のコードを変更することにおびえてはいけません。
-            そのコードを使って仕事を進めることが困難であることがわかった場合、エラーのデバッグが難しいことがわかった場合、あるいは別の文脈においてその関数の一部分だけを切り出して使いたくなった場合、関数をより小さく扱いやすい複数の断片に分割することを検討してください。
+            そのコードを使って仕事を進めることが困難であることがわかった場合やエラーのデバッグが難しいことがわかった場合、あるいは別の文脈においてその関数の一部分だけを切り出して使いたくなった場合には関数をより小さく扱いやすい複数の断片に分割することを検討してください。
         </span>
     </p>
 
@@ -5186,7 +5190,7 @@ class NotCopyableOrMovable {
                 is happening without having to first figure out exactly
                 which overload is being called.
             </span>
-            コンストラクタを含む関数のオーバーロードは、コードの読者が、その呼び出し元を読んだときに、具体的にどのオーバーロードが呼び出されるか正確に把握していなくとも、何が起こるか理解できるであろう場合にのみ使うことができます。
+            コンストラクタを含めて関数のオーバーロードは、コードの読者が呼び出し元のコードを読んだときに、具体的にどのオーバーロードが呼び出されるか正確に把握していなくとも、何が起こるか理解できるであろう場合に限って使うようにしてください。
         </span>
     </p>
 
@@ -5226,14 +5230,14 @@ class NotCopyableOrMovable {
                 Overloading can make code more intuitive by allowing an
                 identically-named function to take different arguments.
             </span>
-            オーバーロードは、同一の名前をもつ関数に異なる引数をとらせることができるため、コードがより直感的になります。
+            オーバーロードは、関数に同一の名前をもたせたまま異なる引数をとらせることができるため、コードをより直感的なものにすることができます。
         </span>
         <span>
             <span class="src">
                 It may be necessary for templatized code, and it can be
                 convenient for Visitors.
             </span>
-            この機能は、テンプレート化されたコードにおいて必要とされたり、また、ビジターパターンにおいても有用であったりします。
+            この機能は、コードのテンプレート化や、ビジターパターンにおいて有用です。
         </span>
     </p>
 
@@ -5276,14 +5280,14 @@ class NotCopyableOrMovable {
                 You may overload a function when there are no semantic differences
                 between variants.
             </span>
-            互いに意味上の違いがないのであれば、関数をオーバーロードすることができます。
+            互いに意味上の違いがないのであれば、関数をオーバーロードしてもかまいません。
         </span>
         <span>
             <span class="src">
                 These overloads may vary in types, qualifiers, or
                 argument count.
             </span>
-            これらのオーバーロードは、型が異なったり、修飾子が異なったり、引数の数が違うかもしれません。
+            これらのオーバーロードは、型が異なったり、修飾子が異なったり、引数の数が違ったりするものを含むでしょう。
         </span>
         <span>
             <span class="src">
@@ -5291,7 +5295,7 @@ class NotCopyableOrMovable {
                 which member of the overload set is chosen, only that <b>something</b>
                 from the set is being called.
             </span>
-            しかし、そのようなオーバーロードを呼び出しているコードを読んでいるときには、オーバーロードのセットのうちの<b>いずれか</b>が呼び出されているということまでわかればよく、具体的にどの定義が呼び出されているのかを知る必要はありません。
+            しかし、そのようなオーバーロードを呼び出すコードを読んでいるときに、オーバーロードのセットのうちの<b>いずれか</b>が呼び出されているということまでわかればよく、具体的にどの定義が呼び出されているのかを知る必要はありません。
         </span>
         <span>
             <span class="src">
@@ -5299,7 +5303,7 @@ class NotCopyableOrMovable {
                 overload set with a single comment in the header, that is a good sign
                 that it is a well-designed overload set.
             </span>
-            あるオーバーロードのセットについて、ヘッダファイルにドキュメントコメントを書こうとしたとき、それらのオーバーロードのすべてについて1つのコメントで賄えるのならば、それは、そのセットがよくデザインされているということの証です。
+            あるオーバーロードのセットについて、ヘッダーファイルにドキュメントコメントを書こうとしているとき、もし、それらのオーバーロードのすべてについて1つのコメントで賄えるのならば、それは、そのセットがよくデザインされているということを示しています。
         </span>
     </p>
 
@@ -5322,7 +5326,7 @@ class NotCopyableOrMovable {
                 prefer overloaded functions if the readability gained with
                 default arguments doesn't outweigh the downsides below.
             </span>
-            <a href="#Function_Overloading">関数のオーバーロード</a>と同様の制限に従ってください。また、引数にデフォルト値を与えることによって得られる可読性よりも、以下に述べるマイナス面の方が勝る場合、代わりに関数のオーバーロードを使いましょう。
+            <a href="#Function_Overloading">関数のオーバーロード</a>と同様の制限に従ってください。引数にデフォルト値を与えることによって得られる可読性よりも、以下に述べるマイナス面の方が勝る場合、かわりに関数のオーバーロードを使いましょう。
         </span>
     </p>
 
@@ -5376,7 +5380,7 @@ class NotCopyableOrMovable {
                 there's no guarantee that all overrides of a given function
                 declare the same defaults.
             </span>
-            仮想関数呼び出しにおける引数のデフォルト値は、オブジェクトの静的な型に基づいて決定されますが、その関数のすべてのオーバーライドが、同じデフォルト値とともに宣言されている保証はどこにもありません。
+            仮想関数呼び出しにおける引数のデフォルト値は、オブジェクトの静的な型に基づいて決定されますが、その関数のすべてのオーバーライドが、同じデフォルト値とともに宣言されている保証がありません。
         </span>
     </p>
 
@@ -5386,7 +5390,7 @@ class NotCopyableOrMovable {
                 Default parameters are re-evaluated at each call site,
                 which can bloat the generated code.
             </span>
-            引数のデフォルト値は、すべての呼び出し元で再評価されるため、生成されるコードの量がふくれることがあります。
+            引数のデフォルト値は、すべての呼び出し元で再評価されるため、予期せず生成されるコード量がふくれることがあります。
         </span>
         <span>
             <span class="src">
@@ -5394,7 +5398,7 @@ class NotCopyableOrMovable {
                 the default's value to be fixed at the declaration instead
                 of varying at each call.
             </span>
-            また、コードの読者は、関数が呼び出されるたびにデフォルト値が変わるのではなく、宣言時点で決まった値に固定されていることを期待するかもしれません。
+            また、コードの読者は、関数が呼び出されるたびにデフォルト値が変わるのではなく、宣言時点で決まった値に固定されていることを期待してしまうかもしれません。
         </span>
     </p>
 
@@ -5465,7 +5469,7 @@ class NotCopyableOrMovable {
                 Use trailing return types only where using the ordinary syntax (leading
                 return types) is impractical or much less readable.
             </span>
-            戻り値の型を後置する関数宣言構文は、普通の構文(戻り値の型から始まる構文)を使うことができない場合か、普通の構文では可読性に劣ってしまう場合にのみ使用します。
+            戻り値の型を後置する関数宣言構文は、従来からの通常の構文(戻り値の型から始まる構文)を使うことができない場合か、その構文では可読性に劣ってしまう場合にのみ使用します。
         </span>
     </p>
     <p class="definition"></p>
@@ -5482,7 +5486,7 @@ class NotCopyableOrMovable {
                 form, the return type appears before the function name.
                 For example:
             </span>
-            従来の形では、戻り値の型が関数名より先にきます。
+            従来の形では、戻り値の型を関数名より先に書きます。
             例えば、
         </span>
     </p>
@@ -5621,7 +5625,7 @@ class NotCopyableOrMovable {
                 In most cases, continue to use the older style of function
                 declaration where the return type goes before the function name.
             </span>
-            ほとんどの場合において、旧来からある、戻り値の型が関数名より先に来る関数宣言の構文を使い続けてください。
+            ほとんどの場合において、従来からある、戻り値の型が関数名より先に来る関数宣言の構文を使い続けてください。
         </span>
         <span>
             <span class="src">
@@ -5630,7 +5634,7 @@ class NotCopyableOrMovable {
                 function's parameter list, it allows you to write the type in a much
                 more readable way.
             </span>
-            新しい構文を使用してよいのは、それがどうしても必要な場合(ラムダ式のような)と、引数のリストの後ろに戻り値の型を置くことで可読性を大きく向上させられる場合に限定します。
+            新しい構文を使うのは、それがどうしても必要な場合(ラムダ式のような)と、引数のリストの後ろに戻り値の型を置くことで可読性を大きく向上させられる場合に限定します。
         </span>
         <span>
             <span class="src">
@@ -5711,7 +5715,7 @@ class NotCopyableOrMovable {
                 shared, it can be transferred from one piece of code to
                 another.
             </span>
-            所有権は、共有まではされない場合でも、あるコードから他のコードへと移されることがあります。
+            所有権は、共有まではされなくとも、あるコードから他のコードへと移されることもあります。
         </span>
     </p>
 
@@ -5857,7 +5861,7 @@ class NotCopyableOrMovable {
                     but also aliasing, lifetime, and mutability, among
                     other issues.
                 </span>
-                ポインタの概念は値を直接扱うよりも複雑で、特にAPIの層では、所有権だけではなく、エイリアシング、ライフタイム、ミュータビリティなどについても気にしなくてはなりません。
+                ポインタの概念は値を直接扱うよりも複雑で、特にAPIの層では、所有権だけではなく、エイリアシング、寿命、可変性などについても気にしなくてはなりません。
             </span>
         </li>
 
@@ -5962,7 +5966,7 @@ class NotCopyableOrMovable {
                 or passing a pointer or reference without transferring
                 ownership.
             </span>
-            他のコードがそのオブジェクトにアクセスする必要がある場合は、単にオブジェクトのコピーを渡すか、所有権の移動なしにポインタや参照を渡す方法を検討してください。
+            他のコードからそのオブジェクトにアクセスする場合は、単にオブジェクトのコピーを渡すか、所有権の移動なしにポインタや参照を渡す方法を検討してください。
         </span>
         <span>
             <span class="src">
@@ -5999,7 +6003,7 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
                 underlying object is immutable (i.e.,
                 <code>std::shared_ptr&lt;const Foo&gt;</code>).
             </span>
-            そのような理由としては、高価なコピーを避けるためといったものがあげられますが、所有権の共有は、パフォーマンス上の利益が大きく、かつ対象のオブジェクトが不変である場合にのみ行ってください(言い換えると、<code>std::shared_ptr&lt;const Foo&gt;</code>)。
+            そのような理由としては、高価なコピーを避けるためといったものがあげられますが、それでも、所有権の共有は、パフォーマンス上の利益が非常に大きく、かつ対象のオブジェクトが不変である場合にのみ行ってください(言い換えると、<code>std::shared_ptr&lt;const Foo&gt;</code>)。
         </span>
         <span>
             <span class="src">
@@ -6023,7 +6027,7 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
                 Instead, use
                 <code>std::unique_ptr</code>.
             </span>
-            代わりに、<code>std::unique_ptr</code>を使いましょう。
+            かわりに、<code>std::unique_ptr</code>を使いましょう。
         </span>
     </p>
 
@@ -6066,7 +6070,7 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
                             </code> at the end of the line or
                 <code>// NOLINTNEXTLINE</code> in the previous line.
             </span>
-            偽陽性の診断される場合は、行末に<code>// NOLINT</code>を書くか、前の行に<code>// NOLINTNEXTLINE</code>を記載すれば、無視されます。
+            偽陽性の診断がなされる場合は、行末に<code>// NOLINT</code>を書くか、前の行に<code>// NOLINTNEXTLINE</code>を書くことで、無視させることができます。
         </span>
     </p>
 
@@ -6573,8 +6577,7 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
                     logic that writes to persistent state into a "commit"
                     phase.
                 </span>
-                さらに、コードの読者に全体の呼び出しグラフを理解してもらう必要を避けるために、例外安全なコードでは「コミット」段階で永続的な状態を書き込むロジックを分離しておかなければなりません。
-                phase.
+                さらに、コードの読者に全体の呼び出しグラフを理解してもらう必要を避けるために、例外安全なコードでは、永続的な状態を書き込むロジックを「コミット」フェーズに分離しておかなければなりません。
             </span>
             <span>
                 <span class="src">
@@ -6582,7 +6585,7 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
                     where you're forced to obfuscate code to isolate the
                     commit).
                 </span>
-                これには、いい面と悪い面があるでしょうが、おそらく、コミットを分離するために、コードをわかりにくくせざるを得なくなります。
+                これには、いい面と悪い面があるでしょうが、おそらく、コミットを分離するために、コードを複雑化せざるを得なくなります。
             </span>
             <span>
                 <span class="src">
@@ -6619,7 +6622,7 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
                     example, invalid user input should not cause exceptions
                     to be thrown.
                 </span>
-                たとえば、ユーザの入力が不正だった場合には、例外を投げるべきではありません。
+                たとえば、ユーザーの入力が不正だった場合には、例外を投げるべきではありません。
             </span>
             <span>
                 <span class="src">
@@ -6710,7 +6713,7 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
                 projects use exceptions, we need to advise against
                 exceptions in Google open-source projects as well.
             </span>
-            我々は、Googleのオープンソースプロジェクトを使いたいのですが、もしそれらのプロジェクトが例外を使っていたら、そうするのは難しくなってしまいます。そのため、我々はGoogleのオープンソースプロジェクトに対しても、この例外に対するアドバイスをしています。
+            私たちは、Googleのオープンソースプロジェクトを使いたいのですが、もしそれらのプロジェクトが例外を使っていたら、そうするのは難しくなってしまいます。そのため、私たちはGoogleのオープンソースプロジェクトに対しても、この例外に対するアドバイスをしています。
         </span>
         <span>
             <span class="src">
@@ -6750,7 +6753,7 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
             <span class="src">
                 Specify <code>noexcept</code> when it is useful and correct.
             </span>
-            有用かつ正しいときだけ<code>noexcept</code>を指定します。
+            有用かつ正しいときに<code>noexcept</code>を指定します。
         </span>
     </p>
 
@@ -6856,14 +6859,14 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
                 of your function, i.e., that if an exception is somehow thrown
                 from within the function body then it represents a fatal error.
             </span>
-            例えば関数本体内から何らかの方法で投げられる例外が致命的なエラーを表す場合など、関数の意図されたセマンティクスを正確に反映している場合は、パフォーマンスのために<code>noexcept</code>を使用することができます。
+            関数本体内から何らかの方法で例外が投げられたとき、それが常に致命的なエラーを表している場合など、関数の意図されたセマンティクスを正確に反映している場合は、パフォーマンスのために<code>noexcept</code>を使用することができます。
         </span>
         <span>
             <span class="src">
                 You can assume that <code>noexcept</code> on move constructors
                 has a meaningful performance benefit.
             </span>
-            ムーブコンストラクタの <code>noexcept</code> には、有意にパフォーマンス上の利点があると想定してよいです。
+            ムーブコンストラクタの <code>noexcept</code> には、有意にパフォーマンス上の利点があると想定してかまいません。
         </span>
         <span>
             <span class="src">
@@ -6970,7 +6973,7 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
                 require modification or redesign of the class hierarchy
                 in question.
             </span>
-            実行時型情報ではなく、その標準的な代替手段(後述します)を使うと、クラスの階層構造を変更したりデザインしなおしたりする必要があります。
+            実行時型情報に対応する標準的な代替手段(後述)を使おうとすると、クラスの階層構造を変更したり設計しなおしたりする必要があります。
         </span>
         <span>
             <span class="src">
@@ -6978,7 +6981,7 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
                 or undesirable, particularly in widely-used or mature
                 code.
             </span>
-            そして、特にそのコードが既に広く使われている場合、そのような変更を施すことは実現不可能、あるいは望ましくない場合があります。
+            特にそのコードが既に広く使われている場合には、そのような変更を施すことは実現不可能、あるいは望ましくない場合があります。
         </span>
     </p>
 
@@ -7039,7 +7042,7 @@ bool Derived::Equal(Base* other) {
                 Querying the type of an object at run-time frequently
                 means a design problem.
             </span>
-            実行時にオブジェクトの型を調べるのは、大抵の場合、プログラムにデザイン上の問題があることを意味しています。
+            実行時にオブジェクトの型を調べるのは、大抵の場合、プログラムに設計上の問題があることを意味しています。
         </span>
         <span>
             <span class="src">
@@ -7047,7 +7050,7 @@ bool Derived::Equal(Base* other) {
                 object at runtime is often an indication that the design
                 of your class hierarchy is flawed.
             </span>
-            実行時にオブジェクトの型を知る必要があるということは、クラス階層構造のデザインに欠陥があることを示しています。
+            実行時にオブジェクトの型を知る必要があるということは、クラス階層構造の設計に欠陥があることを示しています。
         </span>
     </p>
 
@@ -7064,7 +7067,7 @@ bool Derived::Equal(Base* other) {
                 statements scattered throughout the code, all of which
                 must be examined when making further changes.
             </span>
-            実行時型情報を扱うことで、型による分岐やswitch文がコード中に点在してしまうと、将来コードを変更したときに、それらのすべてを試験しなくてはならなくなってしまいます。
+            実行時型情報を扱うことで、型による分岐やswitch文がコード中に点在してしまうと、将来コードを変更したときに、点在したコードのすべてを確かめなくてならなくなってしまいます。
         </span>
     </p>
 
@@ -7089,7 +7092,7 @@ bool Derived::Equal(Base* other) {
                 In
                 particular, think twice before using RTTI in new code.
             </span>
-            特に、新しいコードで実行時型情報を使おうとする前には、もう一度よく考えてください。
+            特に、新しいコードで実行時型情報を使おうとする前には、もう一度よく考えてみてください。
         </span>
         <span>
             <span class="src">
@@ -7168,7 +7171,7 @@ bool Derived::Equal(Base* other) {
                 Decision trees based on type are a strong indication
                 that your code is on the wrong track.
             </span>
-            型に基づく分岐が出てきたときには、そのコードは間違った方向に進んでいることを強く示しています。
+            型による分岐が出てきたときには、そのコードは間違った方向に進んでいることを強く示しています。
         </span>
     </p>
 
@@ -7194,7 +7197,7 @@ bool Derived::Equal(Base* other) {
                 when properties of a subclass change, it is difficult to
                 find and modify all the affected code segments.
             </span>
-            また、派生クラスの性質が変わったときには、その影響があるすべてのコードを検索し、それを変更することも難しいでしょう。
+            また、派生クラスの性質が変わったときには、その影響があるすべてのコードを検索し、それらを変更していくことも非常に難しいでしょう。
         </span>
     </p>
 
@@ -7349,7 +7352,7 @@ bool Derived::Equal(Base* other) {
                     <code>SuperclassOfFoo*</code> or casting a
                     <code>Foo*</code> to a <code>const Foo*</code>.
                 </span>
-                型階層におけるキャストアップを安全に行うためには<code>absl::implicit_cast</code>を使用してください。これには<code>Foo*</code>から<code>SuperclassOfFoo*</code>のようなキャストや、
+                型階層におけるアップキャストを安全に行うためには<code>absl::implicit_cast</code>を使用してください。これには<code>Foo*</code>から<code>SuperclassOfFoo*</code>のようなキャストや、
                 <code>Foo*</code>から<code>const Foo*</code>のようなキャストを含みます。
             </span>
             <span>
@@ -7464,7 +7467,7 @@ bool Derived::Equal(Base* other) {
                 Streams are the standard I/O abstraction in C++, as
                 exemplified by the standard header <code>&lt;iostream&gt;</code>.
             </span>
-            ストリームは、標準ヘッダ<code>&lt;iostream&gt;</code>で例示されるように、C++における標準的な入出力の抽象概念です。
+            ストリームは、標準ヘッダー<code>&lt;iostream&gt;</code>で例示されるように、C++における標準的な入出力の抽象概念です。
         </span>
         <span>
             <span class="src">
@@ -7490,7 +7493,7 @@ bool Derived::Equal(Base* other) {
                 <code>std::string</code>, to say nothing of user-defined types,
                 and is very difficult to use portably.
             </span>
-            <code>printf</code>は、それとは対照的に、<code>std::string</code>をサポートしませんし、ユーザ定義型もサポートしません。また、移植性の面では非常に難があります。
+            <code>printf</code>は、それとは対照的に、<code>std::string</code>をサポートしませんし、ユーザー定義型もサポートしません。また、移植性の面では非常に難があります。
         </span>
         <span>
             <span class="src">
@@ -7545,7 +7548,7 @@ bool Derived::Equal(Base* other) {
                     built-in state, it can add new state variables and behaviors
                     through a registration system.
                 </span>
-                ユーザコードは、組み込みの状態を変更できるだけでなく、新しい状態変数や動作の追加も、登録の仕組みを通して行うことができます。
+                ユーザーコードは、組み込みの状態を変更できるだけでなく、新しい状態変数や動作の追加も、登録の仕組みを通して行うことができます。
             </span>
         </li>
 
@@ -7610,7 +7613,7 @@ bool Derived::Equal(Base* other) {
             <span class="src">
                 Use streams only when they are the best tool for the job.
             </span>
-            ストリームは、目的を達成するために、それが最適なツールとなる場合のみ使いましょう。
+            ストリームは、目的を達成するために最適なツールとなる場合のみ使いましょう。
         </span>
         <span>
             <span class="src">
@@ -7618,7 +7621,7 @@ bool Derived::Equal(Base* other) {
                 human-readable, and targeted at other developers rather than
                 end-users.
             </span>
-            これは、典型的には、エンドユーザ向けというよりも、開発者たちのために、アドホックで、局所的で、ヒューマンリーダブルな入出力を行いたいときのことを指します。
+            これは、典型的には、エンドユーザー向けというよりも、開発者たちのために、アドホックで、局所的で、ヒューマンリーダブルな入出力を行いたいときのことを指しています。
         </span>
         <span>
             <span class="src">
@@ -7652,7 +7655,7 @@ bool Derived::Equal(Base* other) {
                 Avoid using streams for I/O that faces external users or
                 handles untrusted data.
             </span>
-            ストリームを外部のユーザとの入出力のために使用してはいけません。また、ストリームでは信頼できないデータを扱ってはいけません。
+            ストリームを外部のユーザーとの入出力のために使用してはいけません。また、ストリームでは信頼できないデータを扱ってはいけません。
         </span>
         <span>
             <span class="src">
@@ -7660,7 +7663,7 @@ bool Derived::Equal(Base* other) {
                 templating libraries to handle issues like internationalization,
                 localization, and security hardening.
             </span>
-            これら場合には、ストリームの代わりに、多言語化の問題に対応し、セキュリティに強固な、より適切なテンプレート化ライブラリを探して、それを使うようにしてください。
+            このような目的においては、ストリームのかわりに、多言語化の問題に対応し、セキュリティに強固な、より適切なテンプレート化ライブラリを探して、それを使うようにしてください。
         </span>
     </p>
 
@@ -7671,7 +7674,7 @@ bool Derived::Equal(Base* other) {
                 streams API (other than error state), such as <code>imbue()</code>,
                 <code>xalloc()</code>, and <code>register_callback()</code>.
             </span>
-            ストリームを使うことにした場合でも、ストリームAPIのうち、エラー状態を除いて、ステートフルなものは使用しないでください。
+            ストリームを使うと決めた場合でも、ストリームAPIのうち、エラー状態を除いて、ステートフルなものは使用しないでください。
             たとえば、<code>imbue()</code>や<code>xalloc()</code>、<code>register_callback()</code>などが当てはまります。
         </span>
         <span>
@@ -7693,7 +7696,7 @@ bool Derived::Equal(Base* other) {
                 <code>&lt;&lt;</code> writes out a human-readable string
                 representation of that value.
             </span>
-            独自の型でストリーム演算子として<code>&lt;&lt;</code>をオーバーロードしてよいのは、
+            独自の型でストリーム演算子として<code>&lt;&lt;</code>をオーバーロードするのは、
             その型が何らかの値を表現したものであり、かつ、<code>&lt;&lt;</code>がヒューマンリーダブルな文字列を出力する場合のみに限定してください。
         </span>
         <span>
@@ -7704,7 +7707,7 @@ bool Derived::Equal(Base* other) {
                 (a method named <code>DebugString()</code> is the most common
                 convention).
             </span>
-            <code>&lt;&lt;</code>の出力で、クラスの内部実装を公開してしまわないようにしてください。オブジェクトの内部状態をデバッグのために出力したい場合は、名前をつけた関数を用意してください(慣習的には<code>DebugString()</code>という名前がもっともよく使われます)。
+            <code>&lt;&lt;</code>による出力で、クラスの内部実装を公開してしまわないようにしてください。オブジェクトの内部状態をデバッグのために出力したい場合は、<code>&lt;&lt;</code>のかわりに、名前をつけた関数(慣習的には<code>DebugString()</code>という名前がもっともよく使われます)を用意してください。
         </span>
     </p>
 
@@ -7756,7 +7759,7 @@ bool Derived::Equal(Base* other) {
                 never less efficient, and can be more efficient because it doesn't need to
                 make a copy of the value as it was before the operation.
             </span>
-            前置の形は、一般に読みやすく、決して効率が悪くなることもない上、操作前の値のコピーを作成する必要がないため、より効率的になることすらあります。
+            前置する形は、一般に読みやすく、決して非効率にならず、操作前の値のコピーを作成する必要がないことから、むしろ効率的になることもあります。
         </span>
     </p>
     <p class="cons"></p>
@@ -7842,7 +7845,7 @@ bool Derived::Equal(Base* other) {
                 Allows the compiler to do better type checking,
                 and, conceivably, generate better code.
             </span>
-            <code>const</code>はコンパイラの型チェックを助け、場合によってはよりよいコードを生成できるようにします。
+            <code>const</code>はコンパイラによる型チェックを助け、場合によってはよりよいコードを生成できるようにします。
         </span>
         <span>
             <span class="src">
@@ -7898,7 +7901,7 @@ bool Derived::Equal(Base* other) {
                 provides consistent, mostly compiler-verified documentation
                 of what objects an operation can mutate.
             </span>
-            これによって、どのオブジェクトが各操作によって変更されうるかという、一貫性があり、かつ、コンパイラによって(ほぼ)検証済みのドキュメントが提供されることになります。
+            これによって、どのオブジェクトが各操作によって変更されうるかという、一貫性があり、かつ、コンパイラによってほぼ検証済みのドキュメントが提供されることになります。
         </span>
         <span>
             <span class="src">
@@ -7907,7 +7910,7 @@ bool Derived::Equal(Base* other) {
                 is critical to writing thread-safe code, and is useful in
                 many other contexts as well.
             </span>
-            一貫性と信頼性を持って、読み込みと書き込みを判別することは、スレッドセーフなコードを書くうえでは不可欠ですし、その他多くの場合にも有用です。
+            一貫性と信頼性を持って、読み込みと書き込みを判別することは、スレッドセーフなコードを書く上では不可欠ですし、その他多くの場合にも有用です。
         </span>
 
         <span>
@@ -7927,7 +7930,7 @@ bool Derived::Equal(Base* other) {
                     should be a reference-to-const (<code>const T&amp;</code>) or
                     pointer-to-const (<code>const T*</code>), respectively.
                 </span>
-                関数が、参照渡しあるいはポインタ渡しされる引数を変更するつもりがないことを保証する場合、その引数は、const参照(<code>const T&amp;</code>)かconstポインタ(<code>const T*</code>)でないといけません。
+                関数が、参照渡しあるいはポインタ渡しされる引数を変更しないことを保証する場合、その引数は、const参照(<code>const T&amp;</code>)かconstポインタ(<code>const T*</code>)でないといけません。
             </span>
         </li>
         <li>
@@ -7956,7 +7959,7 @@ bool Derived::Equal(Base* other) {
                     rare), or they can't safely be invoked concurrently.
                 </span>
                 メソッド宣言においては、そのメソッドがオブジェクトの論理状態を変更したり(あるいは、非const
-                参照を返すなどして、ユーザがその状態を変更できるようにする。ただし、これはまれなケースです)、複数スレッドから安全に同時に呼び出すことができない場合を除いて、<code>const</code>にしてください。
+                参照を返すなどして、ユーザーがその状態を変更できるようにする。ただし、これはまれなケースです)、複数スレッドから安全に同時に呼び出すことができない場合を除いて、<code>const</code>にしてください。
             </span>
         </li>
     </ul>
@@ -8060,7 +8063,7 @@ bool Derived::Equal(Base* other) {
                 Use <code>constexpr</code> to define true
                 constants or to ensure constant initialization.
             </span>
-            真の定数を定義するときや、定数初期化を保証するときに、<code>constexpr</code>を使用してください。
+            真の定数を定義したいときや、定数初期化を保証したいときには、<code>constexpr</code>を使用してください。
         </span>
     </p>
 
@@ -8094,7 +8097,7 @@ bool Derived::Equal(Base* other) {
                 types; and definition of constants with function
                 calls.
             </span>
-            <code>constexpr</code>を使うことで、ただのリテラルではない浮動小数点式を定数として宣言できるようになります。また、<code>constexpr</code>によって、ユーザ定義の型を定数として宣言したり、関数呼び出しの結果を定数として定義することができるようになります。
+            <code>constexpr</code>を使うことで、ただのリテラルではない浮動小数点式を、定数として宣言できるようになります。また、<code>constexpr</code>によって、ユーザー定義の型を定数として宣言したり、関数呼び出しの結果を定数として定義したりすることができるようになります。
         </span>
     </p>
     <p class="cons"></p>
@@ -8192,7 +8195,7 @@ bool Derived::Equal(Base* other) {
                 When in doubt,
                 choose a larger type.
             </span>
-            迷ったときには大きな型を選んでください。
+            迷ったときには大きな型を選びましょう。
         </span>
     </p>
 
@@ -8241,7 +8244,7 @@ bool Derived::Equal(Base* other) {
                 like <code>int16_t</code>, <code>uint32_t</code>,
                 <code>int64_t</code>, etc.
             </span>
-            標準ライブラリの<code>&lt;cstdint&gt;</code>ヘッダは、<code>int16_t</code>や<code>uint32_t</code>、<code>int64_t</code>などのような型を定義しています。
+            標準ライブラリの<code>&lt;cstdint&gt;</code>ヘッダーは、<code>int16_t</code>や<code>uint32_t</code>、<code>int64_t</code>などのような型を定義しています。
         </span>
         <span>
             <span class="src">
@@ -8393,7 +8396,7 @@ bool Derived::Equal(Base* other) {
                 effectively impossible to fix at this point.
             </span>
             歴史的な事情により、C++標準では、コンテナのサイズを表すために unsigned な整数が使用されています。
-            (多くの標準化委員会のメンバーが、これは失敗だったと考えていますが、もはや修正できる状態にはありません。)
+            (多くの標準化委員会のメンバーが、これは失敗だったと考えていますが、もはや修正できる段階にはありません。)
         </span>
         <span>
             <span class="src">
@@ -8567,7 +8570,7 @@ bool Derived::Equal(Base* other) {
                     member will by default end up being 8-byte aligned on a
                     64-bit system.
                 </span>
-                64ビットシステムにおいて、<code>int64_t</code>か<code>uint64_t</code>を含むクラスや構造体は、デフォルトでは8バイト境界にアラインメントされます。
+                64ビットシステムにおいては、<code>int64_t</code>か<code>uint64_t</code>を含むクラスや構造体は、デフォルトで8バイト境界にアラインメントされます。
             </span>
             <span>
                 <span class="src">
@@ -8627,7 +8630,7 @@ uint64_t my_mask{uint64_t{3} &lt;&lt; 48};
                 Avoid defining macros, especially in headers; prefer
                 inline functions, enums, and <code>const</code> variables.
             </span>
-            マクロを定義するのは避けましょう(特にヘッダでは)。
+            マクロを定義するのは避けましょう(特にヘッダーでは)。
             インライン関数や、列挙型、<code>const</code>変数を使いましょう。
         </span>
         <span>
@@ -8669,7 +8672,7 @@ uint64_t my_mask{uint64_t{3} &lt;&lt; 48};
                 when they are used to define pieces of a C++ API,
                 and still more so for public APIs.
             </span>
-            マクロによって引き起こされる問題は、特に、マクロがC++ APIとして、特にpublicなAPIとして定義されたときに重大です。
+            マクロによって引き起こされる問題は、特に、マクロがC++ APIとして、特にパブリックなAPIとして定義されたときに重大です。
         </span>
         <span>
             <span class="src">
@@ -8731,7 +8734,7 @@ uint64_t my_mask{uint64_t{3} &lt;&lt; 48};
                 Instead of using a macro to store a constant, use a
                 <code>const</code> variable.
             </span>
-            定数を保存するためには、マクロではなく<code>const</code>変数を使ってください。
+            定数を保持するためには、マクロではなく<code>const</code>変数を使ってください。
         </span>
         <span>
             <span class="src">
@@ -8833,7 +8836,7 @@ uint64_t my_mask{uint64_t{3} &lt;&lt; 48};
                     that's likely to be unique.
                 </span>
                 既存のマクロを自分のものに置き換えるために、<code>#undef</code>してはいけません。
-                代わりに、あなたのマクロにユニークとなる前をつけてください。
+                かわりに、あなたのマクロにユニークとなる前をつけてください。
             </span>
         </li>
 
@@ -8866,14 +8869,14 @@ uint64_t my_mask{uint64_t{3} &lt;&lt; 48};
                 without <code>#undef</code>ing them before the end of the header)
                 is extremely strongly discouraged.
             </span>
-            ヘッダからマクロをエクスポートする(言い換えると、ヘッダでマクロを定義し、そのヘッダの終わりまで<code>#undef</code>しない)ことは、非常に強く非推奨です。
+            ヘッダーからマクロをエクスポートする(言い換えると、ヘッダーでマクロを定義し、そのヘッダーの終わりまで<code>#undef</code>しない)ことは、非常に強く非推奨です。
         </span>
         <span>
             <span class="src">
                 If you do export a macro from a
                 header, it must have a globally unique name.
             </span>
-            もし、そのようなマクロをヘッダからエクスポートする場合は、グローバルにユニークな名前でなくてはなりません。
+            もし、そのようなマクロをヘッダーからエクスポートする場合は、グローバルにユニークな名前でなくてはなりません。
         </span>
         <span>
             <span class="src">
@@ -8989,14 +8992,14 @@ memset(&amp;data, 0, sizeof(data));
                 Use type deduction only if it makes the code clearer to readers who aren't
                 familiar with the project, or if it makes the code safer.
             </span>
-            型推論は、型推論を用いることでプロジェクトに慣れていない読者にとってコードを読みやすくできる場合や、型推論を用いることでコードをより安全にできる場合に限り使ってください。
+            型推論は、型推論を用いることでプロジェクトに慣れていない読者にとってコードを読みやすくできる場合や、型推論を用いることでコードをより安全にできる場合に限り使うようにしてください。
         </span>
         <span>
             <span class="src">
                 Do not use it
                 merely to avoid the inconvenience of writing an explicit type.
             </span>
-            単に明示的に型を書くのが不便だからという理由で使用しないでください。
+            単に明示的に型を書くのが不便だからという理由では使わないでください。
         </span>
     </p>
 
@@ -9087,7 +9090,7 @@ auto d{42};   // d is an int, not a std::initializer_list&lt;int&gt;</pre>
                     <a href="https://en.cppreference.com/w/cpp/language/decltype"><code>decltype</code></a>
                     to the initializer.
                 </span>
-                この構文のまれに現れる変種形として、<code>auto</code>のかわりに<code>decltype(auto)</code>というのもあり、その初期化子を<a href="https://en.cppreference.com/w/cpp/language/decltype"><code>decltype</code></a>に渡した結果の型が推論されます。
+                この構文のまれに現れる変種形として、<code>auto</code>のかわりに<code>decltype(auto)</code>というのもあり、その場合は、初期化子を<a href="https://en.cppreference.com/w/cpp/language/decltype"><code>decltype</code></a>に渡した結果の型が推論されます。
             </span>
         </dd>
         <dt>
@@ -9104,7 +9107,7 @@ auto d{42};   // d is an int, not a std::initializer_list&lt;int&gt;</pre>
                     <code>auto</code> (and <code>decltype(auto)</code>) can also be used in
                     place of a function return type.
                 </span>
-                <code>auto</code> (と<code>decltype(auto)</code>)は、関数の戻り型のかわりにも用いることができます。
+                <code>auto</code> (と<code>decltype(auto)</code>)は、関数の戻り型のかわりに用いることもできます。
             </span>
             <span>
                 <span class="src">
@@ -9112,7 +9115,7 @@ auto d{42};   // d is an int, not a std::initializer_list&lt;int&gt;</pre>
                     the <code>return</code> statements in the function body, following the same
                     rules as for variable declarations:
                 </span>
-                コンパイラは、関数本体の<code>return</code>文から、変数宣言のときと同じ規則に従って、戻り値の型を推測します。
+                コンパイラは、関数本体の<code>return</code>文から、変数宣言のときと同じ規則に従って、戻り値の型を推論します。
             </span>
             <div>
                 <div class="src">
@@ -9127,7 +9130,7 @@ auto d{42};   // d is an int, not a std::initializer_list&lt;int&gt;</pre>
                     deduced in the same way, but this is triggered by omitting the return type,
                     rather than by an explicit <code>auto</code>.
                 </span>
-                <a href="#Lambda_expressions">ラムダ式</a>の戻り値の型も同じ方法で推測できますが、これは明示的な<code>auto</code>ではなく、戻り値の型を省略することによって引き起こされます。
+                <a href="#Lambda_expressions">ラムダ式</a>の戻り値の型も同じ方法で推論させることができますが、これは明示的な<code>auto</code>ではなく、戻り値の型を省略したときに行われます。
             </span>
             <span>
                 <span class="src">
@@ -9137,7 +9140,7 @@ auto d{42};   // d is an int, not a std::initializer_list&lt;int&gt;</pre>
                     rely on type deduction; it's just an alternate syntax for an explicit
                     return type.
                 </span>
-                紛らわしいことに、関数の<a href="#trailing_return">末尾の戻り値の型</a>の構文でも、戻り値の型の位置に<code>auto</code>が使われますが、これは型推論には頼っているのではなく、明示的に戻り値の型を書く別の構文にすぎません。
+                紛らわしいことに、関数の<a href="#trailing_return">末尾の戻り値の型</a>の構文でも、戻り値の型の位置に<code>auto</code>が使われますが、こちらは型推論には頼っているのではなく、明示的に戻り値の型を書く別の構文にすぎません。
             </span>
         </dd>
         <dt>
@@ -9154,7 +9157,7 @@ auto d{42};   // d is an int, not a std::initializer_list&lt;int&gt;</pre>
                     A lambda expression can use the <code>auto</code> keyword in place of
                     one or more of its parameter types.
                 </span>
-                ラムダ式では、1つ以上の仮引数の型の位置に<code>auto</code>キーワードを用いることができます。
+                ラムダ式では、1つ以上の仮引数の型のかわりに<code>auto</code>キーワードを用いることができます。
             </span>
             <span>
                 <span class="src">
@@ -9162,7 +9165,7 @@ auto d{42};   // d is an int, not a std::initializer_list&lt;int&gt;</pre>
                     to be a function template instead of an ordinary function, with a separate
                     template parameter for each <code>auto</code> function parameter:
                 </span>
-                これにより、ラムダの呼び出し演算子が通常の関数ではなく関数テンプレートになり、各<code>auto</code>関数引数に個別のテンプレート引数が使用されます。
+                これにより、ラムダの呼び出し演算子が通常の関数ではなく関数テンプレートになり、各<code>auto</code>引数に個別のテンプレート引数が使用されます。
             </span>
             <div>
                 <div class="src">
@@ -9272,7 +9275,7 @@ if (!success) {
                     declares a reference (but they will usually behave like references anyway).
                 </span>
                 それぞれのバインディングの型を決定するルールは非常に複雑です。
-                結果として、大抵は、驚くようなものにはなりませんが、宣言が参照である場合には、各々のバインディングの型は通常は参照にはなりません。
+                結果として、大抵は、想像通りのものになるのですが、宣言が参照である場合には、各々のバインディングの型は通常は参照にはなりません。
                 (ただしいずれにせよ、通常は参照のように動作します)。
             </span>
         </dd>
@@ -9388,7 +9391,7 @@ auto i = y.Find(key);
                 clearer or safer, and do not use it merely to avoid the
                 inconvenience of writing an explicit type.
             </span>
-            基本的なルールとして、型推論をコードをより明確または安全にするためだけに使用し、明示的な型を記述する不便さを回避するためだけに使用しないでください。
+            基本的なルールとして、型推論はコードをより明確または安全にする目的でのみ使い、明示的な型を記述する不便さを回避する目的では使わないようにしてください。
         </span>
         <span>
             <span class="src">
@@ -9416,7 +9419,7 @@ auto i = y.Find(key);
                 These principles apply to all forms of type deduction, but the
                 details vary, as described in the following sections.
             </span>
-            これらの原則はすべての形式の型推論に適用されますが、細かいところでは異なります。詳細は次のセクションで説明します。
+            これらの原則はすべての形式の型推論に適用されのですがが、より細かいところでは異なってきます。それについて次以降のセクションで説明していきます。
         </span>
     </p>
 
@@ -9443,7 +9446,7 @@ auto i = y.Find(key);
                 designed so that template argument deduction is clear and safe, or
                 doesn't compile.
             </span>
-            したがって、関数テンプレートは、ほとんど常に、テンプレート引数の推論が明確かつ安全にできるか、さもなくばコンパイルエラーになるように設計されています。
+            したがって、関数テンプレートは、ほとんど常に、テンプレート引数の推論が明確かつ安全に行われるか、さもなくばコンパイルエラーになるように設計されています。
         </span>
     </p>
 
@@ -9478,7 +9481,7 @@ std::array numbers = {4, 8, 15, 16, 23, 42};</pre>
                 type is an iterator, and in many contexts the container type and even the
                 key type aren't relevant, but the type of the values is probably useful.
             </span>
-            型には、有用な情報と、ただの定型文(上記例の<code>it</code>のように)とが混在していることがあります。
+            型には、上記例の<code>it</code>のように、有用な情報と、ただの定型文とが混在していることがあります。
             <code>it</code>について、型がイテレータであることは明らかであり、多くの文脈において、コンテナの型やキーの型でさえ関係ありませんが、値の型はおそらく役に立ちます。
         </span>
         <span>
@@ -9535,7 +9538,7 @@ std::array numbers = {4, 8, 15, 16, 23, 42};</pre>
                 clarity.
             </span>
             より単純な手段で十分な場合には、 <code>decltype(auto)</code>を使用しないでください。
-            <code>decltype(auto)</code>は、かなりわかりにくい機能であるため、コードの明確性の面で大きなコストがかかるためです。
+            <code>decltype(auto)</code>は、かなりわかりにくい機能であるため、コードの明確性の面で大きなコストになります。
         </span>
     </p>
 
@@ -9566,7 +9569,7 @@ std::array numbers = {4, 8, 15, 16, 23, 42};</pre>
                 In particular, public functions in header files
                 should almost never have deduced return types.
             </span>
-            特に、ヘッダファイル内のパブリックな関数では、戻り値の型推論を含むことはほとんどまったくないでしょう。
+            特に、ヘッダーファイル内のパブリックな関数では、戻り値の型推論を含むことはほとんどまったくないでしょう。
         </span>
     </p>
 
@@ -9635,8 +9638,7 @@ std::array numbers = {4, 8, 15, 16, 23, 42};</pre>
                     pairs or tuples</a> unless a pre-existing API like <code>insert</code>
                 forces you to.
             </span>
-            構造化バインディングが特に有益なのは、上記例の<code>insert</code>のように、対象のオブジェクトが、値ペアやタプルである場合です。
-            これらの型は、もともと意味のあるフィールド名を持っていないためです。
+            構造化バインディングが特に有益なのは、上記例の<code>insert</code>のように、対象のオブジェクトが、もともと意味のあるフィールド名を持っていない値ペアやタプル等である場合です。
             とはいえ、<code>insert</code> などの既存の API によって強制されない限り、通常は、<a href="#Structs_vs._Tuples">そもそも値ペアやタプルは使うべきではありません</a>。
         </span>
     </p>
@@ -9863,7 +9865,7 @@ std::array numbers = {4, 8, 15, 16, 23, 42};</pre>
                     Designated initializers</a> are a syntax that allows for initializing an
                 aggregate ("plain old struct") by naming its fields explicitly:
             </span>
-            <a href="https://en.cppreference.com/w/cpp/language/aggregate_initialization#Designated_initializers">指示付き初期化子</a>は、フィールドに明示的に名前を付けることで集約 ("plain old struct") を初期化できる構文です。
+            <a href="https://en.cppreference.com/w/cpp/language/aggregate_initialization#Designated_initializers">指示付き初期化子</a>は、フィールドに明示的に名前を付けることで集約型(aggregate) ("plain old struct") を初期化できる構文です。
         </span>
     </p>
     <pre class="neutralcode">  struct Point {
@@ -9921,7 +9923,7 @@ std::array numbers = {4, 8, 15, 16, 23, 42};</pre>
                 requiring that the designated initializers appear in the same order as the
                 fields appear in the struct definition.
             </span>
-            C++標準における規則は、標準Cやコンパイラの拡張機能のものよりも厳密であり、指示付き初期化子が、構造体の定義におけるフィールドと同じ順序で現れることを要求しています。
+            C++標準における規則は、標準Cやコンパイラの拡張機能のものよりも厳しく、指示付き初期化子が、構造体の定義におけるフィールドと同じ順序で現れることを要求しています。
         </span>
         <span>
             <span class="src">
@@ -9929,7 +9931,7 @@ std::array numbers = {4, 8, 15, 16, 23, 42};</pre>
                 according to C++20 to initialize <code>x</code> and then <code>z</code>, but not
                 <code>y</code> and then <code>x</code>.
             </span>
-            したがって、前述の例では、<code>x</code> のあとに <code>z</code> を初期化することは、 C++20 において正当ですが、<code>y</code> のあとに <code>x</code> をおくことはできません。
+            したがって、C++20 において、前述の例では、<code>x</code> のあとに <code>z</code> を初期化することは正当ですが、<code>y</code> のあとに <code>x</code> をおくことはできません。
         </span>
     </p>
 
@@ -9960,7 +9962,7 @@ std::array numbers = {4, 8, 15, 16, 23, 42};</pre>
                 Prefer explicit captures
                 when the lambda will escape the current scope.
             </span>
-            ラムダ式が現在のスコープの外に出て行くときは、明示的に変数をキャプチャしましょう。
+            ラムダ式が現在のスコープの外に出て行くときは、明示的な変数のキャプチャを行いましょう。
         </span>
     </p>
 
@@ -9979,7 +9981,7 @@ std::array numbers = {4, 8, 15, 16, 23, 42};</pre>
                 They're often useful when passing
                 functions as arguments. For example:
             </span>
-            ラムダ式は、関数の引数として渡す場合にも便利です。例を見てみましょう。
+            関数の引数として渡す場合にも便利です。例を見てみましょう。
         </span>
     </p>
 
@@ -10075,7 +10077,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                     members of a lambda object:
                 </span>
                 このようなキャプチャ (「初期化キャプチャ」または「一般化されたラムダキャプチャ」と呼ばれることが多い)は、実際には、囲んでいるスコープから何かを「キャプチャする」必要はなく、囲んでいるスコープ内に名前を持っている必要さえありません。
-                この構文は、ラムダオブジェクトのメンバーを定義するための完全に一般的な方法です。
+                この構文は、ラムダオブジェクトのメンバ変数を定義するための完全に一般的な方法です。
             </span>
         </p>
         <pre class="neutralcode">[foo = std::vector&lt;int&gt;({1, 2, 3})] () {
@@ -10155,7 +10157,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                     Capturing a pointer by value doesn't cause a deep
                     copy, so it often has the same lifetime issues as capture by reference.
                 </span>
-                ポインタを値でキャプチャしてもそれが自動的にディープコピーされることはありません。このため、参照でキャプチャした場合と同様に、オブジェクトの生存期間に関する問題をはらみます。
+                ポインタを値でキャプチャしてもそれが自動的にディープコピーされることはありません。このため、参照でキャプチャした場合と同様に、オブジェクトの寿命に関する問題を内包しています。
             </span>
             <span>
                 <span class="src">
@@ -10199,7 +10201,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                     <code>auto</code>, with the additional problem that the syntax doesn't
                     even cue the reader that deduction is taking place.
                 </span>
-                初期化キャプチャは本質的に<a href="#Type_deduction">型推論</a>に依存しており、<code>auto</code>と同様の欠点の多くに悩まされるうえ、構文上、そこで型推論が行われることを読者に知らせることすらできないという追加の問題があります。
+                初期化キャプチャは本質的に<a href="#Type_deduction">型推論</a>に依存しており、<code>auto</code>と同様の欠点の多くに悩まされることになります。さらに、その、構文上、そこで型推論が行われることを読者に知らせることもできないという追加の問題があります。
             </span>
         </li>
 
@@ -10210,7 +10212,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                     hand; very long nested anonymous functions can make
                     code harder to understand.
                 </span>
-                ラムダ式は、手に余るような扱い方もできてしまいます。たとえば、非常に長い匿名の関数がネストされているような状況では、そのコードを理解するのは難しいでしょう。
+                ラムダ式は、手に余るような扱い方もできてしまいます。たとえば、非常に長い匿名の関数がネストされていたとしたら、そのコードを理解するのは難しくなるでしょう。
             </span>
         </li>
 
@@ -10238,7 +10240,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                 <span class="src">
                     For example, instead of:
                 </span>
-                以下に例を示します。悪い例から。
+                以下に例を示します。悪い例:
             </span>
             <div>
                 <div class="src">
@@ -10274,7 +10276,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                 <span class="src">
                     prefer to write:
                 </span>
-                以下のように書きましょう。
+                良い例:
             </span>
             <div>
                 <div class="src">
@@ -10328,14 +10330,14 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                     class members in its body must capture <code>this</code> explicitly or
                     via <code>[&amp;]</code>.)
                 </span>
-                (つまり、非staticクラスメンバ関数内にあって、非staticクラスメンバを内部で参照するラムダ式は必ず<code>this</code>を明示的にキャプチャするか、<code>[&amp;]</code>を使用してください。)
+                (つまり、クラスの非staticなメンバ関数内にあって、かつ、何らかの非staticなメンバを内部で参照するラムダ式は必ず<code>this</code>を明示的にキャプチャするか、<code>[&amp;]</code>を使用してください。)
             </span>
             <span>
                 <span class="src">
                     Prefer not to write long or
                     complex lambdas with default capture by value.
                 </span>
-                長いラムダ式や複雑なラムダ式には、値のデフォルトキャプチャは使わないようにしましょう。
+                長いラムダ式や複雑なラムダ式には、値のデフォルトキャプチャは使わないでください。
             </span>
         </li>
         <li>
@@ -10350,7 +10352,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                     Do not use captures with initializers to introduce new names, or
                     to substantially change the meaning of an existing name.
                 </span>
-                新しい名前を導入する目的、あるいは、既存の名前の意味を実質的に変える目的では、初期化子つきキャプチャを使わないでください。
+                新しい名前を導入する目的、あるいは、既存の名前の意味を実質的に変える目的で、初期化子つきキャプチャを使わないでください。
             </span>
             <span>
                 <span class="src">
@@ -10358,7 +10360,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                     declare a new variable in the conventional way and then capture it,
                     or avoid the lambda shorthand and define a function object explicitly.
                 </span>
-                そのかわり、従来の方法で新しい変数を宣言しそれをキャプチャするか、ラムダ式による短縮表現をやめて関数オブジェクトを明示的に定義してください。
+                そのかわり、従来の方法で新しいローカル変数を宣言しそれをキャプチャするか、ラムダ式による短縮表現をやめて関数オブジェクトを明示的に定義してください。
             </span>
         </li>
         <li>
@@ -10443,7 +10445,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                 implementation details become visible when the user does something
                 wrong.
             </span>
-            また、テンプレートメタプログラミングを使っていると、コンパイル時のエラーメッセージが非常に貧弱なものになることがあります。たとえ、インターフェースが単純なものであっても、ユーザが何かを間違えたときに、その複雑な実装の詳細が見えるようになってしまうことがあります。
+            また、テンプレートメタプログラミングを使っていると、コンパイル時のエラーメッセージが非常に貧弱なものになることがあります。たとえ、インターフェースが単純なものであっても、ユーザーが何かを間違えたときに、その複雑な実装の詳細が見えるようになってしまうことがあります。
         </span>
     </p>
 
@@ -10461,7 +10463,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                 is expanded in multiple contexts, and it's hard to verify that the
                 transformation makes sense in all of them.
             </span>
-            第一に、テンプレートコードは様々な文脈で展開されますが、展開されたそれらのすべてが正しく変換されているかどうかを確かめるのが困難です。
+            第一に、テンプレートコードは様々な文脈で展開されますが、展開されたそれらのすべてが正しいか否かを確かめることは難しいです。
         </span>
         <span>
             <span class="src">
@@ -10541,7 +10543,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                 possible, so that user-facing headers are readable, and you should
                 make sure that tricky code is especially well commented.
             </span>
-            可能であれば、メタプログラミングは実装の詳細として隠されるべきでしょう。そうすることで、あなたのユーザが目にするヘッダは可読性が高くなります。また、トリッキーなコードには特にしっかり確実にコメントを残すようにしてください。
+            可能であれば、メタプログラミングは実装の詳細として隠されるべきでしょう。そうすることで、あなたのユーザーが目にするヘッダーは可読性が高くなります。また、トリッキーなコードには特にしっかり確実にコメントを残すようにしてください。
         </span>
         <span>
             <span class="src">
@@ -10549,14 +10551,14 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                 carefully document how the code is used, and you should say something
                 about what the "generated" code looks like.
             </span>
-            コードを使い方については、注意してドキュメント化してください。その際、"生成されるコード"の外観についても何かしら言及しておいてください。
+            コードを使い方については、注意してドキュメント化してください。その際、「生成されるコード」の外観についても何かしら言及しておいてください。
         </span>
         <span>
             <span class="src">
                 Pay extra attention to the
                 error messages that the compiler emits when users make mistakes.
             </span>
-            ユーザがミスを犯した場合にコンパイラが生成するであろうエラーメッセージにも特別の注意を払ってください。
+            ユーザーがミスを犯した場合にコンパイラが生成するであろうエラーメッセージにも特別の注意を払ってください。
         </span>
         <span>
             <span class="src">
@@ -10565,7 +10567,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                 be tweaked as necessary so that the error messages are understandable
                 and actionable from a user point of view.
             </span>
-            このエラーメッセージはあなたが提供するユーザインターフェースの一部なのです。ユーザが何かを間違えたときに、ユーザにとって理解可能であり、どうすればよいかわかるようなエラーメッセージが生成されるよう、コードは調整されていなければなりません。
+            このエラーメッセージはあなたが提供するユーザーインターフェースの一部なのです。ユーザーが何かを間違えたときに、ユーザーにとって理解可能であり、どうすればよいかわかるようなエラーメッセージが生成されるよう、コードは調整されていなければなりません。
         </span>
     </p>
 
@@ -10913,7 +10915,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                     <code>&lt;fenv.h&gt;</code> headers, because many
                     compilers do not support those features reliably.
                 </span>
-                <code>&lt;cfenv&gt;</code>と<code>&lt;fenv.h&gt;</code>ヘッダ。多くのコンパイラにおいて、これらの機能に対する信頼性がないため。
+                <code>&lt;cfenv&gt;</code>と<code>&lt;fenv.h&gt;</code>ヘッダー。多くのコンパイラにおいて、これらの機能に対する信頼性がないため。
             </span>
         </li>
         <li>
@@ -10924,7 +10926,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                     does not have sufficient support for testing, and suffers
                     from inherent security vulnerabilities.
                 </span>
-                <code>&lt;filesystem&gt;</code>ヘッダ。テストへのサポートが十分でなく、性質上セキュリティ脆弱性を抱えやすいため。
+                <code>&lt;filesystem&gt;</code>ヘッダー。テストへのサポートが十分でなく、性質上セキュリティ脆弱性を抱えやすいため。
             </span>
 
         </li>
@@ -10990,14 +10992,14 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                 <span class="src">
                     Nonstandard extensions do not work in all compilers.
                 </span>
-                非標準の機能はすべてのコンパイラでは動きません。
+                非標準の拡張はすべてのコンパイラで動くわけではありません。
             </span>
             <span>
                 <span class="src">
                     Use of nonstandard
                     extensions reduces portability of code.
                 </span>
-                非標準の機能を使用するとコードの移植性が低下します。
+                これらを使用するとコードの移植性が低下します。
             </span>
         </li>
         <li>
@@ -11007,7 +11009,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                     are often not well-specified, and there may be subtle behavior differences
                     between compilers.
                 </span>
-                ターゲットとするコンパイラのすべてでサポートされている機能であっても、このような拡張は十分に仕様が決められていない場合があり、異なるコンパイラ間で微妙に異なる動作をすることもあります。
+                ターゲットとしているすべてのコンパイラでサポートされている機能であっても、このような拡張は十分に仕様が決められていない場合があり、コンパイラ間で微妙に異なる動作をすることもあります。
             </span>
         </li>
         <li>
@@ -11027,7 +11029,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
             <span class="src">
                 Do not use nonstandard extensions.
             </span>
-            非標準の機能は使ってはいけません。
+            非標準の拡張を使ってはいけません。
         </span>
         <span>
             <span class="src">
@@ -11037,7 +11039,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                 are provided by a designated project-wide
                 portability header.
             </span>
-            プロジェクトにおいて、そのプロジェクト内全体で使用するようにデザインされたヘッダとして、非標準の拡張機能に関する移植性を保つためのラッパーが提供されている場合は、それらを通してのみ非標準の機能を使用してもかまいません。
+            ただし、プロジェクトにおいて、そのプロジェクト内全体で使用するように設計されたヘッダーとして、非標準の拡張機能に関する移植性を保つためのラッパーが提供されている場合は、それらを通してのみ非標準の機能を使用してもかまいません。
         </span>
     </p>
 
@@ -11048,7 +11050,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
             <span class="src">
                 Public aliases are for the benefit of an API's user, and should be clearly documented.
             </span>
-            publicなエイリアスはAPIのユーザにとって有用なものです。それらは、明確にドキュメント化されていなければなりません。
+            パブリックなエイリアスはAPIのユーザーにとって有用なものです。それらは、明確にドキュメント化されていなければなりません。
         </span>
     </p>
     <p class="definition"></p>
@@ -11084,7 +11086,7 @@ using other_namespace::Foo;
                 header's public API unless they're in a function definition, in the private portion of a class,
                 or in an explicitly-marked internal namespace.
             </span>
-            エイリアスは、関数の定義内や、クラスのprivateな部分、あるいは内部用と明示された名前空間の中で宣言されている場合を除いて、他の宣言と同様に、ヘッダファイルにおいて、そのヘッダの持つpublicなAPIの一部として宣言されます。
+            エイリアスは、関数の定義内やクラスのprivateな部分、あるいは内部用と明示された名前空間の中で宣言されている場合を除いて、他の宣言と同様に、ヘッダーファイルにおいて、そのヘッダーの持つパブリックなAPIの一部として宣言されます。
 
         </span>
         <span>
@@ -11125,7 +11127,7 @@ using other_namespace::Foo;
                     When placed in a header where client code can refer to them, aliases increase the
                     number of entities in that header's API, increasing its complexity.
                 </span>
-                クライアントコードが参照できるヘッダでエイリアスが宣言されるとき、それらはそのヘッダのAPIが提供するエンティティの数を増やすため、複雑性が増します。
+                クライアントコードが参照できるヘッダーでエイリアスが宣言されるとき、それらはそのヘッダーのAPIが提供するエンティティの数を増やすため、複雑性が増します。
             </span>
         </li>
         <li>
@@ -11134,7 +11136,7 @@ using other_namespace::Foo;
                     Clients can easily rely on unintended details of public aliases, making
                     changes difficult.
                 </span>
-                意図しないpublicエイリアスがあると、クライアントは簡単にそれに依存してしまうことができ、それによって後の変更が難しくなります。
+                意図しないパプリックなエイリアスがあると、クライアントは簡単にそれに依存してしまうことができ、それによって後の変更が難しくなります。
             </span>
         </li>
         <li>
@@ -11143,7 +11145,7 @@ using other_namespace::Foo;
                     It can be tempting to create a public alias that is only intended for use
                     in the implementation, without considering its impact on the API, or on maintainability.
                 </span>
-                エイリアスを認めることは、APIやそのメンテナンス性に対する影響をよく考えず、実装で使用するだけの目的でpublicなエイリアスを作ってしまうことへの誘惑となりえます。
+                エイリアスを認めることは、APIやそのメンテナンス性に対する影響をよく考えず、実装で使用するだけの目的でパプリックなエイリアスを作ってしまうことへの誘惑となりえます。
             </span>
         </li>
         <li>
@@ -11181,7 +11183,7 @@ using other_namespace::Foo;
                 Don't put an alias in your public API just to save typing in the implementation;
                 do so only if you intend it to be used by your clients.
             </span>
-            実装においてタイピングする文字の数を減らすためにpublicなAPIとしてエイリアスを配置してはいけません。クライアントに使ってもらうことを目的としている場合に限り、エイリアスをpublicに配置してください。
+            実装においてタイピングする文字の数を減らすためにパプリックなAPIとしてエイリアスを配置してはいけません。クライアントに使ってもらうことを目的としている場合に限り、エイリアスをパプリックにしてください。
         </span>
     </p>
     <p>
@@ -11192,7 +11194,7 @@ using other_namespace::Foo;
                 it's currently aliased to, or whether a more limited compatibility is
                 intended.
             </span>
-            publicなエイリアスを定義するとき、その新しい名前の意図をドキュメント化してください。また、ドキュメントには、その名前がその時点で指していた型と常に同一の型を指し続けることが保証されているか、あるいはより限られた互換性が目的とされているのかということも含めてください。
+            パプリックなエイリアスを定義するとき、その新しい名前の意図をドキュメント化してください。また、ドキュメントには、その名前がその時点で指していた型と常に同一の型を指し続けることが保証されているか、あるいはより限られた互換性が目的とされているのかということも含めてください。
         </span>
         <span>
             <span class="src">
@@ -11200,7 +11202,7 @@ using other_namespace::Foo;
                 substitutable or whether more specific rules must be followed, and can help the
                 implementation retain some degree of freedom to change the alias.
             </span>
-            これによって、ユーザはその型を単に置き換えていいのか、もっと細かいルールに従う必要があるのかを判断できます。また、これによって、エイリアスの変更に対するある程度の自由度を確保することができるため、実装もしやすくなるでしょう。
+            これによって、ユーザーはその型を単に置き換えていいのか、もっと細かいルールに従う必要があるのかを判断できます。また、これによって、エイリアスの変更に対するある程度の自由度を確保することができるため、実装もしやすくなるでしょう。
         </span>
     </p>
     <p>
@@ -11208,7 +11210,7 @@ using other_namespace::Foo;
             <span class="src">
                 Don't put namespace aliases in your public API. (See also <a href="#Namespaces">Namespaces</a>).
             </span>
-            namespaceのエイリアスをpublicなAPIの中においてはいけません(<a href="#Namespaces">名前空間</a>を参照)。
+            namespaceへのエイリアスをパプリックなAPIの中においてはいけません(<a href="#Namespaces">名前空間</a>を参照)。
         </span>
     </p>
 
@@ -11239,7 +11241,7 @@ using TimeSeries = std::unordered_set&lt;DataPoint, std::hash&lt;DataPoint&gt;, 
 using DataPoint = ::foo::Bar*;
 
 // 測定のセットです。
-// これはユーザの利便性のために定義されています。
+// これはユーザーの利便性のために定義されています。
 using TimeSeries = std::unordered_set&lt;DataPoint, std::hash&lt;DataPoint&gt;, DataPointComparator&gt;;
 }  // namespace mynamespace
 </pre>
@@ -11278,7 +11280,7 @@ typedef unordered_set&lt;DataPoint, hash&lt;DataPoint&gt;, DataPointComparator&g
                 However, local convenience aliases are fine in function definitions, private sections of
                 classes, explicitly marked internal namespaces, and in .cc files:
             </span>
-            しかし、自分の利便性のためのエイリアスは、関数定義の中で定義する分には問題ありません。クラスのprivateセクションや、明示的に内部使用するとマークされているnamespaceの中や、.ccファイル内での定義も同様に問題ありません。
+            しかし、自分の利便性のためのエイリアスは、関数定義の中で定義する分には問題ありません。クラスのprivateセクションや、明示的に内部使用するとマークされている名前空間の中や、.ccファイル内での定義も同様に問題ありません。
         </span>
     </p>
 
@@ -11376,7 +11378,7 @@ using ::foo::Bar;
                 Optimize for readability using names that would be clear
                 even to people on a different team.
             </span>
-            他のチームメンバーから見てもわかりやすい命名を行って、可読性を最適化してください。
+            他のチームのメンバーから見てもわかりやすい命名を行うことによって、可読性を最適化するようにしてください。
         </span>
     </p>
 
@@ -11385,7 +11387,7 @@ using ::foo::Bar;
             <span class="src">
                 Use names that describe the purpose or intent of the object.
             </span>
-            そのオブジェクトの目的や意図を表現する名前を使ってください。
+            オブジェクトには、目的や意図がわかるような名前をつけてください。
         </span>
         <span>
             <span class="src">
@@ -11401,7 +11403,7 @@ using ::foo::Bar;
                 abbreviations that would likely be unknown to someone outside
                 your project (especially acronyms and initialisms).
             </span>
-            プロジェクト外のコード読者に意味が通じないかもしれないような省略形の使用は最小限にとどめてください。
+            プロジェクト外のコード読者に意味が通じないかもしれない省略形の使用は最小限にとどめてください。
         </span>
         <span>
             <span class="src">
@@ -11415,7 +11417,7 @@ using ::foo::Bar;
                 As a rule of thumb, an abbreviation is probably OK if it's listed in
                 Wikipedia.
             </span>
-            平たく言えば、Wikipediaに書いてあるような省略語はOKと言えるでしょう。
+            ルールを平たく言えば、Wikipediaに書いてあるような省略語はOKというところでしょうか。
         </span>
         <span>
             <span class="src">
@@ -11535,7 +11537,7 @@ using ::foo::Bar;
                 This includes abbreviations,
                 such as acronyms and initialisms.
             </span>
-            これには頭字語(acronym and initialism)などの略語も含まれます。
+            これには頭字語(acronymやinitialism)などの略語も含まれます。
         </span>
         <span>
             <span class="src">
@@ -11626,7 +11628,7 @@ using ::foo::Bar;
                 <code>.cc</code> and header files should end in
                 <code>.h</code>.
             </span>
-            C++のファイルは<code>.cc</code>で終わり、ヘッダは<code>.h</code>で終わります。
+            C++のファイルは<code>.cc</code>で終わり、ヘッダーは<code>.h</code>で終わります。
         </span>
         <span>
             <span class="src">
@@ -11635,7 +11637,7 @@ using ::foo::Bar;
                 <code>.inc</code> (see also the section on
                 <a href="#Self_contained_Headers">self-contained headers</a>).
             </span>
-            特定の場所にそのままインクルードされることが目的のファイルは<code>.inc</code>で終わります(<a href="#Self_contained_Headers">自己完結型ヘッダ</a>のセクションも参照してください)。
+            特定の場所にそのままインクルードされることが目的のファイルは<code>.inc</code>で終わります(<a href="#Self_contained_Headers">自己完結型ヘッダー</a>のセクションも参照してください)。
         </span>
     </p>
 
@@ -11934,7 +11936,7 @@ const int kAndroid8_0_0 = 24;  // Android 8.0.0</pre>
                 Regular functions have mixed case; accessors and mutators may be named
                 like variables.
             </span>
-            通常の関数は、大文字小文字を織り交ぜて命名します。アクセッサ(Getter)やミューテータ(Setter)は、変数名の命名ルールを用いることもあります。
+            通常の関数は、大文字小文字を混ぜて命名します。getter(accessor)やsetter(mutator)は、変数名の命名ルールを用いることもあります。
         </span>
     </p>
 
@@ -11970,7 +11972,7 @@ OpenFileOrDie()
                 Accessors and mutators (get and set functions) may be named like
                 variables.
             </span>
-            アクセッサ(Getter)やミューテータ(Setter)は変数名のように名前を付けてもかまいません。
+            getter(accessor)やsetter(mutator)は、変数名のように名前を付けてもかまいません。
         </span>
         <span>
             <span class="src">
@@ -12446,7 +12448,7 @@ OpenFileOrDie()
                 documentation about individual abstractions belongs with those abstractions,
                 not at the file level.
             </span>
-            個々の概念に関するより詳細なドキュメントは、ファイル全体に向けたコメントではなく、それぞれの概念に属すべきです。
+            個々の概念に関する詳細なドキュメントは、ファイル全体に向けたコメントではなく、それぞれの概念に属すべきです。
         </span>
     </p>
 
@@ -12463,7 +12465,7 @@ OpenFileOrDie()
             <span class="src">
                 Duplicated comments diverge.
             </span>
-            重複するコメントは、いずれ分岐してしまいます。
+            重複したコメントは、いずれ分岐してしまいます。
         </span>
     </p>
     <h3 id="Class_Comments"><span title="Class Comments">クラスに対するコメント</span></h3>
@@ -12474,7 +12476,7 @@ OpenFileOrDie()
                 Every non-obvious class or struct declaration should have an accompanying
                 comment that describes what it is for and how it should be used.
             </span>
-            各クラスや構造体の宣言には、一目見ただけでわかる場合を除いて、そのクラスの目的と使用方法についてのコメントが必要です。
+            各クラスや構造体の宣言には、一目見ただけでわかるような場合を除いて、そのクラスの目的と使用方法についてのコメントが必要です。
         </span>
     </p>
 
@@ -12517,7 +12519,7 @@ class GargantuanTableIterator {
                 Document the synchronization assumptions
                 the class makes, if any.
             </span>
-            また、クラスに同期に関する前提条件が存在する場合は、それらも記述します。
+            また、クラスにスレッド間等の同期に関する前提条件が存在する場合は、それらも記述します。
         </span>
         <span>
             <span class="src">
@@ -12525,7 +12527,7 @@ class GargantuanTableIterator {
                 multiple threads, take extra care to document the rules and invariants
                 surrounding multithreaded use.
             </span>
-            クラスのインスタンスが複数のスレッドからアクセスされる場合は、そのクラスをマルチスレッド下で扱う場合のルールや不定性に関しても、細心の注意を払って記述します。
+            クラスのインスタンスが複数のスレッドからアクセスされる場合は、そのクラスをマルチスレッド下で扱う場合のルールや不変条件に関しても、細心の注意を払って記述します。
         </span>
     </p>
 
@@ -12561,7 +12563,7 @@ class GargantuanTableIterator {
                 non-obvious); comments at the definition of a function describe
                 operation.
             </span>
-            関数を宣言するときのコメントは、その関数の使い方(が明らかでない場合)について説明したものにします。一方で、関数を定義するときのコメントは、その関数が行う操作について説明したものにします。
+            関数を宣言するときのコメントでは、その関数の使い方(が明らかでない場合)について説明するようにします。一方で、関数を定義するときのコメントでは、その関数が行う操作について説明するようにします。
         </span>
     </p>
 
@@ -12574,7 +12576,7 @@ class GargantuanTableIterator {
                 preceding it that describe what the function does and how to use
                 it.
             </span>
-            ほぼすべての関数宣言において、その宣言の直前に、関数の目的と使用方法に関するコメントをつけます。
+            ほぼすべての関数宣言において、その宣言の直前に、関数の目的と使用方法に関するコメントが必要です。
         </span>
         <span>
             <span class="src">
@@ -12587,7 +12589,7 @@ class GargantuanTableIterator {
             <span class="src">
                 Private methods and functions declared in `.cc` files are not exempt.
             </span>
-            privateなメソッドや`.cc`ファイル内で宣言された関数は免除されません。
+            `.cc`ファイル内で宣言されたprivateなメソッドや関数についても免除されません。
         </span>
         <span>
             <span class="src">
@@ -12638,7 +12640,7 @@ class GargantuanTableIterator {
                     are provided in `backticks`, then code-indexing
                     tools may be able to present the documentation better.
                 </span>
-                もし関数の引数名が<code>`backticks`</code>のようにバッククオートで囲まれた形で記述されていると、コードインデックスツールによってドキュメント化した場合の表現がよくなるかもしれません。
+                関数の引数名は<code>`backticks`</code>のようにバッククオートで囲んで記述すると、コードインデックスツールによってドキュメント化した場合の表示がよくなるかもしれません。
             </span>
         </li>
         <li>
@@ -12648,7 +12650,7 @@ class GargantuanTableIterator {
                     reference or pointer arguments beyond the duration of the method
                     call.
                 </span>
-                クラスメンバ関数については、関数に渡した参照やポインタの引数について、関数から処理が戻った後もオブジェクトが記憶し続けるか否か。
+                クラスメンバ関数について、関数に渡した参照やポインタの引数について、関数から処理が戻った後もオブジェクトがそれらを記憶し続けるか否か。
             </span>
             <span>
                 <span class="src">
@@ -12785,7 +12787,7 @@ std::unique_ptr&lt;Iterator&gt; GetIterator(absl::string_view start_word) const;
                 It is quite common for destructors not
                 to have a header comment.
             </span>
-            実際、大多数のデストラクタにおいて、ヘッダでのコメントはありません。
+            実際、大多数のデストラクタにおいて、ヘッダーでのコメントはありません。
         </span>
     </p>
 
@@ -12808,7 +12810,7 @@ std::unique_ptr&lt;Iterator&gt; GetIterator(absl::string_view start_word) const;
                 why you chose to implement the function in the way you
                 did rather than using a viable alternative.
             </span>
-            このコメントでは、たとえば、使用されているコーディングトリックを説明したり、その関数の処理手順の概要を示したり、あるいは、様々な実現方法の中からなぜこの実装方法を選んだのかという理由を説明したりすることができます。
+            このコメントでは、たとえば、使用されているコーディングトリックを説明したり、その関数の処理手順の概要を示したり、あるいは、様々な実現方法の中から、なぜこの実装方法を選んだのかという理由を説明したりすることができます。
         </span>
         <span>
             <span class="src">
@@ -12817,7 +12819,7 @@ std::unique_ptr&lt;Iterator&gt; GetIterator(absl::string_view start_word) const;
                 first half of the function but why it is not needed for
                 the second half.
             </span>
-            たとえば、「関数の前半ではロックの取得を必要とするが、後半では必要としない理由」について言及することもできるでしょう。
+            たとえば、関数の前半ではロックの取得を必要とするが、後半では必要としない理由について言及することもできるでしょう。
         </span>
     </p>
 
@@ -12837,7 +12839,7 @@ std::unique_ptr&lt;Iterator&gt; GetIterator(absl::string_view start_word) const;
                 recapitulate briefly what the function does, but the
                 focus of the comments should be on how it does it.
             </span>
-            関数が何をするのかのコメントが軽く繰り返される分にはかまいませんが、どちらかというと、どのようにそれを実現しているかにフォーカスしたコメントとするようにしてください。
+            関数が何をするのかを軽く繰り返す程度はかまいませんが、どちらかというと、どのようにそれを実現しているかにフォーカスしたコメントを記述するようにしてください。
         </span>
     </p>
 
@@ -12895,7 +12897,7 @@ std::unique_ptr&lt;Iterator&gt; GetIterator(absl::string_view start_word) const;
                 of sentinel values, such as nullptr or -1, when they are not
                 obvious.
             </span>
-            特に、<code>nullptr</code>や<code>-1</code>のような、特殊な意味を持つ値を使うときは、そのような値が存在することや、明らかでない場合はその意味について、説明のためのコメントを付け足してください。
+            特に、<code>nullptr</code>や<code>-1</code>のような値に、番兵などの特殊な意味を持たせて使っていて、かつ、それがわかりにくいときは、そのような値の存在や意味について、説明のためのコメントを付け足してください。
         </span>
         <span>
             <span class="src">
@@ -12958,7 +12960,7 @@ const int kNumTestCases = 6;
                 In your implementation you should have comments in tricky,
                 non-obvious, interesting, or important parts of your code.
             </span>
-            実装コードにおけるトリッキーな部分や、明らかでない部分、興味深い部分、重要な部分について、コメントを記述してください。
+            実装コードにおいてトリッキーな部分や、明らかでない部分、興味深い部分、重要な部分について、コメントを記述してください。
         </span>
     </p>
 
@@ -13229,7 +13231,7 @@ if (iter != v.end()) {
                 Comments should be as readable as narrative text, with
                 proper capitalization and punctuation.
             </span>
-            コメントは、大文字や句読点を適切に用いたふつうの文章として読めるように記述します。
+            コメントは、大文字や句読点を適切に用いてふつうの文章として読めるように記述します。
         </span>
         <span>
             <span class="src">
@@ -13245,7 +13247,7 @@ if (iter != v.end()) {
                 of a line of code, can sometimes be less formal, but you
                 should be consistent with your style.
             </span>
-            行末のコメントなど、短いコメントは形式を崩しがちですが、スタイルには一貫性を持たせるべきです。
+            特に行末コメントなどの短いコメントでは形式を崩しがちですが、スタイルには一貫性を持つべきです。
         </span>
     </p>
 
@@ -13277,7 +13279,7 @@ if (iter != v.end()) {
                 <code>TODO</code> comments for code that is temporary,
                 a short-term solution, or good-enough but not perfect.
             </span>
-            <code>TODO</code>コメントは、一時的なもの、暫定対応、あるいは完璧ではないが十分である、といったコードに対して使用してください。
+            <code>TODO</code>コメントは、一時的なもの、暫定対応、あるいは完璧ではないが現状十分である、といったコードに対して使用してください。
         </span>
     </p>
 
@@ -13310,7 +13312,7 @@ if (iter != v.end()) {
                 A <code>TODO</code> is not a commitment that the
                 person referenced will fix the problem.
             </span>
-            <code>TODO</code>は、「名前の書かれている人がその問題を直します」という約束ではありません。
+            <code>TODO</code>は「名前の書かれている人がその問題を直します」という約束ではありません。
         </span>
         <span>
             <span class="src">
@@ -13318,7 +13320,7 @@ if (iter != v.end()) {
                 a <code>TODO</code> with a name, it is almost always your
                 name that is given.
             </span>
-            したがって、あなたが<code>TODO</code>を作るときは、ほとんど常にあなたの名前で作ることになるでしょう。
+            したがって、あなたが<code>TODO</code>を作るときは、ほとんど常にあなたの名前で作ることになります。
         </span>
     </p>
 
@@ -13344,7 +13346,7 @@ if (iter != v.end()) {
                 specific event ("Remove this code when all clients can
                 handle XML responses.").
             </span>
-            もし、<code>TODO</code>が「未来のいついつ、なにをする」という形式になる場合は、必ず、具体的な日付(例:2005年11月までに直す)や、具体的なイベント(例:すべてのクライアントがXMLレスポンスを扱えるようになったらこのコードは消す)を含めるようにしてください。
+            もし、<code>TODO</code>が「未来のいつ、なにをする」という形式になる場合は、必ず、具体的な日付(例:「2005年11月までに直す」)や、具体的なイベント(例:「すべてのクライアントがXMLレスポンスを扱えるようになったらこのコードは消す」)を含めるようにしてください。
         </span>
     </p>
 
@@ -13406,7 +13408,7 @@ if (iter != v.end()) {
                 controversial, but so much existing code already adheres
                 to it, and we feel that consistency is important.
             </span>
-            このルールには議論の余地があるでしょう。しかし、既に存在する多くのコードがこのルールに沿っており、そして、我々は一貫性は重要であると考えます。
+            このルールには議論の余地があることは認識しています。しかし、既存の多くのコードがこのルールに沿っており、そして、我々は一貫性を重要視しています。
         </span>
     </p>
 
@@ -13418,7 +13420,7 @@ if (iter != v.end()) {
                 argue that it is rude to force them to resize
                 their windows and there is no need for anything longer.
             </span>
-            このルールを推す人の主張は、コードを読むために相手にウィンドウサイズを変えさせるのは失礼なことであり、またコードはそれ以上長くする必要はないというものです。
+            このルールを推す人の主張は、相手にウィンドウサイズを変えさせるのは失礼であり、またコードをそれ以上長くする必要もないというものです。
         </span>
         <span>
             <span class="src">
@@ -13489,8 +13491,8 @@ if (iter != v.end()) {
                     readability, ease of cut and paste or auto-linking -- e.g., if a line
                     contains an example command or a literal URL longer than 80 characters.
                 </span>
-                コメントのための行は、行の分割によって可読性やコピーペーストの利便性を妨げられる場合に、1行80文字を超えてもよいとします。
-                これには、たとえば、80文字よりも長いコマンド例やURLなどが当てはまります。
+                コメントのための行について、行を分割することによって、可読性やコピーペーストの利便性、リンクがクリックできなくなるなどの利便性を妨げる場合。
+                たとえば、80文字よりも長いコマンド例やURLなどが当てはまります。
             </span>
         </li>
 
@@ -13507,7 +13509,7 @@ if (iter != v.end()) {
                     or because the literal contains an embedded language, or a multiline
                     literal whose newlines are significant like help messages.
                 </span>
-                これは、URIやその他の意味的に重要な部分が含まれていたり、リテラルが組み込みの言語を含んでいたり、ヘルプメッセージのように改行が重要な複数行のリテラルであったりすることが原因です。
+                これには、URIやその他の意味的に重要な部分が含まれていたり、リテラルが組み込みの言語を含んでいたり、ヘルプメッセージのような改行が重要な役割を占める複数行のリテラルなどが含まれます。
             </span>
             <span>
                 <span class="src">
@@ -13530,7 +13532,7 @@ if (iter != v.end()) {
                     <a href="https://clang.llvm.org/docs/ClangFormatStyleOptions.html#disabling-formatting-on-a-piece-of-code">
                         disable the tool</a> around the content as necessary.
                 </span>
-                Clang-Formatのようなツールが分割不可のコンテンツを認識してくれない場合、必要に応じてコンテンツ周辺で<a href="https://clang.llvm.org/docs/ClangFormatStyleOptions.html#disabling-formatting-on-a-piece-of-code">ツールを無効</a>にしてください。
+                Clang-Formatのようなツールが分割不可のコンテンツを認識しない場合、必要に応じてコンテンツ周辺で<a href="https://clang.llvm.org/docs/ClangFormatStyleOptions.html#disabling-formatting-on-a-piece-of-code">ツールを無効</a>にしてください。
             </span>
 
             <br><br>
@@ -13557,7 +13559,7 @@ if (iter != v.end()) {
                 <span class="src">
                     a <a href="#The__define_Guard">header guard</a>
                 </span>
-                <a href="#The__define_Guard">ヘッダガード</a>。
+                <a href="#The__define_Guard">ヘッダーガード</a>。
             </span>
         </li>
 
@@ -13590,7 +13592,7 @@ if (iter != v.end()) {
                 even English, so use of non-ASCII characters should be
                 rare.
             </span>
-            まず前提として、ユーザが目にする文字列をソースにハードコーディングしてはいけません。たとえ英語であってもです。このため、非アスキー文字がコード中に出てくることは滅多にありません。
+            まず前提として、ユーザーが目にする文字列をソースにハードコーディングしてはいけません。たとえ英語であってもです。このため、非アスキー文字がコード中に出てくることは滅多にありません。
         </span>
         <span>
             <span class="src">
@@ -13853,7 +13855,7 @@ if (iter != v.end()) {
                     The open parenthesis is always on the same line as
                     the function name.
                 </span>
-                開き丸カッコは常に関数名と同じ行に書きます。
+                開き丸括弧は常に関数名と同じ行に書きます。
             </span>
         </li>
 
@@ -13863,7 +13865,7 @@ if (iter != v.end()) {
                     There is never a space between the function name
                     and the open parenthesis.
                 </span>
-                関数名と開き丸カッコの間にはスペースを入れてはいけません。
+                関数名と開き丸括弧の間にはスペースを入れてはいけません。
             </span>
         </li>
 
@@ -13873,7 +13875,7 @@ if (iter != v.end()) {
                     There is never a space between the parentheses and
                     the parameters.
                 </span>
-                開き丸カッコと引数の間にはスペースを入れてはいけません。
+                開き丸括弧と引数の間にはスペースを入れてはいけません。
             </span>
         </li>
 
@@ -13883,7 +13885,7 @@ if (iter != v.end()) {
                     The open curly brace is always on the end of the last line of the function
                     declaration, not the start of the next line.
                 </span>
-                開き波カッコは常に関数宣言の最後の行に書きます。次の行の頭ではありません。
+                開き波括弧は常に関数宣言の最後の行に書きます。次の行の頭ではありません。
             </span>
         </li>
 
@@ -13893,7 +13895,7 @@ if (iter != v.end()) {
                     The close curly brace is either on the last line by
                     itself or on the same line as the open curly brace.
                 </span>
-                閉じ波カッコは、それ自身で最後の行とするか、開き波カッコと同じ行に書くかのいずれかです。
+                閉じ波括弧は、それ自身で最後の行とするか、開き波括弧と同じ行に書くかのいずれかです。
             </span>
         </li>
 
@@ -13903,7 +13905,7 @@ if (iter != v.end()) {
                     There should be a space between the close
                     parenthesis and the open curly brace.
                 </span>
-                閉じ丸カッコと開き波カッコの間にはスペースを1つ入れます。
+                閉じ丸括弧と開き波括弧の間にはスペースを1つ入れます。
             </span>
         </li>
 
@@ -13957,7 +13959,7 @@ if (iter != v.end()) {
                 Unused parameters that might not be obvious should comment out the variable
                 name in the function definition:
             </span>
-            使われない引数でも、意味が明らかでない場合は、関数定義の引数名をコメントアウトします。
+            使われない引数でも、意味が明らかでない場合は、関数定義の引数名をコメントアウトして残します。
         </span>
     </p>
 
@@ -14040,7 +14042,7 @@ digits.erase(std::remove_if(digits.begin(), digits.end(), [&amp;to_remove](int i
              digits.end());
 </pre>
 
-    <h3 id="Floating_Literals">浮動小数点リテラル</h3>
+    <h3 id="Floating_Literals"><span title="Floating-point Literals">浮動小数点リテラル</span></h3>
 
     <p>
         <span>
@@ -14048,7 +14050,7 @@ digits.erase(std::remove_if(digits.begin(), digits.end(), [&amp;to_remove](int i
                 Floating-point literals should always have a radix point, with digits on both
                 sides, even if they use exponential notation.
             </span>
-            浮動小数点リテラルには、指数表記を使用する場合であっても、常に浮動小数点を表記し、小数点の両側に数字を置きます。
+            浮動小数点リテラルには、指数表記を使用する場合であっても、常に小数点を書き、小数点の両側に数字を置きます。
         </span>
         <span>
             <span class="src">
@@ -14058,7 +14060,7 @@ digits.erase(std::remove_if(digits.begin(), digits.end(), [&amp;to_remove](int i
                 <code>E</code>/<code>e</code> of the exponential notation is not mistaken for a
                 hexadecimal digit.
             </span>
-            すべての浮動小数点リテラルがこの使い慣れた形式を取ることで、浮動小数点リテラルが整数リテラルと間違われたり、指数表記の<code>E</code>や<code>e</code>が 16 進数と間違われたりすることがなくなり、読みやすさが向上します。
+            すべての浮動小数点リテラルがこの使い慣れた形式を取ることで、浮動小数点リテラルが整数リテラルと間違われたり、指数表記の<code>E</code>や<code>e</code>が 16 進数と間違われたりすることがなくなり、可読性が向上します。
         </span>
         <span>
             <span class="src">
@@ -14070,7 +14072,7 @@ digits.erase(std::remove_if(digits.begin(), digits.end(), [&amp;to_remove](int i
                 integer literal (assuming the variable type can exactly represent that integer),
                 but note that a number in exponential notation is never an integer literal.
             </span>
-            浮動小数点変数を整数リテラルで初期化することは問題ありません(変数の型がその整数を正確に表すことができると仮定して)が、指数表記の数値は決して整数リテラルではないことに注意してください。
+            浮動小数点変数を整数リテラルで初期化することは問題ありません(変数の型がその整数を正確に表すことができる場合)が、指数表記の数値は決して整数リテラルではないことに注意してください。
         </span>
     </p>
 
@@ -14095,7 +14097,7 @@ double d = 1248.0e6;
                 line indented by four spaces and continue at that 4 space
                 indent.
             </span>
-            関数呼び出しは1行で書くか、引数を丸カッコのところに揃えるように改行するか、スペース4つでインデントした新しい行に引数リストを書くかのいずれかとします。
+            関数呼び出しは1行で書くか、引数を丸括弧のところに揃えるように改行するか、スペース4つでインデントした新しい行に引数リストを書くかのいずれかとします。
         </span>
         <span>
             <span class="src">
@@ -14133,7 +14135,7 @@ double d = 1248.0e6;
                 add spaces after the open paren or before the close
                 paren:
             </span>
-            開き丸カッコの後や、閉じ丸カッコの前にスペースを入れてはいけません。
+            開き丸括弧の後や、閉じ丸括弧の前にスペースを入れてはいけません。
         </span>
     </p>
     <pre>bool result = DoSomething(averyveryveryverylongargument1,
@@ -14288,7 +14290,7 @@ my_widget.Transform(x1, x2, x3,
     </div>
 
 
-    <h3 id="Braced_Initializer_List_Format"><span title="Braced Initializer List Format">波カッコによる初期化子リスト</span></h3>
+    <h3 id="Braced_Initializer_List_Format"><span title="Braced Initializer List Format">波括弧による初期化子リスト</span></h3>
 
     <p>
         <span>
@@ -14296,7 +14298,7 @@ my_widget.Transform(x1, x2, x3,
                 Format a braced initializer list exactly like you would format a function
                 call in its place.
             </span>
-            波カッコによる初期化子リストは、関数呼び出しと同じようにフォーマットします。
+            波括弧による初期化子リストは、関数呼び出しと同じようにフォーマットします。
         </span>
     </p>
 
@@ -14308,14 +14310,14 @@ my_widget.Transform(x1, x2, x3,
                 <code>{}</code> were the
                 parentheses of a function call with that name.
             </span>
-            波カッコのリストが型名や変数名のすぐ後に続く場合は、<code>{}</code>を関数呼び出しにおける丸カッコと同等と見なして扱います。
+            波括弧のリストが型名や変数名のすぐ後に続く場合は、<code>{}</code>を関数呼び出しにおける丸括弧と同等と見なして扱います。
         </span>
         <span>
             <span class="src">
                 If there
                 is no name, assume a zero-length name.
             </span>
-            名前がない場合は、0文字の名前があると仮定します。
+            名前がない場合は、0文字の名前があると見なしてフォーマットします。
         </span>
     </p>
     <div>
@@ -14347,7 +14349,7 @@ MyType m = {  // Here, you could also break before {.
      interiorwrappinglist2}};
 </pre>
         </div>
-        <pre>// 波カッコ初期化子リストを1行に配置する場合の例
+        <pre>// 波括弧初期化子リストを1行に配置する場合の例
 return {foo, bar};
 functioncall({foo, bar});
 std::pair&lt;int, int&gt; p{foo, bar};
@@ -14423,7 +14425,7 @@ if (int a = f();a == 10) {   // ダメ。セミコロンの後にスペースが
                 Use curly braces for the controlled statements following
                 <code>if</code>, <code>else if</code> and <code>else</code>.
             </span>
-            <code>if</code>、<code>else if</code>、<code>else</code>に続く制御文には波括弧を使用します。
+            <code>if</code>、<code>else if</code>、<code>else</code>に続く本文には波括弧を使用します。
         </span>
         <span>
             <span class="src">
@@ -14477,7 +14479,7 @@ if (condition) {                   // 丸括弧の中にスペースなし、波
                 no braces).
             </span>
             歴史的な理由から、上記のルールには 1 つの例外を認めています。
-            <code>if</code>ステートメントに<code>else</code>または<code>else if</code>句がなく、<code>if</code>ステートメント全体が1 行 (閉じ括弧と被制御ステートメントの間にスペースがある場合)または 2 行 (閉じ括弧の後に改行があり、波括弧がない場合) の形になる場合、続く制御文の波括弧または波括弧内の改行は省略できます。
+            <code>if</code>ステートメントに<code>else</code>または<code>else if</code>句がなく、<code>if</code>ステートメント全体が1 行 (閉じ括弧と被制御ステートメントの間にスペースがある場合)または 2 行 (閉じ括弧の後に改行があり、波括弧がない場合) の形になる場合、続く文の波括弧または波括弧内の改行は省略できます。
         </span>
         <span>
             <span class="src">
@@ -14504,7 +14506,7 @@ if (x == kQuz) { return new Quz(1, 2, 3); }
                 more readable with curly braces.
             </span>
             このスタイルは、文が短い場合にのみ使用してください。
-            複雑な条件を含む条件付きステートメントや制御文は、波括弧を使用することで読みやすくなる可能性があることを考慮してください。
+            複雑な条件を含む条件付きステートメントや文は、波括弧を使用することで読みやすくなる可能性があることを考慮してください。
         </span>
         <span>
             <span class="src">
@@ -14590,7 +14592,7 @@ if (condition1 &amp;&amp;
             <span class="src">
                 Braces are optional for single-statement loops.
             </span>
-            ループの本体が1つの文からなる場合、波カッコはつけてもつけなくてもかまいません。
+            ループの本体が1つの文からなる場合、波括弧はつけてもつけなくてもかまいません。
         </span>
         <span>
             <span class="src">
@@ -14607,14 +14609,14 @@ if (condition1 &amp;&amp;
                 statements can have curly braces or not, depending on
                 your preference.
             </span>
-            <code>switch</code>中の<code>case</code>ブロックでは、波カッコを使っても使わなくてもかまいません。
+            <code>switch</code>中の<code>case</code>ブロックでは、波括弧を使っても使わなくてもかまいません。
         </span>
         <span>
             <span class="src">
                 If you do include curly braces they
                 should be placed as shown below.
             </span>
-            波カッコを使う場合は、下記の例のように配置します。
+            波括弧を使う場合は、下記の例のように配置します。
         </span>
     </p>
 
@@ -14722,7 +14724,7 @@ if (condition1 &amp;&amp;
             <span class="src">
                 Braces are optional for single-statement loops.
             </span>
-            ひとつの文からなるループにおいて、波カッコはつけてもつけなくてもかまいません。
+            ひとつの文からなるループにおいて、波括弧はつけてもつけなくてもかまいません。
         </span>
     </p>
 
@@ -14793,7 +14795,7 @@ while (condition) continue;  // OK。continueで、ロジックがないこと�
                 The following are examples of correctly-formatted
                 pointer and reference expressions:
             </span>
-            正しいフォーマットのポインタおよび参照の例を以下に示します。
+            正しくフォーマットされたポインタおよび参照の例を以下に示します。
         </span>
     </p>
 
@@ -14987,7 +14989,7 @@ const std::string &amp; str;  // ダメ。&amp;の前後両方にスペースが
                 though wrapping all operators at the beginning of the
                 line is also allowed.
             </span>
-            演算子は次の行の頭に書いてもかまいませんが、Googleのコードにおいてよく見るのは、先のような行末に置く形です。
+            演算子は次の行の頭に書いてもかまいませんが、Googleのコードにおいてよく見るのはこのような行末に置く形です。
         </span>
         <span>
             <span class="src">
@@ -14996,7 +14998,7 @@ const std::string &amp; str;  // ダメ。&amp;の前後両方にスペースが
                 in increasing readability when used
                 appropriately, but be careful about overuse.
             </span>
-            また、丸カッコを適切に扱うことで式の可読性が向上するため、丸カッコは自由に挿入して構いませんが、使いすぎに注意してください。
+            また、丸括弧を適切に扱うことで式の可読性が向上するため、丸括弧は自由に挿入して構いませんが、使いすぎには注意してください。
         </span>
         <span>
             <span class="src">
@@ -15017,7 +15019,7 @@ const std::string &amp; str;  // ダメ。&amp;の前後両方にスペースが
                 Do not needlessly surround the <code>return</code>
                 expression with parentheses.
             </span>
-            <code>return</code>文の式を不必要に丸カッコで囲んではいけません。
+            <code>return</code>文の式を不必要に丸括弧で囲んではいけません。
         </span>
     </p>
 
@@ -15029,7 +15031,7 @@ const std::string &amp; str;  // ダメ。&amp;の前後両方にスペースが
                 where you would use them in
                 <code>x = expr;</code>.
             </span>
-            <code>return expr;</code>に丸カッコを使うのは、式が<code>x = expr;</code>の形をしている場合のみです。
+            <code>return expr;</code>に丸括弧を使うのは、式が<code>x = expr;</code>の形をしている場合のみです。
         </span>
     </p>
 
@@ -15041,9 +15043,9 @@ return (some_long_condition &amp;&amp;
         another_condition);
 </pre>
         </div>
-        <pre>return result;                  // シンプルなときは丸カッコは使わない。
+        <pre>return result;                  // シンプルなときは丸括弧は使わない。
 
-// これはOK。複雑な式を読みやすくするために、丸カッコを使っている。
+// これはOK。複雑な式を読みやすくするために、丸括弧を使っている。
 return (some_long_condition &amp;&amp;
         another_condition);
 </pre>
@@ -15054,7 +15056,7 @@ return (some_long_condition &amp;&amp;
 return(result);                // return is not a function!
 </pre>
         </div>
-        <pre class="badcode">return (value);                // var = (value);と書いてはいけない。
+        <pre class="badcode">return (value);                // var = (value);とは書かないでしょう。
 return(result);                // returnは関数ではない！
 </pre>
     </div>
@@ -15101,7 +15103,7 @@ std::string name{"Some Name"};
                 on a type with an
                 <code>std::initializer_list</code> constructor.
             </span>
-            型が<code>std::initializer_list</code>を引数にとるコンストラクタを持つ場合、波カッコによる初期化子リストを使う場合は注意が必要です。
+            型が<code>std::initializer_list</code>を引数にとるコンストラクタを持つ場合、波括弧による初期化子リストを使う場合は注意が必要です。
         </span>
         <span>
             <span class="src">
@@ -15110,7 +15112,7 @@ std::string name{"Some Name"};
                 <code>std::initializer_list</code> constructor whenever
                 possible.
             </span>
-            型に<code>std::initializer_list</code>を引数にとるコンストラクタがあると、空でない波カッコ初期化リストは可能な限りこれを呼び出そうとします。
+            型に<code>std::initializer_list</code>を引数にとるコンストラクタがあると、空でない波括弧初期化リストは可能な限りこれを呼び出そうとします。
         </span>
         <span>
             <span class="src">
@@ -15125,7 +15127,7 @@ std::string name{"Some Name"};
                 non-<code>std::initializer_list</code> constructor, use parentheses
                 instead of braces.
             </span>
-            強制的に<code>std::initializer_list</code>ではないコンストラクタを呼びたい場合は、波カッコではなく丸カッコを使ってください。
+            強制的に<code>std::initializer_list</code>ではないコンストラクタを呼びたい場合は、波括弧ではなく丸括弧を使ってください。
         </span>
     </p>
 
@@ -15146,7 +15148,7 @@ std::vector&lt;int&gt; v{100, 1};  // 中身は「100」と「1」の2個。
                 Also, the brace form prevents narrowing of integral
                 types.
             </span>
-            また、整数型に波カッコによる初期化子の形を用いると、小さい型への変換を防ぐことができます。
+            また、整数型に波括弧による初期化子の形を用いると、小さい型への変換を防ぐことができます。
         </span>
         <span>
             <span class="src">
@@ -15458,7 +15460,7 @@ MyClass::MyClass(int var)
 }
 
 // 他のコードブロックと同様に、1行に収まる場合は
-// 閉じ波カッコと開き波カッコとを同じ行においてもよい。
+// 閉じ波括弧と開き波括弧とを同じ行においてもよい。
 MyClass::MyClass(int var)
     : some_var_(var) {}
 </pre>
@@ -15536,7 +15538,7 @@ void foo() {  // 正しい。名前空間ではインデントしない。
         </div>
         <pre class="badcode">namespace {
 
-  // 間違い！　インデントされるべきではない。
+  // 間違い！　インデントしてはだめ。
   void foo() {
     ...
   }
@@ -15610,12 +15612,12 @@ class Foo : public Bar {
         </div>
         <pre>int i = 0;  // 行末コメントの前にはスペース2つ。
 
-void f(bool b) {  // 開き波カッコの前には常にスペースをおく。
+void f(bool b) {  // 開き波括弧の前には常にスペースをおく。
   ...
 
 int i = 0;  // セミコロンの前にスペースはおかない。
 
-// 波カッコ初期化子リストの内側はスペースはおいてもおかなくてもよい。
+// 波括弧初期化子リストの内側はスペースはおいてもおかなくてもよい。
 // ただし、スペースをいれる場合は必ず左右の両方におく。
 int x[] = { 0 };
 int x[] = {0};
@@ -15623,9 +15625,9 @@ int x[] = {0};
 // 継承や初期化子のコロンの前後にはスペースをおく。
 class Foo : public Bar {
  public:
-  // インライン関数の実装において、波カッコと実装の間にはスペースをおく。
+  // インライン関数の実装において、波括弧と実装の間にはスペースをおく。
   Foo(int b) : Bar(), baz_(b) {}  // 空の実装にはスペースをおかない。
-  void Reset() { baz_ = 0; }  // 波カッコと実装との間にはスペースをおく。
+  void Reset() { baz_ = 0; }  // 波括弧と実装との間にはスペースをおく。
   ...
 </pre>
     </div>
@@ -15691,11 +15693,11 @@ switch (i) {
         <pre>if (b) {          // 条件文やループキーワードの後ろにはスペースをおく。
 } else {          // elseの前後にはスペースをおく。
 }
-while (test) {}   // 丸カッコの内側には通常はスペースをおかない。
+while (test) {}   // 丸括弧の内側には通常はスペースをおかない。
 switch (i) {
 for (int i = 0; i &lt; 5; ++i) {
 
-// ループ文と条件式の丸カッコの内側には、スペースをおいてもかまわないが、
+// ループ文と条件式の丸括弧の内側には、スペースをおいてもかまわないが、
 // そのようなケースはほとんどない。周りとの一貫性を保つこと。
 switch ( i ) {
 if ( test ) {
@@ -15744,7 +15746,7 @@ x = 0;
 
 // その他の二項演算子の前後には、通常はスペースをおくが、
 // 項の前後のスペースは、適宜削除してもかまわない。
-// 丸カッコを使う場合は、その内側にはスペースをおくべきでない。
+// 丸括弧を使う場合は、その内側にはスペースをおくべきでない。
 v = w * x + y / z;
 v = w*x + y/z;
 v = w * (x + z);
@@ -15919,7 +15921,7 @@ std::vector&lt;char *&gt; x;
         </span>
     </p>
 
-    <h3 id="Existing_Non-conformant_Code"><span title="Existing Non-conformant Code">ルールを満たしていない既存のコード</span></h3>
+    <h3 id="Existing_Non-conformant_Code"><span title="Existing Non-conformant Code">ルールに沿わない既存のコード</span></h3>
 
     <p>
         <span>
@@ -15927,7 +15929,7 @@ std::vector&lt;char *&gt; x;
                 You may diverge from the rules when dealing with code that
                 does not conform to this style guide.
             </span>
-            このスタイルガイドのルールを満たしていない既存のコードを扱うときには、このガイドのルールからは外れてかまいません。
+            このスタイルガイドのルールに従っていない既存のコードを取り扱うときには、このガイドのルールからは外れてもかまいません。
         </span>
     </p>
 
@@ -15970,7 +15972,7 @@ std::vector&lt;char *&gt; x;
                 conventions, mainly derived from the conventions in Windows
                 headers and other Microsoft code.
             </span>
-            Windowsプログラマの間では、独自のコーディング規約が開発されてきました。それらは、主にWindowsのヘッダや、その他のMicrosoftのコードのコーディング規約から派生してきたものです。
+            Windowsプログラマの間では、独自のコーディング規約が開発されてきました。それらは、主にWindowsのヘッダーや、その他のMicrosoftのコードのコーディング規約から派生してきたものです。
         </span>
         <span>
             <span class="src">
@@ -16179,7 +16181,7 @@ std::vector&lt;char *&gt; x;
                     file, typically with a name like
                     <code>StdAfx.h</code> or <code>precompile.h</code>.
                 </span>
-                プリコンパイル済みヘッダを使ったよくある仕事のやり方は、各ソースファイルの最も先頭で、典型的には<code>StdAfx.h</code>や<code>precompile.h</code>という名前を持つヘッダファイルをインクルードするというものです。
+                プリコンパイル済みヘッダーを使ったよくある仕事のやり方は、各ソースファイルの最も先頭で、典型的には<code>StdAfx.h</code>や<code>precompile.h</code>という名前を持つヘッダーファイルをインクルードするというものです。
             </span>
             <span>
                 <span class="src">
@@ -16202,7 +16204,7 @@ std::vector&lt;char *&gt; x;
                     <code>resource.h</code> and contain only macros, do not
                     need to conform to these style guidelines.
                 </span>
-                リソースヘッダ(通常は<code>resource.h</code>という名前を持ち、マクロのみを含んでいるファイル)はこのルールに従う必要はありません。
+                リソースヘッダー(通常は<code>resource.h</code>という名前を持ち、マクロのみを含んでいるファイル)はこのルールに従う必要はありません。
             </span>
         </li>
     </ul>
