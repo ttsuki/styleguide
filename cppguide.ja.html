@@ -2739,8 +2739,8 @@ Bar b;                     // 選択されるコンストラクタ Bar::Bar() �
                         int"), or an array of pairs (e.g., pairs of <code>int</code> and <code>const
     char*</code>).
                     </span>
-                    かわりに、自明(trivial)な型の単純な配列、たとえば <code>int</code>の配列の配列 (「int から int への連想配列」として)や、値ペア(たとえば、<code>int</code> と <code>const
-    char*</code>の値ペア)の配列等を検討してください。
+                    かわりに、自明(trivial)な型の単純な配列、たとえば <code>int</code>の配列の配列 (「int から int への連想配列」として)や、ペア(たとえば、<code>int</code> と <code>const
+    char*</code>のペア)の配列等を検討してください。
                 </span>
 
                 <span>
@@ -4068,7 +4068,7 @@ class NotCopyableOrMovable {
             </span>
         </p>
 
-        <h3 id="Structs_vs._Tuples"><span title="Structs vs. Pairs and Tuples">構造体か 値ペア/タプルか</span></h3>
+        <h3 id="Structs_vs._Tuples"><span title="Structs vs. Pairs and Tuples">構造体か ペア/タプルか</span></h3>
  
         <p>
             <span>
@@ -4076,7 +4076,7 @@ class NotCopyableOrMovable {
                     Prefer to use a <code>struct</code> instead of a pair or a
                     tuple whenever the elements can have meaningful names.
                 </span>
-                要素に意味のある名前を付けることができる場合は、値ペアまたはタプルを使うのではなく、常に<code>struct</code>を使いましょう。
+                要素に意味のある名前を付けることができる場合は、ペアまたはタプルを使うのではなく、常に<code>struct</code>を使いましょう。
             </span>
         </p>
 
@@ -4088,7 +4088,7 @@ class NotCopyableOrMovable {
                     name will almost always be much clearer when <em>reading</em> code than
                     <code>.first</code>, <code>.second</code>, or <code>std::get&lt;X&gt;</code>.
                 </span>
-                値ペアやタプルを使用すると、独自の型を定義する必要がなくなり、コードを<em>書く</em>ときの作業量を節約できるかもしれません。しかし、コードを<em>読む</em>ときのことを考えれば、ほとんど、ほぼ常に、<code>.first</code>、<code>.second</code>や<code>std::get&lt;X&gt;</code>よりも、意味のあるフィールド名がつけられていた方がずっとわかりやすいはずです。
+                ペアやタプルを使用すると、独自の型を定義する必要がなくなり、コードを<em>書く</em>ときの作業量を節約できるかもしれません。しかし、コードを<em>読む</em>ときのことを考えれば、ほとんど、ほぼ常に、<code>.first</code>、<code>.second</code>や<code>std::get&lt;X&gt;</code>よりも、意味のあるフィールド名がつけられていた方がずっとわかりやすいはずです。
             </span>
 
             <span>
@@ -4108,7 +4108,7 @@ class NotCopyableOrMovable {
                     Pairs and tuples may be appropriate in generic code where there are not
                     specific meanings for the elements of the pair or tuple.
                 </span>
-                値ペアとタプルは、その要素に特定の意味がない、またはつけられない、汎用的なコードで適切な場合があります。
+                ペアとタプルは、その要素に特定の意味がない、またはつけられない、汎用的なコードで適切な場合があります。
             </span>
             <span>
                 <span class="src">
@@ -9644,8 +9644,8 @@ std::array numbers = {4, 8, 15, 16, 23, 42};</pre>
                     pairs or tuples</a> unless a pre-existing API like <code>insert</code>
                 forces you to.
             </span>
-            構造化バインディングが特に有益なのは、上記例の<code>insert</code>のように、対象のオブジェクトが、もともと意味のあるフィールド名を持っていない値ペアやタプル等である場合です。
-            とはいえ、<code>insert</code> などの既存の API によって強制されない限り、通常は、<a href="#Structs_vs._Tuples">そもそも値ペアやタプルは使うべきではありません</a>。
+            構造化バインディングが特に有益なのは、上記例の<code>insert</code>のように、対象のオブジェクトが、もともと意味のあるフィールド名を持っていないペアやタプル等である場合です。
+            とはいえ、<code>insert</code> などの既存の API によって強制されない限り、通常は、<a href="#Structs_vs._Tuples">そもそもペアやタプルは使うべきではありません</a>。
         </span>
     </p>
 
@@ -9688,7 +9688,7 @@ std::array numbers = {4, 8, 15, 16, 23, 42};</pre>
                 Use class template argument deduction only with templates that have
                 explicitly opted into supporting it.
             </span>
-            クラステンプレートの引数推論は、それをサポートすることを明示(オプトイン)しているテンプレートでのみ使用するようにしてください。
+            クラステンプレートの引数推論は、それをサポートすることを明示的に選択しているテンプレートでのみ使用するようにしてください。
         </span>
     </p>
 
