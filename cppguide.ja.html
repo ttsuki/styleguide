@@ -1493,7 +1493,7 @@ void test(D* x) { f(x); }  // Calls f(B*)</pre>
                     <a href="#Internal_Linkage">Internal Linkage</a>.
                 </span>
                 無名名前空間については<a href="#Internal_Linkage">内部リンケージ</a>を参照してください。
-            </span>.
+            </span>
         </p>
 
         <p class="definition"></p>
@@ -4333,7 +4333,7 @@ class NotCopyableOrMovable {
                     class in question to determine if the function or
                     destructor is virtual or not.
                 </span>
-                これらの指定子はドキュメントの役割も果たします。もし、指定子がない場合、コードの読者は関数やデストラクタが仮想なのかそうでないのかを解決するために、すべての継承元をたどって調べなくてはなりません。
+                これらの指定子はドキュメントの役割を果たします。もし、指定子がない場合、コードの読者は関数やデストラクタが仮想なのかそうでないのかを解決するために、すべての継承元をたどって調べなくてはなりません。
             </span>
         </p>
 
@@ -4671,7 +4671,7 @@ class NotCopyableOrMovable {
                     confuse your users if <code>a &lt; b</code> compiles but
                     <code>b &lt; a</code> doesn't.
                 </span>
-                <code>a &lt; b</code>はコンパイルできるけど<code>b &lt; a</code>はコンパイルできないというような状況は、ユーザーを混乱させることになります。
+                <code>a &lt; b</code>はコンパイルできるけれど<code>b &lt; a</code>はコンパイルできないというような状況は、ユーザーを混乱させることになります。
             </span>
         </p>
 
@@ -5897,7 +5897,7 @@ class NotCopyableOrMovable {
                     Code using smart pointers is less explicit about
                     where the resource releases take place.
                 </span>
-                スマートポインタ使ったコードは、リソースがいつどこで解放されるかの明示性が低下します。
+                スマートポインタを使ったコードは、リソースがいつどこで解放されるかの明示性が低下します。
             </span>
         </li>
 
@@ -8840,7 +8840,7 @@ uint64_t my_mask{uint64_t{3} &lt;&lt; 48};
                     that's likely to be unique.
                 </span>
                 既存のマクロを自分のものに置き換えるために、<code>#undef</code>してはいけません。
-                かわりに、あなたのマクロにユニークとなる前をつけてください。
+                かわりに、あなたのマクロにユニークな名前をつけてください。
             </span>
         </li>
 
@@ -9312,7 +9312,7 @@ if (!success) {
                     When a C++ type name is repeated within a single declaration or a
                     small code region, the repetition may not be aiding readability.
                 </span>
-                1つの宣言や小さなコードブロックの中で、C++の型名の繰り返されることは、可読性の助けにはなりません。
+                1つの宣言や小さなコードブロックの中で、C++の型名が繰り返されることは、可読性の助けにはなりません。
             </span>
         </li>
         <li>
@@ -10000,7 +10000,7 @@ std::array numbers = {4, 8, 15, 16, 23, 42};</pre>
                 They further allow capturing variables from the enclosing scope either
                 explicitly by name, or implicitly using a default capture.
             </span>
-            さらに、ラムダ式は、自身を囲むスコープから変数をキャプチャすることができます。変数をキャプチャは、明示的に名前を指定するか、暗黙的なデフォルトのキャプチャを使うかのどちらかによって行われます。
+            さらに、ラムダ式は、自身を囲むスコープから変数をキャプチャすることができます。変数のキャプチャは、明示的に名前を指定するか、暗黙的なデフォルトのキャプチャを使うかのどちらかによって行われます。
         </span>
         <span>
             <span class="src">
@@ -10555,7 +10555,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                 carefully document how the code is used, and you should say something
                 about what the "generated" code looks like.
             </span>
-            コードを使い方については、注意してドキュメント化してください。その際、「生成されるコード」の外観についても何かしら言及しておいてください。
+            コードの使い方については、注意してドキュメント化してください。その際、「生成されるコード」の外観についても何かしら言及しておいてください。
         </span>
         <span>
             <span class="src">
@@ -11340,7 +11340,7 @@ using ::foo::Bar;
                 The most important consistency rules are those that govern
                 naming.
             </span>
-            一貫性を保つためのもっとも重要ルールは、名前の付け方を決めることです。
+            一貫性を保つためのもっとも重要なルールは、名前の付け方を決めることです。
         </span>
         <span>
             <span class="src">
@@ -11553,7 +11553,7 @@ using ::foo::Bar;
                 abbreviations as single words, e.g., <code>StartRpc()</code> rather than
                 <code>StartRPC()</code>.
             </span>
-            各単語の頭文字を大文字とした、大文字と小文字を混在させた名前（「<a href="https://en.wikipedia.org/wiki/Camel_case">キャメルケース</a>」または「<a                 href="https://en.wiktionary.org/wiki/Pascal_case">パスカルケース</a>」と呼ばれるもの）においては、            略語は単一の単語であるかのように表記しましょう（例えば <code>StartRPC()</code>ではなく<code>StartRpc()</code>）。
+            各単語の頭文字を大文字とした、大文字と小文字を混在させた名前（「<a href="https://en.wikipedia.org/wiki/Camel_case">キャメルケース</a>」または「<a href="https://en.wiktionary.org/wiki/Pascal_case">パスカルケース</a>」と呼ばれるもの）においては、略語は単一の単語であるかのように表記しましょう（例えば <code>StartRPC()</code>ではなく<code>StartRpc()</code>）。
         </span>
     </p>
     <p>
@@ -12093,7 +12093,7 @@ OpenFileOrDie()
                 Also avoid overly deep nesting
                 namespaces (<a href="https://abseil.io/tips/130">TotW #130</a>).
             </span>
-            また、深すぎる名前空間のネスト、も避けてください(<a href="https://abseil.io/tips/130">TotW #130</a>)。
+            また、深すぎる名前空間のネストも避けてください(<a href="https://abseil.io/tips/130">TotW #130</a>)。
         </span>
     </p>
 
@@ -12105,7 +12105,7 @@ OpenFileOrDie()
                 (internal helpers within a team tend to be related and may lead to
                 collisions).
             </span>
-            <code>internal</code>のような名前空間は、同じ<code>internal</code>名前空間に追加されている他のコードと衝突しないように特に注意が必要です(チーム内での内部用のヘルパ同士が、関係を持ってしまう傾向があり、それによって衝突を引き起こすかもしれません)。
+            <code>internal</code>な名前空間は、同じ<code>internal</code>な名前空間に追加されている他のコードと衝突しないように特に注意が必要です(チーム内での内部用のヘルパ同士が、関係を持ってしまう傾向があり、それによって衝突を引き起こすかもしれません)。
         </span>
         <span>
             <span class="src">
@@ -12417,7 +12417,7 @@ OpenFileOrDie()
                 If you make significant changes to a file with an
                 author line, consider deleting the author line.
             </span>
-            著者に関するの行を含め、ファイルに対して大きな変更を加えた場合は、著者に関する行を削除することを検討してください。
+            著者に関する行を含むファイルに対して大きな変更を加えた場合は、著者に関する行を削除することを検討してください。
         </span>
         <span>
             <span class="src">
@@ -13040,7 +13040,7 @@ const int kNumTestCases = 6;
 
                     This approach has several advantages.
                 </span>
-                この方法はいくつか利点があります。
+                この方法にはいくつか利点があります。
             </span>
             <span>
                 <span class="src">
