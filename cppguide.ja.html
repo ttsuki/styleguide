@@ -357,7 +357,7 @@
                         more heavily locally (per file, or for a tightly-related set of
                         interfaces).
                     </span>
-                    ローカル（ファイルごと、もしくは密に関連するインターフェイスの集合）には、より重く適用されます。
+                    ローカル（ファイルごと、もしくは密に関連するインターフェースの集合）には、より重く適用されます。
                 </span>
                 <span>
                     <span class="src">
@@ -3651,7 +3651,7 @@ void Func(Foo f);
                     They are concise, and ensure
                     that all data members are copied.
                 </span>
-                自動的に生成されるコンストラクタや代入演算子は、明瞭で、かつすべてのメンバーがコピーされることが保証されます。
+                自動的に生成されるコンストラクタや代入演算子は、明瞭で、かつすべてのメンバがコピーされることが保証されます。
             </span>
             <span>
                 <span class="src">
@@ -3752,7 +3752,7 @@ void Func(Foo f);
                     declaring and/or deleting the appropriate operations in the <code>public</code>
                     section of the declaration.
                 </span>
-                すべてのクラスの公開インターフェイスは、クラスがコピーやムーブのどの操作をサポートしているかを明らかにしておかなければなりません。
+                すべてのクラスの公開インターフェースは、クラスがコピーやムーブのどの操作をサポートしているかを明らかにしておかなければなりません。
                 これは通常、クラス宣言の<code>public</code>セクションで適切な操作を明示的に宣言するか削除するという形式で行うようにします。
             </span>
         </p>
@@ -3874,7 +3874,7 @@ class NotCopyableOrMovable {
                         then the copyability/movability can be determined by the
                         copyability/movability of any public data members.
                     </span>
-                    <a href="#Structs_vs._Classes">構造体</a>やインターフェイスのみの基底クラスのように、クラスに<code>private</code>セクションがない場合、コピーやムーブの可能性は、パブリックデータメンバのコピーやムーブ可能性によって決定できます。
+                    <a href="#Structs_vs._Classes">構造体</a>やインターフェースのみの基底クラスのように、クラスに<code>private</code>セクションがない場合、コピーやムーブの可能性は、パブリックデータメンバのコピーやムーブ可能性によって決定できます。
                 </span>
             </li>
             <li>
@@ -3890,7 +3890,7 @@ class NotCopyableOrMovable {
                         An interface-only base class that leaves these
                         operations implicit is not sufficient to make concrete subclasses clear.
                     </span>
-                    基底クラスがインターフェイスのみを提供し、これらの操作について暗黙のままにしているとき、具体的なサブクラスにとって十分に明確であるということはできません。
+                    基底クラスがインターフェースのみを提供し、これらの操作について暗黙のままにしているとき、具体的なサブクラスにとって十分に明確であるということはできません。
                 </span>
             </li>
             <li>
@@ -4243,7 +4243,7 @@ class NotCopyableOrMovable {
                     want to do private inheritance, you should be including
                     an instance of the base class as a member instead.
                 </span>
-                privateな継承を行いたい場合は、継承のかわりに基底クラスのインスタンスをメンバーとして持つようにしましょう。
+                プライベートな継承を行いたい場合は、継承のかわりに基底クラスのインスタンスをメンバとして持つようにしましょう。
             </span>
             <span>
                 <span class="src">
@@ -6369,7 +6369,7 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
                 that the reader does not have to look in another file to
                 find uses of the private members of a class.
             </span>
-            フレンドは、通常は同じファイル内に定義されるべきです。これは、コードの読者が、フレンドによるクラスのprivateメンバーの取り扱い方を、他のファイルに探しにいかなくてもいいようにするためです。
+            フレンドは、通常は同じファイル内に定義されるべきです。これは、コードの読者が、フレンドによるクラスのprivateメンバの取り扱い方を、他のファイルに探しにいかなくてもいいようにするためです。
         </span>
         <span>
             <span class="src">
@@ -6405,7 +6405,7 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
                 making a member public when you want to give only one
                 other class access to it.
             </span>
-            この方法は、あるクラスのメンバーについて、他のある特定のただ一つのクラスにだけアクセスさせたいという場合に、単にそのメンバーをpublicにするよりも優れています。
+            この方法は、あるクラスのメンバについて、他のある特定のただ一つのクラスにだけアクセスさせたいという場合に、単にそのメンバをpublicにするよりも優れています。
         </span>
         <span>
             <span class="src">
@@ -6935,7 +6935,7 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
                 functions throwing and make it unconditionally
                 <code>noexcept</code>.
             </span>
-            他の潜在的なエラーの場合でも、考えられるすべての種類の例外シナリオに対応しようとするよりも、インターフェイスのシンプルさを優先すべきです。
+            他の潜在的なエラーの場合でも、考えられるすべての種類の例外シナリオに対応しようとするよりも、インターフェースのシンプルさを優先すべきです。
             たとえば、ハッシュ関数が例外を投げるかどうかに依存する複雑な<code>noexcept</code>句を記述するのではなく、そのコンポーネントが例外を投げるようなハッシュ関数をサポートしていないことをドキュメントに記載し、無条件に <code>noexcept</code> にしましょう。
         </span>
     </p>
@@ -8298,7 +8298,7 @@ bool Derived::Equal(Base* other) {
                 at least 32 bits, but don't
                 assume that it has more than 32 bits.
             </span>
-            <code>int</code>は最低でも32ビットあると仮定して構いません。
+            <code>int</code>は最低でも32ビットあると仮定してかまいません。
             ただし、32ビットよりも大きいという仮定を行ってはいけません。
         </span>
         <span>
@@ -9566,7 +9566,7 @@ std::array numbers = {4, 8, 15, 16, 23, 42};</pre>
                 deduced return types don't define abstraction boundaries: the implementation
                 <em>is</em> the interface.
             </span>
-            もっと言えば、その関数やラムダが非常に狭いスコープを持つ場合にのみ使用するようにしてください。戻り値の型を推論に委ねる関数は、抽象化の境界を定義せず、その実装<em>が</em>そのままそのインターフェイスとなるためです。
+            もっと言えば、その関数やラムダが非常に狭いスコープを持つ場合にのみ使用するようにしてください。戻り値の型を推論に委ねる関数は、抽象化の境界を定義せず、その実装<em>が</em>そのままそのインターフェースとなるためです。
         </span>
         <span>
             <span class="src">
@@ -9597,7 +9597,7 @@ std::array numbers = {4, 8, 15, 16, 23, 42};</pre>
                 obvious what arguments it will eventually be called with (e.g.,
                 the <code>std::sort</code> example above).
             </span>
-            したがって、ラムダが定義のすぐ近くで明示的に呼び出されていて読者がその両方を容易に読めるか、ラムダが非常によく知られたインターフェイスに渡されており、最終的にどの引数で呼び出されるかが明らか(例えば上記例の<code>std::sort</code>)な場合を除けば、ほとんどの場合、明示的な型の方がより明確になるでしょう。
+            したがって、ラムダが定義のすぐ近くで明示的に呼び出されていて読者がその両方を容易に読めるか、ラムダが非常によく知られたインターフェースに渡されており、最終的にどの引数で呼び出されるかが明らか(例えば上記例の<code>std::sort</code>)な場合を除けば、ほとんどの場合、明示的な型の方がより明確になるでしょう。
         </span>
     </p>
 
@@ -11090,7 +11090,7 @@ using other_namespace::Foo;
                 header's public API unless they're in a function definition, in the private portion of a class,
                 or in an explicitly-marked internal namespace.
             </span>
-            エイリアスは、関数の定義内やクラスのprivateな部分、あるいは内部用と明示された名前空間の中で宣言されている場合を除いて、他の宣言と同様に、ヘッダーファイルにおいて、そのヘッダーの持つパブリックなAPIの一部として宣言されます。
+            エイリアスは、関数の定義内やクラスのプライベートな部分、あるいは内部用と明示された名前空間の中で宣言されている場合を除いて、他の宣言と同様に、ヘッダーファイルにおいて、そのヘッダーの持つパブリックなAPIの一部として宣言されます。
 
         </span>
         <span>
@@ -12593,7 +12593,7 @@ class GargantuanTableIterator {
             <span class="src">
                 Private methods and functions declared in `.cc` files are not exempt.
             </span>
-            `.cc`ファイル内で宣言されたprivateなメソッドや関数についても免除されません。
+            `.cc`ファイル内で宣言されたプライベートなメソッドや関数についても免除されません。
         </span>
         <span>
             <span class="src">
@@ -13484,7 +13484,7 @@ if (iter != v.end()) {
             <span class="src">
                 A line may exceed 80 characters if it is
             </span>
-            次の場合、80文字を超えても構いません。
+            次の場合、80文字を超えてもかまいません。
         </span>
     </p>
     <ul>
@@ -15002,7 +15002,7 @@ const std::string &amp; str;  // ダメ。&amp;の前後両方にスペースが
                 in increasing readability when used
                 appropriately, but be careful about overuse.
             </span>
-            また、丸括弧を適切に扱うことで式の可読性が向上するため、丸括弧は自由に挿入して構いませんが、使いすぎには注意してください。
+            また、丸括弧を適切に扱うことで式の可読性が向上するため、丸括弧は自由に挿入してかまいませんが、使いすぎには注意してください。
         </span>
         <span>
             <span class="src">
