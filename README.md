@@ -1,9 +1,14 @@
-# Google Style Guides 日本語
+# Google C++ Style Guide 日本語
+
+Google C++ Style Guideを日本語に訳しているリポジトリ
 
 [C++ Style Guide][cpp] の日本語への全訳を [Google C++ スタイルガイド(日本語)][cppja] に置いています。
 
-今はまだ Naming の章までしかやっていませんが、ヒマを見つけては更新したい。
 [cppja]: https://ttsuki.github.io/styleguide/cppguide.ja.html
+
+---
+
+--- 以下オリジナルの `README.md` ---
 
 # Google Style Guides
 
