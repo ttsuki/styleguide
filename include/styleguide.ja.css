@@ -21,11 +21,11 @@
 }
 
 .pros:before {
-  content: "メリット: ";
+  content: "長所: ";
 }
 
 .cons:before {
-  content: "デメリット: ";
+  content: "短所: ";
 }
 
 .decision:before {
@@ -42,7 +42,7 @@
 
 
 body {
-  font-family: "游ゴシック体", "YuGothic", "游ゴシック", "Yu Gothic", "メイリオ", sans-serif;
+  font-family: "YuGothic", "Yu Gothic", sans-serif;
 }
 
 code, pre {
