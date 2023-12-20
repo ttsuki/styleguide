@@ -15,6 +15,15 @@
   pre { font-size: smaller; }
 }
 
+/* darkmode view */
+@media (prefers-color-scheme: dark) {
+  :root{ color-scheme: dark; }
+  body { background-color: #111; color: #eee; }
+  h1, h2, h3, h4, h5, h6 { color: #39F; }
+  table, td, th { border: 1px solid #666; }
+  code, samp, var, pre { background-color:#444; }
+  pre.bad, pre.badcode { background-color:#600;}
+}
 
 .definition:before {
   content: "定義: ";

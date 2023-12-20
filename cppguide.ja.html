@@ -11,16 +11,21 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <style>
         /* 翻訳ポップアップ */
-        span:hover { background-color: #FFC; }
 
         #tip_popup {
             position: absolute;
-            border: 1px solid black;
             max-width: 70%;
-            background-color: #EFF;
             padding: 8px;
             z-index: 100;
             left: -99999px;
+        }
+
+        span:hover { background: linear-gradient(0deg, #FFA 50%, transparent 50%); }
+        #tip_popup { background: linear-gradient(0deg, #EFF, #FFF); border: 1px solid black; }
+
+        @media (prefers-color-scheme: dark) {
+            span:hover { background: linear-gradient(0deg, #26A 50%, transparent 50%); }
+            #tip_popup { background: linear-gradient(0deg, #111, #135); border: 1px solid white;}
         }
 
         span.src,
