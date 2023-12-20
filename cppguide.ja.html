@@ -15,7 +15,7 @@
         #tip_popup {
             position: absolute;
             border: 1px solid black;
-            max-width: 50%;
+            max-width: 70%;
             background-color: #EFF;
             padding: 8px;
             z-index: 100;
@@ -29,21 +29,15 @@
     </style>
     <script>
         // 翻訳ポップアップ
-        $(document).ready(function () {
-            $("body").append('<div id="tip_popup"></div>');
-            var tip = $('#tip_popup');
+        $(() => {
+            var tip = $('<div id="tip_popup"></div>');
+            $("body").append(tip);
             $("span,div").each(function () {
-                if ($(this).attr("title")) {
-                    $(this).attr("data-title", $(this).attr("title"));
-                    $(this).removeAttr("title");
-                    $(this).mousemove(function (m) { tip.html($(this).attr("data-title")); });
-                    $(this).mousemove(function (m) { tip.css({ left: (m.pageX + 20) + "px", top: (m.pageY + 20) + "px" }); });
-                    $(this).mouseout(function () { tip.css({ left: "-99999px" }); });
-                }
-                else if ($(this).children(".src").html()) {
-                    $(this).mousemove(function (m) { tip.html($(this).children(".src").html()); });
-                    $(this).mousemove(function (m) { tip.css({ left: (m.pageX + 20) + "px", top: (m.pageY + 20) + "px" }); });
-                    $(this).mouseout(function () { tip.css({ left: "-99999px" }); });
+                const src = $(this).attr("data-src") || $(this).children(".src").html() || null;
+                if (src) {
+                    const on = m => tip.html(src).css({ left: "min(28vw, " + (m.pageX + 20) + "px)", top: (m.pageY + 20) + "px" });
+                    const off = m => tip.css({ left: "-99999px" });
+                    $(this).mouseover(on).mousemove(on).mouseout(off);
                 }
             });
         });
@@ -56,7 +50,7 @@
 <body onload="initStyleGuide();">
     <div id="content">
         <h1>
-            <span title="Google C++ Style Guide">Google C++ スタイルガイド</span> 日本語全訳
+            <span data-src="Google C++ Style Guide">Google C++ スタイルガイド</span> 日本語全訳
         </h1>
         <h2 class="ignoreLink">訳者前書き</h2>
         <ul>
@@ -72,7 +66,7 @@
 
         <div class="horizontal_toc" id="tocDiv"></div>
 
-        <h2 id="Background" class="ignoreLink"><span title="Background">背景</span></h2>
+        <h2 id="Background" class="ignoreLink"><span data-src="Background">背景</span></h2>
 
         <p>
             <span>
@@ -151,7 +145,7 @@
         </p>
 
         <h3 id="Goals">
-            <span title="Goals of the Style Guide">このスタイルガイドのゴール</span>
+            <span data-src="Goals of the Style Guide">このスタイルガイドのゴール</span>
         </h3>
         <p>
             <span>
@@ -565,7 +559,7 @@
         </p>
 
         <h2 id="C++_Version">
-            <span title="C++ Version">C++のバージョン</span>
+            <span data-src="C++ Version">C++のバージョン</span>
         </h2>
 
         <p>
@@ -606,7 +600,7 @@
         </p>
 
         <h2 id="Header_Files">
-            <span title="Header Files">ヘッダーファイル</span>
+            <span data-src="Header Files">ヘッダーファイル</span>
         </h2>
 
         <p>
@@ -650,7 +644,7 @@
 
         <a id="The_-inl.h_Files"></a>
         <h3 id="Self_contained_Headers">
-            <span title="Self-contained Headers">自己完結ヘッダー</span>
+            <span data-src="Self-contained Headers">自己完結ヘッダー</span>
         </h3>
 
         <p>
@@ -762,7 +756,7 @@
         </p>
 
         <h3 id="The__define_Guard">
-            <span title="The #define Guard">インクルードガード</span>
+            <span data-src="The #define Guard">インクルードガード</span>
         </h3>
 
         <p>
@@ -809,7 +803,7 @@
 #endif  // FOO_BAR_BAZ_H_
 </pre>
 
-        <h3 id="Include_What_You_Use"><span title="Include What You Use">必要なものを<code>#include</code>する</span></h3>
+        <h3 id="Include_What_You_Use"><span data-src="Include What You Use">必要なものを<code>#include</code>する</span></h3>
 
         <p>
             <span>
@@ -857,7 +851,7 @@
         </p>
 
         <h3 id="Forward_Declarations">
-            <span title="Forward Declarations">前方宣言</span>
+            <span data-src="Forward Declarations">前方宣言</span>
         </h3>
 
         <p>
@@ -1064,7 +1058,7 @@ void test(D* x) { f(x); }  // f(B*)を呼び出す</pre></div>
         </ul>
 
         <h3 id="Inline_Functions">
-            <span title="Inline Functions">インライン関数</span>
+            <span data-src="Inline Functions">インライン関数</span>
         </h3>
 
         <p>
@@ -1195,7 +1189,7 @@ void test(D* x) { f(x); }  // f(B*)を呼び出す</pre></div>
             </span>
         </p>
         <h3 id="Names_and_Order_of_Includes">
-            <span title="Names and Order of Includes"><code>#include</code>の名前と順序</span>
+            <span data-src="Names and Order of Includes"><code>#include</code>の名前と順序</span>
         </h3>
 
         <p>
@@ -1472,11 +1466,11 @@ void test(D* x) { f(x); }  // f(B*)を呼び出す</pre></div>
 </pre>
 
         <h2 id="Scoping">
-            <span title="Scoping">スコープ</span>
+            <span data-src="Scoping">スコープ</span>
         </h2>
 
         <h3 id="Namespaces">
-            <span title="Namespaces">名前空間</span>
+            <span data-src="Namespaces">名前空間</span>
         </h3>
 
         <p>
@@ -1922,7 +1916,7 @@ using ::absl::container_internal::ImplementationDetail;
         </ul>
 
         <a id="Unnamed_Namespaces_and_Static_Variables"></a>
-        <h3 id="Internal_Linkage"><span title="Internal Linkage">内部リンケージ</span></h3>
+        <h3 id="Internal_Linkage"><span data-src="Internal Linkage">内部リンケージ</span></h3>
 
         <p>
             <span>
@@ -2013,7 +2007,7 @@ using ::absl::container_internal::ImplementationDetail;
 </pre>
 
         <h3 id="Nonmember,_Static_Member,_and_Global_Functions">
-            <span title="Nonmember, Static Member, and Global Functions">非メンバ関数、静的メンバ関数、グローバル関数</span>
+            <span data-src="Nonmember, Static Member, and Global Functions">非メンバ関数、静的メンバ関数、グローバル関数</span>
         </h3>
 
         <p>
@@ -2114,7 +2108,7 @@ using ::absl::container_internal::ImplementationDetail;
         </p>
 
         <h3 id="Local_Variables">
-            <span title="Local Variables">ローカル変数</span>
+            <span data-src="Local Variables">ローカル変数</span>
         </h3>
 
         <p>
@@ -2272,7 +2266,7 @@ for (int i = 0; i &lt; 1000000; ++i) {
         </div>
 
         <h3 id="Static_and_Global_Variables">
-            <span title="Static and Global Variables">静的変数とグローバル変数</span>
+            <span data-src="Static and Global Variables">静的変数とグローバル変数</span>
         </h3>
 
         <p>
@@ -2454,7 +2448,7 @@ for (int i = 0; i &lt; 1000000; ++i) {
             </span>
         </p>
         <p class="decision"></p>
-        <h4 title="Decision on destruction">破壊に関する結論</h4>
+        <h4><span data-src="Decision on destruction">破壊に関する結論</span></h4>
 
         <p>
             <span>
@@ -2564,7 +2558,7 @@ void bar() {
             </span>
         </p>
 
-        <h4 title="Decision on initialization">初期化に関する結論</h4>
+        <h4><span data-src="Decision on initialization">初期化に関する結論</span></h4>
 
         <p>
             <span>
@@ -2736,7 +2730,7 @@ Bar b;                     // 選択されるコンストラクタ Bar::Bar() �
                 一方で、ローカル静的変数については、それらを動的に初期化してかまいません (むしろ、これらの変数は、動的初期化されることが一般的です)。
             </span>
         </p>
-        <h4 title="Common patterns">よくあるパターン</h4>
+        <h4><span data-src="Common patterns">よくあるパターン</span></h4>
         <ul>
             <li>
                 <span>
@@ -2856,7 +2850,7 @@ Bar b;                     // 選択されるコンストラクタ Bar::Bar() �
             </li>
         </ul>
 
-        <h3 id="thread_local" title="thread_local Variables">thread_local 変数</h3>
+        <h3 id="thread_local"><span data-src="thread_local Variables">thread_local 変数</span></h3>
         <p>
             <span>
                 <span class="src">
@@ -3169,7 +3163,7 @@ Bar b;                     // 選択されるコンストラクタ Bar::Bar() �
         </p>
 
         <h2 id="Classes">
-            <span title="Classes">クラス</span>
+            <span data-src="Classes">クラス</span>
         </h2>
 
         <p>
@@ -3195,7 +3189,7 @@ Bar b;                     // 選択されるコンストラクタ Bar::Bar() �
         </p>
 
         <h3 id="Doing_Work_in_Constructors">
-            <span title="Doing Work in Constructors">コンストラクタで行うこと</span>
+            <span data-src="Doing Work in Constructors">コンストラクタで行うこと</span>
         </h3>
 
         <p>
@@ -3338,7 +3332,7 @@ Bar b;                     // 選択されるコンストラクタ Bar::Bar() �
 
         <a id="Explicit_Constructors"></a>
         <h3 id="Implicit_Conversions">
-            <span title="Implicit Conversions">暗黙的型変換</span>
+            <span data-src="Implicit Conversions">暗黙的型変換</span>
         </h3>
 
         <p>
@@ -3610,7 +3604,7 @@ void Func(Foo f);
 
         <a id="Copy_Constructors"></a>
         <h3 id="Copyable_Movable_Types">
-            <span title="Copyable and Movable Types">コピー可能な型・ムーブ可能な型</span>
+            <span data-src="Copyable and Movable Types">コピー可能な型・ムーブ可能な型</span>
         </h3>
 
         <p>
@@ -4076,7 +4070,7 @@ class NotCopyableOrMovable {
         </p>
 
         <h3 id="Structs_vs._Classes">
-            <span title="Structs vs. Classes">構造体(<code>struct</code>)か、クラス(<code>class</code>)か</span>
+            <span data-src="Structs vs. Classes">構造体(<code>struct</code>)か、クラス(<code>class</code>)か</span>
         </h3>
 
         <p>
@@ -4183,7 +4177,7 @@ class NotCopyableOrMovable {
             </span>
         </p>
 
-        <h3 id="Structs_vs._Tuples"><span title="Structs vs. Pairs and Tuples">構造体(struct)か、ペア(pair)・タプル(tupple)か</span></h3>
+        <h3 id="Structs_vs._Tuples"><span data-src="Structs vs. Pairs and Tuples">構造体(struct)か、ペア(pair)・タプル(tupple)か</span></h3>
  
         <p>
             <span>
@@ -4236,7 +4230,7 @@ class NotCopyableOrMovable {
 
         <a id="Multiple_Inheritance"></a>
         <h3 id="Inheritance">
-            <span title="Inheritance">継承</span>
+            <span data-src="Inheritance">継承</span>
         </h3>
 
         <p>
@@ -4466,7 +4460,7 @@ class NotCopyableOrMovable {
         </p>
 
         <h3 id="Operator_Overloading">
-            <span title="Operator Overloading">演算子のオーバーロード</span>
+            <span data-src="Operator Overloading">演算子のオーバーロード</span>
         </h3>
 
         <p>
@@ -4921,7 +4915,7 @@ class NotCopyableOrMovable {
 
 
     <h3 id="Access_Control">
-        <span title="Access Control">アクセス制限</span>
+        <span data-src="Access Control">アクセス制限</span>
     </h3>
 
     <p>
@@ -4962,7 +4956,7 @@ class NotCopyableOrMovable {
         </span>
     </p>
     <h3 id="Declaration_Order">
-        <span title="Declaration Order">宣言の順序</span>
+        <span data-src="Declaration Order">宣言の順序</span>
     </h3>
 
     <p>
@@ -5106,13 +5100,13 @@ class NotCopyableOrMovable {
     </p>
 
     <h2 id="Functions">
-        <span title="Functions">関数</span>
+        <span data-src="Functions">関数</span>
     </h2>
 
     <a id="Function_Parameter_Ordering"></a>
     <a id="Output_Parameters"></a>
     <h3 id="Inputs_and_Outputs">
-        <span title="Inputs and Outputs">入力と出力</span>
+        <span data-src="Inputs and Outputs">入力と出力</span>
     </h3>
 
     <p>
@@ -5253,7 +5247,7 @@ class NotCopyableOrMovable {
     </p>
 
     <h3 id="Write_Short_Functions">
-        <span title="Write Short Functions">関数は短く</span>
+        <span data-src="Write Short Functions">関数は短く</span>
     </h3>
 
     <p>
@@ -5339,7 +5333,7 @@ class NotCopyableOrMovable {
     </p>
 
     <h3 id="Function_Overloading">
-        <span title="Function Overloading">関数のオーバーロード</span>
+        <span data-src="Function Overloading">関数のオーバーロード</span>
     </h3>
 
     <p>
@@ -5468,7 +5462,7 @@ class NotCopyableOrMovable {
     </p>
 
     <h3 id="Default_Arguments">
-        <span title="Default Arguments">デフォルト引数</span>
+        <span data-src="Default Arguments">デフォルト引数</span>
     </h3>
 
     <p>
@@ -5621,7 +5615,7 @@ class NotCopyableOrMovable {
     </p>
 
     <h3 id="trailing_return">
-        <span title="Trailing Return Type Syntax">戻り値の型を後置する関数宣言構文</span>
+        <span data-src="Trailing Return Type Syntax">戻り値の型を後置する関数宣言構文</span>
     </h3>
 
     <p>
@@ -5807,7 +5801,7 @@ class NotCopyableOrMovable {
     </p>
 
     <h2 id="Google-Specific_Magic">
-        <span title="Google-Specific Magic">Google特有のマジック</span>
+        <span data-src="Google-Specific Magic">Google特有のマジック</span>
     </h2>
 
     <p>
@@ -5823,7 +5817,7 @@ class NotCopyableOrMovable {
     </p>
 
     <h3 id="Ownership_and_Smart_Pointers">
-        <span title="Ownership and Smart Pointers">オブジェクトの所有権とスマートポインタ</span>
+        <span data-src="Ownership and Smart Pointers">オブジェクトの所有権とスマートポインタ</span>
     </h3>
 
     <p>
@@ -6193,7 +6187,7 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
     </p>
 
     <h3 id="cpplint">
-        <span title="cpplint">cpplint</span>
+        <span data-src="cpplint">cpplint</span>
     </h3>
 
     <p>
@@ -6256,11 +6250,11 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
     </p>
 
     <h2 id="Other_C++_Features">
-        <span title="Other C++ Features">その他のC++の機能</span>
+        <span data-src="Other C++ Features">その他のC++の機能</span>
     </h2>
 
     <h3 id="Rvalue_references">
-        <span title="Rvalue References">右辺値参照(rvalue reference)</span>
+        <span data-src="Rvalue References">右辺値参照(rvalue reference)</span>
     </h3>
 
     <p>
@@ -6511,7 +6505,7 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
         </li>
     </ul>
 
-    <h3 id="Friends"><a title="Friends">フレンド</a></h3>
+    <h3 id="Friends"><span data-src="Friends">フレンド</span></h3>
 
     <p>
         <span>
@@ -6578,7 +6572,7 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
             ただし、原則としては、ほとんどのクラス間のやりとりは<code>public</code>メンバを通してのみ行うようにしてください。
         </span>
     </p>
-    <h3 id="Exceptions"><span title="Exceptions">例外</span></h3>
+    <h3 id="Exceptions"><span data-src="Exceptions">例外</span></h3>
 
     <p>
         <span>
@@ -7105,7 +7099,7 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
         </span>
     </p>
 
-    <h3 id="Run-Time_Type_Information__RTTI_"><span title="Run-Time Type Information (RTTI)">実行時型情報(RTTI)</span></h3>
+    <h3 id="Run-Time_Type_Information__RTTI_"><span data-src="Run-Time Type Information (RTTI)">実行時型情報(RTTI)</span></h3>
 
     <p>
         <span>
@@ -7395,7 +7389,7 @@ bool Derived::Equal(Base* other) {
         </span>
     </p>
 
-    <h3 id="Casting"><span title="Casting">キャスト</span></h3>
+    <h3 id="Casting"><span data-src="Casting">キャスト</span></h3>
 
     <p>
         <span>
@@ -7622,7 +7616,7 @@ Also, consider dereferencing the pointer (without a cast) and
         </span>
     </p>
 
-    <h3 id="Streams"><span title="Streams">ストリーム</span></h3>
+    <h3 id="Streams"><span data-src="Streams">ストリーム</span></h3>
 
     <p>
         <span>
@@ -7892,7 +7886,7 @@ Also, consider dereferencing the pointer (without a cast) and
         </span>
     </p>
 
-    <h3 id="Preincrement_and_Predecrement"><span title="Preincrement and Predecrement">前置インクリメントと前置デクリメント</span></h3>
+    <h3 id="Preincrement_and_Predecrement"><span data-src="Preincrement and Predecrement">前置インクリメントと前置デクリメント</span></h3>
 
     <p>
         <span>
@@ -7973,7 +7967,7 @@ Also, consider dereferencing the pointer (without a cast) and
         </span>
     </p>
 
-    <h3 id="Use_of_const"><span title="Use of const">constの使い方</span></h3>
+    <h3 id="Use_of_const"><span data-src="Use of const">constの使い方</span></h3>
     <p>
         <span>
             <span class="src">
@@ -8170,7 +8164,7 @@ Also, consider dereferencing the pointer (without a cast) and
         </span>
     </p>
 
-    <h4 class="stylepoint_subsection"><span title="Where to put the const">constをどこに置くか</span></h4>
+    <h4 class="stylepoint_subsection"><span data-src="Where to put the const">constをどこに置くか</span></h4>
 
     <p>
         <span>
@@ -8235,7 +8229,7 @@ Also, consider dereferencing the pointer (without a cast) and
         </span>
     </p>
 
-    <h3 id="Use_of_constexpr"><span title="Use of constexpr">constexpr, constinit, constevalの使い方</span></h3>
+    <h3 id="Use_of_constexpr"><span data-src="Use of constexpr">constexpr, constinit, constevalの使い方</span></h3>
 
     <p>
         <span>
@@ -8353,7 +8347,7 @@ initialization for non-constant variables.
         </span>
     </p>
 
-    <h3 id="Integer_Types"><span title="Integer Types">整数型</span></h3>
+    <h3 id="Integer_Types"><span data-src="Integer Types">整数型</span></h3>
 
     <p>
         <span>
@@ -8588,7 +8582,7 @@ initialization for non-constant variables.
             整数型の変換や拡張は、ときに未定義動作を引き起こし、セキュリティ上のバグやその他の問題に繋がることがあります。
         </span>
     </p>
-    <h4><span title="On Unsigned Integers"><code>unsigned</code>整数型について</span></h4>
+    <h4><span data-src="On Unsigned Integers"><code>unsigned</code>整数型について</span></h4>
 
     <p>
         <span>
@@ -8652,7 +8646,7 @@ initialization for non-constant variables.
         </span>
     </p>
 
-    <h3 id="64-bit_Portability"><span title="64-bit Portability">64ビットへの移植性</span></h3>
+    <h3 id="64-bit_Portability"><span data-src="64-bit Portability">64ビットへの移植性</span></h3>
 
     <p>
         <span>
@@ -8823,7 +8817,7 @@ uint64_t my_mask{uint64_t{3} &lt;&lt; 48};
     </ul>
 
 
-    <h3 id="Preprocessor_Macros"><span title="Preprocessor Macros">プリプロセッサマクロ</span></h3>
+    <h3 id="Preprocessor_Macros"><span data-src="Preprocessor Macros">プリプロセッサマクロ</span></h3>
 
     <p>
         <span>
@@ -9090,7 +9084,7 @@ uint64_t my_mask{uint64_t{3} &lt;&lt; 48};
             このことを達成するために、マクロの名前には、そのプロジェクトの名前空間の名前をすべて大文字にして接頭辞としてつけるようにしてください。
         </span>
     </p>
-    <h3 id="0_and_nullptr/NULL"><span title="0 and nullptr/NULL"><code>0</code>と<code>nullptr</code>と<code>NULL</code></span></h3>
+    <h3 id="0_and_nullptr/NULL"><span data-src="0 and nullptr/NULL"><code>0</code>と<code>nullptr</code>と<code>NULL</code></span></h3>
 
     <p>
         <span>
@@ -9127,7 +9121,7 @@ uint64_t my_mask{uint64_t{3} &lt;&lt; 48};
             正しい型のリテラルを用いることで、コードがより読みやすくなります。
         </span>
     </p>
-    <h3 id="sizeof"><span title="sizeof"><code>sizeof</code></span></h3>
+    <h3 id="sizeof"><span data-src="sizeof"><code>sizeof</code></span></h3>
 
     <p>
         <span>
@@ -9187,7 +9181,7 @@ memset(&amp;data, 0, sizeof(data));
 </pre>
 
     <a id="auto"></a>
-    <h3 id="Type_deduction"><span title="Type Deduction (including auto)">型推論(<code>auto</code>を含む)</span></h3>
+    <h3 id="Type_deduction"><span data-src="Type Deduction (including auto)">型推論(<code>auto</code>を含む)</span></h3>
 
 
     <p>
@@ -9635,7 +9629,7 @@ auto i = y.Find(key);
         </span>
     </p>
 
-    <h4 title="Function template argument deduction">関数テンプレートの引数推論</h4>
+    <h4><span data-src="Function template argument deduction">関数テンプレートの引数推論</span></h4>
     <p>
         <span>
             <span class="src">
@@ -9662,7 +9656,7 @@ auto i = y.Find(key);
         </span>
     </p>
 
-    <h4 title="Local variable type deduction">ローカル変数の型推論</h4>
+    <h4><span data-src="Local variable type deduction">ローカル変数の型推論</span></h4>
     <p>
         <span>
             <span class="src">
@@ -9753,7 +9747,7 @@ std::array numbers = {4, 8, 15, 16, 23, 42};</pre>
         </span>
     </p>
 
-    <h4 title="Return type deduction">戻り値の型推論</h4>
+    <h4><span data-src="Return type deduction">戻り値の型推論</span></h4>
 
     <p>
         <span>
@@ -9783,7 +9777,7 @@ std::array numbers = {4, 8, 15, 16, 23, 42};</pre>
         </span>
     </p>
 
-    <h4 title="Parameter type deduction">引数の型推論</h4>
+    <h4><span data-src="Parameter type deduction">引数の型推論</span></h4>
 
     <p>
         <span>
@@ -9808,7 +9802,7 @@ std::array numbers = {4, 8, 15, 16, 23, 42};</pre>
         </span>
     </p>
 
-    <h4 title="Lambda init captures">ラムダ式の初期化キャプチャ</h4>
+    <h4><span data-src="Lambda init captures">ラムダ式の初期化キャプチャ</span></h4>
 
     <p>
         <span>
@@ -9821,7 +9815,7 @@ std::array numbers = {4, 8, 15, 16, 23, 42};</pre>
         </span>
     </p>
 
-    <h4 title="Structured bindings">構造化束縛</h4>
+    <h4><span data-src="Structured bindings">構造化束縛</span></h4>
 
     <p>
         <span>
@@ -9885,7 +9879,7 @@ std::array numbers = {4, 8, 15, 16, 23, 42};</pre>
         </span>
     </p>
 
-    <h3 id="CTAD"><span title="Class Template Argument Deduction">クラステンプレートのテンプレート引数推論(CTAD)</span></h3>
+    <h3 id="CTAD"><span data-src="Class Template Argument Deduction">クラステンプレートのテンプレート引数推論(CTAD)</span></h3>
 
     <p>
         <span>
@@ -10057,7 +10051,7 @@ std::array numbers = {4, 8, 15, 16, 23, 42};</pre>
         </span>
     </p>
 
-    <h3 id="Designated_initializers" title="Designated Initializers">指示付き初期化子</h3>
+    <h3 id="Designated_initializers"><span data-src="Designated Initializers">指示付き初期化子</span></h3>
 
     <p>
         <span>
@@ -10161,7 +10155,7 @@ std::array numbers = {4, 8, 15, 16, 23, 42};</pre>
         </span>
     </p>
 
-    <h3 id="Lambda_expressions"><span title="Lambda expressions">ラムダ式</span></h3>
+    <h3 id="Lambda_expressions"><span data-src="Lambda expressions">ラムダ式</span></h3>
 
     <p>
         <span>
@@ -10590,7 +10584,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
         </li>
     </ul>
 
-    <h3 id="Template_metaprogramming"><span title="Template metaprogramming">テンプレートメタプログラミング</span></h3>
+    <h3 id="Template_metaprogramming"><span data-src="Template metaprogramming">テンプレートメタプログラミング</span></h3>
 
     <p>
         <span>
@@ -10788,7 +10782,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
         </span>
     </p>
 
-<h3 id="Concepts"><span title="Concepts and Constraints">コンセプトと制約</span></h3>
+<h3 id="Concepts"><span data-src="Concepts and Constraints">コンセプトと制約</span></h3>
 
 <p><span><span class="src">
 Use concepts sparingly.</span>
@@ -10991,7 +10985,7 @@ or tests.</span>
 コンパイル時のチェックが働かない(あるいは、できない)要件については、コンセプトや制約ではなく、コードコメントやアサーション、テストなどでそれらをカバーするようにしてください。</span>
 </p>
 
-    <h3 id="Boost"><span title="Boost">Boost</span></h3>
+    <h3 id="Boost"><span data-src="Boost">Boost</span></h3>
 
     <p>
         <span>
@@ -11290,7 +11284,7 @@ or tests.</span>
 
 
     <a id="C++11"></a>
-    <h3 id="Other_Features"><span title="Other C++ Features">その他のC++機能</span></h3>
+    <h3 id="Other_Features"><span data-src="Other C++ Features">その他のC++機能</span></h3>
 
     <p>
         <span>
@@ -11367,7 +11361,7 @@ or tests.</span>
         </li>
     </ul>
 
-    <h3 id="Nonstandard_Extensions"><span title="Nonstandard Extensions">非標準の拡張</span></h3>
+    <h3 id="Nonstandard_Extensions"><span data-src="Nonstandard Extensions">非標準の拡張</span></h3>
 
     <p>
         <span>
@@ -11487,7 +11481,7 @@ or tests.</span>
         </span>
     </p>
 
-    <h3 id="Aliases"><span title="Aliases">エイリアス</span></h3>
+    <h3 id="Aliases"><span data-src="Aliases">エイリアス</span></h3>
 
     <p>
         <span>
@@ -11742,7 +11736,7 @@ using ::foo::Bar;
 </pre>
     </div>
 
-    <h3 id="Switch_Statements"><span title="Switch Statements">switch文</span></h3>
+    <h3 id="Switch_Statements"><span data-src="Switch Statements">switch文</span></h3>
 
 
     <p>
@@ -11841,7 +11835,7 @@ using ::foo::Bar;
 }</pre></div>
 
 
-    <h2 id="Inclusive_Language"><span title="Inclusive Language">インクルーシブ・ランゲージ</span></h2>
+    <h2 id="Inclusive_Language"><span data-src="Inclusive Language">インクルーシブ・ランゲージ</span></h2>
 
     <p>
         <span>
@@ -11874,7 +11868,7 @@ using ::foo::Bar;
         </span>
     </p>
 
-    <h2 id="Naming"><span title="Naming">命名規則</span></h2>
+    <h2 id="Naming"><span data-src="Naming">命名規則</span></h2>
 
     <p>
         <span>
@@ -11917,7 +11911,7 @@ using ::foo::Bar;
         </span>
     </p>
 
-    <h3 id="General_Naming_Rules"><span title="General Naming Rules">全般的な命名規則</span></h3>
+    <h3 id="General_Naming_Rules"><span data-src="General Naming Rules">全般的な命名規則</span></h3>
 
     <p>
         <span>
@@ -12113,7 +12107,7 @@ using ::foo::Bar;
         </span>
 
     </p>
-    <h3 id="File_Names"><span title="File Names">ファイル名</span></h3>
+    <h3 id="File_Names"><span data-src="File Names">ファイル名</span></h3>
 
     <p>
         <span>
@@ -12226,7 +12220,7 @@ using ::foo::Bar;
             非常に良くあるパターンは、ファイルのペア<code>foo_bar.h</code>と<code>foo_bar.cc</code>でクラス<code>FooBar</code>を定義するようなやり方です。
         </span>
     </p>
-    <h3 id="Type_Names"><span title="Type Names">型名</span></h3>
+    <h3 id="Type_Names"><span data-src="Type Names">型名</span></h3>
 
     <p>
         <span>
@@ -12301,7 +12295,7 @@ enum class UrlTableError { ...
 </pre>
     </div>
 
-    <h3 id="Variable_Names"><span title="Variable Names">変数名</span></h3>
+    <h3 id="Variable_Names"><span data-src="Variable Names">変数名</span></h3>
 
     <p>
         <span>
@@ -12328,7 +12322,7 @@ enum class UrlTableError { ...
         </span>
     </p>
 
-    <h4 class="stylepoint_subsection"><span title="Common Variable names">一般的な変数名</span></h4>
+    <h4 class="stylepoint_subsection"><span data-src="Common Variable names">一般的な変数名</span></h4>
 
     <p>
         <span>
@@ -12354,7 +12348,7 @@ enum class UrlTableError { ...
         <pre class="badcode">std::string tableName;   // ダメ - 大文字小文字が混ざっている。
 </pre>
     </div>
-    <h4 class="stylepoint_subsection"><span title="Class Data Members">クラスのデータメンバ</span></h4>
+    <h4 class="stylepoint_subsection"><span data-src="Class Data Members">クラスのデータメンバ</span></h4>
 
     <p>
         <span>
@@ -12384,7 +12378,7 @@ enum class UrlTableError { ...
 };
 </pre>
     </div>
-    <h4 class="stylepoint_subsection"><span title="Struct Data Members">構造体のデータメンバ</span></h4>
+    <h4 class="stylepoint_subsection"><span data-src="Struct Data Members">構造体のデータメンバ</span></h4>
 
     <p>
         <span>
@@ -12423,7 +12417,7 @@ enum class UrlTableError { ...
             構造体とクラスの使い分けに関する議論については、<a href="#Structs_vs._Classes">構造体か、クラスか</a>を参照してください。
         </span>
     </p>
-    <h3 id="Constant_Names"><span title="Constant Names">定数名</span></h3>
+    <h3 id="Constant_Names"><span data-src="Constant Names">定数名</span></h3>
 
     <p>
         <span>
@@ -12507,7 +12501,7 @@ const int kAndroid8_0_0 = 24;  // Android 8.0.0</pre>
 }
 </pre></div>
 
-    <h3 id="Function_Names"><span title="Function Names">関数名</span></h3>
+    <h3 id="Function_Names"><span data-src="Function Names">関数名</span></h3>
 
     <p>
         <span>
@@ -12569,7 +12563,7 @@ OpenFileOrDie()
         </span>
     </p>
 
-    <h3 id="Namespace_Names"><span title="Namespace Names">名前空間の名前</span></h3>
+    <h3 id="Namespace_Names"><span data-src="Namespace Names">名前空間の名前</span></h3>
 
     <p>
         <span>
@@ -12694,7 +12688,7 @@ OpenFileOrDie()
         </span>
     </p>
 
-    <h3 id="Enumerator_Names"><span title="Enumerator Names">列挙型の名前</span></h3>
+    <h3 id="Enumerator_Names"><span data-src="Enumerator Names">列挙型の名前</span></h3>
 
     <p>
         <span>
@@ -12755,7 +12749,7 @@ OpenFileOrDie()
         </span>
     </p>
 
-    <h3 id="Macro_Names"><span title="Macro Names">マクロの名前</span></h3>
+    <h3 id="Macro_Names"><span data-src="Macro Names">マクロの名前</span></h3>
 
     <p>
         <span>
@@ -12789,7 +12783,7 @@ OpenFileOrDie()
     <pre>#define MYPROJECT_ROUND(x) ...
 </pre>
 
-    <h3 id="Exceptions_to_Naming_Rules"><span title="Exceptions to Naming Rules">命名規則の例外</span></h3>
+    <h3 id="Exceptions_to_Naming_Rules"><span data-src="Exceptions to Naming Rules">命名規則の例外</span></h3>
 
     <p>
         <span>
@@ -12848,7 +12842,7 @@ OpenFileOrDie()
         </dd>
     </dl>
 
-    <h2 id="Comments"><span title="Comments">コメント</span></h2>
+    <h2 id="Comments"><span data-src="Comments">コメント</span></h2>
 
     <p>
         <span>
@@ -12901,7 +12895,7 @@ OpenFileOrDie()
 
     <p>((訳注: この日本語翻訳版ガイドではコード例の中のコメントも日本語に訳してありますが、本ガイドのルールはあくまで英語のコメントを対象としており、本翻訳版も英語コメントを対象としたもののまま訳していますので注意してください。とはいえ、これらのコメントの書き方のルールについては、日本語でコメントを書く場合でも大いに適用できる部分があると訳者は考えます。))</p>
 
-    <h3 id="Comment_Style"><span title="Comment Style">コメントのスタイル</span></h3>
+    <h3 id="Comment_Style"><span data-src="Comment Style">コメントのスタイル</span></h3>
 
     <p>
         <span>
@@ -12931,7 +12925,7 @@ OpenFileOrDie()
         </span>
     </p>
 
-    <h3 id="File_Comments"><span title="File Comments">ファイルに対するコメント</span></h3>
+    <h3 id="File_Comments"><span data-src="File Comments">ファイルに対するコメント</span></h3>
 
     <p>
         <span>
@@ -12985,7 +12979,7 @@ comment in <code>registered_objects.cc</code>.
         </span>
     </p>
 
-    <h4 class="stylepoint_subsection"><span title="Legal Notice and Author Line">法的通知と著者に関する行</span></h4>
+    <h4 class="stylepoint_subsection"><span data-src="Legal Notice and Author Line">法的通知と著者に関する行</span></h4>
 
     <p>
         <span>
@@ -13022,7 +13016,7 @@ comment in <code>registered_objects.cc</code>.
         </span>
     </p>
 
-    <h3 id="Class_Comments"><span title="Struct and Class Comments">構造体やクラスに対するコメント</span></h3>
+    <h3 id="Class_Comments"><span data-src="Struct and Class Comments">構造体やクラスに対するコメント</span></h3>
 
     <p>
         <span>
@@ -13111,7 +13105,7 @@ class GargantuanTableIterator {
             コードが<code>.h</code>と<code>.cc</code>ファイルとに十分に分離されているときは、クラスの<em>使い方</em>に関する内容をインターフェース定義のコメントに記述し、クラスが行う<em>操作や実装</em>に関する内容をメソッドの実装のコメントに記述してください。
         </span>
     </p>
-    <h3 id="Function_Comments"><span title="Function Comments">関数に対するコメント</span></h3>
+    <h3 id="Function_Comments"><span data-src="Function Comments">関数に対するコメント</span></h3>
 
     <p>
         <span>
@@ -13124,7 +13118,7 @@ class GargantuanTableIterator {
         </span>
     </p>
 
-    <h4 class="stylepoint_subsection"><span title="Function Declarations">関数宣言時のコメント</span></h4>
+    <h4 class="stylepoint_subsection"><span data-src="Function Declarations">関数宣言時のコメント</span></h4>
 
     <p>
         <span>
@@ -13348,7 +13342,7 @@ std::unique_ptr&lt;Iterator&gt; GetIterator(absl::string_view start_word) const;
         </span>
     </p>
 
-    <h4 class="stylepoint_subsection"><span title="Function Definitions">関数定義時のコメント</span></h4>
+    <h4 class="stylepoint_subsection"><span data-src="Function Definitions">関数定義時のコメント</span></h4>
 
     <p>
         <span>
@@ -13400,7 +13394,7 @@ std::unique_ptr&lt;Iterator&gt; GetIterator(absl::string_view start_word) const;
         </span>
     </p>
 
-    <h3 id="Variable_Comments"><span title="Variable Comments">変数に対するコメント</span></h3>
+    <h3 id="Variable_Comments"><span data-src="Variable Comments">変数に対するコメント</span></h3>
 
     <p>
         <span>
@@ -13419,7 +13413,7 @@ std::unique_ptr&lt;Iterator&gt; GetIterator(absl::string_view start_word) const;
         </span>
     </p>
 
-    <h4 class="stylepoint_subsection"><span title="Class Data Members">クラスデータメンバに対するコメント</span></h4>
+    <h4 class="stylepoint_subsection"><span data-src="Class Data Members">クラスデータメンバに対するコメント</span></h4>
 
     <p>
         <span>
@@ -13479,7 +13473,7 @@ std::unique_ptr&lt;Iterator&gt; GetIterator(absl::string_view start_word) const;
 </pre>
     </div>
 
-    <h4 class="stylepoint_subsection"><span title="Global Variables">グローバル変数に対するコメント</span></h4>
+    <h4 class="stylepoint_subsection"><span data-src="Global Variables">グローバル変数に対するコメント</span></h4>
 
     <p>
         <span>
@@ -13509,7 +13503,7 @@ const int kNumTestCases = 6;
 </pre>
     </div>
 
-    <h3 id="Implementation_Comments"><span title="Implementation Comments">実装に対するコメント</span></h3>
+    <h3 id="Implementation_Comments"><span data-src="Implementation Comments">実装に対するコメント</span></h3>
 
     <p>
         <span>
@@ -13521,7 +13515,7 @@ const int kNumTestCases = 6;
         </span>
     </p>
 
-    <h4 class="stylepoint_subsection"><span title="Explanatory Comments">解説のコメント</span></h4>
+    <h4 class="stylepoint_subsection"><span data-src="Explanatory Comments">解説のコメント</span></h4>
 
     <p>
         <span>
@@ -13534,7 +13528,7 @@ const int kNumTestCases = 6;
     </p>
 
     <h4 class="stylepoint_subsection" id="Function_Argument_Comments"><span
-            title="Function Argument Comments">関数実引数のコメント</span></h4>
+            data-src="Function Argument Comments">関数実引数のコメント</span></h4>
 
     <p>
         <span>
@@ -13680,7 +13674,7 @@ const DecimalNumber product =
 </pre>
     </div>
 
-    <h4 id="Implementation_Comment_Donts"><span title="Don'ts">してはならないこと</span></h4>
+    <h4 id="Implementation_Comment_Donts"><span data-src="Don'ts">してはならないこと</span></h4>
 
     <p>
         <span>
@@ -13768,7 +13762,7 @@ if (iter != v.end()) {
 }
 </pre>
 
-    <h3 id="Punctuation,_Spelling_and_Grammar"><span title="Punctuation, Spelling and Grammar">句読点と綴りと文法</span></h3>
+    <h3 id="Punctuation,_Spelling_and_Grammar"><span data-src="Punctuation, Spelling and Grammar">句読点と綴りと文法</span></h3>
 
     <p>
         <span>
@@ -13826,7 +13820,7 @@ if (iter != v.end()) {
             適切な句読点、正しい綴り、正しい文法は、このゴールに向かうための手助けをしてくれるでしょう。
         </span>
     </p>
-    <h3 id="TODO_Comments"><span title="TODO Comments">TODOコメント</span></h3>
+    <h3 id="TODO_Comments"><span data-src="TODO Comments">TODOコメント</span></h3>
 
     <p>
         <span>
@@ -13884,7 +13878,7 @@ if (iter != v.end()) {
     </p>
 
     <h2 id="Formatting">
-        <span title="Formatting">コードのフォーマット</span>
+        <span data-src="Formatting">コードのフォーマット</span>
     </h2>
 
     <p>
@@ -13921,7 +13915,7 @@ if (iter != v.end()) {
         </span>
     </p>
 
-    <h3 id="Line_Length"><span title="Line Length">行の長さ</span></h3>
+    <h3 id="Line_Length"><span data-src="Line Length">行の長さ</span></h3>
 
     <p>
         <span>
@@ -14103,7 +14097,7 @@ if (iter != v.end()) {
         </li>
     </ul>
 
-    <h3 id="Non-ASCII_Characters"><span title="Non-ASCII Characters">非アスキー文字</span></h3>
+    <h3 id="Non-ASCII_Characters"><span data-src="Non-ASCII Characters">非アスキー文字</span></h3>
 
     <p>
         <span>
@@ -14210,7 +14204,7 @@ if (iter != v.end()) {
             同様の理由で、 (Windows APIを使うコードを除き) <code>wchar_t</code>も使いません。
         </span>
     </p>
-    <h3 id="Spaces_vs._Tabs"><span title="Spaces vs. Tabs">スペースか、タブか</span></h3>
+    <h3 id="Spaces_vs._Tabs"><span data-src="Spaces vs. Tabs">スペースか、タブか</span></h3>
 
     <p>
         <span>
@@ -14243,7 +14237,7 @@ if (iter != v.end()) {
             タブキーを押したときに、スペースが入力されるようにエディタを設定してください。
         </span>
     </p>
-    <h3 id="Function_Declarations_and_Definitions"><span title="Function Declarations and Definitions">関数宣言と関数定義</span>
+    <h3 id="Function_Declarations_and_Definitions"><span data-src="Function Declarations and Definitions">関数宣言と関数定義</span>
     </h3>
 
     <p>
@@ -14527,7 +14521,7 @@ void Circle::Rotate(double) {}
   [[nodiscard]] bool IsOk();
 </pre>
 
-    <h3 id="Formatting_Lambda_Expressions"><span title="Lambda Expressions">ラムダ式</span></h3>
+    <h3 id="Formatting_Lambda_Expressions"><span data-src="Lambda Expressions">ラムダ式</span></h3>
 
     <p>
         <span>
@@ -14568,7 +14562,7 @@ digits.erase(std::remove_if(digits.begin(), digits.end(), [&amp;to_remove](int i
              digits.end());
 </pre>
 
-    <h3 id="Floating_Literals"><span title="Floating-point Literals">浮動小数点リテラル</span></h3>
+    <h3 id="Floating_Literals"><span data-src="Floating-point Literals">浮動小数点リテラル</span></h3>
 
     <p>
         <span>
@@ -14613,7 +14607,7 @@ long double ld = -0.5L;
 double d = 1248.0e6;
 </pre></div>
 
-    <h3 id="Function_Calls"><span title="Function Calls">関数呼び出し</span></h3>
+    <h3 id="Function_Calls"><span data-src="Function Calls">関数呼び出し</span></h3>
 
     <p>
         <span>
@@ -14816,7 +14810,7 @@ my_widget.Transform(x1, x2, x3,
     </div>
 
 
-    <h3 id="Braced_Initializer_List_Format"><span title="Braced Initializer List Format">波括弧による初期化子リスト</span></h3>
+    <h3 id="Braced_Initializer_List_Format"><span data-src="Braced Initializer List Format">波括弧による初期化子リスト</span></h3>
 
     <p>
         <span>
@@ -14904,7 +14898,7 @@ MyType m = {  // {の前で改行してもかまいません
     </div>
 
     <a id="Conditionals"></a>
-    <h3 id="Formatting_Looping_Branching"><span title="Looping and branching statements">ループと条件分岐</span></h3>
+    <h3 id="Formatting_Looping_Branching"><span data-src="Looping and branching statements">ループと条件分岐</span></h3>
 
 
 <p><span><span class="src">
@@ -15215,7 +15209,7 @@ while (condition) continue;  // 良い例。 `continue` によって、ロジッ
         </div>
 
 
-    <h3 id="Pointer_and_Reference_Expressions"><span title="Pointer and Reference Expressions">ポインタと参照の表現</span></h3>
+    <h3 id="Pointer_and_Reference_Expressions"><span data-src="Pointer and Reference Expressions">ポインタと参照の表現</span></h3>
 
     <p>
         <span>
@@ -15382,7 +15376,7 @@ const std::string &amp; str;  // ダメ。&amp;の前後両方にスペースが
 </pre>
     </div>
 
-    <h3 id="Boolean_Expressions"><span title="Boolean Expressions">ブール式</span></h3>
+    <h3 id="Boolean_Expressions"><span data-src="Boolean Expressions">ブール式</span></h3>
 
     <p>
         <span>
@@ -15460,7 +15454,7 @@ const std::string &amp; str;  // ダメ。&amp;の前後両方にスペースが
             なお、これらの論理演算を行う際は、<code>and</code>や<code>compl</code>のような単語による演算子ではなく、常に<code>&amp;&amp;</code>や<code>~</code>のような記号による演算子を使用してください。
         </span>
     </p>
-    <h3 id="Return_Values"><span title="Return Values">戻り値</span></h3>
+    <h3 id="Return_Values"><span data-src="Return Values">戻り値</span></h3>
 
     <p>
         <span>
@@ -15510,7 +15504,7 @@ return(result);                // returnは関数ではありません！
 </pre>
     </div>
 
-    <h3 id="Variable_and_Array_Initialization"><span title="Variable and Array Initialization">変数と配列の初期化</span></h3>
+    <h3 id="Variable_and_Array_Initialization"><span data-src="Variable and Array Initialization">変数と配列の初期化</span></h3>
 
     <p>
         <span>
@@ -15619,7 +15613,7 @@ int pi{3.14};  // コンパイルエラー: より小さい型への変換
 </pre>
     </div>
 
-    <h3 id="Preprocessor_Directives"><span title="Preprocessor Directives">プリプロセッサディレクティブ</span></h3>
+    <h3 id="Preprocessor_Directives"><span data-src="Preprocessor Directives">プリプロセッサディレクティブ</span></h3>
 
     <p>
         <span>
@@ -15689,7 +15683,7 @@ int pi{3.14};  // コンパイルエラー: より小さい型への変換
 </pre>
     </div>
 
-    <h3 id="Class_Format"><span title="Class Format">クラスのフォーマット</span></h3>
+    <h3 id="Class_Format"><span data-src="Class Format">クラスのフォーマット</span></h3>
 
     <p>
         <span>
@@ -15839,7 +15833,7 @@ int pi{3.14};  // コンパイルエラー: より小さい型への変換
         </li>
     </ul>
 
-    <h3 id="Constructor_Initializer_Lists"><span title="Constructor Initializer Lists">コンストラクタの初期化子リスト</span></h3>
+    <h3 id="Constructor_Initializer_Lists"><span data-src="Constructor Initializer Lists">コンストラクタの初期化子リスト</span></h3>
 
     <p>
         <span>
@@ -15915,7 +15909,7 @@ MyClass::MyClass(int var)
 </pre>
     </div>
 
-    <h3 id="Namespace_Formatting"><span title="Namespace Formatting">名前空間のフォーマット</span></h3>
+    <h3 id="Namespace_Formatting"><span data-src="Namespace Formatting">名前空間のフォーマット</span></h3>
 
     <p>
         <span>
@@ -16017,7 +16011,7 @@ namespace bar {
 </pre>
     </div>
 
-    <h3 id="Horizontal_Whitespace"><span title="Horizontal Whitespace">水平方向の空白</span></h3>
+    <h3 id="Horizontal_Whitespace"><span data-src="Horizontal Whitespace">水平方向の空白</span></h3>
 
     <p>
         <span>
@@ -16035,7 +16029,7 @@ namespace bar {
         </span>
     </p>
 
-    <h4 class="stylepoint_subsection"><span title="General">全般</span></h4>
+    <h4 class="stylepoint_subsection"><span data-src="General">全般</span></h4>
 
     <div>
         <div class="src">
@@ -16109,7 +16103,7 @@ class Foo : public Bar {
         </span>
     </p>
 
-    <h4 class="stylepoint_subsection"><span title="Loops and Conditionals">ループと条件式</span></h4>
+    <h4 class="stylepoint_subsection"><span data-src="Loops and Conditionals">ループと条件式</span></h4>
 
     <div>
         <div class="src">
@@ -16168,7 +16162,7 @@ switch (i) {
 </pre>
     </div>
 
-    <h4 class="stylepoint_subsection"><span title="Operators">演算子</span></h4>
+    <h4 class="stylepoint_subsection"><span data-src="Operators">演算子</span></h4>
 
     <div>
         <div class="src">
@@ -16207,7 +16201,7 @@ if (x &amp;&amp; !y)
 </pre>
     </div>
 
-    <h4 class="stylepoint_subsection"><span title="Templates and Casts">テンプレートとキャスト</span></h4>
+    <h4 class="stylepoint_subsection"><span data-src="Templates and Casts">テンプレートとキャスト</span></h4>
 
     <div>
         <div class="src">
@@ -16231,7 +16225,7 @@ std::vector&lt;char *&gt; x;
 </pre>
     </div>
 
-    <h3 id="Vertical_Whitespace"><span title="Vertical Whitespace">垂直方向の空白</span></h3>
+    <h3 id="Vertical_Whitespace"><span data-src="Vertical Whitespace">垂直方向の空白</span></h3>
 
     <p>
         <span>
@@ -16352,7 +16346,7 @@ std::vector&lt;char *&gt; x;
         </li>
     </ul>
 
-    <h2 id="Exceptions_to_the_Rules"><span title="Exceptions to the Rules">ルールの例外</span></h2>
+    <h2 id="Exceptions_to_the_Rules"><span data-src="Exceptions to the Rules">ルールの例外</span></h2>
 
     <p>
         <span>
@@ -16370,7 +16364,7 @@ std::vector&lt;char *&gt; x;
         </span>
     </p>
 
-    <h3 id="Existing_Non-conformant_Code"><span title="Existing Non-conformant Code">ルールに沿っていない既存のコード</span></h3>
+    <h3 id="Existing_Non-conformant_Code"><span data-src="Existing Non-conformant Code">ルールに沿っていない既存のコード</span></h3>
 
     <p>
         <span>
@@ -16411,7 +16405,7 @@ std::vector&lt;char *&gt; x;
     </p>
 
 
-    <h3 id="Windows_Code"><span title="Windows Code">Windowsのコード</span></h3>
+    <h3 id="Windows_Code"><span data-src="Windows Code">Windowsのコード</span></h3>
 
     <p>
         <span>
