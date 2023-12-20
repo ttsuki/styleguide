@@ -250,7 +250,7 @@ function LinkifyHeader(header, fileName, sizePixels) {
       '<img src="include/' + fileName + '"' +
       ' width=' + sizePixels +
       ' height=' + sizePixels +
-      ' style="float:left;position:relative;bottom:5px;">';
+      ' style="">';
   header.appendChild(link);
 }
 
@@ -264,8 +264,6 @@ function LinkifyHeadersForTag(tagName) {
     if (!hasClass(header, 'ignoreLink') && ('id' in header)) {
       if (header.id != '') {
         LinkifyHeader(header, 'link.png', 21);
-        header.style.left = '-46px';
-        header.style.position = 'relative';
       }
     }
   }

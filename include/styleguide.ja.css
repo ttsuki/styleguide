@@ -1,5 +1,21 @@
 @import url("styleguide.css");
 
+/* smartphone view */
+@media screen and (max-width: 480px) {
+  li.toc_entry::after { content: "\A"; white-space: pre ;} 
+  li.toc_entry a { text-indent: -5em; }
+  .toc td, .toc th { display: block; }
+  .toc td:nth-child(even) { border-left-width: 20px; }
+  body { overflow-wrap: break-word; }
+  code, samp, var { white-space: normal; }
+  ul, ol { padding-left: 1em; }
+  dd { margin-left: 1em; }
+  dt { margin-top: 0.5em; }
+  h1, h2, h3, h4, h5, h6 { padding: 0.5em; }
+  pre { font-size: smaller; }
+}
+
+
 .definition:before {
   content: "定義: ";
 }
