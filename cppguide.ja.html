@@ -62,7 +62,7 @@
         <ul>
             <li>本ドキュメントは<a href="https://github.com/google/styleguide/">https://github.com/google/styleguide/</a> にて公開されているGoogle C++ Style Guideを日本語に訳したものです。</li>
             <li>オリジナルの最新版は <a href="https://google.github.io/styleguide/cppguide.html">https://google.github.io/styleguide/cppguide.html</a>で読むことができます。</li>
-            <li>commit <a href="https://github.com/google/styleguide/blob/6ebcd8cee24e6eb5e56efaec55d44873eb224f97/cppguide.html">6ebcd8c (Oct 24, 2023)</a> 時点のものを底本としています。</li>
+            <li>commit <a href="https://github.com/google/styleguide/blob/8c4da230fc15e01e0ba3545c8a6ff55bc3da4649/cppguide.html">8c4da23 (Sep 6, 2024 (JST))</a> 時点のものを底本としています。</li>
             <li>オリジナルと同様<a href="https://creativecommons.org/licenses/by/3.0/">CC-By 3.0 License</a>で頒布します。</li>
             <li>誤訳を含んでいる恐れがあります。訳文にマウスを重ねると原文が表示されますので、そちらもあわせて参照してください。</li>
             <li>訳者はGoogleと無関係です。</li>
@@ -1237,6 +1237,44 @@ void test(D* x) { f(x); }  // f(B*)を呼び出す</pre></div>
         <p>
             <span>
                 <span class="src">
+                    Headers should only be included using an angle-bracketed path if the library
+                    requires you to do so. </span>
+                <code>&lt;&gt;</code>を使ってヘッダーをインクルードするのは、使用するライブラリがそれを必要とする場合に限定します。
+            </span>
+            <span>
+                <span class="src">
+                    In particular, the following headers require angle
+                    brackets:</span>
+                特に、次のようなヘッダーでは<code>&lt;&gt;</code>を必要とします。
+                </span>
+        </p>
+        <ul>
+            <li><span>
+                    <span class="src">
+                        C and C++ standard library headers (e.g. <code>&lt;stdlib.h&gt;</code>
+                        and <code>&lt;string&gt;</code>).
+                    </span>
+                    C言語標準ライブラリ および C++標準ライブラリのヘッダー(例えば <code>&lt;stdlib.h&gt;</code>や<code>&lt;string&gt;</code>など)。
+                </span>
+            </li>
+            <li><span>
+                <span class="src">
+                    POSIX, Linux, and Windows system headers (e.g. <code>&lt;unistd.h&gt;</code>
+                    and <code>&lt;windows.h&gt;</code>).
+                </span>
+                POSIX, Linux, Windows 等のシステムヘッダー (例えば <code>&lt;unistd.h&gt;</code>や<code>&lt;windows.h&gt;</code>など)。
+            </span></li>
+            <li><span>
+                <span class="src">
+                    In rare cases, third_party libraries (e.g. <code>&lt;Python.h&gt;</code>).
+                </span>
+                まれですが、サードパーティライブラリのヘッダー(例えば <code>&lt;Python.h&gt;</code>など)。
+            </span></li>
+        </ul>
+
+        <p>
+            <span>
+                <span class="src">
                     In <code><var>dir/foo</var>.cc</code> or
                     <code><var>dir/foo_test</var>.cc</code>, whose main
                     purpose is to implement or test the stuff in
@@ -1268,11 +1306,11 @@ void test(D* x) { f(x); }  // f(B*)を呼び出す</pre></div>
             <li>
                 <span>
                     <span class="src">
-                        C system headers (more precisely: headers in angle brackets with the
-                        <code>.h</code> extension), e.g., <code>&lt;unistd.h&gt;</code>,
-                        <code>&lt;stdlib.h&gt;</code>.
+                        C system headers, and any other headers in angle brackets with the
+                        <code>.h</code> extension, e.g., <code>&lt;unistd.h&gt;</code>,
+                        <code>&lt;stdlib.h&gt;</code>, <code>&lt;Python.h&gt;</code>.
                     </span>
-                    C言語のシステムヘッダー(より正確には、<code>&lt;&gt;</code>で囲まれ、拡張子<code>.h</code>を持つもの)、たとえば<code>&lt;unistd.h&gt;</code>や<code>&lt;stdlib.h&gt;</code>
+                    C言語のシステムヘッダーと、その他の<code>&lt;&gt;</code>で囲まれる拡張子<code>.h</code>を持つもの、たとえば<code>&lt;unistd.h&gt;</code>や<code>&lt;stdlib.h&gt;</code>、<code>&lt;Python.h&gt;</code>など
                 </span>
             </li>
 
@@ -1869,9 +1907,9 @@ namespace baz = ::foo::bar::baz;
                     <div class="src">
                         <pre>// Shorten access to some commonly used names (in a .h file).
 namespace librarian {
-namespace impl {  // Internal, not part of the API.
+namespace internal {  // Internal, not part of the API.
 namespace sidetable = ::pipeline_diagnostics::sidetable;
-}  // namespace impl
+}  // namespace internal
 
 inline void my_inline_function() {
   // namespace alias local to a function (or method).
@@ -1884,9 +1922,9 @@ inline void my_inline_function() {
                     <pre>// .hファイル内
 // よく使われる名前へのショートカットを作る。
 namespace librarian {
-namespace impl {  // 内部用。APIではありません。
+namespace internal {  // 内部用。APIではありません。
 namespace sidetable = ::pipeline_diagnostics::sidetable;
-}  // namespace impl
+}  // namespace internal
 
 inline void my_inline_function() {
   // 関数内に限定された名前空間の別名。
@@ -2594,7 +2632,7 @@ int m = f();  // ？ (fに依存)
 Foo x;        // ？ (Fooのコンストラクタに依存)
 Bar y = g();  // ？ (gとBarのコンストラクタに依存)</pre>
 </div>
-        
+
         <p>
             <span>
                 <span class="src">
@@ -2626,19 +2664,19 @@ Bar y = g();  // ？ (gとBarのコンストラクタに依存)</pre>
         </p>
 <div>
 <div class="src">
-        <pre>struct Foo { constexpr Foo(int) {} };
+        <pre class="goodcode">struct Foo { constexpr Foo(int) {} };
 
 int n = 5;  // Fine, 5 is a constant expression.
 Foo x(2);   // Fine, 2 is a constant expression and the chosen constructor is constexpr.
 Foo a[] = { Foo(1), Foo(2), Foo(3) };  // Fine</pre>
             </div>
-        <pre>struct Foo { constexpr Foo(int) {} };
+        <pre class="goodcode">struct Foo { constexpr Foo(int) {} };
 
 int n = 5;  // OK、 5 は定数式。
 Foo x(2);   // OK、 2 は定数式で、選ばれるコンストラクタもconstexpr。
 Foo a[] = { Foo(1), Foo(2), Foo(3) };  // OK</pre>
 </div>
-        
+
 
         <p>
             <span>
@@ -2863,12 +2901,11 @@ Bar b;                     // 選択されるコンストラクタ Bar::Bar() �
                     <code>thread_local</code> variables that aren't declared inside a function
                     must be initialized with a true compile-time constant,
                     and this must be enforced by using the
-
-                    <a href="https://github.com/abseil/abseil-cpp/blob/master/absl/base/attributes.h">
-                        <code>ABSL_CONST_INIT</code></a>
+                    <a href="https://en.cppreference.com/w/cpp/language/constinit">
+                      <code>constinit</code></a>
                     attribute.
                 </span>
-                <code>thread_local</code>変数が、関数スコープの外で宣言されるときは、真のコンパイル時定数で初期化されなくてはなりません。これは<a href="https://github.com/abseil/abseil-cpp/blob/master/absl/base/attributes.h"><code>ABSL_CONST_INIT</code></a>属性を使用して強制されていなくてはなりません。
+                <code>thread_local</code>変数が、関数スコープの外で宣言されるときは、真のコンパイル時定数で初期化されなくてはなりません。これは<a href="https://en.cppreference.com/w/cpp/language/constinit"><code>constinit</code></a>属性を使用して強制されていなくてはなりません。
             </span>
             <span>
                 <span class="src">
@@ -3097,17 +3134,16 @@ Bar b;                     // 選択されるコンストラクタ Bar::Bar() �
                 <span class="src">
                     To enforce this, <code>thread_local</code> variables
                     at class or namespace scope must be annotated with
-
-
-                    <a href="https://github.com/abseil/abseil-cpp/blob/master/absl/base/attributes.h">
-                    <code>ABSL_CONST_INIT</code></a>
+                    <a href="https://en.cppreference.com/w/cpp/language/constinit">
+                      <code>constinit</code></a>
                     (or <code>constexpr</code>, but that should be rare):
                 </span>
-                これを強制するため、そのようなスコープの<code>thread_local</code>変数は<a href="https://github.com/abseil/abseil-cpp/blob/master/absl/base/attributes.h">
-                <code>ABSL_CONST_INIT</code></a>でマークされていなければなりません (もしくは<code>constexpr</code>でマークしてもかまいませんが、こちらを<code>thread_local</code>で使うのはレアケースでしょう)。
+                これを強制するため、そのようなスコープの<code>thread_local</code>変数は<a href="https://en.cppreference.com/w/cpp/language/constinit">
+                <code>constinit</code></a>でマークされていなければなりません (もしくは<code>constexpr</code>でマークしてもかまいませんが、こちらを<code>thread_local</code>で使うのはレアケースでしょう)。
             </span>
          </p>
-
+  <pre>   constinit thread_local Foo foo = ...;
+  </pre>
          <p>
             <span>
                 <span class="src">
@@ -3141,7 +3177,7 @@ Bar b;                     // 選択されるコンストラクタ Bar::Bar() �
                 </span>
                 <code>thread_local</code>変数が破壊されるのはスレッド終了時です。
             </span>
-  
+
             <span>
                 <span class="src">
                     If the destructor of any such variable refers to any other (potentially-destroyed)
@@ -3149,7 +3185,7 @@ Bar b;                     // 選択されるコンストラクタ Bar::Bar() �
                 </span>
                 もし、これらの変数のデストラクタで、他の (潜在的に破壊済みかもしれない) <code>thread_local</code>変数を参照していると、診断が困難なuse-after-freeバグに悩まされるかもしれません。
             </span>
-  
+
             <span>
                 <span class="src">
                     Prefer trivial types, or types that provably run no user-provided code at destruction to
@@ -3320,8 +3356,7 @@ Bar b;                     // 選択されるコンストラクタ Bar::Bar() �
                 <span class="src">
                     Otherwise, consider a factory function
                     or <code>Init()</code> method as described in
-                    <a href="https://abseil.io/tips/42">TotW #42</a>
-                    .
+                    <a href="https://abseil.io/tips/42">TotW #42</a>.
                 </span>
                 さもなくば、<a href="https://abseil.io/tips/42">TotW #42</a>で説明されているような、ファクトリ関数や<code>Init()</code>メソッドの導入を検討しましょう。
             </span>
@@ -4184,7 +4219,7 @@ class NotCopyableOrMovable {
         </p>
 
         <h3 id="Structs_vs._Tuples"><span data-src="Structs vs. Pairs and Tuples">構造体(struct)か、ペア(pair)・タプル(tupple)か</span></h3>
- 
+
         <p>
             <span>
                 <span class="src">
@@ -5147,9 +5182,9 @@ class NotCopyableOrMovable {
         </span>
         <span>
             <span class="src">
-                Avoid returning a pointer unless it can be null.
+                Avoid returning a raw pointer unless it can be null.
             </span>
-            ポインタ返しは、戻り値としてnullを取りうる場合のみ採用し、それ以外の場合は避けてください。
+            戻り値がnull参照となりうる場合を除き、参照を生のポインタで返すことは避けてください。
         </span>
     </p>
 
@@ -5189,20 +5224,25 @@ class NotCopyableOrMovable {
     <p>
         <span>
             <span class="src">
-                Avoid defining functions that require a <code>const</code> reference parameter
-                to outlive the call, because <code>const</code> reference parameters bind
-                to temporaries.
+                Avoid defining functions that require a reference parameter to outlive the call.
             </span>
-            <code>const</code>参照引数は一時オブジェクトを束縛することもできるため、関数の定義において、関数呼び出しから戻った後にも渡された<code>const</code>参照引数の参照先が存続していることを期待してはいけません。
+            関数引数で渡される参照に対して、その関数から処理が戻った後にも寿命が存続することを要求するような関数を定義することは避けてください。
+        </span>
+        <span>
+            <span class="src">
+               In some cases reference parameters can bind to temporaries, leading to lifetime
+               bugs.
+            </span>
+            参照引数には一時オブジェクトを束縛できる場合があり、そのような場合において寿命に関するバグにつながってしまうためです。
         </span>
 
         <span>
             <span class="src">
                 Instead, find a way to eliminate the lifetime requirement
-                (for example, by copying the parameter), or pass it by <code>const</code>
+                (for example, by copying the parameter), or pass retained parameters by
                 pointer and document the lifetime and non-null requirements.
             </span>
-            かわりに、寿命が存続していなくてもよいように実装する(例えば内部で引数をコピーしておく等)か、もしくは、その引数を<code>const</code>ポインタ渡しとして、寿命と非null性に関する要件をドキュメントに残すようにしてください。
+	            かわりに、引数の寿命に関する要件を排除する方法をとる(例えば内部で引数をコピーしておく等)か、もしくは、その引数をポインタ渡しとして、寿命と非null性に関する要件をドキュメントに残すようにしてください。
         </span>
     </p>
 
@@ -6381,7 +6421,7 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
                 </span>
                 右辺値参照と同じ記号を使う<a href="#Forwarding_references">転送参照</a>を用いると、引数を他の関数に転送する汎用的なラッパー関数を書くことができます。
                 これは、引数が一時オブジェクトであるなしに、また、constであるなしに関わらず正しく動作します。
-            </span> 
+            </span>
             <span>
                 <span class="src">
                     This is called 'perfect forwarding'.
@@ -6496,15 +6536,16 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
             <span>
                 <span class="src">
                     Usually the preferred solution is just to pass by value, but an overloaded
-                    pair of functions sometimes yields better performance and is sometimes
-                    necessary in generic code that needs to support a wide variety of types.
+                    pair of functions sometimes yields better performance, for example if the
+                    functions sometimes don't consume the input.
                 </span>
-                通常は、単純な値渡しを採用するのがもっとも望ましいですが、このような関数オーバーロードを別々に用意することでパフォーマンスが向上したり、あるいは、広く様々な型を受け入れる汎用的なコードを書く際に、この種のオーバーロードの組が必須となったりします。
+                通常は、単純な値渡しを採用するのがもっとも望ましいですが、このような関数オーバーロードを別々に用意することでパフォーマンスが向上する場合もあります。たとえば、関数常に入力を消費するとは限らないような場合です。
             </span>
             <span>
                 <span class="src">
-                    As always: if you're writing more complicated code for the sake of
-                    performance, make sure you have evidence that it actually helps.
+                    As always: if you're writing
+  					more complicated code for the sake of performance, make sure you have evidence
+  					that it actually helps.
                 </span>
                 ただし、パフォーマンスの都合でコードを複雑化させるときは、いつものように、そのコード変更が実際にパフォーマンス向上に貢献しているという証拠を確かめるようにしてください。
             </span>
@@ -7590,22 +7631,22 @@ bool Derived::Equal(Base* other) {
             <span>
                 <span class="src">
 Also, consider dereferencing the pointer (without a cast) and
-  using <code>absl::bit_cast</code> to cast the resulting value.
+  using <code>std::bit_cast</code> to cast the resulting value.
                 </span>
-                あるいは、ポインタをキャストせずに参照外し(dereference)してから、<code>absl::bit_cast</code>によって値自体をキャストする方法も検討してください。((訳注: C++20からは<code>std::bit_cast</code>もあります))
+                あるいは、ポインタをキャストせずに参照外し(dereference)してから、<code>std::bit_cast</code>によって値自体をキャストする方法も検討してください。((訳注: C++20からは<code>std::bit_cast</code>もあります))
             </span>
         </li>
 
         <li>
             <span>
                 <span class="src">
-                    Use <code>absl::bit_cast</code> to interpret the raw bits of a
+                    Use <code>std::bit_cast</code> to interpret the raw bits of a
                     value using a different type of the same size (a type pun), such as
                     interpreting the bits of a <code>double</code> as
                     <code>int64_t</code>.
                 </span>
                 <code>double</code>のビット列を<code>int64_t</code>として解釈するような、
-                生のビット列を同じサイズの違う型に再解釈(type-punning)したいときは、<code>absl::bit_cast</code>を使用してください。
+                生のビット列を同じサイズの違う型に再解釈(type-punning)したいときは、<code>std::bit_cast</code>を使用してください。
             </span>
         </li>
 
@@ -8652,175 +8693,133 @@ initialization for non-constant variables.
         </span>
     </p>
 
-    <h3 id="64-bit_Portability"><span data-src="64-bit Portability">64ビットへの移植性</span></h3>
+
+    <h3 id="Floating-Point_Types"><span data-src="Floating-Point Types">浮動小数点型</span></h3>
 
     <p>
         <span>
             <span class="src">
-                Code should be 64-bit and 32-bit friendly.
+                Of the built-in C++ floating-point types, the only ones used
+                 are <code>float</code> and
+                <code>double</code>.
             </span>
-            コードは64ビット環境と32ビット環境の両方にフレンドリーであるべきです。
+            組み込みのC++の浮動小数点型のうち、<code>float</code>と<code>double</code>だけを使います。
         </span>
         <span>
             <span class="src">
-                Bear in mind
-                problems of printing, comparisons, and structure alignment.
+You may assume that these types represent IEEE-754 binary32
+and binary64, respectively.
             </span>
-            <code>printf</code>等で出力するときの問題、値を比較するときの問題、構造体のアライメントの問題を常に心にとめておいてください。
+            これらの型は、それぞれ IEEE-754 binary32 と binary64 を表すものと仮定してかまいません。
+        </span>
+    </p>
+    <p>
+        <span>
+            <span class="src">
+                Do not use <code>long double</code>, as it gives non-portable
+results.
+            </span>
+            <code>long double</code>には移植性がないため、これを使用してはいけません。
         </span>
     </p>
 
-    <ul>
-        <li>
-            <p>
-                <span>
-                    <span class="src">
-                        Correct portable <code>printf()</code> conversion specifiers for
-                        some integral typedefs rely on macro expansions that we find unpleasant to
-                        use and impractical to require (the <code>PRI</code> macros from
-                        <code>&lt;cinttypes&gt;</code>).
-                    </span>
-                    いくつかの整数型とその<code>typedef</code>について、正しく移植性を保って<code>printf</code>するための書式指定子は、<code>&lt;cinttypes&gt;</code>に含まれる<code>PRI</code>マクロの展開に頼ることになります。しかし、これらは些か不格好であり、使用必須とするのもあまり現実的ではありません。
-                </span>
-                <span>
-                    <span class="src">
-                        Unless there is no reasonable alternative
-                        for your particular case, try to avoid or even upgrade APIs that rely on the
-                        <code>printf</code> family.
-                    </span>
-                    妥当な代替手段がないときを除き、なるべく<code>printf</code>ファミリに依存するAPIを使うのを避けるか、あるいは、APIのアップグレードを試みてください。
-                </span>
-                <span>
-                    <span class="src">
-                        Instead use a library supporting typesafe numeric
-                        formatting, such as
-                        <a href="https://github.com/abseil/abseil-cpp/blob/master/absl/strings/str_cat.h"><code>StrCat</code></a>
-                        or
-                        <a href="https://github.com/abseil/abseil-cpp/blob/master/absl/strings/substitute.h"><code>Substitute</code></a>
-                        for fast simple conversions,
 
-                        or <a href="#Streams"><code>std::ostream</code></a>.
-                    </span>
-                    <code>printf</code>のかわりに、型安全に数値をフォーマットできるライブラリ、たとえば、<a href="https://github.com/abseil/abseil-cpp/blob/master/absl/strings/str_cat.h"><code>StrCat</code></a>や、
-                    高速でシンプルな変換には<a href="https://github.com/abseil/abseil-cpp/blob/master/absl/strings/substitute.h"><code>Substitute</code></a>、
-                    もしくは、<a href="#Streams"><code>std::ostream</code></a>などを使ってください。
-                </span>
-            </p>
+    <a id="64-bit_Portability"></a>
+    <h3 id="Architecture_Portability"><span data-src="Architecture Portability">アーキテクチャ間の移植性</span></h3>
+    <p>
+        <span>
+            <span class="src">
+                Write architecture-portable code.
+            </span>
+            アーキテクチャ間で移植性のあるコードを書いてください。
+        </span>
+        <span>
+            <span class="src">
+                Do not rely on CPU features specific to a
+single processor.
+            </span>
+            特定のCPUの固有機能に依存してはいけません。
+        </span>
+    </p>
+<ul>
+  <li><p>
+        <span>
+            <span class="src">
+                When printing values, use type-safe numeric formatting libraries like
+  <a href="https://github.com/abseil/abseil-cpp/blob/master/absl/strings/str_cat.h"><code>absl::StrCat</code></a>,
+  <a href="https://github.com/abseil/abseil-cpp/blob/master/absl/strings/substitute.h"><code>absl::Substitute</code></a>,
+  <a href="https://github.com/abseil/abseil-cpp/blob/master/absl/strings/str_format.h"><code>absl::StrFormat</code></a>,
+  or <a href="#Streams"><code>std::ostream</code></a> instead of the
+  <code>printf</code> family of functions.
+            </span>
+            値を表示するときは、<code>printf</code>系の関数ではなく、型安全に数値型のフォーマットを行うことができるライブラリを使用してください。
+            <a href="https://github.com/abseil/abseil-cpp/blob/master/absl/strings/str_cat.h"><code>absl::StrCat</code></a>,
+  <a href="https://github.com/abseil/abseil-cpp/blob/master/absl/strings/substitute.h"><code>absl::Substitute</code></a>,
+  <a href="https://github.com/abseil/abseil-cpp/blob/master/absl/strings/str_format.h"><code>absl::StrFormat</code></a>,
+  or <a href="#Streams"><code>std::ostream</code></a>などがあてはまります。
+        </span>
+  </p>
+      </li>
 
-            <p>
-                <span>
-                    <span class="src">
-                        Unfortunately, the <code>PRI</code> macros are the only portable way to
-                        specify a conversion for the standard bitwidth typedefs (e.g.,
-                        <code>int64_t</code>, <code>uint64_t</code>, <code>int32_t</code>,
-                        <code>uint32_t</code>, etc).
-                    </span>
-                    残念なことに、サイズが厳密に定められている整数型(<code>int64_t</code>, <code>uint64_t</code>, <code>int32_t</code>, <code>uint32_t</code>等)への書式指定子として、唯一、移植性があるのは、<code>PRI</code>系のマクロを使う方法だけです。
-                </span>
-                <span>
-                    <span class="src">
-                        Where possible, avoid passing arguments of types specified by bitwidth
-                        typedefs to <code>printf</code>-based APIs.
-                    </span>
-                    可能な限り、このようなサイズ固定の整数型を<code>printf</code>系のAPIに渡すことそのものを避けてください。
-                </span>
-                <span>
-                    <span class="src">
-                        Note that it is acceptable
-                        to use typedefs for which printf has dedicated length modifiers, such as
-                        <code>size_t</code> (<code>z</code>),
-                        <code>ptrdiff_t</code> (<code>t</code>), and
-                        <code>maxint_t</code> (<code>j</code>).
-                    </span>
-                    なお、<code>printf</code>において専用の長さ指定子が定められている型、たとえば、
-                    <code>size_t</code>(<code>%z</code>)、                    <code>ptrdiff_t</code>(<code>%t</code>)、                    <code>maxint_t</code>(<code>%j</code>)などを用いることには問題がありません。
-                </span>
-            </p>
-        </li>
-        <li>
-            <span>
-                <span class="src">
-                    Remember that <code>sizeof(void *)</code> !=
-                    <code>sizeof(int)</code>.
-                </span>
-                <code>sizeof(void *)</code> != <code>sizeof(int)</code>であることを忘れないでください。
+  <li><p>
+        <span>
+            <span class="src">
+                When moving structured data into or out of your process, encode it using a
+  serialization library like
+  <a href="https://protobuf.dev/">Protocol
+  Buffers</a> rather than copying the in-memory representation around.
             </span>
-            <span>
-                <span class="src">
-                    Use <code>intptr_t</code> if
-                    you want a pointer-sized integer.
-                </span>
-                ポインタと同じサイズの整数型を必要とするときは、<code>intptr_t</code>を使ってください。
-            </span>
-        </li>
+            構造体などの構造化されたデータをプロセスの境界を越えて外部とやりとりするときは、メモリ上の表現をそのまま持ち回るのではなく、<a href="https://protobuf.dev/">Protocol Buffers</a>のようなシリアライズライブラリを用いてエンコードしてください。
+        </span>
+  </p>
+  </li>
 
-        <li>
-            <span>
-                <span class="src">
-                    You may need to be careful with structure
-                    alignments, particularly for structures being stored on
-                    disk.
-                </span>
-                構造体のアライメントには注意が必要です。
-                特にその構造体がディスクに保存される場合にこのことは重要です。
+  <li><p>
+        <span>
+            <span class="src">
+                If you need to work with memory addresses as integers, store them in
+  <code>uintptr_t</code>s rather than <code>uint32_t</code>s or
+  <code>uint64_t</code>s.
             </span>
-            <span>
-                <span class="src">
-                    Any class/structure with a
-                    <code>int64_t</code>/<code>uint64_t</code>
-                    member will by default end up being 8-byte aligned on a
-                    64-bit system.
-                </span>
-                64ビットシステムでは、<code>int64_t</code>や<code>uint64_t</code>を含むクラスや構造体は、デフォルトで8バイト境界に整列されます。
-            </span>
-            <span>
-                <span class="src">
-                    If you have such structures being shared
-                    on disk between 32-bit and 64-bit code, you will need
-                    to ensure that they are packed the same on both
-                    architectures.
-                </span>
-                もし、このような構造体をディスクに保存し、32ビットコードと64ビットコードとの間で共有するような場合は、双方のアーキテクチャにおいて構造体が同じようにパッキングされることを保証しなければなりません。
-            </span>
-            <span>
-                <span class="src">
-                    Most compilers offer a way to
-                    alter structure alignment.
-                </span>
-                ほとんどのコンパイラにおいて、構造体のアライメントを変更する手段が提供されています。
-            </span>
-            <span>
-                <span class="src">
-                    For gcc, you can use
-                    <code>__attribute__((packed))</code>.
-                </span>
-                たとえば、GCCでは<code>__attribute__((packed))</code>を使うことができますし、
-            </span>
-            <span>
-                <span class="src">
-                    MSVC offers
-                    <code>#pragma pack()</code> and
-                    <code>__declspec(align())</code>.
-                </span>
-                MSVCは<code>#pragma pack()</code>と<code>__declspec(align())</code>を提供しています。
-            </span>
-        </li>
+            もし、メモリアドレスを整数として扱う必要が生じた場合は、それらを<code>uint32_t</code>や<code>uint64_t</code>ではなく、<code>uintptr_t</code>を使って保持してください。
+        </span>
+  </p></li>
 
-        <li>
-            <p>
-                <span>
-                    <span class="src">
-                        Use <a href="#Casting">braced-initialization</a> as needed to create
-                        64-bit constants. For example:
-                    </span>
-                    64ビット定数を作るためには、次の例のように、波括弧初期化を使ってください。
-                </span>
-            </p>
-            <pre>int64_t my_value{0x123456789};
+  <li>
+      <p>
+        <span>
+            <span class="src">
+                Use <a href="#Casting">braced-initialization</a> as needed to create
+  64-bit constants. For example:
+            </span>
+            64ビット定数を作るときは、<a href="#Casting">波括弧初期化</a>を使ってください。例を示します。
+        </span>
+      </p>
+      <pre>int64_t my_value{0x123456789};
 uint64_t my_mask{uint64_t{3} &lt;&lt; 48};
 </pre>
-        </li>
-    </ul>
+  </li>
+
+  <li><p>
+        <span>
+            <span class="src">
+                Use portable <a href="#Floating-Point_Types">floating point types</a>;
+  avoid <code>long double</code>.
+            </span>
+            移植性のある<a href="#Floating-Point_Types">浮動小数点型</a>を使用してください。<code>long double</code>は避けてください。
+        </span>
+  </p></li>
+
+  <li><p>
+        <span>
+            <span class="src">
+                Use portable <a href="#Integer_Types">integer types</a>; avoid
+  <code>short</code>, <code>long</code>, and <code>long long</code>.
+            </span>
+            移植性のある<a href="#Integer_Types">整数型</a>を使用してください。<code>short</code>、<code>long</code>、<code>long long</code>は避けてください。
+        </span>
+  </p></li>
+</ul>
 
 
     <h3 id="Preprocessor_Macros"><span data-src="Preprocessor Macros">プリプロセッサマクロ</span></h3>
@@ -9287,10 +9286,10 @@ auto d{42};   // d は int型 ※ std::initializer_list&lt;int&gt;ではない</
             <span>
                 <span class="src">
                     <code>auto</code> can be qualified with <code>const</code>, and can be
-                    used as part of a pointer or reference type, but it can't be used as a
-                    template argument.
+                    used as part of a pointer or reference type, and (since C++17) as a
+                    non-type template argument.
                 </span>
-                <code>auto</code>は<code>const</code>で修飾することができ、また、ポインタまたは参照型の一部分として用いることもできますが、テンプレート実引数に用いることはできません。
+                <code>auto</code>は<code>const</code>で修飾することができ、また、ポインタまたは参照型の一部分として用いることもできます。またC++17からは、非型テンプレート実引数に用いることもできます。
             </span>
             <span>
                 <span class="src">
@@ -9388,7 +9387,7 @@ std::sort(vec.begin(), vec.end(), [](auto lhs, auto rhs) { return lhs &gt; rhs; 
 std::sort(vec.begin(), vec.end(), [](auto lhs, auto rhs) { return lhs &gt; rhs; });</pre>
             </div>
 
-            
+
         </dd>
         <dt>
             <span>
@@ -9414,7 +9413,7 @@ std::sort(vec.begin(), vec.end(), [](auto lhs, auto rhs) { return lhs &gt; rhs; 
                 <pre class="neutralcode">[x = 42, y = "foo"] { ...
 }  // x は int で、y は const char*</pre>
             </div>
-            
+
             <span>
                 <span class="src">
                     This syntax doesn't allow the type to be specified; instead, it's deduced
@@ -9716,7 +9715,7 @@ std::array numbers = {4, 8, 15, 16, 23, 42};</pre>
     // `widget`に関する操作を行う
 }</pre>
             </div>
-    
+
     <p>
         <span>
             <span class="src">
@@ -10991,6 +10990,57 @@ or tests.</span>
 コンパイル時のチェックが働かない(あるいは、できない)要件については、コンセプトや制約ではなく、コードコメントやアサーション、テストなどでそれらをカバーするようにしてください。</span>
 </p>
 
+<h3 id="modules"><span data-src="C++20 modules">C++20 モジュール</span></h3>
+
+<p><span><span class="src">
+Do not use C++20 Modules.</span>
+C++20のモジュールは使わないでください。</span></p>
+
+<p><span><span class="src">
+C++20 introduces "modules", a new language feature designed as an alternative to textual inclusion of header files.</span>
+C++20では「モジュール」という新しい言語機能が導入されました。これは、従来のヘッダファイルの物理的なインクルードを置き換えるように設計されています。</span>
+<span><span class="src">
+It introduces three
+new keywords to support
+this: <code>module</code>, export,
+and <code>import</code>.</span>
+これによって新しい３つのキーワード<code>module</code>, <code>export</code>, <code>import</code>が導入されました。
+</span></p>
+
+<p><span><span class="src">
+Modules are a big shift in how C++ is written and compiled, and we
+are still assessing how they may fit into Google's C++ ecosystem in
+the future.</span>
+「モジュール」はC++がどのように書かれてどのようにコンパイルされるかという側面における大きな変革であり、現時点では、私たちはこの機能が将来のGoogleのC++エコシステムにおいてどのように適合するかを評価している段階です。
+</span>
+<span><span class="src">
+Furthermore, they are not currently well-supported by our
+build-systems, compilers, and other tooling, and need further
+exploration as to the best-practices when writing and using them.</span>
+また、現時点では、ビルドシステムやコンパイラ、その他のツールにおいても十分なサポートがなく、それらを書いたり使ったりする際のベストプラクティスについて、さらなる調査を必要としています。</span></p>
+
+
+
+<h3 id="coroutines"><span data-src="Coroutines">コルーチン</span></h3>
+
+<p><span><span class="src">
+Do not use coroutines (yet).</span>
+コルーチンは(まだ)使わないでください。</span></p>
+
+<p><span><span class="src">
+Do not include the <code>&lt;coroutine&gt;</code> header,
+or use the <code>co_await</code>, <code>co_yield</code>,
+or <code>co_return</code> keywords.</span>
+<code>&lt;coroutine&gt;</code>ヘッダーをインクルードしないでください。また、<code>co_await</code>や<code>co_yield</code>、<code>co_return</code>といったキーワードを使用しないでください。
+</span></p>
+
+<p><span><span class="src">
+NOTE: this ban is expected to be temporary, while further
+guidance is being developed.</span>
+注: この制限事項はさらなるガイダンスか策定されるまでの間の一時的なものです。
+</span>
+</p>
+
     <h3 id="Boost"><span data-src="Boost">Boost</span></h3>
 
     <p>
@@ -11289,21 +11339,20 @@ or tests.</span>
     </p>
 
 
-    <a id="C++11"></a>
-    <h3 id="Other_Features"><span data-src="Other C++ Features">その他のC++機能</span></h3>
+    <h3 id="Disallowed_Stdlib"><span data-src="Disallowed standard library features">使用禁止とする標準ライブラリの機能</span></h3>
 
     <p>
         <span>
             <span class="src">
                 As with <a href="#Boost">Boost</a>, some modern C++
-                extensions encourage coding practices that hamper
+                library functionality encourage coding practices that hamper
                 readability&#8212;for example by removing
                 checked redundancy (such as type names) that may be
                 helpful to readers, or by encouraging template
                 metaprogramming.
             </span>
-            前述の<a href="#Boost">Boost</a>も含め、現代的なC++を拡張するライブラリの中には、可読性の妨げとなるようなコーディング手法を取り入れているものもあります。
-            それらのコーディング手法では、たとえば、型名などの読者の助けになるはずの情報を冗長であるとして省いてしまっていたり、テンプレートメタプログラミングを積極的に採用していたりします。
+            前述の<a href="#Boost">Boost</a>も含め、現代的なC++ライブラリの中には、可読性の妨げとなるようなコーディング手法を推奨しているものもあります。
+            たとえば、型名などの読者の助けになるはずの情報を冗長であるとして省いてしまっていたり、テンプレートメタプログラミングを積極的に採用していたりします。
         </span>
         <span>
             <span class="src">
@@ -11319,10 +11368,9 @@ or tests.</span>
     <p>
         <span>
             <span class="src">
-                In addition to what's described in the rest of the style
-                guide, the following C++ features may not be used:
+                The following C++ standard library features may not be used:
             </span>
-            本ガイドの他のパートで説明している事柄に加えて、以下に示すC++の機能は使ってはいけません。
+            以下に挙げるC++標準ライブラリの機能は使ってはいけません。
         </span>
     </p>
 
@@ -12172,9 +12220,8 @@ using ::foo::Bar;
     <p>
         <span>
             <span class="src">
-                C++ files should end in
-                <code>.cc</code> and header files should end in
-                <code>.h</code>.
+                C++ files should have a <code>.cc</code> filename extension, and header files
+                should have a <code>.h</code> extension.
             </span>
             ソースファイルの拡張子は<code>.cc</code>、ヘッダーファイルの拡張子は<code>.h</code>とします。
         </span>
@@ -12300,6 +12347,17 @@ using PropertiesMap = hash_map&lt;UrlTableProperties *, std::string&gt;;
 enum class UrlTableError { ...
 </pre>
     </div>
+
+    <h3 id="Concept_Names"><span data-src="Concept Names">コンセプトの名前</span></h3>
+
+    <p>
+        <span>
+            <span class="src">
+               Concept names follow the same rules as <a href="#Type_Names">type names</a>.
+            </span>
+            コンセプトの名前は、<a href="#Type_Names">型の名前</a>と同じ規則に従います。
+        </span>
+    </p>
 
     <h3 id="Variable_Names"><span data-src="Variable Names">変数名</span></h3>
 
@@ -13284,7 +13342,7 @@ std::unique_ptr&lt;Iterator&gt; GetIterator(absl::string_view start_word) const;
 std::unique_ptr&lt;Iterator&gt; GetIterator(absl::string_view start_word) const;
 </pre>
 </div>
-    
+
     <p>
         <span>
             <span class="src">
@@ -14604,11 +14662,13 @@ double d = 1248e6;
 </pre>
 
     <div><div class="src"><pre class="goodcode">float f = 1.0f;
-float f2 = 1;   // Also OK
+float f2 = 1.0;  // Also OK
+float f3 = 1;    // Also OK
 long double ld = -0.5L;
 double d = 1248.0e6;
 </pre></div><pre class="goodcode">float f = 1.0f;
-float f2 = 1;   // これもOK
+float f2 = 1.0;  // これもOK
+float f3 = 1;    // これもOK
 long double ld = -0.5L;
 double d = 1248.0e6;
 </pre></div>
@@ -16370,7 +16430,7 @@ std::vector&lt;char *&gt; x;
         </span>
     </p>
 
-    <h3 id="Existing_Non-conformant_Code"><span data-src="Existing Non-conformant Code">ルールに沿っていない既存のコード</span></h3>
+    <h3 id="Existing_Non-conformant_Code" class="no-toc"><span data-src="Existing Non-conformant Code">ルールに沿っていない既存のコード</span></h3>
 
     <p>
         <span>
