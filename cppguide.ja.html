@@ -1071,20 +1071,23 @@ void test(D* x) { f(x); }  // f(B*)を呼び出す</pre></div>
             <span><span class="src">
             Include the definition of a function at its point of declaration in a header file only
             when the definition is short.
-            </span>⭐Include the definition of a function at its point of declaration in a header file only
-            when the definition is short.</span>
+            </span>
+            ヘッダーファイル内に含められる関数の定義は、その定義が短いものに限ります。
+            </span>
 
             <span><span class="src">
             If the definition otherwise has a reason be in the header,
             put it in an internal part of the file.
-            </span>⭐If the definition otherwise has a reason be in the header,
-            put it in an internal part of the file.</span>
+            </span>
+            それ以外で関数定義をヘッダーファイル内に含める正当な理由がある場合は、それらを内部用とする区画に配置します。
+            </span>
 
             <span><span class="src">
             If necessary to make the definition ODR-safe, mark
             it with an <code>inline</code> specifier.
-            </span>⭐If necessary to make the definition ODR-safe, mark
-            it with an <code>inline</code> specifier.</span>
+            </span>
+            関数定義をODR安全にする必要がある場合は、<code>inline</code>指定子でマークします。
+            </span>
         </p>
 
         <p class="definition"></p>
@@ -1093,9 +1096,9 @@ void test(D* x) { f(x); }  // f(B*)を呼び出す</pre></div>
             Functions defined in header files are sometimes referred to as "inline functions",
             which is a somewhat overloaded term that refers to several distinct but overlapping
             situations:
-            </span>⭐Functions defined in header files are sometimes referred to as "inline functions",
-            which is a somewhat overloaded term that refers to several distinct but overlapping
-            situations:</span>
+            </span>
+            ヘッダーファイル内に定義される関数は「インライン関数」と呼ばれることもあります。これは、いくつかの、異なるが部分的に重なる状況を指す、ややオーバーロードされた語です。
+           </span>
         </p>
 
 <ol>
@@ -1103,20 +1106,18 @@ void test(D* x) { f(x); }  // f(B*)を呼び出す</pre></div>
       <span><span class="src">
           A <em>textually inline</em> symbol's definition is exposed to the reader at
           the point of declaration.
-      </span>⭐A <em>textually inline</em> symbol's definition is exposed to the reader at
-          the point of declaration.
+      </span>
+      <em>テキスト的にインライン</em>に記述されたシンボルの定義は、宣言の時点で読者に公開されます。
       </span>
   </li>
   <li>
       <span><span class="src">
           A function or variable defined in a header file is <em>expandable inline</em>
-  since its definition is available for
-  <a href="https://en.wikipedia.org/wiki/Inline_expansion">inline expansion</a>
-  by the compiler, which can lead to more efficient object code.
-  </span>⭐A function or variable defined in a header file is <em>expandable inline</em>
-  since its definition is available for
-  <a href="https://en.wikipedia.org/wiki/Inline_expansion">inline expansion</a>
-  by the compiler, which can lead to more efficient object code.
+      since its definition is available for
+      <a href="https://en.wikipedia.org/wiki/Inline_expansion">inline expansion</a>
+      by the compiler, which can lead to more efficient object code.
+      </span>
+      ヘッダファイル内で定義された関数や変数は、コンパイラによって<a href="https://en.wikipedia.org/wiki/Inline_expansion">インライン展開</a>可能になり、より効率的なオブジェクトコードを生成されやすくします。
       </span>
   </li>
   <li>
@@ -1126,11 +1127,8 @@ void test(D* x) { f(x); }  // f(B*)を呼び出す</pre></div>
   which often requires the <a href="https://en.cppreference.com/w/cpp/language/inline">inline</a>
   keyword for things defined in header files
   .
-      </span>⭐<em>ODR-safe</em> entities do not violate the
-  <a href="https://en.cppreference.com/w/cpp/language/definition">"One Definition Rule"</a>,
-  which often requires the <a href="https://en.cppreference.com/w/cpp/language/inline">inline</a>
-  keyword for things defined in header files
-  .
+      </span><em>ODR安全</em>なエンティティは<a href="https://en.cppreference.com/w/cpp/language/definition">"One Definition Rule"</a>に違反しません。
+          このために、ヘッダーファイル内でエンティティを定義するためには、しばしば<a href="https://en.cppreference.com/w/cpp/language/inline">inline</a>キーワードを必要とします。
       </span>
   </li>
 </ol>
@@ -1138,8 +1136,8 @@ void test(D* x) { f(x); }  // f(B*)を呼び出す</pre></div>
             <span><span class="src">
                While functions tend to be a more common source of confusion, these definitions apply to
 variables as well, and so do the rules here.
-            </span>⭐While functions tend to be a more common source of confusion, these definitions apply to
-variables as well, and so do the rules here.
+            </span>
+                関数の方が混乱の元になりやすい傾向がありますが、これらのことは変数にも適用され、ここで述べるルールも同様に適用されます。
             </span>
         </p>
         <p class="pros"></p>
@@ -1148,25 +1146,24 @@ variables as well, and so do the rules here.
     <span><span class="src">
         Defining a function textually in-line reduces boilerplate code for simple functions
 like accessors and mutators.
-    </span>⭐Defining a function textually in-line reduces boilerplate code for simple functions
-like accessors and mutators.</span>
+    </span>
+    関数をインラインで定義することで、getter関数やsetter関数などのシンプルな関数に対する定型コードを減らすことができます。
+    </span>
 </li>
 
 <li>
     <span><span class="src"> As noted above, function definitions in header files <i>can</i> lead to
 more efficient object code for small functions due to inline expansion by the
 compiler.
-    </span>⭐As noted above, function definitions in header files <i>can</i> lead to
-more efficient object code for small functions due to inline expansion by the
-compiler.
+    </span>
+        上で述べたように、関数定義をヘッダーファイル内に含めると、小さな関数であれば、コンパイラによるインライン展開によって、より効率的なオブジェクトコードが生成される<i>かも</i>しれません。
     </span>
 </li>
 <li>
     <span><span class="src">
             Function templates and <code>constexpr</code> functions generally need to
 be defined in the header file that declares them (but not necessarily the public part).
-</span>⭐Function templates and <code>constexpr</code> functions generally need to
-be defined in the header file that declares them (but not necessarily the public part).
+</span>関数テンプレートと<code>constexpr</code>な関数は、一般的に、その宣言を含むヘッダーファイル内で定義される必要があります(ただし、公開部分に含まれる必要はありません)。
 </span>
 </li>
 </ul>
@@ -1177,31 +1174,31 @@ be defined in the header file that declares them (but not necessarily the public
     <span><span class="src">Embedding a function definition in the public API makes the API harder to skim,
 and incurs cognitive overhead for readers of that API- the more complex the function
 the higher the cost.
-    </span>⭐Embedding a function definition in the public API makes the API harder to skim,
-and incurs cognitive overhead for readers of that API- the more complex the function
-the higher the cost.</span>
+    </span>公開APIの中に関数の定義を埋め込むと、APIをさらっと確認するときの妨げになり、コード読者の認知負荷につながります。
+        関数定義のコードが複雑になればなるほど、この負荷は高まります。</span>
 </li>
 
 <li>
     <span><span class="src">Public definitions expose implementation details that are at best harmless and
 often extraneous.
-    </span>⭐Public definitions expose implementation details that are at best harmless and
-often extraneous.</span>
+    </span>
+    公開される定義は、ほとんど無害実装の詳細を公開しますが、それらは最悪でも無害で、ほとんどの場合において無関係です。
+    </span>
 </li>
 </ul>
         <p class="decision"></p>
         <p>
             <span><span class="src">
                 Only define a function at its public declaration if it is short, say, 10 lines or fewer.
-            </span>⭐Only define a function at its public declaration if it is short, say, 10 lines or fewer.
+            </span>
+                関数はその定義が短い場合(10行かそれ以下程度)に限り、宣言と同時に定義してください。
             </span>
             <span><span class="src">
                  Put
 longer function bodies in the <code>.cc</code> file unless they must be in the header for
 performance or technical reasons.
-            </span>⭐Put
-longer function bodies in the <code>.cc</code> file unless they must be in the header for
-performance or technical reasons.
+            </span>
+                それ以外の場合で、性能都合や技術的理由によって関数定義をヘッダーファイルに置かなければならない場合を除き、長い関数は<code>.cc</code>内で定義してください。
             </span>
         </p>
 
@@ -1209,18 +1206,16 @@ performance or technical reasons.
             <span><span class="src">
                Even if a definition must be in the header, this is not a sufficient reason to put it within
 the public part.
-            </span>⭐Even if a definition must be in the header, this is not a sufficient reason to put it within
-the public part.
+            </span>
+                また、何らかの都合によって関数定義をヘッダーファイル内に置く場合でも、その定義を公開部分におく理由としては不十分です。
             </span>
             <span><span class="src">
                 Instead, the definition can be in an internal part of the header, such as the
 <a href="#Access_Control">private</a> section of a class, within a namespace that includes the word
 <code>internal</code>, or below a comment like <code>// Implementation details only
 below here</code>.
-            </span>⭐Instead, the definition can be in an internal part of the header, such as the
-<a href="#Access_Control">private</a> section of a class, within a namespace that includes the word
-<code>internal</code>, or below a comment like <code>// Implementation details only
-below here</code>.
+            </span>そのかわりに、関数定義をヘッダーファイルの内部用とする区画に書くようにしてください。たとえば、クラスの<a href="#Access_Control">private</a>セクション内であったり、<code>internal</code>という語句を含む名前空間内であったり、あるいは
+                <code>// ここから下は実装詳細です </code>のようなコメントを設けて、それより下に書くようにします。
             </span>
         </p>
         <p>
@@ -1228,11 +1223,11 @@ below here</code>.
                 Once a definition is in a header file, it must be ODR-safe by having the <code>inline</code>
 specifier or being implicitly specified inline by being a function template or defined in a class
 body when first declared.
-            </span>⭐Once a definition is in a header file, it must be ODR-safe by having the <code>inline</code>
-specifier or being implicitly specified inline by being a function template or defined in a class
-body when first declared.
+            </span>
+                ヘッダーファイル内に定義される関数はすべてODR安全でなければなりません。このためには、<code>inline</code>指定子でマークするか、関数テンプレートやクラス宣言内で定義される関数のように暗黙的にインライン宣言されている必要があります。
             </span>
         </p>
+        <div><div class="src">
 <pre class="goodcode">template &lt;typename T&gt;
 class Foo {
  public:
@@ -1250,7 +1245,25 @@ template &lt;typename T&gt;
 void Foo&lt;T&gt;::MethodWithHugeBody() {
   ...
 }
-</pre>
+</pre></div>
+            <pre class="goodcode">template &lt;typename T&gt;
+class Foo {
+ public:
+  int bar() { return bar_; }
+
+  void MethodWithHugeBody();
+
+ private:
+  int bar_;
+};
+
+// ここから下は実装詳細です
+
+template &lt;typename T&gt;
+void Foo&lt;T&gt;::MethodWithHugeBody() {
+  ...
+}
+</pre></div>
         <h3 id="Names_and_Order_of_Includes">
             <span data-src="Names and Order of Includes"><code>#include</code>の名前と順序</span>
         </h3>
@@ -1849,7 +1862,7 @@ using ::foo::Bar;
 }  // namespace mynamespace
 </pre>
                     </div>
-                    <pre>#include "a.h"
+                    <pre class="goodcode">#include "a.h"
 
 ABSL_FLAG(bool, someflag, false, "a flag");
 
@@ -1949,8 +1962,7 @@ using namespace foo;
                             Namespace aliases can be used when those conditions don't apply, but
   they must have <a href="#Naming_Aliases">appropriate names</a>.
                         </span>
-                        ⭐Namespace aliases can be used when those conditions don't apply, but
-  they must have <a href="#Naming_Aliases">appropriate names</a>.
+                        名前空間のエイリアスはこれらの条件が当てはまらないときに使用できますが、<a href="#Naming_Aliases">適切な名前をつける</a>必要があります。
                     </span>
                 </p>
 
@@ -2018,18 +2030,17 @@ using ::absl::container_internal::ImplementationDetail;
                         nested <code>internal</code> namespace, so give each library within a
                         namespace a unique internal namespace by adding the library's
                         filename.
-                    </span>⭐Note that there is still a risk of collision between libraries within a
-                    nested <code>internal</code> namespace, so give each library within a
-                    namespace a unique internal namespace by adding the library's
-                    filename.</span>
+                    </span>
+                        ネストされた<code>internal</code>名前空間で囲んだとしても、ライブラリ間で衝突するリスクは依然として存在することに注意してください。
+                        このリスクを避けるために、内部用の名前空間の名前にはライブラリのファイル名を加えることによって一意になるようにしてください。
+                    </span>
 
                     <span><span class="src">
                         For example, <code>gshoe/widget.h</code> would use
                         <code>gshoe::internal_widget</code> as opposed to just
                         <code>gshoe::internal</code>.
-                    </span>⭐For example, <code>gshoe/widget.h</code> would use
-                    <code>gshoe::internal_widget</code> as opposed to just
-                    <code>gshoe::internal</code>.
+                    </span>
+                        たとえば、<code>gshoe/widget.h</code>では、<code>gshoe::internal</code>よりも<code>gshoe::internal_widget</code>を用いるようにします。
                     </span>
                 </p>
 
@@ -5602,12 +5613,8 @@ Functions in Header Files</a>  for more details.
 comment that documents the entire overload set and is placed before the first
 declaration.
             </span>
-            ⭐
-To reflect this unified design, prefer a single, comprehensive "umbrella"
-comment that documents the entire overload set and is placed before the first
-declaration.
+            この統一的な設計を反映するためには、オーバーロードのセット全体にかかるような、単一かつ包括的な「アンブレラ」コメントを、セット内の最初の宣言の前に記述するとよいでしょう。
         </span>
-
     </p>
     <p>
         <span>
@@ -5615,8 +5622,7 @@ declaration.
                 Where a reader might have difficulty connecting the umbrella
 comment to a specific overload, it's okay to have a comment for specific overloads.
             </span>
-            ⭐Where a reader might have difficulty connecting the umbrella
-comment to a specific overload, it's okay to have a comment for specific overloads.
+            読者にとって、全体的なアンブレラコメントと特定のオーバーロードを紐付けることが難しいと考えられる場合は、特定のオーバーロードに固有のコメントを書いてもかまいません。
         </span>
     </p>
 
@@ -7675,9 +7681,7 @@ bool Derived::Equal(Base* other) {
   e.g., prefer <code>std::string(some_cord)</code> to
   <code>static_cast&lt;std::string&gt;(some_cord)</code>.
                 </span>
-                ⭐When explicitly converting to a class type, use a function-style cast;
-  e.g., prefer <code>std::string(some_cord)</code> to
-  <code>static_cast&lt;std::string&gt;(some_cord)</code>.
+                明示的にクラス型へ変換を行うときは、関数スタイルのキャストを使用してください。たとえば、<code>static_cast&lt;std::string&gt;(some_cord)</code>ではなく<code>std::string(some_cord)</code>の形を用いるようにします。
             </span>
         </li>
         <li>
@@ -11145,68 +11149,70 @@ exploration as to the best practices when writing and using them.</span>
 
 <h3 id="coroutines"><span data-src="Coroutines">コルーチン</span></h3>
 
-<p><span><span class="src">
+<p>
+<span><span class="src">
 Only use C++20 coroutines via libraries that have been
-  approved by your project leads.</span>
-⭐Only use C++20 coroutines via libraries that have been
-  approved by your project leads.</span></p>
+  approved by your project leads.
+</span>
+    C++20のコルーチンは、あなたのプロジェクトのリーダーによって承認されているライブラリを経由してのみ、使用できます。
+</span>
+</p>
 
         <p class="definition"></p>
         <p><span><span class="src">C++20 introduced
             <a href="https://en.cppreference.com/w/cpp/language/coroutines.html">coroutines</a>:
             functions that can suspend and resume
             executing later.</span>
-            ⭐C++20 introduced
-            <a href="https://en.cppreference.com/w/cpp/language/coroutines.html">coroutines</a>:
-            functions that can suspend and resume
-            executing later.
+            C++20では、<a href="https://en.cppreference.com/w/cpp/language/coroutines.html">コルーチン</a>が導入されました。
+            コルーチンとは、途中で中断したり後から再開したりすることができる関数のことです。
         </span>
             <span><span class="src">They are especially convenient for asynchronous
             programming, where they can provide substantial improvements over
             traditional callback-based frameworks.
-            </span>⭐They are especially convenient for asynchronous
-            programming, where they can provide substantial improvements over
-            traditional callback-based frameworks.</span></p>
+            </span>
+            これらは、特に非同期プログラミングにおいて便利で、伝統的なコールバックの仕組みを用いたフレームワークに比べて、大幅な改善をもたらします。
+            </span></p>
 
         <p><span><span class="src">Unlike most other programming languages (Kotlin, Rust, TypeScript, etc.),
             C++ does not provide a concrete implementation of coroutines.
-</span>⭐Unlike most other programming languages (Kotlin, Rust, TypeScript, etc.),
-            C++ does not provide a concrete implementation of coroutines.
-</span>
-            <span><span class="src">Instead, it requires users to implement their own awaitable type (using a
+        </span>
+            C++のコルーチンでは、他の多くのプログラミング言語(Kotlin, Rust, TypeScript など)とは異なり、具体的な実装を提供していません。
+        </span>
+        <span><span class="src">
+            Instead, it requires users to implement their own awaitable type (using a
             <a href="https://en.cppreference.com/w/cpp/language/coroutines#Promise">
                 promise type</a>) which determines coroutine parameter types, how coroutines
             are executed, and allows running user-defined code during different stages
             of their execution.
-        </span>⭐Instead, it requires users to implement their own awaitable type (using a
-            <a href="https://en.cppreference.com/w/cpp/language/coroutines#Promise">
-                promise type</a>) which determines coroutine parameter types, how coroutines
-            are executed, and allows running user-defined code during different stages
-            of their execution.</span></p>
+        </span>
+            かわりに、C++のユーザーは<a href="https://en.cppreference.com/w/cpp/language/coroutines#Promise">
+                promise type</a>を使用した、独自の待機可能な型 (awaitable type) を実装する必要があります。
+            この独自の型は、コルーチンの引数の型や、コルーチンがどのように実行されるかを決定し、また、様々な実行状態の遷移に応じたユーザ定義のコードを実行できるようにします。
+        </span>
+        </p>
 
         <p class="pros"></p>
         <ul>
             <li>
                 <span><span class="src">Coroutines can be used to implement safe and efficient libraries suited
                 for specific tasks, such as asynchronous programming.
-                </span>⭐Coroutines can be used to implement safe and efficient libraries suited
-                for specific tasks, such as asynchronous programming.
+                </span>
+                    コルーチンを使うと、非同期プログラミングなどの特定のタスクに適した安全で効率的なライブラリを実装できます。
                 </span>
             </li>
             <li>
                 <span><span class="src">Coroutines are syntactically almost identical to non-coroutine functions,
                 which can make them substantially more readable than alternatives.
-                </span>⭐Coroutines are syntactically almost identical to non-coroutine functions,
-                which can make them substantially more readable than alternatives.
+                </span>
+                    コルーチンの構文は、非コルーチン関数とほとんど同じであるため、他の方法より大幅に読みやすくなります。
                 </span>
             </li>
             <li>
                 <span><span class="src">The high degree of customization makes it possible to insert more
                 detailed debugging information into coroutines, compared to
                 alternatives.
-                </span>⭐The high degree of customization makes it possible to insert more
-                detailed debugging information into coroutines, compared to
-                alternatives.
+                </span>
+                    C++のコルーチンは高度にカスタマイズ可能なため、他の方法に比べて。より詳細なデバッグ情報を埋め込むことができます。
                 </span>
             </li>
         </ul>
@@ -11216,8 +11222,8 @@ Only use C++20 coroutines via libraries that have been
             <li>
                 <span><span class="src">There is no standard coroutine promise type, and each user-defined
                 implementation is likely going to be unique in some aspect.
-                </span>⭐There is no standard coroutine promise type, and each user-defined
-                implementation is likely going to be unique in some aspect.
+                </span>
+                    C++のコルーチンには標準的なPromise型がありませんが、ユーザーがそれぞれ独自に実装する型がある側面で一意になる傾向があります。
                 </span>
             </li>
             <li>
@@ -11225,19 +11231,18 @@ Only use C++20 coroutines via libraries that have been
                 various customizable hooks in the promise type, and compiler-generated
                 code, coroutine semantics are extremely difficult to deduce from reading
                 user code.
-                </span>⭐Because of load-bearing interactions between the return type, the
-                various customizable hooks in the promise type, and compiler-generated
-                code, coroutine semantics are extremely difficult to deduce from reading
-                user code.
+                </span>
+                    C++のコルーチンでは、
+                    戻り値の型やPromise型のさまざまなカスタマイズ可能なフック、およびコンパイラによって生成されたコードなどが相互に作用することになるため、
+                    ユーザーコードを読んでそのセマンティクスを推測するのが非常に難しくなります。
                 </span>
             </li>
             <li>
                 <span><span class="src">The many customizable aspects of coroutines introduce a large number
                 of pitfalls, especially around dangling references and race
                 conditions.
-                </span>⭐The many customizable aspects of coroutines introduce a large number
-                of pitfalls, especially around dangling references and race
-                conditions.
+                </span>
+                    コルーチンには多数のカスタマイズ可能な側面が含まれるため、特にダングリング参照やレースコンディションに関するものなどの、多数の落とし穴が存在します。
                 </span>
             </li>
         </ul>
@@ -11246,9 +11251,8 @@ Only use C++20 coroutines via libraries that have been
             <span><span class="src">In summary, designing a high-quality and interoperable coroutine library
             requires a large amount of difficult work, careful thought, and extensive
             documentation.
-            </span>⭐In summary, designing a high-quality and interoperable coroutine library
-            requires a large amount of difficult work, careful thought, and extensive
-            documentation.
+            </span>
+                要約すると、高品質で相互運用可能なコルーチンライブラリを設計するためには、大量の難しい作業、慎重な検討、詳細なドキュメント作成を必要とします。
             </span>
         </p>
 
@@ -11256,11 +11260,14 @@ Only use C++20 coroutines via libraries that have been
 
         <p>
             <span><span class="src">Use only coroutine libraries that have been approved for
-            project-wide use by your project leads. Do not roll your own promise or
+            project-wide use by your project leads.
+            </span>
+                プロジェクトリーダーによって、プロジェクト全体で使用することが承認されたコルーチンライブラリのみを使用してください。
+            </span>
+            <span><span class="src">Do not roll your own promise or
             awaitable types.
-            </span>⭐Use only coroutine libraries that have been approved for
-            project-wide use by your project leads. Do not roll your own promise or
-            awaitable types.
+            </span>
+                独自のPromise型や待機可能型を実装しないでください。
             </span>
         </p>
 
@@ -12191,8 +12198,8 @@ using ::foo::Bar;
         <span><span class="src">
 For the purposes of the naming rules below, a "word" is anything that you
 would write in English without internal spaces.
-        </span>⭐For the purposes of the naming rules below, a "word" is anything that you
-would write in English without internal spaces.
+        </span>
+            以下の命名に関するルールにおいて、「単語」とは英語で書くときにスペースを含まずに書けるものを指します。
         </span>
         <span><span class="src">
 Either words are all lowercase,
@@ -12201,12 +12208,8 @@ with underscores between words
 are mixed case with the first letter of each word capitalized
 ("<a href="https://en.wikipedia.org/wiki/Camel_case">camelCase</a>" or
 "<a href="https://en.wiktionary.org/wiki/Pascal_case">PascalCase</a>").
-            </span>⭐Either words are all lowercase,
-with underscores between words
-("<a href="https://en.wikipedia.org/wiki/Snake_case">snake_case</a>"), or words
-are mixed case with the first letter of each word capitalized
-("<a href="https://en.wikipedia.org/wiki/Camel_case">camelCase</a>" or
-"<a href="https://en.wiktionary.org/wiki/Pascal_case">PascalCase</a>").
+            </span>
+            各単語をすべて小文字で単語間をアンダースコアで区切る("<a href="https://en.wikipedia.org/wiki/Snake_case">snake_case</a>")か、各単語の先頭の文字を大文字にする("<a href="https://en.wikipedia.org/wiki/Camel_case">camelCase</a>"や"<a href="https://en.wiktionary.org/wiki/Pascal_case">PascalCase</a>")のいずれかで命名します。
         </span>
     </p>
         <h3 id="General_Naming_Rules" data-src="Choosing Names">名前の決め方</h3>
@@ -12214,8 +12217,9 @@ are mixed case with the first letter of each word capitalized
         <span><span class="src">
             Give things names that make their purpose or intent understandable to a new
 reader, even someone on a different team than the owners.
-        </span>⭐Give things names that make their purpose or intent understandable to a new
-reader, even someone on a different team than the owners.        </span>
+        </span>
+            新しい読者や他のチームの人から見ても、その目的や意図が理解できるような名前をつけましょう。
+        </span>
         <span>
             <span class="src">
                 Do not worry about
@@ -12228,28 +12232,34 @@ reader, even someone on a different team than the owners.        </span>
         <p>
             <span><span class="src">
             Consider the context in which the name will be used.
-            </span>⭐Consider the context in which the name will be used.</span>
+            </span>その名前が使用される文脈を考慮してください。</span>
 
             <span><span class="src">A name should be
             descriptive even if it is used far from the code that makes it available for
-            use. However, a name should not distract the reader by repeating information
+            use.
+            </span>
+                名前は、それを使用するコードから遠く離れたところにあったとしても、説明的である必要があります。
+            </span>
+
+            <span><span class="src">However, a name should not distract the reader by repeating information
             that's present in the immediate context.
-            </span>⭐A name should be
-            descriptive even if it is used far from the code that makes it available for
-            use. However, a name should not distract the reader by repeating information
-            that's present in the immediate context.</span>
+            </span>
+            ただし、直近の文脈に存在する情報を繰り返すことによって、コード読者の注意をそらすべきではありません。
+            </span>
 
             <span><span class="src">Generally, this means that
             descriptiveness should be proportional to the name's scope of visibility.
-            </span>⭐Generally, this means that
-            descriptiveness should be proportional to the name's scope of visibility.</span>
+            </span>
+                一般的に、名前は、それが見えるスコープの広さに比例して説明的であるようにすべきです。
+            </span>
 
             <span><span class="src">A free
             function declared in a header should probably mention the header's library,
             while a local variable probably shouldn't explain what function it's within.
-            </span>⭐A free
-            function declared in a header should probably mention the header's library,
-            while a local variable probably shouldn't explain what function it's within.</span>
+            </span>
+                ヘッダーファイル内で宣言されるフリー関数はそれを含むヘッダーのライブラリに言及する必要があるでしょう。
+                一方で、ローカル変数について自分自身がどの関数に含まれているかを説明する必要はないでしょう。
+            </span>
         </p>
 <p>
         <span>
@@ -12272,9 +12282,8 @@ deleting letters within a word.
 capitalize it as a single "word", e.g., <code>StartRpc()</code> rather than
 <code>StartRPC()</code>.
             </span>
-            ⭐When an abbreviation is used, prefer to
-capitalize it as a single "word", e.g., <code>StartRpc()</code> rather than
-<code>StartRPC()</code>.
+            省略系を用いるときでかつ大文字化するときは、それが1つの単語であるかのように扱います。
+            たとえば、<code>StartRPC()</code>ではなく、<code>StartRpc()</code>のようにします。
         </span>
 
         <span>
@@ -12289,27 +12298,22 @@ capitalize it as a single "word", e.g., <code>StartRpc()</code> rather than
            Note that certain universally-known abbreviations are OK, such as
 <code>i</code> for a loop index and <code>T</code> for a template
 parameter.
-        </span>⭐Note that certain universally-known abbreviations are OK, such as
-<code>i</code> for a loop index and <code>T</code> for a template
-parameter.
+        </span>なお、ループのインデックスに使われる<code>i</code>や、テンプレートパラメータの<code>T</code>など、広く知られている略語を用いることは何ら問題ありません。
         </span>
     </p>
         <p>
             <span><span class="src">
                 The names you see most frequently are not like most names; a small number of
             "vocabulary" names are reused so widely that they are always in context.
-            </span>⭐The names you see most frequently are not like most names; a small number of
-            "vocabulary" names are reused so widely that they are always in context.
+            </span>最も頻繁に目にする名前は、一般的な名前とは異なります。一部の語彙として機能する名前は、非常に広く再利用されるため、常に何らかの文脈の中で使われます。
             </span>
             <span><span class="src">
                 These
             names tend to be short or even abbreviated and their full meaning comes from
             explicit long-form documentation rather than from just comments on their
             definition and the words within the names.
-            </span>⭐These
-            names tend to be short or even abbreviated and their full meaning comes from
-            explicit long-form documentation rather than from just comments on their
-            definition and the words within the names.
+            </span>
+                これらの名前は短く、場合によっては省略される傾向があり、その完全な意味は、定義や名前に含まれる単語に関するコメントではなく、明示的な長文のドキュメントから得られます。
             </span>
 
             <span><span class="src">
@@ -12319,23 +12323,15 @@ parameter.
             <a href="https://abseil.io/docs/cpp/guides/status">page
             in a devguide</a>,
             documenting its proper use.
-            </span>⭐For example, <code>absl::Status</code>
-            has a dedicated
-
-            <a href="https://abseil.io/docs/cpp/guides/status">page
-            in a devguide</a>,
-            documenting its proper use.
+            </span>たとえば <code>absl::Status</code>には<a href="https://abseil.io/docs/cpp/guides/status">開発ガイド内に独立したページ</a>が存在し、その適切な使用方法について解説されています。
             </span>
-
             <span><span class="src">
                 You probably won't define new vocabulary names very
             often, but if you do, get
             additional design review to make sure the chosen names work well when
             used widely.
-            </span>⭐You probably won't define new vocabulary names very
-            often, but if you do, get
-            additional design review to make sure the chosen names work well when
-            used widely.
+            </span>
+                新しい語彙を定義することは、そう頻繁にはないでしょうが、もし新しい語彙を定義する場合は、選んだ名前が広い範囲で使われたとしても問題なく機能するかどうか、設計に関する追加のレビューを受けるようにしてください。
             </span>
 
         </p>
@@ -12695,9 +12691,7 @@ enum class UrlTableError { ...
 class members, which should follow the rules for
 <a href="#Constant_Names">naming constants</a>.
         </span>
-        ⭐The exception to this is static constant
-class members, which should follow the rules for
-<a href="#Constant_Names">naming constants</a>.
+            ただし、クラスの静的定数メンバは例外で、それらは<a href="#Constant_Names">定数の命名規則</a>に従います。
         </span>
     </p>
     <div>
@@ -12916,9 +12910,8 @@ between words).
             When <a href="#General_Naming_Rules">choosing names</a> for namespaces, note
             that names must be fully qualified when used in a header outside the namespace,
             because <a href="#Aliases">unqualified Aliases are generally banned</a>.
-        </span>⭐When <a href="#General_Naming_Rules">choosing names</a> for namespaces, note
-            that names must be fully qualified when used in a header outside the namespace,
-            because <a href="#Aliases">unqualified Aliases are generally banned</a>.
+        </span>
+        名前空間の<a href="#General_Naming_Rules">名前を決める</a>ときは、ヘッダーの外でその名前が使われるとき、完全に修飾される必要があることに注意します。(本スタイルガイドのルールでは、<a href="#Aliases">非修飾のエイリアスは一般に禁止</a>しています。)
         </span>
     </p>
 
@@ -12927,15 +12920,15 @@ between words).
         Top-level namespaces must be globally unique and recognizable, so each one
         should be owned by a single project or team, with a name based on the name of
         that project or team.
-        </span>⭐Top-level namespaces must be globally unique and recognizable, so each one
-        should be owned by a single project or team, with a name based on the name of
-        that project or team.
+        </span>
+            トップレベルの名前空間名はグローバルに一意かつ認識可能である必要があります。
+            このため、それらは単一のプロジェクトやチームによって所有され、プロジェクト名やチーム名に基づいて命名されるべきです。
         </span>
         <span><span class="src">
         Usually, all code in the namespace should be under one or
         more directories with the same name as the namespace.
-        </span>⭐Usually, all code in the namespace should be under one or
-        more directories with the same name as the namespace.
+        </span>
+            通常、その名前空間内のすべてのコードは、名前空間名と同じ名前をもつ1つ以上のディレクトリに格納されるようにします。
         </span>
     </p>
 
@@ -12945,10 +12938,8 @@ between words).
         especially <code>std</code> and <code>absl</code>, because in C++, nested
         namespaces do not protect from collisions with names in other namespaces
         (see <a href="https://abseil.io/tips/130">TotW #130</a>).
-        </span>⭐Nested namespaces should avoid the names of well-known top-level namespaces,
-        especially <code>std</code> and <code>absl</code>, because in C++, nested
-        namespaces do not protect from collisions with names in other namespaces
-        (see <a href="https://abseil.io/tips/130">TotW #130</a>).
+        </span>
+            ネストされる名前空間においては、よく知られているトップレベルの名前、特に<code>std</code>や<code>absl</code>などを避けるべきです。これは、C++における名前空間名が他の名前空間の名前との衝突から保護されないためです。(<a href="https://abseil.io/tips/130">TotW #130</a>を参照してください)
         </span>
     </p>
 
@@ -13022,11 +13013,9 @@ between words).
         <a href="#Type_Names">types</a>, and non-type template
         parameters should follow the rules for naming <a href="#Variable_Names">
             variables</a> or <a href="#Constant_Names">constants</a>.
-        </span>⭐Template parameters should follow the naming style for their
-        category: type template parameters should follow the rules for naming
-        <a href="#Type_Names">types</a>, and non-type template
-        parameters should follow the rules for naming <a href="#Variable_Names">
-            variables</a> or <a href="#Constant_Names">constants</a>.
+        </span>
+            テンプレートのパラメータは、それ自身のカテゴリの命名規則に従って命名します。
+            すなわち、型パラメータは<a href="#Type_Names">型の命名規則</a>に従い、非型パラメータはそれぞれ<a href="#Variable_Names">変数の命名規則</a>か<a href="#Constant_Names">定数の命名規則</a>に従います。
         </span>
     </p>
 
@@ -13071,9 +13060,8 @@ between words).
             The name for an <a href="#Aliases">alias</a> follows the same principles as
             any other new name, applied in the context where the alias is defined rather
             than where the original name appears.
-            </span>⭐The name for an <a href="#Aliases">alias</a> follows the same principles as
-            any other new name, applied in the context where the alias is defined rather
-            than where the original name appears.
+            </span>
+                <a href="#Aliases">エイリアス</a>の名前も、他の新しい名前と同様の原則に基づいて命名します。元の名前があった場所の文脈ではなく、新たにエイリアスを定義する場所の文脈に基づいて決定します。
             </span>
         </p>
 
@@ -16477,29 +16465,29 @@ std::vector&lt;char *&gt; x;
     <p>
         <span><span class="src">
             Use vertical whitespace sparingly; unnecessary blank lines make it harder to
-see overall code structure. Use blank lines only where they aid the reader in
+see overall code structure.
+        </span>
+            縦方向の空白は控えめに。不要な空行は、コード全体の構造の読み取りやすさを妨げます。
+        </span>
+        <span><span class="src">
+            Use blank lines only where they aid the reader in
 understanding the structure.
         </span>
-        ⭐Use vertical whitespace sparingly; unnecessary blank lines make it harder to
-see overall code structure. Use blank lines only where they aid the reader in
-understanding the structure.
-        </span>
-    </p>
+            コード読者にとって構造理解を助けになることを意図する場合のみ、空行を使用してください。
+        </span></p>
 
     <p>
         <span><span class="src">
             Do not add blank lines where indentation already provides clear delineation,
 such as at the start or end of a code block.
         </span>
-        ⭐Do not add blank lines where indentation already provides clear delineation,
-such as at the start or end of a code block.
+            コードブロックの先頭や末尾など、インデントによって明確に区切りが与えられている場所には空行を追加しないでください。
         </span>
         <span><span class="src">
             Do use blank lines to separate code
 into closely related chunks, analogous to paragraph breaks in prose.
         </span>
-        ⭐Do use blank lines to separate code
-into closely related chunks, analogous to paragraph breaks in prose.
+            コードの関連性の高い部分に空行を挟まないでください。空行は散文において段落を区切るときのように使用してください。
         </span>
         <span><span class="src">
             Within a
@@ -16507,10 +16495,7 @@ statement or declaration, usually only insert line breaks to stay within
 the <a href="#Line_Length">line length limit</a>, or to attach a comment to only
 part of the contents.
         </span>
-        ⭐Within a
-statement or declaration, usually only insert line breaks to stay within
-the <a href="#Line_Length">line length limit</a>, or to attach a comment to only
-part of the contents.
+            文や宣言の中における改行は、<a href="#Line_Length">行の長さ制限</a>に収まるようにするためであったり、あるいは内容の一部分にのみコメントを付けたい場合にのみ使用してください。
         </span>
     </p>
 
