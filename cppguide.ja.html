@@ -48,7 +48,7 @@
             });
         });
     </script>
-    <link rel="shortcut icon" href="https://www.google.com/favicon.ico" />
+    <link rel="shortcut icon" href="/styleguide/favicon.ico">
 
     <script async defer src="https://buttons.github.io/buttons.js"></script>
 </head>
@@ -62,7 +62,7 @@
         <ul>
             <li>本ドキュメントは<a href="https://github.com/google/styleguide/">https://github.com/google/styleguide/</a> にて公開されているGoogle C++ Style Guideを日本語に訳したものです。</li>
             <li>オリジナルの最新版は <a href="https://google.github.io/styleguide/cppguide.html">https://google.github.io/styleguide/cppguide.html</a>で読むことができます。</li>
-            <li>commit <a href="https://github.com/google/styleguide/blob/8c4da230fc15e01e0ba3545c8a6ff55bc3da4649/cppguide.html">8c4da23 (Sep 6, 2024 (JST))</a> 時点のものを底本としています。</li>
+            <li>commit <a href="https://github.com/google/styleguide/blob/c6f57a913e0e178b8ae51364509d1f684c6d4462/cppguide.html">c6f57a91 (2025-08-01 07:16:20 (JST))</a> 時点のものを底本としています。</li>
             <li>オリジナルと同様<a href="https://creativecommons.org/licenses/by/3.0/">CC-By 3.0 License</a>で頒布します。</li>
             <li>誤訳を含んでいる恐れがあります。訳文にマウスを重ねると原文が表示されますので、そちらもあわせて参照してください。</li>
             <li>訳者はGoogleと無関係です。</li>
@@ -105,7 +105,7 @@
             <span>
                 <span class="src">
                     These rules exist to
-                    keep the code base manageable while still allowing
+                    keep the codebase manageable while still allowing
                     coders to use C++ language features productively.
                 </span>
                 これらのルールに従えば、C++の生産的な言語機能を活かしつつ、コードベースを管理可能な状態に保つことができるでしょう。
@@ -236,10 +236,10 @@
                 </span>
                 <span>
                     <span class="src">
-                        This principle mostly explains the rules we don&#8217;t have, rather
+                        This principle mostly explains the rules we don't have, rather
                         than the rules we do: for example, <code>goto</code> contravenes many
                         of the following principles, but is already vanishingly rare, so the Style
-                        Guide doesn&#8217;t discuss it.
+                        Guide doesn't discuss it.
                     </span>
                     この原則は、むしろ、このスタイルガイドで取り扱わないルールについて説明していると言えます。
                     たとえば、このガイドでは<code>goto</code>の濫用に関するルールを取り扱っていません。<code>goto</code>の濫用はこのガイドの多くの原則に違反しますが、昨今では、わざわざ禁止せずとも、<code>goto</code>が濫用されること自体がほとんどなくなっているため、このルールを定めることにはあまり価値がありません。
@@ -363,7 +363,7 @@
                 <span>
                     <span class="src">
                         Consistency with the way other organizations use C++ has value for
-                        the same reasons as consistency within our code base.
+                        the same reasons as consistency within our codebase.
                     </span>
                     自分たちのコードベース内で一貫性を保つのと同じ理由で、C++を使う他の組織の手法との一貫性を保つことにも、やはり価値があります。
                 </span>
@@ -801,7 +801,7 @@
             </span>
         </p>
 
-        <pre>#ifndef FOO_BAR_BAZ_H_
+        <pre class="goodcode">#ifndef FOO_BAR_BAZ_H_
 #define FOO_BAR_BAZ_H_
 
 ...
@@ -886,7 +886,7 @@
             </span>
         </p>
         <div><div class="src">
-        <pre>// In a C++ source file:
+        <pre class="neutralcode">// In a C++ source file:
 class B;
 void FuncInB();
 extern int variable_in_b;
@@ -1000,7 +1000,7 @@ ABSL_DECLARE_FLAG(flag_in_b);
                     たとえば、次のコードの<code>#include</code>を単純に前方宣言に置き換えたとすると、コードの意味が変わってしまいます。
                 </span>
                 <div><div class="src">
-        <pre>// b.h:
+        <pre class="neutralcode">// b.h:
 struct B {};
 struct D : B {};
 
@@ -1063,137 +1063,194 @@ void test(D* x) { f(x); }  // f(B*)を呼び出す</pre></div>
             </li>
         </ul>
 
-        <h3 id="Inline_Functions">
-            <span data-src="Inline Functions">インライン関数</span>
+    <a id="Inline_Functions"></a>
+    <h3 id="Defining_Functions_in_Header_Files">
+            <span data-src="Defining Functions in Header Files">ヘッダーファイル内での関数定義</span>
         </h3>
-
         <p>
-            <span>
-                <span class="src">
-                    Define functions inline only when they are small, say, 10
-                    lines or fewer.
-                </span>
-                インライン関数は、関数定義が小さいとき(10行以下程度)に限ります。
-            </span>
+            <span><span class="src">
+            Include the definition of a function at its point of declaration in a header file only
+            when the definition is short.
+            </span>⭐Include the definition of a function at its point of declaration in a header file only
+            when the definition is short.</span>
+
+            <span><span class="src">
+            If the definition otherwise has a reason be in the header,
+            put it in an internal part of the file.
+            </span>⭐If the definition otherwise has a reason be in the header,
+            put it in an internal part of the file.</span>
+
+            <span><span class="src">
+            If necessary to make the definition ODR-safe, mark
+            it with an <code>inline</code> specifier.
+            </span>⭐If necessary to make the definition ODR-safe, mark
+            it with an <code>inline</code> specifier.</span>
         </p>
 
         <p class="definition"></p>
         <p>
-            <span>
-                <span class="src">
-                    You can declare functions in a way that allows the compiler to expand
-                    them inline rather than calling them through the usual
-                    function call mechanism.
-                </span>
-                関数は、通常の関数呼び出しのかわりに、コンパイラによって直接その場にインライン展開されることを許す形でも宣言することができます。
+            <span><span class="src">
+            Functions defined in header files are sometimes referred to as "inline functions",
+            which is a somewhat overloaded term that refers to several distinct but overlapping
+            situations:
+            </span>⭐Functions defined in header files are sometimes referred to as "inline functions",
+            which is a somewhat overloaded term that refers to several distinct but overlapping
+            situations:</span>
+        </p>
+
+<ol>
+  <li>
+      <span><span class="src">
+          A <em>textually inline</em> symbol's definition is exposed to the reader at
+          the point of declaration.
+      </span>⭐A <em>textually inline</em> symbol's definition is exposed to the reader at
+          the point of declaration.
+      </span>
+  </li>
+  <li>
+      <span><span class="src">
+          A function or variable defined in a header file is <em>expandable inline</em>
+  since its definition is available for
+  <a href="https://en.wikipedia.org/wiki/Inline_expansion">inline expansion</a>
+  by the compiler, which can lead to more efficient object code.
+  </span>⭐A function or variable defined in a header file is <em>expandable inline</em>
+  since its definition is available for
+  <a href="https://en.wikipedia.org/wiki/Inline_expansion">inline expansion</a>
+  by the compiler, which can lead to more efficient object code.
+      </span>
+  </li>
+  <li>
+      <span><span class="src">
+    <em>ODR-safe</em> entities do not violate the
+  <a href="https://en.cppreference.com/w/cpp/language/definition">"One Definition Rule"</a>,
+  which often requires the <a href="https://en.cppreference.com/w/cpp/language/inline">inline</a>
+  keyword for things defined in header files
+  .
+      </span>⭐<em>ODR-safe</em> entities do not violate the
+  <a href="https://en.cppreference.com/w/cpp/language/definition">"One Definition Rule"</a>,
+  which often requires the <a href="https://en.cppreference.com/w/cpp/language/inline">inline</a>
+  keyword for things defined in header files
+  .
+      </span>
+  </li>
+</ol>
+        <p>
+            <span><span class="src">
+               While functions tend to be a more common source of confusion, these definitions apply to
+variables as well, and so do the rules here.
+            </span>⭐While functions tend to be a more common source of confusion, these definitions apply to
+variables as well, and so do the rules here.
             </span>
         </p>
         <p class="pros"></p>
-        <p>
-            <span>
-                <span class="src">
-                    Inlining a function can generate more efficient object
-                    code, as long as the inlined function is small.
-                </span>
-                関数が十分に小さいとき、インライン化によって、より効率的なオブジェクトコードを生成できます。
-            </span>
-            <span>
-                <span class="src">
-                    Feel free
-                    to inline accessors and mutators, and other short,
-                    performance-critical functions.
-                </span>
-                たとえば、getter関数(原: accessors)、setter関数(原: mutators)、あるいは、その他の短く、かつパフォーマンスクリティカルな関数は自由にインライン化してかまいません。
-            </span>
-        </p>
+<ul>
+<li>
+    <span><span class="src">
+        Defining a function textually in-line reduces boilerplate code for simple functions
+like accessors and mutators.
+    </span>⭐Defining a function textually in-line reduces boilerplate code for simple functions
+like accessors and mutators.</span>
+</li>
+
+<li>
+    <span><span class="src"> As noted above, function definitions in header files <i>can</i> lead to
+more efficient object code for small functions due to inline expansion by the
+compiler.
+    </span>⭐As noted above, function definitions in header files <i>can</i> lead to
+more efficient object code for small functions due to inline expansion by the
+compiler.
+    </span>
+</li>
+<li>
+    <span><span class="src">
+            Function templates and <code>constexpr</code> functions generally need to
+be defined in the header file that declares them (but not necessarily the public part).
+</span>⭐Function templates and <code>constexpr</code> functions generally need to
+be defined in the header file that declares them (but not necessarily the public part).
+</span>
+</li>
+</ul>
         <p class="cons"></p>
-        <p>
-            <span>
-                <span class="src">
-                    Overuse of inlining can actually make programs slower.
-                </span>
-                インライン関数を濫用すると、逆にプログラムの動作が遅くなってしまうことがあります。
-            </span>
-            <span>
-                <span class="src">
-                    Depending on a function's size, inlining it can cause the
-                    code size to increase or decrease.
-                </span>
-                関数をインライン化すると、対象の関数のサイズによって、インライン化後のコードサイズが増減します。
-            </span>
-            <span>
-                <span class="src">
-                    Inlining a very small
-                    accessor function will usually decrease code size while
-                    inlining a very large function can dramatically increase code size.
-                </span>
-                非常に小さなgetter関数などをインライン化する分には、通常はコード全体のサイズが小さくなりますが、しかし、非常に大きな関数をインライン化してしまうと、コード全体のサイズが劇的に大きくなってしまうことがあります。
-            </span>
-            <span>
-                <span class="src">
-                    On modern processors smaller code usually runs
-                    faster due to better use of the instruction cache.
-                </span>
-                現代的なCPUにおいては、一般に、コードサイズが小さい方が、命令キャッシュを有効に使えるため、高速に動作します。
-            </span>
-        </p>
+
+<ul>
+<li>
+    <span><span class="src">Embedding a function definition in the public API makes the API harder to skim,
+and incurs cognitive overhead for readers of that API- the more complex the function
+the higher the cost.
+    </span>⭐Embedding a function definition in the public API makes the API harder to skim,
+and incurs cognitive overhead for readers of that API- the more complex the function
+the higher the cost.</span>
+</li>
+
+<li>
+    <span><span class="src">Public definitions expose implementation details that are at best harmless and
+often extraneous.
+    </span>⭐Public definitions expose implementation details that are at best harmless and
+often extraneous.</span>
+</li>
+</ul>
         <p class="decision"></p>
         <p>
-            <span>
-                <span class="src">
-                    A decent rule of thumb is to not inline a function if
-                    it is more than 10 lines long.
-                </span>
-                経験則として、関数が10行より長くなったらインライン化すべきではありません。
+            <span><span class="src">
+                Only define a function at its public declaration if it is short, say, 10 lines or fewer.
+            </span>⭐Only define a function at its public declaration if it is short, say, 10 lines or fewer.
             </span>
-            <span>
-                <span class="src">
-                    Beware of destructors,
-                    which are often longer than they appear because of
-                    implicit member- and base-destructor calls!
-                </span>
-                また、デストラクタには特に注意が必要です。デストラクタは、暗黙的にメンバのデストラクタと基底クラスのデストラクタを呼び出すため、その見た目に比べて長い実体を持つことがあります。
+            <span><span class="src">
+                 Put
+longer function bodies in the <code>.cc</code> file unless they must be in the header for
+performance or technical reasons.
+            </span>⭐Put
+longer function bodies in the <code>.cc</code> file unless they must be in the header for
+performance or technical reasons.
             </span>
         </p>
 
         <p>
-            <span>
-                <span class="src">
-                    Another useful rule of thumb: it's typically not cost
-                    effective to inline functions with loops or switch
-                    statements (unless, in the common case, the loop or
-                    switch statement is never executed).
-                </span>
-                もうひとつの経験則として、ループやswitch文を含む関数は、(それらの文がまったく実行されないような場合を除いて)大抵の場合、インライン化しても効率的になりません。
+            <span><span class="src">
+               Even if a definition must be in the header, this is not a sufficient reason to put it within
+the public part.
+            </span>⭐Even if a definition must be in the header, this is not a sufficient reason to put it within
+the public part.
+            </span>
+            <span><span class="src">
+                Instead, the definition can be in an internal part of the header, such as the
+<a href="#Access_Control">private</a> section of a class, within a namespace that includes the word
+<code>internal</code>, or below a comment like <code>// Implementation details only
+below here</code>.
+            </span>⭐Instead, the definition can be in an internal part of the header, such as the
+<a href="#Access_Control">private</a> section of a class, within a namespace that includes the word
+<code>internal</code>, or below a comment like <code>// Implementation details only
+below here</code>.
             </span>
         </p>
-
         <p>
-            <span>
-                <span class="src">
-                    It is important to know that functions are not always
-                    inlined even if they are declared as such; for example,
-                    virtual and recursive functions are not normally inlined.
-                </span>
-                なお、注意点として、関数をインラインに宣言したとしても、あくまでインライン化を許すだけであって、必ずインライン化されるわけではありません。たとえば、仮想関数や再帰関数は通常はインライン化されません。
-            </span>
-            <span>
-                <span class="src">
-                    Usually recursive functions should not be inline.
-                </span>
-                通常、再帰関数はインラインにすべきではありません。
-            </span>
-            <span>
-                <span class="src">
-                    The
-                    main reason for making a virtual function inline is to
-                    place its definition in the class, either for convenience
-                    or to document its behavior, e.g., for accessors and
-                    mutators.
-                </span>
-                仮想関数をクラス内にインライン定義する主な理由は、利便性や、あるいは、(たとえば、getterやsetterなどの場合に)その挙動に関するドキュメントとしての役割を持たせられることにあります。
+            <span><span class="src">
+                Once a definition is in a header file, it must be ODR-safe by having the <code>inline</code>
+specifier or being implicitly specified inline by being a function template or defined in a class
+body when first declared.
+            </span>⭐Once a definition is in a header file, it must be ODR-safe by having the <code>inline</code>
+specifier or being implicitly specified inline by being a function template or defined in a class
+body when first declared.
             </span>
         </p>
+<pre class="goodcode">template &lt;typename T&gt;
+class Foo {
+ public:
+  int bar() { return bar_; }
+
+  void MethodWithHugeBody();
+
+ private:
+  int bar_;
+};
+
+// Implementation details only below here
+
+template &lt;typename T&gt;
+void Foo&lt;T&gt;::MethodWithHugeBody() {
+  ...
+}
+</pre>
         <h3 id="Names_and_Order_of_Includes">
             <span data-src="Names and Order of Includes"><code>#include</code>の名前と順序</span>
         </h3>
@@ -1231,7 +1288,7 @@ void test(D* x) { f(x); }  // f(B*)を呼び出す</pre></div>
             </span>
         </p>
 
-        <pre>#include "base/logging.h"
+        <pre class="goodcode">#include "base/logging.h"
 </pre>
 
         <p>
@@ -1251,7 +1308,7 @@ void test(D* x) { f(x); }  // f(B*)を呼び出す</pre></div>
         <ul>
             <li><span>
                     <span class="src">
-                        C and C++ standard library headers (e.g. <code>&lt;stdlib.h&gt;</code>
+                        C and C++ standard library headers (e.g., <code>&lt;stdlib.h&gt;</code>
                         and <code>&lt;string&gt;</code>).
                     </span>
                     C言語標準ライブラリ および C++標準ライブラリのヘッダー(例えば <code>&lt;stdlib.h&gt;</code>や<code>&lt;string&gt;</code>など)。
@@ -1259,14 +1316,14 @@ void test(D* x) { f(x); }  // f(B*)を呼び出す</pre></div>
             </li>
             <li><span>
                 <span class="src">
-                    POSIX, Linux, and Windows system headers (e.g. <code>&lt;unistd.h&gt;</code>
+                    POSIX, Linux, and Windows system headers (e.g., <code>&lt;unistd.h&gt;</code>
                     and <code>&lt;windows.h&gt;</code>).
                 </span>
                 POSIX, Linux, Windows 等のシステムヘッダー (例えば <code>&lt;unistd.h&gt;</code>や<code>&lt;windows.h&gt;</code>など)。
             </span></li>
             <li><span>
                 <span class="src">
-                    In rare cases, third_party libraries (e.g. <code>&lt;Python.h&gt;</code>).
+                    In rare cases, third_party libraries (e.g., <code>&lt;Python.h&gt;</code>).
                 </span>
                 まれですが、サードパーティライブラリのヘッダー(例えば <code>&lt;Python.h&gt;</code>など)。
             </span></li>
@@ -1458,7 +1515,7 @@ void test(D* x) { f(x); }  // f(B*)を呼び出す</pre></div>
             </span>
         </p>
 
-        <pre>#include "foo/server/fooserver.h"
+        <pre class="goodcode">#include "foo/server/fooserver.h"
 
 #include &lt;sys/types.h&gt;
 #include &lt;unistd.h&gt;
@@ -1500,13 +1557,11 @@ void test(D* x) { f(x); }  // f(B*)を呼び出す</pre></div>
             </span>
         </p>
 
-        <pre>#include "foo/public/fooserver.h"
+        <pre class="goodcode">#include "foo/public/fooserver.h"
 
-#include "base/port.h"  // For LANG_CXX11.
-
-#ifdef LANG_CXX11
-#include &lt;initializer_list&gt;
-#endif  // LANG_CXX11
+#ifdef _WIN32
+#include &lt;windows.h&gt;
+#endif  // _WIN32
 </pre>
 
         <h2 id="Scoping">
@@ -1720,7 +1775,7 @@ inline namespace inner {
                 </span>
                 <div>
                     <div class="src">
-                        <pre>// In the .h file
+                        <pre class="goodcode">// In the .h file
 namespace mynamespace {
 
 // All declarations are within the namespace scope.
@@ -1734,7 +1789,7 @@ class MyClass {
 }  // namespace mynamespace
 </pre>
                     </div>
-                    <pre>// .h ファイル
+                    <pre class="goodcode">// .h ファイル
 namespace mynamespace {
 
 // すべての宣言は名前空間のスコープに含めます。
@@ -1750,7 +1805,7 @@ class MyClass {
 </div>
 <div>
                     <div class="src">
-                        <pre>// In the .cc file
+                        <pre class="goodcode">// In the .cc file
 namespace mynamespace {
 
 // Definition of functions is within scope of the namespace.
@@ -1761,7 +1816,7 @@ void MyClass::Foo() {
 }  // namespace mynamespace
 </pre>
                     </div>
-                    <pre>// .ccファイル
+                    <pre class="goodcode">// .ccファイル
 namespace mynamespace {
 
 // 関数の定義は名前空間に含めます。
@@ -1781,7 +1836,7 @@ void MyClass::Foo() {
                 </span>
                 <div>
                     <div class="src">
-                        <pre>#include "a.h"
+                        <pre class="goodcode">#include "a.h"
 
 ABSL_FLAG(bool, someflag, false, "a flag");
 
@@ -1822,11 +1877,11 @@ using ::foo::bar;
                 <span>
                     <span class="src">
                         See
-                        <a href="https://developers.google.com/protocol-buffers/docs/reference/cpp-generated#package">
+                        <a href="https://protobuf.dev/reference/cpp/cpp-generated/#package">
                             Protocol Buffer Packages</a>
                         for details.
                     </span>
-                    詳細は <a href="https://developers.google.com/protocol-buffers/docs/reference/cpp-generated#package">Protocol Buffer Packages</a> を参照してください。
+                    詳細は   <a href="https://protobuf.dev/reference/cpp/cpp-generated/#package">Protocol Buffer Packages</a> を参照してください。
                 </span>
             </li>
 
@@ -1885,56 +1940,62 @@ using namespace foo;
                             Do not use <i>Namespace aliases</i> at namespace scope
                             in header files except in explicitly marked
                             internal-only namespaces, because anything imported into a namespace
-                            in a header file becomes part of the public
-                            API exported by that file.
+                            in a header file becomes part of the public API exported by that file.
                         </span>
                         内部用であることを明示した名前空間の中を除き、<i>名前空間のエイリアス(Namespace aliase)</i>をヘッダーファイルの名前空間スコープで宣言してはいけません。このようなヘッダーファイルで名前空間にインポートされたすべてのものは、そのヘッダーファイルが提供するAPIの一部として公開したことになります。
+                    </span>
+                    <span>
+                        <span class="src">
+                            Namespace aliases can be used when those conditions don't apply, but
+  they must have <a href="#Naming_Aliases">appropriate names</a>.
+                        </span>
+                        ⭐Namespace aliases can be used when those conditions don't apply, but
+  they must have <a href="#Naming_Aliases">appropriate names</a>.
                     </span>
                 </p>
 
                 <div>
                     <div class="src">
-                        <pre>// Shorten access to some commonly used names in .cc files.
-namespace baz = ::foo::bar::baz;
-</pre>
-                    </div>
-                    <pre>// .ccファイル内
-// たくさん使われる名前へのショートカットを作る。
-namespace baz = ::foo::bar::baz;
-</pre>
-                </div>
-                <div>
-                    <div class="src">
-                        <pre>// Shorten access to some commonly used names (in a .h file).
+                        <pre class="goodcode">// In a .h file, an alias must not be a separate API, or must be hidden in an
+// implementation detail.
 namespace librarian {
 namespace internal {  // Internal, not part of the API.
 namespace sidetable = ::pipeline_diagnostics::sidetable;
 }  // namespace internal
 
 inline void my_inline_function() {
-  // namespace alias local to a function (or method).
+  // Local to a function.
   namespace baz = ::foo::bar::baz;
   ...
 }
 }  // namespace librarian
 </pre>
                     </div>
-                    <pre>// .hファイル内
-// よく使われる名前へのショートカットを作る。
+                    <pre class="goodcode">// .hファイル内では、エイリアスは独立したAPIとして定義してはならず、もしくは実装の詳細に隠されていなければなりません。
 namespace librarian {
 namespace internal {  // 内部用。APIではありません。
 namespace sidetable = ::pipeline_diagnostics::sidetable;
 }  // namespace internal
 
 inline void my_inline_function() {
-  // 関数内に限定された名前空間の別名。
+  // 関数内に限定
   namespace baz = ::foo::bar::baz;
   ...
 }
 }  // namespace librarian
 </pre>
-                </div>
 
+                </div>
+<div>
+    <div class="src">
+        <pre class="goodcode">// Remove uninteresting parts of some commonly used names in .cc files.
+namespace sidetable = ::pipeline_diagnostics::sidetable;
+</pre>
+    </div>
+    <pre class="goodcode">// .ccファイル内では、名前空間のうち、興味の対象外である共通部分を取り除いてかまいません。
+namespace sidetable = ::pipeline_diagnostics::sidetable;
+</pre>
+</div>
             </li>
             <li>
                 <span><span class="src">Do not use inline namespaces.</span>
@@ -1951,6 +2012,27 @@ using ::absl::container_internal::ImplementationDetail;
 </pre></div><pre class="badcode">// absl外のコードでは、abslのinternalな名前を使用すべきではありません。
 using ::absl::container_internal::ImplementationDetail;
 </pre></div>
+                <p>
+                    <span><span class="src">
+                        Note that there is still a risk of collision between libraries within a
+                        nested <code>internal</code> namespace, so give each library within a
+                        namespace a unique internal namespace by adding the library's
+                        filename.
+                    </span>⭐Note that there is still a risk of collision between libraries within a
+                    nested <code>internal</code> namespace, so give each library within a
+                    namespace a unique internal namespace by adding the library's
+                    filename.</span>
+
+                    <span><span class="src">
+                        For example, <code>gshoe/widget.h</code> would use
+                        <code>gshoe::internal_widget</code> as opposed to just
+                        <code>gshoe::internal</code>.
+                    </span>⭐For example, <code>gshoe/widget.h</code> would use
+                    <code>gshoe::internal_widget</code> as opposed to just
+                    <code>gshoe::internal</code>.
+                    </span>
+                </p>
+
             </li>
 
             <li><p><span><span class="src">Single-line nested namespace declarations
@@ -2045,7 +2127,7 @@ using ::absl::container_internal::ImplementationDetail;
             </span>
         </p>
 
-        <pre>namespace {
+        <pre class="goodcode">namespace {
 ...
 }  // namespace
 </pre>
@@ -2207,18 +2289,18 @@ i = f();      // 悪い例。初期化が宣言と分かれています。
         </div>
         <div>
             <div class="src">
-                <pre>int i = f();  // Good -- declaration has initialization.
+                <pre class="goodcode">int i = f();  // Good -- declaration has initialization.
 </pre>
             </div>
-            <pre>int i = f();  // 良い例。宣言と同時に初期化が行われています。
+            <pre class="goodcode">int i = f();  // 良い例。宣言と同時に初期化が行われています。
 </pre>
         </div>
         <div>
             <div class="src">
-                <pre>int jobs = NumJobs();
+                <pre class="goodcode">int jobs = NumJobs();
 f(jobs);      // Good -- declaration immediately (or closely) followed by use.
 </pre></div>
-            <pre>int jobs = NumJobs();
+            <pre class="goodcode">int jobs = NumJobs();
 f(jobs);      // 良い例。使用する直前に(あるいはすぐ近くで)宣言されています。
 </pre></div>
         <div>
@@ -2235,10 +2317,10 @@ v.push_back(2);
         </div>
         <div>
             <div class="src">
-                <pre>std::vector&lt;int&gt; v = {1, 2};  // Good -- v starts initialized.
+                <pre class="goodcode">std::vector&lt;int&gt; v = {1, 2};  // Good -- v starts initialized.
 </pre>
             </div>
-            <pre>std::vector&lt;int&gt; v = {1, 2};  // 良い例。宣言と同時に初期化されています。
+            <pre class="goodcode">std::vector&lt;int&gt; v = {1, 2};  // 良い例。宣言と同時に初期化されています。
 </pre>
         </div>
 
@@ -2248,14 +2330,14 @@ v.push_back(2);
                     Variables needed for <code>if</code>, <code>while</code>
                     and <code>for</code> statements should normally be declared
                     within those statements, so that such variables are confined
-                    to those scopes. E.g.,:
+                   to those scopes. For example:
                 </span>
 
                 <code>if</code>文や<code>while</code>文、<code>for</code>文で使用される変数は、通常はそれらの文中で宣言します。そうすることで、変数のスコープを制限できます。
                 以下に例を示します。
             </span>
         </p>
-        <pre>while (const char* p = strchr(str, '/')) str = p + 1;
+        <pre class="goodcode">while (const char* p = strchr(str, '/')) str = p + 1;
 </pre>
         <p>
             <span>
@@ -2296,13 +2378,13 @@ for (int i = 0; i &lt; 1000000; ++i) {
         </p>
         <div>
             <div class="src">
-                <pre>Foo f;  // My ctor and dtor get called once each.
+                <pre class="goodcode">Foo f;  // My ctor and dtor get called once each.
 for (int i = 0; i &lt; 1000000; ++i) {
   f.DoSomething(i);
 }
 </pre>
             </div>
-            <pre>Foo f;  // コンストラクタとデストラクタが1回だけ呼ばれます。
+            <pre class="goodcode">Foo f;  // コンストラクタとデストラクタが1回だけ呼ばれます。
 for (int i = 0; i &lt; 1000000; ++i) {
   f.DoSomething(i);
 }
@@ -2528,7 +2610,7 @@ for (int i = 0; i &lt; 1000000; ++i) {
         </p>
 <div>
             <div class="src">
-                <pre>const int kNum = 10;  // Allowed
+                <pre class="goodcode">const int kNum = 10;  // Allowed
 
 struct X { int n; };
 const X kX[] = {{1}, {2}, {3}};  // Allowed
@@ -2540,7 +2622,7 @@ void foo() {
 // Allowed: constexpr guarantees trivial destructor.
 constexpr std::array&lt;int, 3&gt; kArray = {1, 2, 3};</pre>
             </div>
-            <pre>const int kNum = 10;  // OK
+            <pre class="goodcode">const int kNum = 10;  // OK
 
 struct X { int n; };
 const X kX[] = {{1}, {2}, {3}};  // OK
@@ -2760,10 +2842,10 @@ Bar b;                     // 選択されるコンストラクタ Bar::Bar() �
         </p>
 <div>
 <div class="src">
-        <pre>int p = getpid();  // Allowed, as long as no other static variable
+        <pre class="goodcode">int p = getpid();  // Allowed, as long as no other static variable
                    // uses p in its own initialization.</pre>
             </div>
-       <pre>int p = getpid();  // OK。ただし、他の静的変数の初期化において
+       <pre class="goodcode">int p = getpid();  // OK。ただし、他の静的変数の初期化において
                    // pを使用していないときに限る。</pre>
 </div>
         <p>
@@ -2795,9 +2877,9 @@ Bar b;                     // 選択されるコンストラクタ Bar::Bar() �
                 </span>
                 <span>
                     <span class="src">
-                        See <a href="https://abseil.io/tips/140">TotW #140.</a>
+                        See <a href="https://abseil.io/tips/140">TotW #140</a>.
                     </span>
-                    <a href="https://abseil.io/tips/140">TotW #140.</a>を参照してください。
+                    <a href="https://abseil.io/tips/140">TotW #140</a>を参照してください。
                 </span>
             </li>
             <li>
@@ -2926,7 +3008,7 @@ Bar b;                     // 選択されるコンストラクタ Bar::Bar() �
                 変数は、次のように、<code>thread_local</code>指定子をつけて宣言することができます。
             </span>
         </p>
-        <pre>thread_local Foo foo = ...;
+        <pre class="neutralcode">thread_local Foo foo = ...;
 </pre>
         <p>
             <span>
@@ -3142,7 +3224,7 @@ Bar b;                     // 選択されるコンストラクタ Bar::Bar() �
                 <code>constinit</code></a>でマークされていなければなりません (もしくは<code>constexpr</code>でマークしてもかまいませんが、こちらを<code>thread_local</code>で使うのはレアケースでしょう)。
             </span>
          </p>
-  <pre>   constinit thread_local Foo foo = ...;
+  <pre class="goodcode">   constinit thread_local Foo foo = ...;
   </pre>
          <p>
             <span>
@@ -3164,7 +3246,7 @@ Bar b;                     // 選択されるコンストラクタ Bar::Bar() �
             </span>
         </p>
 
-        <pre>Foo&amp; MyThreadLocalFoo() {
+        <pre class="goodcode">Foo&amp; MyThreadLocalFoo() {
     thread_local Foo result = ComplicatedInitialization();
     return result;
 }</pre>
@@ -3356,7 +3438,8 @@ Bar b;                     // 選択されるコンストラクタ Bar::Bar() �
                 <span class="src">
                     Otherwise, consider a factory function
                     or <code>Init()</code> method as described in
-                    <a href="https://abseil.io/tips/42">TotW #42</a>.
+                    <a href="https://abseil.io/tips/42">TotW #42</a>
+                    .
                 </span>
                 さもなくば、<a href="https://abseil.io/tips/42">TotW #42</a>で説明されているような、ファクトリ関数や<code>Init()</code>メソッドの導入を検討しましょう。
             </span>
@@ -3454,7 +3537,7 @@ Bar b;                     // 選択されるコンストラクタ Bar::Bar() �
                 これは、暗黙的型変換を防ぐだけではなく、以下に示すようなリスト初期化構文にも適用されます。
             </span>
         </p>
-        <pre>class Foo {
+        <pre class="neutralcode">class Foo {
   explicit Foo(int x, double y);
   ...
 };
@@ -3934,7 +4017,7 @@ void Func(Foo f);
         </p>
 <div>
 <div class="src">
-        <pre>class Copyable {
+        <pre class="goodcode">class Copyable {
  public:
   Copyable(const Copyable&amp; other) = default;
   Copyable&amp; operator=(const Copyable&amp; other) = default;
@@ -3969,7 +4052,7 @@ class NotCopyableOrMovable {
 };
 </pre>
             </div>
-       <pre>class Copyable {
+       <pre class="goodcode">class Copyable {
  public:
   Copyable(const Copyable&amp; other) = default;
   Copyable&amp; operator=(const Copyable&amp; other) = default;
@@ -4625,7 +4708,7 @@ class NotCopyableOrMovable {
                     <span class="src">
                         Finding the call sites for overloaded operators may
                         require a search tool that's aware of C++ syntax, rather
-                        than e.g., grep.
+                        than, e.g., grep.
                     </span>
                     オーバーロードされた演算子の呼び出し元を検索するためには、もはやgrepなどでは用をなさず、C++の文法を理解するツールを使用することが必要となります。
                 </span>
@@ -5131,12 +5214,10 @@ class NotCopyableOrMovable {
         </span>
         <span>
             <span class="src">
-                See <a href="#Inline_Functions">
-                    Inline
-                    Functions
-                </a> for more details.
+                See <a href="#Defining_Functions_in_Header_Files">Defining
+Functions in Header Files</a>  for more details.
             </span>
-            より詳細は<a href="#Inline_Functions">インライン関数</a>で述べます。
+            より詳細は<a href="#Defining_Functions_in_Header_Files">ヘッダーファイル内での関数定義インライン関数</a>で述べます。
         </span>
     </p>
 
@@ -5164,12 +5245,18 @@ class NotCopyableOrMovable {
     <p>
         <span>
             <span class="src">
-                Prefer using return values over output parameters: they
-                improve readability, and often provide the same or better
-                performance.
+                Prefer using return values over output parameters:
+                they improve readability, and often provide the same or better performance.
             </span>
             出力用引数よりは素直な戻り値を用いる方が望ましいです。
             可読性が向上し、パフォーマンスも同等以上に得られます。
+        </span>
+        <span>
+            <span class="src">
+                See
+<a href="https://abseil.io/tips/176">TotW #176</a>.
+            </span>
+            <a href="https://abseil.io/tips/176">TotW #176</a>を参照してください。
         </span>
     </p>
 
@@ -5243,6 +5330,12 @@ class NotCopyableOrMovable {
                 pointer and document the lifetime and non-null requirements.
             </span>
 	            かわりに、引数の寿命に関する要件を排除する方法をとる(例えば内部で引数をコピーしておく等)か、もしくは、その引数をポインタ渡しとして、寿命と非null性に関する要件をドキュメントに残すようにしてください。
+        </span>
+        <span>
+            <span class="src">
+                See <a href="https://abseil.io/tips/116">TotW 116</a> for more.
+            </span>
+            より詳しくは、<a href="https://abseil.io/tips/116">TotW #116</a>を参照してください。
         </span>
     </p>
 
@@ -5416,7 +5509,7 @@ class NotCopyableOrMovable {
         </span>
     </p>
 
-    <pre>class MyClass {
+    <pre class="neutralcode">class MyClass {
  public:
   void Analyze(const std::string &amp;text);
   void Analyze(const char *text, size_t textlen);
@@ -5444,12 +5537,16 @@ class NotCopyableOrMovable {
     <p>
         <span>
             <span class="src">
-                Overloading based on <code>const</code> or ref qualification may make utility
-                code more usable, more efficient, or both.
-                (See <a href="http://abseil.io/tips/148">TotW 148</a> for more.)
+                Overloading based on <code>const</code> or ref qualification
+                may make utility code more usable, more efficient, or both.
             </span>
             メンバ関数における<code>const</code>修飾子や参照修飾子によるオーバーロードは、ユーティリティコードをより有用なものにしたり、効率的にしたり、またその両方の恩恵をもたらしたりします。
-            (詳しくは <a href="http://abseil.io/tips/148">TotW 148</a> を見てください)
+        </span>
+        <span>
+            <span class="src">
+                See <a href="http://abseil.io/tips/148">TotW #148</a> for more.
+            </span>
+            より詳しくは <a href="http://abseil.io/tips/148">TotW #148</a> を参照してください。
         </span>
 
     </p>
@@ -5497,13 +5594,29 @@ class NotCopyableOrMovable {
             </span>
             しかし、それを呼び出す側のコードの読者は、当該オーバーロードのセットのうちの<b>いずれか</b>が呼ばれていることまでわかればよく、具体的にどれが選ばれるのかを知る必要はありません。
         </span>
+    </p>
+    <p>
         <span>
             <span class="src">
-                If you can document all entries in the
-                overload set with a single comment in the header, that is a good sign
-                that it is a well-designed overload set.
+               To reflect this unified design, prefer a single, comprehensive "umbrella"
+comment that documents the entire overload set and is placed before the first
+declaration.
             </span>
-            あるオーバーロードのセットについてヘッダーファイルでコメントを書くとき、すべてのオーバーロードについてまとめて1つのコメントで賄えたとしたら、そのことは、その関数オーバーロードのセットをうまくデザインできている証です。
+            ⭐
+To reflect this unified design, prefer a single, comprehensive "umbrella"
+comment that documents the entire overload set and is placed before the first
+declaration.
+        </span>
+
+    </p>
+    <p>
+        <span>
+            <span class="src">
+                Where a reader might have difficulty connecting the umbrella
+comment to a specific overload, it's okay to have a comment for specific overloads.
+            </span>
+            ⭐Where a reader might have difficulty connecting the umbrella
+comment to a specific overload, it's okay to have a comment for specific overloads.
         </span>
     </p>
 
@@ -5690,7 +5803,7 @@ class NotCopyableOrMovable {
             従来からある構文では、次のように、戻り値の型を関数名の前に記述します。
         </span>
     </p>
-    <pre>int foo(int x);
+    <pre class="neutralcode">int foo(int x);
 </pre>
     <p>
         <span>
@@ -5709,7 +5822,7 @@ class NotCopyableOrMovable {
             例として、先ほどの宣言と等価な宣言は次のように書けます。
         </span>
     </p>
-    <pre>auto foo(int x) -&gt; int;
+    <pre class="neutralcode">auto foo(int x) -&gt; int;
 </pre>
     <p>
         <span>
@@ -5776,7 +5889,7 @@ class NotCopyableOrMovable {
         </span>
     </p>
     <div>
-        <pre>    template &lt;typename T, typename U&gt;
+        <pre class="neutralcode">    template &lt;typename T, typename U&gt;
     auto add(T t, U u) -&gt; decltype(t + u);
 </pre>
         <span>
@@ -5785,7 +5898,7 @@ class NotCopyableOrMovable {
             </span>
             これに比べて、次のコードはどうでしょうか。
         </span>
-        <pre>    template &lt;typename T, typename U&gt;
+        <pre class="neutralcode">    template &lt;typename T, typename U&gt;
     decltype(declval&lt;T&amp;&gt;() + declval&lt;U&amp;&gt;()) add(T t, U u);
 </pre>
     </div>
@@ -5803,7 +5916,7 @@ class NotCopyableOrMovable {
     <p>
         <span>
             <span class="src">
-                Existing code bases have an enormous number of function
+                Existing codebases have an enormous number of function
                 declarations that aren't going to get changed to use the new syntax,
                 so the realistic choices are using the old syntax only or using a mixture
                 of the two.
@@ -6184,7 +6297,7 @@ class NotCopyableOrMovable {
         </span>
     </p>
 
-    <pre>std::unique_ptr&lt;Foo&gt; FooFactory();
+    <pre class="goodcode">std::unique_ptr&lt;Foo&gt; FooFactory();
 void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
 </pre>
 
@@ -6287,11 +6400,11 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
             <span class="src">
                 If the project you are contributing to does not,
                 you can download
-                <a href="https://raw.githubusercontent.com/google/styleguide/gh-pages/cpplint/cpplint.py">
+                <a href="https://raw.githubusercontent.com/cpplint/cpplint/HEAD/cpplint.py">
                     <code>cpplint.py</code>
                 </a> separately.
             </span>
-            それ以外の場合、<a href="https://raw.githubusercontent.com/google/styleguide/gh-pages/cpplint/cpplint.py"><code>cpplint.py</code></a>から個別にダウンロードすることができます。
+            それ以外の場合、<a href="https://raw.githubusercontent.com/cpplint/cpplint/HEAD/cpplint.py"><code>cpplint.py</code></a>から個別にダウンロードすることができます。
         </span>
     </p>
 
@@ -6414,7 +6527,7 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
             <span>
                 <span class="src">
                     <a href="#Forwarding_references">Forwarding references</a> which
-                    use the rvalue reference token, make it possible to write a
+                    use the rvalue reference token make it possible to write a
                     generic function wrapper that forwards its arguments to
                     another function, and works whether or not its
                     arguments are temporary objects and/or const.
@@ -6588,7 +6701,7 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
         <span>
             <span class="src">
                 In some cases it may be useful to
-                make a unittest class a friend of the class it tests.
+                make a unit test class a friend of the class it tests.
             </span>
             他にも、たとえば、クラスのユニットテストを担うクラスをフレンド指定しておくと便利なこともあります。
         </span>
@@ -7123,7 +7236,7 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
                 Note in many cases the only
                 possible cause for an exception is allocation failure (we
                 believe move constructors should not throw except due to
-                allocation failure), and there are many applications where it’s
+                allocation failure), and there are many applications where it's
                 appropriate to treat memory exhaustion as a fatal error rather
                 than an exceptional condition that your program should attempt
                 to recover from.
@@ -7138,7 +7251,7 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
                 over supporting all possible exception throwing scenarios:
                 instead of writing a complicated <code>noexcept</code> clause
                 that depends on whether a hash function can throw, for example,
-                simply document that your component doesn’t support hash
+                simply document that your component doesn't support hash
                 functions throwing and make it unconditionally
                 <code>noexcept</code>.
             </span>
@@ -7236,7 +7349,7 @@ void FooConsumer(std::unique_ptr&lt;Foo&gt; ptr);
         </span>
     </p>
 
-    <pre>bool Base::Equal(Base* other) = 0;
+    <pre class="neutralcode">bool Base::Equal(Base* other) = 0;
 bool Derived::Equal(Base* other) {
   Derived* that = dynamic_cast&lt;Derived*&gt;(other);
   if (that == nullptr)
@@ -7293,7 +7406,7 @@ bool Derived::Equal(Base* other) {
         <span>
             <span class="src">
                 You may use it freely in
-                unittests, but avoid it when possible in other code.
+                unit tests, but avoid it when possible in other code.
             </span>
             ユニットテストにおいては、自由にRTTIを使ってもかまいません。それ以外のコードにおいては可能な限り避けてください。
         </span>
@@ -7555,7 +7668,18 @@ bool Derived::Equal(Base* other) {
                 また構文も簡潔です。
             </span>
         </li>
-
+        <li>
+            <span>
+                <span class="src">
+                    When explicitly converting to a class type, use a function-style cast;
+  e.g., prefer <code>std::string(some_cord)</code> to
+  <code>static_cast&lt;std::string&gt;(some_cord)</code>.
+                </span>
+                ⭐When explicitly converting to a class type, use a function-style cast;
+  e.g., prefer <code>std::string(some_cord)</code> to
+  <code>static_cast&lt;std::string&gt;(some_cord)</code>.
+            </span>
+        </li>
         <li>
             <span>
                 <span class="src">
@@ -7822,7 +7946,7 @@ Also, consider dereferencing the pointer (without a cast) and
             <span>
                 <span class="src">
                     When used pervasively in a
-                    large code base, it can consume as much as 20% of the parsing
+                    large codebase, it can consume as much as 20% of the parsing
                     and semantic analysis time.
                 </span>
                 演算子のオーバーロードが、大きなコードベースで、あまねく使われたとき、これらの工程は、構文解析と意味解析の時間のうちの20%相当をも消費することがあります。
@@ -8025,7 +8149,7 @@ Also, consider dereferencing the pointer (without a cast) and
         <span>
             <span class="src">
                 <code>constexpr</code> is a better choice for some uses of
-                const.
+                <code>const</code>.
             </span>
             さらに、<code>const</code>よりも<code>constexpr</code>を用いる方が適切な場合もあります。
         </span>
@@ -8165,8 +8289,7 @@ Also, consider dereferencing the pointer (without a cast) and
             </span>
             <span>
                 <span class="src">
-                    See
-                    <a href="https://abseil.io/tips/109">TotW #109</a>.
+                    See <a href="https://abseil.io/tips/109">TotW #109</a>.
                 </span>
                 <a href="https://abseil.io/tips/109">TotW #109</a>を参照してください。
             </span>
@@ -8410,10 +8533,10 @@ initialization for non-constant variables.
                 If a program needs an integer type of a
                 different size, use
                 an exact-width integer type from
-                <code>&lt;cstdint&gt;</code>, such as
+                <code>&lt;stdint.h&gt;</code>, such as
                 <code>int16_t</code>.
             </span>
-            プログラムで異なるサイズの整数型を必要とするときは、<code>&lt;cstdint&gt;</code>から、<code>int16_t</code>のような、サイズが厳密に定められている整数型を使ってください。
+            プログラムで異なるサイズの整数型を必要とするときは、<code>&lt;stdint.h&gt;</code>から、<code>int16_t</code>のような、サイズが厳密に定められている整数型を使ってください。
         </span>
         <span>
             <span class="src">
@@ -8484,17 +8607,17 @@ initialization for non-constant variables.
     <p>
         <span>
             <span class="src">
-                The standard library header <code>&lt;cstdint&gt;</code> defines types
+                The standard library header <code>&lt;stdint.h&gt;</code> defines types
                 like <code>int16_t</code>, <code>uint32_t</code>,
                 <code>int64_t</code>, etc.
             </span>
-            標準ライブラリヘッダーの<code>&lt;cstdint&gt;</code>によって、<code>int16_t</code>や<code>uint32_t</code>、<code>int64_t</code>などの型が定義されています。
+            標準ライブラリヘッダーの<code>&lt;stdint.h&gt;</code>によって、<code>int16_t</code>や<code>uint32_t</code>、<code>int64_t</code>などの型が定義されています。
         </span>
         <span>
             <span class="src">
                 You should always use
                 those in preference to <code>short</code>, <code>unsigned
-                long long</code> and the like, when you need a guarantee
+                long long</code>, and the like, when you need a guarantee
                 on the size of an integer.
             </span>
             整数型のサイズを保証する必要があるときは、<code>short</code>や<code>unsigned long long</code>などの組み込み型ではなく、常にサイズの明示された型を使ってください。
@@ -8795,7 +8918,7 @@ single processor.
             64ビット定数を作るときは、<a href="#Casting">波括弧初期化</a>を使ってください。例を示します。
         </span>
       </p>
-      <pre>int64_t my_value{0x123456789};
+      <pre class="goodcode">int64_t my_value{0x123456789};
 uint64_t my_mask{uint64_t{3} &lt;&lt; 48};
 </pre>
   </li>
@@ -9166,7 +9289,7 @@ uint64_t my_mask{uint64_t{3} &lt;&lt; 48};
             たとえば、以下の例のように、外部または内部のデータフォーマットそのものを扱っていて、わざわざ適切なC++の型の変数を用意するのでは不便な場合です。
         </span>
     </p>
-    <pre>MyStruct data;
+    <pre class="goodcode">MyStruct data;
 memset(&amp;data, 0, sizeof(data));
 </pre>
 
@@ -9179,7 +9302,7 @@ memset(&amp;data, 0, sizeof(data));
 </pre>
     </div>
 
-    <pre>if (raw_size &lt; sizeof(int)) {
+    <pre class="goodcode">if (raw_size &lt; sizeof(int)) {
   LOG(ERROR) &lt;&lt; "compressed record not big enough for count: " &lt;&lt; raw_size;
   return false;
 }
@@ -9347,7 +9470,7 @@ auto d{42};   // d は int型 ※ std::initializer_list&lt;int&gt;ではない</
                     Confusingly,
                     <a href="#trailing_return">trailing return type</a> syntax for functions
                     also uses <code>auto</code> in the return-type position, but that doesn't
-                    rely on type deduction; it's just an alternate syntax for an explicit
+                    rely on type deduction; it's just an alternative syntax for an explicit
                     return type.
                 </span>
                 なお、紛らわしいことに、<a href="#trailing_return">関数宣言の末尾に戻り値の型を書く構文</a>においても<code>auto</code>キーワードが表れますが、この<code>auto</code>は型推論とは関係がありません。この構文は、戻り値の型が明示された別の形の構文にすぎず、型推論は行われません。
@@ -9744,8 +9867,8 @@ std::array numbers = {4, 8, 15, 16, 23, 42};</pre>
     <p>
         <span>
             <span class="src">
-                Do not use <code>decltype(auto)</code> if a simpler option will work,
-                because it's a fairly obscure feature, so it has a high cost in code
+                Do not use <code>decltype(auto)</code> if a simpler option will work;
+                because it's a fairly obscure feature, it has a high cost in code
                 clarity.
             </span>
             <code>decltype(auto)</code>について、より単純な手段で十分な場合には、わざわざ<code>decltype(auto)</code>を使ってはいけません。<code>decltype(auto)</code>は、かなり難しい機能であるため、コードの明確さの面で大きなコストとなってしまうためです。
@@ -9873,7 +9996,7 @@ std::array numbers = {4, 8, 15, 16, 23, 42};</pre>
             束縛名と元のフィールド名とを変える場合は、関数引数のコメントと同じ構文で、元のフィールド名をコメントとして記述することをおすすめします。
         </span>
     </p>
-    <pre>auto [/*field_name1=*/bound_name1, /*field_name2=*/bound_name2] = ...</pre>
+    <pre class="goodcode">auto [/*field_name1=*/bound_name1, /*field_name2=*/bound_name2] = ...</pre>
     <p>
         <span>
             <span class="src">
@@ -10197,7 +10320,7 @@ std::array numbers = {4, 8, 15, 16, 23, 42};</pre>
         </span>
     </p>
 
-    <pre>std::sort(v.begin(), v.end(), [](int x, int y) {
+    <pre class="neutralcode">std::sort(v.begin(), v.end(), [](int x, int y) {
   return Weight(x) &lt; Weight(y);
 });
 </pre>
@@ -10222,7 +10345,7 @@ std::array numbers = {4, 8, 15, 16, 23, 42};</pre>
     </p>
     <div>
         <div class="src">
-            <pre>int weight = 3;
+            <pre class="neutralcode">int weight = 3;
 int sum = 0;
 // Captures `weight` by value and `sum` by reference.
 std::for_each(v.begin(), v.end(), [weight, &amp;sum](int x) {
@@ -10230,7 +10353,7 @@ std::for_each(v.begin(), v.end(), [weight, &amp;sum](int x) {
 });
 </pre>
         </div>
-        <pre>int weight = 3;
+        <pre class="neutralcode">int weight = 3;
 int sum = 0;
 // weigthは値として、sumは参照としてキャプチャします。
 std::for_each(v.begin(), v.end(), [weight, &amp;sum](int x) {
@@ -10249,7 +10372,7 @@ std::for_each(v.begin(), v.end(), [weight, &amp;sum](int x) {
     </p>
     <div>
         <div class="src">
-            <pre>const std::vector&lt;int&gt; lookup_table = ...;
+            <pre class="neutralcode">const std::vector&lt;int&gt; lookup_table = ...;
 std::vector&lt;int&gt; indices = ...;
 // Captures `lookup_table` by reference, sorts `indices` by the value
 // of the associated element in `lookup_table`.
@@ -10258,7 +10381,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
 });
 </pre>
         </div>
-        <pre>const std::vector&lt;int&gt; lookup_table = ...;
+        <pre class="neutralcode">const std::vector&lt;int&gt; lookup_table = ...;
 std::vector&lt;int&gt; indices = ...;
 // lookup_tableを参照としてキャプチャし、
 // lookup_tableの要素に関連づけられたindicesの値をソートしています。
@@ -10278,7 +10401,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                 これによって、ムーブのみ可能な型の変数を値キャプチャしたいときや、通常の参照キャプチャや値キャプチャでは対処できないその他の状況にも対応できます。
             </span>
         </p>
-        <pre>std::unique_ptr&lt;Foo&gt; foo = ...;
+        <pre class="neutralcode">std::unique_ptr&lt;Foo&gt; foo = ...;
         [foo = std::move(foo)] () {
           ...
         }</pre>
@@ -10495,7 +10618,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
             </span>
             <div>
                 <div class="src">
-                    <pre>{
+                    <pre class="goodcode">{
   Foo foo;
   ...
   executor-&gt;Schedule([&amp;foo] { Frobnicate(foo); })
@@ -10506,7 +10629,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
 // reference.
 </pre>
                 </div>
-                <pre>{
+                <pre class="goodcode">{
   Foo foo;
   ...
   executor-&gt;Schedule([&amp;foo] { Frobnicate(foo); })
@@ -10724,7 +10847,7 @@ std::sort(indices.begin(), indices.end(), [&amp;](int a, int b) {
                 complicated template techniques; think about whether the average
                 member of your team will be able to understand your code well enough
                 to maintain it after you switch to another project, or whether a
-                non-C++ programmer or someone casually browsing the code base will be
+                non-C++ programmer or someone casually browsing the codebase will be
                 able to understand the error messages or trace the flow of a function
                 they want to call.
             </span>
@@ -10810,6 +10933,7 @@ instead, use the <code>requires(<i>Concept&lt;T&gt;</i>)</code>
 syntax.</span>
 型に制約を課すときは、従来形式のテンプレートメタプログラミングよりも、新しい制約の機能を優先的に使用してください。
 また、その際には、<code>template&lt;<i>Concept</i> T&gt;</code>の形の構文は避け、かわりに<code>requires(<i>Concept&lt;T&gt;</i>)</code>の形を使ってください。
+</span>
 </p>
 
 <p class="definition"></p>
@@ -10818,7 +10942,6 @@ The <code>concept</code> keyword is a new mechanism for defining
 requirements (such as type traits or interface specifications)
 for a template parameter.</span>
 <code>concept</code>キーワードは、テンプレート引数に対して、型トレイトやインターフェース仕様等の要件を定義する新たな仕組みです。</span>
-</span>
 <span><span class="src">
 The <code>requires</code> keyword provides mechanisms for placing
 anonymous constraints on templates and verifying that constraints
@@ -10842,7 +10965,7 @@ also used independently.</span>
   Concepts can reduce the boilerplate necessary for defining
   and using compile-time constraints, often increasing the clarity
   of the resulting code.</span>
-  コンセプトによって、コンパイル時に制約を課すために必要となる定型文コードを減らすことができます。これによって、コードの意図がより明確になります。
+  コンセプトによって、コンパイル時に制約を課すために必要となる定型文コードを減らすことができます。これによって、コードの意図がより明確になります。</span>
   </li>
   <li><span><span class="src">
   Constraints provide some capabilities that are difficult to
@@ -10880,7 +11003,6 @@ also used independently.</span>
   utilized in multiple locations, all of which evolve separately
   from each other.</span>
   コンセプトは、それぞれが複数の場所で使用できる独立したエンティティであるため、それぞれの場所でばらばらに成長してしまうことによって、それらの根底にある信頼できる契約の情報源を濁してしまうことがあります。</span>
-  </span>
   <span><span class="src">
   This can cause the stated and implied requirements to diverge
   over time.</span>
@@ -11002,7 +11124,7 @@ C++20では「モジュール」という新しい言語機能が導入されま
 <span><span class="src">
 It introduces three
 new keywords to support
-this: <code>module</code>, export,
+this: <code>module</code>, <code>export</code>,
 and <code>import</code>.</span>
 これによって新しい３つのキーワード<code>module</code>, <code>export</code>, <code>import</code>が導入されました。
 </span></p>
@@ -11016,7 +11138,7 @@ the future.</span>
 <span><span class="src">
 Furthermore, they are not currently well-supported by our
 build-systems, compilers, and other tooling, and need further
-exploration as to the best-practices when writing and using them.</span>
+exploration as to the best practices when writing and using them.</span>
 また、現時点では、ビルドシステムやコンパイラ、その他のツールにおいても十分なサポートがなく、それらを書いたり使ったりする際のベストプラクティスについて、さらなる調査を必要としています。</span></p>
 
 
@@ -11024,22 +11146,123 @@ exploration as to the best-practices when writing and using them.</span>
 <h3 id="coroutines"><span data-src="Coroutines">コルーチン</span></h3>
 
 <p><span><span class="src">
-Do not use coroutines (yet).</span>
-コルーチンは(まだ)使わないでください。</span></p>
+Only use C++20 coroutines via libraries that have been
+  approved by your project leads.</span>
+⭐Only use C++20 coroutines via libraries that have been
+  approved by your project leads.</span></p>
 
-<p><span><span class="src">
-Do not include the <code>&lt;coroutine&gt;</code> header,
-or use the <code>co_await</code>, <code>co_yield</code>,
-or <code>co_return</code> keywords.</span>
-<code>&lt;coroutine&gt;</code>ヘッダーをインクルードしないでください。また、<code>co_await</code>や<code>co_yield</code>、<code>co_return</code>といったキーワードを使用しないでください。
-</span></p>
+        <p class="definition"></p>
+        <p><span><span class="src">C++20 introduced
+            <a href="https://en.cppreference.com/w/cpp/language/coroutines.html">coroutines</a>:
+            functions that can suspend and resume
+            executing later.</span>
+            ⭐C++20 introduced
+            <a href="https://en.cppreference.com/w/cpp/language/coroutines.html">coroutines</a>:
+            functions that can suspend and resume
+            executing later.
+        </span>
+            <span><span class="src">They are especially convenient for asynchronous
+            programming, where they can provide substantial improvements over
+            traditional callback-based frameworks.
+            </span>⭐They are especially convenient for asynchronous
+            programming, where they can provide substantial improvements over
+            traditional callback-based frameworks.</span></p>
 
-<p><span><span class="src">
-NOTE: this ban is expected to be temporary, while further
-guidance is being developed.</span>
-注: この制限事項はさらなるガイダンスか策定されるまでの間の一時的なものです。
+        <p><span><span class="src">Unlike most other programming languages (Kotlin, Rust, TypeScript, etc.),
+            C++ does not provide a concrete implementation of coroutines.
+</span>⭐Unlike most other programming languages (Kotlin, Rust, TypeScript, etc.),
+            C++ does not provide a concrete implementation of coroutines.
 </span>
-</p>
+            <span><span class="src">Instead, it requires users to implement their own awaitable type (using a
+            <a href="https://en.cppreference.com/w/cpp/language/coroutines#Promise">
+                promise type</a>) which determines coroutine parameter types, how coroutines
+            are executed, and allows running user-defined code during different stages
+            of their execution.
+        </span>⭐Instead, it requires users to implement their own awaitable type (using a
+            <a href="https://en.cppreference.com/w/cpp/language/coroutines#Promise">
+                promise type</a>) which determines coroutine parameter types, how coroutines
+            are executed, and allows running user-defined code during different stages
+            of their execution.</span></p>
+
+        <p class="pros"></p>
+        <ul>
+            <li>
+                <span><span class="src">Coroutines can be used to implement safe and efficient libraries suited
+                for specific tasks, such as asynchronous programming.
+                </span>⭐Coroutines can be used to implement safe and efficient libraries suited
+                for specific tasks, such as asynchronous programming.
+                </span>
+            </li>
+            <li>
+                <span><span class="src">Coroutines are syntactically almost identical to non-coroutine functions,
+                which can make them substantially more readable than alternatives.
+                </span>⭐Coroutines are syntactically almost identical to non-coroutine functions,
+                which can make them substantially more readable than alternatives.
+                </span>
+            </li>
+            <li>
+                <span><span class="src">The high degree of customization makes it possible to insert more
+                detailed debugging information into coroutines, compared to
+                alternatives.
+                </span>⭐The high degree of customization makes it possible to insert more
+                detailed debugging information into coroutines, compared to
+                alternatives.
+                </span>
+            </li>
+        </ul>
+
+        <p class="cons"></p>
+        <ul>
+            <li>
+                <span><span class="src">There is no standard coroutine promise type, and each user-defined
+                implementation is likely going to be unique in some aspect.
+                </span>⭐There is no standard coroutine promise type, and each user-defined
+                implementation is likely going to be unique in some aspect.
+                </span>
+            </li>
+            <li>
+                <span><span class="src">Because of load-bearing interactions between the return type, the
+                various customizable hooks in the promise type, and compiler-generated
+                code, coroutine semantics are extremely difficult to deduce from reading
+                user code.
+                </span>⭐Because of load-bearing interactions between the return type, the
+                various customizable hooks in the promise type, and compiler-generated
+                code, coroutine semantics are extremely difficult to deduce from reading
+                user code.
+                </span>
+            </li>
+            <li>
+                <span><span class="src">The many customizable aspects of coroutines introduce a large number
+                of pitfalls, especially around dangling references and race
+                conditions.
+                </span>⭐The many customizable aspects of coroutines introduce a large number
+                of pitfalls, especially around dangling references and race
+                conditions.
+                </span>
+            </li>
+        </ul>
+
+        <p>
+            <span><span class="src">In summary, designing a high-quality and interoperable coroutine library
+            requires a large amount of difficult work, careful thought, and extensive
+            documentation.
+            </span>⭐In summary, designing a high-quality and interoperable coroutine library
+            requires a large amount of difficult work, careful thought, and extensive
+            documentation.
+            </span>
+        </p>
+
+        <p class="decision"></p>
+
+        <p>
+            <span><span class="src">Use only coroutine libraries that have been approved for
+            project-wide use by your project leads. Do not roll your own promise or
+            awaitable types.
+            </span>⭐Use only coroutine libraries that have been approved for
+            project-wide use by your project leads. Do not roll your own promise or
+            awaitable types.
+            </span>
+        </p>
 
     <h3 id="Boost"><span data-src="Boost">Boost</span></h3>
 
@@ -11346,7 +11569,7 @@ guidance is being developed.</span>
             <span class="src">
                 As with <a href="#Boost">Boost</a>, some modern C++
                 library functionality encourage coding practices that hamper
-                readability&#8212;for example by removing
+                readability — for example by removing
                 checked redundancy (such as type names) that may be
                 helpful to readers, or by encouraging template
                 metaprogramming.
@@ -11499,7 +11722,7 @@ guidance is being developed.</span>
         <li>
             <span>
                 <span class="src">
-                    Nonstandard extensions add to the language features that a reader must
+                    Nonstandard extensions add features to the language that a reader must
                     know to understand the code.
                 </span>
                 非標準の拡張の導入によって、コードで使用される言語機能が増えると、コードの読者が学ばなければいけないことも増えます。
@@ -11557,10 +11780,10 @@ guidance is being developed.</span>
     </p>
     <div>
     <div class="src">
-    <pre>typedef Foo Bar; // But prefer `using` in C++ code.
+    <pre class="neutralcode">typedef Foo Bar; // But prefer `using` in C++ code.
 using ::other_namespace::Foo;
 using enum MyEnumType;  // Creates aliases for all enumerators in MyEnumType.
-</pre></div><pre>typedef Foo Bar; // C++では `using` を使う方が好ましい
+</pre></div><pre class="neutralcode">typedef Foo Bar; // C++では `using` を使う方が好ましい
 using ::other_namespace::Foo;
 using enum MyEnumType;  // MyEnumTypeの全列挙子のエイリアスを作る
 </pre></div>
@@ -11643,7 +11866,7 @@ using enum MyEnumType;  // MyEnumTypeの全列挙子のエイリアスを作る
         <li>
             <span>
                 <span class="src">
-                    Aliases can create risk of name collisions
+                    Aliases can create risk of name collisions.
                 </span>
                 エイリアスは名前衝突のリスクの要因になります。
             </span>
@@ -11651,7 +11874,7 @@ using enum MyEnumType;  // MyEnumTypeの全列挙子のエイリアスを作る
         <li>
             <span>
                 <span class="src">
-                    Aliases can reduce readability by giving a familiar construct an unfamiliar name
+                    Aliases can reduce readability by giving a familiar construct an unfamiliar name.
                 </span>
                 馴染みのある構造に対して、馴染みのない名前をつけてしまうと、コードの可読性を低下させる要因になります。
             </span>
@@ -11661,7 +11884,7 @@ using enum MyEnumType;  // MyEnumTypeの全列挙子のエイリアスを作る
                 <span class="src">
                     Type aliases can create an unclear API contract:
                     it is unclear whether the alias is guaranteed to be identical to the type it aliases,
-                    to have the same API, or only to be usable in specified narrow ways
+                    to have the same API, or only to be usable in specified narrow ways.
                 </span>
                 型のエイリアスは、APIの規約を不明確にする要因になります。
                 ある型エイリアスが、そのエイリアス先の型と常に同等で同じAPIを持つことが保証されているのか、あるいは、何らか所定の狭い方法でのみ使うことを目的としているのかが、明確でなくなってしまうことがあります。
@@ -11703,7 +11926,7 @@ using enum MyEnumType;  // MyEnumTypeの全列挙子のエイリアスを作る
     <p>
         <span>
             <span class="src">
-                Don't put namespace aliases in your public API. (See also <a href="#Namespaces">Namespaces</a>).
+                Don't put namespace aliases in your public API. (See also <a href="#Namespaces">Namespaces</a>.)
             </span>
             名前空間へのエイリアスを公開APIに含めてはいけません(<a href="#Namespaces">名前空間</a>を参照)。
         </span>
@@ -11719,7 +11942,7 @@ using enum MyEnumType;  // MyEnumTypeの全列挙子のエイリアスを作る
     </p>
     <div>
         <div class="src">
-            <pre>namespace mynamespace {
+            <pre class="goodcode">namespace mynamespace {
 // Used to store field measurements. DataPoint may change from Bar* to some internal type.
 // Client code should treat it as an opaque pointer.
 using DataPoint = ::foo::Bar*;
@@ -11729,7 +11952,7 @@ using TimeSeries = std::unordered_set&lt;DataPoint, std::hash&lt;DataPoint&gt;, 
 }  // namespace mynamespace
 </pre>
         </div>
-        <pre>namespace mynamespace {
+        <pre class="goodcode">namespace mynamespace {
 // フィールドの測定値を保存するために使います。
 // DataPoint は Bar* から他の内部表現用の型に変更されるかもしれません。
 // クライアントコードにおいては、これを透過的なポインタとして扱ってください。
@@ -11773,7 +11996,7 @@ typedef unordered_set&lt;DataPoint, hash&lt;DataPoint&gt;, DataPointComparator&g
         <span>
             <span class="src">
                 However, local convenience aliases are fine in function definitions, <code>private</code> sections of
-                classes, explicitly marked internal namespaces, and in <code>.cc</code> files:
+                classes, explicitly-marked internal namespaces, and in <code>.cc</code> files:
             </span>
             ただし、関数定義の中など、クライアントコードからアクセスできない場所であれば、このような実装の利便性のためのエイリアスを定義してもかまいません。同様に、クラスの<code>private</code>セクション、明示的に内部利用とマークされた名前空間の中、<code>.cc</code>ファイル内などにおける定義も同様に問題ありません。
         </span>
@@ -11781,11 +12004,11 @@ typedef unordered_set&lt;DataPoint, hash&lt;DataPoint&gt;, DataPointComparator&g
 
     <div>
         <div class="src">
-            <pre>// In a .cc file
+            <pre class="goodcode">// In a .cc file
 using ::foo::Bar;
 </pre>
         </div>
-        <pre>// .ccファイル内
+        <pre class="goodcode">// .ccファイル内
 using ::foo::Bar;
 </pre>
     </div>
@@ -11812,7 +12035,7 @@ using ::foo::Bar;
         </span>
     </p>
 
-<pre>switch (var) {
+<pre class="goodcode">switch (var) {
   case 0: {
     ...
     break;
@@ -11853,7 +12076,7 @@ using ::foo::Bar;
         </span>
     </p>
 
-    <div><div class="src"><pre>switch (x) {
+    <div><div class="src"><pre class="goodcode">switch (x) {
   case 41:  // No annotation needed here.
   case 43:
     if (dont_be_picky) {
@@ -11869,7 +12092,7 @@ using ::foo::Bar;
   default:
     DoSomethingGeneric();
     break;
-}</pre></div><pre>switch (x) {
+}</pre></div><pre class="goodcode">switch (x) {
   case 41:  // ここには [[fallthrough]]; は不要です。
   case 43:
     if (dont_be_picky) {
@@ -11940,7 +12163,6 @@ using ::foo::Bar;
                 declaration of that entity.
             </span>
             名前のスタイルを適切に定めることで、それが<em>何であるか</em>、すなわち、型なのか、変数なのか、関数なのか、定数なのか、マクロなのか、その宣言を探すことなく、すぐにわかるようにすることができます。
-
         </span>
         <span>
             <span class="src">
@@ -11954,86 +12176,172 @@ using ::foo::Bar;
     <p>
         <span>
             <span class="src">
-                Naming rules are pretty arbitrary, but
+                Style rules about naming are pretty arbitrary, but
                 we feel that
                 consistency is more important than individual preferences in this
                 area, so regardless of whether you find them sensible or not,
                 the rules are the rules.
             </span>
-            命名規則はかなり恣意的なものですが、私たちは、この領域において、個人の好みよりも、一貫性が保たれることを重要視しています。
+            命名に関するスタイルルールはかなり恣意的なものですが、私たちは、この領域において、個人の好みよりも、一貫性が保たれることを重要視しています。
             ですので、以下で定める命名規則については、あなたにとってわかりやすいと感じるかどうかに関わらず、「ルールはルール」と考えるようにしてください。
         </span>
     </p>
 
-    <h3 id="General_Naming_Rules"><span data-src="General Naming Rules">全般的な命名規則</span></h3>
-
     <p>
-        <span>
-            <span class="src">
-                Optimize for readability using names that would be clear
-                even to people on a different team.
-            </span>
-            プロジェクトチーム外のプログラマーから見ても、その意図が明確に伝わるような命名を行い、コードの可読性を最適化してください。
+        <span><span class="src">
+For the purposes of the naming rules below, a "word" is anything that you
+would write in English without internal spaces.
+        </span>⭐For the purposes of the naming rules below, a "word" is anything that you
+would write in English without internal spaces.
+        </span>
+        <span><span class="src">
+Either words are all lowercase,
+with underscores between words
+("<a href="https://en.wikipedia.org/wiki/Snake_case">snake_case</a>"), or words
+are mixed case with the first letter of each word capitalized
+("<a href="https://en.wikipedia.org/wiki/Camel_case">camelCase</a>" or
+"<a href="https://en.wiktionary.org/wiki/Pascal_case">PascalCase</a>").
+            </span>⭐Either words are all lowercase,
+with underscores between words
+("<a href="https://en.wikipedia.org/wiki/Snake_case">snake_case</a>"), or words
+are mixed case with the first letter of each word capitalized
+("<a href="https://en.wikipedia.org/wiki/Camel_case">camelCase</a>" or
+"<a href="https://en.wiktionary.org/wiki/Pascal_case">PascalCase</a>").
         </span>
     </p>
-
+        <h3 id="General_Naming_Rules" data-src="Choosing Names">名前の決め方</h3>
     <p>
+        <span><span class="src">
+            Give things names that make their purpose or intent understandable to a new
+reader, even someone on a different team than the owners.
+        </span>⭐Give things names that make their purpose or intent understandable to a new
+reader, even someone on a different team than the owners.        </span>
         <span>
             <span class="src">
-                Use names that describe the purpose or intent of the object.
-            </span>
-            オブジェクトには、そのオブジェクトの目的や意図を説明する名前を付けてください。
-        </span>
-        <span>
-            <span class="src">
-                Do not worry about saving horizontal space as it is far
-                more important to make your code immediately
-                understandable by a new reader.
+                Do not worry about
+                saving horizontal space as it is far more important to make your code
+                immediately understandable by a new reader.
             </span>
             画面の横幅を節約する必要はありません。そんなことよりも、コードを新しい読者でも直感的に理解できるようにしておくことの方がはるかに重要です。
         </span>
+    </p>
+        <p>
+            <span><span class="src">
+            Consider the context in which the name will be used.
+            </span>⭐Consider the context in which the name will be used.</span>
+
+            <span><span class="src">A name should be
+            descriptive even if it is used far from the code that makes it available for
+            use. However, a name should not distract the reader by repeating information
+            that's present in the immediate context.
+            </span>⭐A name should be
+            descriptive even if it is used far from the code that makes it available for
+            use. However, a name should not distract the reader by repeating information
+            that's present in the immediate context.</span>
+
+            <span><span class="src">Generally, this means that
+            descriptiveness should be proportional to the name's scope of visibility.
+            </span>⭐Generally, this means that
+            descriptiveness should be proportional to the name's scope of visibility.</span>
+
+            <span><span class="src">A free
+            function declared in a header should probably mention the header's library,
+            while a local variable probably shouldn't explain what function it's within.
+            </span>⭐A free
+            function declared in a header should probably mention the header's library,
+            while a local variable probably shouldn't explain what function it's within.</span>
+        </p>
+<p>
         <span>
             <span class="src">
-                Minimize the use of
-                abbreviations that would likely be unknown to someone outside
-                your project (especially acronyms and initialisms).
+                Minimize the use of abbreviations that would likely be unknown to someone
+                outside your project (especially acronyms and initialisms).
             </span>
             プロジェクトチーム外の読者が知らないかもしれない省略語(特に、頭字語やイニシャル化すること)は最小限にとどめてください。
         </span>
         <span>
             <span class="src">
-                Do not
-                abbreviate by deleting letters within a word.
+                Do not abbreviate by
+deleting letters within a word.
             </span>
             また、単語の中の文字を削って省略系を作ってもいけません。
         </span>
         <span>
             <span class="src">
-                As a rule of thumb, an abbreviation is probably OK if it's listed in
+                When an abbreviation is used, prefer to
+capitalize it as a single "word", e.g., <code>StartRpc()</code> rather than
+<code>StartRPC()</code>.
+            </span>
+            ⭐When an abbreviation is used, prefer to
+capitalize it as a single "word", e.g., <code>StartRpc()</code> rather than
+<code>StartRPC()</code>.
+        </span>
+
+        <span>
+            <span class="src">
+                As a rule of thumb, an abbreviation is probably OK
+                if it's listed in
                 Wikipedia.
             </span>
             経験則的には、Wikipediaに載っているような省略系であれば概ねOKと言えるでしょう。
         </span>
-        <span>
-            <span class="src">
-                Generally speaking, descriptiveness should be
-                proportional to the name's scope of visibility.
-            </span>
-            一般論として、名前は、その名前が見えるスコープの大きさに比例してその詳細度を決めるようにします。
+        <span><span class="src">
+           Note that certain universally-known abbreviations are OK, such as
+<code>i</code> for a loop index and <code>T</code> for a template
+parameter.
+        </span>⭐Note that certain universally-known abbreviations are OK, such as
+<code>i</code> for a loop index and <code>T</code> for a template
+parameter.
         </span>
-        <span>
-            <span class="src">
-                For example,
-                <code>n</code> may be a fine name within a 5-line function,
-                but within the scope of a class, it's likely too vague.
-            </span>
-            たとえば、「<code>n</code>」という名前は、5行しかない関数の中であれば悪くはない命名ですが、クラススコープ変数に同じ命名を行ったとしたら、意味が曖昧すぎるでしょう。
-        </span>
-
     </p>
+        <p>
+            <span><span class="src">
+                The names you see most frequently are not like most names; a small number of
+            "vocabulary" names are reused so widely that they are always in context.
+            </span>⭐The names you see most frequently are not like most names; a small number of
+            "vocabulary" names are reused so widely that they are always in context.
+            </span>
+            <span><span class="src">
+                These
+            names tend to be short or even abbreviated and their full meaning comes from
+            explicit long-form documentation rather than from just comments on their
+            definition and the words within the names.
+            </span>⭐These
+            names tend to be short or even abbreviated and their full meaning comes from
+            explicit long-form documentation rather than from just comments on their
+            definition and the words within the names.
+            </span>
+
+            <span><span class="src">
+                For example, <code>absl::Status</code>
+            has a dedicated
+
+            <a href="https://abseil.io/docs/cpp/guides/status">page
+            in a devguide</a>,
+            documenting its proper use.
+            </span>⭐For example, <code>absl::Status</code>
+            has a dedicated
+
+            <a href="https://abseil.io/docs/cpp/guides/status">page
+            in a devguide</a>,
+            documenting its proper use.
+            </span>
+
+            <span><span class="src">
+                You probably won't define new vocabulary names very
+            often, but if you do, get
+            additional design review to make sure the chosen names work well when
+            used widely.
+            </span>⭐You probably won't define new vocabulary names very
+            often, but if you do, get
+            additional design review to make sure the chosen names work well when
+            used widely.
+            </span>
+
+        </p>
     <div>
         <div class="src">
-            <pre>class MyClass {
+            <pre class="goodcode">class MyClass {
  public:
   int CountFooErrors(const std::vector&lt;Foo&gt;&amp; foos) {
     int n = 0;  // Clear meaning given limited scope and context
@@ -12043,15 +12351,19 @@ using ::foo::Bar;
     }
     return n;
   }
-  void DoSomethingImportant() {
+  // Function comment doesn't need to explain that this returns non-OK on
+  // failure as that is implied by the `absl::Status` return type, but it
+  // might document behavior for some specific codes.
+  absl::Status DoSomethingImportant() {
     std::string fqdn = ...;  // Well-known abbreviation for Fully Qualified Domain Name
+    return absl::OkStatus();
   }
  private:
   const int kMaxAllowedConnections = ...;  // Clear meaning within context
 };
 </pre>
         </div>
-        <pre>class MyClass {
+        <pre class="goodcode">class MyClass {
  public:
   int CountFooErrors(const std::vector&lt;Foo&gt;&amp; foos) {
     int n = 0;  // スコープと文脈が限られているため十分明確
@@ -12061,8 +12373,15 @@ using ::foo::Bar;
     }
     return n;
   }
-  void DoSomethingImportant() {
+
+  // 次の関数は、
+  // 戻り値の型が `absl::Status` であるため、
+  // 失敗時に非OKを返すことが暗黙的に示されています。
+  // このため、関数コメントでそのことを説明する必要はありません。
+  // ただし、場合によっては、コードの動作に関するドキュメントを要することもあります。
+  absl::Status  DoSomethingImportant() {
     std::string fqdn = ...;  // 一般的によく使われる、Fully Qualified Domain Name の略語
+    return absl::OkStatus();
   }
  private:
   const int kMaxAllowedConnections = ...;  // この文脈において意味が明確
@@ -12081,7 +12400,8 @@ using ::foo::Bar;
     }
     return total_number_of_foo_errors;
   }
-  void DoSomethingImportant() {
+  // A return type with a generic name is unclear without widespread education.
+  Result DoSomethingImportant() {
     int cstmr_id = ...;  // Deletes internal letters
   }
  private:
@@ -12099,7 +12419,8 @@ using ::foo::Bar;
     }
     return total_number_of_foo_errors;
   }
-  void DoSomethingImportant() {
+  // 戻り値の型が一般的な名前は、広範な教育がないとわかりにくい
+  Result DoSomethingImportant() {
     int cstmr_id = ...;  // 単語の途中の文字が削られていると読みにくい
   }
  private:
@@ -12107,60 +12428,6 @@ using ::foo::Bar;
 };
 </pre>
     </div>
-
-    <p>
-        <span>
-            <span class="src">
-                Note that certain universally-known abbreviations are OK, such as
-                <code>i</code> for an iteration variable and <code>T</code> for a
-                template parameter.
-            </span>
-            なお、イテレーション変数の<code>i</code>、テンプレート引数の<code>T</code>など、一般に広く知られている短縮形を用いることは問題ありません。
-        </span>
-    </p>
-
-    <p>
-        <span>
-            <span class="src">
-                For the purposes of the naming rules below, a "word" is anything that you
-                would write in English without internal spaces.
-            </span>
-            これ以降の命名規則のルールにおいて、「単語」とは、英語で書くときにスペースを含まずに綴られるもののことを指すとします。
-        </span>
-        <span>
-            <span class="src">
-                This includes abbreviations,
-                such as acronyms and initialisms.
-            </span>
-            これには、頭字語やイニシャルなどの略語も含みます。
-        </span>
-        <span>
-            <span class="src">
-                For names written in mixed case (also
-                sometimes referred to as
-                "<a href="https://en.wikipedia.org/wiki/Camel_case">camel case</a>" or
-                "<a href="https://en.wiktionary.org/wiki/Pascal_case">Pascal case</a>"), in
-                which the first letter of each word is capitalized, prefer to capitalize
-                abbreviations as single words, e.g., <code>StartRpc()</code> rather than
-                <code>StartRPC()</code>.
-            </span>
-            各単語の頭文字を大文字として大文字小文字を混在させる命名(「<a href="https://en.wikipedia.org/wiki/Camel_case">キャメルケース</a>」または「<a href="https://en.wiktionary.org/wiki/Pascal_case">パスカルケース</a>」と呼ばれるもの)を行う際には、略語も1つの単語であるかのように表記します。例えば <code>StartRPC()</code>ではなく<code>StartRpc()</code>とします。
-        </span>
-    </p>
-    <p>
-        <span>
-            <span class="src">
-                Template parameters should follow the naming style for their
-                category: type template parameters should follow the rules for
-                <a href="#Type_Names">type names</a>, and non-type template
-                parameters should follow the rules for <a href="#Variable_Names">
-                variable names</a>.
-            </span>
-            テンプレート引数の命名規則は、それぞれの引数が属するカテゴリに従います。
-            つまり、テンプレート引数が型引数ならば<a href="#Type_Names">型の命名規則</a>に従い、それ以外の非型引数は<a href="#Variable_Names">変数の命名規則</a>に従います。
-        </span>
-
-    </p>
     <h3 id="File_Names"><span data-src="File Names">ファイル名</span></h3>
 
     <p>
@@ -12317,7 +12584,7 @@ using ::foo::Bar;
     </p>
     <div>
         <div class="src">
-            <pre>// classes and structs
+            <pre class="goodcode">// classes and structs
 class UrlTable { ...
 class UrlTableTester { ...
 struct UrlTableProperties { ...
@@ -12332,7 +12599,7 @@ using PropertiesMap = hash_map&lt;UrlTableProperties *, std::string&gt;;
 enum class UrlTableError { ...
 </pre>
         </div>
-        <pre>// クラスと構造体
+        <pre class="goodcode">// クラスと構造体
 class UrlTable { ...
 class UrlTableTester { ...
 struct UrlTableProperties { ...
@@ -12398,10 +12665,10 @@ enum class UrlTableError { ...
     </p>
     <div>
         <div class="src">
-            <pre>std::string table_name;  // OK - snake_case.
+            <pre class="goodcode">std::string table_name;  // OK - snake_case.
 </pre>
         </div>
-        <pre>std::string table_name;  // OK - snake_caseになっている
+        <pre class="goodcode">std::string table_name;  // OK - snake_caseになっている
 </pre>
     </div>
     <div>
@@ -12423,22 +12690,38 @@ enum class UrlTableError { ...
             </span>
             クラスのデータメンバは、<code>static</code>の有無にかかわらず、通常の変数と同様の命名を行い、さらに、末尾に追加のアンダースコアをつけます。
         </span>
+        <span><span class="src">
+            The exception to this is static constant
+class members, which should follow the rules for
+<a href="#Constant_Names">naming constants</a>.
+        </span>
+        ⭐The exception to this is static constant
+class members, which should follow the rules for
+<a href="#Constant_Names">naming constants</a>.
+        </span>
     </p>
     <div>
         <div class="src">
-            <pre>class TableInfo {
+            <pre class="goodcode">class TableInfo {
+ public:
   ...
+  static const int kTableVersion = 3;  // OK - constant naming.
+  ...
+
  private:
-  std::string table_name_;  // OK - underscore at end.
-  static Pool&lt;TableInfo&gt;* pool_;  // OK.
+  std::string table_name_;             // OK - underscore at end.
+  static Pool&lt;TableInfo&gt;* pool_;       // OK.
 };
 </pre>
         </div>
-        <pre>class TableInfo {
+        <pre class="goodcode">class TableInfo {
+ public:
   ...
+  static const int kTableVersion = 3;  // OK。定数の命名規則
+
  private:
-  std::string table_name_;  // OK。末尾にアンダースコア
-  static Pool&lt;TableInfo&gt;* pool_;  // OK。
+  std::string table_name_;             // OK。末尾にアンダースコア
+  static Pool&lt;TableInfo&gt;* pool_;       // OK。
 };
 </pre>
     </div>
@@ -12461,7 +12744,7 @@ enum class UrlTableError { ...
         </span>
     </p>
 
-    <pre>struct UrlTableProperties {
+    <pre class="goodcode">struct UrlTableProperties {
   std::string name;
   int num_entries;
   static Pool&lt;UrlTableProperties&gt;* pool;
@@ -12515,12 +12798,13 @@ const int kAndroid8_0_0 = 24;  // Android 8.0.0</pre>
                 see
                 <a href="http://en.cppreference.com/w/cpp/language/storage_duration#Storage_duration">
                     Storage Duration
-                </a> for details) should be named this way, including those in templates where
-                different instantiations of the template may have different values.
+                </a> for details) should be named this way, including those that are static constant
+                class data members and those in templates where different instantiations of the template
+                may have different values.
             </span>
             このような、値が不変の静的記憶域時間の定数変数(すなわち、静的変数やグローバル変数ですが、詳細は<a
             href="http://en.cppreference.com/w/cpp/language/storage_duration#Storage_duration">Storage
-            Duration</a>を参照してください)は、この規則に従って命名します。これには、テンプレートの静的変数について、それらの値がテンプレートインスタンスごとに異なる場合も含みます。
+            Duration</a>を参照してください)は、この規則に従って命名します。これには、クラスの静的定数データメンバや、テンプレートの静的定数データメンバ(テンプレートインスタンスごとに値が異なる場合も含む)も含みます。
         </span>
         <span>
             <span class="src">
@@ -12533,7 +12817,7 @@ const int kAndroid8_0_0 = 24;  // Android 8.0.0</pre>
     </p>
 <div>
 <div class="src">
-<pre>void ComputeFoo(absl::string_view suffix) {
+<pre class="goodcode">void ComputeFoo(absl::string_view suffix) {
   // Either of these is acceptable.
   const absl::string_view kPrefix = "prefix";
   const absl::string_view prefix = "prefix";
@@ -12570,58 +12854,48 @@ const int kAndroid8_0_0 = 24;  // Android 8.0.0</pre>
     <p>
         <span>
             <span class="src">
-                Regular functions have mixed case; accessors and mutators may be named
-                like variables.
+                Ordinarily, functions follow <a href="https://en.wiktionary.org/wiki/Pascal_case">PascalCase</a>:
+                start with a capital letter and have a capital letter for each new word.
             </span>
-            通常の関数は、大文字小文字を混ぜて命名します。なお、getter関数やsetter関数は、変数名の命名規則に従ってもかまいません。
+            通常は、関数名は<a href="https://en.wiktionary.org/wiki/Pascal_case">PascalCase</a>に従います。すなわち、大文字で始めて、単語ごとに頭文字を大文字にします。
         </span>
     </p>
 
-    <p>
-        <span>
-            <span class="src">
-                Ordinarily, functions should start with a capital letter and have a
-                capital letter for each new word.
-            </span>
-            通常は、関数名は大文字で始めて、単語ごとに頭文字を大文字にします。
-        </span>
-    </p>
-
-    <pre>AddTableEntry()
+    <pre class="goodcode">AddTableEntry()
 DeleteUrl()
 OpenFileOrDie()
 </pre>
     <p>
         <span>
             <span class="src">
-                (The same naming rule applies to class- and namespace-scope
+                The same naming rule applies to class- and namespace-scope
                 constants that are exposed as part of an API and that are intended to look
                 like functions, because the fact that they're objects rather than functions
-                is an unimportant implementation detail.)
+                is an unimportant implementation detail.
             </span>
-            (クラススコープや名前空間スコープにおいて、APIの一部として公開される、関数のように振る舞う定数オブジェクトについても、関数名の命名規則を適用してください。これらが実際のところはオブジェクトであり、関数ではないという事実は、APIのユーザーの視点からはあまり重要ではない実装の詳細であると言えるからです。)
+            クラススコープや名前空間スコープにおいて、APIの一部として公開される、関数のように振る舞う定数オブジェクトについても、関数名の命名規則を適用してください。これらが実際のところはオブジェクトであり、関数ではないという事実は、APIのユーザーの視点からはあまり重要ではない実装の詳細であると言えるからです。
         </span>
     </p>
 
     <p>
         <span>
             <span class="src">
-                Accessors and mutators (get and set functions) may be named like
-                variables.
+                Accessors and mutators (get and set functions) may be named like variables,
+                in <code>snake_case</code>
             </span>
-            getter関数やsetter関数は、変数のような名前を付けてもかまいません。
+            getter関数やsetter関数は、変数のように<code>snake_case</code>の名前を付けてもかまいません。
         </span>
         <span>
             <span class="src">
-                These often correspond to actual member variables, but this is
-                not required.
+                These often correspond to actual member variables,
+                but this is not required.
             </span>
-            また、これらの関数は、実在のメンバ変数と紐づけられることが多いですが、必ずしもそうでなくてもかまいません。
+            これらの関数は、実在のメンバ変数と紐づけられることが多いですが、必須ではありません。
         </span>
         <span>
             <span class="src">
-                For example, <code>int count()</code> and <code>void
-                set_count(int count)</code>.
+                For example, <code>int count()</code> and
+                <code>void set_count(int count)</code>.
             </span>
             たとえば、<code>int count()</code>と<code>void set_count(int count)</code>のようにしてもかまいません。
         </span>
@@ -12630,125 +12904,51 @@ OpenFileOrDie()
     <h3 id="Namespace_Names"><span data-src="Namespace Names">名前空間の名前</span></h3>
 
     <p>
-        <span>
-            <span class="src">
-                Namespace names are all lower-case, with words separated by underscores.
-            </span>
-            名前空間の名前は、すべて小文字で、単語間はアンダースコアで区切ります。
+        <span><span class="src">
+            Namespace names are <code>snake_case</code> (all lowercase, with underscores
+between words).
         </span>
-        <span>
-            <span class="src">
-                Top-level namespace names are
-                based on the project name.
-            </span>
-            トップレベル(最も外側)の名前空間には、プロジェクト名に基づいた名前を付けます。
+        名前空間の名前は、<code>snake_case</code>(すべて小文字で、単語間はアンダースコアで区切る)とします。
         </span>
-        <span>
-            <span class="src">
-                Avoid collisions
-                between nested namespaces and well-known top-level namespaces.
-            </span>
-            また、ネストされた名前空間であっても、よく知られたトップレベル名前空間の名前と衝突させるのは避けてください。
+    </p>
+    <p>
+        <span><span class="src">
+            When <a href="#General_Naming_Rules">choosing names</a> for namespaces, note
+            that names must be fully qualified when used in a header outside the namespace,
+            because <a href="#Aliases">unqualified Aliases are generally banned</a>.
+        </span>⭐When <a href="#General_Naming_Rules">choosing names</a> for namespaces, note
+            that names must be fully qualified when used in a header outside the namespace,
+            because <a href="#Aliases">unqualified Aliases are generally banned</a>.
         </span>
     </p>
 
     <p>
-        <span>
-            <span class="src">
-                The name of a top-level namespace should usually be the
-                name of the project or team whose code is contained in that
-                namespace.
-            </span>
-            トップレベル名前空間の名前には、通常はプロジェクト名かチーム名を付けます。
+        <span><span class="src">
+        Top-level namespaces must be globally unique and recognizable, so each one
+        should be owned by a single project or team, with a name based on the name of
+        that project or team.
+        </span>⭐Top-level namespaces must be globally unique and recognizable, so each one
+        should be owned by a single project or team, with a name based on the name of
+        that project or team.
         </span>
-        <span>
-            <span class="src">
-                The code in that namespace should usually be in
-                a directory whose basename matches the namespace name (or in
-                subdirectories thereof).
-            </span>
-            名前空間に含まれるコードは、通常は名前空間の名前と同名のディレクトリ(か、そのサブディレクトリ)に置きます。
+        <span><span class="src">
+        Usually, all code in the namespace should be under one or
+        more directories with the same name as the namespace.
+        </span>⭐Usually, all code in the namespace should be under one or
+        more directories with the same name as the namespace.
         </span>
     </p>
 
     <p>
-        <span>
-            <span class="src">
-                Keep in mind that the <a href="#General_Naming_Rules">rule
-                against abbreviated names</a> applies to namespaces just as much
-                as variable names.
-            </span>
-            名前空間の名前を付けるときにも、変数名と同様に<a href="#General_Naming_Rules">省略系に関するルール</a>が適用されることに注意してください。
-        </span>
-        <span>
-            <span class="src">
-                Code inside the namespace seldom needs to
-                mention the namespace name, so there's usually no particular need
-                for abbreviation anyway.
-            </span>
-            名前空間内のコードにおいて、それを囲む名前空間の名前を必要とすることはほとんどありませんので、いずれにせよ、名前空間名に省略系を使う需要はないはずです。
-        </span>
-    </p>
-
-    <p>
-        <span>
-            <span class="src">
-                Avoid nested namespaces that match well-known top-level
-                namespaces.
-            </span>
-            ネストされた名前空間であっても、よく知られたトップレベル名前空間の名前と同じ名前は付けないでください。
-        </span>
-        <span>
-            <span class="src">
-                Collisions between namespace names can lead to surprising
-                build breaks because of name lookup rules.
-            </span>
-            そのような名前空間名の衝突があると、名前検索のルールによって、想定外のビルドエラーを引き起こすことがあります。
-        </span>
-        <span>
-            <span class="src">
-                In particular, do not
-                create any nested <code>std</code> namespaces.
-            </span>
-            特に、<code>std</code>という名前の名前空間は、いかなる階層であっても作ってはいけません。
-        </span>
-        <span>
-            <span class="src">
-                Prefer unique project
-                identifiers
-                (<code>websearch::index</code>, <code>websearch::index_util</code>)
-                over collision-prone names like <code>websearch::util</code>.
-            </span>
-            プロジェクト名自体にもなるべくユニークとなる識別子をつけることが望ましいです。
-            たとえば、<code>websearch::util</code>のような衝突しやすい名前よりも、<code>websearch::index</code>や <code>websearch::index_util</code>のような名前にします。
-        </span>
-        <span>
-            <span class="src">
-                Also avoid overly deep nesting
-                namespaces (<a href="https://abseil.io/tips/130">TotW #130</a>).
-            </span>
-            また、名前空間のネストを深くしすぎないようにしてください(<a href="https://abseil.io/tips/130">TotW #130</a>)。
-        </span>
-    </p>
-
-    <p>
-        <span>
-            <span class="src">
-                For <code>internal</code> namespaces, be wary of other code being
-                added to the same <code>internal</code> namespace causing a collision
-                (internal helpers within a team tend to be related and may lead to
-                collisions).
-            </span>
-            <code>internal</code>名前空間においては、同じ<code>internal</code>名前空間に追加される他のコードと衝突しないように、特に注意が必要です。(チーム内向けのヘルパー同士がこの関係に陥る傾向があり、ときに衝突につながります)。
-        </span>
-        <span>
-            <span class="src">
-                In such a situation, using the filename to make a unique
-                internal name is helpful
-                (<code>websearch::index::frobber_internal</code> for use
-                in <code>frobber.h</code>)
-            </span>
-            このような場合には、ファイル名を使ってユニークな名前を作る方法が役立ちます(たとえば<code>frobber.h</code>では、<code>websearch::index::frobber_internal</code>のようにします)。
+        <span><span class="src">
+        Nested namespaces should avoid the names of well-known top-level namespaces,
+        especially <code>std</code> and <code>absl</code>, because in C++, nested
+        namespaces do not protect from collisions with names in other namespaces
+        (see <a href="https://abseil.io/tips/130">TotW #130</a>).
+        </span>⭐Nested namespaces should avoid the names of well-known top-level namespaces,
+        especially <code>std</code> and <code>absl</code>, because in C++, nested
+        namespaces do not protect from collisions with names in other namespaces
+        (see <a href="https://abseil.io/tips/130">TotW #130</a>).
         </span>
     </p>
 
@@ -12767,7 +12967,7 @@ OpenFileOrDie()
         </span>
     </p>
 
-    <pre>enum class UrlTableError {
+    <pre class="goodcode">>enum class UrlTableError {
   kOk = 0,
   kOutOfMemory,
   kMalformedInput,
@@ -12813,6 +13013,23 @@ OpenFileOrDie()
         </span>
     </p>
 
+    <h3 id="Template_Parameter_Names" data-src="Template Parameter Names">テンプレートパラメータの名前</h3>
+
+    <p>
+        <span><span class="src">
+        Template parameters should follow the naming style for their
+        category: type template parameters should follow the rules for naming
+        <a href="#Type_Names">types</a>, and non-type template
+        parameters should follow the rules for naming <a href="#Variable_Names">
+            variables</a> or <a href="#Constant_Names">constants</a>.
+        </span>⭐Template parameters should follow the naming style for their
+        category: type template parameters should follow the rules for naming
+        <a href="#Type_Names">types</a>, and non-type template
+        parameters should follow the rules for naming <a href="#Variable_Names">
+            variables</a> or <a href="#Constant_Names">constants</a>.
+        </span>
+    </p>
+
     <h3 id="Macro_Names"><span data-src="Macro Names">マクロの名前</span></h3>
 
     <p>
@@ -12844,8 +13061,21 @@ OpenFileOrDie()
         </span>
     </p>
 
-    <pre>#define MYPROJECT_ROUND(x) ...
+    <pre class="neutralcode">#define MYPROJECT_ROUND(x) ...
 </pre>
+
+        <h3 id="Naming_Aliases" data-src="Aliases">エイリアス</h3>
+
+        <p>
+            <span><span class="src">
+            The name for an <a href="#Aliases">alias</a> follows the same principles as
+            any other new name, applied in the context where the alias is defined rather
+            than where the original name appears.
+            </span>⭐The name for an <a href="#Aliases">alias</a> follows the same principles as
+            any other new name, applied in the context where the alias is defined rather
+            than where the original name appears.
+            </span>
+        </p>
 
     <h3 id="Exceptions_to_Naming_Rules"><span data-src="Exceptions to Naming Rules">命名規則の例外</span></h3>
 
@@ -12974,7 +13204,7 @@ OpenFileOrDie()
     <p>
         <span>
             <span class="src">
-                You can use either the <code>//</code> or the <code>/*
+                While either syntax is acceptable, <code>//</code> or the <code>/*
                 */</code> syntax; however, <code>//</code> is
                 <em>much</em> more common.
             </span>
@@ -13094,7 +13324,7 @@ comment in <code>registered_objects.cc</code>.
 
     <div>
         <div class="src">
-            <pre>// Iterates over the contents of a GargantuanTable.
+            <pre class="goodcode">// Iterates over the contents of a GargantuanTable.
 // Example:
 //    std::unique_ptr&lt;GargantuanTableIterator&gt; iter = table-&gt;NewIterator();
 //    for (iter-&gt;Seek("foo"); !iter-&gt;done(); iter-&gt;Next()) {
@@ -13105,7 +13335,7 @@ class GargantuanTableIterator {
 };
 </pre>
         </div>
-        <pre>// GargantuanTable全体をイテレートします
+        <pre class="goodcode">// GargantuanTable全体をイテレートします
 // 使用例:
 //    std::unique_ptr&lt;GargantuanTableIterator&gt; iter = table-&gt;NewIterator();
 //    for (iter-&gt;Seek("foo"); !iter-&gt;done(); iter-&gt;Next()) {
@@ -13291,7 +13521,7 @@ class GargantuanTableIterator {
             <span>
                 <span class="src">
                     For each output or input/output argument, what happens to any state that argument
-                    is in. (E.g. is the state appended to or overwritten?).
+                    is in (e.g., is the state appended to or overwritten?).
                 </span>
                 各出力用引数や各入出力用引数において、関数呼び出し<em>前</em>の各引数の状態に対して、呼び出し後の状態がどうなるか(例えば、出力用引数に変数を渡したとき、そこに値が追加されるのか、あるいは、単に上書きされるのか)。
             </span>
@@ -13318,7 +13548,7 @@ class GargantuanTableIterator {
     </p>
 <div>
                     <div class="src">
-<pre>// Returns an iterator for this table, positioned at the first entry
+<pre class="goodcode">// Returns an iterator for this table, positioned at the first entry
 // lexically greater than or equal to `start_word`. If there is no
 // such entry, returns a null pointer. The client must not use the
 // iterator after the underlying GargantuanTable has been destroyed.
@@ -13330,7 +13560,7 @@ class GargantuanTableIterator {
 std::unique_ptr&lt;Iterator&gt; GetIterator(absl::string_view start_word) const;
 </pre>
                     </div>
-<pre>// テーブル内で`start_word`に等しいか辞書的に次に大きい最初の要素を指す
+<pre class="goodcode">// テーブル内で`start_word`に等しいか辞書的に次に大きい最初の要素を指す
 // イテレータを返します。そのような要素がない場合、nullptrが返ります。
 // 対象のGargantuanTableが破壊された後は、この関数から戻ったイテレータを
 // 使用してはいけません。
@@ -13524,13 +13754,13 @@ std::unique_ptr&lt;Iterator&gt; GetIterator(absl::string_view start_word) const;
 
     <div>
         <div class="src">
-            <pre>private:
+            <pre class="goodcode">private:
  // Used to bounds-check table accesses. -1 means
  // that we don't yet know how many entries the table has.
  int num_total_entries_;
 </pre>
         </div>
-        <pre>private:
+        <pre class="goodcode">private:
  // テーブルアクセス時の境界チェックに使います。-1 は、
  // まだテーブルにいくつの要素があるかわからないことを意味します。
  int num_total_entries_;
@@ -13558,11 +13788,11 @@ std::unique_ptr&lt;Iterator&gt; GetIterator(absl::string_view start_word) const;
     <div>
         <div class="src">
 
-            <pre>// The total number of test cases that we run through in this regression test.
+            <pre class="goodcode">// The total number of test cases that we run through in this regression test.
 const int kNumTestCases = 6;
 </pre>
         </div>
-        <pre>// この回帰テストにおけるテストケースの総数
+        <pre class="goodcode">// この回帰テストにおけるテストケースの総数
 const int kNumTestCases = 6;
 </pre>
     </div>
@@ -13723,14 +13953,14 @@ const DecimalNumber product = CalculateProduct(values, 7, false, nullptr);
     </p>
     <div>
         <div class="src">
-            <pre>ProductOptions options;
+            <pre class="goodcode">ProductOptions options;
 options.set_precision_decimals(7);
 options.set_use_cache(ProductOptions::kDontUseCache);
 const DecimalNumber product =
     CalculateProduct(values, options, /*completion_callback=*/nullptr);
 </pre>
         </div>
-        <pre>ProductOptions options;
+        <pre class="goodcode">ProductOptions options;
 options.set_precision_decimals(7);
 options.set_use_cache(ProductOptions::kDontUseCache);
 const DecimalNumber product =
@@ -13757,11 +13987,11 @@ const DecimalNumber product =
         </span>
         <span>
             <span class="src">
-                Instead, provide higher level comments that describe
+                Instead, provide higher-level comments that describe
                 <i>why</i>
-                the code does what it does, or make the code self describing.
+                the code does what it does, or make the code self-describing.
             </span>
-            そのようなコメントのかわりに、より高い次元の、たとえばそのコードが<em>なぜ</em>それをしているのかをコメントで記述したり、あるいはコード自身にそれを説明させるようにしてください。
+            そのようなコメントのかわりに、より高次元の、たとえばそのコードが<em>なぜ</em>それをしているのかを記述したり、あるいはコード自身によってそれを説明させるようにしてください。
         </span>
     </p>
 
@@ -13794,13 +14024,13 @@ if (std::find(v.begin(), v.end(), element) != v.end()) {
     </span>
     <div>
         <div class="src">
-            <pre>// Process "element" unless it was already processed.
+            <pre class="goodcode">// Process "element" unless it was already processed.
 if (std::find(v.begin(), v.end(), element) != v.end()) {
   Process(element);
 }
 </pre>
         </div>
-        <pre>// まだ処理していない要素があれば処理する。
+        <pre class="goodcode">// まだ処理していない要素があれば処理する。
 auto iter = std::find(v.begin(), v.end(), element);
 if (iter != v.end()) {
   Process(element);
@@ -13821,12 +14051,13 @@ if (iter != v.end()) {
         </span>
         上の例におけるコメントのかわりに、以下の例のようにすると、より明確です。
     </span>
-    <pre>if (!IsAlreadyProcessed(element)) {
+    <pre class="goodcode">if (!IsAlreadyProcessed(element)) {
   Process(element);
 }
 </pre>
 
-    <h3 id="Punctuation,_Spelling_and_Grammar"><span data-src="Punctuation, Spelling and Grammar">句読点と綴りと文法</span></h3>
+    <a id="Punctuation,_Spelling_and_Grammar"></a>
+    <h3 id="Punctuation_Spelling_and_Grammar"><span data-src="Punctuation, Spelling and Grammar">句読点と綴りと文法</span></h3>
 
     <p>
         <span>
@@ -13897,14 +14128,12 @@ if (iter != v.end()) {
         </span>
     </p>
 
+        <div>
     <p>
         <span>
             <span class="src">
                 <code>TODO</code>s should include the string
-                <code>TODO</code> in all caps, followed by the
-
-                bug ID, name, e-mail address, or other
-                identifier
+                <code>TODO</code> in all caps, followed by the bug ID, name, e-mail address, or other identifier
                 of the person or issue with the best context
                 about the problem referenced by the
                 <code>TODO</code>.
@@ -13915,7 +14144,7 @@ if (iter != v.end()) {
 
     <div>
         <div class="src">
-            <pre>// TODO: bug 12345678 - Remove this after the 2047q4 compatibility window expires.
+            <pre class="goodcode">// TODO: bug 12345678 - Remove this after the 2047q4 compatibility window expires.
 // TODO: example.com/my-design-doc - Manually fix up this code the next time it's touched.
 // TODO(bug 12345678): Update this list after the Foo service is turned down.
 // TODO(John): Use a "\*" here for concatenation operator.
@@ -13940,6 +14169,7 @@ if (iter != v.end()) {
             もし、その<code>TODO</code>が「<em>未来のいつ、何をする</em>」という形式になるときは、必ず、具体的な期日(例:「2005年11月までに直す」)や、具体的なイベント(例:「すべてのクライアントがXMLレスポンスを扱えるようになったらこのコードは消す」)を含めるようにしてください。
         </span>
     </p>
+    </div>
 
     <h2 id="Formatting">
         <span data-src="Formatting">コードのフォーマット</span>
@@ -14096,10 +14326,10 @@ if (iter != v.end()) {
             <span>
                 <span class="src">
                     This may be because it contains URIs or other semantically-critical pieces,
-                    or because the literal contains an embedded language, or a multiline
-                    literal whose newlines are significant like help messages.
+                    or because the literal contains an embedded language, or because it is a
+                    multiline literal whose newlines are significant, such as help messages.
                 </span>
-                これには、URIやその他の意味的に重要なものや、別の組み込み言語を含む文字列リテラル、あるいはヘルプメッセージのような、改行が重要な意味を持つ複数行文字列リテラルなどが該当します。
+                これには、URIやその他の意味的に重要なものや、別の組み込み言語を含む文字列リテラル、あるいはヘルプメッセージのように改行が重要な意味を持つ複数行文字列リテラルなどが該当します。
             </span>
             <span>
                 <span class="src">
@@ -14145,7 +14375,7 @@ if (iter != v.end()) {
         <li>
             <span>
                 <span class="src">
-                    a <a href="#The__define_Guard">header guard</a>
+                    a <a href="#The__define_Guard">header guard</a>.
                 </span>
                 <a href="#The__define_Guard">インクルードガード</a>。
             </span>
@@ -14154,7 +14384,7 @@ if (iter != v.end()) {
         <li>
             <span>
                 <span class="src">
-                    a using-declaration
+                    a using-declaration.
                 </span>
                 using宣言。
             </span>
@@ -14200,7 +14430,7 @@ if (iter != v.end()) {
         </span>
         <span>
             <span class="src">
-                More commonly, unittest
+                More commonly, unit test
                 code (which does not need to be localized) might
                 contain non-ASCII strings.
             </span>
@@ -14332,7 +14562,7 @@ if (iter != v.end()) {
         </span>
     </p>
 
-    <pre>ReturnType ClassName::FunctionName(Type par_name1, Type par_name2) {
+    <pre class="goodcode">ReturnType ClassName::FunctionName(Type par_name1, Type par_name2) {
   DoSomething();
   ...
 }
@@ -14347,7 +14577,7 @@ if (iter != v.end()) {
         </span>
     </p>
 
-    <pre>ReturnType ClassName::ReallyLongFunctionName(Type par_name1, Type par_name2,
+    <pre class="goodcode">ReturnType ClassName::ReallyLongFunctionName(Type par_name1, Type par_name2,
                                              Type par_name3) {
   DoSomething();
   ...
@@ -14364,7 +14594,7 @@ if (iter != v.end()) {
     </p>
     <div>
         <div class="src">
-            <pre>ReturnType LongClassName::ReallyReallyReallyLongFunctionName(
+            <pre class="goodcode">ReturnType LongClassName::ReallyReallyReallyLongFunctionName(
     Type par_name1,  // 4 space indent
     Type par_name2,
     Type par_name3) {
@@ -14373,7 +14603,7 @@ if (iter != v.end()) {
 }
 </pre>
         </div>
-        <pre>ReturnType LongClassName::ReallyReallyReallyLongFunctionName(
+        <pre class="goodcode">ReturnType LongClassName::ReallyReallyReallyLongFunctionName(
     Type par_name1,  // スペース4個でインデント
     Type par_name2,
     Type par_name3) {
@@ -14523,13 +14753,13 @@ if (iter != v.end()) {
     <p>
         <span>
             <span class="src">
-                Unused parameters that are obvious from context may be omitted:
+                Unused parameters that are obvious from context may omit the name:
             </span>
             次の例のように、引数が使われず、かつ、その意味が文脈から明白な場合は、引数を省略できます。
         </span>
     </p>
 
-    <pre>class Foo {
+    <pre class="goodcode">class Foo {
  public:
   Foo(const Foo&amp;) = delete;
   Foo&amp; operator=(const Foo&amp;) = delete;
@@ -14546,7 +14776,7 @@ if (iter != v.end()) {
         </span>
     </p>
 
-    <pre>class Shape {
+    <pre class="goodcode">class Shape {
  public:
   virtual void Rotate(double radians) = 0;
 };
@@ -14581,7 +14811,7 @@ void Circle::Rotate(double) {}
             属性や、属性に展開されるマクロは、関数宣言や関数定義の最も先頭、戻り値の型よりも前に書きます。
         </span>
     </p>
-    <pre>  ABSL_ATTRIBUTE_NOINLINE void ExpensiveFunction();
+    <pre class="goodcode">  ABSL_ATTRIBUTE_NOINLINE void ExpensiveFunction();
   [[nodiscard]] bool IsOk();
 </pre>
 
@@ -14607,7 +14837,7 @@ void Circle::Rotate(double) {}
             参照キャプチャについて、アンパサンド(<code>&amp;</code>)と変数名の間には、スペースを入れません。
         </span>
     </p>
-    <pre>int x = 0;
+    <pre class="goodcode">int x = 0;
 auto x_plus_n = [&amp;x](int n) -&gt; int { return x + n; }
 </pre>
     <p>
@@ -14618,7 +14848,7 @@ auto x_plus_n = [&amp;x](int n) -&gt; int { return x + n; }
             短いラムダは、関数の実引数として直接その場に書いてもかまいません。
         </span>
     </p>
-    <pre>absl::flat_hash_set&lt;int&gt; to_remove = {7, 8, 9};
+    <pre class="goodcode">absl::flat_hash_set&lt;int&gt; to_remove = {7, 8, 9};
 std::vector&lt;int&gt; digits = {3, 9, 1, 8, 4, 7, 1};
 digits.erase(std::remove_if(digits.begin(), digits.end(), [&amp;to_remove](int i) {
                return to_remove.contains(i);
@@ -14703,7 +14933,7 @@ double d = 1248.0e6;
             関数呼び出しは、次のォーマットに従います。
         </span>
     </p>
-    <pre>bool result = DoSomething(argument1, argument2, argument3);
+    <pre class="goodcode">bool result = DoSomething(argument1, argument2, argument3);
 </pre>
 
     <p>
@@ -14724,7 +14954,7 @@ double d = 1248.0e6;
             開き丸括弧<code>(</code>の後や、閉じ丸括弧<code>)</code>の前にスペースを入れてはいけません。
         </span>
     </p>
-    <pre>bool result = DoSomething(averyveryveryverylongargument1,
+    <pre class="goodcode">bool result = DoSomething(averyveryveryverylongargument1,
                           argument2, argument3);
 </pre>
 
@@ -14739,7 +14969,7 @@ double d = 1248.0e6;
     </p>
     <div>
         <div class="src">
-            <pre>if (...) {
+            <pre class="goodcode">if (...) {
   ...
   ...
   if (...) {
@@ -14750,7 +14980,7 @@ double d = 1248.0e6;
   }
 </pre>
         </div>
-        <pre>if (...) {
+        <pre class="goodcode">if (...) {
   ...
   ...
   if (...) {
@@ -14802,7 +15032,7 @@ double d = 1248.0e6;
             引数が複雑な式から構成されていて、1行にそれらをまとめると読みにくくなるという場合には、次のように、それらの引数のための一時変数を作って、適切な名前を与えてください。
         </span>
     </p>
-    <pre>int my_heuristic = scores[x] * y + bases[x];
+    <pre class="goodcode">int my_heuristic = scores[x] * y + bases[x];
 bool result = DoSomething(my_heuristic, x, y, z);
 </pre>
 
@@ -14821,7 +15051,7 @@ bool result = DoSomething(my_heuristic, x, y, z);
                           x, y, z);
 </pre>
         </div>
-        <pre>bool result = DoSomething(scores[x] * y + bases[x],  // ヒューリスティックなスコア
+        <pre class="goodcode">bool result = DoSomething(scores[x] * y + bases[x],  // ヒューリスティックなスコア
                           x, y, z);
 </pre>
     </div>
@@ -14862,13 +15092,13 @@ bool result = DoSomething(my_heuristic, x, y, z);
     </p>
     <div>
         <div class="src">
-            <pre>// Transform the widget by a 3x3 matrix.
+            <pre class="goodcode">// Transform the widget by a 3x3 matrix.
 my_widget.Transform(x1, x2, x3,
                     y1, y2, y3,
                     z1, z2, z3);
 </pre>
         </div>
-        <pre>// ウィジェットを3x3行列で変形する
+        <pre class="goodcode">// ウィジェットを3x3行列で変形する
 my_widget.Transform(x1, x2, x3,
                     y1, y2, y3,
                     z1, z2, z3);
@@ -14908,7 +15138,7 @@ my_widget.Transform(x1, x2, x3,
     </p>
     <div>
         <div class="src">
-            <pre>// Examples of braced init list on a single line.
+            <pre class="goodcode">// Examples of braced init list on a single line.
 return {foo, bar};
 functioncall({foo, bar});
 std::pair&lt;int, int&gt; p{foo, bar};
@@ -14935,7 +15165,7 @@ MyType m = {  // Here, you could also break before {.
      interiorwrappinglist2}};
 </pre>
         </div>
-        <pre>// 1行の初期化子リストの例
+        <pre class="goodcode">// 1行の初期化子リストの例
 return {foo, bar};
 functioncall({foo, bar});
 std::pair&lt;int, int&gt; p{foo, bar};
@@ -14973,7 +15203,7 @@ At a high level, looping or branching statements consist of the following
 </span>
 おおまかに、ループや分岐のための文は、次のような<strong>部品</strong>から成り立っていると言えます。</span>
 </p><ul>
-  <li><span><span class="src">One or more <strong>statement keywords</strong> (e.g. <code>if</code>,
+  <li><span><span class="src">One or more <strong>statement keywords</strong> (e.g., <code>if</code>,
   <code>else</code>, <code>switch</code>, <code>while</code>, <code>do</code>,
   or <code>for</code>).</span>
   1つ以上の<strong>キーワード(statement keywords)</strong>(<code>if</code>,
@@ -15003,7 +15233,7 @@ At a high level, looping or branching statements consist of the following
   <strong>条件指定子</strong>や<strong>イテレーション指定子</strong>の内側において、開き丸括弧<code>(</code>の後や閉じ丸括弧<code>)</code>の前にはスペースを入れません。
   </span></li>
   <li><span><span class="src">
-  Put any controlled statements inside blocks (i.e. use curly braces).</span>
+  Put any controlled statements inside blocks (i.e., use curly braces).</span>
   すべての<strong>制御対象文</strong>はブロックに入れます(つまり、常に波括弧<code>{</code>...<code>}</code>で囲みます)。
   </span></li>
   <li><span><span class="src">
@@ -15014,7 +15244,7 @@ At a high level, looping or branching statements consist of the following
 </ul>
 
 <div><div class="src">
-<pre>if (condition) {                   // Good - no spaces inside parentheses, space before brace.
+<pre class="goodcode">if (condition) {                   // Good - no spaces inside parentheses, space before brace.
   DoOneThing();                    // Good - two-space indent.
   DoAnotherThing();
 } else if (int a = f(); a != 3) {  // Good - closing brace on new line, else on same line.
@@ -15038,7 +15268,7 @@ for (int i = 0; i &lt; 10; ++i) {
   RepeatAThing();
 }
 </pre></div>
-<pre>if (condition) {                   // 良い例。丸括弧内はスペースなし、開き波括弧の前にスペースあり
+<pre class="goodcode">if (condition) {                   // 良い例。丸括弧内はスペースなし、開き波括弧の前にスペースあり
   DoOneThing();                    // 良い例。スペース2つでインデント
   DoAnotherThing();
 } else if (int a = f(); a != 3) {  // 良い例。閉じ波括弧の前で改行、elseは同一行内
@@ -15218,7 +15448,7 @@ while (x);
     </p>
     <div>
         <div class="src">
-<pre>switch (var) {
+<pre class="goodcode">switch (var) {
   case 0: {  // 2 space indent
     Foo();   // 4 space indent
     break;
@@ -15229,7 +15459,7 @@ while (x);
 }
 </pre>
         </div>
-        <pre>switch (var) {
+        <pre class="goodcode">switch (var) {
   case 0: {  // スペース2つでインデント
     Foo();   // スペース4つでインデント
     break;
@@ -15251,14 +15481,14 @@ while (x);
     </p>
     <div>
         <div class="src">
-            <pre>while (condition) {}  // Good - `{}` indicates no logic.
+            <pre class="goodcode">while (condition) {}  // Good - `{}` indicates no logic.
 while (condition) {
   // Comments are okay, too
 }
 while (condition) continue;  // Good - `continue` indicates no logic.
 </pre>
             </div>
-            <pre>while (condition) {}  // 良い例。`{}`によって、ロジックがないことを明示している。
+            <pre class="goodcode">while (condition) {}  // 良い例。`{}`によって、ロジックがないことを明示している。
 while (condition) {
   // コメントだけを書いてもよい
 }
@@ -15275,7 +15505,7 @@ while (condition) continue;  // 良い例。 `continue` によって、ロジッ
         </div>
 
 
-    <h3 id="Pointer_and_Reference_Expressions"><span data-src="Pointer and Reference Expressions">ポインタと参照の表現</span></h3>
+    <h3 id="Pointer_and_Reference_Expressions"><span data-src="Pointer and Reference Expressions and Types">ポインタと参照の式と型</span></h3>
 
     <p>
         <span>
@@ -15303,7 +15533,7 @@ while (condition) continue;  // 良い例。 `continue` によって、ロジッ
         </span>
     </p>
 
-    <pre>x = *p;
+    <pre class="goodcode">x = *p;
 p = &amp;x;
 x = r.y;
 x = r-&gt;y;
@@ -15344,65 +15574,35 @@ x = r-&gt;y;
         <span>
             <span class="src">
                 When referring to a pointer or reference (variable declarations or definitions, arguments,
-                return types, template parameters, etc), you may place the space before or after the
-                asterisk/ampersand.
+                return types, template parameters, etc.), you must not place a space before the asterisk/ampersand.
             </span>
-            ポインタ型や参照型の宣言 (変数、引数、戻り値型、テンプレート引数など) では、アスタリスク(<code>*</code>)やアンパサンド(<code>&amp;</code>)を型名と変数名のどちらにつけてもかまいません。
+            変数宣言や定義、引数、戻り値型、テンプレート引数などの場面において、ポインタ型や参照型を扱うときは、アスタリスク(<code>*</code>)やアンパサンド(<code>&amp;</code>)の前にスペースをおいてはいけません。
         </span>
         <span>
             <span class="src">
-                In the trailing-space style, the space is elided in some cases (template
-                parameters, etc).
+                Use a
+                space to separate the type from the declared name (if present).
             </span>
-            型名につける (後ろにスペースを置く) スタイルの場合、テンプレート引数などの型名のみを要する箇所ではスペースを省きます。
+            スペースはこれらの型名とその場で宣言する名前とをわけるために使います。
         </span>
     </p>
 
     <div>
         <div class="src">
-            <pre>// These are fine, space preceding.
-char *c;
-const std::string &amp;str;
-int *GetPointer();
-std::vector&lt;char *&gt;
-
-// These are fine, space following (or elided).
+            <pre class="goodcode">// These are fine
 char* c;
 const std::string&amp; str;
 int* GetPointer();
 std::vector&lt;char*&gt;  // Note no space between '*' and '&gt;'
 </pre>
         </div>
-        <pre>// これらはOK。スペースが先。
-char *c;
-const std::string &amp;str;
-int *GetPointer();
-std::vector&lt;char *&gt;
-
-// これらもOK。スペースが後(か省略)。
+        <pre class="goodcode">
 char* c;
 const std::string&amp; str;
 int* GetPointer();
 std::vector&lt;char*&gt;  // '*' と '&gt;'の間にスペースなし
 </pre>
     </div>
-
-    <p>
-        <span>
-            <span class="src">
-                You should do this consistently within a single
-                file.
-            </span>
-            1つのファイル内では一貫したスタイルを保つようにしてください。
-        </span>
-        <span>
-            <span class="src">
-                When modifying an existing file, use the style in
-                that file.
-            </span>
-            既存のファイルを変更するときは、そのファイル内で使われているスタイルにあわせてください。
-        </span>
-    </p>
 
     <span>
         <span class="src">
@@ -15420,23 +15620,25 @@ std::vector&lt;char*&gt;  // '*' と '&gt;'の間にスペースなし
     </span>
     <div>
         <div class="src">
-            <pre>// Fine if helpful for readability.
+            <pre class="neutralcode">// Fine if helpful for readability.
 int x, y;
 </pre>
         </div>
-        <pre>// 可読性が高まる場合はOK
+        <pre class="neutralcode">// 可読性が高まる場合はOK
 int x, y;
 </pre>
     </div>
 
     <div>
         <div class="src">
-            <pre class="badcode">int x, *y;  // Disallowed - no &amp; or * in multiple declaration
+            <pre class="badcode">int *x, *y;  // Disallowed - no &amp; or * in multiple declaration
+int *x;  // Disallowed - &amp; or * must be left of the space
 char * c;  // Bad - spaces on both sides of *
 const std::string &amp; str;  // Bad - spaces on both sides of &amp;
 </pre>
         </div>
-        <pre class="badcode">int x, *y;  // 不可。&amp;や*が複数宣言の中に含められている。
+        <pre class="badcode">int *x, *y;  // 不可。複数宣言の中に &amp; や　* がある。
+int *x;  // 不可 - &amp; や * の前にスペースがある。
 char * c;  // ダメ。*の前後両方にスペースがある。
 const std::string &amp; str;  // ダメ。&amp;の前後両方にスペースがある。
 </pre>
@@ -15467,14 +15669,14 @@ const std::string &amp; str;  // ダメ。&amp;の前後両方にスペースが
 
     <div>
         <div class="src">
-            <pre>if (this_one_thing &gt; this_other_thing &amp;&amp;
+            <pre class="goodcode">if (this_one_thing &gt; this_other_thing &amp;&amp;
     a_third_thing == a_fourth_thing &amp;&amp;
     yet_another &amp;&amp; last_one) {
   ...
 }
 </pre>
         </div>
-        <pre>if (this_one_thing &gt; this_other_thing &amp;&amp;
+        <pre class="goodcode">if (this_one_thing &gt; this_other_thing &amp;&amp;
     a_third_thing == a_fourth_thing &amp;&amp;
     yet_another &amp;&amp; last_one) {
   ...
@@ -15546,13 +15748,13 @@ const std::string &amp; str;  // ダメ。&amp;の前後両方にスペースが
 
     <div>
         <div class="src">
-            <pre>return result;                  // No parentheses in the simple case.
+            <pre class="goodcode">return result;                  // No parentheses in the simple case.
 // Parentheses OK to make a complex expression more readable.
 return (some_long_condition &amp;&amp;
         another_condition);
 </pre>
         </div>
-        <pre>return result;                  // 単純なものには丸括弧を使いません。
+        <pre class="goodcode">return result;                  // 単純なものには丸括弧を使いません。
 
 // これはOK。複雑な式を読みやすくするために、丸括弧を使っています。
 return (some_long_condition &amp;&amp;
@@ -15587,7 +15789,7 @@ return(result);                // returnは関数ではありません！
 
     <div>
         <div class="src">
-            <pre>int x = 3;
+            <pre class="goodcode">int x = 3;
 int x(3);
 int x{3};
 std::string name = "Some Name";
@@ -15595,7 +15797,7 @@ std::string name("Some Name");
 std::string name{"Some Name"};
 </pre>
         </div>
-        <pre>int x = 3;
+        <pre class="goodcode">int x = 3;
 int x(3);
 int x{3};
 std::string name = "Some Name";
@@ -15642,11 +15844,11 @@ std::string name{"Some Name"};
 
     <div>
         <div class="src">
-            <pre>std::vector&lt;int&gt; v(100, 1);  // A vector containing 100 items: All 1s.
+            <pre class="goodcode">std::vector&lt;int&gt; v(100, 1);  // A vector containing 100 items: All 1s.
 std::vector&lt;int&gt; v{100, 1};  // A vector containing 2 items: 100 and 1.
 </pre>
         </div>
-        <pre>std::vector&lt;int&gt; v(100, 1);  // 中身は「1」が100個。
+        <pre class="goodcode">std::vector&lt;int&gt; v(100, 1);  // 中身は「1」が100個。
 std::vector&lt;int&gt; v{100, 1};  // 中身は「100」と「1」の2個。
 </pre>
     </div>
@@ -15670,11 +15872,11 @@ std::vector&lt;int&gt; v{100, 1};  // 中身は「100」と「1」の2個。
 
     <div>
         <div class="src">
-            <pre>int pi(3.14);  // OK -- pi == 3.
+            <pre class="goodcode">int pi(3.14);  // OK -- pi == 3.
 int pi{3.14};  // Compile error: narrowing conversion.
 </pre>
         </div>
-        <pre>int pi(3.14);  // OK？  コンパイルが通る。 pi == 3 になる。
+        <pre class="goodcode">int pi(3.14);  // OK？  コンパイルが通る。 pi == 3 になる。
 int pi{3.14};  // コンパイルエラー: より小さい型への変換
 </pre>
     </div>
@@ -15704,7 +15906,7 @@ int pi{3.14};  // コンパイルエラー: より小さい型への変換
 
     <div>
         <div class="src">
-            <pre>// Good - directives at beginning of line
+            <pre class="goodcode">// Good - directives at beginning of line
   if (lopsided_score) {
 #if DISASTER_PENDING      // Correct -- Starts at beginning of line
     DropEverything();
@@ -15716,7 +15918,7 @@ int pi{3.14};  // コンパイルエラー: より小さい型への変換
   }
 </pre>
         </div>
-        <pre>// OK。プリプロセッサが行の頭にある。
+        <pre class="goodcode">// OK。プリプロセッサディレクティブが行頭にある。
   if (lopsided_score) {
 #if DISASTER_PENDING      // 正しい。行頭から始める。
     DropEverything();
@@ -15754,7 +15956,7 @@ int pi{3.14};  // コンパイルエラー: より小さい型への変換
     <p>
         <span>
             <span class="src">
-                Sections in <code>public</code>, <code>protected</code> and
+                Sections in <code>public</code>, <code>protected</code>, and
                 <code>private</code> order, each indented one space.
             </span>
             クラス内のセクションは<code>public</code>、<code>protected</code>、<code>private</code>の順で並べ、これらのキーワードはスペース1文字でインデントします。
@@ -15775,7 +15977,7 @@ int pi{3.14};  // コンパイルエラー: より小さい型への変換
 
     <div>
         <div class="src">
-            <pre>class MyClass : public OtherClass {
+            <pre class="goodcode">class MyClass : public OtherClass {
  public:      // Note the 1 space indent!
   MyClass();  // Regular 2 space indent.
   explicit MyClass(int var);
@@ -15796,7 +15998,7 @@ int pi{3.14};  // コンパイルエラー: より小さい型への変換
 };
 </pre>
         </div>
-        <pre>class MyClass : public OtherClass {
+        <pre class="goodcode">class MyClass : public OtherClass {
  public:      // 注意: スペース1つでインデント！
   MyClass();  // いつもの。スペース2つでインデント
   explicit MyClass(int var);
@@ -15922,7 +16124,7 @@ int pi{3.14};  // コンパイルエラー: より小さい型への変換
 
     <div>
         <div class="src">
-            <pre>// When everything fits on one line:
+            <pre class="goodcode">// When everything fits on one line:
 MyClass::MyClass(int var) : some_var_(var) {
   DoSomething();
 }
@@ -15948,7 +16150,7 @@ MyClass::MyClass(int var)
     : some_var_(var) {}
 </pre>
         </div>
-        <pre>// 1行にすべて収まるとき
+        <pre class="goodcode">// 1行にすべて収まるとき
 MyClass::MyClass(int var) : some_var_(var) {
   DoSomething();
 }
@@ -16005,7 +16207,7 @@ MyClass::MyClass(int var)
 
     <div>
         <div class="src">
-            <pre>namespace {
+            <pre class="goodcode">namespace {
 
 void foo() {  // Correct.  No extra indentation within namespace.
   ...
@@ -16014,7 +16216,7 @@ void foo() {  // Correct.  No extra indentation within namespace.
 }  // namespace
 </pre>
         </div>
-        <pre>namespace {
+        <pre class="goodcode">namespace {
 
 void foo() {  // 正しい。名前空間はインデントを追加しない。
   ...
@@ -16056,27 +16258,6 @@ void foo() {  // 正しい。名前空間はインデントを追加しない。
 </pre>
     </div>
 
-    <p>
-        <span>
-            <span class="src">
-                When declaring nested namespaces, put each namespace
-                on its own line.
-            </span>
-            名前空間の宣言をネストするときは、1行に1つずつにします。
-        </span>
-    </p>
-
-    <div>
-        <div class="src">
-            <pre>namespace foo {
-namespace bar {
-</pre>
-        </div>
-        <pre>namespace foo {
-namespace bar {
-</pre>
-    </div>
-
     <h3 id="Horizontal_Whitespace"><span data-src="Horizontal Whitespace">水平方向の空白</span></h3>
 
     <p>
@@ -16099,7 +16280,7 @@ namespace bar {
 
     <div>
         <div class="src">
-            <pre>int i = 0;  // Two spaces before end-of-line comments.
+            <pre class="goodcode">int i = 0;  // Two spaces before end-of-line comments.
 
 void f(bool b) {  // Open braces should always have a space before them.
   ...
@@ -16119,7 +16300,7 @@ class Foo : public Bar {
   ...
 </pre>
         </div>
-        <pre>int i = 0;  // 行末コメントの前にはスペース2つ。
+        <pre class="goodcode">int i = 0;  // 行末コメントの前にはスペース2つ。
 
 void f(bool b) {  // 開き波括弧{の前には常にスペースを置く。
   ...
@@ -16145,14 +16326,14 @@ class Foo : public Bar {
         <span>
             <span class="src">
                 Adding trailing whitespace can cause extra work for
-                others editing the same file, when they merge, as can
+                others editing the same file when they merge, as can
                 removing existing trailing whitespace.
             </span>
             行末にスペースを追加してしまうと、同じファイルで作業している他の人がファイルをマージする際に、これらのスペースを取り除く余計な仕事を発生させてしまいます。
         </span>
         <span>
             <span class="src">
-                So: Don't
+                So, Don't
                 introduce trailing whitespace.
             </span>
             ですから、行末にスペースを入れてはいけません。
@@ -16162,7 +16343,7 @@ class Foo : public Bar {
                 Remove it if you're
                 already changing that line, or do it in a separate
                 clean-up
-                operation (preferably when no-one
+                operation (preferably when no one
                 else is working on the file).
             </span>
             既存の行末のスペースは、そのような行を編集したタイミングで取り除くか、あるいは、別途、コードを整理するタイミングを設けて、まとめて取り除くようにしてください (この場合は、そのファイルを誰も編集していないときに行うのがよいでしょう)。
@@ -16173,7 +16354,7 @@ class Foo : public Bar {
 
     <div>
         <div class="src">
-            <pre>if (b) {          // Space after the keyword in conditions and loops.
+            <pre class="goodcode">if (b) {          // Space after the keyword in conditions and loops.
 } else {          // Spaces around else.
 }
 while (test) {}   // There is usually no space inside parentheses.
@@ -16199,7 +16380,7 @@ switch (i) {
   case 2: break;  // Use a space after a colon if there's code after it.
 </pre>
         </div>
-        <pre>if (b) {          // 条件文キーワードやループキーワードは直後にスペースを置きます。
+        <pre class="goodcode">if (b) {          // 条件文キーワードやループキーワードは直後にスペースを置きます。
 } else {          // elseは前後にスペースを置きます。
 }
 while (test) {}   // 通常、丸括弧の内側にはスペースを置きません。
@@ -16232,7 +16413,7 @@ switch (i) {
 
     <div>
         <div class="src">
-            <pre>// Assignment operators always have spaces around them.
+            <pre class="goodcode">// Assignment operators always have spaces around them.
 x = 0;
 
 // Other binary operators usually have spaces around them, but it's
@@ -16249,7 +16430,7 @@ if (x &amp;&amp; !y)
   ...
 </pre>
         </div>
-        <pre>// 代入演算子の前後には常にスペースを置きます。
+        <pre class="goodcode">// 代入演算子の前後には常にスペースを置きます。
 x = 0;
 
 // その他の二項演算子の前後には、通常はスペースを置きます。
@@ -16271,7 +16452,7 @@ if (x &amp;&amp; !y)
 
     <div>
         <div class="src">
-            <pre>// No spaces inside the angle brackets (&lt; and &gt;), before
+            <pre class="goodcode">// No spaces inside the angle brackets (&lt; and &gt;), before
 // &lt;, or between &gt;( in a cast
 std::vector&lt;std::string&gt; x;
 y = static_cast&lt;char*&gt;(x);
@@ -16280,7 +16461,7 @@ y = static_cast&lt;char*&gt;(x);
 std::vector&lt;char *&gt; x;
 </pre>
         </div>
-        <pre>// 山括弧(<code>&lt;</code>と<code>&gt;</code>)の内側にはスペースを置きません。
+        <pre class="goodcode">// 山括弧(<code>&lt;</code>と<code>&gt;</code>)の内側にはスペースを置きません。
 // キャストにおける<code>&lt;</code>の前や、
 // <code>&gt;</code>と<code>(</code>との間にもスペースを置きません。
 std::vector&lt;std::string&gt; x;
@@ -16294,123 +16475,44 @@ std::vector&lt;char *&gt; x;
     <h3 id="Vertical_Whitespace"><span data-src="Vertical Whitespace">垂直方向の空白</span></h3>
 
     <p>
-        <span>
-            <span class="src">
-                Minimize use of vertical whitespace.
-            </span>
-            垂直方向の空白は最小限にします。
+        <span><span class="src">
+            Use vertical whitespace sparingly; unnecessary blank lines make it harder to
+see overall code structure. Use blank lines only where they aid the reader in
+understanding the structure.
+        </span>
+        ⭐Use vertical whitespace sparingly; unnecessary blank lines make it harder to
+see overall code structure. Use blank lines only where they aid the reader in
+understanding the structure.
         </span>
     </p>
 
     <p>
-        <span>
-            <span class="src">
-                This is more a principle than a rule: don't use blank lines when
-                you don't have to.
-            </span>
-            これはルールというよりは原則になりますが、コード内に不要な空行を残してはいけません。
+        <span><span class="src">
+            Do not add blank lines where indentation already provides clear delineation,
+such as at the start or end of a code block.
         </span>
-        <span>
-            <span class="src">
-                In particular, don't put more than one or two blank
-                lines between functions, resist starting functions with a blank line,
-                don't end functions with a blank line, and be sparing with your use of
-                blank lines.
-            </span>
-            特に、関数と関数との間の空行は多くとも2行までとし、関数を空行で始めたり終わらせたりせず、関数の中でも空行を使いすぎないようにしましょう。
+        ⭐Do not add blank lines where indentation already provides clear delineation,
+such as at the start or end of a code block.
         </span>
-        <span>
-            <span class="src">
-                A blank line within a block of code serves like a
-                paragraph break in prose: visually separating two thoughts.
-            </span>
-            コードブロック中の空行には、通常の散文における段落を区切るような、2つの思考や概念を視覚的に分離する効果があります。
+        <span><span class="src">
+            Do use blank lines to separate code
+into closely related chunks, analogous to paragraph breaks in prose.
         </span>
-    </p>
-
-    <p>
-        <span>
-            <span class="src">
-                The basic principle is: The more code that fits on one screen, the
-                easier it is to follow and understand the control flow of the
-                program.
-            </span>
-            基本的な原則は「1画面に収まるコードが多ければ多いほど、プログラムの流れが追いやすく、理解しやすくなる」というものです。
+        ⭐Do use blank lines to separate code
+into closely related chunks, analogous to paragraph breaks in prose.
         </span>
-        <span>
-            <span class="src">
-                Use whitespace purposefully to provide separation in that
-                flow.
-            </span>
-            空白は、フローを分離する目的をもって、意図的に使いましょう。
+        <span><span class="src">
+            Within a
+statement or declaration, usually only insert line breaks to stay within
+the <a href="#Line_Length">line length limit</a>, or to attach a comment to only
+part of the contents.
+        </span>
+        ⭐Within a
+statement or declaration, usually only insert line breaks to stay within
+the <a href="#Line_Length">line length limit</a>, or to attach a comment to only
+part of the contents.
         </span>
     </p>
-
-    <p>
-        <span>
-            <span class="src">
-                Some rules of thumb to help when blank lines may be
-                useful:
-            </span>
-            空行が有効に働くのはどのような場合か、経験則として、次のルールを参考にしてみてください。
-        </span>
-    </p>
-
-    <ul>
-        <li>
-            <span>
-                <span class="src">
-                    Blank lines at the beginning or end of a function
-                    do not help readability.
-                </span>
-                関数の最初や最後に空行を入れても、コードが読みやすくなることはありません。
-            </span>
-        </li>
-
-        <li>
-            <span>
-                <span class="src">
-                    Blank lines inside a chain of if-else blocks may
-                    well help readability.
-                </span>
-                if-elseブロックが連なっているとき、その中に空行を入れると、読みやすくなることがあります。
-            </span>
-        </li>
-
-        <li>
-            <span>
-                <span class="src">
-                    A blank line before a comment line usually helps
-                    readability — the introduction of a new comment suggests
-                    the start of a new thought, and the blank line makes it clear
-                    that the comment goes with the following thing instead of the
-                    preceding.
-                </span>
-                通常、コメント行の前に空行をおくと、可読性が向上します。
-                新しいコメントが入るということは、そこから新しい事柄が始まるということでもあります。
-                コメントの前に空行を入れることによって、それまでのコードと新しいコメントとが分離され、視覚的に、そのコメントがその後に続く事柄に関するものであることを表現できます。
-            </span>
-        </li>
-        <li>
-            <span>
-                <span class="src">
-                    Blank lines immediately inside a declaration of a namespace or block of
-                    namespaces may help readability by visually separating the load-bearing
-                    content from the (largely non-semantic) organizational wrapper.
-                </span>
-                名前空間の宣言 (あるいは、その固まり) のすぐ内側に空行を置くと、ファイルの主となるコンテンツ部分と、ほとんど定型文であるファイルを系統立てるためのラッパー部分とを視覚的に分離することができるため、コードが読みやすくなることがあります。
-            </span>
-            <span>
-                <span class="src">
-                    Especially
-                    when the first declaration inside the namespace(s) is preceded by a comment,
-                    this becomes a special case of the previous rule, helping the comment to
-                    "attach" to the subsequent declaration.
-                </span>
-                特に、名前空間内にある最初の宣言が、その宣言に関するコメントで始まっている場合、これは一つ前のルールの特殊ケースにあたり、そのコメントが後に続く宣言に係ることを助ける働きがあります。
-            </span>
-        </li>
-    </ul>
 
     <h2 id="Exceptions_to_the_Rules"><span data-src="Exceptions to the Rules">ルールの例外</span></h2>
 
