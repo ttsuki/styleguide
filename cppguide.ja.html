@@ -1072,14 +1072,14 @@ void test(D* x) { f(x); }  // f(B*)を呼び出す</pre></div>
             Include the definition of a function at its point of declaration in a header file only
             when the definition is short.
             </span>
-            ヘッダーファイル内に含められる関数の定義は、その定義が短いものに限ります。
+            関数が短い場合に限り、ヘッダーファイル内に定義することができます。
             </span>
 
             <span><span class="src">
             If the definition otherwise has a reason be in the header,
             put it in an internal part of the file.
             </span>
-            それ以外で関数定義をヘッダーファイル内に含める正当な理由がある場合は、それらを内部用とする区画に配置します。
+            それ以外に関数定義をヘッダーファイル内に含める正当な理由がある場合は、それらを内部用とする区画に配置します。
             </span>
 
             <span><span class="src">
@@ -1191,14 +1191,14 @@ often extraneous.
             <span><span class="src">
                 Only define a function at its public declaration if it is short, say, 10 lines or fewer.
             </span>
-                関数はその定義が短い場合(10行かそれ以下程度)に限り、宣言と同時に定義してください。
+                関数は、その定義が短い場合(10行かそれ以下程度)に限り、公開される宣言と同時に定義してください。
             </span>
             <span><span class="src">
                  Put
 longer function bodies in the <code>.cc</code> file unless they must be in the header for
 performance or technical reasons.
             </span>
-                それ以外の場合で、性能都合や技術的理由によって関数定義をヘッダーファイルに置かなければならない場合を除き、長い関数は<code>.cc</code>内で定義してください。
+                それ以外の長い関数については、パフォーマンス都合や技術的理由などの特別な理由がない限り、<code>.cc</code>内で定義してください。
             </span>
         </p>
 
@@ -1207,7 +1207,7 @@ performance or technical reasons.
                Even if a definition must be in the header, this is not a sufficient reason to put it within
 the public part.
             </span>
-                また、何らかの都合によって関数定義をヘッダーファイル内に置く場合でも、その定義を公開部分におく理由としては不十分です。
+                また、何らかの都合によって関数定義をヘッダーファイル内に置く場合であっても、それらの都合や理由は、その定義を公開部分におく理由としては不十分です。
             </span>
             <span><span class="src">
                 Instead, the definition can be in an internal part of the header, such as the
@@ -1215,7 +1215,7 @@ the public part.
 <code>internal</code>, or below a comment like <code>// Implementation details only
 below here</code>.
             </span>そのかわりに、関数定義をヘッダーファイルの内部用とする区画に書くようにしてください。たとえば、クラスの<a href="#Access_Control">private</a>セクション内であったり、<code>internal</code>という語句を含む名前空間内であったり、あるいは
-                <code>// ここから下は実装詳細です </code>のようなコメントを設けて、それより下に書くようにします。
+                「<code>// ここから下は実装詳細です </code>」のようなコメントを設けて、それより下に配置してください。
             </span>
         </p>
         <p>
@@ -1962,7 +1962,7 @@ using namespace foo;
                             Namespace aliases can be used when those conditions don't apply, but
   they must have <a href="#Naming_Aliases">appropriate names</a>.
                         </span>
-                        名前空間のエイリアスはこれらの条件が当てはまらないときに使用できますが、<a href="#Naming_Aliases">適切な名前をつける</a>必要があります。
+                        これらの条件が当てはまらないときには、名前空間のエイリアスを使用してもかまいませんが、<a href="#Naming_Aliases">適切な名前をつける</a>必要はあります。
                     </span>
                 </p>
 
@@ -2031,8 +2031,8 @@ using ::absl::container_internal::ImplementationDetail;
                         namespace a unique internal namespace by adding the library's
                         filename.
                     </span>
-                        ネストされた<code>internal</code>名前空間で囲んだとしても、ライブラリ間で衝突するリスクは依然として存在することに注意してください。
-                        このリスクを避けるために、内部用の名前空間の名前にはライブラリのファイル名を加えることによって一意になるようにしてください。
+                        ネストされた<code>internal</code>名前空間を用いた場合でも、同名の名前空間を持つライブラリ間で衝突するリスクは依然として存在することに注意してください。
+                        このリスクを避けるために、内部用の名前空間の名前にはライブラリのファイル名を加えて一意になるようにしてください。
                     </span>
 
                     <span><span class="src">
@@ -5622,7 +5622,7 @@ declaration.
                 Where a reader might have difficulty connecting the umbrella
 comment to a specific overload, it's okay to have a comment for specific overloads.
             </span>
-            読者にとって、全体的なアンブレラコメントと特定のオーバーロードを紐付けることが難しいと考えられる場合は、特定のオーバーロードに固有のコメントを書いてもかまいません。
+            読者にとって、全体的なアンブレラコメントと特定のオーバーロードを結びつけることが難しいと考えられる場合は、特定のオーバーロードに固有のコメントを書いてもかまいません。
         </span>
     </p>
 
@@ -7681,7 +7681,7 @@ bool Derived::Equal(Base* other) {
   e.g., prefer <code>std::string(some_cord)</code> to
   <code>static_cast&lt;std::string&gt;(some_cord)</code>.
                 </span>
-                明示的にクラス型へ変換を行うときは、関数スタイルのキャストを使用してください。たとえば、<code>static_cast&lt;std::string&gt;(some_cord)</code>ではなく<code>std::string(some_cord)</code>の形を用いるようにします。
+                クラス型への変換を明示的に行うときは、関数スタイルのキャストを使用してください。たとえば、<code>static_cast&lt;std::string&gt;(some_cord)</code>ではなく<code>std::string(some_cord)</code>の形を用いてください。
             </span>
         </li>
         <li>
@@ -11176,7 +11176,7 @@ Only use C++20 coroutines via libraries that have been
         <p><span><span class="src">Unlike most other programming languages (Kotlin, Rust, TypeScript, etc.),
             C++ does not provide a concrete implementation of coroutines.
         </span>
-            C++のコルーチンでは、他の多くのプログラミング言語(Kotlin, Rust, TypeScript など)とは異なり、具体的な実装を提供していません。
+            C++のコルーチンでは、他の多くのプログラミング言語(Kotlin, Rust, TypeScript など)とは異なり、具体的な実装が提供されていません。
         </span>
         <span><span class="src">
             Instead, it requires users to implement their own awaitable type (using a
@@ -11186,8 +11186,8 @@ Only use C++20 coroutines via libraries that have been
             of their execution.
         </span>
             かわりに、C++のユーザーは<a href="https://en.cppreference.com/w/cpp/language/coroutines#Promise">
-                promise type</a>を使用した、独自の待機可能な型 (awaitable type) を実装する必要があります。
-            この独自の型は、コルーチンの引数の型や、コルーチンがどのように実行されるかを決定し、また、様々な実行状態の遷移に応じたユーザ定義のコードを実行できるようにします。
+                Promise型</a>を使用した、独自の待機可能な型 (awaitable type) を実装する必要があります。
+            この独自の型は、コルーチンの引数の型や、コルーチンがどのように実行されるかを決定し、また、様々な実行状態の遷移に応じてユーザ定義のコードを実行できるようにします。
         </span>
         </p>
 
@@ -11212,7 +11212,7 @@ Only use C++20 coroutines via libraries that have been
                 detailed debugging information into coroutines, compared to
                 alternatives.
                 </span>
-                    C++のコルーチンは高度にカスタマイズ可能なため、他の方法に比べて。より詳細なデバッグ情報を埋め込むことができます。
+                    C++のコルーチンは高度にカスタマイズ可能なため、他の方法に比べ、より詳細なデバッグ情報を埋め込むことができます。
                 </span>
             </li>
         </ul>
@@ -11223,7 +11223,7 @@ Only use C++20 coroutines via libraries that have been
                 <span><span class="src">There is no standard coroutine promise type, and each user-defined
                 implementation is likely going to be unique in some aspect.
                 </span>
-                    C++のコルーチンには標準的なPromise型がありませんが、ユーザーがそれぞれ独自に実装する型がある側面で一意になる傾向があります。
+                    C++のコルーチンには標準的なPromise型がなく、ユーザーがそれぞれ独自に実装する必要がありますが、それらの型はある側面で似通ったものになる傾向があります。
                 </span>
             </li>
             <li>
@@ -11242,7 +11242,7 @@ Only use C++20 coroutines via libraries that have been
                 of pitfalls, especially around dangling references and race
                 conditions.
                 </span>
-                    コルーチンには多数のカスタマイズ可能な側面が含まれるため、特にダングリング参照やレースコンディションに関するものなどの、多数の落とし穴が存在します。
+                    コルーチンには多数のカスタマイズ可能な側面が含まれるため、同時に多数の落とし穴が存在します。特にダングリング参照やレースコンディションに関するものには注意が必要です。
                 </span>
             </li>
         </ul>
@@ -11252,7 +11252,7 @@ Only use C++20 coroutines via libraries that have been
             requires a large amount of difficult work, careful thought, and extensive
             documentation.
             </span>
-                要約すると、高品質で相互運用可能なコルーチンライブラリを設計するためには、大量の難しい作業、慎重な検討、詳細なドキュメント作成を必要とします。
+                要約すると、高品質で相互運用可能なコルーチンライブラリを設計しようとすると、大量の難しい作業、慎重な検討、詳細なドキュメント作成を必要とします。
             </span>
         </p>
 
@@ -11262,7 +11262,7 @@ Only use C++20 coroutines via libraries that have been
             <span><span class="src">Use only coroutine libraries that have been approved for
             project-wide use by your project leads.
             </span>
-                プロジェクトリーダーによって、プロジェクト全体で使用することが承認されたコルーチンライブラリのみを使用してください。
+                プロジェクトリーダーによって、プロジェクト全体で使用することを承認されたコルーチンライブラリのみを使用してください。
             </span>
             <span><span class="src">Do not roll your own promise or
             awaitable types.
@@ -12209,7 +12209,7 @@ are mixed case with the first letter of each word capitalized
 ("<a href="https://en.wikipedia.org/wiki/Camel_case">camelCase</a>" or
 "<a href="https://en.wiktionary.org/wiki/Pascal_case">PascalCase</a>").
             </span>
-            各単語をすべて小文字で単語間をアンダースコアで区切る("<a href="https://en.wikipedia.org/wiki/Snake_case">snake_case</a>")か、各単語の先頭の文字を大文字にする("<a href="https://en.wikipedia.org/wiki/Camel_case">camelCase</a>"や"<a href="https://en.wiktionary.org/wiki/Pascal_case">PascalCase</a>")のいずれかで命名します。
+            命名は、各単語をすべて小文字で単語間をアンダースコアで区切る("<a href="https://en.wikipedia.org/wiki/Snake_case">snake_case</a>")か、各単語の先頭の文字を大文字にする("<a href="https://en.wikipedia.org/wiki/Camel_case">camelCase</a>"や"<a href="https://en.wiktionary.org/wiki/Pascal_case">PascalCase</a>")のいずれかで行います。
         </span>
     </p>
         <h3 id="General_Naming_Rules" data-src="Choosing Names">名前の決め方</h3>
@@ -12238,7 +12238,7 @@ reader, even someone on a different team than the owners.
             descriptive even if it is used far from the code that makes it available for
             use.
             </span>
-                名前は、それを使用するコードから遠く離れたところにあったとしても、説明的である必要があります。
+            名前は、それを使用可能にするコードから遠く離れたところで使われた場合であっても、十分説明的であるようにしてください。
             </span>
 
             <span><span class="src">However, a name should not distract the reader by repeating information
@@ -12250,15 +12250,14 @@ reader, even someone on a different team than the owners.
             <span><span class="src">Generally, this means that
             descriptiveness should be proportional to the name's scope of visibility.
             </span>
-                一般的に、名前は、それが見えるスコープの広さに比例して説明的であるようにすべきです。
+            一般的に、名前は、それが見えるスコープの広さに比例して説明的であるようにするとよいでしょう。
             </span>
 
             <span><span class="src">A free
             function declared in a header should probably mention the header's library,
             while a local variable probably shouldn't explain what function it's within.
             </span>
-                ヘッダーファイル内で宣言されるフリー関数はそれを含むヘッダーのライブラリに言及する必要があるでしょう。
-                一方で、ローカル変数について自分自身がどの関数に含まれているかを説明する必要はないでしょう。
+            たとえば、ヘッダーファイル内で宣言されるフリー関数の名前ではそれを含むヘッダーのライブラリに言及する必要があるでしょうし、一方で、ローカル変数の名前では自分自身がどの関数に含まれているかに触れる必要はないでしょう。
             </span>
         </p>
 <p>
@@ -12274,7 +12273,7 @@ reader, even someone on a different team than the owners.
                 Do not abbreviate by
 deleting letters within a word.
             </span>
-            また、単語の中の文字を削って省略系を作ってもいけません。
+            また、単語の中の文字を削って省略語を作ってもいけません。
         </span>
         <span>
             <span class="src">
@@ -12282,7 +12281,7 @@ deleting letters within a word.
 capitalize it as a single "word", e.g., <code>StartRpc()</code> rather than
 <code>StartRPC()</code>.
             </span>
-            省略系を用いるときでかつ大文字化するときは、それが1つの単語であるかのように扱います。
+            省略語を用いるときは、それが1つの単語であるかのように扱います。
             たとえば、<code>StartRPC()</code>ではなく、<code>StartRpc()</code>のようにします。
         </span>
 
@@ -12313,7 +12312,7 @@ parameter.
             explicit long-form documentation rather than from just comments on their
             definition and the words within the names.
             </span>
-                これらの名前は短く、場合によっては省略される傾向があり、その完全な意味は、定義や名前に含まれる単語に関するコメントではなく、明示的な長文のドキュメントから得られます。
+            これらの名前は、傾向として、短く、場合によっては省略されることもあります。その完全な意味は、定義に対するコメントや、名前に含まれる単語からではなく、明示的な長文のドキュメントから得られます。
             </span>
 
             <span><span class="src">
@@ -12331,7 +12330,7 @@ parameter.
             additional design review to make sure the chosen names work well when
             used widely.
             </span>
-                新しい語彙を定義することは、そう頻繁にはないでしょうが、もし新しい語彙を定義する場合は、選んだ名前が広い範囲で使われたとしても問題なく機能するかどうか、設計に関する追加のレビューを受けるようにしてください。
+                新しい語彙を定義する機会は、そう頻繁にあることではありませんが、もし新しい語彙を定義するときは、選んだ名前が広い範囲で使われたとしても問題なく機能するかどうか、設計に関する追加のレビューを受けるようにしてください。
             </span>
 
         </p>
@@ -12691,7 +12690,7 @@ enum class UrlTableError { ...
 class members, which should follow the rules for
 <a href="#Constant_Names">naming constants</a>.
         </span>
-            ただし、クラスの静的定数メンバは例外で、それらは<a href="#Constant_Names">定数の命名規則</a>に従います。
+            ただし、クラスの静的定数メンバについては例外で<a href="#Constant_Names">定数の命名規則</a>に従って命名します。
         </span>
     </p>
     <div>
@@ -12902,7 +12901,7 @@ OpenFileOrDie()
             Namespace names are <code>snake_case</code> (all lowercase, with underscores
 between words).
         </span>
-        名前空間の名前は、<code>snake_case</code>(すべて小文字で、単語間はアンダースコアで区切る)とします。
+        名前空間の名前は、<code>snake_case</code>(すべて小文字で、単語間はアンダースコアで区切る)で命名します。
         </span>
     </p>
     <p>
@@ -12911,7 +12910,7 @@ between words).
             that names must be fully qualified when used in a header outside the namespace,
             because <a href="#Aliases">unqualified Aliases are generally banned</a>.
         </span>
-        名前空間の<a href="#General_Naming_Rules">名前を決める</a>ときは、ヘッダーの外でその名前が使われるとき、完全に修飾される必要があることに注意します。(本スタイルガイドのルールでは、<a href="#Aliases">非修飾のエイリアスは一般に禁止</a>しています。)
+        名前空間の<a href="#General_Naming_Rules">名前を決める</a>ときには、その名前がヘッダーの外で使われるときに、完全に修飾される必要があることに注意してください。(本スタイルガイドのルールでは、<a href="#Aliases">非修飾のエイリアスは一般に禁止</a>しています。)
         </span>
     </p>
 
@@ -12939,7 +12938,7 @@ between words).
         namespaces do not protect from collisions with names in other namespaces
         (see <a href="https://abseil.io/tips/130">TotW #130</a>).
         </span>
-            ネストされる名前空間においては、よく知られているトップレベルの名前、特に<code>std</code>や<code>absl</code>などを避けるべきです。これは、C++における名前空間名が他の名前空間の名前との衝突から保護されないためです。(<a href="https://abseil.io/tips/130">TotW #130</a>を参照してください)
+            名前空間がネストされる場合でも、よく知られているトップレベルの名前、特に<code>std</code>や<code>absl</code>などを避けるべきです。これは、C++における名前空間名が他の名前空間の名前との衝突から保護されないためです。(<a href="https://abseil.io/tips/130">TotW #130</a>を参照してください)
         </span>
     </p>
 
@@ -13061,7 +13060,7 @@ between words).
             any other new name, applied in the context where the alias is defined rather
             than where the original name appears.
             </span>
-                <a href="#Aliases">エイリアス</a>の名前も、他の新しい名前と同様の原則に基づいて命名します。元の名前があった場所の文脈ではなく、新たにエイリアスを定義する場所の文脈に基づいて決定します。
+                <a href="#Aliases">エイリアス</a>は、他の新しい名前と同様の原則に基づいて命名します。元の名前があった場所の文脈ではなく、新たにエイリアスを定義する場所の文脈に基づいて決定します。
             </span>
         </p>
 
@@ -16467,13 +16466,13 @@ std::vector&lt;char *&gt; x;
             Use vertical whitespace sparingly; unnecessary blank lines make it harder to
 see overall code structure.
         </span>
-            縦方向の空白は控えめに。不要な空行は、コード全体の構造の読み取りやすさを妨げます。
+            縦方向の空白は控えめに。無用な空行は、コード読者が、コードの全体構造を眺める際の妨げになります。
         </span>
         <span><span class="src">
             Use blank lines only where they aid the reader in
 understanding the structure.
         </span>
-            コード読者にとって構造理解を助けになることを意図する場合のみ、空行を使用してください。
+            構造理解の助けになることを意図する場合にのみ、空行を使用してください。
         </span></p>
 
     <p>
@@ -16487,7 +16486,7 @@ such as at the start or end of a code block.
             Do use blank lines to separate code
 into closely related chunks, analogous to paragraph breaks in prose.
         </span>
-            コードの関連性の高い部分に空行を挟まないでください。空行は散文において段落を区切るときのように使用してください。
+            関連性の高いコード同士の間には空行を挟まないでください。空行は散文において段落を区切るときのように使用してください。
         </span>
         <span><span class="src">
             Within a
@@ -16495,7 +16494,7 @@ statement or declaration, usually only insert line breaks to stay within
 the <a href="#Line_Length">line length limit</a>, or to attach a comment to only
 part of the contents.
         </span>
-            文や宣言の中における改行は、<a href="#Line_Length">行の長さ制限</a>に収まるようにするためであったり、あるいは内容の一部分にのみコメントを付けたい場合にのみ使用してください。
+            <a href="#Line_Length">行の長さ制限</a>に収まるようにするため、あるいは内容の一部分にのみコメントを付けたい場合を除いて、文や宣言の途中で改行しないでください。
         </span>
     </p>
 
