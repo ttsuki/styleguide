@@ -5,7 +5,7 @@
 <title>Google JavaScript Style Guide</title>
 <link rel="stylesheet" href="javaguide.css">
 <script src="include/styleguide.js"></script>
-<link rel="shortcut icon" href="https://www.google.com/favicon.ico">
+<link rel="shortcut icon" href="/styleguide/favicon.ico">
 <script src="include/jsguide.js"></script>
 </head>
 <body onload="initStyleGuide();">
@@ -1199,7 +1199,7 @@ in <a href="#jsdoc">??</a>.</p>
 
 <p>Block comments are indented at the same level as the surrounding code. They may
 be in <code>/* … */</code> or <code>//</code>-style. For multi-line <code>/* … */</code> comments, subsequent
-lines must start with * aligned with the <code>*</code> on the previous line, to make
+lines must start with <code>*</code> aligned with the <code>*</code> on the previous line, to make
 comments obvious with no extra context.</p>
 
 <pre><code class="language-js prettyprint good">/*
@@ -2827,20 +2827,19 @@ comment on the preceding line.</p>
 
 <pre><code class="language-js prettyprint good">/**
  * A useful type union, which is reused often.
- * @typedef {!Bandersnatch|!BandersnatchType}
+ * @typedef {!FruitType|!FruitTypeEnum}
  */
 let CoolUnionType;
-
-
+ 
 /**
- * Types of bandersnatches.
+ * Types of fruits.
  * @enum {string}
  */
-const BandersnatchType = {
-  /** This kind is really frumious. */
-  FRUMIOUS: 'frumious',
-  /** The less-frumious kind. */
-  MANXOME: 'manxome',
+const FruitTypeEnum = {
+  /** This kind is very sour. */
+  SOUR: 'sour',
+  /** The less-sour kind. */
+  SWEET: 'sweet',
 };
 </code></pre>
 
