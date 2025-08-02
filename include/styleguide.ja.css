@@ -21,8 +21,9 @@
   body { background-color: #111; color: #eee; }
   h1, h2, h3, h4, h5, h6 { color: #39F; }
   table, td, th { border: 1px solid #666; }
-  code, samp, var, pre { background-color:#444; }
-  pre.bad, pre.badcode { background-color:#600;}
+  code, samp, var, pre { background-color:#333; color:#ddd; border-color: #111; }
+  pre.bad, pre.badcode { background-color:#522; color:#ecc; border-color: #400; }
+  pre.good, pre.goodcode { background-color:#131; color:#cec; border-color: #020; }
 }
 
 .definition:before {
